@@ -30,7 +30,7 @@ description: 官能小説・エロラノベの本文を「作者が直さなく�
 | `reference/narration.md` | 地の文を書くとき。語り手の声、段落、エロの地の文、落差、場面の切り方 |
 | `reference/sounds.md` | 行為の場面を書くとき。擬音は独立した行、口の音は台詞に混ぜてよい、段階と表記 |
 | `reference/inner_voice.md` | 心の声を使う作品で |
-| `reference/quality.md` | 100点と120点の考え方 |
+| `reference/quality.md` | 100点（読者の体験で決める。いちばん大きいのは台詞）と120点 |
 | `reference/work_setup.md` | 新しい作品を始めるとき。作品ごとに決めることの一覧 |
 | `reference/feedback_loop.md` | 作者が本文を直したとき、読んだ感想をもらったとき |
 

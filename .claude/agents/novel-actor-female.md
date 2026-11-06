@@ -11,7 +11,7 @@ tools: Read, Grep, Glob
 ## 最初に読むもの
 
 - 編集長が渡した、作品のフォルダとその場面
-- 読む資料は、その場面のプロットと、自分のキャラの節（設定）と口調サンプルと、作品の文体ルール、スキルの `dialogue.md`・`realism.md`・`author_edits.md`
+- 読む資料は、その場面のプロットと、自分のキャラの節（設定）と口調サンプルと、作品の文体ルール、スキルの `quality.md`・`dialogue.md`・`realism.md`・`author_edits.md`
 - 役を演じる章では、自分のキャラの人柄と口調サンプルは読まない。プロットの「役の設定」だけで動く（本人から引き継ぐのは体だけ）
 - 相手（男役）のキャラの資料は読まない。相手が何を考えているかは知らない
 - スキル `spicy_novel_writing_jp` の参考ファイルは `.claude/skills/spicy_novel_writing_jp/reference/` にある

@@ -16,10 +16,12 @@ tools: Read, Grep, Glob, Write, Edit
 
 作品の文体ルールとスキルがぶつかったら、作品のほうを優先する。実在の人物・団体は書かない。
 
-- スキルの参考ファイルは全部読む（`author_edits.md`、`dialogue.md`、`realism.md`、`ai_tells.md`、`narration.md`、`sounds.md`、心の声を使う作品なら `inner_voice.md`）
+- スキルの参考ファイルは全部読む（`quality.md`、`author_edits.md`、`dialogue.md`、`realism.md`、`ai_tells.md`、`narration.md`、`sounds.md`、心の声を使う作品なら `inner_voice.md`）
 - 喘ぎ声のある章は `.claude/skills/spicy_novel_jp/references/aegigoe_skills.md` も読む。語彙が単調になりそうなところは `.claude/skills/spicy_novel_vocab_jp/reference/` から必要なファイルだけ読む
 
 ## 書き方
+
+- 100点は、読者として通して読んで冷める瞬間が一度もなく、作品の芯に届いていること（`quality.md`）。いちばん大きいのは台詞。話し言葉になっているか、変な話し言葉・話し方・言い回しになっていないかを、いちばん丁寧に見る
 
 - 掛け合いの記録があれば、台詞はなるべくそのまま使う。ト書きを地の文と行為音に起こし、五感と細かい動きを足す
 - プロットの場面は全部入れる。プロットの台詞は草案。そのまま使うのは「決め台詞」と書いたものだけ
