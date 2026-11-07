@@ -3,15 +3,15 @@ schema_version: 3
 game_version: 4.13.4
 campaign_id: main
 created_at: '2026-11-07T02:20:22+00:00'
-updated_at: '2026-11-07T04:14:58+00:00'
-save_revision: 23
+updated_at: '2026-11-07T04:17:26+00:00'
+save_revision: 24
 content_manifest_hash: 59b69015c8c813194e83a7c4b4d2b862af8f4074c2c616aa5325399df6f66460
 save_format_origin: 'System_Templates.md [TEMPLATE_SAVE] (SAVE_DATA: MachaDun v2.0)'
 transaction:
-  last_transaction_id: tx-da600b5db8a64749b2ca31016420381a
-  last_committed_turn: 13
-  previous_revision_hash: 226f0f1c9acb9005c1d9c88f925799b73290d27d24cb529373337075956c325b
-  last_candidate_hash: d77605baed76e1bec83ad2051d073b425642d56094630669e35678c45f2ccfcf
+  last_transaction_id: tx-2f196808f4804c4f90abf88443bec60e
+  last_committed_turn: 14
+  previous_revision_hash: 7df9ba07eb9a48d48a79015f65febccd5b967afe3ca53067538df19ae45cbb73
+  last_candidate_hash: c1452c79ad2fb0fa47eb42aede90eb77ffaf3b787c97269025c5660b857f712d
   applied_transaction_ids:
   - tx-413eae86780d496981a94b1d08250181
   - tx-5d7fe8c49f1242dca4bcebf850e979c1
@@ -36,6 +36,7 @@ transaction:
   - tx-d36bd2166bc347908d9de6b0ce2aed2e
   - tx-d622bc6c22614fcd9b2aca600e99ec06
   - tx-da600b5db8a64749b2ca31016420381a
+  - tx-2f196808f4804c4f90abf88443bec60e
 hearing_progress:
   status: complete
   current_step: 7
@@ -68,8 +69,8 @@ runtime_state:
   style_conditions: []
   active_scene: turn
   scene_id: turn
-  context_pack_hash: 92f4d2630c8d0a334e7203279d323bd74db154726d47168cffe73a9bb0a81786
-  last_validation_at: '2026-11-07T04:14:58+00:00'
+  context_pack_hash: 3e991f1453f3898a0eb2e7d3fab8ed6ad6b6853414a4aa393f66c9b5fcb0358b
+  last_validation_at: '2026-11-07T04:17:26+00:00'
   last_error: ''
 dice_state:
   tape_revision: machadan-tape-r1
@@ -508,6 +509,7 @@ session_log:
   - Day1朝 白百合香房。〇〇が遠くから来たばかりだと明かし、この世界のことを尋ねる。セレナがノワールの街と暮らし方、男女のことを教える
   - Day1朝 白百合香房。〇〇が月の売上を尋ね、セレナは戸惑いつつ数字を打ち明ける
   - Day1朝 白百合香房。〇〇がガルドとの関係を尋ね、セレナが馴れ初めと婚約の経緯を話す
+  - Day1朝 白百合香房。〇〇が『まだ愛しているのか』と問う。セレナは結婚ではなく婚約だと正し、恩と習慣で一緒にいるだけかもしれないと迷いを口にする
 memory_log:
   encounters: []
   battles: []
