@@ -3,15 +3,15 @@ schema_version: 3
 game_version: 4.13.4
 campaign_id: main
 created_at: '2026-11-07T02:20:22+00:00'
-updated_at: '2026-11-07T15:09:18+00:00'
-save_revision: 43
+updated_at: '2026-11-07T15:11:49+00:00'
+save_revision: 44
 content_manifest_hash: 59b69015c8c813194e83a7c4b4d2b862af8f4074c2c616aa5325399df6f66460
 save_format_origin: 'System_Templates.md [TEMPLATE_SAVE] (SAVE_DATA: MachaDun v2.0)'
 transaction:
-  last_transaction_id: tx-9de8c75e23704e638a89c2e37a2ed4cf
-  last_committed_turn: 32
-  previous_revision_hash: a56a982b058f8850756294ef6177cc7673999b6973d544056dcc16489b3c4f47
-  last_candidate_hash: 058189e798565bc17b0971294a99a27dd01d93cd531c4ced3c8d1a4256043eb7
+  last_transaction_id: tx-994aac7ed7d64544a9222a592c1444ff
+  last_committed_turn: 33
+  previous_revision_hash: a0a8769b905d44aaed650e2c842a82af25b3aa9b84a0261c8d9a03444cf79b62
+  last_candidate_hash: 16f7c87fdd922012711f3d626da2564e7401abc60a903b8a89a18a8ea56729d3
   applied_transaction_ids:
   - tx-413eae86780d496981a94b1d08250181
   - tx-5d7fe8c49f1242dca4bcebf850e979c1
@@ -56,6 +56,7 @@ transaction:
   - tx-9dd9a26b8121498b850d6060ca85f07b
   - tx-3078e1a6a2ef4e7dbd30acc613b0c6b4
   - tx-9de8c75e23704e638a89c2e37a2ed4cf
+  - tx-994aac7ed7d64544a9222a592c1444ff
 hearing_progress:
   status: complete
   current_step: 7
@@ -88,8 +89,8 @@ runtime_state:
   style_conditions: []
   active_scene: turn
   scene_id: turn
-  context_pack_hash: ae411a8cf1f354d4b73ed7a8ff2fbcf068e4211f00825e394b420d6c08051b16
-  last_validation_at: '2026-11-07T15:09:18+00:00'
+  context_pack_hash: 77ac2adb128421cc4bac0588a5e67444222c1f03266cd09be90a345d55868653
+  last_validation_at: '2026-11-07T15:11:49+00:00'
   last_error: ''
 dice_state:
   tape_revision: machadan-tape-r1
@@ -208,6 +209,14 @@ world_state:
       fact: 他人の名で証文を作る（署名の偽造）は重罪。衛兵隊に捕まると詰め所の牢で裁きを待ち、役所の裁きで牢に一月以上、だまし取ろうとした額の倍を相手に弁済。額が大きい・店や家を狙う等の悪質なものは街から追放もある。権利書を本人に黙って持ち出すのは盗みで牢。冒険者の犯行ならギルドは登録を抹消し、ランクと実績も消える。署名の練習の書き損じだけでは捕縛できず、署名済みの証文か持ち出しの現場の証拠が要る。届け出は東の衛兵通りの衛兵詰め所
       source: Day1昼 ミルカの説明
       status: 確定した事実（ノワールの法）
+    ノワールの法_権利書の預かり:
+      fact: 権利書の持ち主が自分の手で誰かに預けるのは盗みではなく預かり。役所に預ける人も、信用できる人に預ける人もいる
+      source: Day1昼 ミルカの説明
+      status: 確定した事実（ノワールの法と慣習）
+    ミルカ_〇〇の目的:
+      fact: ミルカは〇〇がセレナを守るためにガルドの件を探っていると受け取った。『盗る』発言は聞き間違いとして流した
+      source: Day1昼
+      status: 確定した事実
   appearance_customization:
     version: 1
     overrides: {}
@@ -591,6 +600,7 @@ session_log:
   - Day1昼 銀の天秤亭の受付。〇〇は理由を答えずに灰色外套の男のことを重ねて尋ねる。ミルカは答えなかったことを覚えておくと言いつつ、男についてさらに話す：この一月で三度目、開店直後に記入卓の奥の柱の陰に座る、依頼は見ない。前の二度はE級の若い冒険者と話し、その二人はその後来なくなった。ガルドは男を『シラス』と呼んだ。書き付けの端に赤い封蝋（役所の紫ではない）。ミルカの視線が記入卓足元の籠へ一瞬流れる
   - Day1昼 銀の天秤亭。〇〇がミルカの目の泳ぎを指摘し、記入卓の籠を調べる。ミルカは否定しつつ止めない。INT判定 9+3+4=16 vs 標準19で失敗：手間取り茶殻が染みたが、ガルドの書き損じを見つける。『セレナ・』の署名を何度も練習した跡と、『……月末の締めの前に　権利書は……が持ち出す』『……日の夜　銀蛇亭の裏へ』の走り書き。日付と持ち出す者の名は茶に溶けて読めない。紙は〇〇が手に持っている（まだ所持品にしていない）
   - Day1昼 銀の天秤亭の記入卓。〇〇が権利書の偽造かとミルカに罪の重さを尋ねる。ミルカは受付から出てきて、権利書は本物で、これはセレナの署名をまねて担保の証文を作る練習だと正す。罰の重さと、書き損じだけでは捕まえられず、署名済みの証文か持ち出しの現場を押さえる必要があると説明。届け出は東の衛兵通りの詰め所。紙は拾った者のもの、自分は何も見ていないと言う
+  - Day1昼 銀の天秤亭の記入卓。〇〇が『盗るしかないか、セレナを守るためにも』と漏らす。ミルカは一度冷え、聞き間違いにしておくと流したうえで、先に盗れば牢に入るのは〇〇だと忠告。持ち主のセレナが自分の手で預けるなら盗みではなく預かり（役所や信用できる人に預ける人もいる）と案内し、持ち出しの現場を押さえる道と走り書きの『銀蛇亭の裏へ』にも触れて、言い過ぎたと赤くなる。広間にはほかに壁炉の前で居眠りする年配の冒険者だけ
 memory_log:
   encounters: []
   battles: []
