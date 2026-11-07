@@ -3,15 +3,15 @@ schema_version: 3
 game_version: 4.13.4
 campaign_id: main2
 created_at: '2026-11-07T05:39:36+00:00'
-updated_at: '2026-11-07T06:06:04+00:00'
-save_revision: 9
+updated_at: '2026-11-07T06:10:31+00:00'
+save_revision: 10
 content_manifest_hash: 59b69015c8c813194e83a7c4b4d2b862af8f4074c2c616aa5325399df6f66460
 save_format_origin: 'System_Templates.md [TEMPLATE_SAVE] (SAVE_DATA: MachaDun v2.0)'
 transaction:
-  last_transaction_id: tx-45c2c97bfcd842a8bd8ca13c6f0809e3
+  last_transaction_id: tx-228b43df137949f5a7b920fd4beaa205
   last_committed_turn: 0
-  previous_revision_hash: a12e43ed829502dc97ccfc7ec1f526e1605b5d20f8bf2dbbeafed33bee9b0844
-  last_candidate_hash: d297e94e3d183df23c409f888fd489c1e2c9a71c3200e7f410a855d8df483208
+  previous_revision_hash: 01283bafcd12fdbf2e0537b92f840cb9b2349fc2c84f3f71df16f4ffa136ee37
+  last_candidate_hash: a138ca4d597270ef845de090f8c884f46290023ba74237e2f8e41e8ee4a717a5
   applied_transaction_ids:
   - tx-0345298f5a774b8ca7e3c0934d815725
   - tx-7f4c45d45dea4266ba65a98f8f4718e6
@@ -22,6 +22,7 @@ transaction:
   - tx-b9e094cb496d469c921b055af6aceced
   - tx-1dba03997849465891aaea1f9957eae0
   - tx-45c2c97bfcd842a8bd8ca13c6f0809e3
+  - tx-228b43df137949f5a7b920fd4beaa205
 hearing_progress:
   status: complete
   current_step: 7
@@ -46,32 +47,35 @@ hearing_progress:
     partner_preferences: 1
 active_script:
   id: SCRIPT_OPENING_FIRE
-  status: in_progress
+  status: complete
   cursor: 1
-  checkpoint: fire_offered
+  checkpoint: fire-explained-and-granted
 runtime_state:
   ero_scene: false
   style_conditions: []
   active_scene: start
   scene_id: start
   context_pack_hash: 8883c73e0a06f39b4c5f34b60afe4d7637a6b19ac6c7e0c8846699ba2726037d
-  last_validation_at: '2026-11-07T06:06:04+00:00'
+  last_validation_at: '2026-11-07T06:10:31+00:00'
   last_error: ''
 dice_state:
   tape_revision: machadan-tape-r1
   dice_cursor_d6: 0
   dice_cursor_d10: 0
 fire_state:
-  holders: []
+  holders:
+  - player
   notes: ''
 world_state:
   onboarding:
     allocation_rule: all3-plus15-v1
     body_received: true
     allocation_complete: false
-    fire_granted: false
-    fire_explained: false
+    fire_granted: true
+    fire_explained: true
     tutorial_complete: false
+    legacy_initial_allocation: false
+    fire_grant_transaction_id: tx-228b43df137949f5a7b920fd4beaa205
   campaign_lore:
     RPの任せ方:
       kind: player_preference
@@ -225,12 +229,12 @@ player:
     tec: 0
     chm: 0
   fire_bonus:
-    str: 0
-    def: 0
-    int: 0
-    spd: 0
-    tec: 0
-    chm: 0
+    str: 3
+    def: 3
+    int: 3
+    spd: 3
+    tec: 3
+    chm: 3
   temporary_modifiers:
     str: 0
     def: 0
@@ -239,29 +243,29 @@ player:
     tec: 0
     chm: 0
   effective_stats:
-    str: 3
-    def: 3
-    int: 3
-    spd: 3
-    tec: 3
-    chm: 3
+    str: 6
+    def: 6
+    int: 6
+    spd: 6
+    tec: 6
+    chm: 6
   base_lp: 20
   job_lp_bonus: 0
-  fire_lp_bonus: 0
+  fire_lp_bonus: 12
   temporary_lp_bonus: 0
   lp:
-    cur: 20
-    max: 20
+    cur: 32
+    max: 32
   mp:
-    cur: 3
-    max: 3
+    cur: 6
+    max: 6
   stats:
-    str: 3
-    def: 3
-    int: 3
-    spd: 3
-    tec: 3
-    chm: 3
+    str: 6
+    def: 6
+    int: 6
+    spd: 6
+    tec: 6
+    chm: 6
   equipment:
     weapon_instance_id: null
     armor_instance_id: null
