@@ -3,15 +3,15 @@ schema_version: 3
 game_version: 4.13.4
 campaign_id: main
 created_at: '2026-11-07T02:20:22+00:00'
-updated_at: '2026-11-07T15:34:11+00:00'
-save_revision: 50
+updated_at: '2026-11-07T15:42:35+00:00'
+save_revision: 51
 content_manifest_hash: 59b69015c8c813194e83a7c4b4d2b862af8f4074c2c616aa5325399df6f66460
 save_format_origin: 'System_Templates.md [TEMPLATE_SAVE] (SAVE_DATA: MachaDun v2.0)'
 transaction:
-  last_transaction_id: tx-1449d91d04124c48b55ed5fb06b4afc7
-  last_committed_turn: 39
-  previous_revision_hash: 7118dee6743637555c7fe24b926fb6cd1110074b979da214fdbb3ca998db8f97
-  last_candidate_hash: 6a6b9b65739373a040e77da9c2371e4992a29678a02f7ecb951b1cf35a5f60d6
+  last_transaction_id: tx-a8fb487ddbd8445198a422363c11503e
+  last_committed_turn: 40
+  previous_revision_hash: 6bd62c0e45d92711b234702accde340811cfadf2e41909b2b341f5d0a48bb112
+  last_candidate_hash: bd711902509cbe13c7a3541a9f82d96ec5b9ece8185af91a87c14462e9019abf
   applied_transaction_ids:
   - tx-413eae86780d496981a94b1d08250181
   - tx-5d7fe8c49f1242dca4bcebf850e979c1
@@ -63,6 +63,7 @@ transaction:
   - tx-5dab705a77224ebd84c6ee59bb79c6e0
   - tx-e6d10fe5c5754fd5a344bd5aafc8bc37
   - tx-1449d91d04124c48b55ed5fb06b4afc7
+  - tx-a8fb487ddbd8445198a422363c11503e
 hearing_progress:
   status: complete
   current_step: 7
@@ -93,15 +94,15 @@ active_script:
 runtime_state:
   ero_scene: false
   style_conditions: []
-  active_scene: turn
-  scene_id: turn
-  context_pack_hash: 44cf96f34658e3095ed079d1be151b68f721310f41d196c894ffc278cef7a645
-  last_validation_at: '2026-11-07T15:34:11+00:00'
+  active_scene: event
+  scene_id: event
+  context_pack_hash: 426592451435868d4ce4ca60e56ee6b25b170575b982cc559c9322fe9415700d
+  last_validation_at: '2026-11-07T15:42:35+00:00'
   last_error: ''
 dice_state:
   tape_revision: machadan-tape-r1
   dice_cursor_d6: 0
-  dice_cursor_d10: 37
+  dice_cursor_d10: 39
 fire_state:
   holders:
   - player
@@ -276,10 +277,10 @@ world_state:
     resolutions: []
   reward_state_version: 2
   day: 1
-  location: 白百合香房
-  place_id: LORE_SHIRAYURI_KOUBOU
-  room_id: LORE_SHIRAYURI_KOUBOU_SHOP
-  sub_location: 売り場
+  location: 西大通り
+  place_id: NOIR_CITY_WEST
+  room_id: ''
+  sub_location: 布屋の軒先（銀の天秤亭まで半分ほど）
   depth: null
   time_of_day: 昼
   weather: 薄い霧
@@ -713,6 +714,7 @@ session_log:
   - Day1昼 白百合香房の売り場。〇〇は詳しい話の前に、ガルドが捕まったらどう思うかとセレナに尋ねる。セレナは『かわいそう』と思う一方で、同じくらいほっとしてしまうと打ち明け、それを恥じる。本当に悪いことをしているなら知らないふりはしたくない、店のことならなおさらだと言い、今日見てきたことを教えてほしいと頼む
   - Day1昼 白百合香房。セレナが扉に『ただいま調合中』の札を掛ける。〇〇がガルドの書き損じを見せる。セレナは走り書きをガルドの字と断定し、自分の字に似せた署名の練習だと気づいて震える。締めは毎月三十日の夜とガルドも知っている。先々週ガルドに聞かれて権利書の場所（2F寝室の衣装箱の底）を教えてしまったこと、ガルドが裏口の鍵を持っていることを打ち明け、礼を言って『私はどうすればいいですか』と尋ねる。紙は〇〇に返された
   - Day1昼 白百合香房。〇〇が権利書を今のうちに預けてほしい、幸せになってほしいと頼む。CHM対抗 12+2(状況：裏切りの証拠を持ってきた本人)+6+8=28 vs セレナINT 9+3+6=18で成功。セレナは2Fの衣装箱から権利書を出して〇〇に預け、自分の署名入りの預かり証を書いて添える。衣装箱は空のまま蓋を閉めておき、ガルドに気づかれないようにすると言う。ガルドの書き損じも〇〇が持つ
+  - Day1昼過ぎ 白百合香房。〇〇が『無事に終わったら借金の返済について話そう』と言い、セレナは必ず話すと約束して見送る（お帰りを待っていますと）。〇〇は銀の天秤亭へ。移動イベント d10=2、種別 d10=8（店・噂話）：西大通りの布屋の軒先で、女主人と奥さんが、ミルカが昼に席外しの札を立てて男を奥の小部屋へ連れていき顔を真っ赤にしていたと噂している。話はすぐ春物の反物へ移る
 memory_log:
   encounters: []
   battles: []
