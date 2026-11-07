@@ -3,15 +3,15 @@ schema_version: 3
 game_version: 4.13.4
 campaign_id: main
 created_at: '2026-11-07T02:20:22+00:00'
-updated_at: '2026-11-07T15:27:36+00:00'
-save_revision: 49
+updated_at: '2026-11-07T15:34:11+00:00'
+save_revision: 50
 content_manifest_hash: 59b69015c8c813194e83a7c4b4d2b862af8f4074c2c616aa5325399df6f66460
 save_format_origin: 'System_Templates.md [TEMPLATE_SAVE] (SAVE_DATA: MachaDun v2.0)'
 transaction:
-  last_transaction_id: tx-e6d10fe5c5754fd5a344bd5aafc8bc37
-  last_committed_turn: 38
-  previous_revision_hash: c3dd89fa252b5fb355d6004185d6ede9bcaafe53124b676bdb88a33285f9ff67
-  last_candidate_hash: 8341fb1db03e30933a186d764858d91efb2d40da1b6edf10a8af39a0bff36b3b
+  last_transaction_id: tx-1449d91d04124c48b55ed5fb06b4afc7
+  last_committed_turn: 39
+  previous_revision_hash: 7118dee6743637555c7fe24b926fb6cd1110074b979da214fdbb3ca998db8f97
+  last_candidate_hash: 6a6b9b65739373a040e77da9c2371e4992a29678a02f7ecb951b1cf35a5f60d6
   applied_transaction_ids:
   - tx-413eae86780d496981a94b1d08250181
   - tx-5d7fe8c49f1242dca4bcebf850e979c1
@@ -62,6 +62,7 @@ transaction:
   - tx-3031d2010af84a60a5d7a4cfb613f97c
   - tx-5dab705a77224ebd84c6ee59bb79c6e0
   - tx-e6d10fe5c5754fd5a344bd5aafc8bc37
+  - tx-1449d91d04124c48b55ed5fb06b4afc7
 hearing_progress:
   status: complete
   current_step: 7
@@ -94,13 +95,13 @@ runtime_state:
   style_conditions: []
   active_scene: turn
   scene_id: turn
-  context_pack_hash: e50e2bf40707fe482a713cfa586e05f1ff3135d7edf951b7c7522a4c4281e665
-  last_validation_at: '2026-11-07T15:27:36+00:00'
+  context_pack_hash: 44cf96f34658e3095ed079d1be151b68f721310f41d196c894ffc278cef7a645
+  last_validation_at: '2026-11-07T15:34:11+00:00'
   last_error: ''
 dice_state:
   tape_revision: machadan-tape-r1
   dice_cursor_d6: 0
-  dice_cursor_d10: 33
+  dice_cursor_d10: 37
 fire_state:
   holders:
   - player
@@ -248,7 +249,7 @@ world_state:
       source: Day1昼 セレナ本人の言葉
       status: セレナ本人の話
     白百合香房_権利書と鍵:
-      fact: 白百合香房の権利書は2Fの寝室の衣装箱の底にしまってある。先々週ガルドに『ちゃんとしまってあるのか』と聞かれ、セレナはその場所を教えてしまった。ガルドは裏口の鍵を持っている
+      fact: 権利書は元々2Fの寝室の衣装箱の底にしまってあった（Day1昼から〇〇が預かり、箱は空）。先々週ガルドに『ちゃんとしまってあるのか』と聞かれ、セレナはその場所を教えてしまった。ガルドは裏口の鍵を持っている
       place_id: LORE_SHIRAYURI_KOUBOU
       room_id: LORE_SHIRAYURI_KOUBOU_UPSTAIRS
       source: Day1昼 セレナ本人の話
@@ -256,6 +257,18 @@ world_state:
     ガルドの書き損じ_筆跡:
       fact: セレナが書き損じの走り書きをガルドの字と確認した（右肩上がりで払いが乱暴に跳ねる癖。毎月の立て替えの書付で見慣れている）。並んだ署名はセレナの字に似せる練習
       source: Day1昼 セレナの確認
+      status: 確定した事実
+    白百合香房_権利書の預かり:
+      fact: Day1昼、セレナは自分の意思で白百合香房の権利書を〇〇に預け、署名入りの預かり証を渡した。2F寝室の衣装箱は空のまま蓋を閉めてそのままにしてある（ガルドに気づかれないため）
+      place_id: LORE_SHIRAYURI_KOUBOU
+      room_id: LORE_SHIRAYURI_KOUBOU_UPSTAIRS
+      status: 確定した事実
+    人物_セレナ_能力:
+      fact: セレナのINTは9（Day1の対抗判定の記録から）
+      status: GM参照用
+    セレナの気持ち_〇〇:
+      fact: 三年一緒にいたガルドより今朝会った〇〇のほうが信じられると口にした。『幸せになってほしい』と言われたのは久しぶりで、ガルドには一度も言われたことがないと内心で思った。預かり証を渡すとき指先が触れ、首筋まで赤くなった
+      source: Day1昼
       status: 確定した事実
   appearance_customization:
     version: 1
@@ -582,13 +595,65 @@ inventory:
     max_slots: 16
     skill_bonus_slots: 0
     effective_max_slots: 16
-    used_slots: 0
-  carried_stacks: []
+    used_slots: 3
+  carried_stacks:
+  - stack_id: stack-deed-shirayuri
+    item_def_id: lore-deed-shirayuri
+    name: 白百合香房の権利書（預かり品）
+    category: key_item
+    count: 1
+    stack_cap: 1
+    slot_cost: 1
+    reserved_quantity: 0
+  - stack_id: stack-deed-receipt
+    item_def_id: lore-deed-receipt-shirayuri
+    name: 権利書の預かり証
+    category: key_item
+    count: 1
+    stack_cap: 1
+    slot_cost: 1
+    reserved_quantity: 0
+  - stack_id: stack-gald-draft
+    item_def_id: lore-gald-draft
+    name: ガルドの書き損じ
+    category: key_item
+    count: 1
+    stack_cap: 1
+    slot_cost: 1
+    reserved_quantity: 0
   warehouse:
     stacks: []
     instance_ids: []
   reservations: []
-item_definitions: []
+item_definitions:
+- item_def_id: lore-deed-shirayuri
+  name: 白百合香房の権利書（預かり品）
+  category: key_item
+  specification:
+    description: 役所の透かし入り羊皮紙。街の代表の紫の封蝋と登録番号、店名『白百合香房』と持ち主セレナの署名。持ち主セレナから預かったもので、売却・譲渡・担保にはできない
+    sellable: false
+  provenance:
+    source: Day1昼 セレナから預かる
+    owner: セレナ
+  balance_anchor: {}
+- item_def_id: lore-deed-receipt-shirayuri
+  name: 権利書の預かり証
+  category: key_item
+  specification:
+    description: 『権利書一通、本日より持ち主セレナの意思にて〇〇殿へ預ける』。Day1の日付とセレナの署名入り。権利書を盗んだのではないことの証
+    sellable: false
+  provenance:
+    source: Day1昼 セレナが書いて渡す
+  balance_anchor: {}
+- item_def_id: lore-gald-draft
+  name: ガルドの書き損じ
+  category: key_item
+  specification:
+    description: 茶で半分にじんだ厚手の紙。セレナの署名の練習と『……月末の締めの前に　権利書は……が持ち出す』『……日の夜　銀蛇亭の裏へ』の走り書き。筆跡はガルドとセレナが確認
+    sellable: false
+  provenance:
+    source: Day1昼 銀の天秤亭の記入卓の籠で拾う
+  balance_anchor: {}
 item_instances: []
 party: []
 inn_reserve: []
@@ -647,6 +712,7 @@ session_log:
     d10=4（なし）、環境 d10=6（なし）。帰る『蜜の味』の娘とすれ違い、待っていたセレナに迎えられる
   - Day1昼 白百合香房の売り場。〇〇は詳しい話の前に、ガルドが捕まったらどう思うかとセレナに尋ねる。セレナは『かわいそう』と思う一方で、同じくらいほっとしてしまうと打ち明け、それを恥じる。本当に悪いことをしているなら知らないふりはしたくない、店のことならなおさらだと言い、今日見てきたことを教えてほしいと頼む
   - Day1昼 白百合香房。セレナが扉に『ただいま調合中』の札を掛ける。〇〇がガルドの書き損じを見せる。セレナは走り書きをガルドの字と断定し、自分の字に似せた署名の練習だと気づいて震える。締めは毎月三十日の夜とガルドも知っている。先々週ガルドに聞かれて権利書の場所（2F寝室の衣装箱の底）を教えてしまったこと、ガルドが裏口の鍵を持っていることを打ち明け、礼を言って『私はどうすればいいですか』と尋ねる。紙は〇〇に返された
+  - Day1昼 白百合香房。〇〇が権利書を今のうちに預けてほしい、幸せになってほしいと頼む。CHM対抗 12+2(状況：裏切りの証拠を持ってきた本人)+6+8=28 vs セレナINT 9+3+6=18で成功。セレナは2Fの衣装箱から権利書を出して〇〇に預け、自分の署名入りの預かり証を書いて添える。衣装箱は空のまま蓋を閉めておき、ガルドに気づかれないようにすると言う。ガルドの書き損じも〇〇が持つ
 memory_log:
   encounters: []
   battles: []
