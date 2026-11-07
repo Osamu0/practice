@@ -3,15 +3,15 @@ schema_version: 3
 game_version: 4.13.4
 campaign_id: main2
 created_at: '2026-11-07T05:39:36+00:00'
-updated_at: '2026-11-07T06:24:15+00:00'
-save_revision: 14
+updated_at: '2026-11-07T06:28:15+00:00'
+save_revision: 15
 content_manifest_hash: 59b69015c8c813194e83a7c4b4d2b862af8f4074c2c616aa5325399df6f66460
 save_format_origin: 'System_Templates.md [TEMPLATE_SAVE] (SAVE_DATA: MachaDun v2.0)'
 transaction:
-  last_transaction_id: tx-f40d2b9bbaf944ca88e22162cd11767b
-  last_committed_turn: 1
-  previous_revision_hash: b7a1fbace380b590c8fa8096291da34d747945cae636359a762913b2d77c37cb
-  last_candidate_hash: 8807b8cec19b94259f77b99cc2ff4146d990c1676a912101024122a24a6673f7
+  last_transaction_id: tx-9f9087eb80614c5dbe5fcedf97e8912b
+  last_committed_turn: 2
+  previous_revision_hash: 838e2b49487ed2eb6b72eac30f8dc5874318b76826925a1c01e2617a55f04f28
+  last_candidate_hash: 24b406ab614fbc69db171632937b942e68be4020c692932a4f1cdcc24a20a0ab
   applied_transaction_ids:
   - tx-0345298f5a774b8ca7e3c0934d815725
   - tx-7f4c45d45dea4266ba65a98f8f4718e6
@@ -27,6 +27,7 @@ transaction:
   - tx-d212ef4949334eabb44c24f6b0132672
   - tx-7d5f26da67d44b61aab89454f67ee596
   - tx-f40d2b9bbaf944ca88e22162cd11767b
+  - tx-9f9087eb80614c5dbe5fcedf97e8912b
 hearing_progress:
   status: complete
   current_step: 7
@@ -57,15 +58,15 @@ active_script:
 runtime_state:
   ero_scene: false
   style_conditions: []
-  active_scene: event
-  scene_id: event
-  context_pack_hash: 87de05534976dbba0f68977137305eb1ed118cf48f662034feb320df300f7322
-  last_validation_at: '2026-11-07T06:24:15+00:00'
+  active_scene: generation
+  scene_id: generation
+  context_pack_hash: 8d150c9d290e8c8133ecd1fbe649cd5f5e35cb5f3f4fdc047d01246a5fb652cb
+  last_validation_at: '2026-11-07T06:28:15+00:00'
   last_error: ''
 dice_state:
   tape_revision: machadan-tape-r1
   dice_cursor_d6: 0
-  dice_cursor_d10: 2
+  dice_cursor_d10: 41
 fire_state:
   holders:
   - player
@@ -99,16 +100,95 @@ world_state:
       kind: one_off_npc
       fact: 迷宮帰りの女冒険者クラリス。26歳の成人。長身（約172cm）で亜麻色の髪を結い上げ、紺の外套に大きな背嚢、細身の剣。胸が豊か。落ち着いた丁寧語。Day1朝、宿通りと西大通りの角で主人公と出会い、ギルドと仲間募集の掲示板を教えた。
       status: confirmed
+    仲間候補_エステル:
+      kind: companion_candidate
+      name: エステル
+      age: 18
+      gender: 女性
+      job: 騎士
+      race: 人間
+      height_cm: 166
+      height_band: 長身
+      build: モデル体型
+      bust: 豊満
+      main_personality: 好み寄せ：清楚系で可愛い系（プレイヤーの相手像）
+      sub_personality: ドM
+      stats:
+        str: 9
+        def: 9
+        int: 3
+        spd: 5
+        tec: 4
+        chm: 3
+      lp: 33
+      mp: 3
+      lp_note: 20+前衛10+DEF由来3
+      place: 銀の天秤亭 記入卓
+      generation_rolls: 好み判定2/副性格付与5→7,8/職業10,1/年齢4,1/身長10,7
+      status: presented_on_board
+    仲間候補_リゼット:
+      kind: companion_candidate
+      name: リゼット
+      age: 18
+      gender: 女性
+      job: 魔法使い
+      race: 人間
+      height_cm: 163
+      height_band: 長身
+      build: モデル体型
+      bust: 豊満
+      main_personality: 好み寄せ：清楚系で可愛い系（プレイヤーの相手像）
+      sub_personality: 清楚ビッチ
+      stats:
+        str: 3
+        def: 3
+        int: 10
+        spd: 4
+        tec: 10
+        chm: 3
+      lp: 20
+      mp: 10
+      lp_note: 20+後衛0+DEF由来0
+      place: 銀の天秤亭 記入卓
+      generation_rolls: 好み判定5/副性格付与3→1,6/職業4,2/年齢5,1/身長9,4
+      status: presented_on_board
+    仲間候補_メイリン:
+      kind: companion_candidate
+      name: メイリン
+      age: 20
+      gender: 女性
+      job: 武闘家
+      race: 人間
+      height_cm: 162
+      height_band: 長身
+      build: 筋肉質
+      bust: 標準
+      main_personality: おっとり
+      sub_personality: 褒められ弱い
+      stats:
+        str: 8
+        def: 7
+        int: 3
+        spd: 5
+        tec: 7
+        chm: 3
+      stats_note: 特殊ジョブ。戦士の型を土台
+      lp: 32
+      mp: 3
+      lp_note: 20+前衛10+DEF由来2
+      place: 銀の天秤亭 記入卓
+      generation_rolls: 好み判定8(ランダム)/副性格付与1→6,5/性格5,3/身長(帯)/体格4,6/胸6,8/職業3,6/年齢2,8/身長10,3
+      status: presented_on_board
   appearance_customization:
     version: 1
     overrides: {}
     resolutions: []
   reward_state_version: 2
   day: 1
-  location: 西大通り
-  place_id: NOIR_CITY_WEST
-  room_id: ''
-  sub_location: 宿通りとの角
+  location: 銀の天秤亭
+  place_id: GUILD_SILVER_SCALES
+  room_id: GUILD_SILVER_SCALES_HALL
+  sub_location: 受付広間・掲示板前
   depth: null
   time_of_day: 朝
   weather: 薄い霧
@@ -454,6 +534,13 @@ session_log:
       die: d10
       result: 5
       cursor: 1
+  - day: 1
+    time_of_day: 朝
+    summary: クラリスと別れ、銀の天秤亭に到着。仲間募集の札で騎士エステル・魔法使いリゼット・武闘家メイリンの三人を見つけた（記入卓で待機）。受付のミルカから先に登録するよう声をかけられた。
+    ambient_roll:
+      die: d10
+      result: 8
+      cursor: 2
 memory_log:
   encounters: []
   battles: []
