@@ -3,15 +3,15 @@ schema_version: 3
 game_version: 4.13.4
 campaign_id: main2
 created_at: '2026-11-07T05:39:36+00:00'
-updated_at: '2026-11-07T06:50:15+00:00'
-save_revision: 24
+updated_at: '2026-11-07T06:52:49+00:00'
+save_revision: 25
 content_manifest_hash: 59b69015c8c813194e83a7c4b4d2b862af8f4074c2c616aa5325399df6f66460
 save_format_origin: 'System_Templates.md [TEMPLATE_SAVE] (SAVE_DATA: MachaDun v2.0)'
 transaction:
-  last_transaction_id: tx-b312c8a951094ed7a27949a26bfaebf5
-  last_committed_turn: 11
-  previous_revision_hash: a64f9bb2679537dbb0149cbe9bc09ff532627ad11b04dcd1a11d770722132a4f
-  last_candidate_hash: 94e6cc67701922a393761caa8019d9de9aef40dd862183923356a6537f6bad4b
+  last_transaction_id: tx-6e87781ec16640e691939554018200e4
+  last_committed_turn: 12
+  previous_revision_hash: a47944d3a72e850155b71e3870980bb5a0fd0dd24d6d72e941c47bec7a51b5e7
+  last_candidate_hash: cc534eb10cc5fd0518984df1d9bc64950634080681282b44b2d3b8cdc2de21b9
   applied_transaction_ids:
   - tx-0345298f5a774b8ca7e3c0934d815725
   - tx-7f4c45d45dea4266ba65a98f8f4718e6
@@ -37,6 +37,7 @@ transaction:
   - tx-816aef2067aa4f1492599881420f8168
   - tx-baa57bf41fc246c4920ad229b5f0b328
   - tx-b312c8a951094ed7a27949a26bfaebf5
+  - tx-6e87781ec16640e691939554018200e4
 hearing_progress:
   status: complete
   current_step: 7
@@ -67,15 +68,15 @@ active_script:
 runtime_state:
   ero_scene: false
   style_conditions: []
-  active_scene: turn
-  scene_id: turn
-  context_pack_hash: f647362020a071223f24a45d45dc35fb3d93e149f0c61f1e75cfba0a7375990d
-  last_validation_at: '2026-11-07T06:50:15+00:00'
+  active_scene: event
+  scene_id: event
+  context_pack_hash: a8ac206d6d712e92db25eb50fccc55f43c0a9cc89bac9b0e45c3cd1d3e27ae8d
+  last_validation_at: '2026-11-07T06:52:49+00:00'
   last_error: ''
 dice_state:
   tape_revision: machadan-tape-r1
   dice_cursor_d6: 0
-  dice_cursor_d10: 57
+  dice_cursor_d10: 63
 fire_state:
   holders:
   - player
@@ -221,19 +222,23 @@ world_state:
     人物_セレナ:
       kind: npc
       name: セレナ
+      age: 32
       role: 調香師。白百合香房の店主
-      fact: 礼儀正しくきれいな人だと評判（エステル・リゼットの話）。年齢・外見・人柄の詳細は初対面時に確定する（成人）。
-      status: 噂
+      appearance: 身長164cmの長身でモデル体型、胸は豊満で腰が細い。亜麻色の髪をきっちり結い上げ、白い詰め襟のワンピース。灰色がかった青い瞳。実年齢より若く、二十歳過ぎに見える（老化がゆっくり）
+      personality: 好み寄せ：清楚で可愛い系。取り乱さず礼儀正しい。一人称わたくし、丁寧語。無駄な干渉をせず、相手を立てる。店を自分で切り盛りして稼いでいる
+      generation_rolls: 好み判定2(好み寄せ)/副性格付与6(なし)/年齢9,8→32/身長3,5→164
+      relation: Day1昼、白百合香房への路地口で〇〇にぶつかり、干し花の籠を落とした。店でのお詫びを申し出た
+      status: 確定
   appearance_customization:
     version: 1
     overrides: {}
     resolutions: []
   reward_state_version: 2
   day: 1
-  location: 銀の天秤亭
-  place_id: GUILD_SILVER_SCALES
-  room_id: GUILD_SILVER_SCALES_WRITING
-  sub_location: 記入卓と待合
+  location: 西大通り
+  place_id: NOIR_CITY_WEST
+  room_id: ''
+  sub_location: 白百合香房への路地口
   depth: null
   time_of_day: 昼
   weather: 薄い霧
@@ -706,6 +711,9 @@ session_log:
   - day: 1
     time_of_day: 昼
     summary: セレナの店を尋ねると、リゼットが香水の店『白百合香房』（西大通りから路地を入った先）を教えた。昼過ぎから混むので今がよいとのこと。エステルが案内を申し出た。
+  - day: 1
+    time_of_day: 昼
+    summary: エステルの案内を断り一人で白百合香房へ。路地口で、届け物帰りのセレナとぶつかり、干し花が散った。セレナは丁寧に詫び、店でのお詫びを申し出た。
 memory_log:
   encounters: []
   battles: []
