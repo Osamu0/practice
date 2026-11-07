@@ -3,15 +3,15 @@ schema_version: 3
 game_version: 4.13.4
 campaign_id: main2
 created_at: '2026-11-07T05:39:36+00:00'
-updated_at: '2026-11-07T07:47:23+00:00'
-save_revision: 43
+updated_at: '2026-11-07T07:49:34+00:00'
+save_revision: 44
 content_manifest_hash: 59b69015c8c813194e83a7c4b4d2b862af8f4074c2c616aa5325399df6f66460
 save_format_origin: 'System_Templates.md [TEMPLATE_SAVE] (SAVE_DATA: MachaDun v2.0)'
 transaction:
-  last_transaction_id: tx-6cdb5b37bcd0447f8936d4b66caab0bf
-  last_committed_turn: 29
-  previous_revision_hash: e0dfeeb1b5024dd82b76a570fe696cda59f52d5d7e0576204db9ce8cc7392b46
-  last_candidate_hash: c8d315731fd13f434bc16c2ce0c6130a060b17edcbf8fc34e48f0821d407c167
+  last_transaction_id: tx-b5ef3664324d48f490ba081e73fb8d8c
+  last_committed_turn: 30
+  previous_revision_hash: 710cd58b70a8b821da5db2ba004ddbe72a797e0946469b32e177bb30c6bfdba8
+  last_candidate_hash: 5bdf0e03efc682969f21664179a903104f96c387bce3a14290ea7752ab24945e
   applied_transaction_ids:
   - tx-0345298f5a774b8ca7e3c0934d815725
   - tx-7f4c45d45dea4266ba65a98f8f4718e6
@@ -56,6 +56,7 @@ transaction:
   - tx-05698ae2892f407f8ee75c60266683d1
   - tx-3aaf1d89a70a40938fa7678bae4c0f91
   - tx-6cdb5b37bcd0447f8936d4b66caab0bf
+  - tx-b5ef3664324d48f490ba081e73fb8d8c
 hearing_progress:
   status: complete
   current_step: 7
@@ -88,13 +89,13 @@ runtime_state:
   style_conditions: []
   active_scene: event
   scene_id: event
-  context_pack_hash: f2674f7a19a7f1693857f30deb2f6da45da4e46da92799a98704284694ddef31
-  last_validation_at: '2026-11-07T07:47:23+00:00'
+  context_pack_hash: d39b36f6b7da2c8e234f0a7318bdb16ddc39c52628697f17dacdeb6612ddb9f3
+  last_validation_at: '2026-11-07T07:49:34+00:00'
   last_error: ''
 dice_state:
   tape_revision: machadan-tape-r1
   dice_cursor_d6: 0
-  dice_cursor_d10: 76
+  dice_cursor_d10: 78
 fire_state:
   holders:
   - player
@@ -297,6 +298,19 @@ world_state:
     白百合香房_裏口:
       fact: Day1夜、セレナが裏口の閂を外し、戸の脇に灯りを残してくれた。〇〇は戻る時に裏口から入れる（今夜限りの好意）
       status: 確定
+    人物_ドルフ:
+      kind: npc
+      name: ドルフ
+      age: 67
+      role: 東裏路地で質屋を営む老人
+      appearance: 小柄、白髪まじりの長い髭、片目に拡大鏡、指に煤
+      fact: Day1夜、路地で大声で金の話をする〇〇を見て、溝鼠に気をつけろと忠告。今夜中に南東の歓楽通りの客へ預かり物を届ける護衛を頼みたいと持ちかけた。礼は出すという（内容未確定）
+      status: 確定
+    集団_溝鼠:
+      kind: gang
+      name: 溝鼠
+      fact: 夜の東裏路地の暗い角にたむろするごろつき集団。先週、ドルフの小僧の荷を盗りかけた。人数・強さは未確定（戦闘時に確定）
+      status: ドルフの話
   appearance_customization:
     version: 1
     overrides: {}
@@ -306,7 +320,7 @@ world_state:
   location: 東裏路地口と折れ路地
   place_id: NOIR_CITY_BACK_ALLEY
   room_id: ''
-  sub_location: 最初の折れ角の先
+  sub_location: 質屋ドルフの裏戸の前
   depth: null
   time_of_day: 夜
   weather: 薄い霧
@@ -875,6 +889,17 @@ session_log:
       die: d10
       result: 6
       cursor: 75
+  - day: 1
+    time_of_day: 夜
+    summary: 路地の奥へ進みながらベルと大声で金の話をした。質屋のドルフが裏戸から顔を出し、先の暗い角にごろつき『溝鼠』がたむろしていると忠告。今夜中に歓楽通りの客へ預かり物を届ける護衛を頼みたいと持ちかけてきた（未回答）。
+    random_event_roll:
+      die: d10
+      result: 3
+      cursor: 76
+    random_event_type_roll:
+      die: d10
+      result: 9
+      cursor: 77
 memory_log:
   encounters: []
   battles: []
