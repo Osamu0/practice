@@ -3,15 +3,15 @@ schema_version: 3
 game_version: 4.13.4
 campaign_id: main2
 created_at: '2026-11-07T05:39:36+00:00'
-updated_at: '2026-11-07T07:04:35+00:00'
-save_revision: 30
+updated_at: '2026-11-07T07:06:51+00:00'
+save_revision: 31
 content_manifest_hash: 59b69015c8c813194e83a7c4b4d2b862af8f4074c2c616aa5325399df6f66460
 save_format_origin: 'System_Templates.md [TEMPLATE_SAVE] (SAVE_DATA: MachaDun v2.0)'
 transaction:
-  last_transaction_id: tx-c0623ceb89d84c6daafdf08cf21a8cb4
-  last_committed_turn: 16
-  previous_revision_hash: ce192bd73fea592d311cf67dbf9d7f35a3478f6634e68d04d116632043386155
-  last_candidate_hash: 547d49c7eb10d5fcb93d2cb8141f776cffb41d87461d5e97366af7455bbea6bc
+  last_transaction_id: tx-08c6f1caf0854f6f96e2f9a0a22e6814
+  last_committed_turn: 17
+  previous_revision_hash: 5ab9da677bb32759c0eb40184728d4e9a1384424c01508863861ca7ae3bcd1ab
+  last_candidate_hash: d45acc6330193246334fed9e26089886c25571d80e57ae63e86017295dc3bca5
   applied_transaction_ids:
   - tx-0345298f5a774b8ca7e3c0934d815725
   - tx-7f4c45d45dea4266ba65a98f8f4718e6
@@ -43,6 +43,7 @@ transaction:
   - tx-4e62a94fe47f4d03b2c523d8881ba646
   - tx-352e4baebf434368ababf3b0b803c863
   - tx-c0623ceb89d84c6daafdf08cf21a8cb4
+  - tx-08c6f1caf0854f6f96e2f9a0a22e6814
 hearing_progress:
   status: complete
   current_step: 7
@@ -73,15 +74,15 @@ active_script:
 runtime_state:
   ero_scene: false
   style_conditions: []
-  active_scene: turn
-  scene_id: turn
-  context_pack_hash: 62a26d197e51b9634faa2cd1ab6c88cf0eb7887314d99b77e668dfac8e7d8014
-  last_validation_at: '2026-11-07T07:04:35+00:00'
+  active_scene: event
+  scene_id: event
+  context_pack_hash: cfefc615d506ed163744c26d2d61ca5a64df06175a0c9bd520ec6e12e3a2cc49
+  last_validation_at: '2026-11-07T07:06:51+00:00'
   last_error: ''
 dice_state:
   tape_revision: machadan-tape-r1
   dice_cursor_d6: 0
-  dice_cursor_d10: 68
+  dice_cursor_d10: 70
 fire_state:
   holders:
   - player
@@ -249,6 +250,10 @@ world_state:
         tec: 5
         chm: 6
         note: 非戦闘の店主。村人型を土台にCHM+1・INT-1
+    白百合香房_評判:
+      fact: セレナの香水は娼館『蜜の味』でいちばん人気。調合の注文は十日先まで埋まっている。セレナは32歳だが年下に見える。ずっと独り身で、言い寄る男は多いが仕事一筋
+      source: Day1夕、店内で娼婦二人組の噂話
+      status: 噂
   appearance_customization:
     version: 1
     overrides: {}
@@ -760,6 +765,17 @@ session_log:
       die: d10
       result: 9
       cursor: 67
+  - day: 1
+    time_of_day: 夕
+    summary: 客がはけるまで店内で待った。娼婦二人組の噂話で、セレナの香水が蜜の味で人気、注文は十日先まで埋まっている、32歳でずっと独り身だと聞いた。客が帰ると、セレナは入口の札を裏返し、大聖堂の結果を尋ねた。
+    random_event_roll:
+      die: d10
+      result: 4
+      cursor: 68
+    random_event_type_roll:
+      die: d10
+      result: 6
+      cursor: 69
 memory_log:
   encounters: []
   battles: []
