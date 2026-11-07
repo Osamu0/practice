@@ -3,15 +3,15 @@ schema_version: 3
 game_version: 4.13.4
 campaign_id: main2
 created_at: '2026-11-07T05:39:36+00:00'
-updated_at: '2026-11-07T06:28:15+00:00'
-save_revision: 15
+updated_at: '2026-11-07T06:29:42+00:00'
+save_revision: 16
 content_manifest_hash: 59b69015c8c813194e83a7c4b4d2b862af8f4074c2c616aa5325399df6f66460
 save_format_origin: 'System_Templates.md [TEMPLATE_SAVE] (SAVE_DATA: MachaDun v2.0)'
 transaction:
-  last_transaction_id: tx-9f9087eb80614c5dbe5fcedf97e8912b
-  last_committed_turn: 2
-  previous_revision_hash: 838e2b49487ed2eb6b72eac30f8dc5874318b76826925a1c01e2617a55f04f28
-  last_candidate_hash: 24b406ab614fbc69db171632937b942e68be4020c692932a4f1cdcc24a20a0ab
+  last_transaction_id: tx-123b472546074723a9d03f940568f4f2
+  last_committed_turn: 3
+  previous_revision_hash: bd29937da3fac6271cc0330e42a8fb719a01b6de97579855f19965da9d0e1455
+  last_candidate_hash: 3b3754eee1e55f4e00a0057625be00b251a8ac3a04a119528c9ad6137734ac14
   applied_transaction_ids:
   - tx-0345298f5a774b8ca7e3c0934d815725
   - tx-7f4c45d45dea4266ba65a98f8f4718e6
@@ -28,6 +28,7 @@ transaction:
   - tx-7d5f26da67d44b61aab89454f67ee596
   - tx-f40d2b9bbaf944ca88e22162cd11767b
   - tx-9f9087eb80614c5dbe5fcedf97e8912b
+  - tx-123b472546074723a9d03f940568f4f2
 hearing_progress:
   status: complete
   current_step: 7
@@ -58,10 +59,10 @@ active_script:
 runtime_state:
   ero_scene: false
   style_conditions: []
-  active_scene: generation
-  scene_id: generation
-  context_pack_hash: 8d150c9d290e8c8133ecd1fbe649cd5f5e35cb5f3f4fdc047d01246a5fb652cb
-  last_validation_at: '2026-11-07T06:28:15+00:00'
+  active_scene: skills
+  scene_id: skills
+  context_pack_hash: 383b056f5fd50fbb9bf8145f7283791cd6d0cfa69e27d88bb2c9e8edfa56ee48
+  last_validation_at: '2026-11-07T06:29:42+00:00'
   last_error: ''
 dice_state:
   tape_revision: machadan-tape-r1
@@ -187,8 +188,8 @@ world_state:
   day: 1
   location: 銀の天秤亭
   place_id: GUILD_SILVER_SCALES
-  room_id: GUILD_SILVER_SCALES_HALL
-  sub_location: 受付広間・掲示板前
+  room_id: GUILD_SILVER_SCALES_RECEPTION
+  sub_location: ミルカの受付カウンター
   depth: null
   time_of_day: 朝
   weather: 薄い霧
@@ -541,6 +542,9 @@ session_log:
       die: d10
       result: 8
       cursor: 2
+  - day: 1
+    time_of_day: 朝
+    summary: ミルカの受付で冒険者登録を始め、名前を記入。職業を魔道版に念じるよう求められた。仲間募集の三人は登録済みの者と組む規則だと聞いた。
 memory_log:
   encounters: []
   battles: []
