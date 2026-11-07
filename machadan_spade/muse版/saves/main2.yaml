@@ -3,15 +3,15 @@ schema_version: 3
 game_version: 4.13.4
 campaign_id: main2
 created_at: '2026-11-07T05:39:36+00:00'
-updated_at: '2026-11-07T06:33:10+00:00'
-save_revision: 17
+updated_at: '2026-11-07T06:36:31+00:00'
+save_revision: 18
 content_manifest_hash: 59b69015c8c813194e83a7c4b4d2b862af8f4074c2c616aa5325399df6f66460
 save_format_origin: 'System_Templates.md [TEMPLATE_SAVE] (SAVE_DATA: MachaDun v2.0)'
 transaction:
-  last_transaction_id: tx-ae4c6a66e7bc455eb194f8a29959d0de
-  last_committed_turn: 4
-  previous_revision_hash: b707c5ed472afb5d4b0068b7c0e860d09f67eb717d587b2e01317d4739ed351a
-  last_candidate_hash: 3f1c9179743b3a872dc2ce3a3d0128e13d11d881463006e0783c493c31323a17
+  last_transaction_id: tx-a2760dad95944defb1d555fae82d348c
+  last_committed_turn: 5
+  previous_revision_hash: 1274a55e905663712ecf9aea99e40f12680be94ee38ee2cac3989b52326ff8d3
+  last_candidate_hash: a12a79be706748c675e9a5fc154bbe4929113cd5f2bef0cc6500ef3cbe372396
   applied_transaction_ids:
   - tx-0345298f5a774b8ca7e3c0934d815725
   - tx-7f4c45d45dea4266ba65a98f8f4718e6
@@ -30,6 +30,7 @@ transaction:
   - tx-9f9087eb80614c5dbe5fcedf97e8912b
   - tx-123b472546074723a9d03f940568f4f2
   - tx-ae4c6a66e7bc455eb194f8a29959d0de
+  - tx-a2760dad95944defb1d555fae82d348c
 hearing_progress:
   status: complete
   current_step: 7
@@ -62,8 +63,8 @@ runtime_state:
   style_conditions: []
   active_scene: skills
   scene_id: skills
-  context_pack_hash: 5ca3223c72bcae2378edfb75c9ef80e87196d0b4dc02ab50c901d56197d9f11d
-  last_validation_at: '2026-11-07T06:33:10+00:00'
+  context_pack_hash: 7f0bd80cc4d3e93abe3b6c9ac08cd7642901f4c5c5a114843f61ecc4d9d9d2b8
+  last_validation_at: '2026-11-07T06:36:31+00:00'
   last_error: ''
 dice_state:
   tape_revision: machadan-tape-r1
@@ -549,6 +550,9 @@ session_log:
   - day: 1
     time_of_day: 朝
     summary: 自作の職業『召喚士』（自分は戦わず、使い魔を最大3体同時に呼ぶ）を魔道版に念じ、技4つの案が提示された。署名待ち。
+  - day: 1
+    time_of_day: 朝
+    summary: 召喚士の案を、常にそばにいて会話でき、主人公の成長に比例する相棒を持つ形へ改訂してもらった（代償：本人は攻撃しない、相棒は火を持てない）。署名待ち。
 memory_log:
   encounters: []
   battles: []
