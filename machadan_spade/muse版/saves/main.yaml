@@ -3,15 +3,15 @@ schema_version: 3
 game_version: 4.13.4
 campaign_id: main
 created_at: '2026-11-07T02:20:22+00:00'
-updated_at: '2026-11-07T03:25:35+00:00'
-save_revision: 8
+updated_at: '2026-11-07T03:32:26+00:00'
+save_revision: 9
 content_manifest_hash: 59b69015c8c813194e83a7c4b4d2b862af8f4074c2c616aa5325399df6f66460
 save_format_origin: 'System_Templates.md [TEMPLATE_SAVE] (SAVE_DATA: MachaDun v2.0)'
 transaction:
-  last_transaction_id: tx-510a9cb82f9d466e8e192f7f1f3f18e3
+  last_transaction_id: tx-eabcb7008c6f49c397019cd813ca4045
   last_committed_turn: 0
-  previous_revision_hash: 0be4e76f78091faebc9004a63abf9bdd5154772ba892226ae878b629f08ed868
-  last_candidate_hash: 90490d089bf66f18dd5a7b5567325e1a32e7bcc435efca5c481960ed482b665f
+  previous_revision_hash: 9ce5b622dd166b6f5b7347b48cf0bf0bdf0d49bd650ca22daf7b549359ab7354
+  last_candidate_hash: e4fdc008ae36d5b422378262a73a80224db9b93f21a3abcd1f3af977791a557f
   applied_transaction_ids:
   - tx-413eae86780d496981a94b1d08250181
   - tx-5d7fe8c49f1242dca4bcebf850e979c1
@@ -21,6 +21,7 @@ transaction:
   - tx-4ae8f5618012494ba201f30e8924c2ea
   - tx-877e4f53bc9d43bfbe6cbbd3b15ff252
   - tx-510a9cb82f9d466e8e192f7f1f3f18e3
+  - tx-eabcb7008c6f49c397019cd813ca4045
 hearing_progress:
   status: complete
   current_step: 7
@@ -54,7 +55,7 @@ runtime_state:
   active_scene: start
   scene_id: start
   context_pack_hash: b7020043a631f04960d6dd4d76526db383b5050a606c24f476845a94a248e128
-  last_validation_at: '2026-11-07T03:25:35+00:00'
+  last_validation_at: '2026-11-07T03:32:26+00:00'
   last_error: ''
 dice_state:
   tape_revision: machadan-tape-r1
@@ -68,12 +69,19 @@ world_state:
   onboarding:
     allocation_rule: all3-plus15-v1
     body_received: true
-    allocation_complete: false
+    allocation_complete: true
     fire_granted: true
     fire_explained: true
     tutorial_complete: false
     legacy_initial_allocation: false
     fire_grant_transaction_id: tx-510a9cb82f9d466e8e192f7f1f3f18e3
+    initial_base_stats:
+      str: 6
+      def: 6
+      int: 6
+      spd: 3
+      tec: 3
+      chm: 9
   campaign_lore: {}
   appearance_customization:
     version: 1
@@ -145,6 +153,75 @@ world_state:
     camp_used: false
     boss_route_found: false
     resource_days_by_floor: {}
+  allocation_state:
+    version: 1
+    resolutions:
+    - request_id: alloc-37a14d3c174e450b906122962600eb8e
+      transaction_id: tx-eabcb7008c6f49c397019cd813ca4045
+      mode: initial
+      actor_id: player
+      source_revision: 8
+      source_sha256: 488cb00c0be9fb22db9aa195885b3ccd97bc319e52827620f650af3eb3a6f6cf
+      profile_hash: 57ad0dbc70d81c91ff87d052693d153c42a6116b8ddf08fc71900be16f08da9e
+      values:
+        str: 6
+        def: 6
+        int: 6
+        spd: 3
+        tec: 3
+        chm: 9
+      before:
+        base_stats:
+          str: 3
+          def: 3
+          int: 3
+          spd: 3
+          tec: 3
+          chm: 3
+        growth_bonus:
+          str: 0
+          def: 0
+          int: 0
+          spd: 0
+          tec: 0
+          chm: 0
+        base_lp: 20
+        lp:
+          cur: 32
+          max: 32
+        mp:
+          cur: 6
+          max: 6
+      after:
+        base_stats:
+          str: 6
+          def: 6
+          int: 6
+          spd: 3
+          tec: 3
+          chm: 9
+        growth_bonus:
+          str: 0
+          def: 0
+          int: 0
+          spd: 0
+          tec: 0
+          chm: 0
+        base_lp: 20
+        lp:
+          cur: 33
+          max: 33
+        mp:
+          cur: 9
+          max: 9
+      consumed: null
+      fee_gold: 0
+      duration_minutes: 0
+      time_before: null
+      time_after: null
+      respec_rule: null
+      permanent_points_before: 18
+      permanent_points_after: 33
 skills: []
 skill_dormancy: []
 custom_abilities: []
@@ -202,12 +279,12 @@ player:
   gold: 0
   debt: 10000
   base_stats:
-    str: 3
-    def: 3
-    int: 3
+    str: 6
+    def: 6
+    int: 6
     spd: 3
     tec: 3
-    chm: 3
+    chm: 9
   growth_bonus:
     str: 0
     def: 0
@@ -237,29 +314,29 @@ player:
     tec: 0
     chm: 0
   effective_stats:
-    str: 6
-    def: 6
-    int: 6
+    str: 9
+    def: 9
+    int: 9
     spd: 6
     tec: 6
-    chm: 6
+    chm: 12
   base_lp: 20
   job_lp_bonus: 0
   fire_lp_bonus: 12
   temporary_lp_bonus: 0
   lp:
-    cur: 32
-    max: 32
+    cur: 33
+    max: 33
   mp:
-    cur: 6
-    max: 6
+    cur: 9
+    max: 9
   stats:
-    str: 6
-    def: 6
-    int: 6
+    str: 9
+    def: 9
+    int: 9
     spd: 6
     tec: 6
-    chm: 6
+    chm: 12
   equipment:
     weapon_instance_id: null
     armor_instance_id: null
@@ -269,6 +346,12 @@ player:
   statuses: []
   buffs: []
   ero_status: []
+  encumbrance:
+    version: 1
+    total_weight: 0
+    raw_penalty: 0
+    applied_penalty: 0
+  stat_lp_bonus: 1
 player_body: '男性体型: 身長=中くらい / 筋肉=標準とムキムキの間（ほどよく筋肉質） / サイズ=普通'
 desire: 攻めたい（女の子を泣かせたい・翻弄したい）・れいぷごっこ等のCNC系・寝取りたい。快楽堕ちさせたい。メス奴隷にしたい。
 ng: []
