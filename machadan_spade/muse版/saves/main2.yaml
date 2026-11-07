@@ -3,15 +3,15 @@ schema_version: 3
 game_version: 4.13.4
 campaign_id: main2
 created_at: '2026-11-07T05:39:36+00:00'
-updated_at: '2026-11-07T06:20:16+00:00'
-save_revision: 13
+updated_at: '2026-11-07T06:24:15+00:00'
+save_revision: 14
 content_manifest_hash: 59b69015c8c813194e83a7c4b4d2b862af8f4074c2c616aa5325399df6f66460
 save_format_origin: 'System_Templates.md [TEMPLATE_SAVE] (SAVE_DATA: MachaDun v2.0)'
 transaction:
-  last_transaction_id: tx-7d5f26da67d44b61aab89454f67ee596
-  last_committed_turn: 0
-  previous_revision_hash: dbe58eb2cb1a267f88646c903d87940ff0ec373773c6f8741cdf057882737754
-  last_candidate_hash: 6b061971da81ae33e01dc023988c4e9b9c89911846714b8a69c77edc7cb9873b
+  last_transaction_id: tx-f40d2b9bbaf944ca88e22162cd11767b
+  last_committed_turn: 1
+  previous_revision_hash: b7a1fbace380b590c8fa8096291da34d747945cae636359a762913b2d77c37cb
+  last_candidate_hash: 8807b8cec19b94259f77b99cc2ff4146d990c1676a912101024122a24a6673f7
   applied_transaction_ids:
   - tx-0345298f5a774b8ca7e3c0934d815725
   - tx-7f4c45d45dea4266ba65a98f8f4718e6
@@ -26,6 +26,7 @@ transaction:
   - tx-81105776402d4b0f89b9866b6936d62f
   - tx-d212ef4949334eabb44c24f6b0132672
   - tx-7d5f26da67d44b61aab89454f67ee596
+  - tx-f40d2b9bbaf944ca88e22162cd11767b
 hearing_progress:
   status: complete
   current_step: 7
@@ -56,15 +57,15 @@ active_script:
 runtime_state:
   ero_scene: false
   style_conditions: []
-  active_scene: start
-  scene_id: start
-  context_pack_hash: d5c8fce13acf45a7c19726a621f1ab493cb46f0db9311b974a4e8dfafc67bfb9
-  last_validation_at: '2026-11-07T06:20:16+00:00'
+  active_scene: event
+  scene_id: event
+  context_pack_hash: 87de05534976dbba0f68977137305eb1ed118cf48f662034feb320df300f7322
+  last_validation_at: '2026-11-07T06:24:15+00:00'
   last_error: ''
 dice_state:
   tape_revision: machadan-tape-r1
   dice_cursor_d6: 0
-  dice_cursor_d10: 0
+  dice_cursor_d10: 2
 fire_state:
   holders:
   - player
@@ -94,16 +95,20 @@ world_state:
     散策案内_Lilith_000:
       character_id: Lilith_000
       told: true
+    NPC_クラリス:
+      kind: one_off_npc
+      fact: 迷宮帰りの女冒険者クラリス。26歳の成人。長身（約172cm）で亜麻色の髪を結い上げ、紺の外套に大きな背嚢、細身の剣。胸が豊か。落ち着いた丁寧語。Day1朝、宿通りと西大通りの角で主人公と出会い、ギルドと仲間募集の掲示板を教えた。
+      status: confirmed
   appearance_customization:
     version: 1
     overrides: {}
     resolutions: []
   reward_state_version: 2
   day: 1
-  location: ぬれねずみ亭
-  place_id: INN_DRENCHED_RAT
-  room_id: INN_DRENCHED_RAT_ROOM_201
-  sub_location: 普通客室201
+  location: 西大通り
+  place_id: NOIR_CITY_WEST
+  room_id: ''
+  sub_location: 宿通りとの角
   depth: null
   time_of_day: 朝
   weather: 薄い霧
@@ -438,6 +443,17 @@ session_log:
   - day: 1
     time_of_day: 朝
     summary: 能力配分を終え、リリスから帰還の腕輪と、仕事と仲間の窓口『銀の天秤亭』を教わった。街をぶらつくのも面白いと勧められた。
+  - day: 1
+    time_of_day: 朝
+    summary: 仲間探しのため銀の天秤亭へ向かう途中、宿通りと西大通りの角で迷宮帰りの女冒険者クラリスと出会い、ギルドの場所と仲間募集の掲示板を教わった。
+    random_event_roll:
+      die: d10
+      result: 1
+      cursor: 0
+    random_event_type_roll:
+      die: d10
+      result: 5
+      cursor: 1
 memory_log:
   encounters: []
   battles: []
