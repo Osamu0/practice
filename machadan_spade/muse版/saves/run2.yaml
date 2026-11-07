@@ -3,15 +3,15 @@ schema_version: 3
 game_version: 4.13.4
 campaign_id: run2
 created_at: '2026-11-07T09:22:51+00:00'
-updated_at: '2026-11-07T09:49:40+00:00'
-save_revision: 12
+updated_at: '2026-11-07T09:51:55+00:00'
+save_revision: 13
 content_manifest_hash: 59b69015c8c813194e83a7c4b4d2b862af8f4074c2c616aa5325399df6f66460
 save_format_origin: 'System_Templates.md [TEMPLATE_SAVE] (SAVE_DATA: MachaDun v2.0)'
 transaction:
-  last_transaction_id: tx-c5af19c64a24424b865f8f22f75d6c5d
-  last_committed_turn: 3
-  previous_revision_hash: 91835130f9070860e670897236aa8e0c08bbdffdfe4bd9875720644e9e302e7b
-  last_candidate_hash: 91faa984d637e6f54aeb8d9b0601017c2dcbff7d63b42f6899e3563464550c0d
+  last_transaction_id: tx-a963a9aabe404be6965c8b0087edc7a0
+  last_committed_turn: 4
+  previous_revision_hash: a9174ead89d3f40755830570a37305e2ed7ba4a146ead1228eb67e0a67e4ba9c
+  last_candidate_hash: 9806d028bb43d89871fba3da448243722378ab61bbd444e70944fc34cd06f934
   applied_transaction_ids:
   - tx-3205c8b3a3f04e16a35b2f1739e25e5a
   - tx-6a86abc0b7cc4f0aa672870ded718bc7
@@ -25,6 +25,7 @@ transaction:
   - tx-5ec8d86187344649a3a4fe1096c1d84b
   - tx-d6a34b31a8f9418cb72859cdb197b79d
   - tx-c5af19c64a24424b865f8f22f75d6c5d
+  - tx-a963a9aabe404be6965c8b0087edc7a0
 hearing_progress:
   status: complete
   current_step: 7
@@ -57,8 +58,8 @@ runtime_state:
   style_conditions: []
   active_scene: event
   scene_id: event
-  context_pack_hash: 62fb127af3f7f50c715db36fa2045fc5b40afd9d666bd4a5adce186765cbd45f
-  last_validation_at: '2026-11-07T09:49:40+00:00'
+  context_pack_hash: e08085091f36448ce9bb2f3519e0c51293af2692cf2fcc04078d64b48eb67c55
+  last_validation_at: '2026-11-07T09:51:55+00:00'
   last_error: ''
 dice_state:
   tape_revision: machadan-tape-r1
@@ -126,7 +127,20 @@ world_state:
     B: 0
     A: 0
   quest_card: null
-  event_reward_contract: null
+  event_reward_contract:
+    settlement_id: EVR-run2-4-clarisse-mimai
+    offered: true
+    payer: クラリス（仕立て工房『白糸の間』）
+    components:
+    - component_id: EVR-run2-4-clarisse-mimai-gold
+      kind: gold
+      detail:
+        estimated_value_g: 50
+        amount: 50
+      state: offered
+    delivery_plan:
+    - trigger: その場
+      route: 提供者から直接
   pending_rewards: []
   reward_ledger: []
   entitlements: []
@@ -439,6 +453,7 @@ session_log:
   - Day1朝 ぬれねずみ亭201号室。初期配分確定（STR5/DEF5/INT8/SPD5/TEC5/CHM5）。リリスが帰還の腕輪を渡し、銀の天秤亭を勧め、目的なく街をぶらつくのも面白いと話す
   - Day1朝 〇〇がぬれねずみ亭を出て目的なく散策。西大通りで仕立て工房『白糸の間』のクラリス（26歳）とぶつかり、彼女の届け物のリボン箱が散らばる。移動イベント d10=1、種別 d10=5（出会い）
   - Day1朝 西大通り。〇〇が骨折したふりをする。CHM対抗 18 vs クラリスINT 19で失敗（かすり）。クラリスは骨折までは信じないが打撲を心配し、工房での手当てか大聖堂への同行を申し出る（費用は彼女持ち・未確定）
+  - Day1朝 西大通り。〇〇が『医者には自分で行くから誠意を』と求める。クラリスは少し引っかかりつつも争わず、手持ちの銀貨5枚（50G）を見舞金として差し出す（未受領）。骨に障りがあれば工房を訪ねてと告げる
 memory_log:
   encounters: []
   battles: []
