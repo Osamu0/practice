@@ -3,15 +3,15 @@ schema_version: 3
 game_version: 4.13.4
 campaign_id: main
 created_at: '2026-11-07T02:20:22+00:00'
-updated_at: '2026-11-07T22:53:58+00:00'
-save_revision: 59
+updated_at: '2026-11-07T22:56:57+00:00'
+save_revision: 60
 content_manifest_hash: 59b69015c8c813194e83a7c4b4d2b862af8f4074c2c616aa5325399df6f66460
 save_format_origin: 'System_Templates.md [TEMPLATE_SAVE] (SAVE_DATA: MachaDun v2.0)'
 transaction:
-  last_transaction_id: tx-c998872890d649189e8440763be0239f
-  last_committed_turn: 48
-  previous_revision_hash: a378f06c3ed52df293e2bf6927d1afd2e9734e20bb4e25ef4db2558ed818a491
-  last_candidate_hash: fddc0fd9e8a7d17c9583d973b9acc8d49c81ae38f5d77c1de090af621a574e83
+  last_transaction_id: tx-0566dbf240cc4549810ef81c94a628ab
+  last_committed_turn: 49
+  previous_revision_hash: a13a53547baedb1376ca7e5a9d688e3d1f94de4bcbfe81041388de078728845e
+  last_candidate_hash: 07192e82471e8d549f3980464f34696bd69c6110cfa939b020bcab29f9778c23
   applied_transaction_ids:
   - tx-413eae86780d496981a94b1d08250181
   - tx-5d7fe8c49f1242dca4bcebf850e979c1
@@ -72,6 +72,7 @@ transaction:
   - tx-c3ef299b1f8d4ef1a4283de5f47a5cb0
   - tx-0d3a19f906af42778ce33b516f4a3ae4
   - tx-c998872890d649189e8440763be0239f
+  - tx-0566dbf240cc4549810ef81c94a628ab
 hearing_progress:
   status: complete
   current_step: 7
@@ -104,8 +105,8 @@ runtime_state:
   style_conditions: []
   active_scene: turn
   scene_id: turn
-  context_pack_hash: fff20ad0d94ab955557abde545c433792097b8dccb4bbf53b45b7ae86f1c2509
-  last_validation_at: '2026-11-07T22:53:58+00:00'
+  context_pack_hash: dc7b6a57dcb548f2b69a9a2edf300088863d5507f46f4c11ba8a747ef4a6c89f
+  last_validation_at: '2026-11-07T22:56:57+00:00'
   last_error: ''
 dice_state:
   tape_revision: machadan-tape-r1
@@ -310,6 +311,10 @@ world_state:
     人物_ドーン_能力:
       fact: D級斧使い。STR 14 / DEF 12 / INT 7 / SPD 6 / TEC 9 / CHM 5（GM設定）
       status: GM参照用
+    ドーンの決意:
+      fact: ドーンは今のガルドは仲間ではないと認めた。三年前ガルドが街道で野盗三人からセレナを助けた場にドーンもいた。見張りを断ると別の見張りを立てられたり日を変えられたりするため、乗ったふりをして当日まで動きを探る案を自分から出した。協力の条件は『セレナが傷つかない方法だと約束すること』
+      source: Day1夕
+      status: ドーンの提案と条件（〇〇はまだ返事をしていない）
   appearance_customization:
     version: 1
     overrides: {}
@@ -763,6 +768,7 @@ session_log:
   - Day1夕 相談区画。〇〇が『これからだから何でもできるようになれる』と答え、昔のガルドとの違いを尋ねる。ドーンは、四年前のガルドはまっとうな剣士で貯金もし、セレナと婚約した時は酒をおごったと語る。半年ほど前から銀蛇亭に出入りし、依頼に出ず前借りの話ばかり、負けた日はセレナに当たると話す。父の件にも触れ、最近は灰色外套の葉巻臭い男とつるみ、その男が来るとガルドの目つきが変わると言う。続きは『ガルドの仲間として言えねえ』と止め、〇〇がなぜそこまで聞くのかと問い返す
   - Day1夕 相談区画。〇〇がセレナから相談を受けていて、もう耐えきれないそうだ、何か起こってからでは遅い、仲間を庇った結果がそうなったら悲惨だとドーンを説く。CHM対抗 12+2(状況：ドーン自身が誰かに話したがっている・父の件)+3+5=22
     vs ドーンINT 7+2+8=17で成功。ドーンが計画を明かす：今朝シラスが出した証文の下書き『白百合香房の権利を借金三千Gのカタとして銀蛇亭のバルトに渡す』、セレナの署名欄つき。決行は月の二十九日の夜（締めの前の晩、セレナが眠った後）。ガルドが合鍵で裏口から入り2Fから権利書を持ち出し、シラスが証文にセレナの名を書き、夜のうちに銀蛇亭の裏でバルトに渡す。ドーンは路地の見張り役、分け前二百G、返事は三日のうちに。まだ返事はしていない。ドーンは『俺に何をしろって言うんだ』と問う
+  - Day1夕 相談区画。〇〇が『あいつは本当に仲間か、人も場所も金としか見ていない』とドーンに迫る。ドーンは三年前ガルドがセレナを助けた場に自分もいたと語りつつ、今のガルドは仲間ではない、父と同じだと認める。見張りを断れば別の見張りや日の変更で動きが分からなくなるため、乗ったふりをして当日まで動きを探る案を自分から出す。条件として、セレナが傷つかない方法だと約束しろと〇〇に求める
 memory_log:
   encounters: []
   battles: []
