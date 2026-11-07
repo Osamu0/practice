@@ -3,15 +3,15 @@ schema_version: 3
 game_version: 4.13.4
 campaign_id: main2
 created_at: '2026-11-07T05:39:36+00:00'
-updated_at: '2026-11-07T08:17:20+00:00'
-save_revision: 54
+updated_at: '2026-11-07T08:20:58+00:00'
+save_revision: 55
 content_manifest_hash: 59b69015c8c813194e83a7c4b4d2b862af8f4074c2c616aa5325399df6f66460
 save_format_origin: 'System_Templates.md [TEMPLATE_SAVE] (SAVE_DATA: MachaDun v2.0)'
 transaction:
-  last_transaction_id: tx-be916e80de224309ab83f6a36a5d04b7
-  last_committed_turn: 40
-  previous_revision_hash: 9069f71de993edd6bbdfdb723aa4e32ce6bf8a0df70fe020c6a7b562096e1b50
-  last_candidate_hash: 1fc6006d33cd242e7dacadd327220c490a41a0434eb54451ff4cf4770dadf99f
+  last_transaction_id: tx-b55422886f4f4328a84edc1f8a6439ba
+  last_committed_turn: 41
+  previous_revision_hash: ba25b3607c5543b07e99f833fa370d076ef10c5254ec8354bba06c7d1e91f345
+  last_candidate_hash: bf56df19224f46df44458cd4f2cf09f8cb7f433d43876067c040e3c7240366ca
   applied_transaction_ids:
   - tx-0345298f5a774b8ca7e3c0934d815725
   - tx-7f4c45d45dea4266ba65a98f8f4718e6
@@ -67,6 +67,7 @@ transaction:
   - tx-d757861e21db491a99f145a0260966bc
   - tx-bf2ba9efc80846c8bfed80ae1431f2ac
   - tx-be916e80de224309ab83f6a36a5d04b7
+  - tx-b55422886f4f4328a84edc1f8a6439ba
 hearing_progress:
   status: complete
   current_step: 7
@@ -99,13 +100,13 @@ runtime_state:
   style_conditions: []
   active_scene: combat
   scene_id: combat
-  context_pack_hash: b7cbfb5693e82d70839047183dcdf0e70af0665f3995f50c4c7f623174943ba6
-  last_validation_at: '2026-11-07T08:17:20+00:00'
+  context_pack_hash: 5de28ef68f3307b00a82512548e502f0123e925387720bb565c8d616cb555e9b
+  last_validation_at: '2026-11-07T08:20:58+00:00'
   last_error: ''
 dice_state:
   tape_revision: machadan-tape-r1
   dice_cursor_d6: 8
-  dice_cursor_d10: 208
+  dice_cursor_d10: 216
 fire_state:
   holders:
   - player
@@ -321,6 +322,7 @@ world_state:
       name: 溝鼠
       fact: 夜の東裏路地の暗い角にたむろするごろつき集団。全部で4〜5人。頭は片耳のギース（大柄、棍棒、昔衛兵とやり合って耳を半分なくした）。ほかはナイフを持った細身の男2〜3人（冒険者のなりそこない）。夜はギースと1〜2人が角に陣取り、通行人から財布を巻き上げる。殺しまではしない。見回りが少なく衛兵も本腰を入れていない。先週ドルフの小僧の荷を盗りかけた。戦闘値は戦闘開始時に確定
       status: ドルフの話
+      relation: Day1夜、〇〇に角での戦闘で押し負け、ギースは『覚えてろ』と言い残して手下Aを連れて撤退。手下Bは先に逃走。ナイフが一本、角に落ちている
     人物_ロゼ:
       kind: npc
       name: ロゼ
@@ -476,92 +478,22 @@ world_state:
         - なし
       renegotiable: true
     progress:
-      stage: combat
+      stage: en_route
       flags:
       - 小箱を受け取った
-      - 溝鼠と戦闘中
+      - 溝鼠の角を突破（ギースが降参して退いた）
       checks_used: 0
       event_roll:
         die: d10
         result: 2
         cursor: 79
-      combat:
-        round: 8
-        legal: 溝鼠が先に攻撃（正当防衛）
-        difficulty: 標準（味方2：主人公＋ベル。実働の敵2、見張り1は非実働）
-        enemies:
-        - id: GIES
-          name: 片耳のギース
-          stats:
-            str: 14
-            def: 6
-            int: 4
-            spd: 7
-            tec: 8
-            chm: 3
-          lp:
-            cur: 30
-            max: 30
-          weapon: 樫の棍棒
-          basis: 1Fの人間型（標準）を基準
-        - id: THUG_A
-          name: 細身の手下A
-          stats:
-            str: 11
-            def: 5
-            int: 4
-            spd: 8
-            tec: 8
-            chm: 3
-          lp:
-            cur: 2
-            max: 16
-          weapon: ナイフ
-          basis: 1F弱敵相当
-        - id: THUG_B
-          name: 細身の手下B（見張り・非実働）
-          stats:
-            str: 11
-            def: 5
-            int: 4
-            spd: 8
-            tec: 8
-            chm: 3
-          lp:
-            cur: 16
-            max: 16
-          active: false
-          status: 逃走（路地の入口方面へ）
-        allies:
-          bell:
-            lp: 21
-          familiars:
-          - id: FAM1
-            type: 攻撃型
-            stats:
-              str: 5
-              def: 3
-              spd: 2
-              tec: 5
-            lp:
-              cur: 5
-              max: 5
-            acts_from_round: 2
-          - id: FAM2
-            type: 攻撃型
-            stats:
-              str: 5
-              def: 3
-              spd: 2
-              tec: 5
-            lp:
-              cur: 5
-              max: 5
-            acts_from_round: 3
-        skill_uses:
-          使い魔召喚: 0
-          号令: 0
-        player_stance: 回避専念（次の自分の手番の直前まで、SPDで受ける攻撃にSPD+4）
+      last_combat:
+        result: 交渉で戦闘終了（ギースと手下Aが撤退、手下Bは逃走）
+        rounds: 8
+        enemy_final:
+          GIES: 30
+          THUG_A: 2
+        drops: なし（倒していない）
     amendments: []
     immutable_hash: 930c4ba868bd96eb9854e3f6bdaa3c06d299208d2f37401c9d09a262d102552f
   event_reward_contract: null
@@ -1232,6 +1164,17 @@ session_log:
       d10_to: 208
       d6_from: 7
       d6_to: 8
+  - day: 1
+    time_of_day: 夜
+    summary: 戦闘第8ラウンド。ギースの最後の一撃をかわし、降参を迫った（魅力の対抗 23対17で成功）。ギースは『割に合わねえ』と手下Aを連れて退いた。戦闘終了、使い魔は消えた。小箱は無事。LP1、左腕を強く痛めている。
+    combat_dice:
+      d10_from: 208
+      d10_to: 216
+    check:
+      type: CHM対抗
+      player: 23
+      target: 17
+      modifiers: 状況+2
 memory_log:
   encounters: []
   battles: []
