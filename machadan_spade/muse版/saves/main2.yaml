@@ -3,15 +3,15 @@ schema_version: 3
 game_version: 4.13.4
 campaign_id: main2
 created_at: '2026-11-07T05:39:36+00:00'
-updated_at: '2026-11-07T08:20:58+00:00'
-save_revision: 55
+updated_at: '2026-11-07T08:33:06+00:00'
+save_revision: 56
 content_manifest_hash: 59b69015c8c813194e83a7c4b4d2b862af8f4074c2c616aa5325399df6f66460
 save_format_origin: 'System_Templates.md [TEMPLATE_SAVE] (SAVE_DATA: MachaDun v2.0)'
 transaction:
-  last_transaction_id: tx-b55422886f4f4328a84edc1f8a6439ba
-  last_committed_turn: 41
-  previous_revision_hash: ba25b3607c5543b07e99f833fa370d076ef10c5254ec8354bba06c7d1e91f345
-  last_candidate_hash: bf56df19224f46df44458cd4f2cf09f8cb7f433d43876067c040e3c7240366ca
+  last_transaction_id: tx-8e6c2eb1487d4bf0b8ef6881b81db71d
+  last_committed_turn: 42
+  previous_revision_hash: 8f9ea6816766aacd30fcc8a2c1e2199caedeb8f716984dff5e7f55d0953d5996
+  last_candidate_hash: 60a39a1072f4f20c6fc64b02ade3e005181f33cdffac1e51da2dc90919075a3a
   applied_transaction_ids:
   - tx-0345298f5a774b8ca7e3c0934d815725
   - tx-7f4c45d45dea4266ba65a98f8f4718e6
@@ -68,6 +68,7 @@ transaction:
   - tx-bf2ba9efc80846c8bfed80ae1431f2ac
   - tx-be916e80de224309ab83f6a36a5d04b7
   - tx-b55422886f4f4328a84edc1f8a6439ba
+  - tx-8e6c2eb1487d4bf0b8ef6881b81db71d
 hearing_progress:
   status: complete
   current_step: 7
@@ -98,10 +99,10 @@ active_script:
 runtime_state:
   ero_scene: false
   style_conditions: []
-  active_scene: combat
-  scene_id: combat
-  context_pack_hash: 5de28ef68f3307b00a82512548e502f0123e925387720bb565c8d616cb555e9b
-  last_validation_at: '2026-11-07T08:20:58+00:00'
+  active_scene: quest
+  scene_id: quest
+  context_pack_hash: 337d27097308f49a95c059718fbc62caf40aa486396b481ae667a1d3069b199e
+  last_validation_at: '2026-11-07T08:33:06+00:00'
   last_error: ''
 dice_state:
   tape_revision: machadan-tape-r1
@@ -889,14 +890,41 @@ inventory:
     max_slots: 16
     skill_bonus_slots: 0
     effective_max_slots: 16
-    used_slots: 0
+    used_slots: 1
   carried_stacks: []
   warehouse:
     stacks: []
     instance_ids: []
   reservations: []
-item_definitions: []
-item_instances: []
+item_definitions:
+- item_def_id: ITEM_RUSTY_KNIFE
+  name: 錆びたナイフ
+  category: weapon
+  specification:
+    slot: weapon
+    bonus:
+      str: 1
+    weight: 1
+    price_g: 10
+    note: 切れ味最悪。投げるか、研いで使え
+  provenance:
+    source: 世界/Item_Database.md 【短剣・隠し武器】
+    obtained: Day1夜、東裏路地で溝鼠の手下Aが落としたものを拾った
+  balance_anchor:
+    price_g: 10
+    sell_g: 5
+item_instances:
+- instance_id: INST_RUSTY_KNIFE_001
+  item_def_id: ITEM_RUSTY_KNIFE
+  name: 錆びたナイフ
+  location: bag
+  slot_cost: 1
+  owner_character_id: player
+  specification_snapshot:
+    slot: weapon
+    bonus:
+      str: 1
+    weight: 1
 party: []
 inn_reserve: []
 enterprise_state:
@@ -1175,6 +1203,9 @@ session_log:
       player: 23
       target: 17
       modifiers: 状況+2
+  - day: 1
+    time_of_day: 夜
+    summary: 溝鼠の手下Aが落とした錆びたナイフを拾った。ベルは残りの溝鼠（4〜5人中、今夜見たのは3人）に注意しろと言った。路地の出口の先に歓楽通りの灯り。
 memory_log:
   encounters: []
   battles: []
