@@ -3,39 +3,43 @@ schema_version: 3
 game_version: 4.13.4
 campaign_id: main2
 created_at: '2026-11-07T05:39:36+00:00'
-updated_at: '2026-11-07T05:56:37+00:00'
-save_revision: 5
+updated_at: '2026-11-07T06:00:18+00:00'
+save_revision: 6
 content_manifest_hash: 59b69015c8c813194e83a7c4b4d2b862af8f4074c2c616aa5325399df6f66460
 save_format_origin: 'System_Templates.md [TEMPLATE_SAVE] (SAVE_DATA: MachaDun v2.0)'
 transaction:
-  last_transaction_id: tx-dd77d85996e04828a00affab0cec8bd5
+  last_transaction_id: tx-3046e6e727824f9098c6f1ce8966eb21
   last_committed_turn: 0
-  previous_revision_hash: 6b3b98fb41c8ef3f1b22446a2c881d910dc69c277983323ac05936f60185b702
-  last_candidate_hash: 3b7f9b710b085597a8a284a2c3429e6b7bad565eeb3e8419e6e43392b968a416
+  previous_revision_hash: 9f90004868425cdd22973f34f61ad5cbe3c4564c6b5094a1f44596a34a4f2c76
+  last_candidate_hash: 72ddf239f40722926e85cb883ac137bffafc51bdda494ca0c2784fdc9261105c
   applied_transaction_ids:
   - tx-0345298f5a774b8ca7e3c0934d815725
   - tx-7f4c45d45dea4266ba65a98f8f4718e6
   - tx-a944254ec58d4051a90afaca4d05c46b
   - tx-72d6317ba1c64e3a92b91f05d67032b4
   - tx-dd77d85996e04828a00affab0cec8bd5
+  - tx-3046e6e727824f9098c6f1ce8966eb21
 hearing_progress:
   status: in_progress
-  current_step: 5
+  current_step: 6
   completed_steps:
   - playmode
   - profile
   - body_profile
   - desire
+  - partner
   widget_ids:
     playmode: chat-tx-0345298f5a774b8ca7e3c0934d815725
     profile: chat-tx-a944254ec58d4051a90afaca4d05c46b
     body_male: chat-tx-72d6317ba1c64e3a92b91f05d67032b4
     desire: chat-tx-dd77d85996e04828a00affab0cec8bd5
+    partner_preferences: chat-tx-3046e6e727824f9098c6f1ce8966eb21
   widget_state_versions:
     playmode: 1
     profile: 1
     body_male: 1
     desire: 1
+    partner_preferences: 1
 active_script:
   id: ''
   status: idle
@@ -47,7 +51,7 @@ runtime_state:
   active_scene: start
   scene_id: start
   context_pack_hash: 6da4e59baa090d04c34926e05823dc480f184dce2edbfd3145baa5a4268f10bd
-  last_validation_at: '2026-11-07T05:56:37+00:00'
+  last_validation_at: '2026-11-07T06:00:18+00:00'
   last_error: ''
 dice_state:
   tape_revision: machadan-tape-r1
@@ -268,13 +272,21 @@ desire: 攻めたい（女の子を泣かせたい・翻弄したい）・甘々
 ng: []
 yuri: 'タチ: おまかせ・特になし / ネコ: おまかせ・特になし'
 partner_pref:
-  asked: false
-  personalities: []
-  sub_personalities: []
-  body_height: []
-  body_build: []
-  body_bust: []
-  call: []
+  asked: true
+  personalities:
+  - 清楚系で可愛い系。ヒステリックにならない。無駄な干渉をしない。稼いでいる。奉仕好き。老化のスピードが遅い。セックス好き。下品なことも好き。どうしたいか聞いた時、こちらの雰囲気や空気を感じていい案を出してくれる。何回ヤっても飽きない身体で、飽きさせないようにしてくれる。男を立てる。
+  sub_personalities:
+  - 甘やかし奉仕
+  - ドM
+  - 清楚ビッチ
+  body_height:
+  - 長身
+  body_build:
+  - モデル体型
+  body_bust:
+  - 豊満
+  call:
+  - 名前
 hearing_check:
   call_reflected: false
   unrecovered: []
