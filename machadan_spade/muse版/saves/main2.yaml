@@ -3,15 +3,15 @@ schema_version: 3
 game_version: 4.13.4
 campaign_id: main2
 created_at: '2026-11-07T05:39:36+00:00'
-updated_at: '2026-11-07T07:44:41+00:00'
-save_revision: 42
+updated_at: '2026-11-07T07:47:23+00:00'
+save_revision: 43
 content_manifest_hash: 59b69015c8c813194e83a7c4b4d2b862af8f4074c2c616aa5325399df6f66460
 save_format_origin: 'System_Templates.md [TEMPLATE_SAVE] (SAVE_DATA: MachaDun v2.0)'
 transaction:
-  last_transaction_id: tx-3aaf1d89a70a40938fa7678bae4c0f91
-  last_committed_turn: 28
-  previous_revision_hash: 9fe6ba9f6d34520b8f35b07233675188d091c3edbe009c1e081fb5ed556609a2
-  last_candidate_hash: f70292e3fa3df5f7facc23ca45f472a85de519b0f90302d80721ab3e633edc2f
+  last_transaction_id: tx-6cdb5b37bcd0447f8936d4b66caab0bf
+  last_committed_turn: 29
+  previous_revision_hash: e0dfeeb1b5024dd82b76a570fe696cda59f52d5d7e0576204db9ce8cc7392b46
+  last_candidate_hash: c8d315731fd13f434bc16c2ce0c6130a060b17edcbf8fc34e48f0821d407c167
   applied_transaction_ids:
   - tx-0345298f5a774b8ca7e3c0934d815725
   - tx-7f4c45d45dea4266ba65a98f8f4718e6
@@ -55,6 +55,7 @@ transaction:
   - tx-1ea2cdec0cb548749cc5aa643d1b8703
   - tx-05698ae2892f407f8ee75c60266683d1
   - tx-3aaf1d89a70a40938fa7678bae4c0f91
+  - tx-6cdb5b37bcd0447f8936d4b66caab0bf
 hearing_progress:
   status: complete
   current_step: 7
@@ -85,15 +86,15 @@ active_script:
 runtime_state:
   ero_scene: false
   style_conditions: []
-  active_scene: turn
-  scene_id: turn
-  context_pack_hash: 97f2aaaf82762c1c9a61b9f9ff144a70c50dc9ee19f8782c7c1d0856a0473604
-  last_validation_at: '2026-11-07T07:44:41+00:00'
+  active_scene: event
+  scene_id: event
+  context_pack_hash: f2674f7a19a7f1693857f30deb2f6da45da4e46da92799a98704284694ddef31
+  last_validation_at: '2026-11-07T07:47:23+00:00'
   last_error: ''
 dice_state:
   tape_revision: machadan-tape-r1
   dice_cursor_d6: 0
-  dice_cursor_d10: 74
+  dice_cursor_d10: 76
 fire_state:
   holders:
   - player
@@ -302,10 +303,10 @@ world_state:
     resolutions: []
   reward_state_version: 2
   day: 1
-  location: 白百合香房
-  place_id: LORE_SHIRAYURI_KOUBOU
-  room_id: LORE_SHIRAYURI_KOUBOU_KITCHEN
-  sub_location: 一階・台所
+  location: 東裏路地口と折れ路地
+  place_id: NOIR_CITY_BACK_ALLEY
+  room_id: ''
+  sub_location: 最初の折れ角の先
   depth: null
   time_of_day: 夜
   weather: 薄い霧
@@ -863,6 +864,17 @@ session_log:
   - day: 1
     time_of_day: 夜
     summary: 『この世界とは別のところから来た』と答えた。セレナはそれ以上詮索しなかった。夕食後に出かけると告げると、行き先も聞かずに裏口の閂を外し、灯りを残すと言ってくれた。ベルと夜の街へ出る支度をした。
+  - day: 1
+    time_of_day: 夜
+    summary: セレナに見送られて裏口から出て、夜の中央広場を抜け、ミア店脇の東裏路地へ入った。灯りの漏れる戸の奥で硬貨を数える気配と話し声。先の暗い角の向こうにも人の気配があるが、まだ誰も出てこない。
+    random_event_roll:
+      die: d10
+      result: 6
+      cursor: 74
+    ambient_roll:
+      die: d10
+      result: 6
+      cursor: 75
 memory_log:
   encounters: []
   battles: []
