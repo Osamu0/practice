@@ -3,15 +3,15 @@ schema_version: 3
 game_version: 4.13.4
 campaign_id: run2
 created_at: '2026-11-07T09:22:51+00:00'
-updated_at: '2026-11-07T10:41:27+00:00'
-save_revision: 35
+updated_at: '2026-11-07T10:45:18+00:00'
+save_revision: 36
 content_manifest_hash: 59b69015c8c813194e83a7c4b4d2b862af8f4074c2c616aa5325399df6f66460
 save_format_origin: 'System_Templates.md [TEMPLATE_SAVE] (SAVE_DATA: MachaDun v2.0)'
 transaction:
-  last_transaction_id: tx-01b8687e6f24434d8ec4053599962dad
-  last_committed_turn: 26
-  previous_revision_hash: 14711e3f8beea32b1b8a8a605b25da3952be0d4ab8523fa407896eb03c1e4bfb
-  last_candidate_hash: 614ad57ca18a22ea561d4f531b944eeaf2d27b68844666cfc639381987722f19
+  last_transaction_id: tx-1381f6c3085b467fbff10a456499348e
+  last_committed_turn: 27
+  previous_revision_hash: 3cd917b6862ab3538cd291cb12bea65e8349be3b8c1f650e7ec2c8c8a5bf256f
+  last_candidate_hash: 017ce9584d5453d39ae4a7938b1aa616eac5db9c245e5f7b29177330cadc706e
   applied_transaction_ids:
   - tx-3205c8b3a3f04e16a35b2f1739e25e5a
   - tx-6a86abc0b7cc4f0aa672870ded718bc7
@@ -48,6 +48,7 @@ transaction:
   - tx-238b7d5f76964d6e9457cd94cb78edfd
   - tx-cb638684a94e483cbaded3bca14c620c
   - tx-01b8687e6f24434d8ec4053599962dad
+  - tx-1381f6c3085b467fbff10a456499348e
 hearing_progress:
   status: complete
   current_step: 7
@@ -80,8 +81,8 @@ runtime_state:
   style_conditions: []
   active_scene: turn
   scene_id: turn
-  context_pack_hash: f531d75c3b78a80aa7adc0a0236fd2e893d07f131d4470d8f45d6ebde07837df
-  last_validation_at: '2026-11-07T10:41:27+00:00'
+  context_pack_hash: f79ac5dee6a8a377bf93d580ed7b572cb5b98e3153372eee4f9d117e532a0c26
+  last_validation_at: '2026-11-07T10:45:18+00:00'
   last_error: ''
 dice_state:
   tape_revision: machadan-tape-r1
@@ -575,6 +576,7 @@ session_log:
   - Day1昼 白糸の間。〇〇が好きなだけ触って嗅いでいい、まだ完全には勃っていないと告げる。クラリスが握り、さらに大きくなるのに驚いて巻き尺で測り、匂いを嗅いで先っぽにキス。奉仕が好きだと打ち明け、口で確かめたいとねだる
   - Day1昼 白糸の間（エロシーン中）。〇〇がしたいなら値段をまけてと言う。クラリスはお代はお代と断り50Gのまま。代わりに『お代じゃなく自分がしたいから』一生懸命ご奉仕すると囁き、口でさせてとねだる
   - Day1昼 白糸の間（エロシーン中）。〇〇が値引きしないならお預けと揺らして焦らす。クラリスは涙目で欲しがりつつも50Gは譲らない。代わりに値段以外なら何でも言うことを聞くと頬ずりしてねだる
+  - Day1昼 白糸の間（エロシーン中）。〇〇が『うんと言えばすぐありつける』と迫る。クラリスは言ったら負けと拒み、逆に〇〇の先走りを指摘して胸元のボタンを外し、レースの下着の胸を見せて『わたしもお預け』と挑発。50Gのまま全部を好きにするか、お預けし合うかと問う
 memory_log:
   encounters: []
   battles: []
