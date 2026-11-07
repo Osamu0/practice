@@ -3,15 +3,15 @@ schema_version: 3
 game_version: 4.13.4
 campaign_id: run2
 created_at: '2026-11-07T09:22:51+00:00'
-updated_at: '2026-11-07T10:28:27+00:00'
-save_revision: 30
+updated_at: '2026-11-07T10:30:14+00:00'
+save_revision: 31
 content_manifest_hash: 59b69015c8c813194e83a7c4b4d2b862af8f4074c2c616aa5325399df6f66460
 save_format_origin: 'System_Templates.md [TEMPLATE_SAVE] (SAVE_DATA: MachaDun v2.0)'
 transaction:
-  last_transaction_id: tx-ca37c5af6f2c4d42ac29d4138b8b1dd0
-  last_committed_turn: 21
-  previous_revision_hash: 7c7b011e6ed352d8482ddb6ba5f5c43f9d2b9f628efc28a9864a48417805d589
-  last_candidate_hash: e245cb4ee19d7b6d407acfc66b21948627fa66f705e7d837e44b80edc2eedf5a
+  last_transaction_id: tx-45516bcf50c14cf6adf024b97859dcd7
+  last_committed_turn: 22
+  previous_revision_hash: 38787ad68e53a6272882cdca19457f4ba787f020fe0fc9547178ba1a831df83f
+  last_candidate_hash: c7f3f5581293f761c37da2fcffa0d4deb480b649ef64467ebcea5df7f9ea0c7c
   applied_transaction_ids:
   - tx-3205c8b3a3f04e16a35b2f1739e25e5a
   - tx-6a86abc0b7cc4f0aa672870ded718bc7
@@ -43,6 +43,7 @@ transaction:
   - tx-448c2c6ebf73405d95f0ec9f03ea632d
   - tx-35d3aa51cf25494da0c5459229317d66
   - tx-ca37c5af6f2c4d42ac29d4138b8b1dd0
+  - tx-45516bcf50c14cf6adf024b97859dcd7
 hearing_progress:
   status: complete
   current_step: 7
@@ -73,10 +74,10 @@ active_script:
 runtime_state:
   ero_scene: false
   style_conditions: []
-  active_scene: shop
-  scene_id: shop
-  context_pack_hash: 586d87863bd4ca35849a272df286d0cebb11d72836c02f8adccb2bceb6d153d0
-  last_validation_at: '2026-11-07T10:28:27+00:00'
+  active_scene: turn
+  scene_id: turn
+  context_pack_hash: 7a53ae4fd7c35686317eed2cc7ec9b6bb56502c27ec92e901b719ddba48a36d2
+  last_validation_at: '2026-11-07T10:30:14+00:00'
   last_error: ''
 dice_state:
   tape_revision: machadan-tape-r1
@@ -565,6 +566,7 @@ session_log:
   - Day1昼 白糸の間。〇〇が冒険者の服を40Gに値切る。CHM 8+2d10(2,5)=15 vs 標準19で失敗、50Gのまま。クラリスは生地と縫製を説明し、肩幅をきっちり合わせると約束（未注文）
   - Day1昼 白糸の間。〇〇が45Gを提示（同じ値切りの繰り返しのため判定なし）。クラリスは笑いつつ50Gを譲らず、注文すれば裏地の色を選べるオマケを提案
   - Day1昼 白糸の間。〇〇が50Gで冒険者の服を注文し、股関節まわりの採寸を頼む。クラリスが採寸、股下で大きさに気づいて赤面しつつ前のゆとりを多めに取る。48Gを支払い、残り2Gは明朝の受取時
+  - Day1昼 白糸の間。〇〇が『前のゆとり』をからかう。クラリスは真っ赤になり、仕立ての決まりと説明しつつ『ふつうより多めに』と漏らし、『意地悪、分かってて聞いてる』と甘く返す
 memory_log:
   encounters: []
   battles: []
