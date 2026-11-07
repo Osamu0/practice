@@ -3,15 +3,15 @@ schema_version: 3
 game_version: 4.13.4
 campaign_id: run2
 created_at: '2026-11-07T09:22:51+00:00'
-updated_at: '2026-11-07T09:44:15+00:00'
-save_revision: 10
+updated_at: '2026-11-07T09:48:01+00:00'
+save_revision: 11
 content_manifest_hash: 59b69015c8c813194e83a7c4b4d2b862af8f4074c2c616aa5325399df6f66460
 save_format_origin: 'System_Templates.md [TEMPLATE_SAVE] (SAVE_DATA: MachaDun v2.0)'
 transaction:
-  last_transaction_id: tx-5ec8d86187344649a3a4fe1096c1d84b
-  last_committed_turn: 1
-  previous_revision_hash: 8dedf7bdd254ae7b40975f1e295df6c922f78b91ebc0354ba3d12d561f8289c6
-  last_candidate_hash: 0e6adf02c518364ebad5a9c7fcbdef5e3782681913fb770c48f604772c431c0d
+  last_transaction_id: tx-d6a34b31a8f9418cb72859cdb197b79d
+  last_committed_turn: 2
+  previous_revision_hash: 194ab113b8241f981e89c6980eb6f19609dfbf21d44b2b3458f1c8cd4e5ee876
+  last_candidate_hash: 5118dc0d2230d0a45dfa699ed20777900c9ff34995c507c7838aca780df44cf5
   applied_transaction_ids:
   - tx-3205c8b3a3f04e16a35b2f1739e25e5a
   - tx-6a86abc0b7cc4f0aa672870ded718bc7
@@ -23,6 +23,7 @@ transaction:
   - tx-f96f12fe882f487d9b2473272b3a5eef
   - tx-04e05f37bd6e41c88fdfaf53466b6136
   - tx-5ec8d86187344649a3a4fe1096c1d84b
+  - tx-d6a34b31a8f9418cb72859cdb197b79d
 hearing_progress:
   status: complete
   current_step: 7
@@ -53,15 +54,15 @@ active_script:
 runtime_state:
   ero_scene: false
   style_conditions: []
-  active_scene: start
-  scene_id: start
-  context_pack_hash: b6a7ee9e9c4da2330405b20e4f171f7e9be622548b084fd04e60a7d5bfa8c321
-  last_validation_at: '2026-11-07T09:44:15+00:00'
+  active_scene: event
+  scene_id: event
+  context_pack_hash: 427c9659fd7f310a7644524c341e37a998bee94f9c12792281053f3e0ff81067
+  last_validation_at: '2026-11-07T09:48:01+00:00'
   last_error: ''
 dice_state:
   tape_revision: machadan-tape-r1
   dice_cursor_d6: 0
-  dice_cursor_d10: 0
+  dice_cursor_d10: 2
 fire_state:
   holders:
   - player
@@ -88,16 +89,24 @@ world_state:
       character_id: Lilith_000
       told: true
       day: 1
+    NPC_クラリス:
+      name: クラリス
+      age: 26
+      role: 仕立て工房『白糸の間』の女主人（西大通り界隈）
+      appearance: 168cm・すらりとしたモデル体型・豊満な胸・亜麻色の髪をゆるい片編み・蜂蜜色の瞳・白襟の紺ワンピース
+      personality: 清楚で丁寧。所作がきれい。仕事熱心で工房は繁盛している
+      first_met: Day1朝 西大通りで〇〇にぶつかり、届け物のリボン箱を落とした
+      status: その場の出会い（移動イベント）
   appearance_customization:
     version: 1
     overrides: {}
     resolutions: []
   reward_state_version: 2
   day: 1
-  location: ぬれねずみ亭
-  place_id: INN_DRENCHED_RAT
-  room_id: INN_DRENCHED_RAT_ROOM_201
-  sub_location: 普通客室201
+  location: 西大通り
+  place_id: NOIR_CITY_WEST
+  room_id: ''
+  sub_location: 宿通りから折れた角の近く
   depth: null
   time_of_day: 朝
   weather: 薄い霧
@@ -423,6 +432,7 @@ session_log:
   - Day1朝 ぬれねずみ亭201号室で〇〇が新しい肉体（178cm・引き締まった筋肉質）を得て目覚める。リリスが名乗り、初期借金10,000Gを告げる。リリスがハートの火を分ける提案をし、返事待ち
   - Day1朝 ぬれねずみ亭201号室。〇〇が「少し記憶がある」と言って火を受け取る。リリスの胸の火が〇〇の胸へ移り、6能力+3・LP上限+12。死に戻りの仕組みと代価の説明を受ける
   - Day1朝 ぬれねずみ亭201号室。初期配分確定（STR5/DEF5/INT8/SPD5/TEC5/CHM5）。リリスが帰還の腕輪を渡し、銀の天秤亭を勧め、目的なく街をぶらつくのも面白いと話す
+  - Day1朝 〇〇がぬれねずみ亭を出て目的なく散策。西大通りで仕立て工房『白糸の間』のクラリス（26歳）とぶつかり、彼女の届け物のリボン箱が散らばる。移動イベント d10=1、種別 d10=5（出会い）
 memory_log:
   encounters: []
   battles: []
