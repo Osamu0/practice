@@ -3,15 +3,15 @@ schema_version: 3
 game_version: 4.13.4
 campaign_id: main2
 created_at: '2026-11-07T05:39:36+00:00'
-updated_at: '2026-11-07T06:48:45+00:00'
-save_revision: 23
+updated_at: '2026-11-07T06:50:15+00:00'
+save_revision: 24
 content_manifest_hash: 59b69015c8c813194e83a7c4b4d2b862af8f4074c2c616aa5325399df6f66460
 save_format_origin: 'System_Templates.md [TEMPLATE_SAVE] (SAVE_DATA: MachaDun v2.0)'
 transaction:
-  last_transaction_id: tx-baa57bf41fc246c4920ad229b5f0b328
-  last_committed_turn: 10
-  previous_revision_hash: 5452d2f6b17817a38f9da01fc3f1fcd3a0ca812a49a1d481b1cc82b08bfd5a07
-  last_candidate_hash: 151a99ef2f7fca7492eab16236013e244210349111c4600832ab778760272eed
+  last_transaction_id: tx-b312c8a951094ed7a27949a26bfaebf5
+  last_committed_turn: 11
+  previous_revision_hash: a64f9bb2679537dbb0149cbe9bc09ff532627ad11b04dcd1a11d770722132a4f
+  last_candidate_hash: 94e6cc67701922a393761caa8019d9de9aef40dd862183923356a6537f6bad4b
   applied_transaction_ids:
   - tx-0345298f5a774b8ca7e3c0934d815725
   - tx-7f4c45d45dea4266ba65a98f8f4718e6
@@ -36,6 +36,7 @@ transaction:
   - tx-4b16baa5f4a141a9a464021e9c7f1eab
   - tx-816aef2067aa4f1492599881420f8168
   - tx-baa57bf41fc246c4920ad229b5f0b328
+  - tx-b312c8a951094ed7a27949a26bfaebf5
 hearing_progress:
   status: complete
   current_step: 7
@@ -68,8 +69,8 @@ runtime_state:
   style_conditions: []
   active_scene: turn
   scene_id: turn
-  context_pack_hash: 0908b2033691cdf9332c467f28f77726cca5a7822f47b032f71a3e5e36b89c64
-  last_validation_at: '2026-11-07T06:48:45+00:00'
+  context_pack_hash: f647362020a071223f24a45d45dc35fb3d93e149f0c61f1e75cfba0a7375990d
+  last_validation_at: '2026-11-07T06:50:15+00:00'
   last_error: ''
 dice_state:
   tape_revision: machadan-tape-r1
@@ -208,6 +209,21 @@ world_state:
       room_id: CENTRAL_PLAZA_STALLS
       fact: 中央広場南西の露店列のいちばん端、紫の布をかけた屋台。老婆がお香と干した花を売る。品揃えと価格は未確定。
       status: confirmed
+    場所_白百合香房:
+      kind: shop
+      place_id: LORE_SHIRAYURI_KOUBOU
+      parent: NOIR_CITY_WEST
+      name: 白百合香房
+      owner: セレナ
+      position: 西大通りから細い路地を一本入り、角を曲がった先。白い百合の看板
+      fact: 香水の店。店主セレナが奥で一つずつ調合し、客に合う香りを選ぶ。昼過ぎから夕方が混む。リゼットの香りもここで作ったもの。構造・品揃え・価格は初訪問時に確定する。
+      status: 確定（リゼットの話）
+    人物_セレナ:
+      kind: npc
+      name: セレナ
+      role: 調香師。白百合香房の店主
+      fact: 礼儀正しくきれいな人だと評判（エステル・リゼットの話）。年齢・外見・人柄の詳細は初対面時に確定する（成人）。
+      status: 噂
   appearance_customization:
     version: 1
     overrides: {}
@@ -687,6 +703,9 @@ session_log:
   - day: 1
     time_of_day: 昼
     summary: 仲間候補の三人に香りの店を尋ねた。リゼットからミアの道具屋の香油、メイリンから広場南西の露店列の端にある紫の布のお香屋台を教わった。エステルは護衛を申し出た。
+  - day: 1
+    time_of_day: 昼
+    summary: セレナの店を尋ねると、リゼットが香水の店『白百合香房』（西大通りから路地を入った先）を教えた。昼過ぎから混むので今がよいとのこと。エステルが案内を申し出た。
 memory_log:
   encounters: []
   battles: []
