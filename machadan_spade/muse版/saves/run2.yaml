@@ -3,15 +3,15 @@ schema_version: 3
 game_version: 4.13.4
 campaign_id: run2
 created_at: '2026-11-07T09:22:51+00:00'
-updated_at: '2026-11-07T10:22:34+00:00'
-save_revision: 27
+updated_at: '2026-11-07T10:24:21+00:00'
+save_revision: 28
 content_manifest_hash: 59b69015c8c813194e83a7c4b4d2b862af8f4074c2c616aa5325399df6f66460
 save_format_origin: 'System_Templates.md [TEMPLATE_SAVE] (SAVE_DATA: MachaDun v2.0)'
 transaction:
-  last_transaction_id: tx-a88476b4ab5a40458e37b7f43c3759df
-  last_committed_turn: 18
-  previous_revision_hash: 1d24c744fa6e86cb1bcf25463e3ff78e173689f866eb23564e2b271d3b4b289e
-  last_candidate_hash: 52f012ddefcc750ea6743379d3a962ece6f655790248b95d8b91244f11ec9853
+  last_transaction_id: tx-448c2c6ebf73405d95f0ec9f03ea632d
+  last_committed_turn: 19
+  previous_revision_hash: 139f2ceef90956890675660b26d99e39b0f945aeffa696857303765e4d3820bc
+  last_candidate_hash: c0a9ba6df63a8733215cfd324f24719efbfe40ec7c8be8afa93da9692813c652
   applied_transaction_ids:
   - tx-3205c8b3a3f04e16a35b2f1739e25e5a
   - tx-6a86abc0b7cc4f0aa672870ded718bc7
@@ -40,6 +40,7 @@ transaction:
   - tx-2fa472dacba0443fa382e327fc06ba40
   - tx-5c0d1625d1c34eca8e6485899b86b4c7
   - tx-a88476b4ab5a40458e37b7f43c3759df
+  - tx-448c2c6ebf73405d95f0ec9f03ea632d
 hearing_progress:
   status: complete
   current_step: 7
@@ -72,13 +73,13 @@ runtime_state:
   style_conditions: []
   active_scene: shop
   scene_id: shop
-  context_pack_hash: 306222fb344630ea149a0b10836192253044fdea7934559ee6cb4968f89d2eb6
-  last_validation_at: '2026-11-07T10:22:34+00:00'
+  context_pack_hash: 5363f831381dabb434564ff6f3af4c4d624c87580d0ba1665719487038a9186d
+  last_validation_at: '2026-11-07T10:24:21+00:00'
   last_error: ''
 dice_state:
   tape_revision: machadan-tape-r1
   dice_cursor_d6: 0
-  dice_cursor_d10: 18
+  dice_cursor_d10: 20
 fire_state:
   holders:
   - player
@@ -549,6 +550,7 @@ session_log:
   - Day1昼前 白糸の間。〇〇が『借金も君がぶつかったせい』と重ねる（判定なし）。クラリスは穏やかに、本当なら請求の書付けを見せてほしい、一緒に行って払うと返す。お金の話は終わりにしてお茶を淹れ始める
   - Day1昼前 白糸の間。〇〇がお茶を断り、一人で店をやっているのか尋ねる。クラリスは開業4年、一人で切り盛りし、客筋は屋敷の奥方と冒険者だと話す。2階に一人暮らしで夜は静かすぎると漏らす
   - Day1昼 白糸の間。〇〇がお詫びに装備を作ってと頼む。クラリスはタダは断りつつ、冒険者の服（50G・DEF+1・重量1）の仕立てを提案。明朝渡し、不足分は受取時でよい（未注文）
+  - Day1昼 白糸の間。〇〇が冒険者の服を40Gに値切る。CHM 8+2d10(2,5)=15 vs 標準19で失敗、50Gのまま。クラリスは生地と縫製を説明し、肩幅をきっちり合わせると約束（未注文）
 memory_log:
   encounters: []
   battles: []
