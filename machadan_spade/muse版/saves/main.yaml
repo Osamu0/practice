@@ -3,15 +3,15 @@ schema_version: 3
 game_version: 4.13.4
 campaign_id: main
 created_at: '2026-11-07T02:20:22+00:00'
-updated_at: '2026-11-07T03:41:45+00:00'
-save_revision: 13
+updated_at: '2026-11-07T03:45:15+00:00'
+save_revision: 14
 content_manifest_hash: 59b69015c8c813194e83a7c4b4d2b862af8f4074c2c616aa5325399df6f66460
 save_format_origin: 'System_Templates.md [TEMPLATE_SAVE] (SAVE_DATA: MachaDun v2.0)'
 transaction:
-  last_transaction_id: tx-fcf62429bfc741ffa161193521f74d87
-  last_committed_turn: 3
-  previous_revision_hash: cb18962d4cbd74e21d4534e7c2adce17d8a2eff1083b12ef5e5927bb1edd3e70
-  last_candidate_hash: 7cca5d0db382714c30e4df7f1ced54a445d1c4a1ec6ff0de76dcdad94082c7b2
+  last_transaction_id: tx-24158927980e4e0db4397c9e6e57d47c
+  last_committed_turn: 4
+  previous_revision_hash: 1a1800526c1940fcc2eddbb51563b748f03e05fd853da3c04b97d2c0817777a0
+  last_candidate_hash: 073afc287fd73a766837ef4be33dbf1d1d443888a85773a3653e5437574dce59
   applied_transaction_ids:
   - tx-413eae86780d496981a94b1d08250181
   - tx-5d7fe8c49f1242dca4bcebf850e979c1
@@ -26,6 +26,7 @@ transaction:
   - tx-cca2d88621a34e16a895c48f5aef4676
   - tx-b871d00e0b3145d2aea6cea5bb55210b
   - tx-fcf62429bfc741ffa161193521f74d87
+  - tx-24158927980e4e0db4397c9e6e57d47c
 hearing_progress:
   status: complete
   current_step: 7
@@ -58,8 +59,8 @@ runtime_state:
   style_conditions: []
   active_scene: event
   scene_id: event
-  context_pack_hash: 560e2b48b4a8ecacca0aa35d99dca05f123cfd30cf812424922f22995be07cc6
-  last_validation_at: '2026-11-07T03:41:45+00:00'
+  context_pack_hash: eaa29c70657114da1fc1a104e11bfeab289846d68eeb9e68302e9fdcc81c9b4b
+  last_validation_at: '2026-11-07T03:45:15+00:00'
   last_error: ''
 dice_state:
   tape_revision: machadan-tape-r1
@@ -118,22 +119,28 @@ world_state:
     B: 0
     A: 0
   quest_card: null
-  event_reward_contract:
-    settlement_id: EVR-main-2-serena
-    offered: true
+  event_reward_contract: null
+  pending_rewards: []
+  reward_ledger:
+  - settlement_id: EVR-main-2-serena
     payer: 調香師セレナ
+    status: settled
+    source:
+      kind: random_event
     components:
     - component_id: EVR-main-2-serena-gold
       kind: gold
       detail:
         estimated_value_g: 50
         amount: 50
-      state: offered
-    delivery_plan:
-    - trigger: その場
-      route: 提供者から直接
-  pending_rewards: []
-  reward_ledger: []
+      state: delivered
+      transaction_id: tx-24158927980e4e0db4397c9e6e57d47c
+      effect:
+        target: player.gold
+        before_sha256: 5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9
+        after_sha256: 1a6562590ef19d1045d06c4055742d38288e9e6dcd71ccde5cee80f1d5a774eb
+        amount: 50
+      estimated_value_g: 50
   entitlements: []
   lead_mode: 主人公
   goals:
@@ -300,7 +307,7 @@ player:
     expertise_tags: []
     solo_suitability: unclassified
     party_needs: []
-  gold: 0
+  gold: 50
   debt: 10000
   base_stats:
     str: 6
@@ -442,6 +449,7 @@ session_log:
   - Day1朝 ぬれねずみ亭を出て銀の天秤亭へ向かう途中、西大通りで調香師セレナ（22歳・その場の出会い）とぶつかる。婚約者とギルド前で待ち合わせ中。移動イベント d10=1、種別 d10=5（出会い）
   - Day1朝 西大通り。〇〇が骨折したふりをして治療費を匂わせる。CHM対抗 22 vs セレナINT 21で成功、セレナは信じて治療代50Gを差し出そうとしている（未受領）
   - Day1朝 〇〇が50Gでは足りないと詰め寄る。セレナは手持ちが銀貨5枚(50G)だけと明かし、店の商品『白百合の香油』(30G相当)を上乗せして差し出す。婚約者の冒険者ガルドが苛立って近づいてくる
+  - Day1朝 〇〇はセレナの治療代50Gをしれっと受け取り、ガルドに『話し合いをしていただけ』と言う。香油は受け取っていない
 memory_log:
   encounters: []
   battles: []
