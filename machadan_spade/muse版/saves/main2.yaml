@@ -3,15 +3,15 @@ schema_version: 3
 game_version: 4.13.4
 campaign_id: main2
 created_at: '2026-11-07T05:39:36+00:00'
-updated_at: '2026-11-07T07:09:48+00:00'
-save_revision: 32
+updated_at: '2026-11-07T07:11:43+00:00'
+save_revision: 33
 content_manifest_hash: 59b69015c8c813194e83a7c4b4d2b862af8f4074c2c616aa5325399df6f66460
 save_format_origin: 'System_Templates.md [TEMPLATE_SAVE] (SAVE_DATA: MachaDun v2.0)'
 transaction:
-  last_transaction_id: tx-b85ffa0f8d8645d6a3a22d97c35dd71a
-  last_committed_turn: 18
-  previous_revision_hash: 6535ade58bf3cffc1d983d715972ee51eb73b5d176058c21f10dafd5598eae34
-  last_candidate_hash: 94172b7e577df9e722f9d293c42639677b32940447dd301e8d31440a7043f3a0
+  last_transaction_id: tx-effe881bdef847429ea625988d08c8dc
+  last_committed_turn: 19
+  previous_revision_hash: d8b8d9556f1d646cfc393c494695d8f4d25ef1d4b50d6cf9fc928cc8611d5c13
+  last_candidate_hash: c7cccf35374c5dc92910ea9e09ddac75126c883bb1343b93a11346feebdac6b1
   applied_transaction_ids:
   - tx-0345298f5a774b8ca7e3c0934d815725
   - tx-7f4c45d45dea4266ba65a98f8f4718e6
@@ -45,6 +45,7 @@ transaction:
   - tx-c0623ceb89d84c6daafdf08cf21a8cb4
   - tx-08c6f1caf0854f6f96e2f9a0a22e6814
   - tx-b85ffa0f8d8645d6a3a22d97c35dd71a
+  - tx-effe881bdef847429ea625988d08c8dc
 hearing_progress:
   status: complete
   current_step: 7
@@ -77,8 +78,8 @@ runtime_state:
   style_conditions: []
   active_scene: turn
   scene_id: turn
-  context_pack_hash: 7be200d5f8501c12873a7ffc2d46de5d5ae82e3851056f1a18abab6768c6233c
-  last_validation_at: '2026-11-07T07:09:48+00:00'
+  context_pack_hash: 30d153908f3bb31edfb226c50a68cd221e2f56be1978f374f94acb651bb85994
+  last_validation_at: '2026-11-07T07:11:43+00:00'
   last_error: ''
 dice_state:
   tape_revision: machadan-tape-r1
@@ -258,6 +259,9 @@ world_state:
     白百合香房_材料の買い付け:
       fact: セレナは香水の材料をいつも決まった業者から買うが、裏山の花や森の樹脂は不足しがち。冒険者が採ってくれば相場どおりに買い取ると申し出た。品目・量・価格は未確定（正式な依頼にする時に確定）
       status: セレナの申し出（Day1夕）
+    白百合香房_売上:
+      fact: 売上はひと月およそ8,000G。材料・瓶・家賃を払うと手元に残るのは3,000G前後（花や樹脂が高い季節はもっと減る）。調合の注文は十日先まで。セレナひとりで調合・仕入れ・帳簿をこなす。父から継いで十年。店の金は月末の締めまで動かさない決まり
+      status: セレナ本人の話（Day1夕）
   appearance_customization:
     version: 1
     overrides: {}
@@ -784,6 +788,9 @@ session_log:
     time_of_day: 夕
     summary: 『医者に診せて良くなったが借金になった、遠くから来たばかりで世界のことも分からない』と話した。セレナは安堵したうえで責任を感じ、治療の借金を月の締めのあとに一部持つこと、街の案内、裏山の花や森の樹脂の買い取りを申し出た。
     note: 大聖堂へは実際には行っていない。治療の借金はセレナの思い込み
+  - day: 1
+    time_of_day: 夕
+    summary: 店を褒めて繁盛ぶりを尋ねた。セレナは客層、注文が十日先まで埋まっていること、月の売上約8,000G・手残り約3,000G、父から継いで十年ひとりで切り盛りしていることを話し、なぜこの店を知っていたのか尋ねた。
 memory_log:
   encounters: []
   battles: []
