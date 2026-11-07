@@ -3,15 +3,15 @@ schema_version: 3
 game_version: 4.13.4
 campaign_id: run2
 created_at: '2026-11-07T09:22:51+00:00'
-updated_at: '2026-11-07T09:37:04+00:00'
-save_revision: 7
+updated_at: '2026-11-07T09:39:01+00:00'
+save_revision: 8
 content_manifest_hash: 59b69015c8c813194e83a7c4b4d2b862af8f4074c2c616aa5325399df6f66460
 save_format_origin: 'System_Templates.md [TEMPLATE_SAVE] (SAVE_DATA: MachaDun v2.0)'
 transaction:
-  last_transaction_id: tx-4394e299e2534756bc70bcdf8d484719
+  last_transaction_id: tx-f96f12fe882f487d9b2473272b3a5eef
   last_committed_turn: 0
-  previous_revision_hash: 189407737e3ccbff80ae33b3a5a8d0042ac1f55e5a54fd4a4d430edd98994725
-  last_candidate_hash: 75070bb9eecba0e02f6617ab17a8a3ab6f600cfbfb6ed37c713146bcfe8518ea
+  previous_revision_hash: 95e964239c0148fc3b0cfa2cef2cf7759c30a7b036e2e76bf2e7800b02a77b09
+  last_candidate_hash: c1305ecfc2458310af4cd60e2f6d0331a48ca63feeed80fb4c7d949e6a92321f
   applied_transaction_ids:
   - tx-3205c8b3a3f04e16a35b2f1739e25e5a
   - tx-6a86abc0b7cc4f0aa672870ded718bc7
@@ -20,6 +20,7 @@ transaction:
   - tx-364f06cfcfd94a2e937e1c14a480439c
   - tx-7f8a6a500cdb4cddae50b096c23e789a
   - tx-4394e299e2534756bc70bcdf8d484719
+  - tx-f96f12fe882f487d9b2473272b3a5eef
 hearing_progress:
   status: complete
   current_step: 7
@@ -44,32 +45,35 @@ hearing_progress:
     partner_preferences: 1
 active_script:
   id: SCRIPT_OPENING_FIRE
-  status: in_progress
+  status: complete
   cursor: 0
-  checkpoint: fire-offered
+  checkpoint: fire-explained-and-granted
 runtime_state:
   ero_scene: false
   style_conditions: []
   active_scene: start
   scene_id: start
   context_pack_hash: 2bcbbb0516ef209d58a9284bd583b901c5cdba642ed7586f674cbedf4892acc4
-  last_validation_at: '2026-11-07T09:37:04+00:00'
+  last_validation_at: '2026-11-07T09:39:01+00:00'
   last_error: ''
 dice_state:
   tape_revision: machadan-tape-r1
   dice_cursor_d6: 0
   dice_cursor_d10: 0
 fire_state:
-  holders: []
+  holders:
+  - player
   notes: ''
 world_state:
   onboarding:
     allocation_rule: all3-plus15-v1
     body_received: true
     allocation_complete: false
-    fire_granted: false
-    fire_explained: false
+    fire_granted: true
+    fire_explained: true
     tutorial_complete: false
+    legacy_initial_allocation: false
+    fire_grant_transaction_id: tx-f96f12fe882f487d9b2473272b3a5eef
   campaign_lore: {}
   appearance_customization:
     version: 1
@@ -219,12 +223,12 @@ player:
     tec: 0
     chm: 0
   fire_bonus:
-    str: 0
-    def: 0
-    int: 0
-    spd: 0
-    tec: 0
-    chm: 0
+    str: 3
+    def: 3
+    int: 3
+    spd: 3
+    tec: 3
+    chm: 3
   temporary_modifiers:
     str: 0
     def: 0
@@ -233,29 +237,29 @@ player:
     tec: 0
     chm: 0
   effective_stats:
-    str: 3
-    def: 3
-    int: 3
-    spd: 3
-    tec: 3
-    chm: 3
+    str: 6
+    def: 6
+    int: 6
+    spd: 6
+    tec: 6
+    chm: 6
   base_lp: 20
   job_lp_bonus: 0
-  fire_lp_bonus: 0
+  fire_lp_bonus: 12
   temporary_lp_bonus: 0
   lp:
-    cur: 20
-    max: 20
+    cur: 32
+    max: 32
   mp:
-    cur: 3
-    max: 3
+    cur: 6
+    max: 6
   stats:
-    str: 3
-    def: 3
-    int: 3
-    spd: 3
-    tec: 3
-    chm: 3
+    str: 6
+    def: 6
+    int: 6
+    spd: 6
+    tec: 6
+    chm: 6
   equipment:
     weapon_instance_id: null
     armor_instance_id: null
@@ -329,6 +333,7 @@ session_log:
   previous: ''
   entries:
   - Day1朝 ぬれねずみ亭201号室で〇〇が新しい肉体（178cm・引き締まった筋肉質）を得て目覚める。リリスが名乗り、初期借金10,000Gを告げる。リリスがハートの火を分ける提案をし、返事待ち
+  - Day1朝 ぬれねずみ亭201号室。〇〇が「少し記憶がある」と言って火を受け取る。リリスの胸の火が〇〇の胸へ移り、6能力+3・LP上限+12。死に戻りの仕組みと代価の説明を受ける
 memory_log:
   encounters: []
   battles: []
