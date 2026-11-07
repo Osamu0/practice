@@ -3,15 +3,15 @@ schema_version: 3
 game_version: 4.13.4
 campaign_id: main
 created_at: '2026-11-07T02:20:22+00:00'
-updated_at: '2026-11-07T15:53:51+00:00'
-save_revision: 54
+updated_at: '2026-11-07T15:55:48+00:00'
+save_revision: 55
 content_manifest_hash: 59b69015c8c813194e83a7c4b4d2b862af8f4074c2c616aa5325399df6f66460
 save_format_origin: 'System_Templates.md [TEMPLATE_SAVE] (SAVE_DATA: MachaDun v2.0)'
 transaction:
-  last_transaction_id: tx-9e70593f2409429795a59267bbe8cf4f
-  last_committed_turn: 43
-  previous_revision_hash: 4148c64dba5c83016333dac79b8d5480e8b7eb49067ec26e87f4eb3bc339973f
-  last_candidate_hash: 28174670c2cf4c28f99a9d61e5f8b19cc7a18832ee77d822de3861e619363373
+  last_transaction_id: tx-c079a4567e94445599f7e01a12a75d43
+  last_committed_turn: 44
+  previous_revision_hash: 7385f5738be0ac8ae276c178613deb204bc2b00448990feddde624624adf3d30
+  last_candidate_hash: 735b30e12f0c613a2ec2ba0aabeb55e95f6502d96e7d52f4f80ba6d0a694b33f
   applied_transaction_ids:
   - tx-413eae86780d496981a94b1d08250181
   - tx-5d7fe8c49f1242dca4bcebf850e979c1
@@ -67,6 +67,7 @@ transaction:
   - tx-6f7c815169e14d5c8c54ef3a1c0216c4
   - tx-7e178a00f77d468592ce3056e3df98d0
   - tx-9e70593f2409429795a59267bbe8cf4f
+  - tx-c079a4567e94445599f7e01a12a75d43
 hearing_progress:
   status: complete
   current_step: 7
@@ -97,15 +98,15 @@ active_script:
 runtime_state:
   ero_scene: false
   style_conditions: []
-  active_scene: turn
-  scene_id: turn
-  context_pack_hash: d0ec747e5a75bd0fec19a567fd1baa0bf8c56ce410601e00345255a66bf20c4a
-  last_validation_at: '2026-11-07T15:53:51+00:00'
+  active_scene: event
+  scene_id: event
+  context_pack_hash: 2aab3ff3656c5e94d523ccb99b2b3a51073f43fa236ad8e43a714341eb617cde
+  last_validation_at: '2026-11-07T15:55:48+00:00'
   last_error: ''
 dice_state:
   tape_revision: machadan-tape-r1
   dice_cursor_d6: 0
-  dice_cursor_d10: 39
+  dice_cursor_d10: 40
 fire_state:
   holders:
   - player
@@ -235,7 +236,7 @@ world_state:
       name: ドーン
       age: 34
       role: D級冒険者。斧使い。ガルドといつも組んでいる
-      appearance: 大柄
+      appearance: 扉の枠に頭がつかえそうな大男。短く刈った栗色の髪、日焼けした太い首。刃の欠けた戦斧を背負う。革鎧の胸当てに古い大きな裂け目を縫い直した跡（一年前の大怪我の名残と思われる）
       personality: 無口だが嘘のつけない人。大事にしているものを雑に扱われると口を閉ざす（ミルカの見立て）
       habit: 夕方の鐘の後、一人で銀の天秤亭の納品口へ素材を売りに来る。納品後は中央広場で焼き菓子を一袋買い、西南の住居路地へ帰る
       background: 酒も賭けもしない（父親が骰子で家をなくした、と酒場で話していた）。一年ほど前ダンジョン三階で大怪我をし、ガルドに背負われて帰った。それ以来『あいつには借りがある』と言い、組み続けている。妹と二人暮らし。先月、掲示壁の仲間募集欄を長く眺めていた
@@ -283,6 +284,10 @@ world_state:
       fact: 暴行を待たず、ガルドが夜に裏口から入り2Fの衣装箱を開けた時点で衛兵に押さえさせる。ガルドは鍵を渡されているため、先にセレナから衛兵隊へ『もう家に入れたくない』と届けておけば侵入として扱える。懐にセレナ名義の偽の証文があればなお良い。衛兵隊も一月毎晩は張れないため日付の特定が要る（ドーンに当たる）
       source: Day1昼過ぎ ミルカの提案
       status: ミルカの提案（未実行）
+    ドーン_Day1夕の様子:
+      fact: Day1夕、納品口で灰色の獣の毛皮数枚と牙の束を売った。誰とも目を合わせず壁沿いを歩き、疲れた顔で眉間に深い縦皺。内心で『三十日まであとひと月もない』と気にしている
+      source: Day1夕
+      status: 確定した事実（内心は〇〇には聞こえていない）
   appearance_customization:
     version: 1
     overrides: {}
@@ -291,10 +296,10 @@ world_state:
   day: 1
   location: 銀の天秤亭
   place_id: GUILD_SILVER_SCALES
-  room_id: GUILD_SILVER_SCALES_RECEPTION
-  sub_location: ミルカの受付カウンター
+  room_id: GUILD_SILVER_SCALES_WRITING
+  sub_location: 記入卓と待合（納品口が見える席）
   depth: null
-  time_of_day: 昼
+  time_of_day: 夕
   weather: 薄い霧
   quest_active: ''
   quest_rank: ''
@@ -730,6 +735,7 @@ session_log:
   - Day1昼過ぎ 噂話を通り過ぎて銀の天秤亭へ（見送り後の到着）。ミルカの受付。ドーンはまだ（いつも夕方の鐘の後）。ミルカが思い出したドーンのことを話す：酒も賭けもしない（父が骰子で家をなくした）、一年前ダンジョン三階で大怪我をしガルドに背負われて帰って以来『借りがある』と組み続けている、納品後は中央広場で焼き菓子を買って西南の住居路地へ帰る（妹と二人暮らし）、先月仲間募集欄を長く眺めていた。ミルカは布屋のおかみさんに覗かれていた気がすると気にする
   - Day1昼過ぎ 銀の天秤亭の受付。〇〇がミルカに『春が来た』と噂になっていたと伝え、ミルカは真っ赤になって業務だと否定する。〇〇がセレナから預かった権利書と預かり証を見せる。ミルカは本物と確認、預かり証も有効と認め、広間では出さないよう言う。空の衣装箱を開けたガルドが焦ってセレナに直接詰め寄る（裏口の鍵で夜に）おそれを指摘し、セレナを一人にしないことと、箱を開けた時に何が起きるかを先に決めておくことを勧める
   - Day1昼過ぎ 銀の天秤亭の受付。〇〇が衛兵に張ってもらい暴行の現場を押さえる案を出す。ミルカは衛兵に張ってもらうのは賛成（シルヴィア隊長は筋の通った話なら動く、悪人を追い詰めるのが好きすぎるくらい）だが、セレナが殴られるのを待つことになると暴行待ちには反対。代わりに、夜に裏口から入って衣装箱を開けた時点で押さえる案を出す。ガルドは鍵を渡されているため、先にセレナから衛兵隊へ『もう家に入れたくない』と届けておけば侵入として扱えると指摘。残る問題は日付で、ドーンに当たる必要があると言う。昼の終わりの鐘が鳴る
+  - Day1昼過ぎ〜夕 銀の天秤亭の記入卓でドーンを待つ。待つ間の出来事 d10=10（なし）。夕方の鐘のあと、ドーンが一人で来て東奥の納品口で灰色の毛皮と牙を売る。ミルカが目配せで知らせる。ドーンは疲れた顔で、眉間に深い縦皺
 memory_log:
   encounters: []
   battles: []
