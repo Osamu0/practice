@@ -3,15 +3,15 @@ schema_version: 3
 game_version: 4.13.4
 campaign_id: main2
 created_at: '2026-11-07T05:39:36+00:00'
-updated_at: '2026-11-07T07:11:43+00:00'
-save_revision: 33
+updated_at: '2026-11-07T07:17:00+00:00'
+save_revision: 34
 content_manifest_hash: 59b69015c8c813194e83a7c4b4d2b862af8f4074c2c616aa5325399df6f66460
 save_format_origin: 'System_Templates.md [TEMPLATE_SAVE] (SAVE_DATA: MachaDun v2.0)'
 transaction:
-  last_transaction_id: tx-effe881bdef847429ea625988d08c8dc
-  last_committed_turn: 19
-  previous_revision_hash: d8b8d9556f1d646cfc393c494695d8f4d25ef1d4b50d6cf9fc928cc8611d5c13
-  last_candidate_hash: c7cccf35374c5dc92910ea9e09ddac75126c883bb1343b93a11346feebdac6b1
+  last_transaction_id: tx-d08c351390034b67a530ac9e5b24dc33
+  last_committed_turn: 20
+  previous_revision_hash: c7736ec7d223f769546bef8ae0974180f08db4edeebedc43dd298c54572a220a
+  last_candidate_hash: 8eec5ff53a26208d2bb72cf7721cf2ca4b7cd2fc5fbec0c33e3d37990bd51682
   applied_transaction_ids:
   - tx-0345298f5a774b8ca7e3c0934d815725
   - tx-7f4c45d45dea4266ba65a98f8f4718e6
@@ -46,6 +46,7 @@ transaction:
   - tx-08c6f1caf0854f6f96e2f9a0a22e6814
   - tx-b85ffa0f8d8645d6a3a22d97c35dd71a
   - tx-effe881bdef847429ea625988d08c8dc
+  - tx-d08c351390034b67a530ac9e5b24dc33
 hearing_progress:
   status: complete
   current_step: 7
@@ -78,13 +79,13 @@ runtime_state:
   style_conditions: []
   active_scene: turn
   scene_id: turn
-  context_pack_hash: 30d153908f3bb31edfb226c50a68cd221e2f56be1978f374f94acb651bb85994
-  last_validation_at: '2026-11-07T07:11:43+00:00'
+  context_pack_hash: 2a2dc61b978ef18dc0a76fba0b1f2f53fefaa1476af26a2921b6261e402d8230
+  last_validation_at: '2026-11-07T07:17:00+00:00'
   last_error: ''
 dice_state:
   tape_revision: machadan-tape-r1
   dice_cursor_d6: 0
-  dice_cursor_d10: 70
+  dice_cursor_d10: 74
 fire_state:
   holders:
   - player
@@ -262,6 +263,14 @@ world_state:
     白百合香房_売上:
       fact: 売上はひと月およそ8,000G。材料・瓶・家賃を払うと手元に残るのは3,000G前後（花や樹脂が高い季節はもっと減る）。調合の注文は十日先まで。セレナひとりで調合・仕入れ・帳簿をこなす。父から継いで十年。店の金は月末の締めまで動かさない決まり
       status: セレナ本人の話（Day1夕）
+    取り決め_セレナ月1000G:
+      parties:
+      - 〇〇
+      - セレナ
+      terms: 毎月の締めのあと、セレナが〇〇へ1,000Gを渡す。初回は1年1月の締め（30日目）のあと。名目は売上を上げる手伝いへのお礼。〇〇は白百合香房の売上が上がるよう協力する（方法は未定）
+      record: セレナの帳面に日付・金額・名前を記入
+      status: 成立（口約束）
+      origin: Day1夕。治療の借金を負わせたというセレナの負い目と交渉判定（24対15）で成立
   appearance_customization:
     version: 1
     overrides: {}
@@ -791,6 +800,20 @@ session_log:
   - day: 1
     time_of_day: 夕
     summary: 店を褒めて繁盛ぶりを尋ねた。セレナは客層、注文が十日先まで埋まっていること、月の売上約8,000G・手残り約3,000G、父から継いで十年ひとりで切り盛りしていることを話し、なぜこの店を知っていたのか尋ねた。
+  - day: 1
+    time_of_day: 夕
+    summary: 噂で店を知ったと答え、毎月1,000Gを渡してほしい、代わりに売上を上げる協力をすると持ちかけた。交渉判定に成功（24対15）。セレナは受け入れ、毎月の締めのあと（初回は今月末）に『手伝いへのお礼』として渡すと帳面に記した。協力の方法を尋ねられた。
+    check:
+      type: CHM対抗
+      player: 24
+      target: 15
+      dice:
+      - 6
+      - 7
+      - 3
+      - 6
+      cursor_from: 70
+      modifiers: 負い目+1／大きな要求-2
 memory_log:
   encounters: []
   battles: []
