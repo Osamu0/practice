@@ -3,15 +3,15 @@ schema_version: 3
 game_version: 4.13.4
 campaign_id: run2
 created_at: '2026-11-07T09:22:51+00:00'
-updated_at: '2026-11-07T13:41:13+00:00'
-save_revision: 59
+updated_at: '2026-11-07T13:47:10+00:00'
+save_revision: 60
 content_manifest_hash: 59b69015c8c813194e83a7c4b4d2b862af8f4074c2c616aa5325399df6f66460
 save_format_origin: 'System_Templates.md [TEMPLATE_SAVE] (SAVE_DATA: MachaDun v2.0)'
 transaction:
-  last_transaction_id: tx-eae9857fa2dc4599919bff8a26b4012b
-  last_committed_turn: 50
-  previous_revision_hash: 921b958e6662c94b2344559bdb2843478538850fa17dc0365e11ab02a1f617d1
-  last_candidate_hash: 6b1096a9562fc18dbbd68f37de9dfdc8f88534eef002a50b020300fb5f7e65bf
+  last_transaction_id: tx-e5ba36aba16d47a281c4ba7022901fd0
+  last_committed_turn: 51
+  previous_revision_hash: 8c0d76fd84d9034dbf3acdf194733ffa7f6021aa42dbbbca8364133da081b68a
+  last_candidate_hash: d86191ae76a38f03257ced906d45ddeea50ad63bac329de2bce46af51e17c635
   applied_transaction_ids:
   - tx-3205c8b3a3f04e16a35b2f1739e25e5a
   - tx-6a86abc0b7cc4f0aa672870ded718bc7
@@ -72,6 +72,7 @@ transaction:
   - tx-dea985ae958941cf97f2f980123856e8
   - tx-3a9f2a05d3e14a82bd9931ebe3307628
   - tx-eae9857fa2dc4599919bff8a26b4012b
+  - tx-e5ba36aba16d47a281c4ba7022901fd0
 hearing_progress:
   status: complete
   current_step: 7
@@ -104,8 +105,8 @@ runtime_state:
   style_conditions: []
   active_scene: turn
   scene_id: turn
-  context_pack_hash: 0e4e0d6051be840280479f6e6609ffe96aa4c62e0537aff7526c98d9832a5bfe
-  last_validation_at: '2026-11-07T13:41:13+00:00'
+  context_pack_hash: f45346ddc7c7ff336fc4c55acfd4d79a168ed39e67b13aee40212601771c0949
+  last_validation_at: '2026-11-07T13:47:10+00:00'
   last_error: ''
 dice_state:
   tape_revision: machadan-tape-r1
@@ -189,6 +190,10 @@ world_state:
       role: 西大通りの一番奥、蔦の絡む屋敷の未亡人。3年前に亡くした夫の交易商会を継ぎ裕福
       notes: 白糸の間の常連。黒髪を高く結い上げた色白の美人で見た目は若い。夜会ドレスを月1〜2着（1着300〜400G）、値切らず多めに払う。商会は住み込み使用人・荷馬車多数で裕福。採寸のたびに若い男を恋しがるそぶり。金目当ての男には冷たく、露骨に言い寄った冒険者に門前で水を浴びせさせたことがある（クラリス談・未対面）
       status: 未対面（噂のみ）
+    計画_ヴィオレッタの夜会同伴:
+      proposed_by: クラリス（〇〇の『紹介料と相手代の二段取り』案を修正）
+      plan: 〇〇を夜会の同伴者としてヴィオレッタに紹介。同伴の礼はヴィオレッタから〇〇へ。クラリスは紹介料を取らず、〇〇の夜会服をヴィオレッタの注文として仕立て代金を得る。夜会後のことは二人次第
+      status: 提案段階（〇〇の返答待ち）
   appearance_customization:
     version: 1
     overrides: {}
@@ -637,6 +642,7 @@ session_log:
   - Day1昼過ぎ 白糸の間2階（エロシーン中）。〇〇が売上を尋ねる。クラリスは月6,000G前後、手取り2,000G強と答える。借金の肩代わりはしないが、食事・寝床・仕事の心当たりで支えると話す
   - Day1昼過ぎ 白糸の間2階（エロシーン中）。〇〇が金持ちで欲に飢えた相手をして稼ぐと言う。クラリスは寂しさを隠しつつ、未亡人ヴィオレッタ（34歳・蔦の屋敷）と裏娼館『蜜の味』の男娼の噂を教える。明日仕上がりの服で行けば目に留まると助言し、仕事の後は帰ってきてとねだる
   - Day1昼過ぎ 白糸の間2階（エロシーン中）。〇〇がヴィオレッタの年と資産を尋ねる。クラリスは見た目は若い美人で、ドレスに月300〜800Gを惜しまず払い、商会もかなり裕福と話す。金目当てには冷たいので、がっつかず相手から欲しくなるようにと助言し、少し拗ねる
+  - Day1昼過ぎ 白糸の間2階（エロシーン中）。〇〇が『クラリスが紹介料、〇〇が相手代』の二段取りで稼ごうと提案。クラリスはそのままでは信用を失うと指摘し、〇〇を夜会の同伴者として紹介し、自分は〇〇の夜会服をヴィオレッタの注文として仕立てて稼ぐ案を出す
 memory_log:
   encounters: []
   battles: []
