@@ -3,15 +3,15 @@ schema_version: 3
 game_version: 4.13.4
 campaign_id: main
 created_at: '2026-11-07T02:20:22+00:00'
-updated_at: '2026-11-07T04:00:40+00:00'
-save_revision: 20
+updated_at: '2026-11-07T04:02:58+00:00'
+save_revision: 21
 content_manifest_hash: 59b69015c8c813194e83a7c4b4d2b862af8f4074c2c616aa5325399df6f66460
 save_format_origin: 'System_Templates.md [TEMPLATE_SAVE] (SAVE_DATA: MachaDun v2.0)'
 transaction:
-  last_transaction_id: tx-054e2f0203a34c7781f0963175b6be06
-  last_committed_turn: 10
-  previous_revision_hash: aa52f13da98aeb60c6414430ec1f06abeb61985d949e1f8df6ee0df565309c16
-  last_candidate_hash: 5b85ae086aba8d08043bb9fdff2ab23bb95f28245b8afbe275a0e3b9fa83e9cc
+  last_transaction_id: tx-d36bd2166bc347908d9de6b0ce2aed2e
+  last_committed_turn: 11
+  previous_revision_hash: a97d96af6503761b60f2ddb20e22d53f54f4bae6f8bd7ced98c07c28a61b7287
+  last_candidate_hash: 2edb02823787d297e584798c404e12f2afa6be631b056bf53c2dbdcdd35f8448
   applied_transaction_ids:
   - tx-413eae86780d496981a94b1d08250181
   - tx-5d7fe8c49f1242dca4bcebf850e979c1
@@ -33,6 +33,7 @@ transaction:
   - tx-925926dad24a4cbeab6ed2f87a0e28c1
   - tx-494ffbbb97a445329ec17e07d179799c
   - tx-054e2f0203a34c7781f0963175b6be06
+  - tx-d36bd2166bc347908d9de6b0ce2aed2e
 hearing_progress:
   status: complete
   current_step: 7
@@ -65,8 +66,8 @@ runtime_state:
   style_conditions: []
   active_scene: turn
   scene_id: turn
-  context_pack_hash: 6d563613da22d4600e9fd77c0d4f76e3dccf13527b58f00fbd82f1a5af3fa9bc
-  last_validation_at: '2026-11-07T04:00:40+00:00'
+  context_pack_hash: 1cb386bdc705c5150b1c7e729444d94523d79e439ed522885785ec2482f312fc
+  last_validation_at: '2026-11-07T04:02:58+00:00'
   last_error: ''
 dice_state:
   tape_revision: machadan-tape-r1
@@ -498,6 +499,7 @@ session_log:
   - Day1朝 〇〇が白百合香房を訪ねる。セレナは一人で店を開ける準備中。環境 d10=7（なし）
   - Day1朝 白百合香房。〇〇が『医者に診せて治ったが借金になった』と嘘をつく。CHM対抗 20 vs セレナINT 16で成功。セレナは自分のせいで借金を負わせたと思い込み、何か償えることはないかと申し出る
   - Day1朝 白百合香房。〇〇が店の客入りを尋ねる。セレナは繁盛していると話しつつ、売上をガルドの立て替えに回していることを漏らす
+  - Day1朝 白百合香房。〇〇が遠くから来たばかりだと明かし、この世界のことを尋ねる。セレナがノワールの街と暮らし方、男女のことを教える
 memory_log:
   encounters: []
   battles: []
