@@ -3,15 +3,15 @@ schema_version: 3
 game_version: 4.13.4
 campaign_id: main
 created_at: '2026-11-07T02:20:22+00:00'
-updated_at: '2026-11-07T14:58:09+00:00'
-save_revision: 38
+updated_at: '2026-11-07T15:00:28+00:00'
+save_revision: 39
 content_manifest_hash: 59b69015c8c813194e83a7c4b4d2b862af8f4074c2c616aa5325399df6f66460
 save_format_origin: 'System_Templates.md [TEMPLATE_SAVE] (SAVE_DATA: MachaDun v2.0)'
 transaction:
-  last_transaction_id: tx-5074df791c754561955e62137d7d283b
-  last_committed_turn: 28
-  previous_revision_hash: 725710cc1c714d587164c070383c4f094f9c37bebe2c543193cbe8f449b28a91
-  last_candidate_hash: f6ced13a90884301785e04dde1b0412ddf6128e1fcf59f8076c7fbe838c8910d
+  last_transaction_id: tx-c4412e93718342d398b4b3bad8ff93c9
+  last_committed_turn: 29
+  previous_revision_hash: e2f8de8addf92f88c784865d7403150c0d49e238b0b88232f018bab7084c4bbd
+  last_candidate_hash: 9cb88d3218f9b73d79408a696bc1db73234592d2d73bb1deb4483555d52328ff
   applied_transaction_ids:
   - tx-413eae86780d496981a94b1d08250181
   - tx-5d7fe8c49f1242dca4bcebf850e979c1
@@ -51,6 +51,7 @@ transaction:
   - tx-22adb297af7f4edfa639bff8222d45e7
   - tx-42b9391ad4e24a01ae35086bc7ebbce9
   - tx-5074df791c754561955e62137d7d283b
+  - tx-c4412e93718342d398b4b3bad8ff93c9
 hearing_progress:
   status: complete
   current_step: 7
@@ -81,10 +82,10 @@ active_script:
 runtime_state:
   ero_scene: false
   style_conditions: []
-  active_scene: resume
-  scene_id: resume
-  context_pack_hash: 60411736b7ff15f228c6462ca7bdfadda3f6a60745875e5f8b68d37fface6b7e
-  last_validation_at: '2026-11-07T14:58:09+00:00'
+  active_scene: turn
+  scene_id: turn
+  context_pack_hash: 2cbf808ea07dc9604f84ddeeae6d6b56f60c82df77d15ea7a44ab044c1610ec5
+  last_validation_at: '2026-11-07T15:00:28+00:00'
   last_error: ''
 dice_state:
   tape_revision: machadan-tape-r1
@@ -186,6 +187,14 @@ world_state:
       fact: Day1朝に銀の天秤亭へ入ったガルドは、昼前まで記入卓で仲間と話し込み、昼に入る少し前にギルドを出て東の衛兵通りの方へ向かった
       source: Day1昼 ミルカの話
       status: ミルカの目撃
+    ガルド_ギルドでの評判:
+      fact: ガルドはD級に上がって四年目。腕は悪くないが、ここ半年は依頼の報告が月に一、二件まで減っている。報酬の前借りを頼んでミルカに断られたことがある。いつも組むのは斧使いの冒険者ドーン（D級・30代の大男、無口）
+      source: Day1昼 ミルカの話（広間で知れ渡っている範囲）
+      status: ミルカの話
+    灰色外套の男:
+      fact: Day1の朝から昼前、銀の天秤亭の記入卓でガルドと話し込んでいた冒険者ではない細身の男。灰色の外套、指に細い銀の蛇の指輪。甘い葉巻の匂い。書き付けを一枚出してガルドに見せ、ガルドと連れ立ってギルドを出て東の衛兵通りの方へ向かった
+      source: Day1昼 ミルカの目撃
+      status: ミルカの目撃。身元は未確認（バルトの手下の可能性）
   appearance_customization:
     version: 1
     overrides: {}
@@ -565,6 +574,7 @@ session_log:
   - Day1昼 落とし物の革袋は拾わずに通り過ぎ、ぬれねずみ亭へ戻る。酒場でリリスが帳簿をつけている。環境 d10=5（なし）
   - Day1昼 ぬれねずみ亭から銀の天秤亭へ。移動 d10=5（なし）、環境 d10=3（掲示板前で女冒険者が男をからかう）。受付のミルカに迎えられる
   - Day1昼 銀の天秤亭の受付。ミルカが登録札のない〇〇に用件を尋ね、登録の手順を案内。今朝の西大通りの揉め事の噂と、ガルドが少し前にギルドを出て東の衛兵通りの方へ向かったことを伝える
+  - Day1昼 銀の天秤亭の受付。〇〇がガルドの評判と話し相手を尋ねる。ミルカは依頼記録は明かせないとしつつ、広間で誰でも見られたことだけを話す：ガルドはD級四年目で最近は報告が少ない。記入卓で斧使いの仲間ドーンと、甘い葉巻の匂いをさせた灰色外套の細い男と話し込み、男の出した書き付けを覗き込んでいた
 memory_log:
   encounters: []
   battles: []
