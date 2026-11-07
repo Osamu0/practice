@@ -3,15 +3,15 @@ schema_version: 3
 game_version: 4.13.4
 campaign_id: main
 created_at: '2026-11-07T02:20:22+00:00'
-updated_at: '2026-11-07T03:39:09+00:00'
-save_revision: 12
+updated_at: '2026-11-07T03:41:45+00:00'
+save_revision: 13
 content_manifest_hash: 59b69015c8c813194e83a7c4b4d2b862af8f4074c2c616aa5325399df6f66460
 save_format_origin: 'System_Templates.md [TEMPLATE_SAVE] (SAVE_DATA: MachaDun v2.0)'
 transaction:
-  last_transaction_id: tx-b871d00e0b3145d2aea6cea5bb55210b
-  last_committed_turn: 2
-  previous_revision_hash: 2857c20869452a05fe82c42f33edf12465b105f21e662c743e44443d995d3060
-  last_candidate_hash: 335bd899f7ed0d1b8ad66df90f558a64fcdb1f7e0e4557add1a13c460cf84828
+  last_transaction_id: tx-fcf62429bfc741ffa161193521f74d87
+  last_committed_turn: 3
+  previous_revision_hash: cb18962d4cbd74e21d4534e7c2adce17d8a2eff1083b12ef5e5927bb1edd3e70
+  last_candidate_hash: 7cca5d0db382714c30e4df7f1ced54a445d1c4a1ec6ff0de76dcdad94082c7b2
   applied_transaction_ids:
   - tx-413eae86780d496981a94b1d08250181
   - tx-5d7fe8c49f1242dca4bcebf850e979c1
@@ -25,6 +25,7 @@ transaction:
   - tx-e7953901cce546ee85dd7e91281052d8
   - tx-cca2d88621a34e16a895c48f5aef4676
   - tx-b871d00e0b3145d2aea6cea5bb55210b
+  - tx-fcf62429bfc741ffa161193521f74d87
 hearing_progress:
   status: complete
   current_step: 7
@@ -57,8 +58,8 @@ runtime_state:
   style_conditions: []
   active_scene: event
   scene_id: event
-  context_pack_hash: 7a15db9408ba32f9b8ec643a6a6069149f9657903cc6567f2d487534883f33cd
-  last_validation_at: '2026-11-07T03:39:09+00:00'
+  context_pack_hash: 560e2b48b4a8ecacca0aa35d99dca05f123cfd30cf812424922f22995be07cc6
+  last_validation_at: '2026-11-07T03:41:45+00:00'
   last_error: ''
 dice_state:
   tape_revision: machadan-tape-r1
@@ -90,6 +91,9 @@ world_state:
       character_id: Lilith_000
       told: true
       day: 1
+    通貨_銀貨:
+      fact: ノワールで流通する銀貨1枚は10G
+      source: Day1 セレナとの会話
   appearance_customization:
     version: 1
     overrides: {}
@@ -437,6 +441,7 @@ session_log:
   entries:
   - Day1朝 ぬれねずみ亭を出て銀の天秤亭へ向かう途中、西大通りで調香師セレナ（22歳・その場の出会い）とぶつかる。婚約者とギルド前で待ち合わせ中。移動イベント d10=1、種別 d10=5（出会い）
   - Day1朝 西大通り。〇〇が骨折したふりをして治療費を匂わせる。CHM対抗 22 vs セレナINT 21で成功、セレナは信じて治療代50Gを差し出そうとしている（未受領）
+  - Day1朝 〇〇が50Gでは足りないと詰め寄る。セレナは手持ちが銀貨5枚(50G)だけと明かし、店の商品『白百合の香油』(30G相当)を上乗せして差し出す。婚約者の冒険者ガルドが苛立って近づいてくる
 memory_log:
   encounters: []
   battles: []
