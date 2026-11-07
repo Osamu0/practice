@@ -3,15 +3,15 @@ schema_version: 3
 game_version: 4.13.4
 campaign_id: main
 created_at: '2026-11-07T02:20:22+00:00'
-updated_at: '2026-11-07T03:49:45+00:00'
-save_revision: 16
+updated_at: '2026-11-07T03:52:38+00:00'
+save_revision: 17
 content_manifest_hash: 59b69015c8c813194e83a7c4b4d2b862af8f4074c2c616aa5325399df6f66460
 save_format_origin: 'System_Templates.md [TEMPLATE_SAVE] (SAVE_DATA: MachaDun v2.0)'
 transaction:
-  last_transaction_id: tx-c9f67facbb2d4621a8bc20813168b4f8
-  last_committed_turn: 6
-  previous_revision_hash: d23291c0ae4a7baed71007b38c77fcb383c13905602ad547aada216d9ca61956
-  last_candidate_hash: 80a44d4937273f66856b0524b67a4d50af801ac348cb04f035519bd5ec3e9f4e
+  last_transaction_id: tx-85ad38b212fa48d68ecb21eb52a14183
+  last_committed_turn: 7
+  previous_revision_hash: a6f55a035a2b0f1f761708f720dc13a82e7cfa11552c077bb3265cc3f2e1e93d
+  last_candidate_hash: 68f34c873fd0f22298c35c1fd94f6a625cce38e3931da393c5ba8907306a5f4c
   applied_transaction_ids:
   - tx-413eae86780d496981a94b1d08250181
   - tx-5d7fe8c49f1242dca4bcebf850e979c1
@@ -29,6 +29,7 @@ transaction:
   - tx-24158927980e4e0db4397c9e6e57d47c
   - tx-57dbd28e9cbc49f581070c20d4aaf5ed
   - tx-c9f67facbb2d4621a8bc20813168b4f8
+  - tx-85ad38b212fa48d68ecb21eb52a14183
 hearing_progress:
   status: complete
   current_step: 7
@@ -61,8 +62,8 @@ runtime_state:
   style_conditions: []
   active_scene: event
   scene_id: event
-  context_pack_hash: 3ffbad61561a853c27776fed8a1d6639490273e8f55504a69592505cf192e0c1
-  last_validation_at: '2026-11-07T03:49:45+00:00'
+  context_pack_hash: 89d8ed040fde1a9c5dadb426c33f0fcfd4ed15afa9770aa58a4aaab9cc837cc9
+  last_validation_at: '2026-11-07T03:52:38+00:00'
   last_error: ''
 dice_state:
   tape_revision: machadan-tape-r1
@@ -111,6 +112,12 @@ world_state:
       role: 冒険者。革鎧に長剣。セレナの婚約者
       personality: 短気で人前でもセレナを叱りつける
       relation: Day1朝、西大通りで〇〇に気圧されて引き下がり、セレナを置いて銀の天秤亭へ入った
+      status: 確定した事実
+    出会い_Mia_001:
+      character_id: Mia_001
+      met_day: 1
+      knows_name: true
+      fact: Day1朝、白百合香房への路地口で会う。ガルドとの一件と仮病を見ていたが、〇〇に口止めされて内緒にすると約束した
       status: 確定した事実
   appearance_customization:
     version: 1
@@ -469,6 +476,7 @@ session_log:
   - Day1朝 〇〇はセレナの治療代50Gをしれっと受け取り、ガルドに『話し合いをしていただけ』と言う。香油は受け取っていない
   - Day1朝 〇〇がガルドを言葉で圧倒（CHM対抗 30 vs 12）。ガルドは捨て台詞を残してギルドへ。セレナは礼を言い、店に来てほしいと告げて去る
   - Day1朝 白百合香房へ向かう路地口で、道具屋のミアと偶然会う。ミアはガラス瓶の納品帰りで、ガルドとの一件を見ていた。移動イベント d10=1、種別 d10=10
+  - Day1朝 〇〇がミアに名乗り、さっきの件の口止めと脅し混じりの念押し。ミアは面白がって承諾し、『その代わり稼いだらうちで使って』と約束させて広場へ戻る
 memory_log:
   encounters: []
   battles: []
