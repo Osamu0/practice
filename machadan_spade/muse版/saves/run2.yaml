@@ -3,15 +3,15 @@ schema_version: 3
 game_version: 4.13.4
 campaign_id: run2
 created_at: '2026-11-07T09:22:51+00:00'
-updated_at: '2026-11-07T10:03:54+00:00'
-save_revision: 18
+updated_at: '2026-11-07T10:05:24+00:00'
+save_revision: 19
 content_manifest_hash: 59b69015c8c813194e83a7c4b4d2b862af8f4074c2c616aa5325399df6f66460
 save_format_origin: 'System_Templates.md [TEMPLATE_SAVE] (SAVE_DATA: MachaDun v2.0)'
 transaction:
-  last_transaction_id: tx-201cd8831a6446ce8c3113af606a9d51
-  last_committed_turn: 9
-  previous_revision_hash: 8237ab8ed25f607d2b25ff0a6f393375aba661e1a0e87c6d8ed1c42ef72e9a52
-  last_candidate_hash: 830c7429e534f1ec6aea1b5e168c79557736676db3c53a22f6a10a036177b38f
+  last_transaction_id: tx-87e430e8e0a64db180274727bbe7eb27
+  last_committed_turn: 10
+  previous_revision_hash: f1d75678fb3f7e533bd51220fe54605321f8c3456993e9c218e6e2669a5d3457
+  last_candidate_hash: 90713473c1dc6b263cc4d1bd4825f74cd5c65e19742f4755fca30e0ae1bafcd3
   applied_transaction_ids:
   - tx-3205c8b3a3f04e16a35b2f1739e25e5a
   - tx-6a86abc0b7cc4f0aa672870ded718bc7
@@ -31,6 +31,7 @@ transaction:
   - tx-0b8721ab6b19441ab0f23a20e83eac2f
   - tx-6fed3d86d20444689b73f19b75f964ea
   - tx-201cd8831a6446ce8c3113af606a9d51
+  - tx-87e430e8e0a64db180274727bbe7eb27
 hearing_progress:
   status: complete
   current_step: 7
@@ -63,8 +64,8 @@ runtime_state:
   style_conditions: []
   active_scene: turn
   scene_id: turn
-  context_pack_hash: 491536766df21741b2ac3bdeb61d74d0079c2d1991962d39c0e9f67a0d332488
-  last_validation_at: '2026-11-07T10:03:54+00:00'
+  context_pack_hash: 6f6591219bcf01486c3a758cc4c23f0ba659e06323b5dccb914399da694f8203
+  last_validation_at: '2026-11-07T10:05:24+00:00'
   last_error: ''
 dice_state:
   tape_revision: machadan-tape-r1
@@ -108,6 +109,10 @@ world_state:
         int: 7
         note: 一般人の判定用（火持ちではない）
       workshop: 西大通り、宿通りの角から二軒先。白い糸巻きの看板。窓辺にトルソー。朝から客が待つほど繁盛
+    エレナとの初対面:
+      character_id: Elena_003
+      day: 1
+      summary: 〇〇の打ち身を治療。本音（傷に昂る性質）を〇〇に見抜かれ打ち明けた。オマケを断ったところ〇〇に『もう来ない』と言われ、気落ちしつつ『いつでも来て』と見送った
   appearance_customization:
     version: 1
     overrides: {}
@@ -116,11 +121,11 @@ world_state:
   day: 1
   location: ノワール大聖堂
   place_id: NOIR_CATHEDRAL
-  room_id: NOIR_CATHEDRAL_HEALING
-  sub_location: 通常治療の受付室
+  room_id: NOIR_CATHEDRAL_PORCH
+  sub_location: 南の前庭と玄関廊
   depth: null
   time_of_day: 朝
-  weather: 薄い霧
+  weather: 晴れ
   quest_active: ''
   quest_rank: ''
   personal_rank: ''
@@ -470,6 +475,7 @@ session_log:
   - Day1朝 大聖堂の治療受付。〇〇が何をしている所か尋ね、エレナが治療・礼拝・告解・聖水の泉、冒険者への危ない頼み事を案内する。打ち身は未治療
   - Day1朝 大聖堂の治療受付。〇〇がエレナの本音を笑って指摘。エレナは傷を見るとどきどきすると打ち明け、腕の打ち身を治療（LP32→33、2G支払い）。治療後のエレナは上気して熱っぽい
   - Day1朝 大聖堂。〇〇が治療費のオマケを求めるが、エレナは値引きを断る。代わりに次の怪我はいちばんに丁寧に診ると約束（料金は通常どおり）。わざと怪我するのはだめと釘を刺す
+  - Day1朝 大聖堂。〇〇が『オマケがないならもう来ない』と告げて去る。エレナは涙ぐみつつも値引きはせず、いつでも来てと見送る。〇〇は大聖堂の前庭へ。霧が晴れる
 memory_log:
   encounters: []
   battles: []
