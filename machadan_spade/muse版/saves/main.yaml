@@ -3,15 +3,15 @@ schema_version: 3
 game_version: 4.13.4
 campaign_id: main
 created_at: '2026-11-07T02:20:22+00:00'
-updated_at: '2026-11-07T15:17:26+00:00'
-save_revision: 46
+updated_at: '2026-11-07T15:22:04+00:00'
+save_revision: 47
 content_manifest_hash: 59b69015c8c813194e83a7c4b4d2b862af8f4074c2c616aa5325399df6f66460
 save_format_origin: 'System_Templates.md [TEMPLATE_SAVE] (SAVE_DATA: MachaDun v2.0)'
 transaction:
-  last_transaction_id: tx-1ea75a961bb3429887494753c648138f
-  last_committed_turn: 35
-  previous_revision_hash: dd17a80ac00e9be495c3cb46d566f56c53613da2f1dde05ecc846fc41e2a018d
-  last_candidate_hash: 1efab6db18b33593ec433063963e7e637cad4c883aba21013a8d348db9689000
+  last_transaction_id: tx-3031d2010af84a60a5d7a4cfb613f97c
+  last_committed_turn: 36
+  previous_revision_hash: 8b684ab64c4e4bba97b7ddbcbfa10db112e57362fec29c68628efbd964cfef84
+  last_candidate_hash: 48835c78eb249a2cee189917c7aaa273e008a1d75e60edfb2be1fd02315ab1dd
   applied_transaction_ids:
   - tx-413eae86780d496981a94b1d08250181
   - tx-5d7fe8c49f1242dca4bcebf850e979c1
@@ -59,6 +59,7 @@ transaction:
   - tx-994aac7ed7d64544a9222a592c1444ff
   - tx-e1bbebca8e8f4cf3baad34190f00d65d
   - tx-1ea75a961bb3429887494753c648138f
+  - tx-3031d2010af84a60a5d7a4cfb613f97c
 hearing_progress:
   status: complete
   current_step: 7
@@ -89,15 +90,15 @@ active_script:
 runtime_state:
   ero_scene: false
   style_conditions: []
-  active_scene: turn
-  scene_id: turn
-  context_pack_hash: cb4a00c442d82911abb3b3557e1fdafd3a3443bd239451c4e7ee2a11446aef7b
-  last_validation_at: '2026-11-07T15:17:26+00:00'
+  active_scene: event
+  scene_id: event
+  context_pack_hash: 91984620e0ada1f9cb6648d20ea756f002a6474d2afe3d7c175061d71a51025f
+  last_validation_at: '2026-11-07T15:22:04+00:00'
   last_error: ''
 dice_state:
   tape_revision: machadan-tape-r1
   dice_cursor_d6: 0
-  dice_cursor_d10: 31
+  dice_cursor_d10: 33
 fire_state:
   holders:
   - player
@@ -236,16 +237,20 @@ world_state:
       fact: ①見張って押さえる：権利書を置いたままセレナにだけ話し、持ち出した者を尾行して銀蛇亭の裏で衛兵隊に押さえさせる。②先に日付と持ち出す者を割り出す：夕方に納品口へ来るドーンに当たる／セレナに店の月末の締めの日を聞く。どちらもセレナの協力が要る。ミルカは夕方ドーンが来たら気づく程度は手伝える
       source: Day1昼 ミルカの提案
       status: ミルカの提案
+    ミルカへの頼み_ドーン:
+      fact: Day1昼、〇〇はミルカに、夕方ドーンが納品口に来たら知らせることと、ドーンを仲間にできそうな話を頼んだ。ミルカは知らせることを承諾。弱みを探るのは断ったが、広間で見聞きできる範囲でドーンの気にすること・嫌がることを夕方までに思い出しておくと約束
+      source: Day1昼
+      status: ミルカの約束
   appearance_customization:
     version: 1
     overrides: {}
     resolutions: []
   reward_state_version: 2
   day: 1
-  location: 銀の天秤亭
-  place_id: GUILD_SILVER_SCALES
-  room_id: GUILD_SILVER_SCALES_CONSULT
-  sub_location: 相談・転職手続きの区画（ミルカと二人）
+  location: 白百合香房
+  place_id: LORE_SHIRAYURI_KOUBOU
+  room_id: LORE_SHIRAYURI_KOUBOU_SHOP
+  sub_location: 売り場
   depth: null
   time_of_day: 昼
   weather: 薄い霧
@@ -622,6 +627,8 @@ session_log:
   - Day1昼 銀の天秤亭の記入卓。〇〇が『盗るしかないか、セレナを守るためにも』と漏らす。ミルカは一度冷え、聞き間違いにしておくと流したうえで、先に盗れば牢に入るのは〇〇だと忠告。持ち主のセレナが自分の手で預けるなら盗みではなく預かり（役所や信用できる人に預ける人もいる）と案内し、持ち出しの現場を押さえる道と走り書きの『銀蛇亭の裏へ』にも触れて、言い過ぎたと赤くなる。広間にはほかに壁炉の前で居眠りする年配の冒険者だけ
   - Day1昼 銀の天秤亭。〇〇が『意外と乗り気だね』とからかい、もう少し相談に乗ってほしいと頼む。ミルカは否定しつつ受付に席外しの札を立て、〇〇を北西の相談区画へ案内して二人きりに。分かっていること三つと分からないこと（日付・持ち出す者）を手帳で整理し、手を二つ考えたと言う。条件として、全部終わったら一部始終を細かく自分に話すことを求める（返事はまだ）
   - Day1昼 銀の天秤亭の相談区画。〇〇が『報告書に必要ってことにしてあげる』とミルカの条件を呑む。ミルカが二つの手を示す：①権利書をいつもの場所に置いたままセレナにだけ事情を話し、持ち出した者を尾行して銀蛇亭の裏の受け渡しを衛兵隊に押さえさせる（証拠はそろうが日付不明だと毎晩見張り、本物が一度店外へ出る）②先に日付と持ち出す者を割り出す。当てはドーン（夕方一人で納品口に素材を売りに来る、嘘のつけない人、今朝顔をしかめていた）と、セレナの店の月末の締めの日。どちらもセレナの協力が要る
+  - Day1昼 銀の天秤亭。〇〇がミルカに、夕方ドーンが来たら知らせることと、仲間にできそうなネタを頼む。ミルカは前者を承り、後者は弱みを探るのは断るが広間で見聞きできる範囲でドーンの気にすること・嫌がることを夕方までに思い出しておくと答える。〇〇は白百合香房へ。移動
+    d10=4（なし）、環境 d10=6（なし）。帰る『蜜の味』の娘とすれ違い、待っていたセレナに迎えられる
 memory_log:
   encounters: []
   battles: []
