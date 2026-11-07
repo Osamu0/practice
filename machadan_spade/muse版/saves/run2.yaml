@@ -3,15 +3,15 @@ schema_version: 3
 game_version: 4.13.4
 campaign_id: run2
 created_at: '2026-11-07T09:22:51+00:00'
-updated_at: '2026-11-07T10:05:24+00:00'
-save_revision: 19
+updated_at: '2026-11-07T10:07:01+00:00'
+save_revision: 20
 content_manifest_hash: 59b69015c8c813194e83a7c4b4d2b862af8f4074c2c616aa5325399df6f66460
 save_format_origin: 'System_Templates.md [TEMPLATE_SAVE] (SAVE_DATA: MachaDun v2.0)'
 transaction:
-  last_transaction_id: tx-87e430e8e0a64db180274727bbe7eb27
-  last_committed_turn: 10
-  previous_revision_hash: f1d75678fb3f7e533bd51220fe54605321f8c3456993e9c218e6e2669a5d3457
-  last_candidate_hash: 90713473c1dc6b263cc4d1bd4825f74cd5c65e19742f4755fca30e0ae1bafcd3
+  last_transaction_id: tx-8a74193d2b434134845517066c0d451a
+  last_committed_turn: 11
+  previous_revision_hash: 7309e64388d5890bc3b2814088b6cf5b8fd0e4f0b0b7be0a8c8c04e9a5b79784
+  last_candidate_hash: 3ae8a69d77626715c1b12a20e2e9e7e1cf6b42fbcda80e04d70a2ade34ff454d
   applied_transaction_ids:
   - tx-3205c8b3a3f04e16a35b2f1739e25e5a
   - tx-6a86abc0b7cc4f0aa672870ded718bc7
@@ -32,6 +32,7 @@ transaction:
   - tx-6fed3d86d20444689b73f19b75f964ea
   - tx-201cd8831a6446ce8c3113af606a9d51
   - tx-87e430e8e0a64db180274727bbe7eb27
+  - tx-8a74193d2b434134845517066c0d451a
 hearing_progress:
   status: complete
   current_step: 7
@@ -62,15 +63,15 @@ active_script:
 runtime_state:
   ero_scene: false
   style_conditions: []
-  active_scene: turn
-  scene_id: turn
-  context_pack_hash: 6f6591219bcf01486c3a758cc4c23f0ba659e06323b5dccb914399da694f8203
-  last_validation_at: '2026-11-07T10:05:24+00:00'
+  active_scene: event
+  scene_id: event
+  context_pack_hash: 1e0314ed26b54b7a6f04f8691339c89ef9dd71bd7ab811deb48d4036f9dbe7e7
+  last_validation_at: '2026-11-07T10:07:01+00:00'
   last_error: ''
 dice_state:
   tape_revision: machadan-tape-r1
   dice_cursor_d6: 0
-  dice_cursor_d10: 8
+  dice_cursor_d10: 10
 fire_state:
   holders:
   - player
@@ -119,10 +120,10 @@ world_state:
     resolutions: []
   reward_state_version: 2
   day: 1
-  location: ノワール大聖堂
-  place_id: NOIR_CATHEDRAL
-  room_id: NOIR_CATHEDRAL_PORCH
-  sub_location: 南の前庭と玄関廊
+  location: 中央広場
+  place_id: NOIR_CITY_PLAZA
+  room_id: ''
+  sub_location: 広場の西口手前
   depth: null
   time_of_day: 朝
   weather: 晴れ
@@ -476,6 +477,7 @@ session_log:
   - Day1朝 大聖堂の治療受付。〇〇がエレナの本音を笑って指摘。エレナは傷を見るとどきどきすると打ち明け、腕の打ち身を治療（LP32→33、2G支払い）。治療後のエレナは上気して熱っぽい
   - Day1朝 大聖堂。〇〇が治療費のオマケを求めるが、エレナは値引きを断る。代わりに次の怪我はいちばんに丁寧に診ると約束（料金は通常どおり）。わざと怪我するのはだめと釘を刺す
   - Day1朝 大聖堂。〇〇が『オマケがないならもう来ない』と告げて去る。エレナは涙ぐみつつも値引きはせず、いつでも来てと見送る。〇〇は大聖堂の前庭へ。霧が晴れる
+  - Day1朝 クラリスの店へ向かう途中、中央広場の西口手前で焼き菓子屋台の娘（20歳前後・赤いバンダナ）が、溝にはまった屋台車を押せず困っている。手伝いを頼まれる。移動イベント d10=1、種別 d10=4（困っている人）
 memory_log:
   encounters: []
   battles: []
