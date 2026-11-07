@@ -3,15 +3,15 @@ schema_version: 3
 game_version: 4.13.4
 campaign_id: main
 created_at: '2026-11-07T02:20:22+00:00'
-updated_at: '2026-11-07T15:55:48+00:00'
-save_revision: 55
+updated_at: '2026-11-07T16:00:24+00:00'
+save_revision: 56
 content_manifest_hash: 59b69015c8c813194e83a7c4b4d2b862af8f4074c2c616aa5325399df6f66460
 save_format_origin: 'System_Templates.md [TEMPLATE_SAVE] (SAVE_DATA: MachaDun v2.0)'
 transaction:
-  last_transaction_id: tx-c079a4567e94445599f7e01a12a75d43
-  last_committed_turn: 44
-  previous_revision_hash: 7385f5738be0ac8ae276c178613deb204bc2b00448990feddde624624adf3d30
-  last_candidate_hash: 735b30e12f0c613a2ec2ba0aabeb55e95f6502d96e7d52f4f80ba6d0a694b33f
+  last_transaction_id: tx-c4d08a35b2fb431182d41a07ac4bfa9e
+  last_committed_turn: 45
+  previous_revision_hash: d0c3607bbf81da51e09deb6f0b6b7d143e9a1c614795deef1e9aa4ab3d9da6a4
+  last_candidate_hash: 0d8bec10779f1862d7aa8ef066fa24ea9ef04adfbeecf0ffa35365d5315fa726
   applied_transaction_ids:
   - tx-413eae86780d496981a94b1d08250181
   - tx-5d7fe8c49f1242dca4bcebf850e979c1
@@ -68,6 +68,7 @@ transaction:
   - tx-7e178a00f77d468592ce3056e3df98d0
   - tx-9e70593f2409429795a59267bbe8cf4f
   - tx-c079a4567e94445599f7e01a12a75d43
+  - tx-c4d08a35b2fb431182d41a07ac4bfa9e
 hearing_progress:
   status: complete
   current_step: 7
@@ -98,10 +99,10 @@ active_script:
 runtime_state:
   ero_scene: false
   style_conditions: []
-  active_scene: event
-  scene_id: event
-  context_pack_hash: 2aab3ff3656c5e94d523ccb99b2b3a51073f43fa236ad8e43a714341eb617cde
-  last_validation_at: '2026-11-07T15:55:48+00:00'
+  active_scene: turn
+  scene_id: turn
+  context_pack_hash: b073d593881a4a81500d44746fee64c6391987a3b94e6d17ca3a47f645b03460
+  last_validation_at: '2026-11-07T16:00:24+00:00'
   last_error: ''
 dice_state:
   tape_revision: machadan-tape-r1
@@ -288,6 +289,9 @@ world_state:
       fact: Day1夕、納品口で灰色の獣の毛皮数枚と牙の束を売った。誰とも目を合わせず壁沿いを歩き、疲れた顔で眉間に深い縦皺。内心で『三十日まであとひと月もない』と気にしている
       source: Day1夕
       status: 確定した事実（内心は〇〇には聞こえていない）
+    人物_ドーン_口調:
+      fact: 低くかすれた声。口数が少なく、短く切る男言葉（『……登録札が、ない』『……少しなら』『ガルドとは組まねえのか』）
+      status: 確定した事実
   appearance_customization:
     version: 1
     overrides: {}
@@ -296,8 +300,8 @@ world_state:
   day: 1
   location: 銀の天秤亭
   place_id: GUILD_SILVER_SCALES
-  room_id: GUILD_SILVER_SCALES_WRITING
-  sub_location: 記入卓と待合（納品口が見える席）
+  room_id: GUILD_SILVER_SCALES_RECEPTION
+  sub_location: ミルカの受付カウンター前（ドーンと）
   depth: null
   time_of_day: 夕
   weather: 薄い霧
@@ -736,6 +740,7 @@ session_log:
   - Day1昼過ぎ 銀の天秤亭の受付。〇〇がミルカに『春が来た』と噂になっていたと伝え、ミルカは真っ赤になって業務だと否定する。〇〇がセレナから預かった権利書と預かり証を見せる。ミルカは本物と確認、預かり証も有効と認め、広間では出さないよう言う。空の衣装箱を開けたガルドが焦ってセレナに直接詰め寄る（裏口の鍵で夜に）おそれを指摘し、セレナを一人にしないことと、箱を開けた時に何が起きるかを先に決めておくことを勧める
   - Day1昼過ぎ 銀の天秤亭の受付。〇〇が衛兵に張ってもらい暴行の現場を押さえる案を出す。ミルカは衛兵に張ってもらうのは賛成（シルヴィア隊長は筋の通った話なら動く、悪人を追い詰めるのが好きすぎるくらい）だが、セレナが殴られるのを待つことになると暴行待ちには反対。代わりに、夜に裏口から入って衣装箱を開けた時点で押さえる案を出す。ガルドは鍵を渡されているため、先にセレナから衛兵隊へ『もう家に入れたくない』と届けておけば侵入として扱えると指摘。残る問題は日付で、ドーンに当たる必要があると言う。昼の終わりの鐘が鳴る
   - Day1昼過ぎ〜夕 銀の天秤亭の記入卓でドーンを待つ。待つ間の出来事 d10=10（なし）。夕方の鐘のあと、ドーンが一人で来て東奥の納品口で灰色の毛皮と牙を売る。ミルカが目配せで知らせる。ドーンは疲れた顔で、眉間に深い縦皺
+  - Day1夕 銀の天秤亭。〇〇の合図でミルカがドーンを呼び止め、先月の仲間募集の件として『組む相手を探している方』と〇〇を紹介する。ドーンは登録札がないことに気づき、ガルドを通さず自分に話が来たことをいぶかしむ（『ガルドとは組まねえのか』）。ミルカが相談区画を勧めて受付に戻り、ドーンは『少しなら』と脇扉へ向かう
 memory_log:
   encounters: []
   battles: []
