@@ -1,0 +1,724 @@
+schema: MachaDun_Save_Muse_v3
+schema_version: 3
+game_version: 4.13.4
+campaign_id: run2
+created_at: '2026-11-07T09:22:51+00:00'
+updated_at: '2026-11-07T14:05:38+00:00'
+save_revision: 65
+content_manifest_hash: 59b69015c8c813194e83a7c4b4d2b862af8f4074c2c616aa5325399df6f66460
+save_format_origin: 'System_Templates.md [TEMPLATE_SAVE] (SAVE_DATA: MachaDun v2.0)'
+transaction:
+  last_transaction_id: tx-ef1195a79d064d42a0dd537e66429cc8
+  last_committed_turn: 56
+  previous_revision_hash: 3718a4738c6a16ae8bed951b5ad5fe44c25b0fbdead98617329d8e50cbed34cf
+  last_candidate_hash: f316d52ccbde1f04e7c4b8a008a82fdc18448e6ed1ef852664838bedd173922d
+  applied_transaction_ids:
+  - tx-3205c8b3a3f04e16a35b2f1739e25e5a
+  - tx-6a86abc0b7cc4f0aa672870ded718bc7
+  - tx-c7108cc314d0462c83036826b419dcd8
+  - tx-390500036ba443fe8c3e07353253d9c7
+  - tx-364f06cfcfd94a2e937e1c14a480439c
+  - tx-7f8a6a500cdb4cddae50b096c23e789a
+  - tx-4394e299e2534756bc70bcdf8d484719
+  - tx-f96f12fe882f487d9b2473272b3a5eef
+  - tx-04e05f37bd6e41c88fdfaf53466b6136
+  - tx-5ec8d86187344649a3a4fe1096c1d84b
+  - tx-d6a34b31a8f9418cb72859cdb197b79d
+  - tx-c5af19c64a24424b865f8f22f75d6c5d
+  - tx-a963a9aabe404be6965c8b0087edc7a0
+  - tx-6d8b3da3b93e4570a3c8a67338735259
+  - tx-edae842d26bb4eeaa2aca99796c6a97e
+  - tx-0b8721ab6b19441ab0f23a20e83eac2f
+  - tx-6fed3d86d20444689b73f19b75f964ea
+  - tx-201cd8831a6446ce8c3113af606a9d51
+  - tx-87e430e8e0a64db180274727bbe7eb27
+  - tx-8a74193d2b434134845517066c0d451a
+  - tx-307b182470f344be92c73ca18cd01d6a
+  - tx-30af6838dd4c4c25a69d810db3f1bdf6
+  - tx-5bb5969c2c5449eabfdc8da5b2936c9b
+  - tx-7c429c433b514c71a159c471f9fe2862
+  - tx-2fa472dacba0443fa382e327fc06ba40
+  - tx-5c0d1625d1c34eca8e6485899b86b4c7
+  - tx-a88476b4ab5a40458e37b7f43c3759df
+  - tx-448c2c6ebf73405d95f0ec9f03ea632d
+  - tx-35d3aa51cf25494da0c5459229317d66
+  - tx-ca37c5af6f2c4d42ac29d4138b8b1dd0
+  - tx-45516bcf50c14cf6adf024b97859dcd7
+  - tx-f3519c30051749b2b7304e1e2c354b9b
+  - tx-238b7d5f76964d6e9457cd94cb78edfd
+  - tx-cb638684a94e483cbaded3bca14c620c
+  - tx-01b8687e6f24434d8ec4053599962dad
+  - tx-1381f6c3085b467fbff10a456499348e
+  - tx-afc0324e476f49c38b6ac1576faf07ad
+  - tx-b0f04cb2a2854e7a9b43edcad54c7425
+  - tx-3f848203c9c441208f16425262b37ac0
+  - tx-5d77de911cb24a5aaa52ad92f11ec914
+  - tx-8a9746d26b944126a01e8bf95a27b202
+  - tx-e7799b9a892842f592fdfe803cdd5074
+  - tx-c50eb79e0b3849f790e43b1c7ebb5194
+  - tx-ad605ba013d345edb47ce4fb6509f2fb
+  - tx-21991ab0e029413ea617da1adedbcc95
+  - tx-a3b1b51244264a27bb0fa9f06ba8887a
+  - tx-723a31e9684345418b05779c9858a080
+  - tx-ee59ff4ed9d240e183c56a87c1d3a124
+  - tx-13ebd486968c4d4091b034da52135611
+  - tx-bc09d7a28a404c818d9c21b834e81269
+  - tx-8081be3434144604bd69065ad9f44993
+  - tx-150d8bd805574ab8a17ca8e7728b7ab8
+  - tx-cbfcf4f0447848188a4de828e7446766
+  - tx-6f9315436c0f4143bed07e7f109a1e19
+  - tx-1eed5b34471a482b86675604eb7e45fe
+  - tx-e1c3f3b6785e45efa07afc8d295b853b
+  - tx-dea985ae958941cf97f2f980123856e8
+  - tx-3a9f2a05d3e14a82bd9931ebe3307628
+  - tx-eae9857fa2dc4599919bff8a26b4012b
+  - tx-e5ba36aba16d47a281c4ba7022901fd0
+  - tx-c4c5fdb718604ea98892ffa1f46cf42b
+  - tx-f7508b9de2c243f8809acb0928c4a66a
+  - tx-e3833ad090ad4e8a8d8d886fca6e8807
+  - tx-fd998d5931024e4da88307c5be40a6f1
+  - tx-ef1195a79d064d42a0dd537e66429cc8
+hearing_progress:
+  status: complete
+  current_step: 7
+  completed_steps:
+  - playmode
+  - profile
+  - body_profile
+  - desire
+  - partner
+  - style
+  widget_ids:
+    playmode: chat-tx-3205c8b3a3f04e16a35b2f1739e25e5a
+    profile: chat-tx-6a86abc0b7cc4f0aa672870ded718bc7
+    body_male: chat-tx-c7108cc314d0462c83036826b419dcd8
+    desire: chat-tx-390500036ba443fe8c3e07353253d9c7
+    partner_preferences: chat-tx-364f06cfcfd94a2e937e1c14a480439c
+  widget_state_versions:
+    playmode: 1
+    profile: 1
+    body_male: 1
+    desire: 1
+    partner_preferences: 1
+active_script:
+  id: SCRIPT_OPENING_TUTORIAL
+  status: complete
+  cursor: 1
+  checkpoint: tutorial-told
+runtime_state:
+  ero_scene: false
+  style_conditions: []
+  active_scene: event
+  scene_id: event
+  context_pack_hash: dbd68d742ca252a6c118862093aa77c28d8cfbd3c45cbf669ae8c678771c2a8b
+  last_validation_at: '2026-11-07T14:05:38+00:00'
+  last_error: ''
+dice_state:
+  tape_revision: machadan-tape-r1
+  dice_cursor_d6: 0
+  dice_cursor_d10: 27
+fire_state:
+  holders:
+  - player
+  notes: ''
+world_state:
+  onboarding:
+    allocation_rule: all3-plus15-v1
+    body_received: true
+    allocation_complete: true
+    fire_granted: true
+    fire_explained: true
+    tutorial_complete: true
+    legacy_initial_allocation: false
+    fire_grant_transaction_id: tx-f96f12fe882f487d9b2473272b3a5eef
+    initial_base_stats:
+      str: 5
+      def: 5
+      int: 8
+      spd: 5
+      tec: 5
+      chm: 5
+  campaign_lore:
+    散策案内_Lilith_000:
+      character_id: Lilith_000
+      told: true
+      day: 1
+    NPC_クラリス:
+      name: クラリス
+      age: 26
+      role: 仕立て工房『白糸の間』の女主人（西大通り界隈）
+      appearance: 168cm・すらりとしたモデル体型・豊満な胸・亜麻色の髪をゆるい片編み・蜂蜜色の瞳・白襟の紺ワンピース
+      personality: 清楚で丁寧。所作がきれい。仕事熱心で工房は繁盛している
+      first_met: Day1朝 西大通りで〇〇にぶつかり、届け物のリボン箱を落とした
+      status: その場の出会い。〇〇は後で店に顔を出すと約束
+      stats:
+        int: 7
+        note: 一般人の判定用（火持ちではない）
+      workshop: 西大通り、宿通りの角から二軒先。白い糸巻きの看板。窓辺にトルソー。朝から客が待つほど繁盛
+      business: 『白糸の間』を一人で営んで約4年。客は西大通りの屋敷の奥方（夜会ドレス・婚礼衣装）と冒険者の外套・鎧下の繕い。忙しい時期だけ裏通りの刺繍上手な老婦人に飾りを外注。仕事は途切れず、手が足りず断ることもある。2階が住まい（一人暮らし）
+      relationship: Day1、〇〇と肉体関係。白糸の間2階に〇〇が泊まることを承諾。閨では〇〇の『メス奴隷』と宣言し『ご主人さま』と呼ぶ（店では普段どおり。仕立て代は通常どおり取る）。店の外では秘密にしてほしいと頼んでいる
+      promise: 〇〇の服はどんなに忙しくても最優先で、いちばん丁寧に仕立てる（代金は通常どおり）。開業時から『誰が相手でも同じお代』を自分の決まりにしている
+      finances: 本人談：月の売上およそ6,000G（春秋は婚礼・夜会で多く、婚礼衣装1着で800〜900G。冬は繕い中心で少ない）。仕入れ・外注・消耗品・建物の借り賃を引いた手取りは月2,000G強。借金の肩代わりはしない方針。食事・寝床・客の噂話からの仕事の心当たりは提供する
+      jealousy: 〇〇がほかの女の相手をして稼ぐと言った時、胸がちくりとしたが取り乱さず心当たりを教えた。仕事の後は必ず帰ってきてと頼み『全部上書きする』と言う
+    エレナとの初対面:
+      character_id: Elena_003
+      day: 1
+      summary: 〇〇の打ち身を治療。本音（傷に昂る性質）を〇〇に見抜かれ打ち明けた。オマケを断ったところ〇〇に『もう来ない』と言われ、気落ちしつつ『いつでも来て』と見送った
+    NPC_ポーラ:
+      name: ポーラ
+      age: 20
+      role: 中央広場の焼き菓子屋台『蜂蜜焼き』の売り子
+      appearance: 赤いバンダナで髪をまとめる。細い腕
+      first_met: Day1朝 屋台車が溝にはまり〇〇に手伝いを頼む
+      status: 屋台車を押してもらい礼に蜂蜜焼きを渡した。また買いに来ればひとつオマケの約束
+    白糸の間_構造:
+      place_id: NOIR_CITY_WEST
+      summary: 西大通り、宿通りへ折れる角から二軒目。上半分が硝子の扉に鈴。1F表：窓辺にトルソー3体、壁一面の反物棚。奥に大きな作業台。紺の厚いカーテンで仕切った試着の間。反物棚の陰に2階への細い木の階段。2F：斜め天井の屋根裏風の寝室。白い寝台ひとつ、生成りのカーテンの小窓、衣桁、針箱の小机、窓辺に野の花の花瓶
+      owner: クラリス
+    注文_白糸の間_冒険者の服:
+      item: 冒険者の服（仕立て・〇〇の寸法、股まわりにゆとり）
+      price_g: 50
+      paid_g: 48
+      due_g: 0
+      waived_g: 2
+      ready: Day2朝
+      pickup: 白糸の間
+      stats: DEF+1／重量1
+      extra: 裏地の色を受取時に選べる（追加料金なし）
+      status: Day2朝に受け渡し済み（裏地は深い葡萄色。ヴィオレッタの好きな色としてクラリスが選んだ）
+    クラリス宅への宿泊:
+      summary: Day1昼、〇〇が白糸の間に泊まりたいと頼み、クラリスは今夜もその先も泊まってよいと承諾。2階は寝台ひとつの狭い住まい。宿代は取らない（店の商いではないため）
+      status: Day1夜に初めて泊まった（宿代なし）
+    NPC_ヴィオレッタ:
+      name: ヴィオレッタ
+      age: 34
+      role: 西大通りの一番奥、蔦の絡む屋敷の未亡人。3年前に亡くした夫の交易商会を継ぎ裕福
+      notes: 白糸の間の常連。黒髪を高く結い上げた色白の美人で見た目は若い。夜会ドレスを月1〜2着（1着300〜400G）、値切らず多めに払う。商会は住み込み使用人・荷馬車多数で裕福。採寸のたびに若い男を恋しがるそぶり。金目当ての男には冷たく、露骨に言い寄った冒険者に門前で水を浴びせさせたことがある（クラリス談・未対面）
+      status: 未対面（噂のみ）
+      soiree_escort: Day3夜会の同伴を頼んでいた親戚の甥がDay1から熱で寝込み、同伴者が空いている（執事がDay1夕に白糸の間でこぼした話）。ヴィオレッタは機嫌が悪い
+    計画_ヴィオレッタの夜会同伴:
+      proposed_by: クラリス（〇〇の『紹介料と相手代の二段取り』案を修正）
+      plan: 〇〇を夜会の同伴者としてヴィオレッタに紹介。同伴の礼はヴィオレッタから〇〇へ。クラリスは紹介料を取らず、〇〇の夜会服をヴィオレッタの注文として仕立て代金を得る。夜会後のことは二人次第
+      constraints: クラリスは代金の上乗せ・ごまかしを拒否
+      advice: 初回の夜会では礼の話をせず退屈させない。帰りの馬車で次を頼まれたら、少し困った顔で借金があると打ち明けると気前よく出してくれるはず（クラリス談）
+      status: 段取り決定：Day2午後、クラリスがヴィオレッタ邸へ夜会ドレスを届ける際に〇〇が荷物持ちで同行し紹介される。同伴の話はクラリスが場の空気を見て持ちかける
+    行事_商人ギルド春の夜会:
+      day: 3
+      date: 箱庭暦1年1月3日（水）夜
+      place: 商人ギルドの館
+      note: ヴィオレッタが出席予定。クラリスがそのためのドレスを仕立てた（Day2午後に納品予定）
+  appearance_customization:
+    version: 1
+    overrides: {}
+    resolutions: []
+  reward_state_version: 2
+  day: 2
+  location: 白糸の間
+  place_id: NOIR_CITY_WEST
+  room_id: ''
+  sub_location: 仕立て工房『白糸の間』2階・クラリスの寝室
+  depth: null
+  time_of_day: 昼
+  weather: 晴れ
+  quest_active: ''
+  quest_rank: ''
+  personal_rank: ''
+  quest_access: ''
+  quests_completed:
+    E: 0
+    D: 0
+    C: 0
+    B: 0
+    A: 0
+  quest_card: null
+  event_reward_contract: null
+  pending_rewards: []
+  reward_ledger:
+  - settlement_id: EVR-run2-4-clarisse-mimai
+    payer: クラリス（仕立て工房『白糸の間』）
+    status: settled
+    source:
+      kind: random_event
+    components:
+    - component_id: EVR-run2-4-clarisse-mimai-gold
+      kind: gold
+      detail:
+        estimated_value_g: 50
+        amount: 50
+      state: delivered
+      transaction_id: tx-6d8b3da3b93e4570a3c8a67338735259
+      effect:
+        target: player.gold
+        before_sha256: 5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9
+        after_sha256: 1a6562590ef19d1045d06c4055742d38288e9e6dcd71ccde5cee80f1d5a774eb
+        amount: 50
+      estimated_value_g: 50
+  - settlement_id: EVR-run2-12-paula-honeycake
+    payer: ポーラ（中央広場の焼き菓子屋台）
+    status: settled
+    source:
+      kind: random_event
+    components:
+    - component_id: EVR-run2-12-paula-honeycake-item
+      kind: item
+      detail:
+        estimated_value_g: 15
+        item_name: 蜂蜜焼き（3個入り）
+        quantity: 1
+      state: delivered
+      transaction_id: tx-30af6838dd4c4c25a69d810db3f1bdf6
+      estimated_value_g: 15
+      effect:
+        target: inventory_bundle
+        before_sha256: 5ccd107aca48bde4d5be348f3ff9d4122f7f8b67b91785ac89c4f060d6817137
+        after_sha256: be0d32201446e32ce3ea60a5dcd62050da5d2eabce9ac756d51250f8b83979e7
+        added_items:
+        - item_name: 蜂蜜焼き（3個入り）
+          quantity: 1
+        item_name: 蜂蜜焼き（3個入り）
+        quantity: 1
+  entitlements: []
+  lead_mode: 主人公
+  goals:
+    debt_clear: false
+    dungeon_clear: false
+    a_rank_quest: false
+  deepest_depth_reached: 0
+  defeated_floor_bosses: []
+  boss_records: []
+  dungeon_memory:
+    version: 1
+    records: {}
+  growth_state:
+    version: 1
+    boss_fruit_legacy_sources: []
+    boss_fruit_miss_streak: 0
+    c_rank_choice_fruit_status: locked
+    c_rank_choice_fruit_transaction_id: ''
+    resolutions: []
+  expedition_state:
+    active: false
+    expedition_id: ''
+    kind: none
+    fire_holders: []
+    separated_fire_holders: []
+    rebirth_pending: false
+    last_end_reason: none
+    last_ended_expedition_id: ''
+    rebirth_receipt: null
+  dungeon_run:
+    active: false
+    run_id: ''
+    trash_encounters_used: 0
+    danger_zones_resolved: 0
+    last_scene_kind: none
+    event_due: false
+    used_event_ids: []
+    current_floor: null
+    current_floor_scenes: 0
+    reward_searches_by_floor: {}
+    camp_used: false
+    boss_route_found: false
+    resource_days_by_floor: {}
+  allocation_state:
+    version: 1
+    resolutions:
+    - request_id: alloc-523b9d510bf7480da5fd5c03cddcf82d
+      transaction_id: tx-04e05f37bd6e41c88fdfaf53466b6136
+      mode: initial
+      actor_id: player
+      source_revision: 8
+      source_sha256: 6223680c81d0d91745eb602715ef307c4b972582b088bd0f9f4b6a0187bc344c
+      profile_hash: 57ad0dbc70d81c91ff87d052693d153c42a6116b8ddf08fc71900be16f08da9e
+      values:
+        str: 5
+        def: 5
+        int: 8
+        spd: 5
+        tec: 5
+        chm: 5
+      before:
+        base_stats:
+          str: 3
+          def: 3
+          int: 3
+          spd: 3
+          tec: 3
+          chm: 3
+        growth_bonus:
+          str: 0
+          def: 0
+          int: 0
+          spd: 0
+          tec: 0
+          chm: 0
+        base_lp: 20
+        lp:
+          cur: 32
+          max: 32
+        mp:
+          cur: 6
+          max: 6
+      after:
+        base_stats:
+          str: 5
+          def: 5
+          int: 8
+          spd: 5
+          tec: 5
+          chm: 5
+        growth_bonus:
+          str: 0
+          def: 0
+          int: 0
+          spd: 0
+          tec: 0
+          chm: 0
+        base_lp: 20
+        lp:
+          cur: 33
+          max: 33
+        mp:
+          cur: 11
+          max: 11
+      consumed: null
+      fee_gold: 0
+      duration_minutes: 0
+      time_before: null
+      time_after: null
+      respec_rule: null
+      permanent_points_before: 18
+      permanent_points_after: 33
+skills: []
+skill_dormancy: []
+custom_abilities: []
+active_event: null
+ammo:
+  pools: []
+  weapon_loads: []
+shop_records:
+  mia_total: 0
+  mia_perks_claimed: []
+debt_state:
+  version: 1
+  contract_rule: staged-payoff-v1
+  unlocks:
+    lilith_intimacy: false
+    named_appearance_customization: false
+  contract_cycle_index: 0
+  contract_id: lilith-debt-cycle-0
+  principal: 10000
+  interval_days: 5
+  next_collection_day: 5
+  scheduled_due: 500
+  cycle_paid: 0
+  collection_pending: false
+  last_collection_day: null
+  collection_serial: 0
+  positive_payment_collections: 0
+  full_payment_collections: 0
+  missed_collections: 0
+  collection_ledger: []
+  active_benefits: []
+  benefit_selection:
+    benefit_id: ''
+    source: default
+    switch_available: false
+    activated_day: null
+captured_girls: []
+play_mode: RP
+ero_style: machadan
+player:
+  character_version: 1
+  character_id: player
+  build_complete: false
+  name: 〇〇
+  gender: 男性
+  age: 24
+  race: ''
+  job: ''
+  job_profile:
+    combat_role: unclassified
+    magic_role: unclassified
+    expertise_tags: []
+    solo_suitability: unclassified
+    party_needs: []
+  gold: 0
+  debt: 10000
+  base_stats:
+    str: 5
+    def: 5
+    int: 8
+    spd: 5
+    tec: 5
+    chm: 5
+  growth_bonus:
+    str: 0
+    def: 0
+    int: 0
+    spd: 0
+    tec: 0
+    chm: 0
+  equipment_bonus:
+    str: 0
+    def: 1
+    int: 0
+    spd: 0
+    tec: 0
+    chm: 0
+  fire_bonus:
+    str: 3
+    def: 3
+    int: 3
+    spd: 3
+    tec: 3
+    chm: 3
+  temporary_modifiers:
+    str: 0
+    def: 0
+    int: 0
+    spd: 0
+    tec: 0
+    chm: 0
+  effective_stats:
+    str: 8
+    def: 9
+    int: 11
+    spd: 8
+    tec: 8
+    chm: 8
+  base_lp: 20
+  job_lp_bonus: 0
+  fire_lp_bonus: 12
+  temporary_lp_bonus: 0
+  lp:
+    cur: 33
+    max: 33
+  mp:
+    cur: 11
+    max: 11
+  stats:
+    str: 8
+    def: 9
+    int: 11
+    spd: 8
+    tec: 8
+    chm: 8
+  equipment:
+    weapon_instance_id: null
+    armor_instance_id: inst-run2-adventurer-clothes-1
+    offhand_instance_id: null
+    fixed:
+    - 帰還の腕輪
+  statuses: []
+  buffs: []
+  ero_status: []
+  encumbrance:
+    version: 1
+    total_weight: 1
+    raw_penalty: 0
+    applied_penalty: 0
+  stat_lp_bonus: 1
+player_body: '男性体型: 身長=178cm / 筋肉=引き締まった・標準・ムキムキ / サイズ=大きめ'
+desire: 攻めたい（女の子を泣かせたい・翻弄したい）・甘々・ラブラブ中心・れいぷごっこ等のCNC系
+ng: []
+yuri: 'タチ: おまかせ・特にない / ネコ: おまかせ・特にない'
+partner_pref:
+  asked: true
+  personalities:
+  - 清楚系で可愛い系。ヒステリックにならない。変な干渉をしない。とても稼いでいる。奉仕好き。老化のスピードが遅い。セックス好き。下品なことも好き。どうしたいか聞いた時、こっちの雰囲気や空気を感じていい案を出してくれる。何回ヤっても飽きない身体、飽きさせないようにしてくれる。男を立てる。
+  sub_personalities:
+  - 甘やかし奉仕
+  - ドM
+  - 清楚ビッチ
+  body_height:
+  - 長身
+  body_build:
+  - モデル体型
+  body_bust:
+  - 豊満
+  call:
+  - 名前
+hearing_check:
+  call_reflected: false
+  unrecovered: []
+spells: []
+equip:
+  weapon: ''
+  armor: 冒険者の服（白糸の間仕立て・葡萄色の裏地）
+  fixed: 帰還の腕輪
+items: []
+inventory:
+  version: 1
+  bag:
+    base_slots: 16
+    upgrade_count: 0
+    max_slots: 16
+    skill_bonus_slots: 0
+    effective_max_slots: 16
+    used_slots: 1
+  carried_stacks:
+  - stack_id: stack-run2-honey-cake-1
+    item_def_id: itemdef-run2-honey-cake-3
+    name: 蜂蜜焼き（3個入り）
+    category: consumable
+    count: 1
+    stack_cap: 10
+    slot_cost: 1
+    reserved_quantity: 0
+  warehouse:
+    stacks: []
+    instance_ids: []
+  reservations: []
+item_definitions:
+- item_def_id: itemdef-run2-honey-cake-3
+  name: 蜂蜜焼き（3個入り）
+  category: consumable
+  specification:
+    category: consumable
+    use: 食料（軽食）。ポーラの屋台の焼き菓子3個入り
+    weight: 0
+  provenance:
+    source_kind: random_event
+    source: EVR-run2-12-paula-honeycake
+  balance_anchor:
+    kind: estimated_value
+    value_g: 15
+- item_def_id: itemdef-run2-adventurer-clothes-shiraito
+  name: 冒険者の服（白糸の間仕立て・葡萄色の裏地）
+  category: armor
+  specification:
+    category: armor
+    slot: armor
+    def: 1
+    weight: 1
+    base_item: 冒険者の服
+    note: 〇〇の寸法で仕立て、股まわりにゆとり。肘膝に革の当て布、縫い目二重。襟裏・袖口・前合わせの内側に深い葡萄色の裏地
+  provenance:
+    source_kind: purchase
+    source: 白糸の間（クラリス）
+    price_g: 50
+  balance_anchor:
+    kind: item_database
+    ref: 冒険者の服 50G / DEF+1 / 重量1
+item_instances:
+- instance_id: inst-run2-adventurer-clothes-1
+  item_def_id: itemdef-run2-adventurer-clothes-shiraito
+  name: 冒険者の服（白糸の間仕立て・葡萄色の裏地）
+  location: equipped
+  slot_cost: 0
+  owner_character_id: player
+  specification_snapshot:
+    category: armor
+    slot: armor
+    def: 1
+    weight: 1
+party: []
+inn_reserve: []
+enterprise_state:
+  version: 1
+  businesses: []
+  discoveries: []
+  research_projects: []
+  recipes: []
+  order_book: []
+  commerce_ledger: []
+  reputation_ledger: []
+  lilith_investments: []
+  community_threads: []
+  aftermath_seeds: []
+npc_relationship: []
+session_log:
+  previous: ''
+  entries:
+  - Day1朝 ぬれねずみ亭201号室で〇〇が新しい肉体（178cm・引き締まった筋肉質）を得て目覚める。リリスが名乗り、初期借金10,000Gを告げる。リリスがハートの火を分ける提案をし、返事待ち
+  - Day1朝 ぬれねずみ亭201号室。〇〇が「少し記憶がある」と言って火を受け取る。リリスの胸の火が〇〇の胸へ移り、6能力+3・LP上限+12。死に戻りの仕組みと代価の説明を受ける
+  - Day1朝 ぬれねずみ亭201号室。初期配分確定（STR5/DEF5/INT8/SPD5/TEC5/CHM5）。リリスが帰還の腕輪を渡し、銀の天秤亭を勧め、目的なく街をぶらつくのも面白いと話す
+  - Day1朝 〇〇がぬれねずみ亭を出て目的なく散策。西大通りで仕立て工房『白糸の間』のクラリス（26歳）とぶつかり、彼女の届け物のリボン箱が散らばる。移動イベント d10=1、種別 d10=5（出会い）
+  - Day1朝 西大通り。〇〇が骨折したふりをする。CHM対抗 18 vs クラリスINT 19で失敗（かすり）。クラリスは骨折までは信じないが打撲を心配し、工房での手当てか大聖堂への同行を申し出る（費用は彼女持ち・未確定）
+  - Day1朝 西大通り。〇〇が『医者には自分で行くから誠意を』と求める。クラリスは少し引っかかりつつも争わず、手持ちの銀貨5枚（50G）を見舞金として差し出す（未受領）。骨に障りがあれば工房を訪ねてと告げる
+  - Day1朝 西大通り。〇〇がクラリスの見舞金50Gを受け取り、後で『白糸の間』へ顔を出すと告げる
+  - Day1朝 〇〇が路地の石壁に腕をぶつけて打ち身を作る（LP33→32）。中央広場を抜けて大聖堂の治療受付へ。移動 d10=8（なし）、環境 d10=10（なし）。エレナが痣に見入りつつ治療を申し出る（1LP=2G、未実施）
+  - Day1朝 大聖堂の治療受付。〇〇が何をしている所か尋ね、エレナが治療・礼拝・告解・聖水の泉、冒険者への危ない頼み事を案内する。打ち身は未治療
+  - Day1朝 大聖堂の治療受付。〇〇がエレナの本音を笑って指摘。エレナは傷を見るとどきどきすると打ち明け、腕の打ち身を治療（LP32→33、2G支払い）。治療後のエレナは上気して熱っぽい
+  - Day1朝 大聖堂。〇〇が治療費のオマケを求めるが、エレナは値引きを断る。代わりに次の怪我はいちばんに丁寧に診ると約束（料金は通常どおり）。わざと怪我するのはだめと釘を刺す
+  - Day1朝 大聖堂。〇〇が『オマケがないならもう来ない』と告げて去る。エレナは涙ぐみつつも値引きはせず、いつでも来てと見送る。〇〇は大聖堂の前庭へ。霧が晴れる
+  - Day1朝 クラリスの店へ向かう途中、中央広場の西口手前で焼き菓子屋台の娘（20歳前後・赤いバンダナ）が、溝にはまった屋台車を押せず困っている。手伝いを頼まれる。移動イベント d10=1、種別 d10=4（困っている人）
+  - Day1朝 中央広場。〇〇がタダでは手伝わないと告げる。ポーラ（20歳）は現金がなく、礼として蜂蜜焼き3個入り1包み（15G相当）を提示（未受領）。また買いに来ればひとつオマケすると言う
+  - Day1朝 中央広場。〇〇が屋台車を押す。STR 8+2d10(1,10)=19 vs 標準19で成功。車輪が溝から抜け、ポーラから蜂蜜焼き（3個入り）1包みを受け取る
+  - Day1昼前 〇〇がクラリスの『白糸の間』を訪ねる。移動 d10=7（なし）、環境 d10=5（なし）。仮縫いのローレンス夫人を見送ったクラリスが、体の具合と大聖堂に行ったかを尋ねる
+  - Day1昼前 白糸の間。〇〇が治療で借金になったと匂わせ、この世界に来たばかりだと話す。CHM対抗 12 vs クラリスINT 17で失敗。クラリスは治療で借金とは信じないが、来たばかりで借金があることは受け入れ、深く詮索しない。服が体に合っていないと指摘し、お茶を勧める
+  - Day1昼前 白糸の間。〇〇が『借金も君がぶつかったせい』と重ねる（判定なし）。クラリスは穏やかに、本当なら請求の書付けを見せてほしい、一緒に行って払うと返す。お金の話は終わりにしてお茶を淹れ始める
+  - Day1昼前 白糸の間。〇〇がお茶を断り、一人で店をやっているのか尋ねる。クラリスは開業4年、一人で切り盛りし、客筋は屋敷の奥方と冒険者だと話す。2階に一人暮らしで夜は静かすぎると漏らす
+  - Day1昼 白糸の間。〇〇がお詫びに装備を作ってと頼む。クラリスはタダは断りつつ、冒険者の服（50G・DEF+1・重量1）の仕立てを提案。明朝渡し、不足分は受取時でよい（未注文）
+  - Day1昼 白糸の間。〇〇が冒険者の服を40Gに値切る。CHM 8+2d10(2,5)=15 vs 標準19で失敗、50Gのまま。クラリスは生地と縫製を説明し、肩幅をきっちり合わせると約束（未注文）
+  - Day1昼 白糸の間。〇〇が45Gを提示（同じ値切りの繰り返しのため判定なし）。クラリスは笑いつつ50Gを譲らず、注文すれば裏地の色を選べるオマケを提案
+  - Day1昼 白糸の間。〇〇が50Gで冒険者の服を注文し、股関節まわりの採寸を頼む。クラリスが採寸、股下で大きさに気づいて赤面しつつ前のゆとりを多めに取る。48Gを支払い、残り2Gは明朝の受取時
+  - Day1昼 白糸の間。〇〇が『前のゆとり』をからかう。クラリスは真っ赤になり、仕立ての決まりと説明しつつ『ふつうより多めに』と漏らし、『意地悪、分かってて聞いてる』と甘く返す
+  - Day1昼 白糸の間。〇〇が『見てみる？』と誘う。クラリスは扉に鍵を掛け木札を裏返しカーテンを引き、膝をついてベルトを外す。〇〇のおちんぽの大きさに見入り、触って確かめていいかと上目遣いで尋ねる（エロシーン開始）
+  - Day1昼 白糸の間。〇〇が好きなだけ触って嗅いでいい、まだ完全には勃っていないと告げる。クラリスが握り、さらに大きくなるのに驚いて巻き尺で測り、匂いを嗅いで先っぽにキス。奉仕が好きだと打ち明け、口で確かめたいとねだる
+  - Day1昼 白糸の間（エロシーン中）。〇〇がしたいなら値段をまけてと言う。クラリスはお代はお代と断り50Gのまま。代わりに『お代じゃなく自分がしたいから』一生懸命ご奉仕すると囁き、口でさせてとねだる
+  - Day1昼 白糸の間（エロシーン中）。〇〇が値引きしないならお預けと揺らして焦らす。クラリスは涙目で欲しがりつつも50Gは譲らない。代わりに値段以外なら何でも言うことを聞くと頬ずりしてねだる
+  - Day1昼 白糸の間（エロシーン中）。〇〇が『うんと言えばすぐありつける』と迫る。クラリスは言ったら負けと拒み、逆に〇〇の先走りを指摘して胸元のボタンを外し、レースの下着の胸を見せて『わたしもお預け』と挑発。50Gのまま全部を好きにするか、お預けし合うかと問う
+  - Day1昼 白糸の間（エロシーン中）。〇〇が『採寸で興奮する変態だと言いふらす』と脅す。CHM対抗 18 vs クラリスINT 19で失敗（かすり）。クラリスは涙目で値引きは拒みつつ、残り2Gを免除。誰にも言わないで、自分の変態さは〇〇だけが知っていてと甘く懇願
+  - Day1昼 白糸の間（エロシーン中）。〇〇がここに泊まっていいかと尋ねる。クラリスは2階は狭いと言いつつ、今夜もその先も泊まってよいと承諾。宿代はいらないと言い、夜は静かにさせないでと甘える
+  - Day1昼 白糸の間（エロシーン中）。〇〇が宿泊を決め、しゃぶっていいと許す。クラリスがフェラ。先っぽから竿の半ばまで咥え、手でしごきつつスカート越しに自分を慰める。気持ちいいか、もっと奥か、口に出すかと尋ねる
+  - Day1昼 白糸の間（エロシーン中）。〇〇がもっと奥までと煽る。クラリスが涙を零しながら喉の奥まで根元まで咥え込み、ゆっくり喉で扱く。スカート越しに自分も擦り、褒めてと見上げ、いっぱい出してとねだって再び咥える
+  - Day1昼 白糸の間（エロシーン中）。〇〇が『君の口はオナホ』と言いかける。クラリスは意味を推し量り『殿方が気持ちよくなる道具』と理解して昂ぶり、手を膝に揃えて口を大きく開け舌を差し出し、頭をつかんで好きに使ってとねだる
+  - Day1昼 白糸の間（エロシーン中）。〇〇がクラリスの頭を掴み、遠慮なく喉の奥まで突き込む。クラリスはスカートの中で自分を擦りながら喉を使われ、潮を吹いて絶頂。喉で搾りながら『全部のませて』と欲しがる（〇〇はまだ射精していない）
+  - Day1昼 白糸の間（エロシーン中）。〇〇がオナホ扱いでイく変態、最高のオナホだと言う。クラリスは喜んで自分は変態だと認め、スカートをたくし上げて濡れた下着を見せ、おまんこもおなほにして奥で受け止めたいとねだる
+  - Day1昼 白糸の間（エロシーン中）。〇〇がちゃんと言わなければ入れないと焦らす。クラリスは床に座り脚を開いて下着をずらし、自分で広げて見せ、おまんこに奥まで入れて中に注いでと淫らにおねだりする
+  - Day1昼 白糸の間（エロシーン中）。〇〇がよく言えたと褒め、一気に根元まで挿入。奥に当たり、クラリスは入れられただけで潮を吹いて絶頂。首に腕、腰に脚を絡めてしがみつき、もっと動いてとねだる（〇〇はまだ射精していない）
+  - Day1昼 白糸の間（エロシーン中）。〇〇が『雑魚まんこ』と罵り、抜いては一気に刺すを繰り返す。クラリスは自ら『ざこまんこです』と叫び、潮を吹いて3度目の絶頂。中に出してとねだる（〇〇はまだ射精していない）
+  - Day1昼 白糸の間（エロシーン中）。〇〇が激しくピストン。クラリスはイきっぱなしで潮を吹き続け、呂律が回らず好きと繰り返し、キスをせがむ。ブラの肩紐が落ちる。中に全部出してと懇願（〇〇はまだ射精していない）
+  - Day1昼 白糸の間（エロシーン中）。〇〇がクラリスの一番奥に中出し（二波）。クラリスは注がれながらまた潮を吹いて絶頂し、好きと繰り返してしがみつく。溢れた精液が床に垂れる。奥の結界は閉じたまま（話題に出ていない）
+  - Day1昼 白糸の間（エロシーン中）。〇〇が引き抜き、クラリスのワレメから精液が溢れる。〇〇の命でクラリスがお掃除フェラ。舐め取るうちに再び硬くなり、二階の寝台へ行こうと誘う
+  - Day1昼過ぎ 白糸の間（エロシーン中）。〇〇が二階で種付けすると告げる。クラリスが手を引いて階段を上がり2階の寝室へ。全裸になって寝台に仰向けになり、脚を開いて種でいっぱいにしてとねだる
+  - Day1昼過ぎ 白糸の間2階（エロシーン中）。〇〇が寝バックで犯すと宣言。クラリスはうつ伏せでお尻を差し出し、閉じた脚のまま後ろから突かれる。窓の外に人の声が聞こえる中で声を上げ、また絶頂寸前（〇〇の二発目はまだ）
+  - Day1昼過ぎ 白糸の間2階（エロシーン中）。〇〇が寝バックのまま奥に二発目を中出し。クラリスは同時に絶頂し潮を吹き、好きと叫ぶ。窓の外の通行人に声を聞かれる
+  - Day1昼過ぎ 白糸の間2階（エロシーン中・余韻）。〇〇が外に聞かれた、明日どう仕事するのかとからかう。クラリスはどこの家か分からないはずと言い訳しつつ、明日はすまして働くが今日を思い出すと甘える。店の外では秘密にして、閉店後は〇〇だけのクラリスでいると約束を求める
+  - Day1昼過ぎ 白糸の間2階（エロシーン中）。〇〇がメス奴隷になると宣言するかと問う。クラリスは向かい合って頬を包み、〇〇のメス奴隷になると宣言（お代だけはきっちり取ると添える）。今日初めて唇にキスし、『ご主人さま』と呼ぶ
+  - Day1昼過ぎ 白糸の間2階（エロシーン中）。〇〇がメス奴隷のくせに口答えかと叱る。クラリスは謝りつつも代金は店の決まりで曲げられないと小さく繰り返し、両手首を頭上に差し出してお仕置きをねだる
+  - Day1昼過ぎ 白糸の間2階（エロシーン中）。〇〇が一人で切り盛りしているなら値引きしても問題ないと迫る。クラリスは一人だからこそ決まりを曲げられない、好きになった人でも同じお代と答え、思わず『好き』と漏らす。代わりに〇〇の服は最優先で丁寧に仕立てると約束し、それでも口答えならお仕置きをとねだる
+  - Day1昼過ぎ 白糸の間2階（エロシーン中）。〇〇が売上を尋ねる。クラリスは月6,000G前後、手取り2,000G強と答える。借金の肩代わりはしないが、食事・寝床・仕事の心当たりで支えると話す
+  - Day1昼過ぎ 白糸の間2階（エロシーン中）。〇〇が金持ちで欲に飢えた相手をして稼ぐと言う。クラリスは寂しさを隠しつつ、未亡人ヴィオレッタ（34歳・蔦の屋敷）と裏娼館『蜜の味』の男娼の噂を教える。明日仕上がりの服で行けば目に留まると助言し、仕事の後は帰ってきてとねだる
+  - Day1昼過ぎ 白糸の間2階（エロシーン中）。〇〇がヴィオレッタの年と資産を尋ねる。クラリスは見た目は若い美人で、ドレスに月300〜800Gを惜しまず払い、商会もかなり裕福と話す。金目当てには冷たいので、がっつかず相手から欲しくなるようにと助言し、少し拗ねる
+  - Day1昼過ぎ 白糸の間2階（エロシーン中）。〇〇が『クラリスが紹介料、〇〇が相手代』の二段取りで稼ごうと提案。クラリスはそのままでは信用を失うと指摘し、〇〇を夜会の同伴者として紹介し、自分は〇〇の夜会服をヴィオレッタの注文として仕立てて稼ぐ案を出す
+  - Day1昼過ぎ 白糸の間2階（エロシーン中）。〇〇が仕立て代に自分への金を上乗せしろと言う。クラリスはお客様の代金をごまかすことはできないと拒否。代わりに、初回は礼を求めず退屈させず、次を頼まれた時に借金を打ち明けると気前よく出すはずと助言。だめならお仕置きをとねだる
+  - Day1夕 白糸の間2階。〇〇が『店のことになると使えない』と言い、準備を始めると告げる（エロシーン終了）。クラリスは身支度を整え、今夜冒険者の服を縫い上げると言う。明日午後にヴィオレッタへ夜会ドレスを届けるので荷物持ちで同行し紹介すると段取り。夜会は明後日夜、商人ギルドの館。夕飯を作ると申し出る
+  - Day1夜 白糸の間2階。〇〇が休んで眠る。夜、クラリスが夕飯（豆と腸詰めの煮込み・黒パン）で起こす。冒険者の服は縫い上がり、仕上げは明朝。ヴィオレッタの執事から、夜会の同伴予定だった甥が熱で寝込んだと聞いたと伝える。休憩 d10=1、種別
+    d10=6（耳寄りな情報）
+  - Day1夜 白糸の間2階。〇〇が夕飯を食べて就寝。クラリスが背中に寄り添って眠る（Hなし）。Day2朝、クラリスが仕上がった冒険者の服を持ってきて、約束の裏地の色（薄紅・空色・葡萄色・濃紺）を選ばせる
+  - Day2朝 白糸の間2階。〇〇が裏地はウケのいい色にと任せる。クラリスはヴィオレッタが紫好きだからと深い葡萄色を選び、その場で縫い付けて冒険者の服を渡す
+  - Day2朝〜昼 白糸の間2階。〇〇が冒険者の服に着替えて休む（DEF+1）。休憩 d10=5（なし）。午後、よそゆきのクラリスがヴィオレッタのドレスの箱を持ってきて、荷物持ちを頼む
+memory_log:
+  encounters: []
+  battles: []
+  ero:
+  - day: 1
+    partner: クラリス
+    place: 白糸の間 店内（鍵・カーテン閉め）
+    summary: 採寸の流れから〇〇が誘い、クラリスが自ら店を閉めて膝をつく。第一幕
+  - day: 1
+    partner: クラリス
+    place: 白糸の間 店内
+    summary: フェラから喉奥までのイラマチオ。クラリスは自分で触りながら喉を使われて絶頂（初絶頂）
+  - day: 1
+    partner: クラリス
+    place: 白糸の間 店内の床
+    summary: 本番。正常位で一気に根元まで挿入、クラリスは挿入だけで2度目の絶頂
+  - day: 1
+    partner: クラリス
+    place: 白糸の間 店内の床
+    summary: 正常位で激しく突いた末に一番奥へ中出し。クラリスは何度も絶頂（イきっぱなし）
+  - day: 1
+    partner: クラリス
+    place: 白糸の間2階 寝室
+    summary: 寝バックで二発目の中出し。窓の外の通行人に声を聞かれる
+  turning_points: []
+design_applied:
+- 'M1: 配布版のキャストは同梱ファイルの登場人物のみ (一部キャラクターは作者版のみの収録)'
+- 'M2: 年齢不詳でも、個別正本で成人と明記された固定キャストだけを成人として扱い、数値年齢は創作しない'
+- 'M3: Boot 第3条・第5条のシステムレイヤー方式は採用しない'
+- 'M4: カスタム指示文は同梱版を使う。ルーティング表の欠落行は、対象を収録していないため無効'
+- 恋愛・性的な関わりの対象は18歳以上。18歳未満は生活・子育て等の非性的場面のみ
