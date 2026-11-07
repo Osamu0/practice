@@ -3,15 +3,15 @@ schema_version: 3
 game_version: 4.13.4
 campaign_id: run2
 created_at: '2026-11-07T09:22:51+00:00'
-updated_at: '2026-11-07T09:48:01+00:00'
-save_revision: 11
+updated_at: '2026-11-07T09:49:40+00:00'
+save_revision: 12
 content_manifest_hash: 59b69015c8c813194e83a7c4b4d2b862af8f4074c2c616aa5325399df6f66460
 save_format_origin: 'System_Templates.md [TEMPLATE_SAVE] (SAVE_DATA: MachaDun v2.0)'
 transaction:
-  last_transaction_id: tx-d6a34b31a8f9418cb72859cdb197b79d
-  last_committed_turn: 2
-  previous_revision_hash: 194ab113b8241f981e89c6980eb6f19609dfbf21d44b2b3458f1c8cd4e5ee876
-  last_candidate_hash: 5118dc0d2230d0a45dfa699ed20777900c9ff34995c507c7838aca780df44cf5
+  last_transaction_id: tx-c5af19c64a24424b865f8f22f75d6c5d
+  last_committed_turn: 3
+  previous_revision_hash: 91835130f9070860e670897236aa8e0c08bbdffdfe4bd9875720644e9e302e7b
+  last_candidate_hash: 91faa984d637e6f54aeb8d9b0601017c2dcbff7d63b42f6899e3563464550c0d
   applied_transaction_ids:
   - tx-3205c8b3a3f04e16a35b2f1739e25e5a
   - tx-6a86abc0b7cc4f0aa672870ded718bc7
@@ -24,6 +24,7 @@ transaction:
   - tx-04e05f37bd6e41c88fdfaf53466b6136
   - tx-5ec8d86187344649a3a4fe1096c1d84b
   - tx-d6a34b31a8f9418cb72859cdb197b79d
+  - tx-c5af19c64a24424b865f8f22f75d6c5d
 hearing_progress:
   status: complete
   current_step: 7
@@ -56,13 +57,13 @@ runtime_state:
   style_conditions: []
   active_scene: event
   scene_id: event
-  context_pack_hash: 427c9659fd7f310a7644524c341e37a998bee94f9c12792281053f3e0ff81067
-  last_validation_at: '2026-11-07T09:48:01+00:00'
+  context_pack_hash: 62fb127af3f7f50c715db36fa2045fc5b40afd9d666bd4a5adce186765cbd45f
+  last_validation_at: '2026-11-07T09:49:40+00:00'
   last_error: ''
 dice_state:
   tape_revision: machadan-tape-r1
   dice_cursor_d6: 0
-  dice_cursor_d10: 2
+  dice_cursor_d10: 6
 fire_state:
   holders:
   - player
@@ -97,6 +98,10 @@ world_state:
       personality: 清楚で丁寧。所作がきれい。仕事熱心で工房は繁盛している
       first_met: Day1朝 西大通りで〇〇にぶつかり、届け物のリボン箱を落とした
       status: その場の出会い（移動イベント）
+      stats:
+        int: 7
+        note: 一般人の判定用（火持ちではない）
+      workshop: 西大通り、宿通りの角から二軒先。白い糸巻きの看板。窓辺にトルソー。朝から客が待つほど繁盛
   appearance_customization:
     version: 1
     overrides: {}
@@ -433,6 +438,7 @@ session_log:
   - Day1朝 ぬれねずみ亭201号室。〇〇が「少し記憶がある」と言って火を受け取る。リリスの胸の火が〇〇の胸へ移り、6能力+3・LP上限+12。死に戻りの仕組みと代価の説明を受ける
   - Day1朝 ぬれねずみ亭201号室。初期配分確定（STR5/DEF5/INT8/SPD5/TEC5/CHM5）。リリスが帰還の腕輪を渡し、銀の天秤亭を勧め、目的なく街をぶらつくのも面白いと話す
   - Day1朝 〇〇がぬれねずみ亭を出て目的なく散策。西大通りで仕立て工房『白糸の間』のクラリス（26歳）とぶつかり、彼女の届け物のリボン箱が散らばる。移動イベント d10=1、種別 d10=5（出会い）
+  - Day1朝 西大通り。〇〇が骨折したふりをする。CHM対抗 18 vs クラリスINT 19で失敗（かすり）。クラリスは骨折までは信じないが打撲を心配し、工房での手当てか大聖堂への同行を申し出る（費用は彼女持ち・未確定）
 memory_log:
   encounters: []
   battles: []
