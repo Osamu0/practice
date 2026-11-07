@@ -3,15 +3,15 @@ schema_version: 3
 game_version: 4.13.4
 campaign_id: run2
 created_at: '2026-11-07T09:22:51+00:00'
-updated_at: '2026-11-07T10:11:46+00:00'
-save_revision: 22
+updated_at: '2026-11-07T10:13:18+00:00'
+save_revision: 23
 content_manifest_hash: 59b69015c8c813194e83a7c4b4d2b862af8f4074c2c616aa5325399df6f66460
 save_format_origin: 'System_Templates.md [TEMPLATE_SAVE] (SAVE_DATA: MachaDun v2.0)'
 transaction:
-  last_transaction_id: tx-30af6838dd4c4c25a69d810db3f1bdf6
-  last_committed_turn: 13
-  previous_revision_hash: 0727c7ee514d44f694c4c670aa7f6fcc37a6c4f909134702904aad71ddc0235d
-  last_candidate_hash: db7d997838378c971e39f8a7fcac05553c37d7b891ac9aeac92783015db11e8e
+  last_transaction_id: tx-5bb5969c2c5449eabfdc8da5b2936c9b
+  last_committed_turn: 14
+  previous_revision_hash: b3ea64eb3021022d2c270f767c4d5cdd1d61112abbf2d4d194a5edc3efdf8638
+  last_candidate_hash: 33632d8fe1acb6d028ce4e8e686e296c018eebd6de1b9f7ed28bd0427d08e71b
   applied_transaction_ids:
   - tx-3205c8b3a3f04e16a35b2f1739e25e5a
   - tx-6a86abc0b7cc4f0aa672870ded718bc7
@@ -35,6 +35,7 @@ transaction:
   - tx-8a74193d2b434134845517066c0d451a
   - tx-307b182470f344be92c73ca18cd01d6a
   - tx-30af6838dd4c4c25a69d810db3f1bdf6
+  - tx-5bb5969c2c5449eabfdc8da5b2936c9b
 hearing_progress:
   status: complete
   current_step: 7
@@ -67,13 +68,13 @@ runtime_state:
   style_conditions: []
   active_scene: event
   scene_id: event
-  context_pack_hash: d24b81717b69f48affb92ff363d5bf049b567b92abea21689ed91e7b5af9569e
-  last_validation_at: '2026-11-07T10:11:46+00:00'
+  context_pack_hash: 589137da30dfa7df6002cf4194ae6fed594591509284fe2ccff3de26c47e1022
+  last_validation_at: '2026-11-07T10:13:18+00:00'
   last_error: ''
 dice_state:
   tape_revision: machadan-tape-r1
   dice_cursor_d6: 0
-  dice_cursor_d10: 12
+  dice_cursor_d10: 14
 fire_state:
   holders:
   - player
@@ -123,18 +124,22 @@ world_state:
       appearance: 赤いバンダナで髪をまとめる。細い腕
       first_met: Day1朝 屋台車が溝にはまり〇〇に手伝いを頼む
       status: 屋台車を押してもらい礼に蜂蜜焼きを渡した。また買いに来ればひとつオマケの約束
+    白糸の間_構造:
+      place_id: NOIR_CITY_WEST
+      summary: 西大通り、宿通りへ折れる角から二軒目。上半分が硝子の扉に鈴。1F表：窓辺にトルソー3体、壁一面の反物棚。奥に大きな作業台。紺の厚いカーテンで仕切った試着の間。2Fはクラリスの住まい（未訪問）
+      owner: クラリス
   appearance_customization:
     version: 1
     overrides: {}
     resolutions: []
   reward_state_version: 2
   day: 1
-  location: 中央広場
-  place_id: NOIR_CITY_PLAZA
+  location: 白糸の間
+  place_id: NOIR_CITY_WEST
   room_id: ''
-  sub_location: 広場の西口手前
+  sub_location: 仕立て工房『白糸の間』店内
   depth: null
-  time_of_day: 朝
+  time_of_day: 昼
   weather: 晴れ
   quest_active: ''
   quest_rank: ''
@@ -534,6 +539,7 @@ session_log:
   - Day1朝 クラリスの店へ向かう途中、中央広場の西口手前で焼き菓子屋台の娘（20歳前後・赤いバンダナ）が、溝にはまった屋台車を押せず困っている。手伝いを頼まれる。移動イベント d10=1、種別 d10=4（困っている人）
   - Day1朝 中央広場。〇〇がタダでは手伝わないと告げる。ポーラ（20歳）は現金がなく、礼として蜂蜜焼き3個入り1包み（15G相当）を提示（未受領）。また買いに来ればひとつオマケすると言う
   - Day1朝 中央広場。〇〇が屋台車を押す。STR 8+2d10(1,10)=19 vs 標準19で成功。車輪が溝から抜け、ポーラから蜂蜜焼き（3個入り）1包みを受け取る
+  - Day1昼前 〇〇がクラリスの『白糸の間』を訪ねる。移動 d10=7（なし）、環境 d10=5（なし）。仮縫いのローレンス夫人を見送ったクラリスが、体の具合と大聖堂に行ったかを尋ねる
 memory_log:
   encounters: []
   battles: []
