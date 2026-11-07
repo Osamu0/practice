@@ -3,15 +3,15 @@ schema_version: 3
 game_version: 4.13.4
 campaign_id: main
 created_at: '2026-11-07T02:20:22+00:00'
-updated_at: '2026-11-07T15:04:00+00:00'
-save_revision: 41
+updated_at: '2026-11-07T15:06:20+00:00'
+save_revision: 42
 content_manifest_hash: 59b69015c8c813194e83a7c4b4d2b862af8f4074c2c616aa5325399df6f66460
 save_format_origin: 'System_Templates.md [TEMPLATE_SAVE] (SAVE_DATA: MachaDun v2.0)'
 transaction:
-  last_transaction_id: tx-9dd9a26b8121498b850d6060ca85f07b
-  last_committed_turn: 30
-  previous_revision_hash: b5f12c50e10760b17e2952baa3eb0d0477aef1a02491bbacb20f756db1242f31
-  last_candidate_hash: 2bfe8605bb336164bda37b7825662e47f72bd9523ac0bc8e559f6b5383222fa1
+  last_transaction_id: tx-3078e1a6a2ef4e7dbd30acc613b0c6b4
+  last_committed_turn: 31
+  previous_revision_hash: 14f118de1b68115a4571bf5c3fe463e25ab1f25c766a136ff51c93a04b7a5947
+  last_candidate_hash: bafe4652bc0ea3f62f65dd224a850e22548eaa37c2233ccbce2c40dcd2857502
   applied_transaction_ids:
   - tx-413eae86780d496981a94b1d08250181
   - tx-5d7fe8c49f1242dca4bcebf850e979c1
@@ -54,6 +54,7 @@ transaction:
   - tx-c4412e93718342d398b4b3bad8ff93c9
   - tx-233e203ef5f04b6c9e08f50df5f38e41
   - tx-9dd9a26b8121498b850d6060ca85f07b
+  - tx-3078e1a6a2ef4e7dbd30acc613b0c6b4
 hearing_progress:
   status: complete
   current_step: 7
@@ -84,15 +85,15 @@ active_script:
 runtime_state:
   ero_scene: false
   style_conditions: []
-  active_scene: manage
-  scene_id: manage
-  context_pack_hash: 7afc40563f9d9098cc214c0b9c6dedfe28b6b4eee8876aa18c2816b5573c6d89
-  last_validation_at: '2026-11-07T15:04:00+00:00'
+  active_scene: turn
+  scene_id: turn
+  context_pack_hash: 77cce931920ebb32004a70c46d4636530151089955a095691ae724bf23fde5ef
+  last_validation_at: '2026-11-07T15:06:20+00:00'
   last_error: ''
 dice_state:
   tape_revision: machadan-tape-r1
   dice_cursor_d6: 0
-  dice_cursor_d10: 29
+  dice_cursor_d10: 31
 fire_state:
   holders:
   - player
@@ -198,10 +199,10 @@ world_state:
       source: Day1昼 ミルカの目撃
       status: ミルカの目撃。名前『シラス』が本名かは不明。身元未確認（バルトの手下の可能性）
     記入卓の籠_ガルドの書き損じ:
-      fact: Day1朝、シラスが書き付けをしまった後、三人で席を立つ前に、ガルドが記入卓で何かを書き損じて丸め、記入卓の足元の籠へ捨てた。ミルカは見ていたが口にしていない（ギルドのごみとして言わなかった）。籠はまだ片付けられていない
+      fact: Day1朝、シラスが書き付けをしまった後、三人で席を立つ前に、ガルドが記入卓で書き損じを丸めて足元の籠へ捨てた。Day1昼に〇〇が拾って広げた。厚手の紙で、『セレナ・』の署名を何度も書いては消して練習した跡があり、最後の一つはセレナの丸みのある筆跡にかなり近い。下に走り書き二行『……月末の締めの前に　権利書は……が持ち出す』『……日の夜　銀蛇亭の裏へ』。日付と持ち出す者の名は茶の染みで読めない
       place_id: GUILD_SILVER_SCALES
       room_id: GUILD_SILVER_SCALES_WRITING
-      status: 確定した事実（〇〇は未把握。ミルカの視線が籠へ流れたのは見えている）
+      status: 確定した事実（紙は〇〇が手に持っている。ミルカも内容を見た）
   appearance_customization:
     version: 1
     overrides: {}
@@ -210,8 +211,8 @@ world_state:
   day: 1
   location: 銀の天秤亭
   place_id: GUILD_SILVER_SCALES
-  room_id: GUILD_SILVER_SCALES_RECEPTION
-  sub_location: ミルカの受付カウンター
+  room_id: GUILD_SILVER_SCALES_WRITING
+  sub_location: 記入卓と待合（籠の前）
   depth: null
   time_of_day: 昼
   weather: 薄い霧
@@ -583,6 +584,7 @@ session_log:
   - Day1昼 銀の天秤亭の受付。ミルカが登録札のない〇〇に用件を尋ね、登録の手順を案内。今朝の西大通りの揉め事の噂と、ガルドが少し前にギルドを出て東の衛兵通りの方へ向かったことを伝える
   - Day1昼 銀の天秤亭の受付。〇〇がガルドの評判と話し相手を尋ねる。ミルカは依頼記録は明かせないとしつつ、広間で誰でも見られたことだけを話す：ガルドはD級四年目で最近は報告が少ない。記入卓で斧使いの仲間ドーンと、甘い葉巻の匂いをさせた灰色外套の細い男と話し込み、男の出した書き付けを覗き込んでいた
   - Day1昼 銀の天秤亭の受付。〇〇は理由を答えずに灰色外套の男のことを重ねて尋ねる。ミルカは答えなかったことを覚えておくと言いつつ、男についてさらに話す：この一月で三度目、開店直後に記入卓の奥の柱の陰に座る、依頼は見ない。前の二度はE級の若い冒険者と話し、その二人はその後来なくなった。ガルドは男を『シラス』と呼んだ。書き付けの端に赤い封蝋（役所の紫ではない）。ミルカの視線が記入卓足元の籠へ一瞬流れる
+  - Day1昼 銀の天秤亭。〇〇がミルカの目の泳ぎを指摘し、記入卓の籠を調べる。ミルカは否定しつつ止めない。INT判定 9+3+4=16 vs 標準19で失敗：手間取り茶殻が染みたが、ガルドの書き損じを見つける。『セレナ・』の署名を何度も練習した跡と、『……月末の締めの前に　権利書は……が持ち出す』『……日の夜　銀蛇亭の裏へ』の走り書き。日付と持ち出す者の名は茶に溶けて読めない。紙は〇〇が手に持っている（まだ所持品にしていない）
 memory_log:
   encounters: []
   battles: []
