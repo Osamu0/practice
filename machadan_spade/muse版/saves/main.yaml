@@ -3,15 +3,15 @@ schema_version: 3
 game_version: 4.13.4
 campaign_id: main
 created_at: '2026-11-07T02:20:22+00:00'
-updated_at: '2026-11-07T04:17:26+00:00'
-save_revision: 24
+updated_at: '2026-11-07T04:20:47+00:00'
+save_revision: 25
 content_manifest_hash: 59b69015c8c813194e83a7c4b4d2b862af8f4074c2c616aa5325399df6f66460
 save_format_origin: 'System_Templates.md [TEMPLATE_SAVE] (SAVE_DATA: MachaDun v2.0)'
 transaction:
-  last_transaction_id: tx-2f196808f4804c4f90abf88443bec60e
-  last_committed_turn: 14
-  previous_revision_hash: 7df9ba07eb9a48d48a79015f65febccd5b967afe3ca53067538df19ae45cbb73
-  last_candidate_hash: c1452c79ad2fb0fa47eb42aede90eb77ffaf3b787c97269025c5660b857f712d
+  last_transaction_id: tx-55c1823b3a71422e842e578f4dd42545
+  last_committed_turn: 15
+  previous_revision_hash: c47cd53d9d02906ac420f9898e355b72ce08ba2c53b8f991b25b9e722f03e782
+  last_candidate_hash: 5955cd5d59c9b9fecded24ec6f40f2a40a07494e47795294a584b2863eacd9b0
   applied_transaction_ids:
   - tx-413eae86780d496981a94b1d08250181
   - tx-5d7fe8c49f1242dca4bcebf850e979c1
@@ -37,6 +37,7 @@ transaction:
   - tx-d622bc6c22614fcd9b2aca600e99ec06
   - tx-da600b5db8a64749b2ca31016420381a
   - tx-2f196808f4804c4f90abf88443bec60e
+  - tx-55c1823b3a71422e842e578f4dd42545
 hearing_progress:
   status: complete
   current_step: 7
@@ -67,15 +68,15 @@ active_script:
 runtime_state:
   ero_scene: false
   style_conditions: []
-  active_scene: turn
-  scene_id: turn
-  context_pack_hash: 3e991f1453f3898a0eb2e7d3fab8ed6ad6b6853414a4aa393f66c9b5fcb0358b
-  last_validation_at: '2026-11-07T04:17:26+00:00'
+  active_scene: event
+  scene_id: event
+  context_pack_hash: b466c9ea397d79f074dd7daccba0fb243cfb08754a1b0bd7c58429feb9fda71e
+  last_validation_at: '2026-11-07T04:20:47+00:00'
   last_error: ''
 dice_state:
   tape_revision: machadan-tape-r1
   dice_cursor_d6: 0
-  dice_cursor_d10: 17
+  dice_cursor_d10: 19
 fire_state:
   holders:
   - player
@@ -151,10 +152,10 @@ world_state:
     resolutions: []
   reward_state_version: 2
   day: 1
-  location: 白百合香房
-  place_id: LORE_SHIRAYURI_KOUBOU
-  room_id: LORE_SHIRAYURI_KOUBOU_SHOP
-  sub_location: 店内（売り場）
+  location: 道具屋ミアの店
+  place_id: MIA_SHOP
+  room_id: MIA_SHOP_SALES_AISLE
+  sub_location: 売場
   depth: null
   time_of_day: 朝
   weather: 薄い霧
@@ -510,6 +511,7 @@ session_log:
   - Day1朝 白百合香房。〇〇が月の売上を尋ね、セレナは戸惑いつつ数字を打ち明ける
   - Day1朝 白百合香房。〇〇がガルドとの関係を尋ね、セレナが馴れ初めと婚約の経緯を話す
   - Day1朝 白百合香房。〇〇が『まだ愛しているのか』と問う。セレナは結婚ではなく婚約だと正し、恩と習慣で一緒にいるだけかもしれないと迷いを口にする
+  - Day1朝 〇〇がセレナに『少し待っていてくれ』と告げて白百合香房を出て、中央広場のミアの店へ。移動 d10=4（なし）、環境 d10=2（広場で吟遊詩人と踊り子）
 memory_log:
   encounters: []
   battles: []
