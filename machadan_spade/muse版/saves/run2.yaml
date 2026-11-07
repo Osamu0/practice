@@ -3,15 +3,15 @@ schema_version: 3
 game_version: 4.13.4
 campaign_id: run2
 created_at: '2026-11-07T09:22:51+00:00'
-updated_at: '2026-11-07T10:48:00+00:00'
-save_revision: 37
+updated_at: '2026-11-07T10:50:27+00:00'
+save_revision: 38
 content_manifest_hash: 59b69015c8c813194e83a7c4b4d2b862af8f4074c2c616aa5325399df6f66460
 save_format_origin: 'System_Templates.md [TEMPLATE_SAVE] (SAVE_DATA: MachaDun v2.0)'
 transaction:
-  last_transaction_id: tx-afc0324e476f49c38b6ac1576faf07ad
-  last_committed_turn: 28
-  previous_revision_hash: d56a82af8dfd701f591def894a5284871fba1e84e2b9e98080d7cdfefd405211
-  last_candidate_hash: 48169c0b4811bd1e947c140a60b6f8768c2dd1388efb3b204c0aa56ca23696ab
+  last_transaction_id: tx-b0f04cb2a2854e7a9b43edcad54c7425
+  last_committed_turn: 29
+  previous_revision_hash: 645fd1d5117df4653f38070af66aa42c94ec3a68d7355125e4435d82d8167e15
+  last_candidate_hash: 707c5b7c159eb7d3aaf831087542bbae7f18334abd2fed645e435ac9b54a5ff0
   applied_transaction_ids:
   - tx-3205c8b3a3f04e16a35b2f1739e25e5a
   - tx-6a86abc0b7cc4f0aa672870ded718bc7
@@ -50,6 +50,7 @@ transaction:
   - tx-01b8687e6f24434d8ec4053599962dad
   - tx-1381f6c3085b467fbff10a456499348e
   - tx-afc0324e476f49c38b6ac1576faf07ad
+  - tx-b0f04cb2a2854e7a9b43edcad54c7425
 hearing_progress:
   status: complete
   current_step: 7
@@ -82,8 +83,8 @@ runtime_state:
   style_conditions: []
   active_scene: turn
   scene_id: turn
-  context_pack_hash: 38a06912c806e50fd89a12293c5456c539a45a21c4cd7b5f8204ceb97fb93a2b
-  last_validation_at: '2026-11-07T10:48:00+00:00'
+  context_pack_hash: acac0f5d2a5535b4c2f616c7aa4d22e383228572a018e8f461fccaee0b4971e9
+  last_validation_at: '2026-11-07T10:50:27+00:00'
   last_error: ''
 dice_state:
   tape_revision: machadan-tape-r1
@@ -154,6 +155,9 @@ world_state:
       stats: DEF+1／重量1
       extra: 裏地の色を受取時に選べる（追加料金なし）
       status: 仕立て中（残金2Gはクラリスが免除）
+    クラリス宅への宿泊:
+      summary: Day1昼、〇〇が白糸の間に泊まりたいと頼み、クラリスは今夜もその先も泊まってよいと承諾。2階は寝台ひとつの狭い住まい。宿代は取らない（店の商いではないため）
+      status: 承諾済み・まだ宿泊していない
   appearance_customization:
     version: 1
     overrides: {}
@@ -580,6 +584,7 @@ session_log:
   - Day1昼 白糸の間（エロシーン中）。〇〇が値引きしないならお預けと揺らして焦らす。クラリスは涙目で欲しがりつつも50Gは譲らない。代わりに値段以外なら何でも言うことを聞くと頬ずりしてねだる
   - Day1昼 白糸の間（エロシーン中）。〇〇が『うんと言えばすぐありつける』と迫る。クラリスは言ったら負けと拒み、逆に〇〇の先走りを指摘して胸元のボタンを外し、レースの下着の胸を見せて『わたしもお預け』と挑発。50Gのまま全部を好きにするか、お預けし合うかと問う
   - Day1昼 白糸の間（エロシーン中）。〇〇が『採寸で興奮する変態だと言いふらす』と脅す。CHM対抗 18 vs クラリスINT 19で失敗（かすり）。クラリスは涙目で値引きは拒みつつ、残り2Gを免除。誰にも言わないで、自分の変態さは〇〇だけが知っていてと甘く懇願
+  - Day1昼 白糸の間（エロシーン中）。〇〇がここに泊まっていいかと尋ねる。クラリスは2階は狭いと言いつつ、今夜もその先も泊まってよいと承諾。宿代はいらないと言い、夜は静かにさせないでと甘える
 memory_log:
   encounters: []
   battles: []
