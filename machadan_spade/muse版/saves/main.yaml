@@ -3,22 +3,26 @@ schema_version: 3
 game_version: 4.13.4
 campaign_id: main
 created_at: '2026-11-07T02:20:22+00:00'
-updated_at: '2026-11-07T02:20:22+00:00'
-save_revision: 0
+updated_at: '2026-11-07T02:22:57+00:00'
+save_revision: 1
 content_manifest_hash: 59b69015c8c813194e83a7c4b4d2b862af8f4074c2c616aa5325399df6f66460
 save_format_origin: 'System_Templates.md [TEMPLATE_SAVE] (SAVE_DATA: MachaDun v2.0)'
 transaction:
-  last_transaction_id: ''
+  last_transaction_id: tx-413eae86780d496981a94b1d08250181
   last_committed_turn: 0
-  previous_revision_hash: ''
-  last_candidate_hash: ''
-  applied_transaction_ids: []
+  previous_revision_hash: c5a2fcb59db64fa8692d654898b32f82e5b12228780cf7344ea5cb7561456189
+  last_candidate_hash: 5c3201bd9063b5421dbcc1615897a1da6266aa106cdb8a975b884f8a6ab1efc4
+  applied_transaction_ids:
+  - tx-413eae86780d496981a94b1d08250181
 hearing_progress:
-  status: pending
-  current_step: 1
-  completed_steps: []
-  widget_ids: {}
-  widget_state_versions: {}
+  status: in_progress
+  current_step: 2
+  completed_steps:
+  - playmode
+  widget_ids:
+    playmode: chat-tx-413eae86780d496981a94b1d08250181
+  widget_state_versions:
+    playmode: 1
 active_script:
   id: ''
   status: idle
@@ -27,10 +31,10 @@ active_script:
 runtime_state:
   ero_scene: false
   style_conditions: []
-  active_scene: hearing
-  scene_id: ''
-  context_pack_hash: ''
-  last_validation_at: ''
+  active_scene: start
+  scene_id: start
+  context_pack_hash: 57dc3b969a7c5d8c7087c34e8682a3708cc1372f881b6fa81c7bcab1126c1a7f
+  last_validation_at: '2026-11-07T02:22:57+00:00'
   last_error: ''
 dice_state:
   tape_revision: machadan-tape-r1
@@ -155,7 +159,7 @@ debt_state:
     switch_available: false
     activated_day: null
 captured_girls: []
-play_mode: ''
+play_mode: RP
 ero_style: ''
 player:
   character_version: 1
