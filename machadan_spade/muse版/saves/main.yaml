@@ -3,15 +3,15 @@ schema_version: 3
 game_version: 4.13.4
 campaign_id: main
 created_at: '2026-11-07T02:20:22+00:00'
-updated_at: '2026-11-07T04:05:35+00:00'
-save_revision: 22
+updated_at: '2026-11-07T04:14:58+00:00'
+save_revision: 23
 content_manifest_hash: 59b69015c8c813194e83a7c4b4d2b862af8f4074c2c616aa5325399df6f66460
 save_format_origin: 'System_Templates.md [TEMPLATE_SAVE] (SAVE_DATA: MachaDun v2.0)'
 transaction:
-  last_transaction_id: tx-d622bc6c22614fcd9b2aca600e99ec06
-  last_committed_turn: 12
-  previous_revision_hash: 560c6e010a9a0b2afafc0a0c8db046fe247309cfab03a37872933c402e84fd29
-  last_candidate_hash: 175f130e0977641c5f7d25c866af4b1dfb6c56cacc86839e0a7214a074e46ed0
+  last_transaction_id: tx-da600b5db8a64749b2ca31016420381a
+  last_committed_turn: 13
+  previous_revision_hash: 226f0f1c9acb9005c1d9c88f925799b73290d27d24cb529373337075956c325b
+  last_candidate_hash: d77605baed76e1bec83ad2051d073b425642d56094630669e35678c45f2ccfcf
   applied_transaction_ids:
   - tx-413eae86780d496981a94b1d08250181
   - tx-5d7fe8c49f1242dca4bcebf850e979c1
@@ -35,6 +35,7 @@ transaction:
   - tx-054e2f0203a34c7781f0963175b6be06
   - tx-d36bd2166bc347908d9de6b0ce2aed2e
   - tx-d622bc6c22614fcd9b2aca600e99ec06
+  - tx-da600b5db8a64749b2ca31016420381a
 hearing_progress:
   status: complete
   current_step: 7
@@ -67,8 +68,8 @@ runtime_state:
   style_conditions: []
   active_scene: turn
   scene_id: turn
-  context_pack_hash: 957cc6a2c88b668062451a7462433c0279e9f631f5433f187230b56c4b0e8e3d
-  last_validation_at: '2026-11-07T04:05:35+00:00'
+  context_pack_hash: 92f4d2630c8d0a334e7203279d323bd74db154726d47168cffe73a9bb0a81786
+  last_validation_at: '2026-11-07T04:14:58+00:00'
   last_error: ''
 dice_state:
   tape_revision: machadan-tape-r1
@@ -114,10 +115,11 @@ world_state:
     人物_ガルド:
       name: ガルド
       age: 29
-      role: 冒険者。革鎧に長剣。セレナの婚約者
-      personality: 短気で人前でもセレナを叱りつける
+      role: D級冒険者。革鎧に長剣。セレナの婚約者
+      personality: 短気で嫉妬深い。人前でもセレナを叱りつける。酒好きで見栄っ張り。機嫌のいい時だけ優しい
+      history: 三年前、街道で野盗に絡まれたセレナを助けたのが出会い。二年前に婚約。結婚は『大きな仕事を取ってから』と先延ばしが続いている。セレナの売上から毎月二千G近くを立て替えさせている
       relation: Day1朝、西大通りで〇〇に気圧されて引き下がり、セレナを置いて銀の天秤亭へ入った
-      status: 確定した事実
+      status: 確定した事実（経緯はセレナの話）
     出会い_Mia_001:
       character_id: Mia_001
       met_day: 1
@@ -505,6 +507,7 @@ session_log:
   - Day1朝 白百合香房。〇〇が店の客入りを尋ねる。セレナは繁盛していると話しつつ、売上をガルドの立て替えに回していることを漏らす
   - Day1朝 白百合香房。〇〇が遠くから来たばかりだと明かし、この世界のことを尋ねる。セレナがノワールの街と暮らし方、男女のことを教える
   - Day1朝 白百合香房。〇〇が月の売上を尋ね、セレナは戸惑いつつ数字を打ち明ける
+  - Day1朝 白百合香房。〇〇がガルドとの関係を尋ね、セレナが馴れ初めと婚約の経緯を話す
 memory_log:
   encounters: []
   battles: []
