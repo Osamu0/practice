@@ -3,15 +3,15 @@ schema_version: 3
 game_version: 4.13.4
 campaign_id: main2
 created_at: '2026-11-07T05:39:36+00:00'
-updated_at: '2026-11-07T07:01:59+00:00'
-save_revision: 28
+updated_at: '2026-11-07T07:04:35+00:00'
+save_revision: 30
 content_manifest_hash: 59b69015c8c813194e83a7c4b4d2b862af8f4074c2c616aa5325399df6f66460
 save_format_origin: 'System_Templates.md [TEMPLATE_SAVE] (SAVE_DATA: MachaDun v2.0)'
 transaction:
-  last_transaction_id: tx-4e62a94fe47f4d03b2c523d8881ba646
-  last_committed_turn: 15
-  previous_revision_hash: 0909932c3b5809995b9fab1c529f050f12903a81db059caad148038e4e8f95b6
-  last_candidate_hash: 3c68bc9341d76d8930db112794cc2b0262219f39e9141761f883828f089bfb12
+  last_transaction_id: tx-c0623ceb89d84c6daafdf08cf21a8cb4
+  last_committed_turn: 16
+  previous_revision_hash: ce192bd73fea592d311cf67dbf9d7f35a3478f6634e68d04d116632043386155
+  last_candidate_hash: 547d49c7eb10d5fcb93d2cb8141f776cffb41d87461d5e97366af7455bbea6bc
   applied_transaction_ids:
   - tx-0345298f5a774b8ca7e3c0934d815725
   - tx-7f4c45d45dea4266ba65a98f8f4718e6
@@ -41,6 +41,8 @@ transaction:
   - tx-9c75546e0496459590f8f586c852d6b0
   - tx-1883c07d67734cc4b5a95733d38b0294
   - tx-4e62a94fe47f4d03b2c523d8881ba646
+  - tx-352e4baebf434368ababf3b0b803c863
+  - tx-c0623ceb89d84c6daafdf08cf21a8cb4
 hearing_progress:
   status: complete
   current_step: 7
@@ -73,13 +75,13 @@ runtime_state:
   style_conditions: []
   active_scene: turn
   scene_id: turn
-  context_pack_hash: c9f9f11720bffdf368e24e46528d30084cad2f3a2cae557a85715dad766da09e
-  last_validation_at: '2026-11-07T07:01:59+00:00'
+  context_pack_hash: 62a26d197e51b9634faa2cd1ab6c88cf0eb7887314d99b77e668dfac8e7d8014
+  last_validation_at: '2026-11-07T07:04:35+00:00'
   last_error: ''
 dice_state:
   tape_revision: machadan-tape-r1
   dice_cursor_d6: 0
-  dice_cursor_d10: 67
+  dice_cursor_d10: 68
 fire_state:
   holders:
   - player
@@ -222,6 +224,13 @@ world_state:
       position: 西大通りの路地口から路地をまっすぐ入り、ひとつ目の角を右。白い百合の看板の小さな石造りの店。扉に鈴
       fact: 香水の店。店主セレナが奥で一つずつ調合し、客に合う香りを選ぶ。昼過ぎから夕方が混む。リゼットの香りもここで作ったもの。構造・品揃え・価格は初訪問時に確定する。
       status: 確定（リゼットの話）
+      structure:
+        outline: 灰色の石積みの二階建ての小さな店。1F南側が売り場（入口の扉に鈴、窓辺の小瓶の棚、奥にカウンター）。カウンター裏の暖簾の奥が調香室。調香室の奥に裏口と2Fへの階段。2Fはセレナの住まい（私室）
+        rooms:
+          LORE_SHIRAYURI_KOUBOU_SHOP: 売り場
+          LORE_SHIRAYURI_KOUBOU_WORKROOM: 調香室
+          LORE_SHIRAYURI_KOUBOU_UPSTAIRS: 2Fの住まい（私室）
+        customers: 夕方は娼婦・商家の奥方・贈り物を探す冒険者で混む
     人物_セレナ:
       kind: npc
       name: セレナ
@@ -246,12 +255,12 @@ world_state:
     resolutions: []
   reward_state_version: 2
   day: 1
-  location: 西大通り
-  place_id: NOIR_CITY_WEST
-  room_id: ''
-  sub_location: 白百合香房への路地口
+  location: 白百合香房
+  place_id: LORE_SHIRAYURI_KOUBOU
+  room_id: LORE_SHIRAYURI_KOUBOU_SHOP
+  sub_location: 売り場
   depth: null
-  time_of_day: 昼
+  time_of_day: 夕
   weather: 薄い霧
   quest_active: ''
   quest_rank: ''
@@ -510,7 +519,7 @@ player:
     - 獣使い
     solo_suitability: good
     party_needs: []
-  gold: 0
+  gold: 50
   debt: 10000
   base_stats:
     str: 7
@@ -744,6 +753,13 @@ session_log:
   - day: 1
     time_of_day: 昼
     summary: 医者に診てもらってから相談しに行くと伝え、白百合香房の場所（路地をまっすぐ、ひとつ目の角を右）を聞いた。ベルが名乗り、セレナは〇〇とベルの名を覚えた。セレナはせめて診察代として50Gを差し出している（未回答）。
+  - day: 1
+    time_of_day: 夕
+    summary: セレナから診察代50Gを受け取った。時間を空けて、夕方に白百合香房へ。店には娼婦二人と商家の奥方の客がいた。セレナが接客を中断して迎え、怪我の具合を尋ねた。大聖堂には実際には行っていない。
+    ambient_roll:
+      die: d10
+      result: 9
+      cursor: 67
 memory_log:
   encounters: []
   battles: []
