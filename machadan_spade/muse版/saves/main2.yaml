@@ -3,15 +3,15 @@ schema_version: 3
 game_version: 4.13.4
 campaign_id: main2
 created_at: '2026-11-07T05:39:36+00:00'
-updated_at: '2026-11-07T07:53:37+00:00'
-save_revision: 46
+updated_at: '2026-11-07T07:57:24+00:00'
+save_revision: 47
 content_manifest_hash: 59b69015c8c813194e83a7c4b4d2b862af8f4074c2c616aa5325399df6f66460
 save_format_origin: 'System_Templates.md [TEMPLATE_SAVE] (SAVE_DATA: MachaDun v2.0)'
 transaction:
-  last_transaction_id: tx-c6aa87372e9446b49fcf272391eb62bd
-  last_committed_turn: 32
-  previous_revision_hash: 87ffb488601b9813e56e616e5d5dad94698bf9fb44cb33001409fb82e8b7957d
-  last_candidate_hash: a8e53ca417460dfa1fad17ddbaae7de8961f5240356972cf6f26a0d8bbc8fd35
+  last_transaction_id: tx-30c53d41fc5d427196b3f03646d5b967
+  last_committed_turn: 33
+  previous_revision_hash: 71ab74f6efc4fc9545f7def6a87c5319d84d3a64980f88d114aa4c7ee1849541
+  last_candidate_hash: ea20641ab4c48ff39b736e515281e26dec269402d0736402dc77dd4919e97323
   applied_transaction_ids:
   - tx-0345298f5a774b8ca7e3c0934d815725
   - tx-7f4c45d45dea4266ba65a98f8f4718e6
@@ -59,6 +59,7 @@ transaction:
   - tx-b5ef3664324d48f490ba081e73fb8d8c
   - tx-7f4134010e5a4bd2a00f506f02254ec0
   - tx-c6aa87372e9446b49fcf272391eb62bd
+  - tx-30c53d41fc5d427196b3f03646d5b967
 hearing_progress:
   status: complete
   current_step: 7
@@ -91,13 +92,13 @@ runtime_state:
   style_conditions: []
   active_scene: quest
   scene_id: quest
-  context_pack_hash: 0ee692ae6c96639152d645a09c50dce51a0fba9efbcd67270e6454c138df6d39
-  last_validation_at: '2026-11-07T07:53:37+00:00'
+  context_pack_hash: 84afea9f65c60674926085fe5d194d057176217f5ed3fb97fe7eb29f037ee6c0
+  last_validation_at: '2026-11-07T07:57:24+00:00'
   last_error: ''
 dice_state:
   tape_revision: machadan-tape-r1
   dice_cursor_d6: 0
-  dice_cursor_d10: 79
+  dice_cursor_d10: 80
 fire_state:
   holders:
   - player
@@ -313,44 +314,6 @@ world_state:
       name: 溝鼠
       fact: 夜の東裏路地の暗い角にたむろするごろつき集団。全部で4〜5人。頭は片耳のギース（大柄、棍棒、昔衛兵とやり合って耳を半分なくした）。ほかはナイフを持った細身の男2〜3人（冒険者のなりそこない）。夜はギースと1〜2人が角に陣取り、通行人から財布を巻き上げる。殺しまではしない。見回りが少なく衛兵も本腰を入れていない。先週ドルフの小僧の荷を盗りかけた。戦闘値は戦闘開始時に確定
       status: ドルフの話
-    依頼案_ドルフの護送:
-      kind: quest_offer
-      client: ドルフ
-      payer_capacity: 東裏路地の質屋。現金と質流れの在庫を持つ
-      item: 鍵付きの黒い小箱。中身はロゼ（蜜の味）の亡母の形見の銀の首飾り。ドルフの見立てで約300G
-      destination: 南東の歓楽通り『蜜の味』のロゼに直接
-      deadline: Day1の夜のうち
-      reward:
-        value_reference:
-          basis: M43 D級式（級のない臨時仕事）400+(d10-1)x22
-          roll:
-            die: d10
-            result: 2
-            cursor: 78
-          estimated_total_g: 422
-        components:
-        - component_id: gold
-          kind: gold
-          detail:
-            amount: 350
-          estimated_value_g: 350
-          delivery_condition: ロゼの受け取りの一筆を持ち帰った時、ドルフから直接
-        - component_id: discount
-          kind: right
-          detail:
-            delivery_target: world_state.entitlements
-            name: ドルフの質屋 質流れ品2割引
-            issuer: ドルフ
-            scope: 東裏路地のドルフの質屋の質流れ品（棚にある品）
-            conditions:
-            - 1回の購入1点
-            uses_remaining: 1
-            expires: null
-          estimated_value_g: 72
-          delivery_condition: 同上
-        advance: なし
-        failure: 箱を盗られたら報酬なし。届けられなかったら箱を返す
-      status: 提示中（未受注）
     人物_ロゼ:
       kind: npc
       name: ロゼ
@@ -366,11 +329,11 @@ world_state:
   location: 東裏路地口と折れ路地
   place_id: NOIR_CITY_BACK_ALLEY
   room_id: ''
-  sub_location: 質屋ドルフの裏戸の前
+  sub_location: 二つ目の角の先・溝鼠の溜まり場
   depth: null
   time_of_day: 夜
   weather: 薄い霧
-  quest_active: ''
+  quest_active: 形見の首飾りの護送
   quest_rank: ''
   personal_rank: E級
   quest_access: E級
@@ -380,7 +343,142 @@ world_state:
     C: 0
     B: 0
     A: 0
-  quest_card: null
+  quest_card:
+    quest_id: Q-main2-DOLF-ESCORT
+    immutable_version: 1
+    direction:
+      main: 護送
+      sub: 人情
+    motivation:
+      type: 人助け・稼ぎ
+      hook: 形見の首飾りを今夜中に持ち主へ
+    client: ドルフ（67）東裏路地の質屋。癖：拡大鏡越しに相手をじろりと見る／喋り方：かすれ声のべらんめえ／こだわり：約束は守るが前金は出さない
+    situation: ロゼ（蜜の味の娼婦）が請け出した亡母の形見の銀の首飾りを、鍵付きの黒い小箱で南東の歓楽通り『蜜の味』へ届ける。途中、東裏路地の暗い角に溝鼠（ギースと1〜2人）が陣取る
+    twist: 溝鼠は今日首飾りが請け出されたことを知っており、箱を狙っている
+    climax: 角で溝鼠に通行料と箱を要求される。主人公は攻撃できず、ベルと使い魔で切り抜けるか、別の手で通るか
+    story_beats:
+      opening:
+        must_show: ドルフから小箱を受け取る
+        hook: 角から笑い声
+      development:
+        discoverable:
+        - 溝鼠が箱のことを知っている理由
+        opportunities:
+        - 交渉
+        - 迂回
+        - 戦闘
+      reversal:
+        trigger: 角での対峙
+        revealed_fact: ギースが箱を名指しする
+        value_conflict: 金と形見
+      climax:
+        pressure: 溝鼠の要求
+        stakes: 形見と報酬
+        available_levers:
+        - ベルと使い魔
+        - 会話
+        - 迂回路
+      aftermath:
+        must_resolve:
+        - ロゼへの受け渡し
+        - ドルフへの報告
+        reaction_rules:
+        - ロゼは形見を受け取って安堵する
+    choice_space:
+      pressure: 今夜中
+      known_options:
+      - 戦って通る
+      - 交渉する
+      - 別の道を探す
+      open_solution: true
+      consequence_rules:
+      - 箱を盗られたら失敗
+      - こちらから先に手を出すと街では暴行になり得る（溝鼠が先に脅し・手を出せば正当防衛）
+    resolution:
+      main: 溝鼠を退けてロゼに届ける
+      alt: 迂回や交渉で届ける
+      open_solution: true
+    enemies: []
+    carryover: なし
+    reward_contract:
+      settlement_id: Q-main2-DOLF-ESCORT-R
+      offered: true
+      payer: ドルフ
+      guarantor: なし
+      payer_capacity: 東裏路地の質屋。現金と質流れ品の在庫
+      composition_reason: 質屋なので現金に加え、自分の店の質流れ品の割引を出せる
+      value_reference:
+        basis: M43 D級式（級のない臨時仕事）
+        rank_formula: 400+(d10-1)x22
+        roll:
+          die: d10
+          result: 2
+          cursor: 78
+        estimated_total_g: 422
+      components:
+      - component_id: gold
+        kind: gold
+        description: 現金350G
+        detail:
+          amount: 350
+        estimated_value_g: 350
+        provider: ドルフ
+        earn_condition: 小箱をロゼに直接渡し、受け取りの一筆をもらう
+        delivery_condition: 一筆をドルフの質屋へ持ち帰った時
+        state: accepted
+      - component_id: discount
+        kind: right
+        description: 質流れ品を1回だけ2割引で買える権利
+        detail:
+          delivery_target: world_state.entitlements
+          entitlement_id: ENT-main2-DOLF-DISCOUNT
+          name: ドルフの質屋 質流れ品2割引
+          issuer: ドルフ
+          scope: 東裏路地のドルフの質屋の棚にある質流れ品
+          conditions:
+          - 1回の購入で1点
+          uses_remaining: 1
+          expires: null
+        estimated_value_g: 72
+        provider: ドルフ
+        earn_condition: 同上
+        delivery_condition: 同上
+        state: accepted
+      expenses:
+        provided_materials: []
+        reimbursed_costs: []
+        unused_materials_rule: なし
+      delivery_plan:
+      - trigger: 報告
+        component_ids:
+        - gold
+        - discount
+        route: 依頼人から直接
+        place_or_contact: 東裏路地のドルフの質屋
+        fallback_holder: なし
+      outcome_rules:
+        full:
+        - 小箱をロゼに渡し一筆を持ち帰れば全額
+        partial:
+        - なし（届けたか否か）
+        failure:
+        - 小箱を盗られたら報酬なし
+        player_cancel:
+        - 届けられなければ小箱をドルフに返す。報酬なし
+        client_cancel:
+        - なし
+      renegotiable: true
+    progress:
+      stage: accepted
+      flags:
+      - 小箱を受け取った
+      checks_used: 0
+      event_roll:
+        die: d10
+        result: 2
+        cursor: 79
+    amendments: []
+    immutable_hash: 930c4ba868bd96eb9854e3f6bdaa3c06d299208d2f37401c9d09a262d102552f
   event_reward_contract: null
   pending_rewards: []
   reward_ledger: []
@@ -573,7 +671,41 @@ custom_abilities:
     equipment: []
     fire: false
     counts_as_fire_holder: false
-active_event: null
+active_event:
+  title: 溝鼠の待ち伏せ（二段）
+  parent: Q-main2-DOLF-ESCORT
+  type: A 道中型
+  sprout_timing: 角を抜けた後、歓楽通りの手前
+  direction:
+    main: 戦闘・機転
+    sub: 人情
+  motivation:
+    type: 恨み・金
+    hook: ギースは首飾りを賭場の借りの形にするつもり
+  who:
+  - ギースの手下の細身の男（名はチュウ、20代）。癖：ナイフを指で回す／喋り方：甲高い早口／こだわり：兄貴分のギースに認められたい
+  situation: 角の溝鼠を退けても、歓楽通りへ出る手前の樽置き場にもう一人が待ち伏せ、箱をひったくろうとする
+  truth: ドルフの小僧が酒場で今日の請け出しを漏らし、溝鼠が聞きつけた。ギースは賭場に借りがあり、首飾りで払うつもり
+  resolution:
+    main: ひったくりを阻止して届ける
+    alt: 先に気づいて避ける
+    open_solution: true
+  reward: なし（経済的対価なし、M43ロールなし）
+  event_roll:
+    die: d10
+    result: 2
+    cursor: 79
+  quest_id: EV-main2-DOLF-ESCORT-1
+  reward_contract:
+    settlement_id: EV-main2-DOLF-ESCORT-1-R
+    offered: false
+    payer: なし
+    components: []
+  progress:
+    stage: seeded
+    flags: []
+  amendments: []
+  immutable_hash: 7b7feeed6ce450588aa678707024ffee330ce1d7a26e54f5e582db9195583510
 ammo:
   pools: []
   weapon_loads: []
@@ -956,6 +1088,13 @@ session_log:
       die: d10
       result: 2
       cursor: 78
+  - day: 1
+    time_of_day: 夜
+    summary: ドルフの護送依頼を引き受け、黒い小箱を預かった。ベルに範囲攻撃はないと言われた（攻撃は1回にひとり、使い魔2体まで）。二つ目の角で片耳のギースと手下2人に通行料と小箱を要求された。ギースは今日首飾りが請け出されたことを知っていた。
+    event_roll:
+      die: d10
+      result: 2
+      cursor: 79
 memory_log:
   encounters: []
   battles: []
