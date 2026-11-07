@@ -3,30 +3,33 @@ schema_version: 3
 game_version: 4.13.4
 campaign_id: run2
 created_at: '2026-11-07T09:22:51+00:00'
-updated_at: '2026-11-07T09:35:16+00:00'
-save_revision: 5
+updated_at: '2026-11-07T09:37:04+00:00'
+save_revision: 7
 content_manifest_hash: 59b69015c8c813194e83a7c4b4d2b862af8f4074c2c616aa5325399df6f66460
 save_format_origin: 'System_Templates.md [TEMPLATE_SAVE] (SAVE_DATA: MachaDun v2.0)'
 transaction:
-  last_transaction_id: tx-364f06cfcfd94a2e937e1c14a480439c
+  last_transaction_id: tx-4394e299e2534756bc70bcdf8d484719
   last_committed_turn: 0
-  previous_revision_hash: c84f4b04d512dd446077a4e8ff86b78a9e701c89aef802d407d8952decefa975
-  last_candidate_hash: 0df8e9f9efb5a58f67f531342dc911a692800f22ad3cc5986d032579ce069b71
+  previous_revision_hash: 189407737e3ccbff80ae33b3a5a8d0042ac1f55e5a54fd4a4d430edd98994725
+  last_candidate_hash: 75070bb9eecba0e02f6617ab17a8a3ab6f600cfbfb6ed37c713146bcfe8518ea
   applied_transaction_ids:
   - tx-3205c8b3a3f04e16a35b2f1739e25e5a
   - tx-6a86abc0b7cc4f0aa672870ded718bc7
   - tx-c7108cc314d0462c83036826b419dcd8
   - tx-390500036ba443fe8c3e07353253d9c7
   - tx-364f06cfcfd94a2e937e1c14a480439c
+  - tx-7f8a6a500cdb4cddae50b096c23e789a
+  - tx-4394e299e2534756bc70bcdf8d484719
 hearing_progress:
-  status: in_progress
-  current_step: 6
+  status: complete
+  current_step: 7
   completed_steps:
   - playmode
   - profile
   - body_profile
   - desire
   - partner
+  - style
   widget_ids:
     playmode: chat-tx-3205c8b3a3f04e16a35b2f1739e25e5a
     profile: chat-tx-6a86abc0b7cc4f0aa672870ded718bc7
@@ -40,17 +43,17 @@ hearing_progress:
     desire: 1
     partner_preferences: 1
 active_script:
-  id: ''
-  status: idle
+  id: SCRIPT_OPENING_FIRE
+  status: in_progress
   cursor: 0
-  checkpoint: ''
+  checkpoint: fire-offered
 runtime_state:
   ero_scene: false
   style_conditions: []
   active_scene: start
   scene_id: start
-  context_pack_hash: d9d05e09dd62fa3e0bacb62160502437c5fc465d1eba4dc8e7b0b63f53a8bdf9
-  last_validation_at: '2026-11-07T09:35:16+00:00'
+  context_pack_hash: 2bcbbb0516ef209d58a9284bd583b901c5cdba642ed7586f674cbedf4892acc4
+  last_validation_at: '2026-11-07T09:37:04+00:00'
   last_error: ''
 dice_state:
   tape_revision: machadan-tape-r1
@@ -62,7 +65,7 @@ fire_state:
 world_state:
   onboarding:
     allocation_rule: all3-plus15-v1
-    body_received: false
+    body_received: true
     allocation_complete: false
     fire_granted: false
     fire_explained: false
@@ -74,13 +77,13 @@ world_state:
     resolutions: []
   reward_state_version: 2
   day: 1
-  location: ''
-  place_id: ''
-  room_id: ''
-  sub_location: ''
+  location: ぬれねずみ亭
+  place_id: INN_DRENCHED_RAT
+  room_id: INN_DRENCHED_RAT_ROOM_201
+  sub_location: 普通客室201
   depth: null
-  time_of_day: ''
-  weather: ''
+  time_of_day: 朝
+  weather: 薄い霧
   quest_active: ''
   quest_rank: ''
   personal_rank: ''
@@ -176,7 +179,7 @@ debt_state:
     activated_day: null
 captured_girls: []
 play_mode: RP
-ero_style: ''
+ero_style: machadan
 player:
   character_version: 1
   character_id: player
@@ -195,12 +198,12 @@ player:
   gold: 0
   debt: 10000
   base_stats:
-    str: 0
-    def: 0
-    int: 0
-    spd: 0
-    tec: 0
-    chm: 0
+    str: 3
+    def: 3
+    int: 3
+    spd: 3
+    tec: 3
+    chm: 3
   growth_bonus:
     str: 0
     def: 0
@@ -230,29 +233,29 @@ player:
     tec: 0
     chm: 0
   effective_stats:
-    str: 0
-    def: 0
-    int: 0
-    spd: 0
-    tec: 0
-    chm: 0
-  base_lp: 0
+    str: 3
+    def: 3
+    int: 3
+    spd: 3
+    tec: 3
+    chm: 3
+  base_lp: 20
   job_lp_bonus: 0
   fire_lp_bonus: 0
   temporary_lp_bonus: 0
   lp:
-    cur: 0
-    max: 0
+    cur: 20
+    max: 20
   mp:
-    cur: 0
-    max: 0
+    cur: 3
+    max: 3
   stats:
-    str: 0
-    def: 0
-    int: 0
-    spd: 0
-    tec: 0
-    chm: 0
+    str: 3
+    def: 3
+    int: 3
+    spd: 3
+    tec: 3
+    chm: 3
   equipment:
     weapon_instance_id: null
     armor_instance_id: null
@@ -324,7 +327,8 @@ enterprise_state:
 npc_relationship: []
 session_log:
   previous: ''
-  entries: []
+  entries:
+  - Day1朝 ぬれねずみ亭201号室で〇〇が新しい肉体（178cm・引き締まった筋肉質）を得て目覚める。リリスが名乗り、初期借金10,000Gを告げる。リリスがハートの火を分ける提案をし、返事待ち
 memory_log:
   encounters: []
   battles: []
