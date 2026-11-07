@@ -3,15 +3,15 @@ schema_version: 3
 game_version: 4.13.4
 campaign_id: main2
 created_at: '2026-11-07T05:39:36+00:00'
-updated_at: '2026-11-07T06:59:55+00:00'
-save_revision: 27
+updated_at: '2026-11-07T07:01:59+00:00'
+save_revision: 28
 content_manifest_hash: 59b69015c8c813194e83a7c4b4d2b862af8f4074c2c616aa5325399df6f66460
 save_format_origin: 'System_Templates.md [TEMPLATE_SAVE] (SAVE_DATA: MachaDun v2.0)'
 transaction:
-  last_transaction_id: tx-1883c07d67734cc4b5a95733d38b0294
-  last_committed_turn: 14
-  previous_revision_hash: 6b4a456431dddf71674be6a89536d4290f3983033f90292422010cf689dd26d9
-  last_candidate_hash: bcdbd842d5945f2cd6149698d689b7b7140b4af12d5f8f854b598a1a89c8bd06
+  last_transaction_id: tx-4e62a94fe47f4d03b2c523d8881ba646
+  last_committed_turn: 15
+  previous_revision_hash: 0909932c3b5809995b9fab1c529f050f12903a81db059caad148038e4e8f95b6
+  last_candidate_hash: 3c68bc9341d76d8930db112794cc2b0262219f39e9141761f883828f089bfb12
   applied_transaction_ids:
   - tx-0345298f5a774b8ca7e3c0934d815725
   - tx-7f4c45d45dea4266ba65a98f8f4718e6
@@ -40,6 +40,7 @@ transaction:
   - tx-6e87781ec16640e691939554018200e4
   - tx-9c75546e0496459590f8f586c852d6b0
   - tx-1883c07d67734cc4b5a95733d38b0294
+  - tx-4e62a94fe47f4d03b2c523d8881ba646
 hearing_progress:
   status: complete
   current_step: 7
@@ -72,8 +73,8 @@ runtime_state:
   style_conditions: []
   active_scene: turn
   scene_id: turn
-  context_pack_hash: 0c244797ba8fb5f6e859b6ffdfa766957faef0858e58fd4de5a41ef6bea9da2f
-  last_validation_at: '2026-11-07T06:59:55+00:00'
+  context_pack_hash: c9f9f11720bffdf368e24e46528d30084cad2f3a2cae557a85715dad766da09e
+  last_validation_at: '2026-11-07T07:01:59+00:00'
   last_error: ''
 dice_state:
   tape_revision: machadan-tape-r1
@@ -218,7 +219,7 @@ world_state:
       parent: NOIR_CITY_WEST
       name: 白百合香房
       owner: セレナ
-      position: 西大通りから細い路地を一本入り、角を曲がった先。白い百合の看板
+      position: 西大通りの路地口から路地をまっすぐ入り、ひとつ目の角を右。白い百合の看板の小さな石造りの店。扉に鈴
       fact: 香水の店。店主セレナが奥で一つずつ調合し、客に合う香りを選ぶ。昼過ぎから夕方が混む。リゼットの香りもここで作ったもの。構造・品揃え・価格は初訪問時に確定する。
       status: 確定（リゼットの話）
     人物_セレナ:
@@ -740,6 +741,9 @@ session_log:
   - day: 1
     time_of_day: 昼
     summary: 50Gでは足りないと迫った。セレナは取り乱さずに非を認め、仕事ができない分も含めていくら必要か尋ねてきた。店の金は月末の締めまで動かさない決まりにしている（セレナの内心）。
+  - day: 1
+    time_of_day: 昼
+    summary: 医者に診てもらってから相談しに行くと伝え、白百合香房の場所（路地をまっすぐ、ひとつ目の角を右）を聞いた。ベルが名乗り、セレナは〇〇とベルの名を覚えた。セレナはせめて診察代として50Gを差し出している（未回答）。
 memory_log:
   encounters: []
   battles: []
