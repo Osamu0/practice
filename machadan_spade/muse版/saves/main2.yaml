@@ -3,22 +3,27 @@ schema_version: 3
 game_version: 4.13.4
 campaign_id: main2
 created_at: '2026-11-07T05:39:36+00:00'
-updated_at: '2026-11-07T05:39:36+00:00'
-save_revision: 0
+updated_at: '2026-11-07T05:41:55+00:00'
+save_revision: 2
 content_manifest_hash: 59b69015c8c813194e83a7c4b4d2b862af8f4074c2c616aa5325399df6f66460
 save_format_origin: 'System_Templates.md [TEMPLATE_SAVE] (SAVE_DATA: MachaDun v2.0)'
 transaction:
-  last_transaction_id: ''
+  last_transaction_id: tx-7f4c45d45dea4266ba65a98f8f4718e6
   last_committed_turn: 0
-  previous_revision_hash: ''
-  last_candidate_hash: ''
-  applied_transaction_ids: []
+  previous_revision_hash: 51a471dfb2ae5bc770cf33292138ba6ce445ba854108158933b4a1efdf3c8436
+  last_candidate_hash: 42b8c30576b625dfa37c5a48063747d8b6b4054d7484f108f0026659d46ac013
+  applied_transaction_ids:
+  - tx-0345298f5a774b8ca7e3c0934d815725
+  - tx-7f4c45d45dea4266ba65a98f8f4718e6
 hearing_progress:
-  status: pending
-  current_step: 1
-  completed_steps: []
-  widget_ids: {}
-  widget_state_versions: {}
+  status: in_progress
+  current_step: 2
+  completed_steps:
+  - playmode
+  widget_ids:
+    playmode: chat-tx-0345298f5a774b8ca7e3c0934d815725
+  widget_state_versions:
+    playmode: 1
 active_script:
   id: ''
   status: idle
@@ -27,10 +32,10 @@ active_script:
 runtime_state:
   ero_scene: false
   style_conditions: []
-  active_scene: hearing
-  scene_id: ''
-  context_pack_hash: ''
-  last_validation_at: ''
+  active_scene: start
+  scene_id: start
+  context_pack_hash: 6da4e59baa090d04c34926e05823dc480f184dce2edbfd3145baa5a4268f10bd
+  last_validation_at: '2026-11-07T05:41:55+00:00'
   last_error: ''
 dice_state:
   tape_revision: machadan-tape-r1
@@ -47,7 +52,11 @@ world_state:
     fire_granted: false
     fire_explained: false
     tutorial_complete: false
-  campaign_lore: {}
+  campaign_lore:
+    RPの任せ方:
+      kind: player_preference
+      fact: RPモード。プレイヤーが『融通をきかせて』『そっちで決めて』など任せる趣旨を言った時だけ、その範囲で主人公の台詞・行動をGMが補ってよい。それ以外は代筆しない。
+      status: confirmed
   appearance_customization:
     version: 1
     overrides: {}
@@ -155,7 +164,7 @@ debt_state:
     switch_available: false
     activated_day: null
 captured_girls: []
-play_mode: ''
+play_mode: RP
 ero_style: ''
 player:
   character_version: 1
