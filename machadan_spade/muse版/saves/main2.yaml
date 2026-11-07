@@ -3,15 +3,15 @@ schema_version: 3
 game_version: 4.13.4
 campaign_id: main2
 created_at: '2026-11-07T05:39:36+00:00'
-updated_at: '2026-11-07T08:12:55+00:00'
-save_revision: 52
+updated_at: '2026-11-07T08:14:57+00:00'
+save_revision: 53
 content_manifest_hash: 59b69015c8c813194e83a7c4b4d2b862af8f4074c2c616aa5325399df6f66460
 save_format_origin: 'System_Templates.md [TEMPLATE_SAVE] (SAVE_DATA: MachaDun v2.0)'
 transaction:
-  last_transaction_id: tx-d757861e21db491a99f145a0260966bc
-  last_committed_turn: 38
-  previous_revision_hash: 09c06862190b6f75f2ae42d125476d5c8a344b6f1218d41e235197401e4247c3
-  last_candidate_hash: 4d2b590120fffd82fb3eb5d58126d7f483dee73c8bc68034e119ffee463f75c3
+  last_transaction_id: tx-bf2ba9efc80846c8bfed80ae1431f2ac
+  last_committed_turn: 39
+  previous_revision_hash: fcab2e92997ae54fe8aa6a86e85df8980b94acd01bbef0bfa16c0fbbed78b2a4
+  last_candidate_hash: 46c98a61b9af63d398a9b05eeabb16ca35e14b948781aa5d12f84814806edda0
   applied_transaction_ids:
   - tx-0345298f5a774b8ca7e3c0934d815725
   - tx-7f4c45d45dea4266ba65a98f8f4718e6
@@ -65,6 +65,7 @@ transaction:
   - tx-e80d5e4dd3c24b5bb098c849a053de6d
   - tx-331af58e06784153886e2a4ab50c9677
   - tx-d757861e21db491a99f145a0260966bc
+  - tx-bf2ba9efc80846c8bfed80ae1431f2ac
 hearing_progress:
   status: complete
   current_step: 7
@@ -97,13 +98,13 @@ runtime_state:
   style_conditions: []
   active_scene: combat
   scene_id: combat
-  context_pack_hash: 9f753bd401360ee5857d746fb25ae60d09b5a15fb7098c8ee82ff4fd3e96c9d7
-  last_validation_at: '2026-11-07T08:12:55+00:00'
+  context_pack_hash: 18982373ee052722664b6d6893523cd54b5426fde40b3d159b1ecb36640f93e8
+  last_validation_at: '2026-11-07T08:14:57+00:00'
   last_error: ''
 dice_state:
   tape_revision: machadan-tape-r1
   dice_cursor_d6: 7
-  dice_cursor_d10: 168
+  dice_cursor_d10: 188
 fire_state:
   holders:
   - player
@@ -484,7 +485,7 @@ world_state:
         result: 2
         cursor: 79
       combat:
-        round: 6
+        round: 7
         legal: 溝鼠が先に攻撃（正当防衛）
         difficulty: 標準（味方2：主人公＋ベル。実働の敵2、見張り1は非実働）
         enemies:
@@ -529,6 +530,7 @@ world_state:
             cur: 16
             max: 16
           active: false
+          status: 逃走（路地の入口方面へ）
         allies:
           bell:
             lp: 21
@@ -1215,6 +1217,12 @@ session_log:
     combat_dice:
       d10_from: 148
       d10_to: 168
+  - day: 1
+    time_of_day: 夜
+    summary: 戦闘第6ラウンド。双方の攻撃がすべて外れた。ギースは疲れ切り、見張りの手下Bが逃げ出した。手下Aは『もうやめましょう』と弱気になった。
+    combat_dice:
+      d10_from: 168
+      d10_to: 188
 memory_log:
   encounters: []
   battles: []
