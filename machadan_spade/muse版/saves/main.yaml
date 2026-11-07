@@ -3,15 +3,15 @@ schema_version: 3
 game_version: 4.13.4
 campaign_id: main
 created_at: '2026-11-07T02:20:22+00:00'
-updated_at: '2026-11-07T03:52:38+00:00'
-save_revision: 17
+updated_at: '2026-11-07T03:55:56+00:00'
+save_revision: 18
 content_manifest_hash: 59b69015c8c813194e83a7c4b4d2b862af8f4074c2c616aa5325399df6f66460
 save_format_origin: 'System_Templates.md [TEMPLATE_SAVE] (SAVE_DATA: MachaDun v2.0)'
 transaction:
-  last_transaction_id: tx-85ad38b212fa48d68ecb21eb52a14183
-  last_committed_turn: 7
-  previous_revision_hash: a6f55a035a2b0f1f761708f720dc13a82e7cfa11552c077bb3265cc3f2e1e93d
-  last_candidate_hash: 68f34c873fd0f22298c35c1fd94f6a625cce38e3931da393c5ba8907306a5f4c
+  last_transaction_id: tx-925926dad24a4cbeab6ed2f87a0e28c1
+  last_committed_turn: 8
+  previous_revision_hash: 3f85308d2a53a98c21312276b45cbe2b0d3d9d5607289384a6754217dc498516
+  last_candidate_hash: f98599ea27e0884a726f4cf6f106fea1696a477f09b55a110630b0a7f25c27c9
   applied_transaction_ids:
   - tx-413eae86780d496981a94b1d08250181
   - tx-5d7fe8c49f1242dca4bcebf850e979c1
@@ -30,6 +30,7 @@ transaction:
   - tx-57dbd28e9cbc49f581070c20d4aaf5ed
   - tx-c9f67facbb2d4621a8bc20813168b4f8
   - tx-85ad38b212fa48d68ecb21eb52a14183
+  - tx-925926dad24a4cbeab6ed2f87a0e28c1
 hearing_progress:
   status: complete
   current_step: 7
@@ -60,15 +61,15 @@ active_script:
 runtime_state:
   ero_scene: false
   style_conditions: []
-  active_scene: event
-  scene_id: event
-  context_pack_hash: 89d8ed040fde1a9c5dadb426c33f0fcfd4ed15afa9770aa58a4aaab9cc837cc9
-  last_validation_at: '2026-11-07T03:52:38+00:00'
+  active_scene: turn
+  scene_id: turn
+  context_pack_hash: f4d9bd4b2f36e35bab203eb4050cbc02a7b10b8ec7950cff063ec56166507657
+  last_validation_at: '2026-11-07T03:55:56+00:00'
   last_error: ''
 dice_state:
   tape_revision: machadan-tape-r1
   dice_cursor_d6: 0
-  dice_cursor_d10: 12
+  dice_cursor_d10: 13
 fire_state:
   holders:
   - player
@@ -119,16 +120,28 @@ world_state:
       knows_name: true
       fact: Day1朝、白百合香房への路地口で会う。ガルドとの一件と仮病を見ていたが、〇〇に口止めされて内緒にすると約束した
       status: 確定した事実
+    場所_白百合香房:
+      place_id: LORE_SHIRAYURI_KOUBOU
+      parent: NOIR_CITY_WEST
+      name: 白百合香房
+      owner: セレナ
+      position: 西大通りから路地を一本入って角を曲がった先
+      structure: 石造り二階建ての小さな店。1F南側が売り場（入口の扉に鈴、窓辺の棚、奥にカウンター）、カウンター裏の暖簾の奥が調香室。調香室の奥に裏口と2Fへの階段。2Fはセレナの住まい
+      rooms:
+        LORE_SHIRAYURI_KOUBOU_SHOP: 売り場
+        LORE_SHIRAYURI_KOUBOU_WORKROOM: 調香室
+        LORE_SHIRAYURI_KOUBOU_UPSTAIRS: 2Fの住まい（私室）
+      status: 確定した事実
   appearance_customization:
     version: 1
     overrides: {}
     resolutions: []
   reward_state_version: 2
   day: 1
-  location: 西大通り
-  place_id: NOIR_CITY_WEST
-  room_id: ''
-  sub_location: 西大通りから白百合香房へ入る路地の入口
+  location: 白百合香房
+  place_id: LORE_SHIRAYURI_KOUBOU
+  room_id: LORE_SHIRAYURI_KOUBOU_SHOP
+  sub_location: 店内（売り場）
   depth: null
   time_of_day: 朝
   weather: 薄い霧
@@ -477,6 +490,7 @@ session_log:
   - Day1朝 〇〇がガルドを言葉で圧倒（CHM対抗 30 vs 12）。ガルドは捨て台詞を残してギルドへ。セレナは礼を言い、店に来てほしいと告げて去る
   - Day1朝 白百合香房へ向かう路地口で、道具屋のミアと偶然会う。ミアはガラス瓶の納品帰りで、ガルドとの一件を見ていた。移動イベント d10=1、種別 d10=10
   - Day1朝 〇〇がミアに名乗り、さっきの件の口止めと脅し混じりの念押し。ミアは面白がって承諾し、『その代わり稼いだらうちで使って』と約束させて広場へ戻る
+  - Day1朝 〇〇が白百合香房を訪ねる。セレナは一人で店を開ける準備中。環境 d10=7（なし）
 memory_log:
   encounters: []
   battles: []
