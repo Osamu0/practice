@@ -3,15 +3,15 @@ schema_version: 3
 game_version: 4.13.4
 campaign_id: main2
 created_at: '2026-11-07T05:39:36+00:00'
-updated_at: '2026-11-07T07:51:22+00:00'
-save_revision: 45
+updated_at: '2026-11-07T07:53:37+00:00'
+save_revision: 46
 content_manifest_hash: 59b69015c8c813194e83a7c4b4d2b862af8f4074c2c616aa5325399df6f66460
 save_format_origin: 'System_Templates.md [TEMPLATE_SAVE] (SAVE_DATA: MachaDun v2.0)'
 transaction:
-  last_transaction_id: tx-7f4134010e5a4bd2a00f506f02254ec0
-  last_committed_turn: 31
-  previous_revision_hash: 7ea6e8010e6414eac8899dffc44dbc6e60add7fd90677b5afc507d621544fd89
-  last_candidate_hash: e5d0cca7f83101adc1dc94d673305525013dec8b9c7dcbe4c618f8f5227385da
+  last_transaction_id: tx-c6aa87372e9446b49fcf272391eb62bd
+  last_committed_turn: 32
+  previous_revision_hash: 87ffb488601b9813e56e616e5d5dad94698bf9fb44cb33001409fb82e8b7957d
+  last_candidate_hash: a8e53ca417460dfa1fad17ddbaae7de8961f5240356972cf6f26a0d8bbc8fd35
   applied_transaction_ids:
   - tx-0345298f5a774b8ca7e3c0934d815725
   - tx-7f4c45d45dea4266ba65a98f8f4718e6
@@ -58,6 +58,7 @@ transaction:
   - tx-6cdb5b37bcd0447f8936d4b66caab0bf
   - tx-b5ef3664324d48f490ba081e73fb8d8c
   - tx-7f4134010e5a4bd2a00f506f02254ec0
+  - tx-c6aa87372e9446b49fcf272391eb62bd
 hearing_progress:
   status: complete
   current_step: 7
@@ -90,13 +91,13 @@ runtime_state:
   style_conditions: []
   active_scene: quest
   scene_id: quest
-  context_pack_hash: bffd3d4a0dd4455f6fb3aed59d3070262d3e9b785882ee61b434f06982779b0f
-  last_validation_at: '2026-11-07T07:51:22+00:00'
+  context_pack_hash: 0ee692ae6c96639152d645a09c50dce51a0fba9efbcd67270e6454c138df6d39
+  last_validation_at: '2026-11-07T07:53:37+00:00'
   last_error: ''
 dice_state:
   tape_revision: machadan-tape-r1
   dice_cursor_d6: 0
-  dice_cursor_d10: 78
+  dice_cursor_d10: 79
 fire_state:
   holders:
   - player
@@ -311,6 +312,50 @@ world_state:
       kind: gang
       name: 溝鼠
       fact: 夜の東裏路地の暗い角にたむろするごろつき集団。全部で4〜5人。頭は片耳のギース（大柄、棍棒、昔衛兵とやり合って耳を半分なくした）。ほかはナイフを持った細身の男2〜3人（冒険者のなりそこない）。夜はギースと1〜2人が角に陣取り、通行人から財布を巻き上げる。殺しまではしない。見回りが少なく衛兵も本腰を入れていない。先週ドルフの小僧の荷を盗りかけた。戦闘値は戦闘開始時に確定
+      status: ドルフの話
+    依頼案_ドルフの護送:
+      kind: quest_offer
+      client: ドルフ
+      payer_capacity: 東裏路地の質屋。現金と質流れの在庫を持つ
+      item: 鍵付きの黒い小箱。中身はロゼ（蜜の味）の亡母の形見の銀の首飾り。ドルフの見立てで約300G
+      destination: 南東の歓楽通り『蜜の味』のロゼに直接
+      deadline: Day1の夜のうち
+      reward:
+        value_reference:
+          basis: M43 D級式（級のない臨時仕事）400+(d10-1)x22
+          roll:
+            die: d10
+            result: 2
+            cursor: 78
+          estimated_total_g: 422
+        components:
+        - component_id: gold
+          kind: gold
+          detail:
+            amount: 350
+          estimated_value_g: 350
+          delivery_condition: ロゼの受け取りの一筆を持ち帰った時、ドルフから直接
+        - component_id: discount
+          kind: right
+          detail:
+            delivery_target: world_state.entitlements
+            name: ドルフの質屋 質流れ品2割引
+            issuer: ドルフ
+            scope: 東裏路地のドルフの質屋の質流れ品（棚にある品）
+            conditions:
+            - 1回の購入1点
+            uses_remaining: 1
+            expires: null
+          estimated_value_g: 72
+          delivery_condition: 同上
+        advance: なし
+        failure: 箱を盗られたら報酬なし。届けられなかったら箱を返す
+      status: 提示中（未受注）
+    人物_ロゼ:
+      kind: npc
+      name: ロゼ
+      role: 娼館『蜜の味』の娼婦
+      fact: 三月前に亡母の形見の銀の首飾りをドルフの質屋に入れ、Day1に利息ごと請け出した。帰り道で溝鼠に絡まれたことがあり路地に来られない。年齢・外見は初対面時に確定（成人）
       status: ドルフの話
   appearance_customization:
     version: 1
@@ -904,6 +949,13 @@ session_log:
   - day: 1
     time_of_day: 夜
     summary: ドルフから溝鼠のことを聞いた。全部で4〜5人、頭は片耳のギース（大柄・棍棒）、夜は角にギースと1〜2人。殺しはしない。武器を持っていないことを見咎められ、ベルが『得物は俺だ』と名乗った。
+  - day: 1
+    time_of_day: 夜
+    summary: ドルフに報酬と届け物を尋ねた。中身は蜜の味のロゼの亡母の形見の銀の首飾り（鍵付きの黒い小箱）。報酬は現金350G（ロゼの受け取りの一筆と引き換え）と質流れ品の2割引1回。前金なし、盗られたら報酬なし。角から溝鼠の笑い声が聞こえた。
+    reward_value_roll:
+      die: d10
+      result: 2
+      cursor: 78
 memory_log:
   encounters: []
   battles: []
