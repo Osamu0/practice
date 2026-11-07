@@ -3,15 +3,15 @@ schema_version: 3
 game_version: 4.13.4
 campaign_id: main
 created_at: '2026-11-07T02:20:22+00:00'
-updated_at: '2026-11-07T03:45:15+00:00'
-save_revision: 14
+updated_at: '2026-11-07T03:47:10+00:00'
+save_revision: 15
 content_manifest_hash: 59b69015c8c813194e83a7c4b4d2b862af8f4074c2c616aa5325399df6f66460
 save_format_origin: 'System_Templates.md [TEMPLATE_SAVE] (SAVE_DATA: MachaDun v2.0)'
 transaction:
-  last_transaction_id: tx-24158927980e4e0db4397c9e6e57d47c
-  last_committed_turn: 4
-  previous_revision_hash: 1a1800526c1940fcc2eddbb51563b748f03e05fd853da3c04b97d2c0817777a0
-  last_candidate_hash: 073afc287fd73a766837ef4be33dbf1d1d443888a85773a3653e5437574dce59
+  last_transaction_id: tx-57dbd28e9cbc49f581070c20d4aaf5ed
+  last_committed_turn: 5
+  previous_revision_hash: e64148f5eee40d7d02eae71b9e7c9e925bf3b507f3d633cca6ac910bb3b28974
+  last_candidate_hash: 58fa24e20293c4a0eb320fc81d07f88d56431918ea14f2a18775ed72a9f7f7cf
   applied_transaction_ids:
   - tx-413eae86780d496981a94b1d08250181
   - tx-5d7fe8c49f1242dca4bcebf850e979c1
@@ -27,6 +27,7 @@ transaction:
   - tx-b871d00e0b3145d2aea6cea5bb55210b
   - tx-fcf62429bfc741ffa161193521f74d87
   - tx-24158927980e4e0db4397c9e6e57d47c
+  - tx-57dbd28e9cbc49f581070c20d4aaf5ed
 hearing_progress:
   status: complete
   current_step: 7
@@ -59,13 +60,13 @@ runtime_state:
   style_conditions: []
   active_scene: event
   scene_id: event
-  context_pack_hash: eaa29c70657114da1fc1a104e11bfeab289846d68eeb9e68302e9fdcc81c9b4b
-  last_validation_at: '2026-11-07T03:45:15+00:00'
+  context_pack_hash: 5c613fca2890cf81d6dc91668e2f8e3c78c28152167c0fa5a88c3c9ff26a0c8e
+  last_validation_at: '2026-11-07T03:47:10+00:00'
   last_error: ''
 dice_state:
   tape_revision: machadan-tape-r1
   dice_cursor_d6: 0
-  dice_cursor_d10: 6
+  dice_cursor_d10: 10
 fire_state:
   holders:
   - player
@@ -95,6 +96,21 @@ world_state:
     通貨_銀貨:
       fact: ノワールで流通する銀貨1枚は10G
       source: Day1 セレナとの会話
+    人物_セレナ:
+      name: セレナ
+      age: 22
+      role: 調香師。西大通り脇の路地を入ってすぐの香水店『白百合香房』の店主
+      appearance: 長身でモデル体型、胸は大きめ。亜麻色の髪を結い上げ、白い詰め襟のワンピース。灰色がかった青い瞳
+      personality: 清楚で礼儀正しく、取り乱さない。責任感が強い。押しの強い相手に弱く、内心では強く出られることに少し胸を高鳴らせる
+      relation: Day1朝、〇〇とぶつかり治療代50Gを渡した。婚約者ガルドに人前で叱られることが多い様子
+      status: 確定した事実
+    人物_ガルド:
+      name: ガルド
+      age: 29
+      role: 冒険者。革鎧に長剣。セレナの婚約者
+      personality: 短気で人前でもセレナを叱りつける
+      relation: Day1朝、西大通りで〇〇に気圧されて引き下がり、セレナを置いて銀の天秤亭へ入った
+      status: 確定した事実
   appearance_customization:
     version: 1
     overrides: {}
@@ -450,6 +466,7 @@ session_log:
   - Day1朝 西大通り。〇〇が骨折したふりをして治療費を匂わせる。CHM対抗 22 vs セレナINT 21で成功、セレナは信じて治療代50Gを差し出そうとしている（未受領）
   - Day1朝 〇〇が50Gでは足りないと詰め寄る。セレナは手持ちが銀貨5枚(50G)だけと明かし、店の商品『白百合の香油』(30G相当)を上乗せして差し出す。婚約者の冒険者ガルドが苛立って近づいてくる
   - Day1朝 〇〇はセレナの治療代50Gをしれっと受け取り、ガルドに『話し合いをしていただけ』と言う。香油は受け取っていない
+  - Day1朝 〇〇がガルドを言葉で圧倒（CHM対抗 30 vs 12）。ガルドは捨て台詞を残してギルドへ。セレナは礼を言い、店に来てほしいと告げて去る
 memory_log:
   encounters: []
   battles: []
