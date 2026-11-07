@@ -3,15 +3,15 @@ schema_version: 3
 game_version: 4.13.4
 campaign_id: main
 created_at: '2026-11-07T02:20:22+00:00'
-updated_at: '2026-11-07T05:37:10+00:00'
-save_revision: 36
+updated_at: '2026-11-07T08:44:48+00:00'
+save_revision: 37
 content_manifest_hash: 59b69015c8c813194e83a7c4b4d2b862af8f4074c2c616aa5325399df6f66460
 save_format_origin: 'System_Templates.md [TEMPLATE_SAVE] (SAVE_DATA: MachaDun v2.0)'
 transaction:
-  last_transaction_id: tx-22adb297af7f4edfa639bff8222d45e7
-  last_committed_turn: 26
-  previous_revision_hash: 19cf1b0d133009c7d1cddd4211aef28419609e474f89e8f6f7eced3000479bc7
-  last_candidate_hash: db0488999ad0f9bf29daaee8740f9cdd343b89eb126005eae5788991f17d8e42
+  last_transaction_id: tx-42b9391ad4e24a01ae35086bc7ebbce9
+  last_committed_turn: 27
+  previous_revision_hash: ad8011d43f6161ff859af63ed04589877ef90b13bfa294720f96aaadd140aed0
+  last_candidate_hash: d3e349a1e3e9416d53597617cb46df9ebc572c15b722d6b82d2edf9d23619482
   applied_transaction_ids:
   - tx-413eae86780d496981a94b1d08250181
   - tx-5d7fe8c49f1242dca4bcebf850e979c1
@@ -49,6 +49,7 @@ transaction:
   - tx-f9ea9a071a3747ac93ea45f505bff08f
   - tx-4e8fe97ee58a43809a1d689297afee59
   - tx-22adb297af7f4edfa639bff8222d45e7
+  - tx-42b9391ad4e24a01ae35086bc7ebbce9
 hearing_progress:
   status: complete
   current_step: 7
@@ -79,15 +80,15 @@ active_script:
 runtime_state:
   ero_scene: false
   style_conditions: []
-  active_scene: turn
-  scene_id: turn
-  context_pack_hash: 2b844e574f6e4d0c244ea84eb222e7ab2e5f2d8b633a54d7783393bc2e984b45
-  last_validation_at: '2026-11-07T05:37:10+00:00'
+  active_scene: event
+  scene_id: event
+  context_pack_hash: a5d1d3e6943007f353ab31ced081e64cc9655cf8a38ea3ef2b2be3addee6688f
+  last_validation_at: '2026-11-07T08:44:48+00:00'
   last_error: ''
 dice_state:
   tape_revision: machadan-tape-r1
   dice_cursor_d6: 0
-  dice_cursor_d10: 27
+  dice_cursor_d10: 29
 fire_state:
   holders:
   - player
@@ -186,10 +187,10 @@ world_state:
     resolutions: []
   reward_state_version: 2
   day: 1
-  location: ぬれねずみ亭
-  place_id: INN_DRENCHED_RAT
-  room_id: INN_DRENCHED_RAT_TAPROOM
-  sub_location: 1F酒場の広間
+  location: 銀の天秤亭
+  place_id: GUILD_SILVER_SCALES
+  room_id: GUILD_SILVER_SCALES_RECEPTION
+  sub_location: ミルカの受付カウンター
   depth: null
   time_of_day: 昼
   weather: 薄い霧
@@ -557,6 +558,7 @@ session_log:
   - Day1昼前 ミアの店。〇〇がセレナには内緒で偽の権利書を作るため紙とペンを求める。ミアは権利書は役所の透かしと封蝋入りで紙とペンでは作れないと説明し、偽造の片棒は担がないと断る
   - Day1昼 ミアの店を出てぬれねずみ亭へ向かう途中、宿通りへ折れる角で、荷車から落ちたらしい小さな革袋を見つける。移動イベント d10=1、種別 d10=6
   - Day1昼 落とし物の革袋は拾わずに通り過ぎ、ぬれねずみ亭へ戻る。酒場でリリスが帳簿をつけている。環境 d10=5（なし）
+  - Day1昼 ぬれねずみ亭から銀の天秤亭へ。移動 d10=5（なし）、環境 d10=3（掲示板前で女冒険者が男をからかう）。受付のミルカに迎えられる
 memory_log:
   encounters: []
   battles: []
