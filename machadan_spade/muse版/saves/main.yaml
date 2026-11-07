@@ -3,15 +3,15 @@ schema_version: 3
 game_version: 4.13.4
 campaign_id: main
 created_at: '2026-11-07T02:20:22+00:00'
-updated_at: '2026-11-07T15:11:49+00:00'
-save_revision: 44
+updated_at: '2026-11-07T15:14:38+00:00'
+save_revision: 45
 content_manifest_hash: 59b69015c8c813194e83a7c4b4d2b862af8f4074c2c616aa5325399df6f66460
 save_format_origin: 'System_Templates.md [TEMPLATE_SAVE] (SAVE_DATA: MachaDun v2.0)'
 transaction:
-  last_transaction_id: tx-994aac7ed7d64544a9222a592c1444ff
-  last_committed_turn: 33
-  previous_revision_hash: a0a8769b905d44aaed650e2c842a82af25b3aa9b84a0261c8d9a03444cf79b62
-  last_candidate_hash: 16f7c87fdd922012711f3d626da2564e7401abc60a903b8a89a18a8ea56729d3
+  last_transaction_id: tx-e1bbebca8e8f4cf3baad34190f00d65d
+  last_committed_turn: 34
+  previous_revision_hash: aa6cf6d052eb956b558f87e53ffc6be02fb5f830c4d00236f2e3db21ecbbfbef
+  last_candidate_hash: 8f387b9e1757ea0ab2aae8bfd1d752b1e33e57a9d1db0ac93a0cc182f6e0986d
   applied_transaction_ids:
   - tx-413eae86780d496981a94b1d08250181
   - tx-5d7fe8c49f1242dca4bcebf850e979c1
@@ -57,6 +57,7 @@ transaction:
   - tx-3078e1a6a2ef4e7dbd30acc613b0c6b4
   - tx-9de8c75e23704e638a89c2e37a2ed4cf
   - tx-994aac7ed7d64544a9222a592c1444ff
+  - tx-e1bbebca8e8f4cf3baad34190f00d65d
 hearing_progress:
   status: complete
   current_step: 7
@@ -89,8 +90,8 @@ runtime_state:
   style_conditions: []
   active_scene: turn
   scene_id: turn
-  context_pack_hash: 77ac2adb128421cc4bac0588a5e67444222c1f03266cd09be90a345d55868653
-  last_validation_at: '2026-11-07T15:11:49+00:00'
+  context_pack_hash: 635d25dabb0a38f77d847cbd21345d4fddf4b0be3cde2a5d905d253174bf2d2b
+  last_validation_at: '2026-11-07T15:14:38+00:00'
   last_error: ''
 dice_state:
   tape_revision: machadan-tape-r1
@@ -217,6 +218,10 @@ world_state:
       fact: ミルカは〇〇がセレナを守るためにガルドの件を探っていると受け取った。『盗る』発言は聞き間違いとして流した
       source: Day1昼
       status: 確定した事実
+    ミルカの相談の条件:
+      fact: ミルカはガルドの件の相談に乗る条件として、全部終わったら一部始終を細かいところまで自分に話すことを求めた
+      source: Day1昼 相談区画
+      status: ミルカの提示。〇〇はまだ返事をしていない
   appearance_customization:
     version: 1
     overrides: {}
@@ -225,8 +230,8 @@ world_state:
   day: 1
   location: 銀の天秤亭
   place_id: GUILD_SILVER_SCALES
-  room_id: GUILD_SILVER_SCALES_WRITING
-  sub_location: 記入卓と待合（籠の前）
+  room_id: GUILD_SILVER_SCALES_CONSULT
+  sub_location: 相談・転職手続きの区画（ミルカと二人）
   depth: null
   time_of_day: 昼
   weather: 薄い霧
@@ -601,6 +606,7 @@ session_log:
   - Day1昼 銀の天秤亭。〇〇がミルカの目の泳ぎを指摘し、記入卓の籠を調べる。ミルカは否定しつつ止めない。INT判定 9+3+4=16 vs 標準19で失敗：手間取り茶殻が染みたが、ガルドの書き損じを見つける。『セレナ・』の署名を何度も練習した跡と、『……月末の締めの前に　権利書は……が持ち出す』『……日の夜　銀蛇亭の裏へ』の走り書き。日付と持ち出す者の名は茶に溶けて読めない。紙は〇〇が手に持っている（まだ所持品にしていない）
   - Day1昼 銀の天秤亭の記入卓。〇〇が権利書の偽造かとミルカに罪の重さを尋ねる。ミルカは受付から出てきて、権利書は本物で、これはセレナの署名をまねて担保の証文を作る練習だと正す。罰の重さと、書き損じだけでは捕まえられず、署名済みの証文か持ち出しの現場を押さえる必要があると説明。届け出は東の衛兵通りの詰め所。紙は拾った者のもの、自分は何も見ていないと言う
   - Day1昼 銀の天秤亭の記入卓。〇〇が『盗るしかないか、セレナを守るためにも』と漏らす。ミルカは一度冷え、聞き間違いにしておくと流したうえで、先に盗れば牢に入るのは〇〇だと忠告。持ち主のセレナが自分の手で預けるなら盗みではなく預かり（役所や信用できる人に預ける人もいる）と案内し、持ち出しの現場を押さえる道と走り書きの『銀蛇亭の裏へ』にも触れて、言い過ぎたと赤くなる。広間にはほかに壁炉の前で居眠りする年配の冒険者だけ
+  - Day1昼 銀の天秤亭。〇〇が『意外と乗り気だね』とからかい、もう少し相談に乗ってほしいと頼む。ミルカは否定しつつ受付に席外しの札を立て、〇〇を北西の相談区画へ案内して二人きりに。分かっていること三つと分からないこと（日付・持ち出す者）を手帳で整理し、手を二つ考えたと言う。条件として、全部終わったら一部始終を細かく自分に話すことを求める（返事はまだ）
 memory_log:
   encounters: []
   battles: []
