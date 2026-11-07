@@ -3,15 +3,15 @@ schema_version: 3
 game_version: 4.13.4
 campaign_id: main2
 created_at: '2026-11-07T05:39:36+00:00'
-updated_at: '2026-11-07T07:42:07+00:00'
-save_revision: 41
+updated_at: '2026-11-07T07:44:41+00:00'
+save_revision: 42
 content_manifest_hash: 59b69015c8c813194e83a7c4b4d2b862af8f4074c2c616aa5325399df6f66460
 save_format_origin: 'System_Templates.md [TEMPLATE_SAVE] (SAVE_DATA: MachaDun v2.0)'
 transaction:
-  last_transaction_id: tx-05698ae2892f407f8ee75c60266683d1
-  last_committed_turn: 27
-  previous_revision_hash: 80b32cf565a44962219b714d730086cdbfe49578c4db0fe15d708da071fad2b7
-  last_candidate_hash: 4cec1a9b9d4c08f3a4d649b962ea06bb1d8501bdd004f26ae58ba6265075a409
+  last_transaction_id: tx-3aaf1d89a70a40938fa7678bae4c0f91
+  last_committed_turn: 28
+  previous_revision_hash: 9fe6ba9f6d34520b8f35b07233675188d091c3edbe009c1e081fb5ed556609a2
+  last_candidate_hash: f70292e3fa3df5f7facc23ca45f472a85de519b0f90302d80721ab3e633edc2f
   applied_transaction_ids:
   - tx-0345298f5a774b8ca7e3c0934d815725
   - tx-7f4c45d45dea4266ba65a98f8f4718e6
@@ -54,6 +54,7 @@ transaction:
   - tx-535abb7bc9324261b6823227b61ae528
   - tx-1ea2cdec0cb548749cc5aa643d1b8703
   - tx-05698ae2892f407f8ee75c60266683d1
+  - tx-3aaf1d89a70a40938fa7678bae4c0f91
 hearing_progress:
   status: complete
   current_step: 7
@@ -86,8 +87,8 @@ runtime_state:
   style_conditions: []
   active_scene: turn
   scene_id: turn
-  context_pack_hash: 3fb4b5cf4adf7aa760a85835d33470e81727ec86538f353d425fb28a1ee230f2
-  last_validation_at: '2026-11-07T07:42:07+00:00'
+  context_pack_hash: 97f2aaaf82762c1c9a61b9f9ff144a70c50dc9ee19f8782c7c1d0856a0473604
+  last_validation_at: '2026-11-07T07:44:41+00:00'
   last_error: ''
 dice_state:
   tape_revision: machadan-tape-r1
@@ -292,6 +293,9 @@ world_state:
     白百合香房_人を雇わない理由:
       fact: 売り子一人の給金は街の相場でひと月およそ1,000G。配合は父の代からの秘伝で、調香室に入れるのはよほど信頼できる者だけ。以前、手伝いの者に配合を写して他所へ持ち出されたことがある
       status: セレナ本人の話（Day1夜）
+    白百合香房_裏口:
+      fact: Day1夜、セレナが裏口の閂を外し、戸の脇に灯りを残してくれた。〇〇は戻る時に裏口から入れる（今夜限りの好意）
+      status: 確定
   appearance_customization:
     version: 1
     overrides: {}
@@ -856,6 +860,9 @@ session_log:
   - day: 1
     time_of_day: 夜
     summary: 夜になってから喧嘩の計画を実行すると決め、ベルも了承（殴られ役は主人公）。セレナの台所で夕食（塩漬け豚の焼いたもの・黒パン・豆の煮込み・白鈴花入りの蜂蜜酒）。ベルには骨付きの切れ端。セレナは父がいなくなってから久しぶりの二人の夕食だと感じ、どこから来たのか尋ねた。
+  - day: 1
+    time_of_day: 夜
+    summary: 『この世界とは別のところから来た』と答えた。セレナはそれ以上詮索しなかった。夕食後に出かけると告げると、行き先も聞かずに裏口の閂を外し、灯りを残すと言ってくれた。ベルと夜の街へ出る支度をした。
 memory_log:
   encounters: []
   battles: []
