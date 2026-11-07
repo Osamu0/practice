@@ -3,15 +3,15 @@ schema_version: 3
 game_version: 4.13.4
 campaign_id: main2
 created_at: '2026-11-07T05:39:36+00:00'
-updated_at: '2026-11-07T07:57:24+00:00'
-save_revision: 47
+updated_at: '2026-11-07T08:00:09+00:00'
+save_revision: 48
 content_manifest_hash: 59b69015c8c813194e83a7c4b4d2b862af8f4074c2c616aa5325399df6f66460
 save_format_origin: 'System_Templates.md [TEMPLATE_SAVE] (SAVE_DATA: MachaDun v2.0)'
 transaction:
-  last_transaction_id: tx-30c53d41fc5d427196b3f03646d5b967
-  last_committed_turn: 33
-  previous_revision_hash: 71ab74f6efc4fc9545f7def6a87c5319d84d3a64980f88d114aa4c7ee1849541
-  last_candidate_hash: ea20641ab4c48ff39b736e515281e26dec269402d0736402dc77dd4919e97323
+  last_transaction_id: tx-2b0b31ce8b86403986f11b9ee26f6814
+  last_committed_turn: 34
+  previous_revision_hash: e42cded26f760497cce33cb478338192f67313acb0b798669317f4f467a0fce2
+  last_candidate_hash: ae3431605374027275b769319f2ac03c8028697fc4bae1b04f063318d4097be2
   applied_transaction_ids:
   - tx-0345298f5a774b8ca7e3c0934d815725
   - tx-7f4c45d45dea4266ba65a98f8f4718e6
@@ -60,6 +60,7 @@ transaction:
   - tx-7f4134010e5a4bd2a00f506f02254ec0
   - tx-c6aa87372e9446b49fcf272391eb62bd
   - tx-30c53d41fc5d427196b3f03646d5b967
+  - tx-2b0b31ce8b86403986f11b9ee26f6814
 hearing_progress:
   status: complete
   current_step: 7
@@ -90,15 +91,15 @@ active_script:
 runtime_state:
   ero_scene: false
   style_conditions: []
-  active_scene: quest
-  scene_id: quest
-  context_pack_hash: 84afea9f65c60674926085fe5d194d057176217f5ed3fb97fe7eb29f037ee6c0
-  last_validation_at: '2026-11-07T07:57:24+00:00'
+  active_scene: combat
+  scene_id: combat
+  context_pack_hash: cdaf4df62c96142a1bd59744ef94aa4dfbd6c9aac452ec328079be80c3df3d82
+  last_validation_at: '2026-11-07T08:00:09+00:00'
   last_error: ''
 dice_state:
   tape_revision: machadan-tape-r1
-  dice_cursor_d6: 0
-  dice_cursor_d10: 80
+  dice_cursor_d6: 1
+  dice_cursor_d10: 92
 fire_state:
   holders:
   - player
@@ -469,14 +470,79 @@ world_state:
         - なし
       renegotiable: true
     progress:
-      stage: accepted
+      stage: combat
       flags:
       - 小箱を受け取った
+      - 溝鼠と戦闘中
       checks_used: 0
       event_roll:
         die: d10
         result: 2
         cursor: 79
+      combat:
+        round: 2
+        legal: 溝鼠が先に攻撃（正当防衛）
+        difficulty: 標準（味方2：主人公＋ベル。実働の敵2、見張り1は非実働）
+        enemies:
+        - id: GIES
+          name: 片耳のギース
+          stats:
+            str: 14
+            def: 6
+            int: 4
+            spd: 7
+            tec: 8
+            chm: 3
+          lp:
+            cur: 30
+            max: 30
+          weapon: 樫の棍棒
+          basis: 1Fの人間型（標準）を基準
+        - id: THUG_A
+          name: 細身の手下A
+          stats:
+            str: 11
+            def: 5
+            int: 4
+            spd: 8
+            tec: 8
+            chm: 3
+          lp:
+            cur: 16
+            max: 16
+          weapon: ナイフ
+          basis: 1F弱敵相当
+        - id: THUG_B
+          name: 細身の手下B（見張り・非実働）
+          stats:
+            str: 11
+            def: 5
+            int: 4
+            spd: 8
+            tec: 8
+            chm: 3
+          lp:
+            cur: 16
+            max: 16
+          active: false
+        allies:
+          bell:
+            lp: 21
+          familiars:
+          - id: FAM1
+            type: 攻撃型
+            stats:
+              str: 5
+              def: 3
+              spd: 2
+              tec: 5
+            lp:
+              cur: 5
+              max: 5
+            acts_from_round: 2
+        skill_uses:
+          使い魔召喚: 1
+          号令: 2
     amendments: []
     immutable_hash: 930c4ba868bd96eb9854e3f6bdaa3c06d299208d2f37401c9d09a262d102552f
   event_reward_contract: null
@@ -808,7 +874,7 @@ player:
   fire_lp_bonus: 12
   temporary_lp_bonus: 0
   lp:
-    cur: 33
+    cur: 26
     max: 33
   mp:
     cur: 9
@@ -1095,6 +1161,14 @@ session_log:
       die: d10
       result: 2
       cursor: 79
+  - day: 1
+    time_of_day: 夜
+    summary: ギースを挑発し、溝鼠が先に攻撃（正当防衛）。手下Aのナイフは外れ、ギースの棍棒が左の二の腕に命中（LP33→26）。使い魔（攻撃型）を1体召喚。ベルの噛みつきは外れ。手下Bは見張りで控えている。
+    combat_dice:
+      d10_from: 80
+      d10_to: 92
+      d6_from: 0
+      d6_to: 1
 memory_log:
   encounters: []
   battles: []
