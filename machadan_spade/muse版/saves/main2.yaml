@@ -3,15 +3,15 @@ schema_version: 3
 game_version: 4.13.4
 campaign_id: main2
 created_at: '2026-11-07T05:39:36+00:00'
-updated_at: '2026-11-07T07:32:26+00:00'
-save_revision: 38
+updated_at: '2026-11-07T07:33:37+00:00'
+save_revision: 39
 content_manifest_hash: 59b69015c8c813194e83a7c4b4d2b862af8f4074c2c616aa5325399df6f66460
 save_format_origin: 'System_Templates.md [TEMPLATE_SAVE] (SAVE_DATA: MachaDun v2.0)'
 transaction:
-  last_transaction_id: tx-c77a782c6d6e4ccd9032c1787bba0171
-  last_committed_turn: 24
-  previous_revision_hash: d1bb5dcf05f735c6350bfa6cce0717ed31881073e6728885a368e26e1ab70129
-  last_candidate_hash: cfc548f1e8cce4b1354969773f2882da5fdfd8c695a08bcbff23c83784b3e01e
+  last_transaction_id: tx-535abb7bc9324261b6823227b61ae528
+  last_committed_turn: 25
+  previous_revision_hash: 36d82b53c2ba3d2d251b6e8cbca25f430771718252bf50262b06f75c3356546d
+  last_candidate_hash: 8ae3abe9393c5cf9e36aba64263ebdbbf0ffbc5c4bca0176656d18f8ca78037c
   applied_transaction_ids:
   - tx-0345298f5a774b8ca7e3c0934d815725
   - tx-7f4c45d45dea4266ba65a98f8f4718e6
@@ -51,6 +51,7 @@ transaction:
   - tx-603df788dadf470f86d19214bba3c694
   - tx-451f116a70824c709d50ea561c5c24d3
   - tx-c77a782c6d6e4ccd9032c1787bba0171
+  - tx-535abb7bc9324261b6823227b61ae528
 hearing_progress:
   status: complete
   current_step: 7
@@ -83,8 +84,8 @@ runtime_state:
   style_conditions: []
   active_scene: turn
   scene_id: turn
-  context_pack_hash: 71d92700ddea13da542e89afbb1dc503b7bce7277a79f4a03480a964883840c8
-  last_validation_at: '2026-11-07T07:32:26+00:00'
+  context_pack_hash: cd57af70f0fff34042a0f6be828dce14b720591acf45deffc0c6259dd2392e6a
+  last_validation_at: '2026-11-07T07:33:37+00:00'
   last_error: ''
 dice_state:
   tape_revision: machadan-tape-r1
@@ -842,6 +843,9 @@ session_log:
   - day: 1
     time_of_day: 夜
     summary: セレナの申し出を受け、二階の父の部屋に泊めてもらうことにした。調香室を通って二階へ案内された（父以外では初めて通された、とセレナの内心）。塩漬けの豚を焼いて夕食を出すという。セレナの部屋は向かい。
+  - day: 1
+    time_of_day: 夜
+    summary: 父の部屋でベルと作戦会議。手持ち50G・Day5の取立て500G、セレナからの1,000Gは月末、仮病と宿の嘘がばれる危険、稼ぎ口（材料集め・ギルド依頼）と前衛の仲間の必要を整理した。
 memory_log:
   encounters: []
   battles: []
