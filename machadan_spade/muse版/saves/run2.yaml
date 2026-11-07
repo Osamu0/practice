@@ -3,15 +3,15 @@ schema_version: 3
 game_version: 4.13.4
 campaign_id: run2
 created_at: '2026-11-07T09:22:51+00:00'
-updated_at: '2026-11-07T14:47:45+00:00'
-save_revision: 73
+updated_at: '2026-11-07T14:51:29+00:00'
+save_revision: 74
 content_manifest_hash: 59b69015c8c813194e83a7c4b4d2b862af8f4074c2c616aa5325399df6f66460
 save_format_origin: 'System_Templates.md [TEMPLATE_SAVE] (SAVE_DATA: MachaDun v2.0)'
 transaction:
-  last_transaction_id: tx-57b91d52a36b4e49950974729b66720b
-  last_committed_turn: 64
-  previous_revision_hash: 1b0bd403c045a75437bb6b7c89e2efe2f51320a8287c889c9213ae63a90b2b61
-  last_candidate_hash: eb857e3bcc8190b35bb7f0c81efb842c9e9ac0fd9c0d6220501649cc3d607e9b
+  last_transaction_id: tx-faa473ce378d4a23b78c3b76fba68e50
+  last_committed_turn: 65
+  previous_revision_hash: 9b5a62d230d8e5fc304c21778faf9df1a56515144344031e70a19b96f05f0115
+  last_candidate_hash: bde3d3cd3255d22f1665d3223935197cb5de1f561b60143274d49805ab760c6e
   applied_transaction_ids:
   - tx-3205c8b3a3f04e16a35b2f1739e25e5a
   - tx-6a86abc0b7cc4f0aa672870ded718bc7
@@ -86,6 +86,7 @@ transaction:
   - tx-e4957fa676db400d92f357313886c64b
   - tx-dade531b38464182b8ce87c3e3122e27
   - tx-57b91d52a36b4e49950974729b66720b
+  - tx-faa473ce378d4a23b78c3b76fba68e50
 hearing_progress:
   status: complete
   current_step: 7
@@ -118,8 +119,8 @@ runtime_state:
   style_conditions: []
   active_scene: turn
   scene_id: turn
-  context_pack_hash: e4a599c335a62b551d497c273637f4353fb739ff36146aebeed2b3b1a3ea0b60
-  last_validation_at: '2026-11-07T14:47:45+00:00'
+  context_pack_hash: 612e5e9d0d4bfc260f9fe6b5f6dea4df2db611afc7cfcec4587de72cbcdae1db
+  last_validation_at: '2026-11-07T14:51:29+00:00'
   last_error: ''
 dice_state:
   tape_revision: machadan-tape-r1
@@ -229,6 +230,7 @@ world_state:
       role: 他商会の跡取り
       notes: ヴィオレッタにしきりに縁組の使いをよこす。狙いはヴィオレッタの商隊と倉（執事談）。Day3の夜会にも来て、連れのいないヴィオレッタの隣に真っ先に来るはず
       status: 未対面
+    夜会の心得: クラリス談：片手を胸に当てて軽く一礼。ヴィオレッタの左で腕を貸し、話を振られた時だけ短く答える。踊りの申し込みはヴィオレッタが扇を下げたら断りの合図で、先に『今夜のお相手は私が』と言う。葡萄酒は二杯まで（ドルトン商会の若旦那がわざと勧めてくる）。輪舞は周りに合わせる、円舞は二人で組む
   appearance_customization:
     version: 1
     overrides: {}
@@ -721,6 +723,7 @@ session_log:
   - Day2昼過ぎ ヴィオレッタ邸の衣装部屋。〇〇がドレスを気品があると褒め、帳簿は分からないと苦笑。CHM 8+2d10(3,4)=15 vs 標準19で失敗。ヴィオレッタは褒め言葉はありふれていると受け取るが、帳簿を狙わない男だとは認める。ドレスの丈はこのままで明日夕方までに届けるようクラリスに指示し、夜会は早めに切り上げる、踊りを断るのに飽きたと漏らす
   - Day2昼過ぎ ヴィオレッタ邸の衣装部屋。〇〇が裏地を見せながら、踊りの申し込みの火の粉を払うと申し出る。CHM 8+2+2d10(4,6)=20 vs 標準19で成功。ヴィオレッタは葡萄色の裏地をクラリスの仕業と見抜いて笑い、ドルトン商会の若旦那も来ると告げたうえで、〇〇を夜会の同伴に『お試し』で起用。〇〇の夜会服（黒・裏は葡萄色）をクラリスに注文
   - Day2夕 〇〇が同伴を引き受け、途中で帰されないよう頑張ると答える。ヴィオレッタは期待しないで待つと返す。セバスチャンが門まで見送り、明日夜の鐘の前に待つと告げる。角を曲がったところでクラリスが大喜びし、今夜は夜会服を徹夜で縫う、寸法をもう一度測らせてと言う
+  - Day2夕 西大通り。〇〇が裏地は裏目に出たと言うが、クラリスは大当たりだと否定。夜会のマナー（一礼、左で腕を貸す、扇の合図で踊りを断る、葡萄酒は二杯まで、輪舞と円舞）を教え、今夜円舞の練習相手を申し出る
 memory_log:
   encounters: []
   battles: []
