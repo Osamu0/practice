@@ -3,15 +3,15 @@ schema_version: 3
 game_version: 4.13.4
 campaign_id: run2
 created_at: '2026-11-07T09:22:51+00:00'
-updated_at: '2026-11-07T12:44:21+00:00'
-save_revision: 49
+updated_at: '2026-11-07T12:51:14+00:00'
+save_revision: 50
 content_manifest_hash: 59b69015c8c813194e83a7c4b4d2b862af8f4074c2c616aa5325399df6f66460
 save_format_origin: 'System_Templates.md [TEMPLATE_SAVE] (SAVE_DATA: MachaDun v2.0)'
 transaction:
-  last_transaction_id: tx-13ebd486968c4d4091b034da52135611
-  last_committed_turn: 40
-  previous_revision_hash: 29478c50d540d528e75ccac53dcfdd431d2575f900354a44af32d78ea98177b7
-  last_candidate_hash: 68ba68346935fde5c067b5ab3fd6dab41a468b0cb8309037104b1ff99c5a85b0
+  last_transaction_id: tx-bc09d7a28a404c818d9c21b834e81269
+  last_committed_turn: 41
+  previous_revision_hash: 85b1f5fea670ad091f6058ed1e5eb5e4413556b761098ede8b2986058db9e1c3
+  last_candidate_hash: cb5d4fa52f592f26484342426a1a5ec9cf4ebe9227217c303914d04889e9e927
   applied_transaction_ids:
   - tx-3205c8b3a3f04e16a35b2f1739e25e5a
   - tx-6a86abc0b7cc4f0aa672870ded718bc7
@@ -62,6 +62,7 @@ transaction:
   - tx-723a31e9684345418b05779c9858a080
   - tx-ee59ff4ed9d240e183c56a87c1d3a124
   - tx-13ebd486968c4d4091b034da52135611
+  - tx-bc09d7a28a404c818d9c21b834e81269
 hearing_progress:
   status: complete
   current_step: 7
@@ -94,8 +95,8 @@ runtime_state:
   style_conditions: []
   active_scene: turn
   scene_id: turn
-  context_pack_hash: 47345bc2bbf60410fd3b605d3701b492d9d3f288adba03148afc50b73a8d36a4
-  last_validation_at: '2026-11-07T12:44:21+00:00'
+  context_pack_hash: 9b4a7a01c2c22880de45bac9b195b7359c9aec6c0942afab2cb22538be46e68c
+  last_validation_at: '2026-11-07T12:51:14+00:00'
   last_error: ''
 dice_state:
   tape_revision: machadan-tape-r1
@@ -153,7 +154,7 @@ world_state:
       status: 屋台車を押してもらい礼に蜂蜜焼きを渡した。また買いに来ればひとつオマケの約束
     白糸の間_構造:
       place_id: NOIR_CITY_WEST
-      summary: 西大通り、宿通りへ折れる角から二軒目。上半分が硝子の扉に鈴。1F表：窓辺にトルソー3体、壁一面の反物棚。奥に大きな作業台。紺の厚いカーテンで仕切った試着の間。2Fはクラリスの住まい（未訪問）
+      summary: 西大通り、宿通りへ折れる角から二軒目。上半分が硝子の扉に鈴。1F表：窓辺にトルソー3体、壁一面の反物棚。奥に大きな作業台。紺の厚いカーテンで仕切った試着の間。反物棚の陰に2階への細い木の階段。2F：斜め天井の屋根裏風の寝室。白い寝台ひとつ、生成りのカーテンの小窓、衣桁、針箱の小机、窓辺に野の花の花瓶
       owner: クラリス
     注文_白糸の間_冒険者の服:
       item: 冒険者の服（仕立て・〇〇の寸法、股まわりにゆとり）
@@ -178,7 +179,7 @@ world_state:
   location: 白糸の間
   place_id: NOIR_CITY_WEST
   room_id: ''
-  sub_location: 仕立て工房『白糸の間』店内
+  sub_location: 仕立て工房『白糸の間』2階・クラリスの寝室
   depth: null
   time_of_day: 昼
   weather: 晴れ
@@ -607,6 +608,7 @@ session_log:
   - Day1昼 白糸の間（エロシーン中）。〇〇が激しくピストン。クラリスはイきっぱなしで潮を吹き続け、呂律が回らず好きと繰り返し、キスをせがむ。ブラの肩紐が落ちる。中に全部出してと懇願（〇〇はまだ射精していない）
   - Day1昼 白糸の間（エロシーン中）。〇〇がクラリスの一番奥に中出し（二波）。クラリスは注がれながらまた潮を吹いて絶頂し、好きと繰り返してしがみつく。溢れた精液が床に垂れる。奥の結界は閉じたまま（話題に出ていない）
   - Day1昼 白糸の間（エロシーン中）。〇〇が引き抜き、クラリスのワレメから精液が溢れる。〇〇の命でクラリスがお掃除フェラ。舐め取るうちに再び硬くなり、二階の寝台へ行こうと誘う
+  - Day1昼過ぎ 白糸の間（エロシーン中）。〇〇が二階で種付けすると告げる。クラリスが手を引いて階段を上がり2階の寝室へ。全裸になって寝台に仰向けになり、脚を開いて種でいっぱいにしてとねだる
 memory_log:
   encounters: []
   battles: []
