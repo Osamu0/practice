@@ -3,15 +3,15 @@ schema_version: 3
 game_version: 4.13.4
 campaign_id: run2
 created_at: '2026-11-07T09:22:51+00:00'
-updated_at: '2026-11-07T13:55:19+00:00'
-save_revision: 62
+updated_at: '2026-11-07T13:57:49+00:00'
+save_revision: 63
 content_manifest_hash: 59b69015c8c813194e83a7c4b4d2b862af8f4074c2c616aa5325399df6f66460
 save_format_origin: 'System_Templates.md [TEMPLATE_SAVE] (SAVE_DATA: MachaDun v2.0)'
 transaction:
-  last_transaction_id: tx-f7508b9de2c243f8809acb0928c4a66a
-  last_committed_turn: 53
-  previous_revision_hash: f9da2127411786acd7718f6af184793bb3bde45a53933a5e116b534dec4b3132
-  last_candidate_hash: dff63d48e553bf4a11a222b76c6599f4efe00f5afa9eab9594e942302a738942
+  last_transaction_id: tx-e3833ad090ad4e8a8d8d886fca6e8807
+  last_committed_turn: 54
+  previous_revision_hash: fb1699090fe94dfad685e006620c49cef00b9d578fd1bc7d36fda5396cdb3fe9
+  last_candidate_hash: 6a4ec05737186c8d418fd55d2cf5d6c13be92316655583e15170820f90fcc0bd
   applied_transaction_ids:
   - tx-3205c8b3a3f04e16a35b2f1739e25e5a
   - tx-6a86abc0b7cc4f0aa672870ded718bc7
@@ -75,6 +75,7 @@ transaction:
   - tx-e5ba36aba16d47a281c4ba7022901fd0
   - tx-c4c5fdb718604ea98892ffa1f46cf42b
   - tx-f7508b9de2c243f8809acb0928c4a66a
+  - tx-e3833ad090ad4e8a8d8d886fca6e8807
 hearing_progress:
   status: complete
   current_step: 7
@@ -105,15 +106,15 @@ active_script:
 runtime_state:
   ero_scene: false
   style_conditions: []
-  active_scene: turn
-  scene_id: turn
-  context_pack_hash: 2e81f404ea2653f415e18de45574d277bb06d6e8afc23c9ad28b00a00194300b
-  last_validation_at: '2026-11-07T13:55:19+00:00'
+  active_scene: event
+  scene_id: event
+  context_pack_hash: 373d7df564627b840ba5342dd88e96c7231094bf64ce1a21b8fd76f3c80743ca
+  last_validation_at: '2026-11-07T13:57:49+00:00'
   last_error: ''
 dice_state:
   tape_revision: machadan-tape-r1
   dice_cursor_d6: 0
-  dice_cursor_d10: 24
+  dice_cursor_d10: 26
 fire_state:
   holders:
   - player
@@ -182,7 +183,7 @@ world_state:
       pickup: 白糸の間
       stats: DEF+1／重量1
       extra: 裏地の色を受取時に選べる（追加料金なし）
-      status: 仕立て中（Day1夜に縫い上げ、Day2朝渡し。残金2Gは免除）
+      status: Day1夜に縫い上がり。当て布と仕上げはDay2朝、受取もDay2朝（残金2Gは免除）
     クラリス宅への宿泊:
       summary: Day1昼、〇〇が白糸の間に泊まりたいと頼み、クラリスは今夜もその先も泊まってよいと承諾。2階は寝台ひとつの狭い住まい。宿代は取らない（店の商いではないため）
       status: 承諾済み・まだ宿泊していない
@@ -192,6 +193,7 @@ world_state:
       role: 西大通りの一番奥、蔦の絡む屋敷の未亡人。3年前に亡くした夫の交易商会を継ぎ裕福
       notes: 白糸の間の常連。黒髪を高く結い上げた色白の美人で見た目は若い。夜会ドレスを月1〜2着（1着300〜400G）、値切らず多めに払う。商会は住み込み使用人・荷馬車多数で裕福。採寸のたびに若い男を恋しがるそぶり。金目当ての男には冷たく、露骨に言い寄った冒険者に門前で水を浴びせさせたことがある（クラリス談・未対面）
       status: 未対面（噂のみ）
+      soiree_escort: Day3夜会の同伴を頼んでいた親戚の甥がDay1から熱で寝込み、同伴者が空いている（執事がDay1夕に白糸の間でこぼした話）。ヴィオレッタは機嫌が悪い
     計画_ヴィオレッタの夜会同伴:
       proposed_by: クラリス（〇〇の『紹介料と相手代の二段取り』案を修正）
       plan: 〇〇を夜会の同伴者としてヴィオレッタに紹介。同伴の礼はヴィオレッタから〇〇へ。クラリスは紹介料を取らず、〇〇の夜会服をヴィオレッタの注文として仕立て代金を得る。夜会後のことは二人次第
@@ -214,7 +216,7 @@ world_state:
   room_id: ''
   sub_location: 仕立て工房『白糸の間』2階・クラリスの寝室
   depth: null
-  time_of_day: 夕
+  time_of_day: 夜
   weather: 晴れ
   quest_active: ''
   quest_rank: ''
@@ -654,6 +656,8 @@ session_log:
   - Day1昼過ぎ 白糸の間2階（エロシーン中）。〇〇が『クラリスが紹介料、〇〇が相手代』の二段取りで稼ごうと提案。クラリスはそのままでは信用を失うと指摘し、〇〇を夜会の同伴者として紹介し、自分は〇〇の夜会服をヴィオレッタの注文として仕立てて稼ぐ案を出す
   - Day1昼過ぎ 白糸の間2階（エロシーン中）。〇〇が仕立て代に自分への金を上乗せしろと言う。クラリスはお客様の代金をごまかすことはできないと拒否。代わりに、初回は礼を求めず退屈させず、次を頼まれた時に借金を打ち明けると気前よく出すはずと助言。だめならお仕置きをとねだる
   - Day1夕 白糸の間2階。〇〇が『店のことになると使えない』と言い、準備を始めると告げる（エロシーン終了）。クラリスは身支度を整え、今夜冒険者の服を縫い上げると言う。明日午後にヴィオレッタへ夜会ドレスを届けるので荷物持ちで同行し紹介すると段取り。夜会は明後日夜、商人ギルドの館。夕飯を作ると申し出る
+  - Day1夜 白糸の間2階。〇〇が休んで眠る。夜、クラリスが夕飯（豆と腸詰めの煮込み・黒パン）で起こす。冒険者の服は縫い上がり、仕上げは明朝。ヴィオレッタの執事から、夜会の同伴予定だった甥が熱で寝込んだと聞いたと伝える。休憩 d10=1、種別
+    d10=6（耳寄りな情報）
 memory_log:
   encounters: []
   battles: []
