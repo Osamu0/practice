@@ -3,15 +3,15 @@ schema_version: 3
 game_version: 4.13.4
 campaign_id: main2
 created_at: '2026-11-07T05:39:36+00:00'
-updated_at: '2026-11-07T07:29:17+00:00'
-save_revision: 37
+updated_at: '2026-11-07T07:32:26+00:00'
+save_revision: 38
 content_manifest_hash: 59b69015c8c813194e83a7c4b4d2b862af8f4074c2c616aa5325399df6f66460
 save_format_origin: 'System_Templates.md [TEMPLATE_SAVE] (SAVE_DATA: MachaDun v2.0)'
 transaction:
-  last_transaction_id: tx-451f116a70824c709d50ea561c5c24d3
-  last_committed_turn: 23
-  previous_revision_hash: ba00a649ef833b253135b977fa7122ee7c68973ca410881c47acadd7a0614615
-  last_candidate_hash: 85fc67ed54ed62feccc1d59e6cfc82b3dec0e62d8c08406537dbf316075dd2ab
+  last_transaction_id: tx-c77a782c6d6e4ccd9032c1787bba0171
+  last_committed_turn: 24
+  previous_revision_hash: d1bb5dcf05f735c6350bfa6cce0717ed31881073e6728885a368e26e1ab70129
+  last_candidate_hash: cfc548f1e8cce4b1354969773f2882da5fdfd8c695a08bcbff23c83784b3e01e
   applied_transaction_ids:
   - tx-0345298f5a774b8ca7e3c0934d815725
   - tx-7f4c45d45dea4266ba65a98f8f4718e6
@@ -50,6 +50,7 @@ transaction:
   - tx-e146e525bf39441c8bbf9bddf055fca2
   - tx-603df788dadf470f86d19214bba3c694
   - tx-451f116a70824c709d50ea561c5c24d3
+  - tx-c77a782c6d6e4ccd9032c1787bba0171
 hearing_progress:
   status: complete
   current_step: 7
@@ -82,8 +83,8 @@ runtime_state:
   style_conditions: []
   active_scene: turn
   scene_id: turn
-  context_pack_hash: 22b9862e7a5047aad5bf71a3c81c20f42e8a2df357f6fcecd116074321aa304f
-  last_validation_at: '2026-11-07T07:29:17+00:00'
+  context_pack_hash: 71d92700ddea13da542e89afbb1dc503b7bce7277a79f4a03480a964883840c8
+  last_validation_at: '2026-11-07T07:32:26+00:00'
   last_error: ''
 dice_state:
   tape_revision: machadan-tape-r1
@@ -239,6 +240,11 @@ world_state:
           LORE_SHIRAYURI_KOUBOU_UPSTAIRS: 2Fの住まい（私室）
         customers: 夕方は娼婦・商家の奥方・贈り物を探す冒険者で混む
       rooms_2f: 2Fは廊下を挟んでセレナの私室と、亡き（または不在の）父が使っていた部屋。父の部屋は内側から鍵がかかり、寝台と毛布がある
+      rooms_detail:
+        LORE_SHIRAYURI_KOUBOU_WORKROOM: 調香室。壁一面の硝子瓶の棚、作業台（天秤・漏斗・硝子管）、小さな炉。奥の壁際に鍵の掛かった小さな木箱（配合の書き付けと思われる）。奥に裏口と二階への細い木の階段
+        LORE_SHIRAYURI_KOUBOU_FATHER_ROOM: 二階の左の扉。窓ひとつ、寝台、古い机と椅子、衣装棚。清潔。内側から鍵
+        LORE_SHIRAYURI_KOUBOU_UPSTAIRS: 二階の右の扉がセレナの私室
+        kitchen: 台所は一階（位置は調香室の脇と補完）
     人物_セレナ:
       kind: npc
       name: セレナ
@@ -289,8 +295,8 @@ world_state:
   day: 1
   location: 白百合香房
   place_id: LORE_SHIRAYURI_KOUBOU
-  room_id: LORE_SHIRAYURI_KOUBOU_SHOP
-  sub_location: 売り場
+  room_id: LORE_SHIRAYURI_KOUBOU_FATHER_ROOM
+  sub_location: 二階・父の部屋
   depth: null
   time_of_day: 夜
   weather: 薄い霧
@@ -833,6 +839,9 @@ session_log:
   - day: 1
     time_of_day: 夜
     summary: 宿は決まっていないと答えた（実際にはぬれねずみ亭がある）。セレナは手持ちの金がなく、店の金も締めまで動かせないため、二階の父の部屋（鍵付き）に泊まるよう申し出た。簡単な食事も出すという。
+  - day: 1
+    time_of_day: 夜
+    summary: セレナの申し出を受け、二階の父の部屋に泊めてもらうことにした。調香室を通って二階へ案内された（父以外では初めて通された、とセレナの内心）。塩漬けの豚を焼いて夕食を出すという。セレナの部屋は向かい。
 memory_log:
   encounters: []
   battles: []
