@@ -3,15 +3,15 @@ schema_version: 3
 game_version: 4.13.4
 campaign_id: run2
 created_at: '2026-11-07T09:22:51+00:00'
-updated_at: '2026-11-07T09:59:15+00:00'
-save_revision: 16
+updated_at: '2026-11-07T10:01:38+00:00'
+save_revision: 17
 content_manifest_hash: 59b69015c8c813194e83a7c4b4d2b862af8f4074c2c616aa5325399df6f66460
 save_format_origin: 'System_Templates.md [TEMPLATE_SAVE] (SAVE_DATA: MachaDun v2.0)'
 transaction:
-  last_transaction_id: tx-0b8721ab6b19441ab0f23a20e83eac2f
-  last_committed_turn: 7
-  previous_revision_hash: 10a46e510d3305c4f7a9a060ad75b3555e8bc04c35c52a1bd7682513297392fe
-  last_candidate_hash: 43c89be5caab35a2ba835cc84197c82a6079c118970a62b1dc842cd5105a48d5
+  last_transaction_id: tx-6fed3d86d20444689b73f19b75f964ea
+  last_committed_turn: 8
+  previous_revision_hash: 9bd0928c6bfa37f63eb9af9ed07bf3628d47ba888b37951ec90d1f4871778215
+  last_candidate_hash: 9b6e4e97623ceb166f63cda709c94e72e794c21643242308f8469af81fc1a330
   applied_transaction_ids:
   - tx-3205c8b3a3f04e16a35b2f1739e25e5a
   - tx-6a86abc0b7cc4f0aa672870ded718bc7
@@ -29,6 +29,7 @@ transaction:
   - tx-6d8b3da3b93e4570a3c8a67338735259
   - tx-edae842d26bb4eeaa2aca99796c6a97e
   - tx-0b8721ab6b19441ab0f23a20e83eac2f
+  - tx-6fed3d86d20444689b73f19b75f964ea
 hearing_progress:
   status: complete
   current_step: 7
@@ -59,10 +60,10 @@ active_script:
 runtime_state:
   ero_scene: false
   style_conditions: []
-  active_scene: turn
-  scene_id: turn
-  context_pack_hash: 3ff374b07883ecb5e070cf99ab3c7e106f4ebda409968d68199fd43879cc43a8
-  last_validation_at: '2026-11-07T09:59:15+00:00'
+  active_scene: shop
+  scene_id: shop
+  context_pack_hash: be45576d70141908c67385bce26548de0d326ab6930a82bb620a8f1570fececd
+  last_validation_at: '2026-11-07T10:01:38+00:00'
   last_error: ''
 dice_state:
   tape_revision: machadan-tape-r1
@@ -318,7 +319,7 @@ player:
     expertise_tags: []
     solo_suitability: unclassified
     party_needs: []
-  gold: 50
+  gold: 48
   debt: 10000
   base_stats:
     str: 5
@@ -367,7 +368,7 @@ player:
   fire_lp_bonus: 12
   temporary_lp_bonus: 0
   lp:
-    cur: 32
+    cur: 33
     max: 33
   mp:
     cur: 11
@@ -466,6 +467,7 @@ session_log:
   - Day1朝 西大通り。〇〇がクラリスの見舞金50Gを受け取り、後で『白糸の間』へ顔を出すと告げる
   - Day1朝 〇〇が路地の石壁に腕をぶつけて打ち身を作る（LP33→32）。中央広場を抜けて大聖堂の治療受付へ。移動 d10=8（なし）、環境 d10=10（なし）。エレナが痣に見入りつつ治療を申し出る（1LP=2G、未実施）
   - Day1朝 大聖堂の治療受付。〇〇が何をしている所か尋ね、エレナが治療・礼拝・告解・聖水の泉、冒険者への危ない頼み事を案内する。打ち身は未治療
+  - Day1朝 大聖堂の治療受付。〇〇がエレナの本音を笑って指摘。エレナは傷を見るとどきどきすると打ち明け、腕の打ち身を治療（LP32→33、2G支払い）。治療後のエレナは上気して熱っぽい
 memory_log:
   encounters: []
   battles: []
