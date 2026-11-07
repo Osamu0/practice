@@ -3,15 +3,15 @@ schema_version: 3
 game_version: 4.13.4
 campaign_id: main
 created_at: '2026-11-07T02:20:22+00:00'
-updated_at: '2026-11-07T15:03:26+00:00'
-save_revision: 40
+updated_at: '2026-11-07T15:04:00+00:00'
+save_revision: 41
 content_manifest_hash: 59b69015c8c813194e83a7c4b4d2b862af8f4074c2c616aa5325399df6f66460
 save_format_origin: 'System_Templates.md [TEMPLATE_SAVE] (SAVE_DATA: MachaDun v2.0)'
 transaction:
-  last_transaction_id: tx-233e203ef5f04b6c9e08f50df5f38e41
+  last_transaction_id: tx-9dd9a26b8121498b850d6060ca85f07b
   last_committed_turn: 30
-  previous_revision_hash: ce95f08a1e8effb9bbe489322c97668616fde6fb77a7f51ee268985bfd047c1f
-  last_candidate_hash: 755eb12dcc5f78edfb84430adc9daa1f81e8e751d788e92a67940dfc1c194d97
+  previous_revision_hash: b5f12c50e10760b17e2952baa3eb0d0477aef1a02491bbacb20f756db1242f31
+  last_candidate_hash: 2bfe8605bb336164bda37b7825662e47f72bd9523ac0bc8e559f6b5383222fa1
   applied_transaction_ids:
   - tx-413eae86780d496981a94b1d08250181
   - tx-5d7fe8c49f1242dca4bcebf850e979c1
@@ -53,6 +53,7 @@ transaction:
   - tx-5074df791c754561955e62137d7d283b
   - tx-c4412e93718342d398b4b3bad8ff93c9
   - tx-233e203ef5f04b6c9e08f50df5f38e41
+  - tx-9dd9a26b8121498b850d6060ca85f07b
 hearing_progress:
   status: complete
   current_step: 7
@@ -83,10 +84,10 @@ active_script:
 runtime_state:
   ero_scene: false
   style_conditions: []
-  active_scene: turn
-  scene_id: turn
-  context_pack_hash: 81c49fde5156d0a4be135445a97f61d912c1dd7023181265d4b1e8d2e5a81aea
-  last_validation_at: '2026-11-07T15:03:26+00:00'
+  active_scene: manage
+  scene_id: manage
+  context_pack_hash: 7afc40563f9d9098cc214c0b9c6dedfe28b6b4eee8876aa18c2816b5573c6d89
+  last_validation_at: '2026-11-07T15:04:00+00:00'
   last_error: ''
 dice_state:
   tape_revision: machadan-tape-r1
@@ -197,7 +198,7 @@ world_state:
       source: Day1昼 ミルカの目撃
       status: ミルカの目撃。名前『シラス』が本名かは不明。身元未確認（バルトの手下の可能性）
     記入卓の籠_ガルドの書き損じ:
-      fact: Day1朝、シラスが出ていった後、ガルドが記入卓で何かを書き損じて丸め、記入卓の足元の籠へ捨てた。ミルカは見ていたが口にしていない（ギルドのごみとして言わなかった）。籠はまだ片付けられていない
+      fact: Day1朝、シラスが書き付けをしまった後、三人で席を立つ前に、ガルドが記入卓で何かを書き損じて丸め、記入卓の足元の籠へ捨てた。ミルカは見ていたが口にしていない（ギルドのごみとして言わなかった）。籠はまだ片付けられていない
       place_id: GUILD_SILVER_SCALES
       room_id: GUILD_SILVER_SCALES_WRITING
       status: 確定した事実（〇〇は未把握。ミルカの視線が籠へ流れたのは見えている）
