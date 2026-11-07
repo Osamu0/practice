@@ -3,15 +3,15 @@ schema_version: 3
 game_version: 4.13.4
 campaign_id: run2
 created_at: '2026-11-07T09:22:51+00:00'
-updated_at: '2026-11-07T14:35:49+00:00'
-save_revision: 71
+updated_at: '2026-11-07T14:41:50+00:00'
+save_revision: 72
 content_manifest_hash: 59b69015c8c813194e83a7c4b4d2b862af8f4074c2c616aa5325399df6f66460
 save_format_origin: 'System_Templates.md [TEMPLATE_SAVE] (SAVE_DATA: MachaDun v2.0)'
 transaction:
-  last_transaction_id: tx-e4957fa676db400d92f357313886c64b
-  last_committed_turn: 62
-  previous_revision_hash: d58016952bed8ead6dc4f7bb251fedbc5039cb207d45c69f27a21309df9aebfe
-  last_candidate_hash: f50763ad93b98d127e083cc54d04d9014093686792d1d0fce1e74e749cce721f
+  last_transaction_id: tx-dade531b38464182b8ce87c3e3122e27
+  last_committed_turn: 63
+  previous_revision_hash: 60ce32b7460f6ed5388c817630a296cfc04fae5b19e4468a8ee912bb7b1889fc
+  last_candidate_hash: 8642b19a0a07b3271f6fd50136f2397d9ee04176fcd494580041aec69a47eefd
   applied_transaction_ids:
   - tx-3205c8b3a3f04e16a35b2f1739e25e5a
   - tx-6a86abc0b7cc4f0aa672870ded718bc7
@@ -84,6 +84,7 @@ transaction:
   - tx-6e05da2768554450b09c2abc75817acd
   - tx-85246d81531b400aa40daefa2b819c11
   - tx-e4957fa676db400d92f357313886c64b
+  - tx-dade531b38464182b8ce87c3e3122e27
 hearing_progress:
   status: complete
   current_step: 7
@@ -116,13 +117,13 @@ runtime_state:
   style_conditions: []
   active_scene: turn
   scene_id: turn
-  context_pack_hash: 86f12ec665785dc723515566b1dfd7b7e372395991196f5dce69f5fc4f16550c
-  last_validation_at: '2026-11-07T14:35:49+00:00'
+  context_pack_hash: da8e493d3b6c7c91c63a132b911f472448e309dd4ccd0fa43bdfb53f87b3bcb2
+  last_validation_at: '2026-11-07T14:41:50+00:00'
   last_error: ''
 dice_state:
   tape_revision: machadan-tape-r1
   dice_cursor_d6: 0
-  dice_cursor_d10: 31
+  dice_cursor_d10: 33
 fire_state:
   holders:
   - player
@@ -200,7 +201,7 @@ world_state:
       age: 34
       role: 西大通りの一番奥、蔦の絡む屋敷の未亡人。3年前に亡くした夫の交易商会を継ぎ裕福
       notes: 白糸の間の常連。黒髪を高く結い上げた色白の美人で見た目は若い。夜会ドレスを月1〜2着（1着300〜400G）、値切らず多めに払う。商会は住み込み使用人・荷馬車多数で裕福。採寸のたびに若い男を恋しがるそぶり。金目当ての男には冷たく、露骨に言い寄った冒険者に門前で水を浴びせさせたことがある（クラリス談・未対面）
-      status: Day2昼過ぎに初対面（サロン）
+      status: Day2に初対面。葡萄色の裏地に気づき、クラリスの仕業と見抜いて初めて笑う。〇〇を夜会の同伴に試しに起用
       soiree_escort: Day3夜会の同伴を頼んでいた親戚の甥がDay1から熱で寝込み、同伴者が空いている（執事がDay1夕に白糸の間でこぼした話）。ヴィオレッタは機嫌が悪い
       appearance: 艶やかな黒髪を高く結い上げ、細く長い首、抜けるように白い肌、切れ長の目。豊かな胸と細い腰。深い紫の部屋着に大粒の紫水晶の首飾り
       background: 夫の死の翌月から自ら帳場に座り商会を切り盛り。夜遅くまで帳簿、朝は早い。食が細い。笑い方をまだ思い出せていない（執事談）
@@ -209,7 +210,7 @@ world_state:
       plan: 〇〇を夜会の同伴者としてヴィオレッタに紹介。同伴の礼はヴィオレッタから〇〇へ。クラリスは紹介料を取らず、〇〇の夜会服をヴィオレッタの注文として仕立て代金を得る。夜会後のことは二人次第
       constraints: クラリスは代金の上乗せ・ごまかしを拒否
       advice: 初回の夜会では礼の話をせず退屈させない。帰りの馬車で次を頼まれたら、少し困った顔で借金があると打ち明けると気前よく出してくれるはず（クラリス談）
-      status: 段取り決定：Day2午後、クラリスがヴィオレッタ邸へ夜会ドレスを届ける際に〇〇が荷物持ちで同行し紹介される。同伴の話はクラリスが場の空気を見て持ちかける
+      status: Day2、ヴィオレッタが〇〇をDay3夜会の同伴に『お試し』で起用。夜の鐘の前に屋敷へ。〇〇の夜会服（上は黒・裏は葡萄色）をヴィオレッタの注文としてクラリスがDay3夕方までに仕立てる（代金はヴィオレッタ持ち）。同伴の礼は未定
     行事_商人ギルド春の夜会:
       day: 3
       date: 箱庭暦1年1月3日（水）夜の鐘から
@@ -717,6 +718,7 @@ session_log:
   - Day2昼過ぎ ヴィオレッタ邸サロン。〇〇が面と向かって褒めるのは恥ずかしいと言い、執事の心配事を尋ねる。セバスチャンは奥様の働きすぎと食の細さ、ドルトン商会の若旦那が縁組を迫り商隊と倉を狙っていて夜会にも来るはずだと打ち明ける。ヴィオレッタが続き部屋から『殿方の目で見てほしい』と〇〇を呼ぶ
   - Day2昼過ぎ ヴィオレッタ邸の衣装部屋。〇〇が入ると、夜会用の紫のドレスを着たヴィオレッタが姿見の前に立ち、殿方の目で正直に感想をと求める。執事との会話は聞こえていた様子
   - Day2昼過ぎ ヴィオレッタ邸の衣装部屋。〇〇がドレスを気品があると褒め、帳簿は分からないと苦笑。CHM 8+2d10(3,4)=15 vs 標準19で失敗。ヴィオレッタは褒め言葉はありふれていると受け取るが、帳簿を狙わない男だとは認める。ドレスの丈はこのままで明日夕方までに届けるようクラリスに指示し、夜会は早めに切り上げる、踊りを断るのに飽きたと漏らす
+  - Day2昼過ぎ ヴィオレッタ邸の衣装部屋。〇〇が裏地を見せながら、踊りの申し込みの火の粉を払うと申し出る。CHM 8+2+2d10(4,6)=20 vs 標準19で成功。ヴィオレッタは葡萄色の裏地をクラリスの仕業と見抜いて笑い、ドルトン商会の若旦那も来ると告げたうえで、〇〇を夜会の同伴に『お試し』で起用。〇〇の夜会服（黒・裏は葡萄色）をクラリスに注文
 memory_log:
   encounters: []
   battles: []
