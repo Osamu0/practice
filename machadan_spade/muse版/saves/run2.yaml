@@ -3,15 +3,15 @@ schema_version: 3
 game_version: 4.13.4
 campaign_id: run2
 created_at: '2026-11-07T09:22:51+00:00'
-updated_at: '2026-11-07T11:11:59+00:00'
-save_revision: 47
+updated_at: '2026-11-07T12:05:12+00:00'
+save_revision: 48
 content_manifest_hash: 59b69015c8c813194e83a7c4b4d2b862af8f4074c2c616aa5325399df6f66460
 save_format_origin: 'System_Templates.md [TEMPLATE_SAVE] (SAVE_DATA: MachaDun v2.0)'
 transaction:
-  last_transaction_id: tx-723a31e9684345418b05779c9858a080
-  last_committed_turn: 38
-  previous_revision_hash: 19085102ccbb6d9d525f8d0764a476b1468a14be89ba16f2e9564fced921cd41
-  last_candidate_hash: cac44dc9b11ade25c54f4462a46a701e83967470fa94363ae5a5979d03425b5c
+  last_transaction_id: tx-ee59ff4ed9d240e183c56a87c1d3a124
+  last_committed_turn: 39
+  previous_revision_hash: 43b856f7a6fffa01f4284a5e0f62b80c83e8fbc54789486ef7d4c9360a5043c4
+  last_candidate_hash: 21bd86765fc421d748dcec5ecbc4ce2b0800e77541b22c1a42bd4186bf22e638
   applied_transaction_ids:
   - tx-3205c8b3a3f04e16a35b2f1739e25e5a
   - tx-6a86abc0b7cc4f0aa672870ded718bc7
@@ -60,6 +60,7 @@ transaction:
   - tx-21991ab0e029413ea617da1adedbcc95
   - tx-a3b1b51244264a27bb0fa9f06ba8887a
   - tx-723a31e9684345418b05779c9858a080
+  - tx-ee59ff4ed9d240e183c56a87c1d3a124
 hearing_progress:
   status: complete
   current_step: 7
@@ -92,8 +93,8 @@ runtime_state:
   style_conditions: []
   active_scene: turn
   scene_id: turn
-  context_pack_hash: c2823d120c3f3b11cedd214311f1a332395936bcab91f38824ef60e656d01e03
-  last_validation_at: '2026-11-07T11:11:59+00:00'
+  context_pack_hash: a951cb66153d984374aa81caadefebb0e38429e1fa1dd0b7280ec150ee535b3d
+  last_validation_at: '2026-11-07T12:05:12+00:00'
   last_error: ''
 dice_state:
   tape_revision: machadan-tape-r1
@@ -603,6 +604,7 @@ session_log:
   - Day1昼 白糸の間（エロシーン中）。〇〇がよく言えたと褒め、一気に根元まで挿入。奥に当たり、クラリスは入れられただけで潮を吹いて絶頂。首に腕、腰に脚を絡めてしがみつき、もっと動いてとねだる（〇〇はまだ射精していない）
   - Day1昼 白糸の間（エロシーン中）。〇〇が『雑魚まんこ』と罵り、抜いては一気に刺すを繰り返す。クラリスは自ら『ざこまんこです』と叫び、潮を吹いて3度目の絶頂。中に出してとねだる（〇〇はまだ射精していない）
   - Day1昼 白糸の間（エロシーン中）。〇〇が激しくピストン。クラリスはイきっぱなしで潮を吹き続け、呂律が回らず好きと繰り返し、キスをせがむ。ブラの肩紐が落ちる。中に全部出してと懇願（〇〇はまだ射精していない）
+  - Day1昼 白糸の間（エロシーン中）。〇〇がクラリスの一番奥に中出し（二波）。クラリスは注がれながらまた潮を吹いて絶頂し、好きと繰り返してしがみつく。溢れた精液が床に垂れる。奥の結界は閉じたまま（話題に出ていない）
 memory_log:
   encounters: []
   battles: []
@@ -619,6 +621,10 @@ memory_log:
     partner: クラリス
     place: 白糸の間 店内の床
     summary: 本番。正常位で一気に根元まで挿入、クラリスは挿入だけで2度目の絶頂
+  - day: 1
+    partner: クラリス
+    place: 白糸の間 店内の床
+    summary: 正常位で激しく突いた末に一番奥へ中出し。クラリスは何度も絶頂（イきっぱなし）
   turning_points: []
 design_applied:
 - 'M1: 配布版のキャストは同梱ファイルの登場人物のみ (一部キャラクターは作者版のみの収録)'
