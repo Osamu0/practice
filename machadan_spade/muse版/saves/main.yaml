@@ -3,15 +3,15 @@ schema_version: 3
 game_version: 4.13.4
 campaign_id: main
 created_at: '2026-11-07T02:20:22+00:00'
-updated_at: '2026-11-07T04:20:47+00:00'
-save_revision: 25
+updated_at: '2026-11-07T04:23:00+00:00'
+save_revision: 26
 content_manifest_hash: 59b69015c8c813194e83a7c4b4d2b862af8f4074c2c616aa5325399df6f66460
 save_format_origin: 'System_Templates.md [TEMPLATE_SAVE] (SAVE_DATA: MachaDun v2.0)'
 transaction:
-  last_transaction_id: tx-55c1823b3a71422e842e578f4dd42545
-  last_committed_turn: 15
-  previous_revision_hash: c47cd53d9d02906ac420f9898e355b72ce08ba2c53b8f991b25b9e722f03e782
-  last_candidate_hash: 5955cd5d59c9b9fecded24ec6f40f2a40a07494e47795294a584b2863eacd9b0
+  last_transaction_id: tx-f4964227c6464496a66e297b1a41989c
+  last_committed_turn: 16
+  previous_revision_hash: d0701e5dc10b506d75ce78a2f56d241550cfec02dbe81b59a6d3c81725def807
+  last_candidate_hash: a8746b0c543853e1efe2a856820fb768f539be4d3ba24cd4281e26de789da15e
   applied_transaction_ids:
   - tx-413eae86780d496981a94b1d08250181
   - tx-5d7fe8c49f1242dca4bcebf850e979c1
@@ -38,6 +38,7 @@ transaction:
   - tx-da600b5db8a64749b2ca31016420381a
   - tx-2f196808f4804c4f90abf88443bec60e
   - tx-55c1823b3a71422e842e578f4dd42545
+  - tx-f4964227c6464496a66e297b1a41989c
 hearing_progress:
   status: complete
   current_step: 7
@@ -68,10 +69,10 @@ active_script:
 runtime_state:
   ero_scene: false
   style_conditions: []
-  active_scene: event
-  scene_id: event
-  context_pack_hash: b466c9ea397d79f074dd7daccba0fb243cfb08754a1b0bd7c58429feb9fda71e
-  last_validation_at: '2026-11-07T04:20:47+00:00'
+  active_scene: turn
+  scene_id: turn
+  context_pack_hash: 4a5802fc1a9a4291836cdf4689327b77f0685bf77d6aed17a5b8133b3913d879
+  last_validation_at: '2026-11-07T04:23:00+00:00'
   last_error: ''
 dice_state:
   tape_revision: machadan-tape-r1
@@ -154,10 +155,10 @@ world_state:
   day: 1
   location: 道具屋ミアの店
   place_id: MIA_SHOP
-  room_id: MIA_SHOP_SALES_AISLE
-  sub_location: 売場
+  room_id: MIA_SHOP_COUNTER
+  sub_location: 会計台（店先は『休憩中』の札）
   depth: null
-  time_of_day: 朝
+  time_of_day: 昼前
   weather: 薄い霧
   quest_active: ''
   quest_rank: ''
@@ -512,6 +513,7 @@ session_log:
   - Day1朝 白百合香房。〇〇がガルドとの関係を尋ね、セレナが馴れ初めと婚約の経緯を話す
   - Day1朝 白百合香房。〇〇が『まだ愛しているのか』と問う。セレナは結婚ではなく婚約だと正し、恩と習慣で一緒にいるだけかもしれないと迷いを口にする
   - Day1朝 〇〇がセレナに『少し待っていてくれ』と告げて白百合香房を出て、中央広場のミアの店へ。移動 d10=4（なし）、環境 d10=2（広場で吟遊詩人と踊り子）
+  - Day1昼前 ミアの店。〇〇が奥で話したいと頼む。ミアは私室には入れず、店先に休憩中の札を掛けて会計台で二人きりで聞くことにする
 memory_log:
   encounters: []
   battles: []
