@@ -3,15 +3,15 @@ schema_version: 3
 game_version: 4.13.4
 campaign_id: run2
 created_at: '2026-11-07T09:22:51+00:00'
-updated_at: '2026-11-07T10:53:04+00:00'
-save_revision: 39
+updated_at: '2026-11-07T10:55:29+00:00'
+save_revision: 40
 content_manifest_hash: 59b69015c8c813194e83a7c4b4d2b862af8f4074c2c616aa5325399df6f66460
 save_format_origin: 'System_Templates.md [TEMPLATE_SAVE] (SAVE_DATA: MachaDun v2.0)'
 transaction:
-  last_transaction_id: tx-3f848203c9c441208f16425262b37ac0
-  last_committed_turn: 30
-  previous_revision_hash: c76955593e403bea7b4d2f6bc99c2eb17231779e1b2db269c73737732f3df107
-  last_candidate_hash: 3215aa11f045a99cde00e0062621e2f494e241925eacccb41986453a1435262e
+  last_transaction_id: tx-5d77de911cb24a5aaa52ad92f11ec914
+  last_committed_turn: 31
+  previous_revision_hash: 03dd54df82be5f79c62e2135383f59276a435bdd4a75cc9a03202595a9b059cf
+  last_candidate_hash: d67dfc0560dfe35e92f65db6fc55dae9a7679111321ae82ce031adc4fbcf59f8
   applied_transaction_ids:
   - tx-3205c8b3a3f04e16a35b2f1739e25e5a
   - tx-6a86abc0b7cc4f0aa672870ded718bc7
@@ -52,6 +52,7 @@ transaction:
   - tx-afc0324e476f49c38b6ac1576faf07ad
   - tx-b0f04cb2a2854e7a9b43edcad54c7425
   - tx-3f848203c9c441208f16425262b37ac0
+  - tx-5d77de911cb24a5aaa52ad92f11ec914
 hearing_progress:
   status: complete
   current_step: 7
@@ -84,8 +85,8 @@ runtime_state:
   style_conditions: []
   active_scene: turn
   scene_id: turn
-  context_pack_hash: b6f02f5d3c161bb03d4d428c09c35397940175331a597fa71de0e1c2acd9f0b3
-  last_validation_at: '2026-11-07T10:53:04+00:00'
+  context_pack_hash: d2c32faeb536fb0cf8338ecce4a9de7131408f87b9177cd02a77c75f6f638afb
+  last_validation_at: '2026-11-07T10:55:29+00:00'
   last_error: ''
 dice_state:
   tape_revision: machadan-tape-r1
@@ -587,6 +588,7 @@ session_log:
   - Day1昼 白糸の間（エロシーン中）。〇〇が『採寸で興奮する変態だと言いふらす』と脅す。CHM対抗 18 vs クラリスINT 19で失敗（かすり）。クラリスは涙目で値引きは拒みつつ、残り2Gを免除。誰にも言わないで、自分の変態さは〇〇だけが知っていてと甘く懇願
   - Day1昼 白糸の間（エロシーン中）。〇〇がここに泊まっていいかと尋ねる。クラリスは2階は狭いと言いつつ、今夜もその先も泊まってよいと承諾。宿代はいらないと言い、夜は静かにさせないでと甘える
   - Day1昼 白糸の間（エロシーン中）。〇〇が宿泊を決め、しゃぶっていいと許す。クラリスがフェラ。先っぽから竿の半ばまで咥え、手でしごきつつスカート越しに自分を慰める。気持ちいいか、もっと奥か、口に出すかと尋ねる
+  - Day1昼 白糸の間（エロシーン中）。〇〇がもっと奥までと煽る。クラリスが涙を零しながら喉の奥まで根元まで咥え込み、ゆっくり喉で扱く。スカート越しに自分も擦り、褒めてと見上げ、いっぱい出してとねだって再び咥える
 memory_log:
   encounters: []
   battles: []
