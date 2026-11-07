@@ -1,0 +1,127 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "machadan.hearing.widget.v2",
+  "title": "Machadan hearing widget state v2",
+  "$defs": {
+    "multiAnswer": {
+      "type": "object",
+      "required": ["choices", "free_text"],
+      "properties": {
+        "choices": {
+          "type": "array",
+          "items": {"type": "string"},
+          "uniqueItems": true
+        },
+        "free_text": {"type": "string"}
+      },
+      "additionalProperties": false
+    }
+  },
+  "type": "object",
+  "required": [
+    "schema",
+    "schema_version",
+    "step",
+    "step_id",
+    "next_step",
+    "revision",
+    "valid",
+    "complete",
+    "answers",
+    "validation"
+  ],
+  "properties": {
+    "schema": {"const": "machadan.hearing.widget.v2"},
+    "schema_version": {"const": 2},
+    "step": {"type": "integer", "minimum": 1, "maximum": 5},
+    "step_id": {
+      "enum": ["playmode", "profile", "body_female", "body_male", "desire", "partner_preferences"]
+    },
+    "next_step": {"type": "string", "minLength": 1},
+    "revision": {"type": "integer", "minimum": 0},
+    "valid": {"type": "boolean"},
+    "complete": {"type": "boolean"},
+    "answers": {"type": "object"},
+    "validation": {
+      "type": "object",
+      "required": ["errors"],
+      "properties": {
+        "errors": {"type": "array", "items": {"type": "string"}}
+      },
+      "additionalProperties": false
+    }
+  },
+  "allOf": [
+    {
+      "if": {"properties": {"complete": {"const": true}}},
+      "then": {"properties": {"valid": {"const": true}}}
+    },
+    {
+      "if": {"properties": {"step_id": {"const": "profile"}}},
+      "then": {
+        "properties": {
+          "answers": {
+            "type": "object",
+            "required": ["name", "gender", "age"],
+            "properties": {
+              "name": {"type": "string"},
+              "gender": {
+                "type": "object",
+                "required": ["choice", "free_text"],
+                "properties": {
+                  "choice": {"type": "string"},
+                  "free_text": {"type": "string"}
+                },
+                "additionalProperties": false
+              },
+              "age": {
+                "oneOf": [
+                  {"type": "null"},
+                  {"type": "integer", "minimum": 18}
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "allOf": [
+          {"properties": {"step_id": {"const": "profile"}}},
+          {"properties": {"complete": {"const": true}}}
+        ]
+      },
+      "then": {
+        "properties": {
+          "answers": {
+            "properties": {
+              "age": {"type": "integer", "minimum": 18}
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {"properties": {"step_id": {"const": "partner_preferences"}}},
+      "then": {
+        "properties": {
+          "answers": {
+            "type": "object",
+            "required": ["personalities", "sub_personalities", "body_height", "body_build", "body_bust", "call"],
+            "properties": {
+              "personalities": {"$ref": "#/$defs/multiAnswer"},
+              "sub_personalities": {"$ref": "#/$defs/multiAnswer"},
+              "body_height": {"$ref": "#/$defs/multiAnswer"},
+              "body_build": {"$ref": "#/$defs/multiAnswer"},
+              "body_bust": {"$ref": "#/$defs/multiAnswer"},
+              "call": {"$ref": "#/$defs/multiAnswer"}
+            },
+            "additionalProperties": false
+          }
+        }
+      }
+    }
+  ],
+  "additionalProperties": false
+}

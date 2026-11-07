@@ -1,0 +1,724 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "MachaDun_Save_Muse_v2",
+  "title": "Machadan Muse save v2",
+  "$defs": {
+    "standardRewardComponent": {
+      "type": "object",
+      "required": ["component_id", "kind", "state"],
+      "properties": {
+        "component_id": {"type": "string", "minLength": 1},
+        "kind": {"enum": ["gold", "item", "right", "service", "favor", "referral", "information"]},
+        "state": {"enum": ["offered", "accepted", "earned", "due", "pending", "delivered", "declined", "forfeited"]},
+        "detail": {"type": "object"},
+        "legacy_migration": {"type": "boolean"}
+      },
+      "anyOf": [
+        {"required": ["detail"]},
+        {"required": ["legacy_migration"], "properties": {"legacy_migration": {"const": true}}}
+      ],
+      "additionalProperties": true
+    },
+    "standardRewardContract": {
+      "type": "object",
+      "required": ["settlement_id", "offered", "payer", "components"],
+      "properties": {
+        "settlement_id": {"type": "string", "minLength": 1},
+        "offered": {"type": "boolean"},
+        "payer": {"type": "string", "minLength": 1},
+        "components": {
+          "type": "array",
+          "items": {"$ref": "#/$defs/standardRewardComponent"}
+        }
+      },
+      "additionalProperties": true
+    },
+    "rewardCard": {
+      "type": "object",
+      "required": ["reward_contract"],
+      "properties": {
+        "reward_contract": {"$ref": "#/$defs/standardRewardContract"}
+      },
+      "additionalProperties": true
+    },
+    "bossRecord": {
+      "type": "object",
+      "required": [
+        "boss_id", "floor", "first_defeated_day", "last_defeated_day",
+        "rematch_available_day", "last_defeat_id", "last_defeated_expedition_id"
+      ],
+      "properties": {
+        "boss_id": {"type": "string", "pattern": "^[A-Za-z0-9][A-Za-z0-9_-]{0,79}$"},
+        "floor": {"type": "integer", "minimum": 1, "maximum": 9},
+        "first_defeated_day": {"type": "integer", "minimum": 1},
+        "last_defeated_day": {"type": "integer", "minimum": 1},
+        "rematch_available_day": {
+          "oneOf": [
+            {"type": "null"},
+            {"type": "integer", "minimum": 2}
+          ]
+        },
+        "last_defeat_id": {"type": "string", "pattern": "^[A-Za-z0-9][A-Za-z0-9_-]{0,79}$"},
+        "last_defeated_expedition_id": {"type": "string", "pattern": "^[A-Za-z0-9][A-Za-z0-9_-]{0,79}$"}
+      },
+      "additionalProperties": false
+    },
+    "growthResolution": {
+      "type": "object",
+      "required": [
+        "resolution_id", "source_type", "source_id", "outcome", "rolls", "items", "day"
+      ],
+      "properties": {
+        "resolution_id": {"type": "string", "pattern": "^[A-Za-z0-9][A-Za-z0-9_-]{0,79}$"},
+        "source_type": {"enum": ["boss", "strong", "chest", "mimic", "c_rank", "quest", "event"]},
+        "source_id": {"type": "string", "pattern": "^[A-Za-z0-9][A-Za-z0-9_-]{0,79}$"},
+        "outcome": {"enum": ["miss", "awarded"]},
+        "rolls": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["die", "purpose", "cursor", "result"],
+            "properties": {
+              "die": {"enum": ["d6", "d10"]},
+              "purpose": {"type": "string", "minLength": 1},
+              "cursor": {"type": "integer", "minimum": 0, "maximum": 599},
+              "result": {"type": "integer", "minimum": 1, "maximum": 10}
+            },
+            "allOf": [
+              {
+                "if": {"properties": {"die": {"const": "d6"}}},
+                "then": {"properties": {"result": {"maximum": 6}}},
+                "else": {"properties": {"cursor": {"maximum": 499}}}
+              }
+            ],
+            "additionalProperties": false
+          }
+        },
+        "items": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["name", "count"],
+            "properties": {
+              "name": {
+                "enum": [
+                  "STRの実", "DEFの実", "INTの実", "SPDの実",
+                  "TECの実", "CHMの実", "LPの実", "選べる能力の実"
+                ]
+              },
+              "count": {"type": "integer", "minimum": 1}
+            },
+            "additionalProperties": false
+          }
+        },
+        "day": {"type": "integer", "minimum": 1}
+      },
+      "allOf": [
+        {
+          "if": {"properties": {"outcome": {"const": "miss"}}},
+          "then": {"properties": {"items": {"maxItems": 0}}},
+          "else": {"properties": {"items": {"minItems": 1}}}
+        }
+      ],
+      "additionalProperties": false
+    },
+    "dungeonRun": {
+      "type": "object",
+      "required": [
+        "active", "run_id", "trash_encounters_used", "danger_zones_resolved",
+        "last_scene_kind", "event_due", "used_event_ids", "current_floor",
+        "current_floor_scenes", "boss_route_found"
+      ],
+      "properties": {
+        "active": {"type": "boolean"},
+        "run_id": {"type": "string"},
+        "trash_encounters_used": {"type": "integer", "minimum": 0, "maximum": 3},
+        "danger_zones_resolved": {"type": "integer", "minimum": 0, "maximum": 3},
+        "last_scene_kind": {"enum": ["none", "exploration", "event", "trash", "boss"]},
+        "event_due": {"type": "boolean"},
+        "used_event_ids": {
+          "type": "array",
+          "items": {"type": "string", "pattern": "^[A-Za-z0-9][A-Za-z0-9_-]{0,79}$"},
+          "uniqueItems": true
+        },
+        "current_floor": {
+          "oneOf": [
+            {"type": "null"},
+            {"type": "integer", "minimum": 1, "maximum": 9}
+          ]
+        },
+        "current_floor_scenes": {"type": "integer", "minimum": 0},
+        "boss_route_found": {"type": "boolean"}
+      },
+      "allOf": [
+        {
+          "if": {"properties": {"active": {"const": false}}},
+          "then": {
+            "properties": {
+              "run_id": {"const": ""},
+              "trash_encounters_used": {"const": 0},
+              "danger_zones_resolved": {"const": 0},
+              "last_scene_kind": {"const": "none"},
+              "event_due": {"const": false},
+              "used_event_ids": {"const": []},
+              "current_floor": {"const": null},
+              "current_floor_scenes": {"const": 0},
+              "boss_route_found": {"const": false}
+            }
+          },
+          "else": {
+            "properties": {
+              "run_id": {"pattern": "^[A-Za-z0-9][A-Za-z0-9_-]{0,79}$"},
+              "current_floor": {"type": "integer", "minimum": 1, "maximum": 9}
+            }
+          }
+        },
+        {
+          "if": {"properties": {"event_due": {"const": true}}},
+          "then": {"properties": {"last_scene_kind": {"const": "trash"}}}
+        },
+        {
+          "if": {"properties": {"last_scene_kind": {"const": "trash"}}},
+          "then": {"properties": {"event_due": {"const": true}}}
+        }
+      ],
+      "additionalProperties": false
+    }
+  },
+  "type": "object",
+  "required": [
+    "schema",
+    "schema_version",
+    "game_version",
+    "campaign_id",
+    "created_at",
+    "updated_at",
+    "save_revision",
+    "content_manifest_hash",
+    "save_format_origin",
+    "transaction",
+    "hearing_progress",
+    "active_script",
+    "runtime_state",
+    "dice_state",
+    "fire_state",
+    "world_state",
+    "skills",
+    "skill_dormancy",
+    "custom_abilities",
+    "active_event",
+    "ammo",
+    "shop_records",
+    "captured_girls",
+    "play_mode",
+    "ero_style",
+    "player",
+    "player_body",
+    "desire",
+    "ng",
+    "yuri",
+    "partner_pref",
+    "hearing_check",
+    "spells",
+    "equip",
+    "items",
+    "party",
+    "inn_reserve",
+    "npc_relationship",
+    "session_log",
+    "memory_log",
+    "design_applied"
+  ],
+  "properties": {
+    "schema": {"const": "MachaDun_Save_Muse_v2"},
+    "schema_version": {"const": 2},
+    "game_version": {"type": "string", "minLength": 1},
+    "campaign_id": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9_-]{0,79}$"
+    },
+    "created_at": {"type": "string", "format": "date-time"},
+    "updated_at": {"type": "string", "format": "date-time"},
+    "save_revision": {"type": "integer", "minimum": 0},
+    "content_manifest_hash": {"type": "string"},
+    "save_format_origin": {"type": "string"},
+    "transaction": {
+      "type": "object",
+      "required": ["last_transaction_id", "last_committed_turn", "previous_revision_hash", "last_candidate_hash", "applied_transaction_ids"],
+      "properties": {
+        "last_transaction_id": {"type": "string"},
+        "last_committed_turn": {"type": "integer", "minimum": 0},
+        "previous_revision_hash": {"type": "string"},
+        "last_candidate_hash": {"type": "string"},
+        "applied_transaction_ids": {
+          "type": "array",
+          "items": {"type": "string", "minLength": 1},
+          "uniqueItems": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "hearing_progress": {
+      "type": "object",
+      "required": ["status", "current_step", "completed_steps", "widget_ids", "widget_state_versions"],
+      "properties": {
+        "status": {"enum": ["pending", "in_progress", "complete"]},
+        "current_step": {"type": "integer", "minimum": 1, "maximum": 7},
+        "completed_steps": {
+          "type": "array",
+          "items": {"enum": ["playmode", "profile", "body_profile", "desire", "partner", "style"]},
+          "uniqueItems": true,
+          "maxItems": 6
+        },
+        "widget_ids": {"type": "object"},
+        "widget_state_versions": {"type": "object"}
+      },
+      "additionalProperties": false
+    },
+    "active_script": {
+      "type": "object",
+      "required": ["id", "status", "cursor", "checkpoint"],
+      "properties": {
+        "id": {"type": "string"},
+        "status": {"enum": ["idle", "in_progress", "complete"]},
+        "cursor": {"type": "integer", "minimum": 0},
+        "checkpoint": {"type": "string"}
+      },
+      "additionalProperties": false
+    },
+    "runtime_state": {
+      "type": "object",
+      "required": ["active_scene", "scene_id", "context_pack_hash", "last_validation_at", "last_error"],
+      "properties": {
+        "active_scene": {"type": "string", "minLength": 1},
+        "scene_id": {"type": "string"},
+        "context_pack_hash": {"type": "string"},
+        "last_validation_at": {"type": "string"},
+        "last_error": {"type": "string"}
+      },
+      "additionalProperties": false
+    },
+    "dice_state": {
+      "type": "object",
+      "required": ["tape_revision", "dice_cursor_d6", "dice_cursor_d10"],
+      "properties": {
+        "tape_revision": {"type": "string", "minLength": 1},
+        "dice_cursor_d6": {"type": "integer", "minimum": 0, "maximum": 599},
+        "dice_cursor_d10": {"type": "integer", "minimum": 0, "maximum": 499}
+      },
+      "additionalProperties": false
+    },
+    "fire_state": {"type": "object"},
+    "world_state": {
+      "type": "object",
+      "required": [
+        "reward_state_version", "event_reward_contract", "pending_rewards", "reward_ledger", "entitlements",
+        "deepest_depth_reached", "defeated_floor_bosses", "boss_records", "growth_state",
+        "expedition_state", "dungeon_run"
+      ],
+      "properties": {
+        "reward_state_version": {"enum": [2]},
+        "deepest_depth_reached": {"type": "integer", "minimum": 0, "maximum": 9},
+        "defeated_floor_bosses": {
+          "type": "array",
+          "items": {"type": "integer", "minimum": 1, "maximum": 9},
+          "uniqueItems": true
+        },
+        "boss_records": {
+          "type": "array",
+          "items": {"$ref": "#/$defs/bossRecord"}
+        },
+        "growth_state": {
+          "type": "object",
+          "required": [
+            "version", "boss_fruit_miss_streak", "c_rank_choice_fruit_status",
+            "c_rank_choice_fruit_transaction_id", "resolutions"
+          ],
+          "properties": {
+            "version": {"const": 1},
+            "boss_fruit_miss_streak": {"type": "integer", "minimum": 0, "maximum": 3},
+            "c_rank_choice_fruit_status": {"enum": ["locked", "pending", "granted"]},
+            "c_rank_choice_fruit_transaction_id": {"type": "string"},
+            "resolutions": {
+              "type": "array",
+              "items": {"$ref": "#/$defs/growthResolution"}
+            }
+          },
+          "allOf": [
+            {
+              "if": {"properties": {"c_rank_choice_fruit_status": {"const": "granted"}}},
+              "then": {
+                "properties": {
+                  "c_rank_choice_fruit_transaction_id": {
+                    "pattern": "^[A-Za-z0-9][A-Za-z0-9_-]{0,79}$"
+                  }
+                }
+              },
+              "else": {"properties": {"c_rank_choice_fruit_transaction_id": {"const": ""}}}
+            }
+          ],
+          "additionalProperties": false
+        },
+        "expedition_state": {
+          "type": "object",
+          "required": [
+            "active", "expedition_id", "kind", "fire_holders", "separated_fire_holders",
+            "rebirth_pending", "last_end_reason", "last_ended_expedition_id", "rebirth_receipt"
+          ],
+          "properties": {
+            "active": {"type": "boolean"},
+            "expedition_id": {"type": "string"},
+            "kind": {"enum": ["none", "dungeon", "quest", "travel", "other"]},
+            "fire_holders": {
+              "type": "array",
+              "items": {"type": "string", "minLength": 1},
+              "uniqueItems": true
+            },
+            "separated_fire_holders": {
+              "type": "array",
+              "items": {"type": "string", "minLength": 1},
+              "uniqueItems": true
+            },
+            "rebirth_pending": {"type": "boolean"},
+            "last_end_reason": {"enum": ["none", "return", "rebirth", "completed"]},
+            "last_ended_expedition_id": {"type": "string"},
+            "rebirth_receipt": {
+              "oneOf": [
+                {"type": "null"},
+                {
+                  "type": "object",
+                  "required": ["expedition_id", "fire_holders"],
+                  "properties": {
+                    "expedition_id": {
+                      "type": "string",
+                      "pattern": "^[A-Za-z0-9][A-Za-z0-9_-]{0,79}$"
+                    },
+                    "fire_holders": {
+                      "type": "array",
+                      "minItems": 1,
+                      "items": {
+                        "type": "object",
+                        "required": ["name", "lp_at_trigger"],
+                        "properties": {
+                          "name": {"type": "string", "minLength": 1},
+                          "lp_at_trigger": {"const": 0}
+                        },
+                        "additionalProperties": false
+                      }
+                    }
+                  },
+                  "additionalProperties": false
+                }
+              ]
+            }
+          },
+          "allOf": [
+            {
+              "if": {"properties": {"active": {"const": false}}},
+              "then": {
+                "properties": {
+                  "expedition_id": {"const": ""},
+                  "kind": {"const": "none"},
+                  "fire_holders": {"const": []},
+                  "separated_fire_holders": {"const": []},
+                  "rebirth_pending": {"const": false}
+                }
+              },
+              "else": {
+                "properties": {
+                  "expedition_id": {"pattern": "^[A-Za-z0-9][A-Za-z0-9_-]{0,79}$"},
+                  "kind": {"enum": ["dungeon", "quest", "travel", "other"]},
+                  "fire_holders": {"minItems": 1},
+                  "last_end_reason": {"const": "none"},
+                  "last_ended_expedition_id": {"const": ""},
+                  "rebirth_receipt": {"const": null}
+                }
+              }
+            },
+            {
+              "if": {"properties": {"last_end_reason": {"const": "none"}}},
+              "then": {"properties": {"last_ended_expedition_id": {"const": ""}}},
+              "else": {
+                "properties": {
+                  "last_ended_expedition_id": {
+                    "pattern": "^[A-Za-z0-9][A-Za-z0-9_-]{0,79}$"
+                  }
+                }
+              }
+            },
+            {
+              "if": {"properties": {"last_end_reason": {"const": "rebirth"}}},
+              "then": {"properties": {"rebirth_receipt": {"type": "object"}}},
+              "else": {"properties": {"rebirth_receipt": {"const": null}}}
+            }
+          ],
+          "additionalProperties": false
+        },
+        "dungeon_run": {"$ref": "#/$defs/dungeonRun"},
+        "quest_card": {
+          "oneOf": [
+            {"type": "null"},
+            {"$ref": "#/$defs/rewardCard"}
+          ]
+        },
+        "event_reward_contract": {
+          "oneOf": [
+            {"type": "null"},
+            {
+              "type": "object",
+              "required": ["settlement_id", "offered", "payer", "components"],
+              "properties": {
+                "settlement_id": {"type": "string", "minLength": 1},
+                "offered": {"type": "boolean"},
+                "payer": {"type": "string"},
+                "components": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "required": ["component_id", "kind", "detail", "state"],
+                    "properties": {
+                      "component_id": {"type": "string", "minLength": 1},
+                      "kind": {"enum": ["gold", "item", "right", "service", "favor", "referral", "information"]},
+                      "detail": {"type": "object"},
+                      "state": {"enum": ["offered"]}
+                    },
+                    "additionalProperties": true
+                  }
+                }
+              },
+              "additionalProperties": true
+            }
+          ]
+        },
+        "pending_rewards": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["settlement_id", "components", "status"],
+            "properties": {
+              "settlement_id": {"type": "string", "minLength": 1},
+              "source": {"type": "object"},
+              "payer": {"type": "string"},
+              "components": {
+                "type": "array",
+                "minItems": 1,
+                "items": {
+                  "type": "object",
+                  "required": ["component_id", "kind", "state"],
+                  "properties": {
+                    "component_id": {"type": "string", "minLength": 1},
+                    "kind": {"enum": ["gold", "item", "right", "service", "favor", "referral", "information"]},
+                    "state": {"enum": ["accepted", "earned", "due", "pending"]},
+                    "detail": {"type": "object"},
+                    "legacy_migration": {"type": "boolean"}
+                  },
+                  "anyOf": [
+                    {"required": ["detail"]},
+                    {"required": ["legacy_migration"], "properties": {"legacy_migration": {"const": true}}}
+                  ],
+                  "additionalProperties": true
+                }
+              },
+              "delivered_component_ids": {
+                "type": "array",
+                "items": {"type": "string", "minLength": 1},
+                "uniqueItems": true
+              },
+              "claim_routes": {"type": "array", "items": {"type": "string"}},
+              "available_from": {"type": "string"},
+              "status": {"enum": ["pending", "partial"]}
+            },
+            "additionalProperties": true
+          }
+        },
+        "reward_ledger": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["settlement_id", "components", "status"],
+            "properties": {
+              "settlement_id": {"type": "string", "minLength": 1},
+              "source": {"type": "object"},
+              "payer": {"type": "string"},
+              "components": {
+                "type": "array",
+                "minItems": 1,
+                "items": {
+                  "type": "object",
+                  "required": ["component_id", "kind", "state", "transaction_id", "effect"],
+                  "properties": {
+                    "component_id": {"type": "string", "minLength": 1},
+                    "kind": {"enum": ["gold", "item", "right", "service", "favor", "referral", "information", "legacy"]},
+                    "state": {"enum": ["delivered", "declined", "forfeited"]},
+                    "transaction_id": {"type": "string", "minLength": 1},
+                    "estimated_value_g": {"type": "integer", "minimum": 0},
+                    "effect": {
+                      "oneOf": [
+                        {"type": "null"},
+                        {
+                          "type": "object",
+                          "required": ["target", "before_sha256", "after_sha256"],
+                          "properties": {
+                            "target": {"enum": ["player.gold", "items", "world_state.entitlements", "session_log"]},
+                            "before_sha256": {"type": "string", "minLength": 1},
+                            "after_sha256": {"type": "string", "minLength": 1},
+                            "amount": {"type": "integer", "minimum": 1},
+                            "entitlement_id": {"type": "string", "minLength": 1},
+                            "item_name": {"type": "string", "minLength": 1},
+                            "quantity": {"type": "integer", "minimum": 1},
+                            "log_entry_index": {"type": "integer", "minimum": 0},
+                            "log_entry_sha256": {"type": "string", "minLength": 1},
+                            "summary": {"type": "string"}
+                          },
+                          "additionalProperties": true
+                        }
+                      ]
+                    }
+                  },
+                  "additionalProperties": true
+                }
+              },
+              "status": {"enum": ["partial", "settled", "declined", "forfeited"]}
+            },
+            "additionalProperties": true
+          }
+        },
+        "entitlements": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["entitlement_id", "source_settlement_id", "source_component_id", "kind", "name", "issuer", "status"],
+            "properties": {
+              "entitlement_id": {"type": "string", "minLength": 1},
+              "source_settlement_id": {"type": "string", "minLength": 1},
+              "source_component_id": {"type": "string", "minLength": 1},
+              "kind": {"enum": ["right", "service", "favor", "referral", "information", "discount", "access"]},
+              "name": {"type": "string", "minLength": 1},
+              "issuer": {"type": "string", "minLength": 1},
+              "scope": {"type": "string"},
+              "conditions": {"type": "array"},
+              "uses_remaining": {
+                "oneOf": [
+                  {"type": "null"},
+                  {"type": "integer", "minimum": 0}
+                ]
+              },
+              "expires": {
+                "oneOf": [
+                  {"type": "null"},
+                  {"type": "string"}
+                ]
+              },
+              "status": {"enum": ["active", "used", "expired", "revoked"]}
+            },
+            "additionalProperties": true
+          }
+        }
+      },
+      "additionalProperties": true
+    },
+    "skills": {"type": "array"},
+    "skill_dormancy": {"type": "array"},
+    "custom_abilities": {"type": "array"},
+    "active_event": {
+      "oneOf": [
+        {"$ref": "#/$defs/rewardCard"},
+        {"type": "null"}
+      ]
+    },
+    "ammo": {"type": "object"},
+    "shop_records": {"type": "object"},
+    "captured_girls": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "anyOf": [
+          {"required": ["age"], "properties": {"age": {"type": "integer", "minimum": 18}}},
+          {"required": ["adult_status"], "properties": {"adult_status": {"enum": ["canonical_adult", "confirmed_adult", "adult", "unknown(adult)", "成人", "不詳(成人)", "年齢不詳(成人)"]}}}
+        ]
+      }
+    },
+    "play_mode": {"enum": ["", "RP", "GOD"]},
+    "ero_style": {"enum": ["", "machadan", "rabilabi"]},
+    "player": {
+      "type": "object",
+      "required": ["name", "gender", "age", "gold", "debt"],
+      "properties": {
+        "name": {"type": "string"},
+        "gender": {"type": "string"},
+        "age": {
+          "oneOf": [
+            {"type": "null"},
+            {"type": "integer", "minimum": 18}
+          ]
+        },
+        "gold": {"type": "integer", "minimum": 0},
+        "debt": {"type": "integer", "minimum": 0}
+      }
+    },
+    "player_body": {"type": "string"},
+    "desire": {"type": "string"},
+    "ng": {"type": "array"},
+    "yuri": {"type": "string"},
+    "partner_pref": {
+      "type": "object",
+      "required": ["asked", "personalities", "sub_personalities", "body_height", "body_build", "body_bust", "call"],
+      "properties": {
+        "asked": {"type": "boolean"},
+        "personalities": {"type": "array", "items": {"type": "string"}},
+        "sub_personalities": {"type": "array", "items": {"type": "string"}},
+        "body_height": {"type": "array", "items": {"type": "string"}},
+        "body_build": {"type": "array", "items": {"type": "string"}},
+        "body_bust": {"type": "array", "items": {"type": "string"}},
+        "call": {"type": "array", "items": {"type": "string"}}
+      },
+      "additionalProperties": false
+    },
+    "hearing_check": {"type": "object"},
+    "spells": {"type": "array"},
+    "equip": {"type": "object"},
+    "items": {"type": "array"},
+    "party": {
+      "type": "array",
+      "maxItems": 2,
+      "items": {
+        "type": "object",
+        "anyOf": [
+          {"required": ["age"], "properties": {"age": {"type": "integer", "minimum": 18}}},
+          {"required": ["adult_status"], "properties": {"adult_status": {"enum": ["canonical_adult", "confirmed_adult", "adult", "unknown(adult)", "成人", "不詳(成人)", "年齢不詳(成人)"]}}}
+        ]
+      }
+    },
+    "inn_reserve": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "anyOf": [
+          {"required": ["age"], "properties": {"age": {"type": "integer", "minimum": 18}}},
+          {"required": ["adult_status"], "properties": {"adult_status": {"enum": ["canonical_adult", "confirmed_adult", "adult", "unknown(adult)", "成人", "不詳(成人)", "年齢不詳(成人)"]}}}
+        ]
+      }
+    },
+    "npc_relationship": {"type": "array"},
+    "session_log": {
+      "type": "object",
+      "required": ["previous", "entries"],
+      "properties": {
+        "previous": {"type": "string"},
+        "entries": {"type": "array"}
+      }
+    },
+    "memory_log": {
+      "type": "object",
+      "required": ["encounters", "battles", "ero", "turning_points"],
+      "properties": {
+        "encounters": {"type": "array"},
+        "battles": {"type": "array"},
+        "ero": {"type": "array"},
+        "turning_points": {"type": "array"}
+      }
+    },
+    "design_applied": {"type": "array"}
+  },
+  "additionalProperties": true
+}

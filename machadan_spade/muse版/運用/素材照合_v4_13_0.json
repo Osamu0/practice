@@ -1,0 +1,237 @@
+{
+  "schema": "machadan-material-audit-v413",
+  "materials": {
+    "獣の皮": {
+      "earliest_combat_floor": 1,
+      "sources": [
+        {
+          "floor": 1,
+          "enemy": "ゴブリンの小兵"
+        },
+        {
+          "floor": 2,
+          "enemy": "ゴブリン使いの女"
+        }
+      ]
+    },
+    "鉄鉱石": {
+      "earliest_combat_floor": 4,
+      "sources": [
+        {
+          "floor": 4,
+          "enemy": "オーク兵"
+        },
+        {
+          "floor": 7,
+          "enemy": "アイアンゴーレム"
+        },
+        {
+          "floor": 8,
+          "enemy": "最初の特別ミミック"
+        },
+        {
+          "floor": 8,
+          "enemy": "通常ミミック"
+        }
+      ]
+    },
+    "鱗粉": {
+      "earliest_combat_floor": 4,
+      "sources": [
+        {
+          "floor": 4,
+          "enemy": "毒蛾"
+        }
+      ]
+    },
+    "スライムゼリー": {
+      "earliest_combat_floor": 3,
+      "sources": [
+        {
+          "floor": 3,
+          "enemy": "プチスライム娘"
+        }
+      ]
+    },
+    "黒鉄のインゴット": {
+      "earliest_combat_floor": 4,
+      "sources": [
+        {
+          "floor": 4,
+          "enemy": "オーク族長 (ボス)"
+        },
+        {
+          "floor": 7,
+          "enemy": "闇の騎士"
+        },
+        {
+          "floor": 7,
+          "enemy": "堕ちた女聖騎士"
+        },
+        {
+          "floor": 7,
+          "enemy": "アイアンゴーレム"
+        }
+      ]
+    },
+    "蛇の鱗": {
+      "earliest_combat_floor": 2,
+      "sources": [
+        {
+          "floor": 2,
+          "enemy": "沼蛇の女王 (ボス)"
+        },
+        {
+          "floor": 6,
+          "enemy": "ラミアダンサー"
+        }
+      ]
+    },
+    "巨人の骨": {
+      "earliest_combat_floor": 7,
+      "sources": [
+        {
+          "floor": 7,
+          "enemy": "オーガ・バーサーカー"
+        },
+        {
+          "floor": 7,
+          "enemy": "ミノタウロスの長 (ボス)"
+        }
+      ]
+    },
+    "高純度の魔石": {
+      "earliest_combat_floor": 6,
+      "sources": [
+        {
+          "floor": 6,
+          "enemy": "蜘蛛女アラクネ (ボス)"
+        },
+        {
+          "floor": 8,
+          "enemy": "ハイウィザード"
+        },
+        {
+          "floor": 8,
+          "enemy": "ゴールデンスライム"
+        },
+        {
+          "floor": 8,
+          "enemy": "エルダーリッチ (ボス)"
+        }
+      ]
+    },
+    "魔石の欠片": {
+      "earliest_combat_floor": 2,
+      "sources": [
+        {
+          "floor": 2,
+          "enemy": "ゴブリンのシャーマン"
+        },
+        {
+          "floor": 5,
+          "enemy": "影潜み"
+        },
+        {
+          "floor": 8,
+          "enemy": "ダークエルフの暗殺者"
+        }
+      ]
+    }
+  },
+  "recipes": [
+    {
+      "id": "tier1-skin",
+      "label": "Tier1 皮の分岐",
+      "all": [
+        "獣の皮"
+      ],
+      "earliest_combat_floor": 1
+    },
+    {
+      "id": "tier1-iron",
+      "label": "Tier1 鉄の分岐",
+      "all": [
+        "鉄鉱石"
+      ],
+      "earliest_combat_floor": 4
+    },
+    {
+      "id": "tier2-powder",
+      "label": "Tier2 鉄＋鱗粉",
+      "all": [
+        "鉄鉱石",
+        "鱗粉"
+      ],
+      "earliest_combat_floor": 4
+    },
+    {
+      "id": "tier2-slime",
+      "label": "Tier2 鉄＋ゼリー",
+      "all": [
+        "鉄鉱石",
+        "スライムゼリー"
+      ],
+      "earliest_combat_floor": 4
+    },
+    {
+      "id": "tier3-snake",
+      "label": "Tier3 黒鉄＋蛇",
+      "all": [
+        "黒鉄のインゴット",
+        "蛇の鱗"
+      ],
+      "earliest_combat_floor": 4
+    },
+    {
+      "id": "tier3-giant",
+      "label": "Tier3 黒鉄＋巨人",
+      "all": [
+        "黒鉄のインゴット",
+        "巨人の骨"
+      ],
+      "earliest_combat_floor": 7
+    },
+    {
+      "id": "revolver",
+      "label": "リボルバー",
+      "all": [
+        "黒鉄のインゴット",
+        "鉄鉱石",
+        "魔石の欠片"
+      ],
+      "earliest_combat_floor": 4
+    },
+    {
+      "id": "rifle",
+      "label": "ライフル",
+      "all": [
+        "黒鉄のインゴット",
+        "鉄鉱石",
+        "高純度の魔石"
+      ],
+      "earliest_combat_floor": 6
+    },
+    {
+      "id": "machine-gun",
+      "label": "マシンガン",
+      "all": [
+        "黒鉄のインゴット",
+        "高純度の魔石",
+        "巨人の骨"
+      ],
+      "earliest_combat_floor": 7
+    }
+  ],
+  "unresolved": [
+    "Tier4は高純度の魔石3・古文書1・金塊5。後2種の固定ドロップだけでは到達階を定められない。",
+    "Tier3の蛇分岐は黒鉄が出る4Fで素材上は成立。深層専用と読む場合も無断で制限を追加しない。",
+    "火炎瓶は属性素材の例にあるが固定品目の価格・効果・入手先が未確定。",
+    "Bestiaryの2F沼蛇は蛇の皮、主ドロップ正本では蛇の鱗という既存差異。監査は主ドロップ正本を採用し、本文は変更しない。"
+  ],
+  "notes": [
+    "価格・製作日数・個数は原本のまま。鉄鉱石と魔石の欠片は常時在庫。その他は日替わり在庫・報酬・ドロップ実績を確認。",
+    "購入装備のRare/Legendと鍛造Tierの要求素材は別の体系。階に到達しただけで装備を配布しない。"
+  ],
+  "source": "生成/ドロップ表.md の対応表（BestiaryのDrop略記ではなく主ドロップ正本）"
+}

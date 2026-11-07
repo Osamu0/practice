@@ -1,0 +1,29 @@
+<style>
+.hf{font-family:inherit;color:var(--hatch-widget-text);background:var(--hatch-widget-bg);box-sizing:border-box;padding:8px}.hf *{box-sizing:border-box}.hf h3{margin:4px 0;font-size:16px}.sub,.foot,.msg{color:var(--hatch-widget-muted);font-size:12px}.q{border:1px solid var(--hatch-widget-border);background:var(--hatch-widget-surface);border-radius:10px;padding:10px;margin:8px 0}.q.done{border-color:var(--hatch-widget-accent)}.ql{font-weight:600;margin-bottom:6px;font-size:14px}.opts{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:6px}.opts button,.confirm{border:1px solid var(--hatch-widget-border);background:var(--hatch-widget-surface-muted);color:var(--hatch-widget-text);border-radius:999px;padding:7px 11px;font-size:12px;cursor:pointer;text-align:left}.opts button.on,.confirm{background:var(--hatch-widget-accent);color:var(--hatch-widget-on-accent);border-color:var(--hatch-widget-accent)}.q input{width:100%;padding:7px 9px;border:1px solid var(--hatch-widget-border);border-radius:8px;background:var(--hatch-widget-bg);color:var(--hatch-widget-text);font-size:13px}.confirm{border-radius:8px;width:100%;text-align:center;font-weight:700}.confirm:disabled{opacity:.45;cursor:not-allowed}#cnt{font-weight:600;color:var(--hatch-widget-accent)}#msg.ok{color:var(--hatch-widget-accent)}
+</style>
+<div class="hf">
+<h3>初回ヒアリング ステップ1（視点モード）</h3>
+<p class="sub">「……その前にひとつ、大事なことを聞かせて♡」</p>
+<div id="qs"></div>
+<p class="foot"><span id="cnt"></span></p>
+<button id="confirm" class="confirm" type="button">この内容で確定</button>
+<p id="msg" class="msg" aria-live="polite"></p>
+</div>
+<script>
+const WIDGET_SCHEMA="machadan.hearing.widget.v2",STEP_ID="playmode",STEP=1,NEXT_STEP="profile";
+const QS=[{id:"playmode",type:"single",required:true,label:"1. アナタはこの世界で、どんな風に過ごしたい？",opts:[["A","主人公として生きる —— アナタ自身がこの世界の住人になる。アナタの言葉で喋って、アナタの意志で動く"],["B","物語の神様になる —— 主人公を動かす物語の神様。一歩引いた目で世界を眺める"]],free:"そのほか（自由入力）"}];
+function blankAnswer(q){return q.type==="text"?"":q.type==="number"?null:q.type==="multi"?{choices:[],free_text:""}:{choice:"",free_text:""};}
+function fresh(){const answers={};QS.forEach(q=>answers[q.id]=blankAnswer(q));return{schema:WIDGET_SCHEMA,schema_version:2,step:STEP,step_id:STEP_ID,next_step:NEXT_STEP,revision:0,valid:false,complete:false,answers,validation:{errors:[]}};}
+let S=fresh();
+function migrate(raw){if(!raw||typeof raw!=="object")return fresh();if(raw.schema===WIDGET_SCHEMA){const n=fresh();Object.assign(n,raw);n.answers=Object.assign(n.answers,raw.answers||{});return n;}const n=fresh();QS.forEach(q=>{const v=raw[q.id];if(!v)return;if(q.type==="text")n.answers[q.id]=String(v.text||"");else{const labels=(v.sel||[]).map(k=>{const o=q.opts.find(x=>x[0]===k);return o?o[1]:k;});n.answers[q.id]={choice:labels[0]||"",free_text:String(v.free||"")};}});return n;}
+function hasValue(q){const a=S.answers[q.id];if(q.type==="text")return!!String(a||"").trim();if(q.type==="number")return Number.isInteger(a);if(q.type==="multi")return!!(a.choices.length||a.free_text.trim());return!!(a.choice||a.free_text.trim());}
+function validate(){const errors=[];QS.forEach(q=>{if(q.required&&!hasValue(q))errors.push(q.label+"を選んでください");});S.validation={errors};S.valid=errors.length===0;return S.valid;}
+function persist(){hydrated=true;try{window.hatchWidget.setState(JSON.parse(JSON.stringify(S)));}catch(e){}}
+function mutate(fn,full=true,persistNow=true){fn();S.revision=(S.revision||0)+1;S.complete=false;validate();if(full)render();else refresh();if(persistNow)persist();}
+function refresh(){const q=QS[0],el=document.querySelector(".q");if(el)el.classList.toggle("done",hasValue(q));document.getElementById("cnt").textContent=QS.filter(hasValue).length+" / "+QS.length+" 項目 入力済み";const c=document.getElementById("confirm");c.disabled=!S.valid;c.textContent=S.complete?"確定済み":"この内容で確定";const m=document.getElementById("msg");m.className="msg"+(S.complete?" ok":"");m.textContent=S.complete?"確定しました。チャットへ戻ると次のステップへ進みます。":(S.validation.errors[0]||"");}
+function render(){validate();const root=document.getElementById("qs");root.innerHTML="";QS.forEach(q=>{const a=S.answers[q.id],card=document.createElement("div");card.className="q"+(hasValue(q)?" done":"");const label=document.createElement("div");label.className="ql";label.textContent=q.label;card.appendChild(label);const opts=document.createElement("div");opts.className="opts";q.opts.forEach(o=>{const b=document.createElement("button");b.type="button";b.textContent=o[0]+". "+o[1];b.classList.toggle("on",a.choice===o[1]);b.onclick=()=>mutate(()=>{a.choice=a.choice===o[1]?"":o[1];if(a.choice)a.free_text="";});opts.appendChild(b);});card.appendChild(opts);const input=document.createElement("input");input.type="text";input.placeholder=q.free;input.value=a.free_text;input.oninput=()=>mutate(()=>{a.free_text=input.value;if(a.free_text.trim())a.choice="";},false,false);input.onblur=persist;card.appendChild(input);root.appendChild(card);});refresh();}
+document.getElementById("confirm").onclick=()=>{if(!validate()){render();return;}S.revision++;S.complete=true;render();persist();};
+let hydrated=false;function accept(raw){const n=migrate(raw),nr=n.revision||0,sr=S.revision||0;if(nr<sr||(hydrated&&nr===sr))return;S=n;hydrated=true;render();}
+render();try{const r=window.hatchWidget.getState(fresh());if(r&&typeof r.then==="function")r.then(accept).catch(()=>{});else accept(r);}catch(e){}
+window.addEventListener("hatch-widget-state",e=>{if(e.detail&&e.detail.state)accept(e.detail.state);});
+</script>

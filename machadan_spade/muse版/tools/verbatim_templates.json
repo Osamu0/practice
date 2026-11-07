@@ -1,0 +1,112 @@
+{
+  "schema": "machadan-verbatim-v413",
+  "source": "authoritative uploaded v4.12.0; Chekyun quote correction from v4.13 instruction A7",
+  "anchors": [
+    {
+      "path": "運用/System_Templates.md",
+      "id": "TEMPLATE_SAVE",
+      "sha256": "e58b0df521abcea6b1d71f4ac914584c81898f2528c574ca51835d530924f7f6"
+    },
+    {
+      "path": "運用/System_Templates.md",
+      "id": "TEMPLATE_SAVE_LEGACY_TEXT",
+      "sha256": "ba9c644d3831f2b751484651630ef2fc8ee90f22f894a760b909e5c3032ff0dc"
+    },
+    {
+      "path": "運用/System_Templates.md",
+      "id": "TEMPLATE_CHAR_DATA",
+      "sha256": "554938810c6cee439011b85e0c262ff0b35d963277c5cb40a79adc7bf57ce6fb"
+    },
+    {
+      "path": "運用/System_Templates.md",
+      "id": "SCRIPT_OPENING_AWAKENING",
+      "sha256": "105675187f09f68b371da20852666980241df8f31b70a0cfc97fe1feb285a72f"
+    },
+    {
+      "path": "運用/System_Templates.md",
+      "id": "SCRIPT_OPENING_PLAY_MODE",
+      "sha256": "0277aca15b7df60cdff04ababa7232e4942f6e11ee69f801fab847b86170e373"
+    },
+    {
+      "path": "運用/System_Templates.md",
+      "id": "SCRIPT_OPENING_NAME",
+      "sha256": "5b71fe3e5bb47b9d4557538d733ab7fda9c1b434b87843605817163edb1597d8"
+    },
+    {
+      "path": "運用/System_Templates.md",
+      "id": "SCRIPT_OPENING_BODY",
+      "sha256": "e51df7c7fe61b80c7d230e29edb4ae04793730c123e282e3eda75e959333a0ed"
+    },
+    {
+      "path": "運用/System_Templates.md",
+      "id": "SCRIPT_OPENING_DESIRE",
+      "sha256": "2e931c0e104073c72e4d144ca59580744e170c10c122c9986269efaa8a2f137d"
+    },
+    {
+      "path": "運用/System_Templates.md",
+      "id": "SCRIPT_OPENING_PARTNER",
+      "sha256": "858b7f24898cd05eda6f7304de86d5a00e6fc1a1d8ab0713ee76e99daa30f521"
+    },
+    {
+      "path": "運用/System_Templates.md",
+      "id": "SCRIPT_OPENING_STYLE",
+      "sha256": "6f29e47c3a24c197bc8ca5eb94dab3609fff940a8f8bfc7b22bb38ef9ae5d323"
+    },
+    {
+      "path": "運用/System_Templates.md",
+      "id": "SCRIPT_OPENING_REBIRTH",
+      "sha256": "c4ec38425b47215725db297144b48bf7b586f8108bb0f5460eaef74828551e0e"
+    },
+    {
+      "path": "運用/System_Templates.md",
+      "id": "SCRIPT_OPENING_FIRE",
+      "sha256": "49fba5fa6250f3b5cb34a51ec6e3ba5a2bd49d38dc39b82a8aec58f8c4e9f6c5"
+    },
+    {
+      "path": "運用/System_Templates.md",
+      "id": "SCRIPT_OPENING_BONUS",
+      "sha256": "c626ded37f222eb65dd7caa2b10989b28ae828601675d779ecc9937ff50e4ff8"
+    },
+    {
+      "path": "運用/System_Templates.md",
+      "id": "SCRIPT_OPENING_TUTORIAL",
+      "sha256": "1c862d83e20583fc4e77bc297a57c9be37b4d5c498d9f120116f8df44c9e02f8"
+    },
+    {
+      "path": "運用/System_Templates.md",
+      "id": "SCRIPT_MILKA_WORLD_BRIEFING",
+      "sha256": "8148c7252673acf6e99168f6c59b006a01146eb464831bd983dea58432505e18"
+    },
+    {
+      "path": "運用/System_Templates.md",
+      "id": "SCRIPT_LILITH_DEBT_MILESTONES",
+      "sha256": "06439359cc96375145d62c1f0e68ac31c32dc02f881461726e7fc80eb39da477"
+    },
+    {
+      "path": "運用/数値正本.md",
+      "id": "H_77D9099EE0DE10F9",
+      "sha256": "fa3fa079dc5030ee24dd665fbc41173318c1ec0fbf63adbb88b39d8741ea87dd"
+    },
+    {
+      "path": "運用/魔法システム設計書.md",
+      "id": "H_5CDDB7D325C2C920",
+      "sha256": "11405c65f36de3c81ba23136c6b1a7e5cff43608e75811ceaf2e26ea789b2785"
+    },
+    {
+      "path": "運用/魔法システム設計書.md",
+      "id": "H_01D7366DA934754C",
+      "sha256": "9fb62df0e3a152e7e2ba91b321d2bb9d7ca66a2e4948cc6b481be6c84e68b447"
+    },
+    {
+      "path": "運用/魔法システム設計書.md",
+      "id": "H_B53D654F5D91186A",
+      "sha256": "0eeda7f53fc3ee6240a9ebae680d32d49cd38816e0339e07ed8f9ed75ae6ccef"
+    }
+  ],
+  "files": {
+    "文章/文体ルールカード.md": "a9e368be2ae85fd97be4af8204f10e6abe93092c670f4a42aaef777d5ee196da",
+    "運用/イベントデッキ.md": "8f18dc75213dd312d1b3cb2aa8820e05f357ccfa17017da2737dffdfa371a9d2",
+    "運用/00_Absolute_Ero_Rule.md": "88ce3f6007796f0ae7705ac38d39f7b72a2de7d18c013922468029734de07c4b"
+  },
+  "chekyun_literal": "「画像は作りません。その場面の絵の注文書（プロンプト）を作ります。」"
+}

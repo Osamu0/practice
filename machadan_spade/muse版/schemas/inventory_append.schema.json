@@ -1,0 +1,158 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "machadan-inventory-append-v1",
+  "title": "Machadan mutable inventory append payload",
+  "type": "object",
+  "required": [
+    "schema",
+    "run_id",
+    "mobs",
+    "events",
+    "context"
+  ],
+  "properties": {
+    "schema": {
+      "const": "machadan-inventory-append-v1"
+    },
+    "run_id": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9_-]{0,79}$"
+    },
+    "capacity_snapshot": {
+      "type": "object"
+    },
+    "rules": {
+      "type": "object"
+    },
+    "mobs": {
+      "type": "array",
+      "maxItems": 8,
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "category",
+          "name",
+          "status",
+          "age"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "category": {
+            "enum": [
+              "town",
+              "companions",
+              "brothel",
+              "travelers",
+              "students"
+            ]
+          },
+          "name": {
+            "type": "string",
+            "minLength": 1
+          },
+          "status": {
+            "const": "unused"
+          },
+          "age": {
+            "type": "integer",
+            "minimum": 18
+          },
+          "gender": {
+            "type": "string"
+          },
+          "role": {
+            "type": "string"
+          },
+          "fields": {
+            "type": "object"
+          }
+        },
+        "additionalProperties": true
+      }
+    },
+    "events": {
+      "type": "array",
+      "maxItems": 8,
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "category",
+          "title",
+          "status"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "category": {
+            "enum": [
+              "town",
+              "road",
+              "dungeon"
+            ]
+          },
+          "title": {
+            "type": "string",
+            "minLength": 1
+          },
+          "status": {
+            "const": "unused"
+          },
+          "type": {
+            "type": "string"
+          },
+          "fields": {
+            "type": "object",
+            "minProperties": 1
+          },
+          "description": {
+            "type": "string",
+            "minLength": 1
+          },
+          "content": {
+            "type": "string",
+            "minLength": 1
+          },
+          "introduction": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "anyOf": [
+          {
+            "required": [
+              "fields"
+            ]
+          },
+          {
+            "required": [
+              "description"
+            ]
+          },
+          {
+            "required": [
+              "content"
+            ]
+          },
+          {
+            "required": [
+              "introduction"
+            ]
+          }
+        ],
+        "additionalProperties": true
+      }
+    },
+    "context": {
+      "type": "object",
+      "description": "machadan-refill-cli-v2: generation, committed campaign and readiness supplied by inventory-template; preserve unchanged"
+    }
+  },
+  "additionalProperties": false
+}

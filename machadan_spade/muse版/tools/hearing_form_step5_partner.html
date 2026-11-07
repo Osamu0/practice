@@ -1,0 +1,40 @@
+<style>
+.hf{font-family:inherit;color:var(--hatch-widget-text);background:var(--hatch-widget-bg);box-sizing:border-box;padding:8px}.hf *{box-sizing:border-box}.hf h3{margin:4px 0;font-size:16px}.sub,.foot,.msg,.hint{color:var(--hatch-widget-muted);font-size:12px}.q{border:1px solid var(--hatch-widget-border);background:var(--hatch-widget-surface);border-radius:10px;padding:10px;margin:8px 0}.q.done{border-color:var(--hatch-widget-accent)}.ql{font-weight:600;margin-bottom:6px;font-size:14px}.opts{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:6px}.opts button,.confirm{border:1px solid var(--hatch-widget-border);background:var(--hatch-widget-surface-muted);color:var(--hatch-widget-text);border-radius:999px;padding:7px 11px;font-size:12px;cursor:pointer;text-align:left}.opts button.on,.confirm{background:var(--hatch-widget-accent);color:var(--hatch-widget-on-accent);border-color:var(--hatch-widget-accent)}.q input{width:100%;padding:7px 9px;border:1px solid var(--hatch-widget-border);border-radius:8px;background:var(--hatch-widget-bg);color:var(--hatch-widget-text);font-size:13px}.confirm{border-radius:8px;width:100%;text-align:center;font-weight:700}#cnt{font-weight:600;color:var(--hatch-widget-accent)}#msg.ok{color:var(--hatch-widget-accent)}
+</style>
+<div class="hf">
+<h3>初回ヒアリング ステップ5（好みの女の子）</h3>
+<p class="sub">好きなものはいくつでも選べます。全部未指定でも確定でき、その軸はランダムになります。</p>
+<p class="hint">好みは新しく出会う生成女性のおよそ半分に反映されます。固定キャストや既存NPCの設定は変更しません。</p>
+<div id="qs"></div>
+<p class="foot"><span id="cnt"></span></p>
+<button id="confirm" class="confirm" type="button">この内容で確定</button>
+<p id="msg" class="msg" aria-live="polite"></p>
+</div>
+<script>
+const WIDGET_SCHEMA="machadan.hearing.widget.v2",STEP_ID="partner_preferences",STEP=5,NEXT_STEP="style";
+const RANDOM="おまかせ（ランダム）";
+const QS=[
+ {id:"personalities",label:"1. 好みの性格は？（複数可）",opts:[
+  ["1","ツンデレ"],["2","お姉さん"],["3","姉御"],["4","クール無口"],["5","クール"],["6","まじめ"],["7","風紀委員"],["8","ギャル"],["9","甘えんぼ"],["10","お嬢様"],["11","ボクっ娘"],["12","根暗"],["13","気弱"],["14","照れ屋"],["15","天真爛漫"],["16","おっとり"],["17","素直"],["18","勝ち気"],["19","からかい上手"],["20","不良"],["21","王子様"],["22","体育会系"],["23","地味子"],["24","不思議ちゃん"],["25","姫"],["26","小生意気"],["27","ママみ"],["0",RANDOM]
+ ],free:"ほかの性格・組み合わせ（自由入力）"},
+ {id:"sub_personalities",label:"2. 好みの副性格は？（複数可）",opts:[["1","うぶ"],["2","むっつり"],["3","サキュバス"],["4","ノリノリ"],["5","よわよわ"],["6","独占欲強め"],["7","褒められ弱い"],["8","甘やかされ弱い"],["9","受け身おねだり"],["10","攻め好き"],["11","甘やかし奉仕"],["12","羞恥快感"],["13","絶頂依存"],["14","ドM"],["15","ドS"],["16","清楚ビッチ"],["0",RANDOM]],free:"ほかの副性格・組み合わせ（自由入力）"},
+ {id:"body_height",label:"3. 好みの身長は？（複数可）",opts:[["1","とても小柄（139cm以下）","とても小柄"],["2","小柄（140cm台）","小柄"],["3","標準（150cm台）","標準"],["4","長身（160cm台）","長身"],["5","とても長身（170cm以上）","とても長身"],["0",RANDOM,RANDOM]],free:"ほかの身長の好み（自由入力）"},
+ {id:"body_build",label:"4. 好みの体つきは？（複数可）",opts:[["1","華奢"],["2","標準"],["3","豊満"],["4","筋肉質"],["0",RANDOM]],free:"ほかの体つきの好み（自由入力）"},
+ {id:"body_bust",label:"5. 好みの胸は？（複数可）",opts:[["1","こぶり"],["2","標準"],["3","大きめ"],["4","豊満"],["0",RANDOM]],free:"ほかの好み（自由入力）"},
+ {id:"call",label:"6. 女の子になんて呼ばれたい？（複数可）",opts:[["1","おじさん"],["2","おにーさん"],["3","お兄さん"],["4","おじちゃん"],["5","お兄ちゃん"],["6","おじ様"],["7","名前"],["0",RANDOM]],free:"具体的な呼び方（自由入力）"}
+];
+function optionValue(o){return o.length>2?o[2]:o[1];}
+function blank(){return{choices:[],free_text:""};}
+function fresh(){const answers={};QS.forEach(q=>answers[q.id]=blank());return{schema:WIDGET_SCHEMA,schema_version:2,step:STEP,step_id:STEP_ID,next_step:NEXT_STEP,revision:0,valid:true,complete:false,answers,validation:{errors:[]}};}
+let S=fresh();
+function migrate(raw){if(!raw||typeof raw!=="object")return fresh();if(raw.schema===WIDGET_SCHEMA){const n=fresh();Object.assign(n,raw);n.answers=Object.assign(n.answers,raw.answers||{});QS.forEach(q=>{const a=n.answers[q.id];if(!a||typeof a!=="object")n.answers[q.id]=blank();else{if(!Array.isArray(a.choices))a.choices=[];if(typeof a.free_text!=="string")a.free_text="";}});return n;}const n=fresh();QS.forEach(q=>{const v=raw[q.id];if(!v)return;const labels=(v.sel||[]).map(k=>{const o=q.opts.find(x=>x[0]===k);return o?optionValue(o):k;});n.answers[q.id]={choices:labels,free_text:String(v.free||"")};});return n;}
+function hasValue(q){const a=S.answers[q.id];return!!(a.choices.length||a.free_text.trim());}
+function persist(){hydrated=true;try{window.hatchWidget.setState(JSON.parse(JSON.stringify(S)));}catch(e){}}
+function markChanged(fn,full,persistNow=true){fn();S.revision=(S.revision||0)+1;S.complete=false;if(full)render();else refresh();if(persistNow)persist();}
+function refresh(){QS.forEach(q=>{const el=document.getElementById("card-"+q.id);if(el)el.classList.toggle("done",hasValue(q));});document.getElementById("cnt").textContent=QS.filter(hasValue).length+" / "+QS.length+" 項目 選択済み";const c=document.getElementById("confirm");c.textContent=S.complete?"確定済み":"この内容で確定";const m=document.getElementById("msg");m.className="msg"+(S.complete?" ok":"");m.textContent=S.complete?"確定しました。チャットへ戻ると次の質問へ進みます。":"未指定や『おまかせ』の項目はランダムになります。";}
+function render(){const root=document.getElementById("qs");root.innerHTML="";QS.forEach(q=>{const a=S.answers[q.id],card=document.createElement("div");card.className="q";card.id="card-"+q.id;const label=document.createElement("div");label.className="ql";label.textContent=q.label;card.appendChild(label);const opts=document.createElement("div");opts.className="opts";q.opts.forEach(o=>{const value=optionValue(o),on=a.choices.includes(value),b=document.createElement("button");b.type="button";b.textContent=o[0]+". "+o[1];b.classList.toggle("on",on);b.onclick=()=>markChanged(()=>{if(o[0]==="0")a.choices=on?[]:[value];else{a.choices=a.choices.filter(x=>!x.startsWith("おまかせ"));a.choices=on?a.choices.filter(x=>x!==value):a.choices.concat(value);}},true);opts.appendChild(b);});card.appendChild(opts);const input=document.createElement("input");input.type="text";input.placeholder=q.free;input.value=a.free_text;input.oninput=()=>markChanged(()=>{a.free_text=input.value;},false,false);input.onblur=persist;card.appendChild(input);root.appendChild(card);});refresh();}
+document.getElementById("confirm").onclick=()=>{S.revision++;S.complete=true;render();persist();};
+let hydrated=false;function accept(raw){const n=migrate(raw),nr=n.revision||0,sr=S.revision||0;if(nr<sr||(hydrated&&nr===sr))return;S=n;hydrated=true;render();}
+render();try{const r=window.hatchWidget.getState(fresh());if(r&&typeof r.then==="function")r.then(accept).catch(()=>{});else accept(r);}catch(e){}
+window.addEventListener("hatch-widget-state",e=>{if(e.detail&&e.detail.state)accept(e.detail.state);});
+</script>

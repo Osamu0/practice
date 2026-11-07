@@ -1,0 +1,463 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="color-scheme" content="dark light">
+  <title>能力の配分</title>
+  <style>
+    :root {
+      color-scheme: dark;
+      --aw-bg: var(--hatch-widget-bg, #10131b);
+      --aw-surface: var(--hatch-widget-surface, #191e2a);
+      --aw-soft: var(--hatch-widget-surface-muted, #222a39);
+      --aw-line: var(--hatch-widget-border, #343d50);
+      --aw-text: var(--hatch-widget-text, #f4f2eb);
+      --aw-muted: var(--hatch-widget-muted, #aab2c1);
+      --aw-accent: var(--hatch-widget-accent, #edbd66);
+      --aw-on-accent: var(--hatch-widget-on-accent, #17130c);
+      font-family: system-ui, -apple-system, "Segoe UI", "Noto Sans JP", sans-serif;
+    }
+    * { box-sizing: border-box; }
+    body { margin: 0; color: var(--aw-text); background: var(--aw-bg); }
+    main { max-width: 720px; margin: 0 auto; padding: 12px; }
+    h1, p { margin: 0; }
+    h1 { font-size: 1.1rem; letter-spacing: .04em; }
+    .eyebrow { margin-bottom: 5px; color: var(--aw-accent); font-size: .72rem; }
+    .subtitle { margin: 7px 0 12px; color: var(--aw-muted); font-size: .78rem; line-height: 1.65; }
+    .role-hint { margin-bottom: 12px; padding: 10px 12px; border-left: 3px solid var(--aw-accent); border-radius: 0 8px 8px 0; color: var(--aw-muted); background: var(--aw-surface); font-size: .74rem; line-height: 1.7; }
+    .budget {
+      position: sticky; top: 0; z-index: 2; display: flex; justify-content: space-between;
+      align-items: center; gap: 12px; padding: 12px; margin-bottom: 10px;
+      border: 1px solid var(--aw-line); border-radius: 12px; background: var(--aw-surface);
+      box-shadow: 0 5px 15px rgba(0, 0, 0, .12);
+    }
+    .budget-label { display: block; color: var(--aw-muted); font-size: .7rem; }
+    .budget-value { font-weight: 800; font-size: 1.5rem; font-variant-numeric: tabular-nums; }
+    .budget-value .unit { font-weight: 600; font-size: .83rem; margin-left: 4px; }
+    .progress-box { flex: 1; max-width: 210px; }
+    .progress-text { margin-bottom: 5px; text-align: right; color: var(--aw-muted); font-size: .7rem; }
+    .track { overflow: hidden; height: 6px; border-radius: 9px; background: var(--aw-bg); }
+    .fill { height: 100%; width: 0; border-radius: inherit; background: var(--aw-accent); }
+    .stats { display: grid; gap: 8px; }
+    .weight-preview { margin-bottom: 10px; padding: 10px 12px; border: 1px solid var(--aw-line); border-radius: 10px; background: var(--aw-surface); font-size: .74rem; line-height: 1.65; }
+    .weight-detail { color: var(--aw-muted); font-size: .7rem; }
+    .pool-note { margin: -2px 2px 12px; color: var(--aw-muted); font-size: .74rem; line-height: 1.7; }
+    .resource-preview { margin-bottom: 10px; padding: 10px 12px; border: 1px solid var(--aw-line); border-radius: 10px; background: var(--aw-surface); }
+    .resource-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; }
+    .resource-name { color: var(--aw-muted); font-size: .7rem; }
+    .resource-value { display: block; margin-top: 4px; font-size: .8rem; font-weight: 700; font-variant-numeric: tabular-nums; }
+    .resource-note { margin-top: 8px; color: var(--aw-muted); font-size: .68rem; line-height: 1.6; }
+    .stat {
+      display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 8px; align-items: center;
+      padding: 11px 12px; border: 1px solid var(--aw-line); border-radius: 12px; background: var(--aw-surface);
+    }
+    .stat.changed { border-color: var(--aw-accent); }
+    .stat-name { font-weight: 700; font-size: .94rem; }
+    .stat-short { margin-left: 5px; color: var(--aw-muted); font-size: .64rem; font-weight: 500; }
+    .stat-base { margin-top: 5px; color: var(--aw-muted); font-size: .71rem; line-height: 1.5; font-variant-numeric: tabular-nums; }
+    .stat-effective { margin-top: 3px; color: var(--aw-accent); font-size: .7rem; line-height: 1.4; font-variant-numeric: tabular-nums; }
+    .controls { display: grid; grid-template-columns: 44px 48px 44px; align-items: center; gap: 4px; }
+    button {
+      min-width: 44px; min-height: 44px; border: 1px solid var(--aw-line); border-radius: 10px;
+      color: var(--aw-text); background: var(--aw-soft); font-family: inherit; cursor: pointer;
+      touch-action: manipulation; -webkit-tap-highlight-color: transparent;
+    }
+    .step { padding: 0; font-size: 1.35rem; font-weight: 650; line-height: 1; }
+    .step.plus { color: var(--aw-on-accent); background: var(--aw-accent); border-color: var(--aw-accent); }
+    button:disabled { opacity: .3; cursor: default; }
+    button:focus-visible { outline: 3px solid var(--aw-accent); outline-offset: 3px; }
+    button:not(:disabled):active { filter: brightness(1.2); }
+    output { display: block; text-align: center; font-size: 1.22rem; font-weight: 750; font-variant-numeric: tabular-nums; }
+    .planned-label { display: block; margin-bottom: 2px; color: var(--aw-muted); font-size: .6rem; font-weight: 400; }
+    .note { margin: 12px 2px 0; color: var(--aw-muted); font-size: .74rem; line-height: 1.65; overflow-wrap: anywhere; }
+    .meta { margin: 9px 2px 0; color: var(--aw-muted); font-size: .73rem; line-height: 1.6; }
+    .actions { display: flex; justify-content: flex-end; margin-top: 12px; }
+    .reset { padding: 9px 13px; font-size: .76rem; }
+    .draft-status { min-height: 1.4em; margin: 8px 2px; color: var(--aw-muted); font-size: .72rem; }
+    .ready { color: var(--aw-accent); }
+    .error { padding: 15px; border: 1px solid #e87373; border-radius: 12px; color: #ffc2c2; background: #321b22; line-height: 1.7; }
+    .footer { margin-top: 10px; padding: 12px; border: 1px solid var(--aw-line); border-radius: 12px; background: var(--aw-surface); }
+    .footer strong { display: block; font-size: .84rem; line-height: 1.7; }
+    .footer p { margin-top: 5px; color: var(--aw-muted); font-size: .72rem; line-height: 1.6; }
+    .sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; }
+    [hidden] { display: none !important; }
+    @media (min-width: 620px) { .stats { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+    @media (max-width: 350px) {
+      main { padding: 8px; }
+      .stat { padding: 10px 8px; gap: 5px; }
+      .controls { grid-template-columns: 44px 39px 44px; gap: 2px; }
+      .stat-name { font-size: .86rem; }
+      .stat-short { display: block; margin: 2px 0 0; }
+    }
+  </style>
+</head>
+<body>
+  <main id="allocation-app">
+    <p class="eyebrow" id="actor-name"></p>
+    <h1 id="allocation-title">能力の配分</h1>
+    <p class="subtitle" id="allocation-subtitle">＋と−で配分案を調整できます。</p>
+    <p class="role-hint" id="allocation-role-hint">攻撃も攻撃魔法も、当てるにはTECが必要です。STRは物理の威力、INTは魔法・MP、SPDは回避に関わります。</p>
+    <p id="allocation-pool-note" class="pool-note" hidden></p>
+    <section class="budget" aria-label="配分の残り" id="budget-panel">
+      <div>
+        <span class="budget-label">残り</span>
+        <div class="budget-value"><span id="remaining">—</span><span id="budget-unit" class="unit">点</span></div>
+      </div>
+      <div class="progress-box">
+        <div class="progress-text" id="progress-text"></div>
+        <div class="track" id="progress" role="progressbar" aria-label="配分した量" aria-valuemin="0" aria-valuemax="0" aria-valuenow="0"><div class="fill" id="progress-fill"></div></div>
+      </div>
+    </section>
+    <section id="resource-preview" class="resource-preview" aria-label="配分後のLPとMPの予告" hidden>
+      <div class="resource-grid">
+        <div><span class="resource-name">LP 現在 → 配分案</span><strong id="lp-preview" class="resource-value"></strong></div>
+        <div><span class="resource-name">MP 現在 → 配分案</span><strong id="mp-preview" class="resource-value"></strong></div>
+      </div>
+      <p id="resource-note" class="resource-note"></p>
+    </section>
+    <section id="weight-preview" class="weight-preview" aria-label="装備重量を含む素早さの予告" hidden>
+      <p id="weight-summary"></p><p id="weight-detail" class="weight-detail"></p>
+    </section>
+    <div id="stats" class="stats" aria-label="能力ごとの配分"></div>
+    <p id="allocation-note" class="note" hidden></p>
+    <p id="allocation-meta" class="meta" hidden></p>
+    <div class="actions"><button type="button" id="reset-draft" class="reset">最初の案に戻す</button></div>
+    <p id="draft-status" class="draft-status" role="status" aria-live="polite"></p>
+    <div class="footer" id="allocation-footer">
+      <strong>配分できたら、チャットに「確定」と送ってください。</strong>
+      <p>この画面では配分案だけを保存します。能力や所持品への反映は、チャットでの確認後です。</p>
+    </div>
+    <div id="allocation-error" class="error" role="alert" hidden></div>
+  </main>
+  <script id="allocation-payload" type="application/json">__ALLOCATION_PAYLOAD_JSON__</script>
+  <script>
+    (() => {
+      "use strict";
+      const WIDGET_SCHEMA = "machadan-allocation-widget-v1";
+      const STATE_SCHEMA = "machadan-allocation-widget-state-v1";
+      const names = {
+        str: ["力", "STR"], def: ["守り", "DEF"], int: ["知力", "INT"],
+        spd: ["素早さ", "SPD"], tec: ["器用さ", "TEC"], chm: ["魅力", "CHM"],
+        base_lp: ["基礎LP", "LP"], lp: ["基礎LP", "LP"]
+      };
+      const byId = id => document.getElementById(id);
+      const node = (tag, cls, text) => {
+        const el = document.createElement(tag);
+        if (cls) el.className = cls;
+        if (text !== undefined) el.textContent = String(text);
+        return el;
+      };
+      const integer = value => Number.isSafeInteger(value);
+      const format = value => Number(value).toLocaleString("ja-JP");
+      const clone = value => JSON.parse(JSON.stringify(value));
+      const rows = new Map();
+      let payload, S, hydrated = false, bridgeAvailable = false;
+      let pendingWrite = null, writing = false, savedRevision = -1, saveFailed = false;
+
+      function showError() {
+        for (const id of ["budget-panel", "resource-preview", "weight-preview", "stats", "reset-draft", "allocation-footer"]) byId(id).hidden = true;
+        byId("allocation-subtitle").hidden = true;
+        byId("allocation-error").hidden = false;
+        byId("allocation-error").textContent = "配分情報を読み込めませんでした。チャットに戻って、配分画面の再表示を頼んでください。";
+      }
+
+      function normalizeValues(raw) {
+        if (!raw || typeof raw !== "object" || Array.isArray(raw)) return null;
+        const keys = Object.keys(raw);
+        if (keys.length !== payload.fields.length || keys.some(k => !payload.fields.some(f => f.key === k))) return null;
+        const values = {};
+        let used = 0;
+        for (const field of payload.fields) {
+          const value = raw[field.key];
+          if (!integer(value) || value < field.minimum || value > field.maximum || (value - field.minimum) % field.step !== 0) return null;
+          const cost = ((value - field.minimum) / field.step) * field.cost;
+          if (!integer(cost)) return null;
+          used += cost;
+          values[field.key] = value;
+        }
+        if (!integer(used) || used > payload.budget.total) return null;
+        return {values, used, remaining: payload.budget.total - used};
+      }
+
+      function fresh() {
+        const embedded = payload.initial_state;
+        const restored = sameRequest(embedded) && integer(embedded.revision) && embedded.revision >= 0 ? normalizeValues(embedded.values) : null;
+        const planned = restored || normalizeValues(payload.initial_values);
+        return {
+          schema: STATE_SCHEMA, request_id: payload.request_id, mode: payload.mode,
+          actor_id: payload.actor_id, source_revision: payload.source_revision,
+          profile_hash: payload.profile_hash, values: planned.values, revision: restored ? embedded.revision : 0,
+          complete: !payload.budget.require_all || planned.remaining === 0
+        };
+      }
+
+      function sameRequest(raw) {
+        return raw && raw.schema === STATE_SCHEMA && raw.request_id === payload.request_id &&
+          raw.mode === payload.mode && raw.actor_id === payload.actor_id &&
+          raw.source_revision === payload.source_revision && raw.profile_hash === payload.profile_hash;
+      }
+
+      function accept(raw) {
+        if (!sameRequest(raw) || !integer(raw.revision) || raw.revision < 0) return;
+        if (raw.revision < S.revision || (hydrated && raw.revision === S.revision)) return;
+        const checked = normalizeValues(raw.values);
+        if (!checked) return;
+        S = {...fresh(), values: checked.values, revision: raw.revision,
+          complete: !payload.budget.require_all || checked.remaining === 0};
+        hydrated = true;
+        savedRevision = S.revision;
+        saveFailed = false;
+        if (writing || pendingWrite) pendingWrite = clone(S);
+        refresh();
+      }
+
+      function statusText() {
+        const checked = normalizeValues(S.values);
+        const status = byId("draft-status");
+        status.classList.toggle("ready", S.complete);
+        if (!bridgeAvailable) status.textContent = "この画面の保存に接続できません。チャットで配分内容を伝えるか、画面の再表示を頼んでください。";
+        else if (saveFailed) status.textContent = "配分案を保存できませんでした。チャットに戻る前に、もう一度操作するか画面を開き直してください。";
+        else if (writing || savedRevision < S.revision) status.textContent = "配分案を保存しています…";
+        else if (S.complete) status.textContent = "配分案を保存しました。チャットに「確定」と送れます。";
+        else status.textContent = `配分案を保存しました。あと${format(checked.remaining)}${payload.budget.unit_label}を振り分けてください。`;
+      }
+
+      function resourcePreview() {
+        const r = payload.resource_profile;
+        if (!r || typeof r !== "object" || !r.lp || !r.mp ||
+            ![r.lp.cur, r.lp.max, r.mp.cur, r.mp.max, r.base_lp, r.lp_fixed_bonus, r.permanent_def, r.permanent_int, r.int_fixed_bonus].every(integer) ||
+            typeof r.stat_lp_tracked !== "boolean" || typeof r.initial_full !== "boolean") return null;
+        const permanentDEF = Object.prototype.hasOwnProperty.call(S.values, "def") ? S.values.def : r.permanent_def;
+        const permanentINT = Object.prototype.hasOwnProperty.call(S.values, "int") ? S.values.int : r.permanent_int;
+        const baseLP = Object.prototype.hasOwnProperty.call(S.values, "base_lp") ? S.values.base_lp : r.base_lp;
+        const statLP = r.stat_lp_tracked ? Math.max(0, Math.floor((permanentDEF - 3) / 2)) : 0;
+        const lpMax = baseLP + r.lp_fixed_bonus + statLP;
+        const mpMax = permanentINT + r.int_fixed_bonus;
+        if (!integer(lpMax) || !integer(mpMax) || lpMax < 0 || mpMax < 0) return null;
+        return {lpBefore: r.lp, mpBefore: r.mp,
+          lpAfter: {cur: r.initial_full ? lpMax : Math.min(r.lp.cur, lpMax), max: lpMax},
+          mpAfter: {cur: r.initial_full ? mpMax : Math.min(r.mp.cur, mpMax), max: mpMax},
+          initialFull: r.initial_full};
+      }
+
+      function weightPreview() {
+        const e = payload.encumbrance;
+        if (!e || typeof e !== "object") return null;
+        const strField = payload.fields.find(field => field.key === "str");
+        const spdField = payload.fields.find(field => field.key === "spd");
+        const previous = integer(e.previous_applied_penalty) ? e.previous_applied_penalty : 0;
+        const currentSPD = spdField && integer(spdField.effective_bonus) ? spdField.current + spdField.effective_bonus :
+          integer(e.spd_without_penalty) ? e.spd_without_penalty - previous : e.effective_spd;
+        if (!integer(currentSPD)) return null;
+        if (e.weights_known !== true) return {known: false, currentSPD, plannedSPD: currentSPD};
+        const plannedSTR = strField && integer(strField.effective_bonus) ? S.values.str + strField.effective_bonus : e.str_total;
+        const spdWithoutPenalty = spdField && integer(spdField.effective_bonus) ?
+          S.values.spd + spdField.effective_bonus + previous : e.spd_without_penalty;
+        if (!integer(e.total_weight) || !integer(e.str_total) || !integer(plannedSTR) || !integer(spdWithoutPenalty)) return null;
+        const rawPenalty = Math.max(0, e.total_weight - plannedSTR);
+        const plannedSPD = Math.max(0, spdWithoutPenalty - rawPenalty);
+        return {known: true, currentSPD, plannedSPD, currentSTR: e.str_total, plannedSTR,
+          totalWeight: e.total_weight, appliedPenalty: Math.min(rawPenalty, Math.max(0, spdWithoutPenalty))};
+      }
+
+      function refresh() {
+        const focused = document.activeElement;
+        const focusedRow = Array.from(rows.values()).find(row => row.plus === focused || row.minus === focused);
+        const checked = normalizeValues(S.values);
+        if (!checked) return;
+        byId("remaining").textContent = format(checked.remaining);
+        byId("progress-text").textContent = `${format(checked.used)} / ${format(payload.budget.total)}${payload.budget.unit_label} 配分済み`;
+        byId("progress-fill").style.width = `${payload.budget.total ? (100 * checked.used / payload.budget.total) : 100}%`;
+        byId("progress").setAttribute("aria-valuemax", String(payload.budget.total));
+        byId("progress").setAttribute("aria-valuenow", String(checked.used));
+        const resources = resourcePreview();
+        byId("resource-preview").hidden = !resources;
+        if (resources) {
+          byId("lp-preview").textContent = `${format(resources.lpBefore.cur)} / ${format(resources.lpBefore.max)} → ${format(resources.lpAfter.cur)} / ${format(resources.lpAfter.max)}`;
+          byId("mp-preview").textContent = `${format(resources.mpBefore.cur)} / ${format(resources.mpBefore.max)} → ${format(resources.mpAfter.cur)} / ${format(resources.mpAfter.max)}`;
+          byId("resource-note").textContent = resources.initialFull ? "初期作成では、LP・MPは配分後の最大値で始まります。" : "最大値が増えてもLP・MPは回復しません。新しい最大値を超える分だけ調整します。";
+        }
+        const weight = weightPreview();
+        byId("weight-preview").hidden = !weight;
+        if (weight) {
+          if (weight.known) {
+            byId("weight-summary").textContent = `重量込みのSPD ${format(weight.currentSPD)} → ${format(weight.plannedSPD)}`;
+            byId("weight-detail").textContent = `装備重量 ${format(weight.totalWeight)} ／ STR ${format(weight.currentSTR)} → ${format(weight.plannedSTR)} ／ 配分案の重量ペナルティ −${format(weight.appliedPenalty)}`;
+          } else {
+            byId("weight-summary").textContent = `現在のSPD ${format(weight.currentSPD)}（表示値を維持）`;
+            byId("weight-detail").textContent = "装備重量は未確認です。この配分では重量による変化を予告しません。";
+          }
+        }
+        for (const field of payload.fields) {
+          const row = rows.get(field.key), value = S.values[field.key];
+          const currentEffective = integer(field.effective_bonus) ?
+            (field.key === "spd" && weight ? weight.currentSPD : field.current + field.effective_bonus) : field.current;
+          const plannedEffective = integer(field.effective_bonus) ?
+            (field.key === "spd" && weight ? weight.plannedSPD : value + field.effective_bonus) : value;
+          row.value.textContent = format(plannedEffective);
+          row.minus.disabled = value - field.step < field.minimum;
+          row.plus.disabled = value + field.step > field.maximum || checked.remaining < field.cost;
+          row.card.classList.toggle("changed", value !== field.current);
+          const permanent = (payload.mode === "fruit" || payload.mode === "respec") && field.key !== "base_lp" && field.key !== "lp";
+          const baseLabel = permanent ? "恒久値" : "基礎";
+          const parts = [`${baseLabel} ${format(value)}`];
+          const breakdown = (payload.display_bonus_breakdown || {})[field.key];
+          if (breakdown) {
+            for (const [key, label] of [["fire", "火"], ["equipment", "装備"], ["temporary", "一時"], ["growth", "成長"]]) {
+              const amount = breakdown[key];
+              if (integer(amount) && amount !== 0) parts.push(`${label} ${amount > 0 ? "＋" : "−"}${format(Math.abs(amount))}`);
+            }
+            if (field.key === "spd" && weight && weight.known && weight.appliedPenalty) parts.push(`重量 −${format(weight.appliedPenalty)}`);
+          } else if (integer(field.effective_bonus) && field.effective_bonus !== 0) {
+            parts.push(`補正 ${field.effective_bonus > 0 ? "＋" : "−"}${format(Math.abs(field.effective_bonus))}`);
+          }
+          row.base.textContent = `${parts.join(" ／ ")}（${baseLabel}の下限 ${format(field.minimum)}）`;
+          if (integer(field.effective_bonus)) {
+            row.effective.textContent = `現在 ${format(currentEffective)} → 配分後 ${format(plannedEffective)}`;
+            row.effective.hidden = false;
+          }
+        }
+        byId("reset-draft").disabled = payload.fields.every(f => S.values[f.key] === payload.initial_values[f.key]);
+        if (focused && focused.disabled) {
+          let next = focusedRow && (!focusedRow.minus.disabled ? focusedRow.minus : !focusedRow.plus.disabled ? focusedRow.plus : null);
+          if (!next && focused === byId("reset-draft")) next = Array.from(rows.values()).map(row => row.plus).find(button => !button.disabled);
+          if (next && typeof next.focus === "function") next.focus({preventScroll: true});
+        }
+        statusText();
+      }
+
+      async function persist() {
+        hydrated = true;
+        if (!bridgeAvailable) { statusText(); return; }
+        pendingWrite = clone(S);
+        if (writing) { statusText(); return; }
+        writing = true;
+        saveFailed = false;
+        statusText();
+        try {
+          while (pendingWrite) {
+            const snapshot = pendingWrite;
+            pendingWrite = null;
+            await window.hatchWidget.setState(snapshot);
+            savedRevision = Math.max(savedRevision, snapshot.revision);
+          }
+        } catch (error) {
+          saveFailed = true;
+          pendingWrite = null;
+        } finally {
+          writing = false;
+          statusText();
+        }
+      }
+
+      function mutate(values) {
+        const checked = normalizeValues(values);
+        if (!checked) return;
+        S = {...S, values: checked.values, revision: S.revision + 1,
+          complete: !payload.budget.require_all || checked.remaining === 0};
+        refresh();
+        persist();
+      }
+
+      function build() {
+        const modeNames = {initial: "最初の能力配分", fruit: "能力の実の振り分け", respec: "職業の能力配分", job: "職業の能力配分", guild: "職業の能力配分"};
+        byId("actor-name").textContent = payload.actor_name || "冒険者";
+        byId("allocation-title").textContent = modeNames[payload.mode] || "能力の配分";
+        byId("allocation-subtitle").textContent = payload.mode === "fruit" ? "＋と−で実の振り分け先を選びます。大きい数値は火・装備などを含む最終値です。" : payload.mode === "respec" ? "成長ぶんを含む恒久値を再配分します。大きい数値は補正込みの最終値、下限3は恒久値の下限です。" : "＋と−で基礎に15点を配分します。大きい数値は火・装備などを含む最終能力です。火の補正は配分枠を使いません。";
+        if (payload.mode === "respec") {
+          const total = payload.respec && payload.respec.permanent_total;
+          const summary = integer(total) ? `成長ぶんを含む${format(payload.budget.total)}点を振り直せます（6能力の合計${format(total)}点）。` : `成長ぶんを含む${format(payload.budget.total)}点を振り直せます。`;
+          byId("allocation-pool-note").textContent = summary + "LPの実で増えたLPはそのまま残ります。";
+          byId("allocation-pool-note").hidden = false;
+        }
+        byId("budget-unit").textContent = payload.budget.unit_label;
+        if (payload.note) { byId("allocation-note").textContent = String(payload.note); byId("allocation-note").hidden = false; }
+        const meta = [];
+        if (payload.item && payload.item.name) meta.push(`${payload.item.name}：${format(payload.item.quantity)}個`);
+        if (payload.respec) {
+          if (integer(payload.respec.fee_gold)) meta.push(`費用 ${format(payload.respec.fee_gold)}G`);
+          if (integer(payload.respec.duration_minutes)) {
+            const minutes = payload.respec.duration_minutes;
+            const duration = minutes === 720 ? "半日" : minutes >= 60 && minutes % 60 === 0 ? `${format(minutes / 60)}時間` : `${format(minutes)}分`;
+            meta.push(`所要 ${duration}`);
+          }
+        }
+        if (meta.length) { byId("allocation-meta").textContent = meta.join(" ／ "); byId("allocation-meta").hidden = false; }
+        for (const field of payload.fields) {
+          const known = names[field.key];
+          const label = known ? known[0] : String(field.label || field.key);
+          const short = known ? known[1] : String(field.short || "");
+          const card = node("section", "stat");
+          card.setAttribute("aria-label", label + "の配分");
+          const info = node("div", "stat-info");
+          const name = node("div", "stat-name", label);
+          name.appendChild(node("span", "stat-short", short));
+          const base = node("div", "stat-base");
+          const effective = node("div", "stat-effective");
+          effective.hidden = true;
+          info.append(name, base, effective);
+          if (field.step !== 1 || field.cost !== 1) info.appendChild(node("div", "stat-base", `${format(field.cost)}${payload.budget.unit_label}で＋${format(field.step)}`));
+          const controls = node("div", "controls");
+          const minus = node("button", "step minus", "−");
+          minus.type = "button"; minus.dataset.stat = field.key; minus.dataset.direction = "-1";
+          minus.setAttribute("aria-label", `${label}を${field.step}減らす`);
+          const planned = node("div", "planned");
+          planned.appendChild(node("span", "planned-label", field.key === "base_lp" ? "最終LP" : "最終能力"));
+          const value = node("output"); value.setAttribute("aria-label", label + "の補正込み最終値");
+          planned.appendChild(value);
+          const plus = node("button", "step plus", "＋");
+          plus.type = "button"; plus.dataset.stat = field.key; plus.dataset.direction = "1";
+          plus.setAttribute("aria-label", `${label}を${field.step}増やす`);
+          controls.append(minus, planned, plus);
+          card.append(info, controls);
+          byId("stats").appendChild(card);
+          rows.set(field.key, {card, base, effective, minus, plus, value});
+        }
+        byId("stats").addEventListener("click", event => {
+          const button = event.target.closest("button[data-stat]");
+          if (!button || !byId("stats").contains(button) || button.disabled) return;
+          const field = payload.fields.find(f => f.key === button.dataset.stat);
+          if (!field) return;
+          const direction = button.dataset.direction === "1" ? 1 : -1;
+          mutate({...S.values, [field.key]: S.values[field.key] + direction * field.step});
+        });
+        byId("reset-draft").addEventListener("click", () => mutate({...payload.initial_values}));
+      }
+
+      try {
+        payload = JSON.parse(byId("allocation-payload").textContent);
+        if (!payload || payload.schema !== WIDGET_SCHEMA || !payload.request_id || !payload.actor_id || !payload.mode ||
+            !integer(payload.source_revision) || typeof payload.profile_hash !== "string" ||
+            !payload.budget || !integer(payload.budget.total) || payload.budget.total < 0 ||
+            typeof payload.budget.unit_label !== "string" || typeof payload.budget.require_all !== "boolean" ||
+            !Array.isArray(payload.fields) || !payload.fields.length) throw new Error("invalid envelope");
+        const keys = new Set();
+        for (const field of payload.fields) {
+          if (!field || typeof field.key !== "string" || !/^[a-z][a-z0-9_]*$/.test(field.key) || keys.has(field.key) ||
+              !integer(field.current) || !integer(field.minimum) || !integer(field.maximum) || field.minimum > field.maximum ||
+              !integer(field.step) || field.step <= 0 || !integer(field.cost) || field.cost <= 0) throw new Error("invalid field");
+          keys.add(field.key);
+        }
+        if (!normalizeValues(payload.initial_values)) throw new Error("invalid initial values");
+        S = fresh();
+        build();
+        bridgeAvailable = !!(window.hatchWidget && typeof window.hatchWidget.getState === "function" && typeof window.hatchWidget.setState === "function");
+        refresh();
+        window.addEventListener("hatch-widget-state", event => {
+          if (event.detail && event.detail.state) accept(event.detail.state);
+        });
+        if (bridgeAvailable) {
+          try {
+            const restored = window.hatchWidget.getState(clone(S));
+            Promise.resolve(restored).then(raw => {
+              accept(raw);
+              persist();
+            }).catch(() => persist());
+          } catch (error) { persist(); }
+        }
+      } catch (error) { showError(); }
+    })();
+  </script>
+</body>
+</html>

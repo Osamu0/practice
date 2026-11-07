@@ -1,0 +1,7 @@
+# マチャダン実行時の一時ファイル
+.machadan-runtime.lock
+machadan_spade/muse版/state/runtime/
+machadan_spade/muse版/state/locks/
+machadan_spade/muse版/saves/_locks/
+__pycache__/
+*.pyc

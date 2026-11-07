@@ -1,0 +1,718 @@
+schema: machadan-canonical-registry-v1
+version: 2
+runtime_root: ..
+generated_views:
+- ナレッジ索引.md
+- 運用/ルーティング表.md
+- tools/anchors.json
+- 世界/舞台資料集.md
+- 世界/地方世界資料集.md
+precedence:
+- hard_invariants
+- latest_active_decision
+- active_save
+- canonical
+- supporting
+- superseded
+hard_invariants:
+- id: ADULT_ONLY_INTIMATE_CONTENT
+  rule: 恋愛・性的な関わりの対象は人間換算18歳以上の成人に限る。数値年齢または正本上の明確な成人指定で確認する。プレイヤー年齢は数値必須かつ18以上。リリス等、正本で成人と確定した年齢不詳キャストには数値を創作しない。
+- id: SAVE_IS_CAMPAIGN_TRUTH
+  rule: 所持品・金銭・数値・関係・進行・ダイス位置は現行セーブを正とする。
+- id: NO_INVENTED_ROLLS
+  rule: 出目は固定ダイステープからだけ取得し、成功させるための引き直しや飛ばし読みをしない。
+- id: NO_HIDDEN_REASONING_OUTPUT
+  rule: 旧GM_BRAINは使用・表示しない。検証は内部処理とツール結果で行う。
+resources:
+  REGIONAL_WORLD:
+    path: 世界/地方世界設定.json
+    load: full
+    role: canonical
+    aliases:
+    - 地方世界
+    - ノワールと近郊
+    - 暦と季節
+    - 交易と統治
+    - 死と葬送
+  REGIONAL_WORLD_BOOK:
+    path: 世界/地方世界資料集.md
+    load: on_doctor
+    role: generated_view
+    aliases:
+    - 地方世界資料集
+    - 地方の暮らし
+  PLACE_ATLAS:
+    path: 世界/舞台構造.json
+    load: full
+    role: canonical
+    aliases:
+    - 舞台構造
+    - 町と村の構造
+    - 建物と部屋
+    - 場所資料
+  PLACE_ATLAS_BOOK:
+    path: 世界/舞台資料集.md
+    load: on_doctor
+    role: generated_view
+    aliases:
+    - 舞台資料集
+    - 建物一覧
+  CANONICAL_REGISTRY:
+    path: 運用/正本レジストリ.yaml
+    load: on_conflict
+    role: canonical
+    aliases:
+    - 正本レジストリ
+    - 正本再照合
+  ROUTES:
+    path: 運用/ルーティング表.yaml
+    load: on_route
+    role: canonical
+    aliases:
+    - ルーティング
+    - 場面パック
+  KNOWLEDGE_INDEX:
+    path: ナレッジ索引.md
+    load: on_doctor
+    role: generated_view
+    aliases:
+    - 索引
+    - 本番ファイル一覧
+  SAVE_TEMPLATE:
+    path: セーブ雛形.yaml
+    load: on_new_campaign
+    role: canonical
+    aliases:
+    - セーブ雛形
+    - セーブスキーマ
+  CORE_RULES:
+    path: 運用/コア運用ルール.md
+    load: full
+    role: canonical
+    aliases:
+    - コア
+    - 常時ルール
+    - 成人条件
+    - ターン規則
+  GM_CARD:
+    path: 運用/GM運用カード.md
+    load: full
+    role: supporting
+    aliases:
+    - GMカード
+    - 早見
+  ACTIVE_INSTRUCTIONS:
+    path: 運用/マチャダンスペード_カスタム指示文_改.txt
+    load: full
+    role: canonical
+    aliases:
+    - カスタム指示文
+    - 出力契約
+    - ゲーム目標
+  OLD_INSTRUCTIONS:
+    path: null
+    present: false
+    historical_name: マチャダンスペード_カスタム指示文.txt
+    load: never
+    role: superseded
+    replaced_by: ACTIVE_INSTRUCTIONS
+  DECISIONS:
+    path: 運用/決定台帳.yaml
+    load: on_conflict
+    role: canonical
+    aliases:
+    - 決定
+    - M番号
+    - 変更履歴
+  DESIGN_HISTORY:
+    path: null
+    present: false
+    historical_name: 運用/設計変更リスト.md
+    load: never
+    role: author_only
+    replaced_by: DECISIONS
+    aliases:
+    - 旧設計変更履歴
+  NUMBERS:
+    path: 運用/数値正本.md
+    load: full
+    role: canonical
+    aliases:
+    - 数値
+    - 敵ステータス
+    - 火
+    - 魔法数値
+    - スキル数値
+  COMBAT:
+    path: 運用/Combat_Logic_Detail.md
+    load: section
+    role: canonical
+    aliases:
+    - 戦闘
+    - 敗北
+    - 状態異常
+  CHECKS:
+    path: 運用/判定基準シート.md
+    load: full
+    role: canonical
+    aliases:
+    - 判定
+    - 目標値
+    - 大成功
+    - 状況補正
+  DUNGEON_RULES:
+    path: 運用/ダンジョン数値化シート.md
+    load: full
+    role: canonical
+    aliases:
+    - ギミック
+    - 毒
+    - 睡眠
+    - 状態付与
+  OPERATIONS:
+    path: 運用/運用詳細シート.md
+    load: full
+    role: canonical
+    aliases:
+    - 治療
+    - 逃走
+    - 帰還
+    - 野宿
+    - 報酬
+    - 報酬契約
+    - 報酬精算
+    - 報酬受取
+    - 非金銭報酬
+    - 権利報酬
+    - 返済
+    - 売却
+  MAGIC:
+    path: 運用/魔法システム設計書.md
+    load: section
+    role: canonical
+    aliases:
+    - 魔法
+    - 魔導書
+    - まどろみ堂
+  SKILLS:
+    path: 運用/スキルシステム設計書.md
+    load: full
+    role: canonical
+    aliases:
+    - スキル
+    - 取得
+    - 強化
+    - 転職
+    - 位階
+  SKILL_MAGIC_SAMPLES:
+    path: 運用/スキル・魔法サンプル集.md
+    load: section
+    role: supporting
+    aliases:
+    - サンプルスキル
+    - サンプル魔法
+  FIREARMS:
+    path: 運用/銃器・遠隔武器設計書.md
+    load: full
+    role: canonical
+    aliases:
+    - 銃
+    - 弾薬
+    - 遠隔武器
+  COMMANDS:
+    path: 運用/Command_Manual.md
+    load: section
+    role: canonical
+    aliases:
+    - コマンド
+    - 開始
+    - セーブ
+  TEMPLATES:
+    path: 運用/System_Templates.md
+    load: section
+    role: canonical
+    aliases:
+    - テンプレート
+    - 固定脚本
+    - SCRIPT_OPENING
+    - TEMPLATE_SAVE
+  STATUS_CHECK:
+    path: 運用/Status_Integrity_Check.md
+    load: full
+    role: supporting
+    aliases:
+    - 整合性チェック
+    - ステータス検証
+  BOOT_WORLD:
+    path: 運用/BootSequence_ContextPatch.md
+    load: section
+    role: supporting
+    aliases:
+    - 世界前提
+    - Boot
+  QUEST_DESIGN:
+    path: 運用/イベントクエスト設計書.md
+    load: full
+    role: canonical
+    aliases:
+    - クエストカード
+    - イベントクエスト
+    - 報酬受渡
+    - 生産依頼
+    - 製作依頼
+    - 発明依頼
+    - 特注
+    - 悩み解決
+  ENTERPRISE:
+    path: 運用/職業・店舗・商品開発システム.md
+    load: full
+    role: canonical
+    aliases:
+    - 店舗経営
+    - 自分の店
+    - 職業専門性
+    - 専門事件
+    - 未知素材
+    - 研究
+    - レシピ
+    - 商品開発
+    - 材料予約
+  QUEST_PARTS:
+    path: 運用/クエスト部品表.md
+    load: full
+    role: supporting
+    aliases:
+    - クエスト部品
+    - 生産依頼部品
+  RANDOM_EVENT_RULES:
+    path: 運用/ランダムイベント設計書.md
+    load: full
+    role: canonical
+    aliases:
+    - ランダムイベント
+    - 散策イベント
+    - 飛び込み依頼
+  EVENT_DECK:
+    path: 運用/イベントデッキ.md
+    load: on_init
+    role: seed_template
+    aliases:
+    - イベント初期在庫
+    - イベント移行元
+  OPS_EXAMPLES:
+    path: 運用/実務手順例.md
+    load: sections
+    role: supporting
+    aliases:
+    - 精算の正形
+    - 宿泊と取立ての実例
+  BALANCE_DATA:
+    path: 運用/戦闘調整データ.json
+    load: on_doctor
+    role: supporting
+  BALANCE_REPORT:
+    path: 運用/戦闘試算_v4_13_0.md
+    load: on_doctor
+    role: supporting
+  MP_REPORT:
+    path: 運用/MP試算_v4_13_0.md
+    load: on_doctor
+    role: supporting
+  MATERIAL_AUDIT:
+    path: 運用/素材照合_v4_13_0.json
+    load: on_doctor
+    role: supporting
+  UPDATE_V413:
+    path: 運用/更新報告_v4_13_0.md
+    load: on_doctor
+    role: supporting
+  EVENT_CONNECTIONS:
+    path: 運用/イベント接続表.md
+    load: section
+    role: supporting
+    aliases:
+    - イベント接続
+    - 追補イベントの発生経路
+  CAST_MOVEMENT:
+    path: 運用/キャスト動線表.md
+    load: full
+    role: canonical
+    aliases:
+    - 動線
+    - 誰がどこにいる
+  STYLE_CARD:
+    path: 文章/文体ルールカード.md
+    load: section
+    role: canonical
+    aliases:
+    - 文体
+    - 通常文体
+    - ラビトレ文体
+  STYLE_DICTIONARY:
+    path: 文章/えろ辞書_ラビトレ流用.md
+    load: section
+    role: supporting
+    aliases:
+    - 語彙辞書
+    - 反応辞書
+  INTIMATE_RULES:
+    path: 運用/00_Absolute_Ero_Rule.md
+    load: section
+    role: canonical
+    aliases:
+    - 成人向け場面
+    - 閨シーン
+  YURI_STYLE:
+    path: 文章/Yuri_Style_Guide.md
+    load: section
+    role: canonical
+    aliases:
+    - 百合
+    - 女×女
+  WORLD:
+    path: 世界/World_Setting.md
+    load: section
+    role: canonical
+    aliases:
+    - 世界設定
+  LOCATIONS:
+    path: 世界/Locations.md
+    load: section
+    role: canonical
+    aliases:
+    - 場所
+    - 施設
+    - 店
+  DUNGEON_DATA:
+    path: 世界/Dungeon_Data.md
+    load: section
+    role: canonical
+    aliases:
+    - ダンジョン
+    - 階層
+  ITEMS:
+    path: 世界/Item_Database.md
+    load: section
+    role: canonical
+    aliases:
+    - アイテム
+    - 装備
+    - 価格
+  QUEST_GUILD:
+    path: 世界/Quest_Guild.md
+    load: section
+    role: canonical
+    aliases:
+    - ギルド
+    - 依頼
+    - 昇格
+  FESTIVALS:
+    path: 世界/Festival_Event_Data.md
+    load: section
+    role: canonical
+    aliases:
+    - 祭り
+  MAGITECH:
+    path: 世界/魔道科学メモ.md
+    load: full
+    role: canonical
+    aliases:
+    - 魔道科学
+    - 技術可否
+  ENCOUNTERS:
+    path: 生成/Overworld_Encounters.md
+    load: section
+    role: supporting
+    aliases:
+    - 道中
+    - 遭遇
+  MONSTERS:
+    path: 生成/Monster_Bestiary.md
+    load: section
+    role: supporting
+    aliases:
+    - モンスター
+    - 敵図鑑
+  DROPS:
+    path: 生成/ドロップ表.md
+    load: full
+    role: canonical
+    aliases:
+    - ドロップ
+    - 素材
+  MOB_GENERATOR:
+    path: 生成/Mob_Generator.md
+    load: section
+    role: canonical
+    aliases:
+    - モブ生成
+    - 仲間候補生成
+  MOB_STOCK:
+    path: 生成/モブ在庫.md
+    load: on_init
+    role: seed_template
+    aliases:
+    - モブ初期在庫
+    - モブ移行元
+  EVENT_INVENTORY_STATE:
+    path: state/inventory/events.yaml
+    load: dynamic
+    role: mutable_state
+    mutable: true
+    initialize_mode: empty
+    initialize_from: EVENT_DECK
+    aliases:
+    - イベント在庫
+    - イベント状態
+  MOB_INVENTORY_STATE:
+    path: state/inventory/mobs.yaml
+    load: dynamic
+    role: mutable_state
+    mutable: true
+    initialize_mode: empty
+    initialize_from: MOB_STOCK
+    aliases:
+    - モブ在庫
+    - モブ状態
+  CAPTURE_RULES:
+    path: 生成/モン娘_捕獲と運用.md
+    load: full
+    role: canonical
+    aliases:
+    - 捕獲
+    - モン娘
+  CHEKYUN_CONSTRUCTOR:
+    path: チェキュン/SD_Prompt_Constructor.md
+    load: full
+    role: canonical
+    aliases:
+    - チェキュン手順
+  CHEKYUN_PRESETS:
+    path: チェキュン/プリセット全集.md
+    load: full
+    role: canonical
+    aliases:
+    - チェキュン
+    - プリセット
+  VOICE_A:
+    path: 人格/Voice_Sample_Bank_a_TYPEとシチュ.md
+    load: section
+    role: supporting
+    aliases:
+    - 声サンプル
+    - TYPE
+    - シチュ
+  VOICE_B:
+    path: 人格/Voice_Sample_Bank_b_動作と絶頂と地の文.md
+    load: section
+    role: supporting
+    aliases:
+    - 動作サンプル
+    - 地の文サンプル
+  VOICE_C:
+    path: 人格/Voice_Sample_Bank_c_男性側.md
+    load: section
+    role: supporting
+    aliases:
+    - 男性側サンプル
+  TURN_CONTRACT:
+    path: 運用/毎ターンの約束.md
+    load: full
+    role: canonical
+    aliases:
+    - 毎ターンの約束
+    - 自由な物語
+    - 未定義の補完
+domains:
+  runtime_contract:
+    revision: M91
+    canonical:
+    - CORE_RULES
+    - ACTIVE_INSTRUCTIONS
+    supporting:
+    - GM_CARD
+    - STATUS_CHECK
+    superseded:
+    - OLD_INSTRUCTIONS
+  numbers:
+    revision: M102
+    canonical:
+    - NUMBERS
+    supporting:
+    - CHECKS
+    - DUNGEON_RULES
+    - OPERATIONS
+    superseded: []
+  combat:
+    revision: M101
+    canonical:
+    - NUMBERS
+    - COMBAT
+    - ITEMS
+    supporting:
+    - DUNGEON_RULES
+    - STATUS_CHECK
+    superseded: []
+  magic:
+    revision: M76
+    canonical:
+    - MAGIC
+    - NUMBERS
+    supporting:
+    - SKILL_MAGIC_SAMPLES
+    superseded: []
+  skills:
+    revision: M96
+    canonical:
+    - SKILLS
+    - NUMBERS
+    supporting:
+    - SKILL_MAGIC_SAMPLES
+    superseded: []
+  quests:
+    revision: M92
+    canonical:
+    - QUEST_DESIGN
+    - ENTERPRISE
+    - QUEST_GUILD
+    - OPERATIONS
+    supporting:
+    - QUEST_PARTS
+    superseded: []
+  random_events:
+    revision: M85
+    canonical:
+    - RANDOM_EVENT_RULES
+    supporting:
+    - ENCOUNTERS
+    superseded: []
+  dungeon:
+    revision: M86
+    canonical:
+    - DUNGEON_DATA
+    - DUNGEON_RULES
+    - CHECKS
+    - DROPS
+    supporting:
+    - EVENT_DECK
+    - MONSTERS
+    - ITEMS
+    - OPERATIONS
+    superseded: []
+  growth:
+    revision: M86
+    canonical:
+    - NUMBERS
+    - DROPS
+    - QUEST_GUILD
+    - ITEMS
+    supporting:
+    - DUNGEON_DATA
+    - QUEST_DESIGN
+    - STATUS_CHECK
+    superseded: []
+  enterprise:
+    revision: M92
+    canonical:
+    - ENTERPRISE
+    - QUEST_DESIGN
+    - ITEMS
+    - MAGITECH
+    supporting:
+    - QUEST_PARTS
+    - CHECKS
+    - DUNGEON_DATA
+    - DROPS
+    superseded: []
+  inventory_ui:
+    revision: M94
+    canonical:
+    - SAVE_TEMPLATE
+    - ITEMS
+    - NUMBERS
+    supporting:
+    - STATUS_CHECK
+    - FIREARMS
+    superseded: []
+  debt:
+    revision: M93
+    canonical:
+    - OPERATIONS
+    - CORE_RULES
+    supporting:
+    - QUEST_DESIGN
+    - ENTERPRISE
+    superseded: []
+  route_coverage:
+    revision: M95
+    canonical:
+    - ROUTES
+    - CANONICAL_REGISTRY
+    supporting:
+    - STATUS_CHECK
+    - COMMANDS
+    superseded: []
+  prose_style:
+    revision: M25
+    canonical:
+    - STYLE_CARD
+    supporting:
+    - STYLE_DICTIONARY
+    - VOICE_A
+    - VOICE_B
+    - VOICE_C
+    superseded: []
+  intimate_style:
+    revision: M25
+    canonical:
+    - STYLE_CARD
+    - INTIMATE_RULES
+    supporting:
+    - STYLE_DICTIONARY
+    - VOICE_A
+    - VOICE_B
+    - VOICE_C
+    superseded: []
+  yuri_style:
+    revision: M25
+    canonical:
+    - YURI_STYLE
+    - STYLE_CARD
+    supporting:
+    - STYLE_DICTIONARY
+    superseded: []
+  chekyun:
+    revision: M66
+    canonical:
+    - CHEKYUN_CONSTRUCTOR
+    - CHEKYUN_PRESETS
+    supporting: []
+    superseded: []
+  story_freedom:
+    revision: M97
+    canonical:
+    - TURN_CONTRACT
+    - CORE_RULES
+    supporting:
+    - ROUTES
+    - STATUS_CHECK
+    superseded: []
+reconciliation:
+  search_order:
+  - exact_term
+  - aliases_and_synonyms
+  - decision_id
+  - canonical_full_section
+  - latest_active_decision
+  classifications:
+  - stale_summary
+  - missing_propagation
+  - true_canonical_conflict
+  automatic_actions:
+    stale_summary: 正本が一意なら補助資料を更新し、再検証する。
+    missing_propagation: 正本が一意なら参照先へ反映し、再検証する。
+    true_canonical_conflict: 進行・ダイス消費・セーブ更新を止め、衝突箇所を利用者へ示す。
+  never:
+  - 正本の値を推測で補う
+  - 履歴だけを根拠に現行正本を上書きする
+  - 検証失敗のままターンまたは配布ビルドを確定する

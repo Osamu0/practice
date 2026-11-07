@@ -1,0 +1,33 @@
+<style>
+.hf{font-family:inherit;color:var(--hatch-widget-text);background:var(--hatch-widget-bg);box-sizing:border-box;padding:8px}.hf *{box-sizing:border-box}.hf h3{margin:4px 0;font-size:16px}.sub,.foot,.msg{color:var(--hatch-widget-muted);font-size:12px}.q{border:1px solid var(--hatch-widget-border);background:var(--hatch-widget-surface);border-radius:10px;padding:10px;margin:8px 0}.q.done{border-color:var(--hatch-widget-accent)}.ql{font-weight:600;margin-bottom:6px;font-size:14px}.opts{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:6px}.opts button,.confirm{border:1px solid var(--hatch-widget-border);background:var(--hatch-widget-surface-muted);color:var(--hatch-widget-text);border-radius:999px;padding:7px 11px;font-size:12px;cursor:pointer;text-align:left}.opts button.on,.confirm{background:var(--hatch-widget-accent);color:var(--hatch-widget-on-accent);border-color:var(--hatch-widget-accent)}.q input{width:100%;padding:7px 9px;border:1px solid var(--hatch-widget-border);border-radius:8px;background:var(--hatch-widget-bg);color:var(--hatch-widget-text);font-size:13px}.confirm{border-radius:8px;width:100%;text-align:center;font-weight:700}#cnt{font-weight:600;color:var(--hatch-widget-accent)}#msg.ok{color:var(--hatch-widget-accent)}
+</style>
+<div class="hf">
+<h3>初回ヒアリング ステップ4（好み・NG）</h3>
+<p class="sub">未指定はおまかせとして扱います。NG事項は以後の描写で常に除外します。</p>
+<div id="qs"></div>
+<p class="foot"><span id="cnt"></span></p>
+<button id="confirm" class="confirm" type="button">この内容で確定</button>
+<p id="msg" class="msg" aria-live="polite"></p>
+</div>
+<script>
+const WIDGET_SCHEMA="machadan.hearing.widget.v2",STEP_ID="desire",STEP=4,NEXT_STEP="partner_preferences";
+const QS=[
+ {id:"desire",type:"multi",label:"1. どんな『遊び』がしたい？（性癖・好きなシチュエーション）",opts:[["1","攻めたい（女の子を泣かせたい・翻弄したい）"],["2","攻められたい（お姉さんにイジメられたい・翻弄されたい）"],["3","甘々・ラブラブ中心"],["4","敗北・ピンチ・逆転系"],["5","れいぷごっこ等のCNC系"],["6","百合中心"],["0","おまかせ"]],free:"具体的な性癖・シチュエーション（自由入力）"},
+ {id:"yuri_tachi",type:"multi",label:"2. 百合の好み —— 攻め（タチ）側は？",opts:[["1","王子様タチ"],["2","お姉様タチ"],["3","強引タチ"],["4","世話焼きタチ"],["5","無自覚タチ"],["0","おまかせ・特にない"]],free:"そのほか（自由入力）"},
+ {id:"yuri_neko",type:"multi",label:"3. 百合の好み —— 受け（ネコ）側は？",opts:[["1","ピュアネコ"],["2","甘えっ子ネコ"],["3","強気ネコ"],["4","ドM耐えネコ"],["5","誘いネコ"],["6","リバ（場面で入れ替わる）"],["0","おまかせ・特にない"]],free:"そのほか（自由入力）"},
+ {id:"ng",type:"text",label:"4. NG事項（絶対に避けてほしいこと）",placeholder:"例：〇〇は無しで。無ければ「特になし」"}
+];
+function blank(q){return q.type==="text"?"":{choices:[],free_text:""};}
+function fresh(){const answers={};QS.forEach(q=>answers[q.id]=blank(q));return{schema:WIDGET_SCHEMA,schema_version:2,step:STEP,step_id:STEP_ID,next_step:NEXT_STEP,revision:0,valid:true,complete:false,answers,validation:{errors:[]}};}
+let S=fresh();
+function migrate(raw){if(!raw||typeof raw!=="object")return fresh();if(raw.schema===WIDGET_SCHEMA){const n=fresh();Object.assign(n,raw);n.answers=Object.assign(n.answers,raw.answers||{});return n;}const n=fresh();QS.forEach(q=>{const v=raw[q.id];if(!v)return;if(q.type==="text")n.answers[q.id]=String(v.text||"");else{const labels=(v.sel||[]).map(k=>{const o=q.opts.find(x=>x[0]===k);return o?o[1]:k;});n.answers[q.id]={choices:labels,free_text:String(v.free||"")};}});return n;}
+function hasValue(q){const a=S.answers[q.id];return q.type==="text"?!!String(a||"").trim():!!(a.choices.length||a.free_text.trim());}
+function persist(){hydrated=true;try{window.hatchWidget.setState(JSON.parse(JSON.stringify(S)));}catch(e){}}
+function markChanged(fn,full,persistNow=true){fn();S.revision=(S.revision||0)+1;S.complete=false;if(full)render();else refresh();if(persistNow)persist();}
+function refresh(){QS.forEach(q=>{const el=document.getElementById("card-"+q.id);if(el)el.classList.toggle("done",hasValue(q));});document.getElementById("cnt").textContent=QS.filter(hasValue).length+" / "+QS.length+" 項目 入力済み";const c=document.getElementById("confirm");c.textContent=S.complete?"確定済み":"この内容で確定";const m=document.getElementById("msg");m.className="msg"+(S.complete?" ok":"");m.textContent=S.complete?"確定しました。チャットへ戻ると次の質問へ進みます。":"未指定の項目はおまかせになります。";}
+function render(){const root=document.getElementById("qs");root.innerHTML="";QS.forEach(q=>{const a=S.answers[q.id],card=document.createElement("div");card.className="q";card.id="card-"+q.id;const label=document.createElement("div");label.className="ql";label.textContent=q.label;card.appendChild(label);if(q.type==="text"){const input=document.createElement("input");input.type="text";input.placeholder=q.placeholder;input.value=a;input.oninput=()=>markChanged(()=>{S.answers[q.id]=input.value;},false,false);input.onblur=persist;card.appendChild(input);}else{const opts=document.createElement("div");opts.className="opts";q.opts.forEach(o=>{const on=a.choices.includes(o[1]),b=document.createElement("button");b.type="button";b.textContent=o[0]+". "+o[1];b.classList.toggle("on",on);b.onclick=()=>markChanged(()=>{if(o[0]==="0")a.choices=on?[]:[o[1]];else{a.choices=a.choices.filter(x=>!x.startsWith("おまかせ"));a.choices=on?a.choices.filter(x=>x!==o[1]):a.choices.concat(o[1]);}},true);opts.appendChild(b);});card.appendChild(opts);const input=document.createElement("input");input.type="text";input.placeholder=q.free;input.value=a.free_text;input.oninput=()=>markChanged(()=>{a.free_text=input.value;},false,false);input.onblur=persist;card.appendChild(input);}root.appendChild(card);});refresh();}
+document.getElementById("confirm").onclick=()=>{S.revision++;S.complete=true;render();persist();};
+let hydrated=false;function accept(raw){const n=migrate(raw),nr=n.revision||0,sr=S.revision||0;if(nr<sr||(hydrated&&nr===sr))return;S=n;hydrated=true;render();}
+render();try{const r=window.hatchWidget.getState(fresh());if(r&&typeof r.then==="function")r.then(accept).catch(()=>{});else accept(r);}catch(e){}
+window.addEventListener("hatch-widget-state",e=>{if(e.detail&&e.detail.state)accept(e.detail.state);});
+</script>

@@ -1,0 +1,787 @@
+{
+  "schema": "machadan-runtime-manifest-v1",
+  "version": "4.13.4",
+  "base": "machadan_spade",
+  "files": [
+    {
+      "path": "VERSION.txt",
+      "size": 11774,
+      "sha256": "a01529759baff23b077dac5eb77b967bbce08f1de6bb637d54fd5e1d69803750"
+    },
+    {
+      "path": "muse版/README.md",
+      "size": 7095,
+      "sha256": "f764b46b213cba89ac4ca8e044139818aeea03e35ba86f337e79c6c2af04c10e"
+    },
+    {
+      "path": "muse版/schemas/hearing_widget_state.schema.json",
+      "size": 3579,
+      "sha256": "ab7796fb895bdf50bf8d0b39082ee082cfb19d066bcc3f5644e189709860d1d3"
+    },
+    {
+      "path": "muse版/schemas/inventory_append.schema.json",
+      "size": 3342,
+      "sha256": "629c626bf1bdcad8dd348d95cc925bb7136850236ef10e510c8dd45f5058dec8"
+    },
+    {
+      "path": "muse版/schemas/save_v2.schema.json",
+      "size": 27515,
+      "sha256": "aca2c6d5134191fd746e49392bad8419410edcf289de52ec0cb5db34cd0e3dbe"
+    },
+    {
+      "path": "muse版/schemas/save_v3.schema.json",
+      "size": 37971,
+      "sha256": "7ef73080a4a386aa98d519af889c6ff4e9b19f201e056c15319b29bb78021769"
+    },
+    {
+      "path": "muse版/tools/_vendor/PyYAML-LICENSE.txt",
+      "size": 1101,
+      "sha256": "8d3928f9dc4490fd635707cb88eb26bd764102a7282954307d3e5167a577e8a4"
+    },
+    {
+      "path": "muse版/tools/_vendor/yaml/__init__.py",
+      "size": 12311,
+      "sha256": "b19dfcc333d6a75dfd73073901164507252f271b41d3b5f7d85510033a0547a7"
+    },
+    {
+      "path": "muse版/tools/_vendor/yaml/composer.py",
+      "size": 4883,
+      "sha256": "fcaa37d16afa783594794a5ab94193dcb720f503c19ce3d59539c8311189f453"
+    },
+    {
+      "path": "muse版/tools/_vendor/yaml/constructor.py",
+      "size": 28639,
+      "sha256": "90d8247da78b524c10618fd0e857f54f3d97570fe91b5c5513d024ef3faf88b0"
+    },
+    {
+      "path": "muse版/tools/_vendor/yaml/cyaml.py",
+      "size": 3851,
+      "sha256": "e99ac01bd7c062f7557b614aff0d21997a06ed962ca185306a91bc0a20bbd87d"
+    },
+    {
+      "path": "muse版/tools/_vendor/yaml/dumper.py",
+      "size": 2837,
+      "sha256": "3cb72d66563064ba7b5e679477046ebf89d8399d940670c8532f3e94a7cb17ea"
+    },
+    {
+      "path": "muse版/tools/_vendor/yaml/emitter.py",
+      "size": 43006,
+      "sha256": "8e086d694ede170837d5b1b407b45979aff6f40762f422a65eafd08e04290a44"
+    },
+    {
+      "path": "muse版/tools/_vendor/yaml/error.py",
+      "size": 2533,
+      "sha256": "021f73fada072546c4f63f8cf18a7181244ce4280b09cc15cc980b2d1176171a"
+    },
+    {
+      "path": "muse版/tools/_vendor/yaml/events.py",
+      "size": 2445,
+      "sha256": "e74fd392c810884e2ea7e94aa3f57e9c1cbeb402319083d0c58e6a0e1282787c"
+    },
+    {
+      "path": "muse版/tools/_vendor/yaml/loader.py",
+      "size": 2061,
+      "sha256": "5156becc8aa6905482218abf3e04869b835226db4763645fff3438fdbd5f1cdd"
+    },
+    {
+      "path": "muse版/tools/_vendor/yaml/nodes.py",
+      "size": 1440,
+      "sha256": "80f28d8fca4a09d87677882bde021820d9cf39a3b11a12405226211919cf13ce"
+    },
+    {
+      "path": "muse版/tools/_vendor/yaml/parser.py",
+      "size": 25495,
+      "sha256": "8a55a9e6fbe0a07146cef3990c8b45a068c3e83e369e1959ad9ca30306b4a09a"
+    },
+    {
+      "path": "muse版/tools/_vendor/yaml/reader.py",
+      "size": 6794,
+      "sha256": "d1d9b38ab3a20c6e17a38d519ee412ecaf6b918df18c78956ac7c330d4ea08dc"
+    },
+    {
+      "path": "muse版/tools/_vendor/yaml/representer.py",
+      "size": 14190,
+      "sha256": "22e58ff9c016f6c1ca1274b4802a926bcf78935060e1c813c5a0f021c6d143e6"
+    },
+    {
+      "path": "muse版/tools/_vendor/yaml/resolver.py",
+      "size": 9004,
+      "sha256": "f4bf9561f9b89961f1503d558385fbae30d12bfed565de9bf76c33abb63620a6"
+    },
+    {
+      "path": "muse版/tools/_vendor/yaml/scanner.py",
+      "size": 51279,
+      "sha256": "60433788b652690c17710460da5d91e0c753d3318fd85f5e1e42862a71f25906"
+    },
+    {
+      "path": "muse版/tools/_vendor/yaml/serializer.py",
+      "size": 4165,
+      "sha256": "0a1b85826854d35863e31808f0668abfabdf33606e8f06bd8bb7761401e3edc0"
+    },
+    {
+      "path": "muse版/tools/_vendor/yaml/tokens.py",
+      "size": 2573,
+      "sha256": "953408cd2570f0c83dc2fe39f7e4e388e41eeb05738aa69196a5f6ffcf6ba79e"
+    },
+    {
+      "path": "muse版/tools/allocation_widget.py",
+      "size": 39796,
+      "sha256": "b2db78322d7485af83f0b946ee77d6a7a636c539e3af68cfb6c9827a8b112c64"
+    },
+    {
+      "path": "muse版/tools/allocation_widget_template.html",
+      "size": 30099,
+      "sha256": "84d5ac14a9f5039781bc82c6eb6002cbdfdb9c47d1a9b75bc88f74750bcc146a"
+    },
+    {
+      "path": "muse版/tools/anchors.json",
+      "size": 625158,
+      "sha256": "e895132ecf3079042fd458abf11e37751927f5d802f28a5ec5d280ef985285a0"
+    },
+    {
+      "path": "muse版/tools/appearance_customization.py",
+      "size": 20772,
+      "sha256": "4bb479e8fbeb3992035e6c778c75dbe3622fd47e87edc310e705627e30e2d35f"
+    },
+    {
+      "path": "muse版/tools/balance_v413.py",
+      "size": 35290,
+      "sha256": "1968fe226d0671b33ab059b733a3b4e76cba667f3fa11ecb28fd061a9b73b1ca"
+    },
+    {
+      "path": "muse版/tools/check_allocation_widget.py",
+      "size": 33829,
+      "sha256": "872b4c957ceba7c3b11a4e10d2ac76bfb63b34a2e2ec013309a8ab6d32b73f9f"
+    },
+    {
+      "path": "muse版/tools/check_appearance_customization.py",
+      "size": 13122,
+      "sha256": "6a2ca1823ca5853c2373fde40c18395b1a367273564623944b0e3197bd56a3c0"
+    },
+    {
+      "path": "muse版/tools/check_balance_data.py",
+      "size": 3334,
+      "sha256": "5355ce0a274a554a91cbb2ced25458f4293f1182b27d04e0f0862bbbddf37152"
+    },
+    {
+      "path": "muse版/tools/check_context_routes.py",
+      "size": 27168,
+      "sha256": "ba1b37f920343765ab723ba12cbd52a4dced7d6569b5110461deaf1e8becbd2b"
+    },
+    {
+      "path": "muse版/tools/check_debt_contracts.py",
+      "size": 16243,
+      "sha256": "9ebd539c850b2cdeab11b0471f0bcbc5ec96a2f1f2a9a99a89fd551a34ec0850"
+    },
+    {
+      "path": "muse版/tools/check_dungeon_exploration.py",
+      "size": 19961,
+      "sha256": "3837970d45eb45d8a1992893cf832b212964fc3e2bc35b3ee4c9f0fc6715f2ee"
+    },
+    {
+      "path": "muse版/tools/check_encumbrance.py",
+      "size": 18180,
+      "sha256": "36594a0e64c8d817dc2340ed5061e5d3318b7de83ceba24ec9cc91cd1ddbef94"
+    },
+    {
+      "path": "muse版/tools/check_fire_identity.py",
+      "size": 9021,
+      "sha256": "43867fc6199b942d0423d21fe366e0e975eaa391f4172832fa24758f9ac09f33"
+    },
+    {
+      "path": "muse版/tools/check_inventory_lifecycle.py",
+      "size": 13928,
+      "sha256": "aedb674c70831fe9986900b464bd2d68b55237d99bbc878e041ec0e1f08b603a"
+    },
+    {
+      "path": "muse版/tools/check_knowledge.py",
+      "size": 124004,
+      "sha256": "b843f9df3a9f1bee1f9f5abcfacd1cc837d64a08220a9f8503239e280ce00175"
+    },
+    {
+      "path": "muse版/tools/check_movement_events.py",
+      "size": 8810,
+      "sha256": "3a95f7a5f8754a3a093ef009032b7a3c3441f99422565d849e3c9f247776f87e"
+    },
+    {
+      "path": "muse版/tools/check_onboarding.py",
+      "size": 26065,
+      "sha256": "c118e0389ae042d5fb672887dedd93fcd5e5b35df48758b1b293c8348a3fb44d"
+    },
+    {
+      "path": "muse版/tools/check_place_atlas.py",
+      "size": 18341,
+      "sha256": "461541aac233d8c18e20f3e95b76d7d5f869d9390d2140c5ba7ac29aea3205ca"
+    },
+    {
+      "path": "muse版/tools/check_regional_world.py",
+      "size": 21631,
+      "sha256": "00f0941bc101d4b82d8e36e9a189bc5acefe23da3d08f2d794312df1907c991a"
+    },
+    {
+      "path": "muse版/tools/check_release_v413.py",
+      "size": 10398,
+      "sha256": "521563a9b59613425b7afd6dba943bab6c93e7ef9ed73a0a61452f1e62606c48"
+    },
+    {
+      "path": "muse版/tools/check_resource_math.py",
+      "size": 13059,
+      "sha256": "471eb941a1f28c0b3252bd602e0228b9b0b77daccabcb73585ec13289ccdf271"
+    },
+    {
+      "path": "muse版/tools/check_response_contract.py",
+      "size": 6093,
+      "sha256": "3b0d115b06527d929556f5110532b4b4937eddb8bf714d4b4f22d49af5db3556"
+    },
+    {
+      "path": "muse版/tools/check_turn_checks.py",
+      "size": 11927,
+      "sha256": "c0f0be1e030fe093760cb0e6261c4aa4ff846d39692abe89d0298cbb3e0a2a45"
+    },
+    {
+      "path": "muse版/tools/check_turn_flow.py",
+      "size": 16513,
+      "sha256": "0f5811f24e7b04ad8cbae15ead9d7783ddd82f5d58fe4be7ab23603647caa452"
+    },
+    {
+      "path": "muse版/tools/combat_balance_probe.py",
+      "size": 79090,
+      "sha256": "6bbd30af374ea5ba3b8df79feb3801078f1c0d51035230a89def7e5190b9491f"
+    },
+    {
+      "path": "muse版/tools/context_loader.py",
+      "size": 40077,
+      "sha256": "75489e6d2f0fc26debb26df30ad8d72dfe652a31db0501003df17bf70fe10683"
+    },
+    {
+      "path": "muse版/tools/debt_contracts.py",
+      "size": 20866,
+      "sha256": "5bcb1005a602908d9eb4bd21595b1a541c1e1e10d5b4fb48aef447643e08bb78"
+    },
+    {
+      "path": "muse版/tools/dice.py",
+      "size": 6244,
+      "sha256": "df566a5daebbe7902528f7ca53ce8cf7568fd9f44371e429d1f7f4b560948971"
+    },
+    {
+      "path": "muse版/tools/dice_tape.json",
+      "size": 3410,
+      "sha256": "879eddb295135eb7c9587f0429ddf0cd78c5f9cb18294f364bffa66d379a9ace"
+    },
+    {
+      "path": "muse版/tools/dungeon_exploration.py",
+      "size": 36970,
+      "sha256": "8def10f84352e4c6f9aa8501f459ffa0640e4dd602e8f3eeb64a06abb3259d81"
+    },
+    {
+      "path": "muse版/tools/encumbrance.py",
+      "size": 9633,
+      "sha256": "3297a30c18664f9b0e0f0f76e12e8a841516c9dbdffcaba41a46f1f253ea66a2"
+    },
+    {
+      "path": "muse版/tools/event_connections.py",
+      "size": 3370,
+      "sha256": "ee41abc0b956ae79cb6d07c61a79f4b8988675381594813e36729c047b267124"
+    },
+    {
+      "path": "muse版/tools/extract_anchors.py",
+      "size": 9989,
+      "sha256": "b5255588cb8a649c238e2aabe1503ead0d941491cf8e0af226c6500e36916d65"
+    },
+    {
+      "path": "muse版/tools/hearing_form_step1_playmode.html",
+      "size": 5928,
+      "sha256": "edc1478435bc49885c1cf90d09cb9c40a07cd4a3649e8caf081a2df3a2abe6ca"
+    },
+    {
+      "path": "muse版/tools/hearing_form_step2_profile.html",
+      "size": 7106,
+      "sha256": "215accda5760b986badd2f2768cd6f14d76ab92b826b021c3db441dbc96dbbdd"
+    },
+    {
+      "path": "muse版/tools/hearing_form_step3_body_female.html",
+      "size": 6163,
+      "sha256": "6814767413484cfa42a2d8bd34ffdaf2429912b27fc00a6599ee43eabfec4cab"
+    },
+    {
+      "path": "muse版/tools/hearing_form_step3_body_male.html",
+      "size": 6016,
+      "sha256": "52688e493ede423fda869d3965d0b2486c26d3e8b5771a5df05d47f0ee4ce672"
+    },
+    {
+      "path": "muse版/tools/hearing_form_step4_desire.html",
+      "size": 6719,
+      "sha256": "91761464197880c27d5afebe25147edb57faa274215a8f7f07a57d91fbf7dc16"
+    },
+    {
+      "path": "muse版/tools/hearing_form_step5_partner.html",
+      "size": 7856,
+      "sha256": "b35ae9742afc3f4df16df045c94ed8fb2c10a276d3e748dcc25da5721ba7e5ab"
+    },
+    {
+      "path": "muse版/tools/inventory_lifecycle.py",
+      "size": 24922,
+      "sha256": "1d43617b386a05f3c7fff105b9d68b7d93e418f6cee22ede92cbd7396209a03d"
+    },
+    {
+      "path": "muse版/tools/machadan_runtime.py",
+      "size": 429092,
+      "sha256": "da4a69959994e49c70175c9769ce317062d33e927c0aa4db36aaa090aa88d686"
+    },
+    {
+      "path": "muse版/tools/movement_events.py",
+      "size": 4341,
+      "sha256": "d478947085fb47cf7a1146313a601e31cf6f1bbb569f694f502a61f3a271a3e5"
+    },
+    {
+      "path": "muse版/tools/onboarding.py",
+      "size": 23805,
+      "sha256": "e9f55befdfb671e357871e4c4d90410e65e3545f7bbf680f78eea9e9934d273a"
+    },
+    {
+      "path": "muse版/tools/place_atlas.py",
+      "size": 27321,
+      "sha256": "7c4bb22887d0374e53aa69b41dd66251bbe9f3fa5483b314f8f44a8e6fdb71f7"
+    },
+    {
+      "path": "muse版/tools/regional_world.py",
+      "size": 26290,
+      "sha256": "229dee4913e6801d6809d987636b456364f0839acd4af6d9c9bb3c19af35a6fc"
+    },
+    {
+      "path": "muse版/tools/resource_math.py",
+      "size": 2585,
+      "sha256": "35285fbe3a6f4be21c9764fe455947961f1c45a6bf9500e06c6fee0cd924578d"
+    },
+    {
+      "path": "muse版/tools/response_contract.py",
+      "size": 9147,
+      "sha256": "ce211973124a8ece4e4cb92c0e22cedc5b4b6fe70788f0a1622c7f34bba0b7e6"
+    },
+    {
+      "path": "muse版/tools/save_changes.py",
+      "size": 12191,
+      "sha256": "b8eb85c675a7e7e76f46b2fd3216057fa794763fab3a3289a146b3704497a3cd"
+    },
+    {
+      "path": "muse版/tools/status_dashboard_template.html",
+      "size": 17421,
+      "sha256": "7bd141f90276d3f3449eaa49b9c7982313feed59df9761a78859006205c3bdc2"
+    },
+    {
+      "path": "muse版/tools/turn_flow.py",
+      "size": 7755,
+      "sha256": "a6be43b8b38c14fcc6cc0a1971085b254f41199f38f6efbf4a878a3f58d3e49b"
+    },
+    {
+      "path": "muse版/tools/verbatim_templates.json",
+      "size": 4191,
+      "sha256": "b718e9b58af1679dfafca9af26840fc01a18aaef4d501c79bd3ffc16f34ac794"
+    },
+    {
+      "path": "muse版/セーブ雛形.yaml",
+      "size": 20783,
+      "sha256": "44fecc1e4512e5b4dbc3cf5b87f2a5376c66abb727adfb8f9dda622face12e0b"
+    },
+    {
+      "path": "muse版/チェキュン/SD_Prompt_Constructor.md",
+      "size": 11902,
+      "sha256": "ab883fe595f7ee9823a433dbc267499957ca364acdb52db15d8c33ae86e123b0"
+    },
+    {
+      "path": "muse版/チェキュン/プリセット全集.md",
+      "size": 10804,
+      "sha256": "6f1bed11ec51882369ccc5c61f95db01a625c5678b33118ad6fc3f84ecd1c6ae"
+    },
+    {
+      "path": "muse版/ナレッジ索引.md",
+      "size": 9821,
+      "sha256": "9c3fd262d06e8b4f02fa67fc858362c0c1101086e3536e0bb7544b2674741c7a"
+    },
+    {
+      "path": "muse版/世界/Dungeon_Data.md",
+      "size": 31785,
+      "sha256": "09dc6004a81223013c8f72412957bade17452a701d81d0c19211d1bc6d21e388"
+    },
+    {
+      "path": "muse版/世界/Festival_Event_Data.md",
+      "size": 26019,
+      "sha256": "1787bdce6dcb94e4cb141bd6da27d1fcc8bdaf4cbb4eaf8129f219e252f0e2a6"
+    },
+    {
+      "path": "muse版/世界/Item_Database.md",
+      "size": 31004,
+      "sha256": "dab8dad2a43237212673c34aa2888a79a6098a22eaa59dba95857785b4905e2f"
+    },
+    {
+      "path": "muse版/世界/Locations.md",
+      "size": 68589,
+      "sha256": "7ecf825fa08c8cd6f4696d8a93a3ae712ccb41054bd2646a3693306775ef7303"
+    },
+    {
+      "path": "muse版/世界/Quest_Guild.md",
+      "size": 29897,
+      "sha256": "6349b39e1da1e1667efad93081e0f17f4cfc101e9482fa020f428232fc05eeb2"
+    },
+    {
+      "path": "muse版/世界/World_Setting.md",
+      "size": 15744,
+      "sha256": "db131daa060834dd89115fbed5b1d16edb94837a53b7cc95deee0fb9e1617dcd"
+    },
+    {
+      "path": "muse版/世界/地方世界設定.json",
+      "size": 32610,
+      "sha256": "427f11333dd462eb7d1cf5da41c0801f19fd2e2dcb1972141f71037ff596e046"
+    },
+    {
+      "path": "muse版/世界/地方世界資料集.md",
+      "size": 29237,
+      "sha256": "ccf61911bd1f3e6771bcc06abdcf65f9104469c49918fe4f46e7596848a9c99c"
+    },
+    {
+      "path": "muse版/世界/舞台構造.json",
+      "size": 376232,
+      "sha256": "62b57a64c22f593647944b769cd74ba1c1414fe28724522d902fb5e53b38d5b2"
+    },
+    {
+      "path": "muse版/世界/舞台資料集.md",
+      "size": 309593,
+      "sha256": "4e8a0185c9908e821a545e20df456867d32d2fe7dc93c6a4094f57318bd2dceb"
+    },
+    {
+      "path": "muse版/世界/魔道科学メモ.md",
+      "size": 1893,
+      "sha256": "4c39ee47b5cb3b0443e5d8545d0dc3b93fa2fb398d50def353b159d0088f3423"
+    },
+    {
+      "path": "muse版/人格/Elena.md",
+      "size": 6264,
+      "sha256": "797c4afd6a5f01e6bef6357ed0f07d50e7585eb11b973c45bcace108b1584686"
+    },
+    {
+      "path": "muse版/人格/Gaston.md",
+      "size": 2850,
+      "sha256": "2205193ef061980c996257cb61153edb4ae8cf92d83ee1ee62b0cbf16ba1849b"
+    },
+    {
+      "path": "muse版/人格/Leon.md",
+      "size": 11410,
+      "sha256": "e5e18dfcd82dc959626653b66db6a975e3b53f00d2029570b9721fbc84c83010"
+    },
+    {
+      "path": "muse版/人格/Lilith.md",
+      "size": 17548,
+      "sha256": "fa349b1c2d3e08e3ef42fa5805720ab46233c13c5eca2c156d79fc5541976d0d"
+    },
+    {
+      "path": "muse版/人格/Mia.md",
+      "size": 8655,
+      "sha256": "e1d6e4fe18fdd3eea031ca29d380865aaeff087ae2ffcc56edacae000396f450"
+    },
+    {
+      "path": "muse版/人格/Milka.md",
+      "size": 9227,
+      "sha256": "90655975c70583163a81a80c6885eedc6257897b4edf1a7d3160192534aa1ae5"
+    },
+    {
+      "path": "muse版/人格/Nell.md",
+      "size": 9113,
+      "sha256": "9304cfa5c8f1526710205e18be67ffc4d1f08edbb36e70bcc6cbf495002499d2"
+    },
+    {
+      "path": "muse版/人格/Noel.md",
+      "size": 13432,
+      "sha256": "2902aefcfbb495c98c895fe7143d152a7aac73c3908500d5a63f3e7c4d8f0aaf"
+    },
+    {
+      "path": "muse版/人格/Rosalia.md",
+      "size": 5316,
+      "sha256": "abce954eca61c9e7531fb9e52694af6c421e0b2b65949da23aa7a88aec0d0cb5"
+    },
+    {
+      "path": "muse版/人格/Sylvia.md",
+      "size": 9984,
+      "sha256": "75ed231f8f7dde4024503649fdc24ed258fe57f875b1d45fbdf70c512399634b"
+    },
+    {
+      "path": "muse版/人格/Tetora.md",
+      "size": 8759,
+      "sha256": "c0020b88a66c49933360df14459a84a0553a785a1f9b188354643b49a1722bea"
+    },
+    {
+      "path": "muse版/人格/Voice_Sample_Bank_a_TYPEとシチュ.md",
+      "size": 21265,
+      "sha256": "d31306510925301fa6173a1f250a9a01bad1e9f02d4fa2ac676440888b125ecf"
+    },
+    {
+      "path": "muse版/人格/Voice_Sample_Bank_b_動作と絶頂と地の文.md",
+      "size": 13579,
+      "sha256": "891a968b869753e5ac0db4121cd9d6d21e1c8e2cc01bee16de570e4e3ef997f5"
+    },
+    {
+      "path": "muse版/人格/Voice_Sample_Bank_c_男性側.md",
+      "size": 42105,
+      "sha256": "5e62f694d5813af73dcc97683f86dec932047ad981f7b5183b78cc959ed89d2f"
+    },
+    {
+      "path": "muse版/文章/Yuri_Style_Guide.md",
+      "size": 19085,
+      "sha256": "a9c257f10236304f370357c234b9332f4e1669e9938da65685c1d9bbb123bbb0"
+    },
+    {
+      "path": "muse版/文章/えろ辞書_ラビトレ流用.md",
+      "size": 17791,
+      "sha256": "408124a0fff2142c3de5f28dfcad56fba91d66f3af326a9ec93e48cf32842d58"
+    },
+    {
+      "path": "muse版/文章/文体ルールカード.md",
+      "size": 28581,
+      "sha256": "a9e368be2ae85fd97be4af8204f10e6abe93092c670f4a42aaef777d5ee196da"
+    },
+    {
+      "path": "muse版/構成マップ.md",
+      "size": 4607,
+      "sha256": "6ec20560590360e092b680bac8382fd926eb91e3aeba7b0880fd1e1978e8552c"
+    },
+    {
+      "path": "muse版/生成/Mob_Generator.md",
+      "size": 28315,
+      "sha256": "b54a842ea7dc9af68c0048c5c0301de05fed6240a8ef21d218b5d6c257c30971"
+    },
+    {
+      "path": "muse版/生成/Monster_Bestiary.md",
+      "size": 23433,
+      "sha256": "3008838c7e67440a567d22d357833cdedb8db2fd316f79a5755b3f8df4a7623c"
+    },
+    {
+      "path": "muse版/生成/Overworld_Encounters.md",
+      "size": 34984,
+      "sha256": "b8da3907bf0a17a6502e36c09d857568a7cae9e9cae339b7a53493f3693f36e6"
+    },
+    {
+      "path": "muse版/生成/ドロップ表.md",
+      "size": 7958,
+      "sha256": "c4dd86f6ce6250b5da3f4e18a2c1a9415dcf63d092d2e38ea56c7939006db6f1"
+    },
+    {
+      "path": "muse版/生成/モブ在庫.md",
+      "size": 13450,
+      "sha256": "1b632d6c425d775dbbdf29729bb4f0f506d9b3deee3975f1eb871ade870b9fd6"
+    },
+    {
+      "path": "muse版/生成/モン娘_捕獲と運用.md",
+      "size": 5663,
+      "sha256": "fbf86602fcd487825f04ed2b09e5ac432b876dedf70712dba8367bfccbb4e4a3"
+    },
+    {
+      "path": "muse版/運用/00_Absolute_Ero_Rule.md",
+      "size": 25023,
+      "sha256": "88ce3f6007796f0ae7705ac38d39f7b72a2de7d18c013922468029734de07c4b"
+    },
+    {
+      "path": "muse版/運用/BootSequence_ContextPatch.md",
+      "size": 14057,
+      "sha256": "5263c2a870b4e8729aa397c1088506f1144977469e1b8d3e37704b1d104a5b71"
+    },
+    {
+      "path": "muse版/運用/Combat_Logic_Detail.md",
+      "size": 33032,
+      "sha256": "175d076a62d6843f5df88090a52a5d214742e1b05885f1792b9c822c8a04947e"
+    },
+    {
+      "path": "muse版/運用/Command_Manual.md",
+      "size": 23208,
+      "sha256": "157fc2453907e034153b2558df6e3260a9ddb162136dec7f4b36e895ec199a89"
+    },
+    {
+      "path": "muse版/運用/GM運用カード.md",
+      "size": 23334,
+      "sha256": "f9edc00c6f58cb70fa64ea4c62acff4284b610bb1d43e6f1b4d9612ed31801e1"
+    },
+    {
+      "path": "muse版/運用/MP試算_v4_13_0.md",
+      "size": 8447,
+      "sha256": "423228b567163f936bb70b18ec73e845810a2717488a6a5aa5096c560e30ebf5"
+    },
+    {
+      "path": "muse版/運用/Status_Integrity_Check.md",
+      "size": 22207,
+      "sha256": "9e7dfb2edb273ccd602e1922743be9856f5c724fc417ae1304967ed6f2522204"
+    },
+    {
+      "path": "muse版/運用/System_Templates.md",
+      "size": 40567,
+      "sha256": "9ed4fa84a609574dcbb85ba133079f218d1abc6a84dd8fbf8fdbe2ac53b88f1f"
+    },
+    {
+      "path": "muse版/運用/イベントクエスト設計書.md",
+      "size": 41794,
+      "sha256": "12d18b2447a093903f4527337bb007f1b4b77ae652cfd215dea786a64c452bd5"
+    },
+    {
+      "path": "muse版/運用/イベントデッキ.md",
+      "size": 31887,
+      "sha256": "8f18dc75213dd312d1b3cb2aa8820e05f357ccfa17017da2737dffdfa371a9d2"
+    },
+    {
+      "path": "muse版/運用/イベント接続表.md",
+      "size": 10012,
+      "sha256": "e56c200b36965e69b786809c5f14f25294d7acd7d8acf6618fa7909965bfb94a"
+    },
+    {
+      "path": "muse版/運用/キャスト動線表.md",
+      "size": 6114,
+      "sha256": "b084362358edce5ddac2e962d2c72a9f57b9685d258c3fc5cbeb370a2b51e10b"
+    },
+    {
+      "path": "muse版/運用/クエスト部品表.md",
+      "size": 13389,
+      "sha256": "8e8fb0040147d3f52dbfa4a0c0472ff1e6bbc72f7801bba9e6b628fa6775bc6d"
+    },
+    {
+      "path": "muse版/運用/コア運用ルール.md",
+      "size": 39745,
+      "sha256": "beaf9b98f9010a470a7ba3afecc93e089d07eebe321bed49e8c472e962d0a64b"
+    },
+    {
+      "path": "muse版/運用/スキルシステム設計書.md",
+      "size": 17699,
+      "sha256": "202571cc894189a6e054c453f9d3d36693553223aec81c93e599b3f7ec8abbe1"
+    },
+    {
+      "path": "muse版/運用/スキル・魔法サンプル集.md",
+      "size": 25315,
+      "sha256": "b742bb7a219f884168f53e0da21e2d46d216a8d7d621363f2f3818e1358b9200"
+    },
+    {
+      "path": "muse版/運用/ダンジョン数値化シート.md",
+      "size": 21240,
+      "sha256": "1f919c6641612325d0c3f33f5ddefe485245a5133453bd3c6c7e4ba9628620b8"
+    },
+    {
+      "path": "muse版/運用/マチャダンスペード_カスタム指示文_改.txt",
+      "size": 9459,
+      "sha256": "467078273111c8ba97e75b23be948b716ad2f082ede7f879f3512520d4d0e192"
+    },
+    {
+      "path": "muse版/運用/ランダムイベント設計書.md",
+      "size": 14059,
+      "sha256": "2330595676cce1a2d6d39fd5b49dbadb463e4d465a85ba8285a34f091bcfa86f"
+    },
+    {
+      "path": "muse版/運用/ルーティング表.md",
+      "size": 8792,
+      "sha256": "89ec4548a1fd460297276f1e37b1e55bfec4d8756a7c7e09cfba31f43ae36e4d"
+    },
+    {
+      "path": "muse版/運用/ルーティング表.yaml",
+      "size": 30961,
+      "sha256": "f7539f615d00aff53f043a3bce8ce464c6ec2f6ea3a8bb2c4779475a59bef59c"
+    },
+    {
+      "path": "muse版/運用/全敵変更表_v4_13_0.csv",
+      "size": 7589,
+      "sha256": "d1a708c11838ea0100a10e6bf1afb1d5982a4aacc98f162f3d515dad193ea0ec"
+    },
+    {
+      "path": "muse版/運用/判定基準シート.md",
+      "size": 14409,
+      "sha256": "413d13436c8c8cbb0f52891149d8379f9db0620483cb81387d5682832d5808cd"
+    },
+    {
+      "path": "muse版/運用/実務手順例.md",
+      "size": 11779,
+      "sha256": "8bdc0a50b8408c45f1b38db9fd20769036083958d581a89a584d870aa84027c8"
+    },
+    {
+      "path": "muse版/運用/戦闘試算_v4_13_0.json",
+      "size": 116064,
+      "sha256": "b5f9c4dfc884f6919c1cd2235e1375ea2cb465fd8afd001059327f6cd1891764"
+    },
+    {
+      "path": "muse版/運用/戦闘試算_v4_13_0.md",
+      "size": 28062,
+      "sha256": "847c4db4b9297eddff45e59dab92bc924a84916f0124b7f06a106dccb5cc1828"
+    },
+    {
+      "path": "muse版/運用/戦闘調整データ.json",
+      "size": 20036,
+      "sha256": "0d302cd7b267ff370b6fed7c48ea43b782af0bee3271b794e59ed46f28a6e180"
+    },
+    {
+      "path": "muse版/運用/数値正本.md",
+      "size": 24042,
+      "sha256": "6a9f3d793ac90ddbbfeb2782f45c4dc4345eb4457217bbaa461946c99a07b94e"
+    },
+    {
+      "path": "muse版/運用/更新報告_v4_12_0.md",
+      "size": 11233,
+      "sha256": "a15af59727c57005715d81baf74c4aae05967b0fcce3500d96f14a9149466e6f"
+    },
+    {
+      "path": "muse版/運用/更新報告_v4_13_0.md",
+      "size": 8714,
+      "sha256": "9446113d01da777002680ab14896e06d456bb9f59499ddc45ccb8a46e5385cab"
+    },
+    {
+      "path": "muse版/運用/更新報告_v4_13_1.md",
+      "size": 11961,
+      "sha256": "438244b7f7c6ec9f923d11c6c4c50700d7ba99262034a7d156823b7dd8d97c3f"
+    },
+    {
+      "path": "muse版/運用/更新報告_v4_13_2.md",
+      "size": 11371,
+      "sha256": "a125225dfd148891b3ba2e65b1b312cb335743f7ca3dab670d969b651d12f4ac"
+    },
+    {
+      "path": "muse版/運用/更新報告_v4_13_3.md",
+      "size": 10475,
+      "sha256": "aae6fc4b31180421eeb838a6a73ed876009530a51b9329d838b820a7224fe1a6"
+    },
+    {
+      "path": "muse版/運用/更新報告_v4_13_4.md",
+      "size": 4921,
+      "sha256": "2eed0abd6a3d4c28630e5b251a46a1e40bef4bf0a2d68fcab65482857bdaa29f"
+    },
+    {
+      "path": "muse版/運用/正本レジストリ.yaml",
+      "size": 15386,
+      "sha256": "286666d6eaffdd3f03be96572c785add5e6ddef9af7b27e3d18ff6d2093e85e6"
+    },
+    {
+      "path": "muse版/運用/毎ターンの約束.md",
+      "size": 8707,
+      "sha256": "dfb4ab6e362c802b927cbc9661a6eca9db7804472ec158e22d4cd879d5c84290"
+    },
+    {
+      "path": "muse版/運用/決定台帳.yaml",
+      "size": 18094,
+      "sha256": "1aa1333cbea2baa6c0b311a54fa4b2a45a06ffedc7421d1d3a9632725e0af19c"
+    },
+    {
+      "path": "muse版/運用/素材照合_v4_13_0.json",
+      "size": 5624,
+      "sha256": "bb4a311541801b7302e74f5a317c5061f2f22e4dbdd760f7eaa3ad241f4fbb0b"
+    },
+    {
+      "path": "muse版/運用/職業・店舗・商品開発システム.md",
+      "size": 20476,
+      "sha256": "39fdcffe7d2c6e7dd253a80c7349f4cfb37a0f8da4ab38a4b2d3e4a96ceac297"
+    },
+    {
+      "path": "muse版/運用/運用詳細シート.md",
+      "size": 20404,
+      "sha256": "75aa23f5f3798cf911f0f47f2c8c39d002a5598cdd758062b9ff71d8fbc7dc9b"
+    },
+    {
+      "path": "muse版/運用/銃器・遠隔武器設計書.md",
+      "size": 4890,
+      "sha256": "4d5d524a59dca1bcf1dfd69aac1895e7746295adb5e1d38661a653e21e23ee32"
+    },
+    {
+      "path": "muse版/運用/魔法システム設計書.md",
+      "size": 23409,
+      "sha256": "8f94668ef67f093db85a6acccf737e8067257c1ddc22fcf5f5f66d1566d3a6b8"
+    }
+  ]
+}

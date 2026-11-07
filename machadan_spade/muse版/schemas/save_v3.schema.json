@@ -1,0 +1,1705 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "MachaDun_Save_Muse_v3",
+  "title": "Machadan Muse save v3",
+  "$defs": {
+    "safeId": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9_-]{0,79}$"
+    },
+    "statMap": {
+      "type": "object",
+      "required": [
+        "str",
+        "def",
+        "int",
+        "spd",
+        "tec",
+        "chm"
+      ],
+      "properties": {
+        "str": {
+          "type": "integer"
+        },
+        "def": {
+          "type": "integer"
+        },
+        "int": {
+          "type": "integer"
+        },
+        "spd": {
+          "type": "integer"
+        },
+        "tec": {
+          "type": "integer"
+        },
+        "chm": {
+          "type": "integer"
+        }
+      },
+      "additionalProperties": false
+    },
+    "jobProfile": {
+      "type": "object",
+      "required": [
+        "combat_role",
+        "magic_role",
+        "expertise_tags",
+        "solo_suitability",
+        "party_needs"
+      ],
+      "properties": {
+        "combat_role": {
+          "enum": [
+            "frontline",
+            "hybrid",
+            "backline",
+            "noncombat",
+            "unclassified"
+          ]
+        },
+        "magic_role": {
+          "enum": [
+            "noncaster",
+            "hybrid",
+            "caster",
+            "specialist",
+            "unclassified"
+          ]
+        },
+        "expertise_tags": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "uniqueItems": true
+        },
+        "solo_suitability": {
+          "enum": [
+            "good",
+            "difficult",
+            "unsuitable",
+            "unclassified"
+          ]
+        },
+        "party_needs": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "uniqueItems": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "skillRecord": {
+      "type": "object",
+      "required": [
+        "skill_id",
+        "name",
+        "category",
+        "tier",
+        "stage",
+        "state",
+        "uses",
+        "timing",
+        "action_cost",
+        "effect",
+        "from",
+        "origin_job",
+        "requirements"
+      ],
+      "properties": {
+        "skill_id": {
+          "$ref": "#/$defs/safeId"
+        },
+        "name": {
+          "type": "string",
+          "minLength": 1
+        },
+        "category": {
+          "enum": [
+            "technique",
+            "passive",
+            "check"
+          ]
+        },
+        "tier": {
+          "enum": [
+            "basic",
+            "advanced",
+            "master"
+          ]
+        },
+        "stage": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 3
+        },
+        "state": {
+          "enum": [
+            "set",
+            "reserve",
+            "dormant_by_job"
+          ]
+        },
+        "uses": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "minimum": 0
+        },
+        "timing": {
+          "enum": [
+            "action",
+            "attack_replace",
+            "reaction",
+            "free",
+            "battle_start",
+            "always",
+            "check"
+          ]
+        },
+        "action_cost": {
+          "enum": [
+            0,
+            1
+          ]
+        },
+        "effect": {
+          "type": "string"
+        },
+        "from": {
+          "enum": [
+            "job",
+            "standard",
+            "custom"
+          ]
+        },
+        "origin_job": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "requirements": {
+          "type": "array"
+        }
+      },
+      "additionalProperties": true
+    },
+    "equipment": {
+      "type": "object",
+      "required": [
+        "weapon_instance_id",
+        "armor_instance_id",
+        "offhand_instance_id",
+        "fixed"
+      ],
+      "properties": {
+        "weapon_instance_id": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "armor_instance_id": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "offhand_instance_id": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "fixed": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "uniqueItems": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "character": {
+      "type": "object",
+      "required": [
+        "character_version",
+        "character_id",
+        "build_complete",
+        "name",
+        "gender",
+        "age",
+        "race",
+        "job",
+        "job_profile",
+        "base_stats",
+        "growth_bonus",
+        "equipment_bonus",
+        "fire_bonus",
+        "temporary_modifiers",
+        "effective_stats",
+        "base_lp",
+        "job_lp_bonus",
+        "fire_lp_bonus",
+        "temporary_lp_bonus",
+        "lp",
+        "mp",
+        "stats",
+        "equipment",
+        "statuses",
+        "buffs",
+        "ero_status"
+      ],
+      "properties": {
+        "character_version": {
+          "const": 1
+        },
+        "character_id": {
+          "$ref": "#/$defs/safeId"
+        },
+        "build_complete": {
+          "type": "boolean"
+        },
+        "name": {
+          "type": "string"
+        },
+        "gender": {
+          "type": "string"
+        },
+        "age": {
+          "oneOf": [
+            {
+              "type": "null"
+            },
+            {
+              "type": "integer",
+              "minimum": 18
+            },
+            {
+              "type": "string"
+            }
+          ]
+        },
+        "adult_status": {
+          "type": "string"
+        },
+        "race": {
+          "type": "string"
+        },
+        "job": {
+          "type": "string"
+        },
+        "job_profile": {
+          "$ref": "#/$defs/jobProfile"
+        },
+        "base_stats": {
+          "$ref": "#/$defs/statMap"
+        },
+        "growth_bonus": {
+          "$ref": "#/$defs/statMap"
+        },
+        "equipment_bonus": {
+          "$ref": "#/$defs/statMap"
+        },
+        "fire_bonus": {
+          "$ref": "#/$defs/statMap"
+        },
+        "temporary_modifiers": {
+          "$ref": "#/$defs/statMap"
+        },
+        "effective_stats": {
+          "$ref": "#/$defs/statMap"
+        },
+        "stats": {
+          "$ref": "#/$defs/statMap"
+        },
+        "base_lp": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "job_lp_bonus": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "fire_lp_bonus": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "temporary_lp_bonus": {
+          "type": "integer"
+        },
+        "lp": {
+          "$ref": "#/$defs/meter"
+        },
+        "mp": {
+          "$ref": "#/$defs/meter"
+        },
+        "equipment": {
+          "$ref": "#/$defs/equipment"
+        },
+        "statuses": {
+          "type": "array"
+        },
+        "buffs": {
+          "type": "array"
+        },
+        "ero_status": {
+          "type": "array"
+        },
+        "gold": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "debt": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "skills": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/skillRecord"
+          }
+        },
+        "stat_lp_bonus": {
+          "type": "integer",
+          "minimum": 0
+        }
+      },
+      "additionalProperties": true
+    },
+    "meter": {
+      "type": "object",
+      "required": [
+        "cur",
+        "max"
+      ],
+      "properties": {
+        "cur": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "max": {
+          "type": "integer",
+          "minimum": 0
+        }
+      },
+      "additionalProperties": false
+    },
+    "itemStack": {
+      "type": "object",
+      "required": [
+        "stack_id",
+        "item_def_id",
+        "name",
+        "category",
+        "count",
+        "stack_cap",
+        "slot_cost",
+        "reserved_quantity"
+      ],
+      "properties": {
+        "stack_id": {
+          "$ref": "#/$defs/safeId"
+        },
+        "item_def_id": {
+          "$ref": "#/$defs/safeId"
+        },
+        "name": {
+          "type": "string",
+          "minLength": 1
+        },
+        "category": {
+          "type": "string",
+          "minLength": 1
+        },
+        "count": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "stack_cap": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 10
+        },
+        "slot_cost": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "reserved_quantity": {
+          "type": "integer",
+          "minimum": 0
+        }
+      },
+      "additionalProperties": false
+    },
+    "itemReservation": {
+      "type": "object",
+      "required": [
+        "reservation_id",
+        "source_id",
+        "quantity",
+        "status"
+      ],
+      "properties": {
+        "reservation_id": {
+          "$ref": "#/$defs/safeId"
+        },
+        "source_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "stack_id": {
+          "$ref": "#/$defs/safeId"
+        },
+        "instance_id": {
+          "$ref": "#/$defs/safeId"
+        },
+        "quantity": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "status": {
+          "enum": [
+            "reserved",
+            "consumed",
+            "returned",
+            "lost"
+          ]
+        }
+      },
+      "oneOf": [
+        {
+          "required": [
+            "stack_id"
+          ],
+          "not": {
+            "required": [
+              "instance_id"
+            ]
+          }
+        },
+        {
+          "required": [
+            "instance_id"
+          ],
+          "not": {
+            "required": [
+              "stack_id"
+            ]
+          }
+        }
+      ],
+      "additionalProperties": false
+    },
+    "itemDefinition": {
+      "type": "object",
+      "required": [
+        "item_def_id",
+        "name",
+        "category",
+        "specification",
+        "provenance",
+        "balance_anchor"
+      ],
+      "properties": {
+        "item_def_id": {
+          "$ref": "#/$defs/safeId"
+        },
+        "name": {
+          "type": "string",
+          "minLength": 1
+        },
+        "category": {
+          "type": "string",
+          "minLength": 1
+        },
+        "specification": {
+          "type": "object"
+        },
+        "provenance": {
+          "type": "object"
+        },
+        "balance_anchor": {
+          "type": "object"
+        }
+      },
+      "additionalProperties": true
+    },
+    "itemInstance": {
+      "type": "object",
+      "required": [
+        "instance_id",
+        "item_def_id",
+        "name",
+        "location",
+        "slot_cost",
+        "specification_snapshot"
+      ],
+      "properties": {
+        "instance_id": {
+          "$ref": "#/$defs/safeId"
+        },
+        "item_def_id": {
+          "$ref": "#/$defs/safeId"
+        },
+        "name": {
+          "type": "string",
+          "minLength": 1
+        },
+        "location": {
+          "enum": [
+            "bag",
+            "warehouse",
+            "equipped",
+            "escrow",
+            "consumed"
+          ]
+        },
+        "slot_cost": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "owner_character_id": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "specification_snapshot": {
+          "type": "object"
+        }
+      },
+      "additionalProperties": true
+    },
+    "inventory": {
+      "type": "object",
+      "required": [
+        "version",
+        "bag",
+        "carried_stacks",
+        "warehouse",
+        "reservations"
+      ],
+      "properties": {
+        "version": {
+          "const": 1
+        },
+        "bag": {
+          "type": "object",
+          "required": [
+            "base_slots",
+            "upgrade_count",
+            "max_slots",
+            "skill_bonus_slots",
+            "effective_max_slots",
+            "used_slots"
+          ],
+          "properties": {
+            "base_slots": {
+              "const": 16
+            },
+            "upgrade_count": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 3
+            },
+            "max_slots": {
+              "type": "integer",
+              "minimum": 16,
+              "maximum": 28
+            },
+            "skill_bonus_slots": {
+              "enum": [
+                0,
+                2,
+                3,
+                4
+              ]
+            },
+            "effective_max_slots": {
+              "type": "integer",
+              "minimum": 16,
+              "maximum": 32
+            },
+            "used_slots": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 32
+            }
+          },
+          "additionalProperties": false
+        },
+        "carried_stacks": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/itemStack"
+          }
+        },
+        "warehouse": {
+          "type": "object",
+          "required": [
+            "stacks",
+            "instance_ids"
+          ],
+          "properties": {
+            "stacks": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/itemStack"
+              }
+            },
+            "instance_ids": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/safeId"
+              },
+              "uniqueItems": true
+            }
+          },
+          "additionalProperties": false
+        },
+        "reservations": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/itemReservation"
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    "questCard": {
+      "type": "object",
+      "required": [
+        "quest_id",
+        "immutable_hash",
+        "progress",
+        "amendments",
+        "reward_contract"
+      ],
+      "properties": {
+        "quest_id": {
+          "$ref": "#/$defs/safeId"
+        },
+        "immutable_hash": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        },
+        "progress": {
+          "type": "object"
+        },
+        "amendments": {
+          "type": "array"
+        },
+        "reward_contract": {
+          "type": "object",
+          "required": [
+            "settlement_id",
+            "offered",
+            "payer",
+            "components"
+          ],
+          "properties": {
+            "settlement_id": {
+              "$ref": "#/$defs/safeId"
+            },
+            "offered": {
+              "type": "boolean"
+            },
+            "payer": {
+              "type": "string",
+              "minLength": 1
+            },
+            "components": {
+              "type": "array"
+            }
+          },
+          "additionalProperties": true
+        }
+      },
+      "additionalProperties": true
+    },
+    "appearanceText": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 1000,
+      "pattern": "^[\\s\\S]*\\S[\\s\\S]*$"
+    },
+    "appearancePatch": {
+      "type": "object",
+      "minProperties": 1,
+      "maxProperties": 11,
+      "properties": {
+        "hair": {
+          "$ref": "#/$defs/appearanceText"
+        },
+        "eyes": {
+          "$ref": "#/$defs/appearanceText"
+        },
+        "skin": {
+          "$ref": "#/$defs/appearanceText"
+        },
+        "face": {
+          "$ref": "#/$defs/appearanceText"
+        },
+        "build": {
+          "$ref": "#/$defs/appearanceText"
+        },
+        "body_shape": {
+          "$ref": "#/$defs/appearanceText"
+        },
+        "bust": {
+          "$ref": "#/$defs/appearanceText"
+        },
+        "outfit": {
+          "$ref": "#/$defs/appearanceText"
+        },
+        "appearance_notes": {
+          "$ref": "#/$defs/appearanceText"
+        },
+        "height_cm": {
+          "type": "number",
+          "exclusiveMinimum": 0,
+          "maximum": 100000
+        },
+        "features": {
+          "type": "array",
+          "maxItems": 20,
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 200,
+            "pattern": "^[\\s\\S]*\\S[\\s\\S]*$"
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    "appearanceResolution": {
+      "type": "object",
+      "required": [
+        "request_id",
+        "transaction_id",
+        "character_id",
+        "mode",
+        "source_revision",
+        "source_sha256",
+        "persona_sha256",
+        "before",
+        "after"
+      ],
+      "properties": {
+        "request_id": {
+          "$ref": "#/$defs/safeId"
+        },
+        "transaction_id": {
+          "$ref": "#/$defs/safeId"
+        },
+        "character_id": {
+          "$ref": "#/$defs/safeId"
+        },
+        "mode": {
+          "enum": [
+            "change",
+            "restore"
+          ]
+        },
+        "source_revision": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "source_sha256": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        },
+        "persona_sha256": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        },
+        "before": {
+          "oneOf": [
+            {
+              "type": "null"
+            },
+            {
+              "$ref": "#/$defs/appearancePatch"
+            }
+          ]
+        },
+        "after": {
+          "oneOf": [
+            {
+              "type": "null"
+            },
+            {
+              "$ref": "#/$defs/appearancePatch"
+            }
+          ]
+        }
+      },
+      "additionalProperties": false
+    },
+    "appearanceCustomization": {
+      "type": "object",
+      "required": [
+        "version",
+        "overrides",
+        "resolutions"
+      ],
+      "properties": {
+        "version": {
+          "type": "integer",
+          "const": 1
+        },
+        "overrides": {
+          "type": "object",
+          "maxProperties": 64,
+          "propertyNames": {
+            "$ref": "#/$defs/safeId"
+          },
+          "additionalProperties": {
+            "$ref": "#/$defs/appearancePatch"
+          }
+        },
+        "resolutions": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/appearanceResolution"
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    "debtState": {
+      "type": "object",
+      "required": [
+        "version",
+        "contract_cycle_index",
+        "contract_id",
+        "principal",
+        "interval_days",
+        "next_collection_day",
+        "scheduled_due",
+        "cycle_paid",
+        "collection_pending",
+        "last_collection_day",
+        "collection_serial",
+        "positive_payment_collections",
+        "full_payment_collections",
+        "missed_collections",
+        "collection_ledger",
+        "active_benefits",
+        "benefit_selection"
+      ],
+      "properties": {
+        "version": {
+          "const": 1
+        },
+        "contract_rule": {
+          "const": "staged-payoff-v1"
+        },
+        "unlocks": {
+          "type": "object",
+          "required": [
+            "lilith_intimacy",
+            "named_appearance_customization"
+          ],
+          "properties": {
+            "lilith_intimacy": {
+              "type": "boolean"
+            },
+            "named_appearance_customization": {
+              "type": "boolean"
+            }
+          },
+          "additionalProperties": false
+        },
+        "contract_cycle_index": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "contract_id": {
+          "$ref": "#/$defs/safeId"
+        },
+        "principal": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "interval_days": {
+          "const": 5
+        },
+        "next_collection_day": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "scheduled_due": {
+          "type": "integer",
+          "minimum": 500
+        },
+        "cycle_paid": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "collection_pending": {
+          "type": "boolean"
+        },
+        "last_collection_day": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "minimum": 1
+        },
+        "collection_serial": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "positive_payment_collections": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "full_payment_collections": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "missed_collections": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "collection_ledger": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": [
+              "collection_id",
+              "transaction_id",
+              "event_kind",
+              "collection_day",
+              "contract_id_before",
+              "contract_id_after",
+              "principal_before_payment",
+              "principal_after_resolution"
+            ],
+            "properties": {
+              "collection_id": {
+                "$ref": "#/$defs/safeId"
+              },
+              "transaction_id": {
+                "$ref": "#/$defs/safeId"
+              },
+              "event_kind": {
+                "enum": [
+                  "collection",
+                  "payment",
+                  "early_payoff",
+                  "charge"
+                ]
+              },
+              "collection_day": {
+                "type": "integer",
+                "minimum": 1
+              },
+              "contract_id_before": {
+                "$ref": "#/$defs/safeId"
+              },
+              "contract_id_after": {
+                "$ref": "#/$defs/safeId"
+              },
+              "campaign_id": {
+                "$ref": "#/$defs/safeId"
+              },
+              "completed_stage": {
+                "type": "integer",
+                "minimum": 1
+              },
+              "unlocked_benefit": {
+                "enum": [
+                  "lilith_intimacy",
+                  "named_appearance_customization",
+                  null
+                ]
+              },
+              "contract_cycle_index_before": {
+                "type": "integer",
+                "minimum": 0
+              },
+              "contract_cycle_index_after": {
+                "type": "integer",
+                "minimum": 0
+              },
+              "principal_before_payment": {
+                "type": "integer",
+                "minimum": 1
+              },
+              "principal_after_resolution": {
+                "type": "integer",
+                "minimum": 1
+              },
+              "payment": {
+                "type": "integer",
+                "minimum": 0
+              },
+              "charge_amount": {
+                "type": "integer",
+                "minimum": 1
+              },
+              "reason": {
+                "enum": [
+                  "inn",
+                  "member_shortage",
+                  "rebirth",
+                  "crime_fine"
+                ]
+              },
+              "source_id": {
+                "type": "string",
+                "minLength": 1
+              }
+            },
+            "allOf": [
+              {
+                "if": {
+                  "properties": {
+                    "event_kind": {
+                      "const": "collection"
+                    }
+                  }
+                },
+                "then": {
+                  "required": [
+                    "scheduled_due_before",
+                    "cycle_paid",
+                    "payment",
+                    "unpaid_due",
+                    "penalty",
+                    "next_collection_day_after",
+                    "scheduled_due_after",
+                    "contract_cycle_index_before",
+                    "contract_cycle_index_after"
+                  ]
+                }
+              },
+              {
+                "if": {
+                  "properties": {
+                    "event_kind": {
+                      "enum": [
+                        "payment",
+                        "early_payoff"
+                      ]
+                    }
+                  }
+                },
+                "then": {
+                  "required": [
+                    "payment"
+                  ]
+                }
+              },
+              {
+                "if": {
+                  "properties": {
+                    "event_kind": {
+                      "const": "charge"
+                    }
+                  }
+                },
+                "then": {
+                  "required": [
+                    "charge_amount",
+                    "reason",
+                    "source_id"
+                  ]
+                }
+              }
+            ],
+            "additionalProperties": true
+          }
+        },
+        "active_benefits": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": [
+              "benefit_id",
+              "tier",
+              "uses_count",
+              "last_used_day",
+              "next_available_day",
+              "activated_day",
+              "contract_cycle_index"
+            ],
+            "properties": {
+              "benefit_id": {
+                "enum": [
+                  "facility_investment",
+                  "procurement_network",
+                  "expedition_guarantee"
+                ]
+              },
+              "tier": {
+                "type": "integer",
+                "minimum": 1
+              },
+              "uses_count": {
+                "type": "integer",
+                "minimum": 0
+              },
+              "last_used_day": {
+                "type": [
+                  "integer",
+                  "null"
+                ],
+                "minimum": 1
+              },
+              "next_available_day": {
+                "type": [
+                  "integer",
+                  "null"
+                ],
+                "minimum": 1
+              },
+              "activated_day": {
+                "type": "integer",
+                "minimum": 1
+              },
+              "contract_cycle_index": {
+                "type": "integer",
+                "minimum": 1
+              }
+            },
+            "additionalProperties": false
+          }
+        },
+        "benefit_selection": {
+          "type": "object",
+          "required": [
+            "benefit_id",
+            "source",
+            "switch_available",
+            "activated_day"
+          ],
+          "properties": {
+            "benefit_id": {
+              "enum": [
+                "",
+                "facility_investment",
+                "procurement_network",
+                "expedition_guarantee"
+              ]
+            },
+            "source": {
+              "enum": [
+                "player",
+                "default"
+              ]
+            },
+            "switch_available": {
+              "type": "boolean"
+            },
+            "activated_day": {
+              "type": [
+                "integer",
+                "null"
+              ],
+              "minimum": 1
+            }
+          },
+          "additionalProperties": false
+        }
+      },
+      "additionalProperties": false
+    }
+  },
+  "type": "object",
+  "required": [
+    "schema",
+    "schema_version",
+    "game_version",
+    "campaign_id",
+    "created_at",
+    "updated_at",
+    "save_revision",
+    "content_manifest_hash",
+    "save_format_origin",
+    "transaction",
+    "hearing_progress",
+    "active_script",
+    "runtime_state",
+    "dice_state",
+    "fire_state",
+    "world_state",
+    "skills",
+    "skill_dormancy",
+    "custom_abilities",
+    "active_event",
+    "ammo",
+    "shop_records",
+    "debt_state",
+    "captured_girls",
+    "play_mode",
+    "ero_style",
+    "player",
+    "player_body",
+    "desire",
+    "ng",
+    "yuri",
+    "partner_pref",
+    "hearing_check",
+    "spells",
+    "equip",
+    "items",
+    "inventory",
+    "item_definitions",
+    "item_instances",
+    "party",
+    "inn_reserve",
+    "enterprise_state",
+    "npc_relationship",
+    "session_log",
+    "memory_log",
+    "design_applied"
+  ],
+  "properties": {
+    "schema": {
+      "const": "MachaDun_Save_Muse_v3"
+    },
+    "schema_version": {
+      "const": 3
+    },
+    "game_version": {
+      "type": "string",
+      "minLength": 1
+    },
+    "campaign_id": {
+      "$ref": "#/$defs/safeId"
+    },
+    "created_at": {
+      "type": "string",
+      "minLength": 1
+    },
+    "updated_at": {
+      "type": "string",
+      "minLength": 1
+    },
+    "save_revision": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "content_manifest_hash": {
+      "type": "string"
+    },
+    "save_format_origin": {
+      "type": "string"
+    },
+    "transaction": {
+      "type": "object"
+    },
+    "hearing_progress": {
+      "type": "object"
+    },
+    "active_script": {
+      "type": "object"
+    },
+    "runtime_state": {
+      "type": "object",
+      "properties": {
+        "ero_scene": {
+          "type": "boolean"
+        },
+        "style_conditions": {
+          "type": "array",
+          "items": {
+            "enum": [
+              "yuri"
+            ]
+          },
+          "uniqueItems": true
+        },
+        "interaction": {
+          "type": "object",
+          "required": [
+            "target",
+            "kind",
+            "status"
+          ],
+          "properties": {
+            "target": {
+              "type": "string",
+              "minLength": 1
+            },
+            "kind": {
+              "type": "string",
+              "minLength": 1
+            },
+            "status": {
+              "enum": [
+                "attempt",
+                "declined",
+                "established"
+              ]
+            }
+          },
+          "additionalProperties": false
+        }
+      }
+    },
+    "dice_state": {
+      "type": "object"
+    },
+    "fire_state": {
+      "type": "object"
+    },
+    "world_state": {
+      "type": "object",
+      "required": [
+        "day",
+        "location",
+        "quest_card",
+        "expedition_state",
+        "dungeon_run",
+        "dungeon_memory"
+      ],
+      "properties": {
+        "day": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "location": {
+          "type": "string"
+        },
+        "quest_card": {
+          "oneOf": [
+            {
+              "type": "null"
+            },
+            {
+              "$ref": "#/$defs/questCard"
+            }
+          ]
+        },
+        "expedition_state": {
+          "type": "object"
+        },
+        "dungeon_run": {
+          "type": "object",
+          "description": "M108: counters have no exploration/encounter limit; resource_days_by_floor freezes replenishment during a delve."
+        },
+        "campaign_lore": {
+          "type": "object",
+          "description": "今回のキャンペーンで生まれた場所・人物・出来事の継続事実。既存の作者設定は変更しない。",
+          "additionalProperties": true
+        },
+        "appearance_customization": {
+          "$ref": "#/$defs/appearanceCustomization"
+        },
+        "onboarding": {
+          "type": "object",
+          "properties": {
+            "allocation_rule": {
+              "enum": [
+                "all3-plus15-v1",
+                "legacy-all5-plus15-v1",
+                "legacy-preserved"
+              ]
+            },
+            "legacy_initial_allocation": {
+              "type": "boolean"
+            },
+            "body_received": {
+              "type": "boolean"
+            },
+            "allocation_complete": {
+              "type": "boolean"
+            },
+            "fire_granted": {
+              "type": "boolean"
+            },
+            "fire_explained": {
+              "type": "boolean"
+            },
+            "tutorial_complete": {
+              "type": "boolean"
+            }
+          },
+          "additionalProperties": true
+        },
+        "place_id": {
+          "type": "string",
+          "maxLength": 300
+        },
+        "room_id": {
+          "type": "string",
+          "maxLength": 300
+        },
+        "sub_location": {
+          "type": "string",
+          "maxLength": 300
+        },
+        "dungeon_memory": {
+          "type": "object",
+          "required": [
+            "version",
+            "records"
+          ],
+          "properties": {
+            "version": {
+              "const": 1
+            },
+            "records": {
+              "type": "object"
+            }
+          }
+        }
+      },
+      "additionalProperties": true
+    },
+    "skills": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/skillRecord"
+      }
+    },
+    "skill_dormancy": {
+      "type": "array"
+    },
+    "custom_abilities": {
+      "type": "array"
+    },
+    "active_event": {
+      "oneOf": [
+        {
+          "type": "null"
+        },
+        {
+          "$ref": "#/$defs/questCard"
+        }
+      ]
+    },
+    "ammo": {
+      "type": "object",
+      "required": [
+        "pools",
+        "weapon_loads"
+      ],
+      "properties": {
+        "pools": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": [
+              "ammo_type",
+              "count"
+            ],
+            "properties": {
+              "ammo_type": {
+                "type": "string",
+                "minLength": 1
+              },
+              "count": {
+                "type": "integer",
+                "minimum": 0
+              }
+            },
+            "additionalProperties": false
+          }
+        },
+        "weapon_loads": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": [
+              "weapon_instance_id",
+              "ammo_type",
+              "loaded",
+              "capacity"
+            ],
+            "properties": {
+              "weapon_instance_id": {
+                "$ref": "#/$defs/safeId"
+              },
+              "ammo_type": {
+                "type": "string",
+                "minLength": 1
+              },
+              "loaded": {
+                "type": "integer",
+                "minimum": 0
+              },
+              "capacity": {
+                "type": "integer",
+                "minimum": 0
+              }
+            },
+            "additionalProperties": false
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    "shop_records": {
+      "type": "object"
+    },
+    "debt_state": {
+      "$ref": "#/$defs/debtState"
+    },
+    "captured_girls": {
+      "type": "array"
+    },
+    "play_mode": {
+      "enum": [
+        "",
+        "RP",
+        "GOD"
+      ]
+    },
+    "ero_style": {
+      "enum": [
+        "",
+        "machadan",
+        "rabilabi"
+      ]
+    },
+    "player": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/character"
+        },
+        {
+          "required": [
+            "gold",
+            "debt"
+          ]
+        }
+      ]
+    },
+    "player_body": {
+      "type": "string"
+    },
+    "desire": {
+      "type": "string"
+    },
+    "ng": {
+      "type": "array"
+    },
+    "yuri": {
+      "type": "string"
+    },
+    "partner_pref": {
+      "type": "object"
+    },
+    "hearing_check": {
+      "type": "object"
+    },
+    "spells": {
+      "type": "array"
+    },
+    "equip": {
+      "type": "object"
+    },
+    "items": {
+      "const": []
+    },
+    "inventory": {
+      "$ref": "#/$defs/inventory"
+    },
+    "item_definitions": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/itemDefinition"
+      }
+    },
+    "item_instances": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/itemInstance"
+      }
+    },
+    "party": {
+      "type": "array",
+      "maxItems": 2,
+      "items": {
+        "$ref": "#/$defs/character"
+      }
+    },
+    "inn_reserve": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/character"
+      }
+    },
+    "enterprise_state": {
+      "type": "object",
+      "required": [
+        "version",
+        "businesses",
+        "discoveries",
+        "research_projects",
+        "recipes",
+        "order_book",
+        "commerce_ledger",
+        "reputation_ledger",
+        "lilith_investments",
+        "community_threads",
+        "aftermath_seeds"
+      ],
+      "properties": {
+        "version": {
+          "const": 1
+        },
+        "businesses": {
+          "type": "array"
+        },
+        "discoveries": {
+          "type": "array"
+        },
+        "research_projects": {
+          "type": "array"
+        },
+        "recipes": {
+          "type": "array"
+        },
+        "order_book": {
+          "type": "array"
+        },
+        "commerce_ledger": {
+          "type": "array"
+        },
+        "reputation_ledger": {
+          "type": "array"
+        },
+        "lilith_investments": {
+          "type": "array"
+        },
+        "community_threads": {
+          "type": "array"
+        },
+        "aftermath_seeds": {
+          "type": "array"
+        }
+      },
+      "additionalProperties": false
+    },
+    "npc_relationship": {
+      "type": "array"
+    },
+    "session_log": {
+      "type": "object"
+    },
+    "memory_log": {
+      "type": "object"
+    },
+    "design_applied": {
+      "type": "array"
+    }
+  },
+  "additionalProperties": true
+}

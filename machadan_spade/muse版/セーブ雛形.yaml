@@ -1,0 +1,334 @@
+# マチャダン スペード Muse版 セーブ雛形
+# 項目構成の正本は、このYAMLと schemas/save_v3.schema.json。
+# System_Templates.md のセーブ節は利用者向け表示例であり、保存構造の正本にはしない。
+# 「セーブ」コマンド時も実データは検証済みYAMLだけに確定し、表示文から復元しない。
+# 実セーブは saves/ 配下にキャンペーンごとに作る。
+# v1/v2 セーブは tools/machadan_runtime.py が v3 へ冪等移行する。
+# 移行で推測不能な能力内訳は実効値を保全し、migration_legacy に根拠を残す。
+schema: "MachaDun_Save_Muse_v3"
+schema_version: 3
+game_version: "4.13.4"
+campaign_id: ""           # 新規作成時に一意なIDを生成。ファイル名変更後も不変
+created_at: ""            # ISO 8601 UTC。新規作成時のみ設定
+updated_at: ""            # ISO 8601 UTC。正常なコミットごとに更新
+save_revision: 0          # 正常なコミットごとに +1
+content_manifest_hash: "" # 使用中パッケージの manifest ハッシュ
+save_format_origin: "System_Templates.md [TEMPLATE_SAVE] (SAVE_DATA: MachaDun v2.0)"
+
+transaction:
+  last_transaction_id: "" # 同一ターンの二重適用を防ぐ一意ID
+  last_committed_turn: 0
+  previous_revision_hash: ""
+  last_candidate_hash: "" # 同じtransaction IDが同じ候補の再試行かを確認
+  applied_transaction_ids: [] # 過去のcommit ID。直近以外も再使用させない
+
+hearing_progress:
+  status: "pending"       # pending / in_progress / complete
+  current_step: 1
+  completed_steps: []     # playmode / profile / body_profile / desire / partner / style
+  widget_ids: {}          # step_id: widget_id。回答回収後も監査用に保持
+  widget_state_versions: {} # step_id: HTML state 内のrevision（platform wrapperのversionとは別）
+
+active_script:
+  id: ""                  # 例: SCRIPT_OPENING_AWAKENING
+  status: "idle"          # idle / in_progress / complete
+  cursor: 0               # 分割出力した固定脚本の次の位置
+  checkpoint: ""          # 再開位置を説明する短い固定ID
+
+runtime_state:
+  ero_scene: false         # 文体用の場面状態。終了時だけ明示して解除
+  style_conditions: []     # 場面内で維持する追加の参照条件
+  active_scene: "hearing" # hearing / town / travel / combat / quest / ero / other
+  scene_id: ""
+  context_pack_hash: ""
+  last_validation_at: ""
+  last_error: ""
+
+dice_state:               # 固定ダイステープの消費位置 (M28)。GMは出目を作らない
+  tape_revision: "machadan-tape-r1"
+  dice_cursor_d6: 0
+  dice_cursor_d10: 0
+
+fire_state:               # リリスの火 (M32)。正式メンバー=火持ち
+  holders: []             # 火を持つ者のcharacter_id。人数補正は遠征同行者だけで出発時に固定
+  notes: ""               # 分けた/返してもらった経緯など
+
+world_state:
+  onboarding: {allocation_rule: all3-plus15-v1, body_received: false, allocation_complete: false, fire_granted: false, fire_explained: false, tutorial_complete: false}
+  campaign_lore: {} # 未設定から生まれた今回の場所・人物・出来事。配布設定とは分けて保持
+  appearance_customization: # 第2契約完済後のネームド外見上書き。配布人格は変更しない
+    version: 1
+    overrides: {}         # 正規character_id: 外見だけの変更内容
+    resolutions: []      # 変更・復元の追記専用履歴。解禁は債務台帳から検証する
+  reward_state_version: 2 # M83報酬台帳・実体差分・保留明細契約の形式版
+  day: 1
+  location: ""            # 現在地。ダンジョン内は depth も
+  place_id: ""            # 舞台構造の正規場所ID。使用時はlocationと同時に更新
+  room_id: ""             # その場所内の部屋/街路ID。未確定なら空。移動先へ古い値を持ち越さない
+  sub_location: ""        # 階・部屋・通り等の補助表記
+  depth: null
+  time_of_day: ""         # 朝/昼/夕/夜
+  weather: ""
+  quest_active: ""        # 進行中クエスト名
+  quest_rank: ""
+  personal_rank: ""       # 個人ランク (M69 A-5)。受注可能級と分けて記録・表示する
+  quest_access: ""        # 受注可能級 (例: "C級まで") (M69 A-5)
+  quests_completed: {E: 0, D: 0, C: 0, B: 0, A: 0}  # ランク別完了数 (M48 B-6)
+  quest_card: null        # クエストカード (M47/M82/M83)。受注時に作成し保持する
+                          # {direction, motivation, client, situation, twist,
+                          #  climax, showpiece, story_beats, emotional_thread,
+                          #  choice_space, second_twist, resolution, enemies,
+                          #  reward_contract, reward_note, carryover,
+                          #  work_kind?, commission?}
+                          # 解決手段・場面順・結末は固定せず、事実・制約・
+                          # 達成条件・結果規則と実際の進行を保持する
+  event_reward_contract: null  # M51/M83。1〜3ターンの小イベント報酬を回答まで保持
+                          # {settlement_id, offered, payer, components,
+                          #  delivery_plan}。受領/辞退の台帳確定後にnullへ戻す
+  pending_rewards: []     # M83。獲得済み・受取意思あり・未受渡の成分だけ
+                          # {settlement_id, source, payer, components,
+                          #  delivered_component_ids, claim_routes,
+                          #  available_from, status: pending/partial}
+                          # 辞退した成分はここへ入れない
+  reward_ledger: []       # M83。受領・辞退・失権の確定履歴。追記専用
+                          # {settlement_id, status: partial/settled/declined/forfeited,
+                          #  components: [{component_id, kind,
+                          #   state: delivered/declined/forfeited, transaction_id,
+                          #   effect: {target, before_sha256, after_sha256,
+                          #            amount?, entitlement_id?} / null}]}
+                          # 同じsettlement_id/component_idは二度追加しない
+  entitlements: []        # M83。後日使う権利・割引・サービス・紹介等
+                          # {entitlement_id, source_settlement_id,
+                          #  source_component_id, kind, name, issuer,
+                          #  scope, conditions, uses_remaining,
+                          #  expires, status: active/used/expired/revoked}
+  lead_mode: "主人公"     # 主人公 or "★LEAD: キャラ名"
+  goals:                  # カスタム指示文 A-2 の3目標
+    debt_clear: false
+    dungeon_clear: false
+    a_rank_quest: false
+  deepest_depth_reached: 0 # 到達済みの最深階 (0=未潜行、1〜9=階数)
+  defeated_floor_bosses: [] # 初回撃破済み階。1〜9の整数を一意に保持
+  boss_records: []        # 階層ボスの初回撃破・直近撃破・再入場後の復活を保持
+                          # {boss_id, floor, first_defeated_day, last_defeated_day,
+                          #  rematch_available_day, last_defeat_id,
+                          #  last_defeated_expedition_id}
+  dungeon_memory: {version: 1, records: {}} # 帰還しても保持する日別・階別の取得/接近/長居履歴
+  growth_state:           # 能力の実の判定・天井・Cランク初回支給の二重適用防止
+    version: 1
+    boss_fruit_legacy_sources: [] # 明示的な旧撃破履歴から引き継いだ獲得済み入手元
+    boss_fruit_miss_streak: 0 # 対象ボスの連続外れ。0〜3、3なら次回確定
+    c_rank_choice_fruit_status: "locked" # locked / pending / granted
+    c_rank_choice_fruit_transaction_id: "" # granted にした commit transaction id
+    resolutions: []       # 追記専用の実判定履歴
+                          # {resolution_id, source_type: boss/strong/chest/mimic/c_rank/quest/event,
+                          #  source_id, outcome: miss/awarded,
+                          #  rolls: [{die, purpose, cursor, result}],
+                          #  items: [{name, count}], day}
+  expedition_state:       # 場所非依存の遠征状態。火持ち全滅判定の唯一正本
+    active: false
+    expedition_id: ""
+    kind: "none"          # none / dungeon / quest / travel / other
+    fire_holders: []      # この遠征に同行中の火持ち
+    separated_fire_holders: [] # 同行中だが一時離脱・捕縛中 (上記の部分集合)
+    rebirth_pending: false # 同行火持ち全員LP0を保存済み。真なら次commitで死に戻り精算のみ
+    last_end_reason: "none" # none / return / rebirth / completed
+    last_ended_expedition_id: "" # 終了commitで直前のexpedition_idを写す
+    rebirth_receipt: null   # rebirth終了時のみ {expedition_id, fire_holders:[{name,lp_at_trigger:0}]}
+  dungeon_run:            # 街から入場し、帰還/死に戻りするまでの1潜行
+    active: false
+    run_id: ""            # active 時のみ一意な safe id
+    trash_encounters_used: 0 # 非ボス遭遇の記録。回数上限なし
+    danger_zones_resolved: 0 # 互換キー。解決した出来事数、上限なし
+    last_scene_kind: "none" # none / exploration / event / trash / boss
+    event_due: false      # 非ボス戦後の間合いの目安。襲来への免疫にはしない
+    used_event_ids: []    # この潜行で解決済みの dungeon 在庫ID、重複不可
+    current_floor: null   # active 時は1〜9、inactive 時は null
+    current_floor_scenes: 0 # 現在階で解決済みの区画/場面数
+    reward_searches_by_floor: {} # 階別取得記録。制限はdungeon_memoryの当日資源で管理
+    camp_used: false       # パーティ共有で1潜行1回だけ野宿できる
+    boss_route_found: false # 自発的な発見、またはボス接近による接触
+    resource_days_by_floor: {} # この潜行で使う階別補充日。野宿で日が進んでも戻さない
+
+skills: []                  # スキル (M76)。習得済み全件を記録し、セット上限は 技4/パッシブ3/技能4
+                            #   {name, category: technique/passive/check,
+                            #    tier: basic/advanced/master, stage: 1-3,
+                            #    state: set/reserve/dormant_by_job,
+                            #    uses, effect, from: job/standard/custom}
+skill_dormancy: []          # 旧形式の互換欄 (M76 では skills の state で管理)
+custom_abilities: []        # 自作スキル・自作魔法の完全定義 (M76)。名前から再生成しない
+active_event: null          # イベントクエストのカード (M47/M82/M83)。発生時のみ保持し、
+                          # 終了したら消して session_log へ要約を残す
+                          # 様式は 運用/イベントクエスト設計書.md §5
+ammo:                     # M91: 弾薬プールと銃個体ごとの装填。武器名をキーにしない
+  pools: []               # {ammo_type,count}
+  weapon_loads: []        # {weapon_instance_id,ammo_type,loaded,capacity}
+
+shop_records:             # NPC商店での利用記録。プレイヤー店舗は enterprise_state
+  mia_total: 0            # ミアの店での累計購入額。特典の段階判定に使う
+  mia_perks_claimed: []   # 受け取り済みの特典段階 (small / main)。各1回限り
+
+debt_state:               # 5日ごとのリリス取立て。principal=player.debt
+  version: 1
+  contract_rule: "staged-payoff-v1"
+  unlocks: {lilith_intimacy: false, named_appearance_customization: false} # 完済台帳と一致する不可逆の解禁状態
+  contract_cycle_index: 0
+  contract_id: "lilith-debt-cycle-0"
+  principal: 10000
+  interval_days: 5
+  next_collection_day: 5
+  scheduled_due: 500
+  cycle_paid: 0
+  collection_pending: false
+  last_collection_day: null
+  collection_serial: 0
+  positive_payment_collections: 0
+  full_payment_collections: 0
+  missed_collections: 0
+  collection_ledger: []   # 追記専用。全before/after値とtransaction_idを持つ
+  active_benefits: []     # 旧契約で取得済みの効果。新しい段階完済では自動付与しない
+  benefit_selection: {benefit_id: "", source: default, switch_available: false, activated_day: null}
+
+captured_girls: []        # 捕獲したモン娘・女性 (M23)。名前/種族/性格/状態/関係を保持
+# ヒアリングとプレイヤー本体 (M80 でフラット形式へ統一。
+# 実セーブの運用形式が正本。旧 player_state 入れ子は廃止した)
+play_mode: ""             # RP / GOD (ヒアリング ステップ1)
+ero_style: ""             # machadan / rabilabi (ステップ6。空欄なら開始時に一度だけ聞く。M8)
+player:
+  character_version: 1
+  character_id: "player"
+  build_complete: false
+  name: ""
+  gender: ""
+  age: null               # 18歳以上の成人のみ (ステップ2。年齢だけは必須)
+  race: ""
+  job: ""
+  job_profile:
+    combat_role: unclassified
+    magic_role: unclassified
+    expertise_tags: []
+    solo_suitability: unclassified
+    party_needs: []
+  gold: 0
+  debt: 10000             # 初期借金 10,000G
+  base_stats: {str: 0, def: 0, int: 0, spd: 0, tec: 0, chm: 0}
+  growth_bonus: {str: 0, def: 0, int: 0, spd: 0, tec: 0, chm: 0}
+  equipment_bonus: {str: 0, def: 0, int: 0, spd: 0, tec: 0, chm: 0}
+  fire_bonus: {str: 0, def: 0, int: 0, spd: 0, tec: 0, chm: 0}
+  temporary_modifiers: {str: 0, def: 0, int: 0, spd: 0, tec: 0, chm: 0}
+  effective_stats: {str: 0, def: 0, int: 0, spd: 0, tec: 0, chm: 0}
+  base_lp: 0
+  job_lp_bonus: 0
+  fire_lp_bonus: 0
+  temporary_lp_bonus: 0
+  # 初期配分UIでstat_lp_bonusを導出する。未作成・旧形式には任意、完成後は永久DEFから再計算。
+  lp: { cur: 0, max: 0 }  # max = base_lp + stat_lp_bonus + job_lp_bonus + fire_lp_bonus + temporary_lp_bonus
+  mp: { cur: 0, max: 0 }  # max = INT合計 (装備・火込み) (M39)。宿で全回復
+  stats: {str: 0, def: 0, int: 0, spd: 0, tec: 0, chm: 0} # v2表示互換。effective_statsと一致必須
+  equipment: {weapon_instance_id: null, armor_instance_id: null, offhand_instance_id: null, fixed: ["帰還の腕輪"]}
+  statuses: []
+  buffs: []
+  ero_status: []          # Combat_Logic_Detail [Ero_Status_List] の状態名
+player_body: ""           # 体格 (ステップ3)。1行の文字列で保持し、地の文やNPCの反応に反映する
+desire: ""                # 性癖・好きなシチュエーション (ステップ4)
+ng: []                    # NG事項 (ステップ4)。以降の全描写で常に除外する
+yuri: ""                  # 百合の好み (ステップ4。タチ/ネコの別もここへ書く)
+partner_pref:             # 好みの女の子 (ステップ5、M61。未設定なら生成は全てランダム)
+  asked: false            # 聴取済みか (既存セーブは次回ギルド訪問時に1回だけ追加聴取)
+  personalities: []       # 好みのメイン性格 (生成/Mob_Generator.md の27種から)
+  sub_personalities: []   # 好みの副性格 (生成/Mob_Generator.md の16種から)
+  body_height: []         # 身長帯: とても小柄 / 小柄 / 標準 / 長身 / とても長身
+                          # 旧セーブの「長身」は移行時に長身+とても長身へ展開し、160cm以上の意味を維持
+  body_build: []          # 体格: 華奢 / 標準 / 豊満 / 筋肉質
+  body_bust: []           # 胸: こぶり / 標準 / 大きめ / 豊満
+  call: []                # 呼ばれたい呼び方 (おじさん/おにーさん/お兄さん/おじちゃん/お兄ちゃん/おじ様/名前/自由記述)
+hearing_check:            # ヒアリング回収チェック (M69 A-1)。未回収のまま放置しない
+  call_reflected: false   # 呼ばれたい呼び方が相棒NPCの基本呼称に反映済みか
+  unrecovered: []         # 未回収の項目 (好みの性格・副性格 / 体型 / 呼ばれたい呼び方 等)
+spells: []                # 主人公の習得魔法。character_idで所有者を明示できる
+equip: {weapon: "", armor: "", fixed: "帰還の腕輪"} # v2表示互換。新規処理はplayer.equipment
+items: []                 # v2互換欄。v3では常に空。所持品の正本はinventory
+
+inventory:
+  version: 1
+  # max_slotsは購入拡張の物理容量（上限28）。荷物の心得は同行者の最高段のみ+2/+3/+4。
+  bag: {base_slots: 16, upgrade_count: 0, max_slots: 16, skill_bonus_slots: 0, effective_max_slots: 16, used_slots: 0}
+  carried_stacks: []      # {stack_id,item_def_id,name,category,count,stack_cap:10,slot_cost:0/1,reserved_quantity}
+  warehouse: {stacks: [], instance_ids: []}
+  reservations: []        # {reservation_id,source_id,stack_id?,instance_id?,quantity,status}
+
+item_definitions: []      # 動的生成品の不変仕様。安定item_def_idと完全specificationを保存
+item_instances: []        # 固有品。location: bag/warehouse/equipped/escrow/consumed
+
+party: []                 # 最大2名。playerと同じCharacter構造を必須とする
+# - name: ""
+#   english_name: ""
+#   character_version: 1
+#   character_id: "Nell_011"
+#   build_complete: true
+#   race: ""
+#   job: ""
+#   job_profile: {combat_role: backline, magic_role: specialist, expertise_tags: [], solo_suitability: difficult, party_needs: [frontline]}
+#   age: null             # 全員18歳以上。不詳の者は "不詳(成人)"
+#   voice: { first_person: "", second_person: "", tone: "" }
+#   personality: ""
+#   relationship: { type: "", love_level: 0 }
+#   base_stats: {str: 0, def: 0, int: 0, spd: 0, tec: 0, chm: 0}
+#   growth_bonus: {str: 0, def: 0, int: 0, spd: 0, tec: 0, chm: 0}
+#   equipment_bonus: {str: 0, def: 0, int: 0, spd: 0, tec: 0, chm: 0}
+#   fire_bonus: {str: 0, def: 0, int: 0, spd: 0, tec: 0, chm: 0}
+#   temporary_modifiers: {str: 0, def: 0, int: 0, spd: 0, tec: 0, chm: 0}
+#   effective_stats: {str: 0, def: 0, int: 0, spd: 0, tec: 0, chm: 0}
+#   base_lp: 20
+#   job_lp_bonus: 0
+#   fire_lp_bonus: 0
+#   temporary_lp_bonus: 0
+#   statuses: []
+#   ero_status: []
+#   lp: {cur: 0, max: 0}
+#   mp: {cur: 0, max: 0}
+#   spells: []
+#   stats: {str: 0, def: 0, int: 0, spd: 0, tec: 0, chm: 0}
+#   equipment: {weapon_instance_id: null, armor_instance_id: null, offhand_instance_id: null, fixed: []}
+#   skills: []            # M76: {name, category, tier, stage, state, uses, effect}
+#   inn_share: ""         # 宿代の分担方式: self / leader (M69 A-2)。勧誘時に決めて記録する
+#   voice_sample: { daily: "", battle: "", ero: "" }   # 口調再現用。非ネームドも必ず記録
+
+inn_reserve: []           # 宿屋待機メンバー (party と同項目の簡略版 + voice_sample)
+
+enterprise_state:
+  version: 1
+  businesses: []
+  discoveries: []
+  research_projects: []
+  recipes: []
+  order_book: []
+  commerce_ledger: []
+  reputation_ledger: []
+  lilith_investments: []
+  community_threads: []
+  aftermath_seeds: []
+
+npc_relationship: []      # 重要NPCとの関係
+# - name: ""
+#   status: ""
+#   love_level: 0
+#   note: ""
+
+session_log:              # [SESSION_LOG] 省略厳禁。前回分を全て引き継ぎ、今回分を追記する
+  previous: ""            # 前回セーブからコピーした過去ログ全文
+  entries: []             # 今回分: {day, text} 訪れた場所/会った人物/戦闘結果/金銭増減の理由/
+                          # 関係性変化と理由/攻略・クエスト進捗/加入・離脱・状態変化 を含める
+
+memory_log:               # [MEMORY_LOG] 冒険全体の重要な記憶
+  encounters: []          # 出会いの記憶: {char, day, location, text}
+  battles: []             # 戦闘の記憶: {day, text, result}
+  ero: []                 # エッチの記憶: {day, partner, situation, summary}
+  turning_points: []      # 転機の記憶: {day, text}
+
+design_applied:           # Muse版の確定設計変更 (運用/決定台帳.yaml)
+  - "M1: 配布版のキャストは同梱ファイルの登場人物のみ (一部キャラクターは作者版のみの収録)"
+  - "M2: 年齢不詳でも、個別正本で成人と明記された固定キャストだけを成人として扱い、数値年齢は創作しない"
+  - "M3: Boot 第3条・第5条のシステムレイヤー方式は採用しない"
+  - "M4: カスタム指示文は同梱版を使う。ルーティング表の欠落行は、対象を収録していないため無効"
+  - "恋愛・性的な関わりの対象は18歳以上。18歳未満は生活・子育て等の非性的場面のみ"

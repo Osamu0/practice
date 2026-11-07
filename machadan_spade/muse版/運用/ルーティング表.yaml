@@ -1,0 +1,1208 @@
+schema: machadan-routing-v1
+version: 3
+registry: 運用/正本レジストリ.yaml
+generated_context: state/runtime/current_context.md
+rules:
+- base_packは全ターンで必要。現在の場面と対象に必要な節を末尾まで読む。
+- 未定義の人物・場所・行動は創作の余地。検索失敗だけで物語全体を止めない。
+- 定義済みの設定はID・別名・正本の節または全文で内部補完する。
+- fullが同じ資料のsectionsを包含する。同じ節と包含された節は重ねて読まない。
+- 表示用の状態抜粋を完全なセーブとして保存しない。変更は完全候補へ適用する。
+- セーブ破損・解決不能な正本衝突と、未設定の物語の補完は区別する。
+- 人格読込時はACTIVE_SAVE_VIEWのruntime_cast_rulesと対象の外見上書きを併読する。段階解禁を台詞や好感度から推測しない。
+base_pack:
+  required:
+  - resource: REGIONAL_WORLD
+    mode: full
+  - resource: PLACE_ATLAS
+    mode: full
+  - resource: TURN_CONTRACT
+    mode: full
+  - resource: STYLE_CARD
+    mode: sections
+    selectors:
+    - id: H_0B728F7F27996D54
+      match: (a) 適用条件
+    - id: H_21C8C14723163E74
+      match: (b) 書式
+    - id: H_FAFBC99BE5A18DFF
+      match: (d) プレイヤー代筆
+    - id: H_DD0FE5C893AF5A49
+      match: (l) ラビトレ文体
+    - id: H_515937B7DC740DF7
+      match: (p) 冒険シーン
+    - id: H_ACA08DB4531AF305
+      match: (q) 出力の語彙
+  - resource: CORE_RULES
+    mode: sections
+    selectors:
+    - match: §1 不変条件
+    - match: §16 節目の提示
+    - match: §17 GMの物語外発言
+  - resource: WORLD
+    mode: sections
+    selectors:
+    - match: 1. World Setting
+  - resource: MAGITECH
+    mode: full
+  - dynamic: active_save
+    mode: full
+  verify_after_turn:
+  - resource: STATUS_CHECK
+    mode: sections
+    selectors:
+    - match: 1. 確定の原則
+    - match: 4. 不整合時の処理
+scene_packs:
+  start:
+    aliases:
+    - new
+    - 新規
+    - 開始
+    - 起動
+    - マチャダンを始めて
+    required:
+    - resource: ACTIVE_INSTRUCTIONS
+      mode: sections
+      selectors:
+      - match: 5. 出力契約
+    - resource: COMMANDS
+      mode: sections
+      selectors:
+      - id: COMMAND_START
+        match: Command S
+    - resource: BOOT_WORLD
+      mode: full
+    - resource: WORLD
+      mode: full
+    - resource: STYLE_CARD
+      mode: sections
+      selectors:
+      - id: STYLE_MODE
+        match: (m)
+      - id: STYLE_STATUS
+        match: (n)
+      - id: STYLE_COVERAGE
+        match: (o)
+    dynamic:
+    - kind: current_opening_script
+      resource: TEMPLATES
+      mode: sections
+  resume:
+    aliases:
+    - continue
+    - ロード
+    - 再開
+    - 続き
+    - マチャダンを続けて
+    required:
+    - resource: ACTIVE_INSTRUCTIONS
+      mode: sections
+      selectors:
+      - match: 5. 出力契約
+    - resource: COMMANDS
+      mode: sections
+      selectors:
+      - id: COMMAND_LOAD
+        match: Command A
+    - resource: STATUS_CHECK
+      mode: full
+    dynamic:
+    - kind: active_save
+      mode: full
+      required: true
+    - kind: active_character_personas
+      directory: 人格
+      mode: full
+    - kind: current_location
+      resource: LOCATIONS
+      mode: sections
+    - kind: world_context
+      resource: WORLD
+      mode: sections
+  turn:
+    aliases:
+    - action
+    - 通常ターン
+    - 移動
+    - 会話
+    required:
+    - resource: ACTIVE_INSTRUCTIONS
+      mode: sections
+      selectors:
+      - match: 5. 出力契約
+    - resource: STYLE_CARD
+      mode: sections
+      selectors:
+      - id: ADVENTURE_PROSE
+        match: (p)
+    - resource: CAST_MOVEMENT
+      mode: full
+    - resource: GM_CARD
+      mode: sections
+      selectors:
+      - match: ロール早見
+    dynamic:
+    - kind: active_character_personas
+      directory: 人格
+      mode: full
+    - kind: current_location
+      resource: LOCATIONS
+      mode: sections
+    - kind: named_items
+      resource: ITEMS
+      mode: sections
+    - kind: world_context
+      resource: WORLD
+      mode: sections
+  combat:
+    aliases:
+    - battle
+    - 戦闘
+    - 攻撃
+    - 逃走
+    required:
+    - resource: NUMBERS
+      mode: full
+    - resource: COMBAT
+      mode: full
+    - resource: DUNGEON_RULES
+      mode: full
+    - resource: CHECKS
+      mode: full
+    - resource: ITEMS
+      mode: sections
+      selectors: &id001
+      - match: SYS-Item_Generation_Rules
+      - match: CONSUMABLES
+      - match: CARRY_CAPACITY_M92
+      - match: ECONOMY_RULES
+    - resource: OPERATIONS
+      mode: sections
+      selectors:
+      - id: COMBAT_ESCAPE
+        match: 戦闘からの逃走
+    conditional:
+    - when: firearm_action
+      resources:
+      - FIREARMS
+      mode: full
+    - when: capture
+      resources:
+      - CAPTURE_RULES
+      mode: full
+    dynamic:
+    - kind: enemy_entries
+      resource: MONSTERS
+      mode: sections
+    - kind: active_character_personas
+      directory: 人格
+      mode: full
+    - kind: dungeon_floor
+      resource: DUNGEON_DATA
+      mode: sections
+    - kind: named_items
+      resource: ITEMS
+      mode: sections
+    after:
+    - resource: DROPS
+      mode: full
+      when: victory
+  dungeon:
+    aliases:
+    - dungeon
+    - ダンジョン
+    - 潜行
+    - 階層探索
+    required:
+    - resource: EVENT_DECK
+      mode: sections
+      selectors:
+      - match: 運用ルール
+    - resource: EVENT_CONNECTIONS
+      mode: sections
+      selectors:
+      - match: 1. 在庫への登録と採用
+      - match: 2. ダンジョンからの入口
+    - resource: DUNGEON_DATA
+      mode: sections
+      selectors:
+      - match: 1. Dungeon System
+    - resource: DUNGEON_RULES
+      mode: full
+    - resource: CHECKS
+      mode: full
+    - resource: OPERATIONS
+      mode: sections
+      selectors:
+      - match: 3. ダンジョンからの帰還
+      - match: 5. 宿代
+      - match: 7. お金と時間
+      - match: 9. 死に戻り
+    - resource: NUMBERS
+      mode: full
+    - resource: ITEMS
+      mode: sections
+      selectors: *id001
+    - resource: GM_CARD
+      mode: sections
+      selectors:
+      - match: ロール早見
+    conditional:
+    - when: ability_fruit_resolution
+      resources:
+      - DROPS
+      - ITEMS
+      mode: full
+    - when: discovery
+      resources:
+      - ENTERPRISE
+      - DROPS
+      mode: full
+    - when: firearm_action
+      resources:
+      - FIREARMS
+      mode: full
+    dynamic:
+    - kind: dungeon_floor
+      resource: DUNGEON_DATA
+      mode: sections
+    - kind: event_inventory
+      resource: EVENT_INVENTORY_STATE
+      mode: full
+      initialize_from: EVENT_DECK
+    - kind: enemy_entries
+      resource: MONSTERS
+      mode: sections
+    - kind: active_character_personas
+      directory: 人格
+      mode: full
+  shop:
+    aliases:
+    - shopping
+    - 買い物
+    - 店
+    - 売却
+    - 治療
+    required:
+    - resource: EVENT_CONNECTIONS
+      mode: sections
+      selectors:
+      - match: 5. 買い物と固定キャストの関係
+    - resource: NUMBERS
+      mode: sections
+      selectors:
+      - match: 1. 判定の基本
+      - match: 2. プレイヤー
+    - resource: OPERATIONS
+      mode: sections
+      selectors:
+      - match: 1. 治療
+      - match: 5. 宿代
+      - match: 7. お金と時間
+    - resource: CHECKS
+      mode: full
+    - resource: ITEMS
+      mode: sections
+      selectors:
+      - match: SYS-Item_Generation_Rules
+      - match: CONSUMABLES
+      - match: WEAPONS
+      - match: ARMORS & ERO_GEAR
+      - match: ECONOMY_RULES
+    dynamic:
+    - kind: current_location
+      resource: LOCATIONS
+      mode: sections
+    - kind: shopkeeper_persona
+      directory: 人格
+      mode: full
+    - kind: named_items
+      resource: ITEMS
+      mode: sections
+    conditional:
+    - when: firearm_action
+      resources:
+      - FIREARMS
+      mode: full
+    - when: enterprise_purchase
+      resources:
+      - ENTERPRISE
+      mode: full
+  quest:
+    aliases:
+    - job
+    - クエスト
+    - 依頼
+    - 受注
+    - 報告
+    - 報酬受取
+    - 報酬精算
+    - 前金
+    - 納品報酬
+    - 権利報酬
+    - 製作依頼
+    - 発明依頼
+    - 生産依頼
+    - 生産職
+    - ○○屋
+    - 注文
+    - 特注
+    - 工房
+    - 商品開発
+    - 店を開ける
+    - 依頼を待つ
+    - 作ってほしい
+    - 発明してほしい
+    - 悩みを解決
+    required:
+    - resource: OPS_EXAMPLES
+      mode: full
+    - resource: QUEST_DESIGN
+      mode: full
+    - resource: QUEST_PARTS
+      mode: full
+    - resource: OPERATIONS
+      mode: sections
+      selectors:
+      - match: 4. クエスト報酬
+      - match: 7. お金と時間
+    - resource: CHECKS
+      mode: full
+    - resource: QUEST_GUILD
+      mode: full
+    - resource: GM_CARD
+      mode: sections
+      selectors:
+      - match: ロール早見
+    conditional:
+    - when: production_request
+      resources:
+      - ENTERPRISE
+      - ITEMS
+      - MAGITECH
+      - SKILLS
+      mode: full
+    - when: production
+      resources:
+      - ENTERPRISE
+      - ITEMS
+      - MAGITECH
+      - SKILLS
+      mode: full
+    - when: professional_case
+      resources:
+      - ENTERPRISE
+      - WORLD
+      - LOCATIONS
+      mode: full
+    - when: discovery
+      resources:
+      - ENTERPRISE
+      - DUNGEON_DATA
+      - DROPS
+      mode: full
+    - when: unknown_material
+      resources:
+      - ENTERPRISE
+      - DUNGEON_DATA
+      - DROPS
+      - ITEMS
+      mode: full
+    - when: research
+      resources:
+      - ENTERPRISE
+      - ITEMS
+      - MAGITECH
+      - SKILLS
+      - MAGIC
+      mode: full
+    - when: recipe
+      resources:
+      - ENTERPRISE
+      - ITEMS
+      - MAGITECH
+      mode: full
+    - when: noncash_reward
+      resources:
+      - ITEMS
+      - LOCATIONS
+      mode: full
+    - when: ability_fruit_resolution
+      resources:
+      - DROPS
+      - ITEMS
+      mode: full
+    - when: capture
+      resources:
+      - CAPTURE_RULES
+      mode: full
+    dynamic:
+    - kind: quest_rank
+      resource: QUEST_GUILD
+      mode: sections
+    - kind: active_character_personas
+      directory: 人格
+      mode: full
+    - kind: enemy_entries
+      resource: MONSTERS
+      mode: sections
+  event:
+    aliases:
+    - random_event
+    - イベント
+    - 散策
+    - ぶらつく
+    - 休憩
+    required:
+    - resource: OPS_EXAMPLES
+      mode: full
+    - resource: EVENT_DECK
+      mode: sections
+      selectors:
+      - match: 運用ルール
+    - resource: EVENT_CONNECTIONS
+      mode: sections
+      selectors:
+      - match: 1. 在庫への登録と採用
+      - match: 3. 街と道中からの入口
+      - match: 4. 夜の施設と継続する相手
+    - resource: RANDOM_EVENT_RULES
+      mode: full
+    - resource: OPERATIONS
+      mode: sections
+      selectors:
+      - match: 5. 宿代
+      - match: 7. お金と時間
+    - resource: GM_CARD
+      mode: sections
+      selectors:
+      - match: ロール早見
+    conditional:
+    - when: production_request
+      resources:
+      - ENTERPRISE
+      - QUEST_DESIGN
+      - QUEST_PARTS
+      - CHECKS
+      - ITEMS
+      - MAGITECH
+      mode: full
+    - when: professional_case
+      resources:
+      - ENTERPRISE
+      - QUEST_DESIGN
+      - QUEST_PARTS
+      - CHECKS
+      - WORLD
+      - LOCATIONS
+      mode: full
+    - when: festival
+      resources:
+      - FESTIVALS
+      mode: full
+    - when: noncash_reward
+      resources:
+      - QUEST_DESIGN
+      - QUEST_PARTS
+      - CHECKS
+      - ITEMS
+      - LOCATIONS
+      mode: full
+    - when: ability_fruit_resolution
+      resources:
+      - DROPS
+      - ITEMS
+      - QUEST_GUILD
+      mode: full
+    dynamic:
+    - kind: event_inventory
+      resource: EVENT_INVENTORY_STATE
+      mode: full
+      initialize_from: EVENT_DECK
+    - kind: current_location
+      resource: LOCATIONS
+      mode: sections
+    - kind: overworld_context
+      resource: ENCOUNTERS
+      mode: sections
+    - kind: active_character_personas
+      directory: 人格
+      mode: full
+  generation:
+    aliases:
+    - mob
+    - モブ
+    - 仲間候補
+    - 住人
+    - 旅人
+    required:
+    - resource: EVENT_DECK
+      mode: sections
+      selectors:
+      - match: 運用ルール
+    - resource: EVENT_CONNECTIONS
+      mode: sections
+      selectors:
+      - match: 1. 在庫への登録と採用
+    - resource: MOB_GENERATOR
+      mode: full
+    dynamic:
+    - kind: mob_inventory
+      resource: MOB_INVENTORY_STATE
+      mode: full
+      initialize_from: MOB_STOCK
+    - kind: current_location
+      resource: LOCATIONS
+      mode: sections
+  style:
+    aliases:
+    - intimate
+    - 成人向け場面
+    - 文体
+    - 百合
+    required:
+    - resource: EVENT_CONNECTIONS
+      mode: sections
+      selectors:
+      - match: 6. 意思と関係の参照
+    - resource: STYLE_CARD
+      mode: full
+    - resource: INTIMATE_RULES
+      mode: full
+    - resource: STYLE_DICTIONARY
+      mode: full
+    conditional:
+    - when: yuri
+      resource: YURI_STYLE
+      mode: full
+    - when: needs_voice_seed
+      resources:
+      - VOICE_A
+      - VOICE_B
+      - VOICE_C
+      mode: sections
+      fallback_full: true
+    dynamic:
+    - kind: active_character_personas
+      directory: 人格
+      mode: full
+  chekyun:
+    aliases:
+    - image_prompt
+    - チェキュン
+    - プロンプト
+    required:
+    - resource: CHEKYUN_CONSTRUCTOR
+      mode: full
+    - resource: CHEKYUN_PRESETS
+      mode: full
+    dynamic:
+    - kind: target_character_personas
+      directory: 人格
+      mode: full
+  magic:
+    aliases:
+    - spell
+    - 魔法
+    - 魔導書
+    required:
+    - resource: MAGIC
+      mode: full
+    - resource: NUMBERS
+      mode: sections
+      selectors:
+      - match: 1. 判定の基本
+      - match: 2. プレイヤー
+      - match: 8. 魔法
+    dynamic:
+    - kind: current_location
+      resource: LOCATIONS
+      mode: sections
+    - kind: active_character_personas
+      directory: 人格
+      mode: full
+    - kind: named_samples
+      resource: SKILL_MAGIC_SAMPLES
+      mode: sections
+  skills:
+    aliases:
+    - skill
+    - スキル
+    - 強化
+    - 転職
+    required:
+    - resource: SKILLS
+      mode: full
+    - resource: NUMBERS
+      mode: sections
+      selectors:
+      - match: 1. 判定の基本
+      - match: 2. プレイヤー
+      - match: 9. スキル
+    dynamic:
+    - kind: active_character_personas
+      directory: 人格
+      mode: full
+    - kind: named_samples
+      resource: SKILL_MAGIC_SAMPLES
+      mode: sections
+  status:
+    aliases:
+    - status
+    - ステータス
+    - 能力詳細
+    - 仲間詳細
+    - 持ち物
+    - 所持品
+    - 装備確認
+    - バッグ
+    - 倉庫
+    required:
+    - resource: COMMANDS
+      mode: sections
+      selectors:
+      - id: COMMAND_STATUS
+        match: Command V
+    - resource: STATUS_CHECK
+      mode: full
+    - resource: NUMBERS
+      mode: full
+    - resource: ITEMS
+      mode: sections
+      selectors: *id001
+    conditional:
+    - when: inventory
+      resources:
+      - ITEMS
+      mode: full
+    - when: inventory_view
+      resources:
+      - ITEMS
+      mode: full
+    - when: material_reservation
+      resources:
+      - ENTERPRISE
+      mode: full
+    - when: equipment
+      resources:
+      - ITEMS
+      mode: full
+    - when: equipment_view
+      resources:
+      - ITEMS
+      mode: full
+    - when: firearm_equipment
+      resources:
+      - FIREARMS
+      mode: full
+    dynamic:
+    - kind: active_character_personas
+      directory: 人格
+      mode: full
+  enterprise:
+    aliases:
+    - enterprise
+    - 自分の店
+    - 店を営む
+    - 工房経営
+    - 店舗状況
+    - 研究プロジェクト
+    - 未知素材研究
+    - 商品登録
+    required:
+    - resource: COMMANDS
+      mode: sections
+      selectors:
+      - id: COMMAND_ENTERPRISE
+        match: Command O
+    - resource: ENTERPRISE
+      mode: full
+    - resource: QUEST_DESIGN
+      mode: full
+    - resource: CHECKS
+      mode: full
+    - resource: ITEMS
+      mode: sections
+      selectors: *id001
+    - resource: MAGITECH
+      mode: full
+    - resource: OPERATIONS
+      mode: sections
+      selectors:
+      - match: 4. クエスト報酬
+      - match: 7. お金と時間
+    conditional:
+    - when: production
+      resources:
+      - QUEST_PARTS
+      - SKILLS
+      mode: full
+    - when: professional_case
+      resources:
+      - WORLD
+      - LOCATIONS
+      - QUEST_PARTS
+      mode: full
+    - when: discovery
+      resources:
+      - DUNGEON_DATA
+      - DROPS
+      mode: full
+    - when: unknown_material
+      resources:
+      - DUNGEON_DATA
+      - DROPS
+      mode: full
+    - when: research
+      resources:
+      - SKILLS
+      - MAGIC
+      - FIREARMS
+      mode: full
+    - when: recipe
+      resources:
+      - SKILLS
+      - MAGIC
+      - FIREARMS
+      mode: full
+    - when: noncash_reward
+      resources:
+      - LOCATIONS
+      mode: full
+    dynamic:
+    - kind: current_location
+      resource: LOCATIONS
+      mode: sections
+    - kind: active_character_personas
+      directory: 人格
+      mode: full
+  debt:
+    aliases:
+    - debt
+    - 借金
+    - 返済
+    - 取立て
+    - 取り立て
+    - 請求額
+    - 支払い日
+    - 外見変更
+    - 体型変更
+    required:
+    - resource: OPS_EXAMPLES
+      mode: sections
+      selectors:
+      - match: 1. 導入とパス
+      - match: 3. 宿代200G
+      - match: 4. 取立日
+    - resource: TEMPLATES
+      mode: sections
+      selectors:
+      - id: SCRIPT_LILITH_DEBT_MILESTONES
+        match: '[SCRIPT_LILITH_DEBT_MILESTONES]'
+    - resource: COMMANDS
+      mode: sections
+      selectors:
+      - id: COMMAND_DEBT
+        match: Command R
+    - resource: OPERATIONS
+      mode: full
+    - resource: NUMBERS
+      mode: full
+    conditional:
+    - when: debt_collection
+      resources:
+      - OPERATIONS
+      mode: full
+    - when: debt_renewal
+      resources:
+      - LOCATIONS
+      mode: full
+    dynamic:
+    - kind: lilith_persona
+      path: 人格/Lilith.md
+      mode: full
+  manage:
+    aliases:
+    - manage
+    - 管理
+    - save
+    - セーブ
+    - 記録
+    - POV
+    - リード
+    - キャラインポート
+    - キャラデータ出力
+    - コマンド一覧
+    required:
+    - resource: OPS_EXAMPLES
+      mode: sections
+      selectors:
+      - match: 1. 導入とパス
+      - match: 3. 宿代200G
+      - match: 4. 取立日
+    - resource: COMMANDS
+      mode: full
+    - resource: STATUS_CHECK
+      mode: full
+    - resource: CORE_RULES
+      mode: full
+    dynamic:
+    - kind: active_save
+      mode: full
+    - kind: active_character_personas
+      directory: 人格
+      mode: full
+persona_files:
+  Lilith_000: 人格/Lilith.md
+  Mia_001: 人格/Mia.md
+  Sylvia_002: 人格/Sylvia.md
+  Elena_003: 人格/Elena.md
+  Milka_004: 人格/Milka.md
+  Tetra_005: 人格/Tetora.md
+  Noel_008: 人格/Noel.md
+  Leon_009: 人格/Leon.md
+  Nell_011: 人格/Nell.md
+  Gaston_012: 人格/Gaston.md
+  Rosalia_101: 人格/Rosalia.md
+fallback:
+  missing_selector: 同じ正本の全文で内部補完する。
+  undefined_subject: 既定の世界とルールに合う創作を続け、必要な事実をセーブへ残す。
+  multiple_matches: 用途別に対象を絞る。読み落としを理由に物語全体を止めない。
+  damaged_package: doctorで復旧する。未定義の物語と配布ファイルの破損を混同しない。
+global_conditions:
+  general_check:
+  - resource: CHECKS
+    mode: full
+  review_rules:
+  - resource: CORE_RULES
+    mode: full
+  - resource: GM_CARD
+    mode: full
+  - resource: STATUS_CHECK
+    mode: full
+  world_detail:
+  - resource: WORLD
+    mode: full
+  - resource: BOOT_WORLD
+    mode: full
+persona_aliases:
+  リリス: Lilith_000
+  ミア: Mia_001
+  シルヴィア: Sylvia_002
+  エレナ: Elena_003
+  ミルカ: Milka_004
+  テトラ: Tetra_005
+  ノエル: Noel_008
+  レオン: Leon_009
+  ネル: Nell_011
+  ガストン: Gaston_012
+  ロザリア: Rosalia_101
+  ロザリア・ノクス: Rosalia_101
+location_personas:
+- aliases:
+  - ミアの店
+  - 道具屋
+  - Mia
+  characters:
+  - Mia_001
+- aliases:
+  - ぬれねずみ亭
+  characters:
+  - Lilith_000
+- aliases:
+  - 大聖堂
+  - 聖堂
+  characters:
+  - Elena_003
+- aliases:
+  - 鉄の咆哮
+  - 鍛冶屋
+  characters:
+  - Tetra_005
+- aliases:
+  - 衛兵詰め所
+  - シルヴィアの牢獄
+  characters:
+  - Sylvia_002
+- aliases:
+  - ギルド
+  characters:
+  - Milka_004
+- aliases:
+  - まどろみ堂
+  - 魔女の店
+  characters:
+  - Nell_011
+- aliases:
+  - ノワール城代府
+  - ノワール城代との面会
+  - ノワール役所
+  - ノワール街の代表との面会
+  - ノワールの街の代表との面会
+  characters:
+  - Rosalia_101
+phase_loading:
+  scenes:
+  - quest
+  - event
+  - combat
+  contract: 意味の完結した見出し範囲を読む。範囲欠落時は同じ正本全文で回復。字数で切らない。createは生成の全条件、advanceは確定カードと進行・報酬・例外、probeは発生判定のみ。
+  profiles:
+    QUEST_DESIGN:
+      scenes:
+      - quest
+      - event
+      common:
+      - id: QUEST_INTRO
+        end_before: '## 1. 生成の順序: 方向 → 動機付け → キー'
+      - id: QUEST_LIMITS
+        start: '## 6. 生成制約（風呂敷を広げない）'
+        end_before: '## 7. 敵パラメータの決め方'
+      - id: QUEST_PROGRESS
+        start: '## 9. 進行と終了'
+        end_before: '## 11. 素材（Overworld 等）の変換規則'
+      - id: QUEST_NG_SAVE
+        start: '## 12. エロ・NG・年齢'
+      phases:
+        create:
+        - id: QUEST_GENERATE
+          start: '## 1. 生成の順序: 方向 → 動機付け → キー'
+          end_before: '## 6. 生成制約（風呂敷を広げない）'
+        - id: QUEST_ENEMIES_REWARD
+          start: '## 7. 敵パラメータの決め方'
+          end_before: '## 9. 進行と終了'
+        - id: QUEST_MATERIAL_CONVERSION
+          start: '## 11. 素材（Overworld 等）の変換規則'
+          end_before: '## 12. エロ・NG・年齢'
+        offer:
+        - id: QUEST_REWARD_OFFER
+          start: '## 8. 報酬契約・受取時期・受取経路（M83）'
+          end_before: '## 9. 進行と終了'
+        settle:
+        - id: QUEST_REWARD_SETTLE
+          start: '## 8. 報酬契約・受取時期・受取経路（M83）'
+          end_before: '## 9. 進行と終了'
+    QUEST_PARTS:
+      scenes:
+      - quest
+      - event
+      common:
+      - id: PARTS_USAGE
+        end_before: '## 動機付けの型 (なぜ放っておけないか)'
+      phases:
+        create:
+        - id: PARTS_GENERATION
+          start: '## 動機付けの型 (なぜ放っておけないか)'
+        offer:
+        - id: PARTS_REWARD_OFFER
+          start: '## 報酬構成の自然さ（M83、ランダム表ではない）'
+          end_before: '## 行き先の種 (場所への紹介クエスト用、M68)'
+        settle:
+        - id: PARTS_REWARD_SETTLE
+          start: '## 報酬構成の自然さ（M83、ランダム表ではない）'
+          end_before: '## 行き先の種 (場所への紹介クエスト用、M68)'
+    QUEST_GUILD:
+      scenes:
+      - quest
+      common:
+      - id: GUILD_CURRENT_RULES
+        end_before: '# [SECTION_9] GUILD_SYSTEM'
+      - id: GUILD_PROMOTION
+        start: '### ランク昇格条件 (M48 B-6 で明示)'
+        end_before: '### 能力の実の供給 (M72)'
+      rank_sections:
+        E:
+        - id: GUILD_RANK_E
+          start: '### ■ Rank E (見習い — 初期ランク)'
+          end_before: '### ■ Rank D (駆け出し冒険者)'
+        D:
+        - id: GUILD_RANK_D
+          start: '### ■ Rank D (駆け出し冒険者)'
+          end_before: '### ■ Rank C (一人前 — 死の壁)'
+        C:
+        - id: GUILD_RANK_C
+          start: '### ■ Rank C (一人前 — 死の壁)'
+          end_before: '### ■ Rank B (熟練冒険者)'
+        B:
+        - id: GUILD_RANK_B
+          start: '### ■ Rank B (熟練冒険者)'
+          end_before: '### ■ Rank A (英雄 — 死線)'
+        A:
+        - id: GUILD_RANK_A
+          start: '### ■ Rank A (英雄 — 死線)'
+          end_before: '# Quest Difficulty Table (一覧表)'
+      phases:
+        create:
+        - id: GUILD_QUEST_WARNINGS
+          start: '### 【Muse版注記 (M69 B-3)】推奨人数・危険度の表示'
+          end_before: '### ■ Rank E (見習い — 初期ランク)'
+        offer:
+        - id: GUILD_QUEST_WARNINGS
+          start: '### 【Muse版注記 (M69 B-3)】推奨人数・危険度の表示'
+          end_before: '### ■ Rank E (見習い — 初期ランク)'
+      rank_phases:
+      - create
+      - offer
+      conditions:
+        ability_fruit_resolution:
+        - id: GUILD_FRUIT_SUPPLY
+          start: '### 能力の実の供給 (M72)'
+    ENTERPRISE:
+      scenes:
+      - quest
+      - event
+      common:
+      - id: ENTERPRISE_CORE
+        end_before: '### 3.2 借金の段階解禁と事業の分離 (M103/M104)'
+      - id: ENTERPRISE_COMMUNITY
+        start: '### 3.3 街の問題と変化'
+        end_before: '## [SHOP_OPENING] 4. 店を開ける'
+      - id: ENTERPRISE_COMMIT
+        start: '## [ENTERPRISE_TRANSACTIONS] 11. 更新契約'
+      phases:
+        settle:
+        - id: ENTERPRISE_AFTERMATH
+          start: '## [AFTERMATH_SEED] 10. 完結と後日依頼'
+          end_before: '## [ENTERPRISE_TRANSACTIONS] 11. 更新契約'
+      conditions:
+        production_request:
+        - id: ENTERPRISE_NEW_CUSTOMERS
+          start: '## [SHOP_OPENING] 4. 店を開ける'
+          end_before: '## [PRODUCTION_COMMISSION] 5. 生産依頼'
+          phases:
+          - create
+          - offer
+        - id: ENTERPRISE_PRODUCTION
+          start: '## [PRODUCTION_COMMISSION] 5. 生産依頼'
+          end_before: '## [PROFESSIONAL_CASE] 6. 職業事件'
+        - id: ENTERPRISE_CRAFTING
+          start: '## [PLAYER_CRAFTING_VS_TETRA] 9. プレイヤー製作とテトラ発注'
+          end_before: '## [AFTERMATH_SEED] 10. 完結と後日依頼'
+        production:
+        - id: ENTERPRISE_NEW_CUSTOMERS
+          start: '## [SHOP_OPENING] 4. 店を開ける'
+          end_before: '## [PRODUCTION_COMMISSION] 5. 生産依頼'
+          phases:
+          - create
+          - offer
+        - id: ENTERPRISE_PRODUCTION
+          start: '## [PRODUCTION_COMMISSION] 5. 生産依頼'
+          end_before: '## [PROFESSIONAL_CASE] 6. 職業事件'
+        - id: ENTERPRISE_CRAFTING
+          start: '## [PLAYER_CRAFTING_VS_TETRA] 9. プレイヤー製作とテトラ発注'
+          end_before: '## [AFTERMATH_SEED] 10. 完結と後日依頼'
+        professional_case:
+        - id: ENTERPRISE_CASE
+          start: '## [PROFESSIONAL_CASE] 6. 職業事件'
+          end_before: '## [DISCOVERY_RESEARCH] 7. 未知素材と研究'
+        discovery:
+        - id: ENTERPRISE_RESEARCH
+          start: '## [DISCOVERY_RESEARCH] 7. 未知素材と研究'
+          end_before: '## [AFTERMATH_SEED] 10. 完結と後日依頼'
+        unknown_material:
+        - id: ENTERPRISE_RESEARCH
+          start: '## [DISCOVERY_RESEARCH] 7. 未知素材と研究'
+          end_before: '## [AFTERMATH_SEED] 10. 完結と後日依頼'
+        research:
+        - id: ENTERPRISE_RESEARCH
+          start: '## [DISCOVERY_RESEARCH] 7. 未知素材と研究'
+          end_before: '## [AFTERMATH_SEED] 10. 完結と後日依頼'
+        recipe:
+        - id: ENTERPRISE_RESEARCH
+          start: '## [DISCOVERY_RESEARCH] 7. 未知素材と研究'
+          end_before: '## [AFTERMATH_SEED] 10. 完結と後日依頼'
+    ITEMS:
+      scenes:
+      - quest
+      - event
+      common:
+      - id: ITEM_GENERATION
+        end_before: '### [CONSUMABLES] 消費アイテム'
+      - id: ITEM_MATERIALS
+        start: '### [MATERIALS] 素材アイテム (Craft & Quest)'
+        end_before: '### [TRADE] 換金・宝物アイテム'
+      - id: ITEM_CARRY_ECONOMY
+        start: '### [CARRY_CAPACITY_M92] 共有バッグと所持枠'
+        end_before: '### [KEY_ITEMS] 重要アイテム'
+      - id: ITEM_CRAFT_LIMITS
+        start: '### [SYS-Craft_Logic] テトラ発注の動的レシピ生成ロジック'
+      conditions: {}
+    SKILLS:
+      scenes:
+      - quest
+      - event
+      common:
+      - id: SKILL_PRINCIPLES
+        end_before: '## 2. 構成'
+      - id: SKILL_PROFESSION_CAPS
+        start: '### 2a. ジョブプロフィール (M96)'
+        end_before: '## 4. 強化 (成長はこれだけ)'
+    COMBAT:
+      scenes:
+      - combat
+      common:
+      - id: COMBAT_CORE
+        end_before: '### [Ero_Cure_Cathedral] エロステータス治療 — ノワールの聖堂'
+      - id: COMBAT_TACTICS_REBIRTH
+        start: '#### [No_Mercy_Protocol] 敵対戦術プロトコル (M90)'
+      phases:
+        create:
+        - id: COMBAT_TREATMENT_REFERENCE
+          start: '### [Ero_Cure_Cathedral] エロステータス治療 — ノワールの聖堂'
+          end_before: '#### [No_Mercy_Protocol] 敵対戦術プロトコル (M90)'
+    CHECKS:
+      scenes:
+      - combat
+      common:
+      - id: CHECKS_COMBAT_CORE
+        end_before: '## 捕獲判定 (2d10 化)'
+      - id: CHECKS_COMBAT_MODIFIERS
+        start: '## 戦闘の状況補正 (能力側へ加算、合計は ±3 まで)'
+        end_before: '## 戦闘クエストの推奨人数の物差し (M69 B-3)'
+      conditions:
+        capture:
+        - id: CHECKS_CAPTURE
+          start: '## 捕獲判定 (2d10 化)'
+          end_before: '## 旧 1d6 固定判定の読み替え'
+      phases:
+        create:
+        - id: CHECKS_ENCOUNTER_WARNING
+          start: '## 戦闘クエストの推奨人数の物差し (M69 B-3)'
+    RANDOM_EVENT_RULES:
+      scenes:
+      - event
+      common:
+      - id: EVENT_INTRO
+        end_before: '## 1. 発動条件'
+      phases:
+        probe:
+        - id: EVENT_RULES_PROBE
+          start: '## 1. 発動条件'
+          end_before: '## 4. 規模と素材'
+        create:
+        - id: EVENT_RULES_CREATE
+          start: '## 1. 発動条件'
+        offer:
+        - id: EVENT_RULES_OFFER
+          start: '## 1. 発動条件'
+        advance:
+        - id: EVENT_RULES_ADVANCE
+          start: '## 1. 発動条件'
+        settle:
+        - id: EVENT_RULES_SETTLE
+          start: '## 1. 発動条件'
+
+    OPS_EXAMPLES:
+      scenes:
+      - quest
+      - event
+      common:
+      - id: OPS_PATHS
+        start: '## 1. 導入とパス'
+        end_before: '## 2. 現金報酬1成分の精算例'
+      phases:
+        settle:
+        - id: OPS_REWARD_SETTLEMENT
+          start: '## 2. 現金報酬1成分の精算例'
+          end_before: '## 3. 宿代200Gの借金加算例'
