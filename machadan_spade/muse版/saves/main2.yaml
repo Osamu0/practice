@@ -3,15 +3,15 @@ schema_version: 3
 game_version: 4.13.4
 campaign_id: main2
 created_at: '2026-11-07T05:39:36+00:00'
-updated_at: '2026-11-07T06:56:57+00:00'
-save_revision: 26
+updated_at: '2026-11-07T06:59:55+00:00'
+save_revision: 27
 content_manifest_hash: 59b69015c8c813194e83a7c4b4d2b862af8f4074c2c616aa5325399df6f66460
 save_format_origin: 'System_Templates.md [TEMPLATE_SAVE] (SAVE_DATA: MachaDun v2.0)'
 transaction:
-  last_transaction_id: tx-9c75546e0496459590f8f586c852d6b0
-  last_committed_turn: 13
-  previous_revision_hash: 9f0dc9037c996000489b39c667c984e601531ae93d15def826b1b35125b6f28b
-  last_candidate_hash: e3c7b34650b2b13dfe2b2291fceb4820fb7d665ef137b8315e76765b9214aa5d
+  last_transaction_id: tx-1883c07d67734cc4b5a95733d38b0294
+  last_committed_turn: 14
+  previous_revision_hash: 6b4a456431dddf71674be6a89536d4290f3983033f90292422010cf689dd26d9
+  last_candidate_hash: bcdbd842d5945f2cd6149698d689b7b7140b4af12d5f8f854b598a1a89c8bd06
   applied_transaction_ids:
   - tx-0345298f5a774b8ca7e3c0934d815725
   - tx-7f4c45d45dea4266ba65a98f8f4718e6
@@ -39,6 +39,7 @@ transaction:
   - tx-b312c8a951094ed7a27949a26bfaebf5
   - tx-6e87781ec16640e691939554018200e4
   - tx-9c75546e0496459590f8f586c852d6b0
+  - tx-1883c07d67734cc4b5a95733d38b0294
 hearing_progress:
   status: complete
   current_step: 7
@@ -71,8 +72,8 @@ runtime_state:
   style_conditions: []
   active_scene: turn
   scene_id: turn
-  context_pack_hash: a47b9242feb9f17a787997c58f4e44d52c47824b920226e8a9527ccb0ba449d4
-  last_validation_at: '2026-11-07T06:56:57+00:00'
+  context_pack_hash: 0c244797ba8fb5f6e859b6ffdfa766957faef0858e58fd4de5a41ef6bea9da2f
+  last_validation_at: '2026-11-07T06:59:55+00:00'
   last_error: ''
 dice_state:
   tape_revision: machadan-tape-r1
@@ -736,6 +737,9 @@ session_log:
       - 5
       - 6
       cursor_from: 63
+  - day: 1
+    time_of_day: 昼
+    summary: 50Gでは足りないと迫った。セレナは取り乱さずに非を認め、仕事ができない分も含めていくら必要か尋ねてきた。店の金は月末の締めまで動かさない決まりにしている（セレナの内心）。
 memory_log:
   encounters: []
   battles: []
