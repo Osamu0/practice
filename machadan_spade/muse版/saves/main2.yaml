@@ -3,15 +3,15 @@ schema_version: 3
 game_version: 4.13.4
 campaign_id: main2
 created_at: '2026-11-07T05:39:36+00:00'
-updated_at: '2026-11-07T06:52:49+00:00'
-save_revision: 25
+updated_at: '2026-11-07T06:56:57+00:00'
+save_revision: 26
 content_manifest_hash: 59b69015c8c813194e83a7c4b4d2b862af8f4074c2c616aa5325399df6f66460
 save_format_origin: 'System_Templates.md [TEMPLATE_SAVE] (SAVE_DATA: MachaDun v2.0)'
 transaction:
-  last_transaction_id: tx-6e87781ec16640e691939554018200e4
-  last_committed_turn: 12
-  previous_revision_hash: a47944d3a72e850155b71e3870980bb5a0fd0dd24d6d72e941c47bec7a51b5e7
-  last_candidate_hash: cc534eb10cc5fd0518984df1d9bc64950634080681282b44b2d3b8cdc2de21b9
+  last_transaction_id: tx-9c75546e0496459590f8f586c852d6b0
+  last_committed_turn: 13
+  previous_revision_hash: 9f0dc9037c996000489b39c667c984e601531ae93d15def826b1b35125b6f28b
+  last_candidate_hash: e3c7b34650b2b13dfe2b2291fceb4820fb7d665ef137b8315e76765b9214aa5d
   applied_transaction_ids:
   - tx-0345298f5a774b8ca7e3c0934d815725
   - tx-7f4c45d45dea4266ba65a98f8f4718e6
@@ -38,6 +38,7 @@ transaction:
   - tx-baa57bf41fc246c4920ad229b5f0b328
   - tx-b312c8a951094ed7a27949a26bfaebf5
   - tx-6e87781ec16640e691939554018200e4
+  - tx-9c75546e0496459590f8f586c852d6b0
 hearing_progress:
   status: complete
   current_step: 7
@@ -68,15 +69,15 @@ active_script:
 runtime_state:
   ero_scene: false
   style_conditions: []
-  active_scene: event
-  scene_id: event
-  context_pack_hash: a8ac206d6d712e92db25eb50fccc55f43c0a9cc89bac9b0e45c3cd1d3e27ae8d
-  last_validation_at: '2026-11-07T06:52:49+00:00'
+  active_scene: turn
+  scene_id: turn
+  context_pack_hash: a47b9242feb9f17a787997c58f4e44d52c47824b920226e8a9527ccb0ba449d4
+  last_validation_at: '2026-11-07T06:56:57+00:00'
   last_error: ''
 dice_state:
   tape_revision: machadan-tape-r1
   dice_cursor_d6: 0
-  dice_cursor_d10: 63
+  dice_cursor_d10: 67
 fire_state:
   holders:
   - player
@@ -229,6 +230,14 @@ world_state:
       generation_rolls: 好み判定2(好み寄せ)/副性格付与6(なし)/年齢9,8→32/身長3,5→164
       relation: Day1昼、白百合香房への路地口で〇〇にぶつかり、干し花の籠を落とした。店でのお詫びを申し出た
       status: 確定
+      stats:
+        str: 6
+        def: 6
+        int: 4
+        spd: 6
+        tec: 5
+        chm: 6
+        note: 非戦闘の店主。村人型を土台にCHM+1・INT-1
   appearance_customization:
     version: 1
     overrides: {}
@@ -714,6 +723,19 @@ session_log:
   - day: 1
     time_of_day: 昼
     summary: エステルの案内を断り一人で白百合香房へ。路地口で、届け物帰りのセレナとぶつかり、干し花が散った。セレナは丁寧に詫び、店でのお詫びを申し出た。
+  - day: 1
+    time_of_day: 昼
+    summary: 骨が折れたふりをし、ベルが口裏を合わせた。だましの判定に成功（19対17）。セレナは怪我を信じ、治療代50Gか大聖堂への付き添いを申し出た（未回答）。
+    check:
+      type: CHM対抗
+      player: 19
+      target: 17
+      dice:
+      - 5
+      - 1
+      - 5
+      - 6
+      cursor_from: 63
 memory_log:
   encounters: []
   battles: []
