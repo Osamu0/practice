@@ -3,15 +3,15 @@ schema_version: 3
 game_version: 4.13.4
 campaign_id: main2
 created_at: '2026-11-07T05:39:36+00:00'
-updated_at: '2026-11-07T08:02:36+00:00'
-save_revision: 49
+updated_at: '2026-11-07T08:10:26+00:00'
+save_revision: 51
 content_manifest_hash: 59b69015c8c813194e83a7c4b4d2b862af8f4074c2c616aa5325399df6f66460
 save_format_origin: 'System_Templates.md [TEMPLATE_SAVE] (SAVE_DATA: MachaDun v2.0)'
 transaction:
-  last_transaction_id: tx-ff4c4ab22a63438ca6e77195dbf943f2
-  last_committed_turn: 35
-  previous_revision_hash: 0e7a3643805df4888a54965e8885cbcf6ec669a1e59abc3638b789b327ab1054
-  last_candidate_hash: 755acdd5d8d24b6079f64cba29ae3cc460aef2e9b7249efa294e346aa7d44681
+  last_transaction_id: tx-331af58e06784153886e2a4ab50c9677
+  last_committed_turn: 37
+  previous_revision_hash: f72d1fd2bf1a44df739990a53bac93d583bd232a0fff0dee82b732766ab967fd
+  last_candidate_hash: 765add041a1561b1b27f161498dc526fe008043b2783d1d1795e553ea4d9dfc1
   applied_transaction_ids:
   - tx-0345298f5a774b8ca7e3c0934d815725
   - tx-7f4c45d45dea4266ba65a98f8f4718e6
@@ -62,6 +62,8 @@ transaction:
   - tx-30c53d41fc5d427196b3f03646d5b967
   - tx-2b0b31ce8b86403986f11b9ee26f6814
   - tx-ff4c4ab22a63438ca6e77195dbf943f2
+  - tx-e80d5e4dd3c24b5bb098c849a053de6d
+  - tx-331af58e06784153886e2a4ab50c9677
 hearing_progress:
   status: complete
   current_step: 7
@@ -94,13 +96,13 @@ runtime_state:
   style_conditions: []
   active_scene: combat
   scene_id: combat
-  context_pack_hash: f659806cd05b0e46794229445272b6674fde058992bae26d8eb45273d4d4c968
-  last_validation_at: '2026-11-07T08:02:36+00:00'
+  context_pack_hash: a6cdcbf6723c137d269c5ddf16df8d21ea4ec924f86f61e99817734778ef6a3f
+  last_validation_at: '2026-11-07T08:10:26+00:00'
   last_error: ''
 dice_state:
   tape_revision: machadan-tape-r1
-  dice_cursor_d6: 2
-  dice_cursor_d10: 108
+  dice_cursor_d6: 7
+  dice_cursor_d10: 148
 fire_state:
   holders:
   - player
@@ -481,7 +483,7 @@ world_state:
         result: 2
         cursor: 79
       combat:
-        round: 3
+        round: 5
         legal: 溝鼠が先に攻撃（正当防衛）
         difficulty: 標準（味方2：主人公＋ベル。実働の敵2、見張り1は非実働）
         enemies:
@@ -509,7 +511,7 @@ world_state:
             tec: 8
             chm: 3
           lp:
-            cur: 13
+            cur: 5
             max: 16
           weapon: ナイフ
           basis: 1F弱敵相当
@@ -554,7 +556,8 @@ world_state:
             acts_from_round: 3
         skill_uses:
           使い魔召喚: 0
-          号令: 1
+          号令: 0
+        player_stance: 回避専念（次の自分の手番の直前まで、SPDで受ける攻撃にSPD+4）
     amendments: []
     immutable_hash: 930c4ba868bd96eb9854e3f6bdaa3c06d299208d2f37401c9d09a262d102552f
   event_reward_contract: null
@@ -886,7 +889,7 @@ player:
   fire_lp_bonus: 12
   temporary_lp_bonus: 0
   lp:
-    cur: 26
+    cur: 3
     max: 33
   mp:
     cur: 9
@@ -1189,6 +1192,22 @@ session_log:
       d10_to: 108
       d6_from: 1
       d6_to: 2
+  - day: 1
+    time_of_day: 夜
+    summary: 戦闘第3ラウンド。挑発でギースが激昂。手下Aのナイフ（7）とギースの棍棒（12）を受け、LP26→7。左腕を強く痛めた。号令で総攻撃させ、使い魔1が手下Aに命中（LP13→9）。ベルと使い魔2は外れ。
+    combat_dice:
+      d10_from: 108
+      d10_to: 128
+      d6_from: 2
+      d6_to: 5
+  - day: 1
+    time_of_day: 夜
+    summary: 戦闘第4ラウンド。手下Aのナイフを受けLP7→3。ギースの棍棒はかわした。回避に専念し、ベルと使い魔に総攻撃を任せた。使い魔1が手下Aに命中（LP9→5）、手下Aは座り込んだ。ベルと使い魔2は外れ。見張りの男が逃げ腰。
+    combat_dice:
+      d10_from: 128
+      d10_to: 148
+      d6_from: 5
+      d6_to: 7
 memory_log:
   encounters: []
   battles: []
