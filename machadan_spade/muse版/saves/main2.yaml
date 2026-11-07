@@ -3,15 +3,15 @@ schema_version: 3
 game_version: 4.13.4
 campaign_id: main2
 created_at: '2026-11-07T05:39:36+00:00'
-updated_at: '2026-11-07T06:39:53+00:00'
-save_revision: 19
+updated_at: '2026-11-07T06:42:29+00:00'
+save_revision: 20
 content_manifest_hash: 59b69015c8c813194e83a7c4b4d2b862af8f4074c2c616aa5325399df6f66460
 save_format_origin: 'System_Templates.md [TEMPLATE_SAVE] (SAVE_DATA: MachaDun v2.0)'
 transaction:
-  last_transaction_id: tx-c9821096bc87401d86431c1dce18e889
-  last_committed_turn: 6
-  previous_revision_hash: 1275a64ef72bc7c9861466e7186e23720f6557074f2a21c4ef2e6e45e801f4b2
-  last_candidate_hash: 3fbb55991268c45e9d3dc1ffbd1e2aadbda2176bc9f1bc4de012f1adaf95d6c2
+  last_transaction_id: tx-82e9dd4c74d945358425434a1df3eb9c
+  last_committed_turn: 7
+  previous_revision_hash: dc3feda325ae47f1a52af75be64eff8e838418effe794f9f802f18b8a5e6dcd8
+  last_candidate_hash: 2809b76dd19067a8c6d1d0933f04e372ab98a962dadf22da16278b60ab7fd665
   applied_transaction_ids:
   - tx-0345298f5a774b8ca7e3c0934d815725
   - tx-7f4c45d45dea4266ba65a98f8f4718e6
@@ -32,6 +32,7 @@ transaction:
   - tx-ae4c6a66e7bc455eb194f8a29959d0de
   - tx-a2760dad95944defb1d555fae82d348c
   - tx-c9821096bc87401d86431c1dce18e889
+  - tx-82e9dd4c74d945358425434a1df3eb9c
 hearing_progress:
   status: complete
   current_step: 7
@@ -62,15 +63,15 @@ active_script:
 runtime_state:
   ero_scene: false
   style_conditions: []
-  active_scene: skills
-  scene_id: skills
-  context_pack_hash: 918d7264b4e0fcf1b160c23270288d35bb01f1210d8b1b70868a002d4cac7781
-  last_validation_at: '2026-11-07T06:39:53+00:00'
+  active_scene: event
+  scene_id: event
+  context_pack_hash: 2e215f007854c592b084196044786f7d053bd8be201ba6f1fc659beb17881a72
+  last_validation_at: '2026-11-07T06:42:29+00:00'
   last_error: ''
 dice_state:
   tape_revision: machadan-tape-r1
   dice_cursor_d6: 0
-  dice_cursor_d10: 41
+  dice_cursor_d10: 55
 fire_state:
   holders:
   - player
@@ -190,16 +191,21 @@ world_state:
     散策案内_Milka_004:
       character_id: Milka_004
       told: true
+    NPC_コノハ:
+      kind: one_off_npc
+      fact: 狐の獣人コノハ。18歳の成人。とても小柄（約135cm）、標準の体格で胸は大きめ。橙色の狐耳と尻尾。体育会系でハキハキ元気、一人称あたし。自分はサキュバスだと言い張り、サキュバス女学園への他種族編入に男性経験が要るため相手を探している。Day1朝、中央広場の噴水で主人公に声をかけた。
+      generation_rolls: 好み判定8(ランダム)/副性格付与7(なし)/性格3,2/身長7,6/体格3,10/胸6,9/種族7,8
+      status: confirmed
   appearance_customization:
     version: 1
     overrides: {}
     resolutions: []
   reward_state_version: 2
   day: 1
-  location: 銀の天秤亭
-  place_id: GUILD_SILVER_SCALES
-  room_id: GUILD_SILVER_SCALES_RECEPTION
-  sub_location: ミルカの受付カウンター
+  location: 中央広場
+  place_id: CENTRAL_PLAZA
+  room_id: CENTRAL_PLAZA_FOUNTAIN
+  sub_location: 噴水の縁
   depth: null
   time_of_day: 朝
   weather: 薄い霧
@@ -641,6 +647,17 @@ session_log:
   - day: 1
     time_of_day: 朝
     summary: 召喚士として署名し、冒険者登録（E級）を終えた。相棒ベル（肩に乗る小さな黒い獣、主人公と同じ気質）と契約した。ミルカから街を散策するのも良いと勧められた。
+  - day: 1
+    time_of_day: 朝
+    summary: ベルは肉の食事で手を打った。街をぶらつき中央広場へ。噴水で狐の獣人コノハ（18）に『サキュバスなの！』と声をかけられ、学園編入のために手ほどきを頼まれた。
+    random_event_roll:
+      die: d10
+      result: 5
+      cursor: 41
+    random_event_type_roll:
+      die: d10
+      result: 2
+      cursor: 42
 memory_log:
   encounters: []
   battles: []
