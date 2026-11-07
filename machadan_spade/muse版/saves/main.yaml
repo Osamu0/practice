@@ -3,15 +3,15 @@ schema_version: 3
 game_version: 4.13.4
 campaign_id: main
 created_at: '2026-11-07T02:20:22+00:00'
-updated_at: '2026-11-07T04:56:42+00:00'
-save_revision: 33
+updated_at: '2026-11-07T04:59:48+00:00'
+save_revision: 34
 content_manifest_hash: 59b69015c8c813194e83a7c4b4d2b862af8f4074c2c616aa5325399df6f66460
 save_format_origin: 'System_Templates.md [TEMPLATE_SAVE] (SAVE_DATA: MachaDun v2.0)'
 transaction:
-  last_transaction_id: tx-e352b5ab0acf4aa4878c5314fdb2d95c
-  last_committed_turn: 23
-  previous_revision_hash: 3ff59387c4561530077fd562a89df4a0cfc2ce678439c43e2b941d71bcd8f450
-  last_candidate_hash: 0aa44ca28623793ee2b0e396392f78049878c25cf1919e3682b3ed6d3f9dcef1
+  last_transaction_id: tx-f9ea9a071a3747ac93ea45f505bff08f
+  last_committed_turn: 24
+  previous_revision_hash: c6a68182a1f2f46e69f30524ed20fdc6e944fe6d992e35c56c8e997a8978da0c
+  last_candidate_hash: ebfee441e58cbe19c7702c2abbc453ba61fe870227b27b887489334f74c4dc65
   applied_transaction_ids:
   - tx-413eae86780d496981a94b1d08250181
   - tx-5d7fe8c49f1242dca4bcebf850e979c1
@@ -46,6 +46,7 @@ transaction:
   - tx-0e85847a344e41e0a3fa937677e1b9a4
   - tx-851a6eb8f0204580b0f3ca2e6bb82aec
   - tx-e352b5ab0acf4aa4878c5314fdb2d95c
+  - tx-f9ea9a071a3747ac93ea45f505bff08f
 hearing_progress:
   status: complete
   current_step: 7
@@ -78,8 +79,8 @@ runtime_state:
   style_conditions: []
   active_scene: turn
   scene_id: turn
-  context_pack_hash: ea9f3bab64de65e8e9cdb894e580d659f157be195b70c65c21f72ca082aa5427
-  last_validation_at: '2026-11-07T04:56:42+00:00'
+  context_pack_hash: 8fca9f28c1a38d744e3e7c7595dca3f78cad9a8335b8e5a335e07af5dafd3141
+  last_validation_at: '2026-11-07T04:59:48+00:00'
   last_error: ''
 dice_state:
   tape_revision: machadan-tape-r1
@@ -174,6 +175,9 @@ world_state:
       personality: 笑顔は崩さないが、取り立ては手下に容赦なくやらせる。表向きは商人で、衛兵の前では手を汚さない
       relation: ガルドに約3,000G貸している。白百合香房の権利書を借金のカタに欲しがっている
       status: ミアの話
+    ノワールの権利書:
+      fact: ノワールの店の権利書は役所の透かし入り羊皮紙に書かれ、街の代表ロザリアの封蝋と登録番号が押されている。紙とペンだけでは似せられない。本物と照らし合わせれば役所ですぐ見分けがつく
+      status: ミアの説明
   appearance_customization:
     version: 1
     overrides: {}
@@ -548,6 +552,7 @@ session_log:
   - Day1昼前 ミアの店。〇〇がミアに条件を示す（自分の取り分は月1,000G、香房の売上を伸ばし、香房からミアの店へ客を回す）。ミアは瓶の卸の独占と素材の優先持ち込みを条件に、口約束で手を組む
   - Day1昼前 ミアの店。〇〇がミアの条件を呑んで手を組む。ミアがガルドを嵌める案を三つ出す（偽の権利書の罠／賭場での勝負／バルトへの密告）
   - Day1昼前 ミアの店。〇〇は、セレナと良い関係になり幸せになってほしいと言い、権利書の罠で衛兵に押さえさせる案を選ぶ。ミアがバルトのことを説明し、この策にはセレナ本人の協力が要ると話す
+  - Day1昼前 ミアの店。〇〇がセレナには内緒で偽の権利書を作るため紙とペンを求める。ミアは権利書は役所の透かしと封蝋入りで紙とペンでは作れないと説明し、偽造の片棒は担がないと断る
 memory_log:
   encounters: []
   battles: []
