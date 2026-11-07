@@ -3,15 +3,15 @@ schema_version: 3
 game_version: 4.13.4
 campaign_id: main2
 created_at: '2026-11-07T05:39:36+00:00'
-updated_at: '2026-11-07T07:49:34+00:00'
-save_revision: 44
+updated_at: '2026-11-07T07:51:22+00:00'
+save_revision: 45
 content_manifest_hash: 59b69015c8c813194e83a7c4b4d2b862af8f4074c2c616aa5325399df6f66460
 save_format_origin: 'System_Templates.md [TEMPLATE_SAVE] (SAVE_DATA: MachaDun v2.0)'
 transaction:
-  last_transaction_id: tx-b5ef3664324d48f490ba081e73fb8d8c
-  last_committed_turn: 30
-  previous_revision_hash: 710cd58b70a8b821da5db2ba004ddbe72a797e0946469b32e177bb30c6bfdba8
-  last_candidate_hash: 5bdf0e03efc682969f21664179a903104f96c387bce3a14290ea7752ab24945e
+  last_transaction_id: tx-7f4134010e5a4bd2a00f506f02254ec0
+  last_committed_turn: 31
+  previous_revision_hash: 7ea6e8010e6414eac8899dffc44dbc6e60add7fd90677b5afc507d621544fd89
+  last_candidate_hash: e5d0cca7f83101adc1dc94d673305525013dec8b9c7dcbe4c618f8f5227385da
   applied_transaction_ids:
   - tx-0345298f5a774b8ca7e3c0934d815725
   - tx-7f4c45d45dea4266ba65a98f8f4718e6
@@ -57,6 +57,7 @@ transaction:
   - tx-3aaf1d89a70a40938fa7678bae4c0f91
   - tx-6cdb5b37bcd0447f8936d4b66caab0bf
   - tx-b5ef3664324d48f490ba081e73fb8d8c
+  - tx-7f4134010e5a4bd2a00f506f02254ec0
 hearing_progress:
   status: complete
   current_step: 7
@@ -87,10 +88,10 @@ active_script:
 runtime_state:
   ero_scene: false
   style_conditions: []
-  active_scene: event
-  scene_id: event
-  context_pack_hash: d39b36f6b7da2c8e234f0a7318bdb16ddc39c52628697f17dacdeb6612ddb9f3
-  last_validation_at: '2026-11-07T07:49:34+00:00'
+  active_scene: quest
+  scene_id: quest
+  context_pack_hash: bffd3d4a0dd4455f6fb3aed59d3070262d3e9b785882ee61b434f06982779b0f
+  last_validation_at: '2026-11-07T07:51:22+00:00'
   last_error: ''
 dice_state:
   tape_revision: machadan-tape-r1
@@ -309,7 +310,7 @@ world_state:
     集団_溝鼠:
       kind: gang
       name: 溝鼠
-      fact: 夜の東裏路地の暗い角にたむろするごろつき集団。先週、ドルフの小僧の荷を盗りかけた。人数・強さは未確定（戦闘時に確定）
+      fact: 夜の東裏路地の暗い角にたむろするごろつき集団。全部で4〜5人。頭は片耳のギース（大柄、棍棒、昔衛兵とやり合って耳を半分なくした）。ほかはナイフを持った細身の男2〜3人（冒険者のなりそこない）。夜はギースと1〜2人が角に陣取り、通行人から財布を巻き上げる。殺しまではしない。見回りが少なく衛兵も本腰を入れていない。先週ドルフの小僧の荷を盗りかけた。戦闘値は戦闘開始時に確定
       status: ドルフの話
   appearance_customization:
     version: 1
@@ -900,6 +901,9 @@ session_log:
       die: d10
       result: 9
       cursor: 77
+  - day: 1
+    time_of_day: 夜
+    summary: ドルフから溝鼠のことを聞いた。全部で4〜5人、頭は片耳のギース（大柄・棍棒）、夜は角にギースと1〜2人。殺しはしない。武器を持っていないことを見咎められ、ベルが『得物は俺だ』と名乗った。
 memory_log:
   encounters: []
   battles: []
