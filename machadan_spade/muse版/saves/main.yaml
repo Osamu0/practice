@@ -3,15 +3,15 @@ schema_version: 3
 game_version: 4.13.4
 campaign_id: main
 created_at: '2026-11-07T02:20:22+00:00'
-updated_at: '2026-11-07T15:42:35+00:00'
-save_revision: 51
+updated_at: '2026-11-07T15:45:05+00:00'
+save_revision: 52
 content_manifest_hash: 59b69015c8c813194e83a7c4b4d2b862af8f4074c2c616aa5325399df6f66460
 save_format_origin: 'System_Templates.md [TEMPLATE_SAVE] (SAVE_DATA: MachaDun v2.0)'
 transaction:
-  last_transaction_id: tx-a8fb487ddbd8445198a422363c11503e
-  last_committed_turn: 40
-  previous_revision_hash: 6bd62c0e45d92711b234702accde340811cfadf2e41909b2b341f5d0a48bb112
-  last_candidate_hash: bd711902509cbe13c7a3541a9f82d96ec5b9ece8185af91a87c14462e9019abf
+  last_transaction_id: tx-6f7c815169e14d5c8c54ef3a1c0216c4
+  last_committed_turn: 41
+  previous_revision_hash: 6ef45dc1a16bc965e5ee169d1a8df25b5c40cb3778b4470c29578e6f3fbb0b64
+  last_candidate_hash: 41cf449493c15997909cd1666d7ce8163deb3379f9d19616abea6fbf77cc57a6
   applied_transaction_ids:
   - tx-413eae86780d496981a94b1d08250181
   - tx-5d7fe8c49f1242dca4bcebf850e979c1
@@ -64,6 +64,7 @@ transaction:
   - tx-e6d10fe5c5754fd5a344bd5aafc8bc37
   - tx-1449d91d04124c48b55ed5fb06b4afc7
   - tx-a8fb487ddbd8445198a422363c11503e
+  - tx-6f7c815169e14d5c8c54ef3a1c0216c4
 hearing_progress:
   status: complete
   current_step: 7
@@ -94,10 +95,10 @@ active_script:
 runtime_state:
   ero_scene: false
   style_conditions: []
-  active_scene: event
-  scene_id: event
-  context_pack_hash: 426592451435868d4ce4ca60e56ee6b25b170575b982cc559c9322fe9415700d
-  last_validation_at: '2026-11-07T15:42:35+00:00'
+  active_scene: turn
+  scene_id: turn
+  context_pack_hash: 24d4d4ee53996451b9e0b2ac9e11a518328c006ec737d271edd6e01a928dc6e3
+  last_validation_at: '2026-11-07T15:45:05+00:00'
   last_error: ''
 dice_state:
   tape_revision: machadan-tape-r1
@@ -233,10 +234,11 @@ world_state:
       age: 34
       role: D級冒険者。斧使い。ガルドといつも組んでいる
       appearance: 大柄
-      personality: 無口だが嘘のつけない人
-      habit: 夕方になると一人で銀の天秤亭の納品口へ素材を売りに来る
-      relation: Day1朝、シラスの書き付けを覗き込むとき一人だけ顔をしかめていた（ミルカの見立てでは気が進まない様子）
-      status: ミルカの話
+      personality: 無口だが嘘のつけない人。大事にしているものを雑に扱われると口を閉ざす（ミルカの見立て）
+      habit: 夕方の鐘の後、一人で銀の天秤亭の納品口へ素材を売りに来る。納品後は中央広場で焼き菓子を一袋買い、西南の住居路地へ帰る
+      background: 酒も賭けもしない（父親が骰子で家をなくした、と酒場で話していた）。一年ほど前ダンジョン三階で大怪我をし、ガルドに背負われて帰った。それ以来『あいつには借りがある』と言い、組み続けている。妹と二人暮らし。先月、掲示壁の仲間募集欄を長く眺めていた
+      relation: Day1朝、シラスの書き付けを覗き込むとき一人だけ顔をしかめていた。ガルドの銀蛇亭通いをよく思っていない様子（ミルカの見立て）
+      status: ミルカの話（広間で見聞きできた範囲）
     ミルカの二つの手:
       fact: ①見張って押さえる：権利書を置いたままセレナにだけ話し、持ち出した者を尾行して銀蛇亭の裏で衛兵隊に押さえさせる。②先に日付と持ち出す者を割り出す：夕方に納品口へ来るドーンに当たる／セレナに店の月末の締めの日を聞く。どちらもセレナの協力が要る。ミルカは夕方ドーンが来たら気づく程度は手伝える
       source: Day1昼 ミルカの提案
@@ -271,16 +273,20 @@ world_state:
       fact: 三年一緒にいたガルドより今朝会った〇〇のほうが信じられると口にした。『幸せになってほしい』と言われたのは久しぶりで、ガルドには一度も言われたことがないと内心で思った。預かり証を渡すとき指先が触れ、首筋まで赤くなった
       source: Day1昼
       status: 確定した事実
+    噂_ミルカの席外し:
+      fact: 西大通りの布屋の女主人（この店先で二年）が、Day1昼にミルカが席外しの札を立てて男を奥の小部屋へ連れていったのを見ており、『春が来た』と噂していた。ミルカも覗かれていた気がして気にしている
+      source: Day1昼過ぎ
+      status: 街の噂
   appearance_customization:
     version: 1
     overrides: {}
     resolutions: []
   reward_state_version: 2
   day: 1
-  location: 西大通り
-  place_id: NOIR_CITY_WEST
-  room_id: ''
-  sub_location: 布屋の軒先（銀の天秤亭まで半分ほど）
+  location: 銀の天秤亭
+  place_id: GUILD_SILVER_SCALES
+  room_id: GUILD_SILVER_SCALES_RECEPTION
+  sub_location: ミルカの受付カウンター
   depth: null
   time_of_day: 昼
   weather: 薄い霧
@@ -715,6 +721,7 @@ session_log:
   - Day1昼 白百合香房。セレナが扉に『ただいま調合中』の札を掛ける。〇〇がガルドの書き損じを見せる。セレナは走り書きをガルドの字と断定し、自分の字に似せた署名の練習だと気づいて震える。締めは毎月三十日の夜とガルドも知っている。先々週ガルドに聞かれて権利書の場所（2F寝室の衣装箱の底）を教えてしまったこと、ガルドが裏口の鍵を持っていることを打ち明け、礼を言って『私はどうすればいいですか』と尋ねる。紙は〇〇に返された
   - Day1昼 白百合香房。〇〇が権利書を今のうちに預けてほしい、幸せになってほしいと頼む。CHM対抗 12+2(状況：裏切りの証拠を持ってきた本人)+6+8=28 vs セレナINT 9+3+6=18で成功。セレナは2Fの衣装箱から権利書を出して〇〇に預け、自分の署名入りの預かり証を書いて添える。衣装箱は空のまま蓋を閉めておき、ガルドに気づかれないようにすると言う。ガルドの書き損じも〇〇が持つ
   - Day1昼過ぎ 白百合香房。〇〇が『無事に終わったら借金の返済について話そう』と言い、セレナは必ず話すと約束して見送る（お帰りを待っていますと）。〇〇は銀の天秤亭へ。移動イベント d10=2、種別 d10=8（店・噂話）：西大通りの布屋の軒先で、女主人と奥さんが、ミルカが昼に席外しの札を立てて男を奥の小部屋へ連れていき顔を真っ赤にしていたと噂している。話はすぐ春物の反物へ移る
+  - Day1昼過ぎ 噂話を通り過ぎて銀の天秤亭へ（見送り後の到着）。ミルカの受付。ドーンはまだ（いつも夕方の鐘の後）。ミルカが思い出したドーンのことを話す：酒も賭けもしない（父が骰子で家をなくした）、一年前ダンジョン三階で大怪我をしガルドに背負われて帰って以来『借りがある』と組み続けている、納品後は中央広場で焼き菓子を買って西南の住居路地へ帰る（妹と二人暮らし）、先月仲間募集欄を長く眺めていた。ミルカは布屋のおかみさんに覗かれていた気がすると気にする
 memory_log:
   encounters: []
   battles: []
