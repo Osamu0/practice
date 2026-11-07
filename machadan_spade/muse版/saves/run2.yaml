@@ -3,15 +3,15 @@ schema_version: 3
 game_version: 4.13.4
 campaign_id: run2
 created_at: '2026-11-07T09:22:51+00:00'
-updated_at: '2026-11-07T11:00:13+00:00'
-save_revision: 42
+updated_at: '2026-11-07T11:02:45+00:00'
+save_revision: 43
 content_manifest_hash: 59b69015c8c813194e83a7c4b4d2b862af8f4074c2c616aa5325399df6f66460
 save_format_origin: 'System_Templates.md [TEMPLATE_SAVE] (SAVE_DATA: MachaDun v2.0)'
 transaction:
-  last_transaction_id: tx-e7799b9a892842f592fdfe803cdd5074
-  last_committed_turn: 33
-  previous_revision_hash: 7f2ecd6bbd398d65f34a219f5af8d20fb69337b3efbb61be8e0ad527193d835e
-  last_candidate_hash: 80605afb92c85fe86c9abb14e5e733581b00bf1c395c6418697f87f845226725
+  last_transaction_id: tx-c50eb79e0b3849f790e43b1c7ebb5194
+  last_committed_turn: 34
+  previous_revision_hash: da76b319ca64aa8cdec9420c44a202a7b5422722e185fef5b8c37d3b838b5dc2
+  last_candidate_hash: 9ac2016db94290523b68ac7ef4bb0df1ff3614a7238f8e88c7e4c95232767595
   applied_transaction_ids:
   - tx-3205c8b3a3f04e16a35b2f1739e25e5a
   - tx-6a86abc0b7cc4f0aa672870ded718bc7
@@ -55,6 +55,7 @@ transaction:
   - tx-5d77de911cb24a5aaa52ad92f11ec914
   - tx-8a9746d26b944126a01e8bf95a27b202
   - tx-e7799b9a892842f592fdfe803cdd5074
+  - tx-c50eb79e0b3849f790e43b1c7ebb5194
 hearing_progress:
   status: complete
   current_step: 7
@@ -87,8 +88,8 @@ runtime_state:
   style_conditions: []
   active_scene: turn
   scene_id: turn
-  context_pack_hash: 500f9b7b1248254256aab3a84cacc6d2875452c461564308137f646ed8dc7614
-  last_validation_at: '2026-11-07T11:00:13+00:00'
+  context_pack_hash: 72119ecf9d6391d21ecc1a307eace362a4d61876c7647f515ca3605857694b7a
+  last_validation_at: '2026-11-07T11:02:45+00:00'
   last_error: ''
 dice_state:
   tape_revision: machadan-tape-r1
@@ -593,6 +594,7 @@ session_log:
   - Day1昼 白糸の間（エロシーン中）。〇〇がもっと奥までと煽る。クラリスが涙を零しながら喉の奥まで根元まで咥え込み、ゆっくり喉で扱く。スカート越しに自分も擦り、褒めてと見上げ、いっぱい出してとねだって再び咥える
   - Day1昼 白糸の間（エロシーン中）。〇〇が『君の口はオナホ』と言いかける。クラリスは意味を推し量り『殿方が気持ちよくなる道具』と理解して昂ぶり、手を膝に揃えて口を大きく開け舌を差し出し、頭をつかんで好きに使ってとねだる
   - Day1昼 白糸の間（エロシーン中）。〇〇がクラリスの頭を掴み、遠慮なく喉の奥まで突き込む。クラリスはスカートの中で自分を擦りながら喉を使われ、潮を吹いて絶頂。喉で搾りながら『全部のませて』と欲しがる（〇〇はまだ射精していない）
+  - Day1昼 白糸の間（エロシーン中）。〇〇がオナホ扱いでイく変態、最高のオナホだと言う。クラリスは喜んで自分は変態だと認め、スカートをたくし上げて濡れた下着を見せ、おまんこもおなほにして奥で受け止めたいとねだる
 memory_log:
   encounters: []
   battles: []
