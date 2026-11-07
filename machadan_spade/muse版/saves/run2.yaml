@@ -3,15 +3,15 @@ schema_version: 3
 game_version: 4.13.4
 campaign_id: run2
 created_at: '2026-11-07T09:22:51+00:00'
-updated_at: '2026-11-07T13:57:49+00:00'
-save_revision: 63
+updated_at: '2026-11-07T13:59:33+00:00'
+save_revision: 64
 content_manifest_hash: 59b69015c8c813194e83a7c4b4d2b862af8f4074c2c616aa5325399df6f66460
 save_format_origin: 'System_Templates.md [TEMPLATE_SAVE] (SAVE_DATA: MachaDun v2.0)'
 transaction:
-  last_transaction_id: tx-e3833ad090ad4e8a8d8d886fca6e8807
-  last_committed_turn: 54
-  previous_revision_hash: fb1699090fe94dfad685e006620c49cef00b9d578fd1bc7d36fda5396cdb3fe9
-  last_candidate_hash: 6a4ec05737186c8d418fd55d2cf5d6c13be92316655583e15170820f90fcc0bd
+  last_transaction_id: tx-fd998d5931024e4da88307c5be40a6f1
+  last_committed_turn: 55
+  previous_revision_hash: 4d5c9d1b8269f4de2e9cee7932fc4dc8b5b2edbe7b374cda0a2be89bdf9e03c0
+  last_candidate_hash: cd4d1504811dc7088e375a273839c25c83ee2f40ba6323f8cd2aba5b8713bc0c
   applied_transaction_ids:
   - tx-3205c8b3a3f04e16a35b2f1739e25e5a
   - tx-6a86abc0b7cc4f0aa672870ded718bc7
@@ -76,6 +76,7 @@ transaction:
   - tx-c4c5fdb718604ea98892ffa1f46cf42b
   - tx-f7508b9de2c243f8809acb0928c4a66a
   - tx-e3833ad090ad4e8a8d8d886fca6e8807
+  - tx-fd998d5931024e4da88307c5be40a6f1
 hearing_progress:
   status: complete
   current_step: 7
@@ -106,10 +107,10 @@ active_script:
 runtime_state:
   ero_scene: false
   style_conditions: []
-  active_scene: event
-  scene_id: event
-  context_pack_hash: 373d7df564627b840ba5342dd88e96c7231094bf64ce1a21b8fd76f3c80743ca
-  last_validation_at: '2026-11-07T13:57:49+00:00'
+  active_scene: turn
+  scene_id: turn
+  context_pack_hash: 028578680ae0b4f8a9c7ff95b16f9c9de4a74fb3c20f156e42e41bc123a0bfeb
+  last_validation_at: '2026-11-07T13:59:33+00:00'
   last_error: ''
 dice_state:
   tape_revision: machadan-tape-r1
@@ -183,10 +184,10 @@ world_state:
       pickup: 白糸の間
       stats: DEF+1／重量1
       extra: 裏地の色を受取時に選べる（追加料金なし）
-      status: Day1夜に縫い上がり。当て布と仕上げはDay2朝、受取もDay2朝（残金2Gは免除）
+      status: Day2朝に仕上がり。裏地の色選びを待って受け渡し（残金2Gは免除）
     クラリス宅への宿泊:
       summary: Day1昼、〇〇が白糸の間に泊まりたいと頼み、クラリスは今夜もその先も泊まってよいと承諾。2階は寝台ひとつの狭い住まい。宿代は取らない（店の商いではないため）
-      status: 承諾済み・まだ宿泊していない
+      status: Day1夜に初めて泊まった（宿代なし）
     NPC_ヴィオレッタ:
       name: ヴィオレッタ
       age: 34
@@ -210,13 +211,13 @@ world_state:
     overrides: {}
     resolutions: []
   reward_state_version: 2
-  day: 1
+  day: 2
   location: 白糸の間
   place_id: NOIR_CITY_WEST
   room_id: ''
   sub_location: 仕立て工房『白糸の間』2階・クラリスの寝室
   depth: null
-  time_of_day: 夜
+  time_of_day: 朝
   weather: 晴れ
   quest_active: ''
   quest_rank: ''
@@ -658,6 +659,7 @@ session_log:
   - Day1夕 白糸の間2階。〇〇が『店のことになると使えない』と言い、準備を始めると告げる（エロシーン終了）。クラリスは身支度を整え、今夜冒険者の服を縫い上げると言う。明日午後にヴィオレッタへ夜会ドレスを届けるので荷物持ちで同行し紹介すると段取り。夜会は明後日夜、商人ギルドの館。夕飯を作ると申し出る
   - Day1夜 白糸の間2階。〇〇が休んで眠る。夜、クラリスが夕飯（豆と腸詰めの煮込み・黒パン）で起こす。冒険者の服は縫い上がり、仕上げは明朝。ヴィオレッタの執事から、夜会の同伴予定だった甥が熱で寝込んだと聞いたと伝える。休憩 d10=1、種別
     d10=6（耳寄りな情報）
+  - Day1夜 白糸の間2階。〇〇が夕飯を食べて就寝。クラリスが背中に寄り添って眠る（Hなし）。Day2朝、クラリスが仕上がった冒険者の服を持ってきて、約束の裏地の色（薄紅・空色・葡萄色・濃紺）を選ばせる
 memory_log:
   encounters: []
   battles: []
