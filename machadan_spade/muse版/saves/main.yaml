@@ -3,15 +3,15 @@ schema_version: 3
 game_version: 4.13.4
 campaign_id: main
 created_at: '2026-11-07T02:20:22+00:00'
-updated_at: '2026-11-07T04:30:24+00:00'
-save_revision: 29
+updated_at: '2026-11-07T04:36:16+00:00'
+save_revision: 30
 content_manifest_hash: 59b69015c8c813194e83a7c4b4d2b862af8f4074c2c616aa5325399df6f66460
 save_format_origin: 'System_Templates.md [TEMPLATE_SAVE] (SAVE_DATA: MachaDun v2.0)'
 transaction:
-  last_transaction_id: tx-60b934777636420098947148b158c918
-  last_committed_turn: 19
-  previous_revision_hash: 77fd89f13616d054ce793e3cd3c7ff630041c81bf407df62dbdc1f05db3bfbaf
-  last_candidate_hash: 5b4d3f3cae582dfee4b22a4a9b0d05cc9f12dce040d3c347fece367dccf04661
+  last_transaction_id: tx-7a77800b1eb9468cac3c74908a4ba123
+  last_committed_turn: 20
+  previous_revision_hash: fbd11f286c9ceb46272684be883dce627510fc0b8c48ae734706bcbbe4599c43
+  last_candidate_hash: 91ee9454f4a7e468d2ce6da332cfd19c34cbe77f4ed01c6866243d9fe699460b
   applied_transaction_ids:
   - tx-413eae86780d496981a94b1d08250181
   - tx-5d7fe8c49f1242dca4bcebf850e979c1
@@ -42,6 +42,7 @@ transaction:
   - tx-99c5ddab1aa745d6b98b4f803fd66241
   - tx-c0f6dcfd059f440a823aa591af38695a
   - tx-60b934777636420098947148b158c918
+  - tx-7a77800b1eb9468cac3c74908a4ba123
 hearing_progress:
   status: complete
   current_step: 7
@@ -74,8 +75,8 @@ runtime_state:
   style_conditions: []
   active_scene: turn
   scene_id: turn
-  context_pack_hash: 183c0698b07160cefe0fa7f326828e59218d019ce7afab25ac41205b2fc94531
-  last_validation_at: '2026-11-07T04:30:24+00:00'
+  context_pack_hash: 59ac79da182f32862f4c3e4d8755a85c72647792529108afd5b1ff958a483065
+  last_validation_at: '2026-11-07T04:36:16+00:00'
   last_error: ''
 dice_state:
   tape_revision: machadan-tape-r1
@@ -524,6 +525,7 @@ session_log:
   - Day1昼前 ミアの店。〇〇がタダで情報を引き出そうとする。CHM対抗 18 vs ミア 28で失敗。ミアはセレナとは友達だと言い返し、さわりだけ教えて、本題は情報料30Gと持ちかける
   - Day1昼前 ミアの店。〇〇が情報料30Gを払う（所持金50G→20G）。ミアからガルドの賭場通い・借金・白百合香房を担保にする話を聞く。〇〇が『調子に乗るな』と脅し、ミアは怯えつつも商売人の顔を崩さない
   - Day1昼前 ミアの店。〇〇がミアに『俺とのビジネスの話をしたい』と切り出す。ミアは食いつき、条件次第と身構える
+  - Day1昼前 ミアの店。〇〇がミアに計画を明かす：ガルドを嵌めてセレナから遠ざけ、白百合香房の売上の一部を自分の借金返済に回させたい。ミアは仮病を見抜いた上で話に乗りかけ、自分の取り分とセレナを潰さないことを条件に出す
 memory_log:
   encounters: []
   battles: []
