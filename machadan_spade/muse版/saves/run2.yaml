@@ -3,15 +3,15 @@ schema_version: 3
 game_version: 4.13.4
 campaign_id: run2
 created_at: '2026-11-07T09:22:51+00:00'
-updated_at: '2026-11-07T13:33:04+00:00'
-save_revision: 56
+updated_at: '2026-11-07T13:35:41+00:00'
+save_revision: 57
 content_manifest_hash: 59b69015c8c813194e83a7c4b4d2b862af8f4074c2c616aa5325399df6f66460
 save_format_origin: 'System_Templates.md [TEMPLATE_SAVE] (SAVE_DATA: MachaDun v2.0)'
 transaction:
-  last_transaction_id: tx-e1c3f3b6785e45efa07afc8d295b853b
-  last_committed_turn: 47
-  previous_revision_hash: 8d2b62343955134fa07938ed7763a9b2bfd82755d8d036dde35c5ec08fe30a2b
-  last_candidate_hash: 1f8ccb01bb951791b212d0450411956144a81ed0d32ab29ea406aa6a66d89680
+  last_transaction_id: tx-dea985ae958941cf97f2f980123856e8
+  last_committed_turn: 48
+  previous_revision_hash: b3e55b348af11cff47b943f64d3a1bf6b146cd7f86d9c841f10577cb1ab01c7e
+  last_candidate_hash: faab8402dd40a6eb880646e89ae1f53ad18d7acc52970d6de9f32bca7b5c647f
   applied_transaction_ids:
   - tx-3205c8b3a3f04e16a35b2f1739e25e5a
   - tx-6a86abc0b7cc4f0aa672870ded718bc7
@@ -69,6 +69,7 @@ transaction:
   - tx-6f9315436c0f4143bed07e7f109a1e19
   - tx-1eed5b34471a482b86675604eb7e45fe
   - tx-e1c3f3b6785e45efa07afc8d295b853b
+  - tx-dea985ae958941cf97f2f980123856e8
 hearing_progress:
   status: complete
   current_step: 7
@@ -101,8 +102,8 @@ runtime_state:
   style_conditions: []
   active_scene: turn
   scene_id: turn
-  context_pack_hash: 21ffd5e0c34f298e3a8eb8e90ed8a2b488a4b3d0c2985141c2b4ce10b62a2967
-  last_validation_at: '2026-11-07T13:33:04+00:00'
+  context_pack_hash: 9d6beec7a4323df6fabf83127672498d647e9fbb4e1abb1a2c4e2da6a52a52d5
+  last_validation_at: '2026-11-07T13:35:41+00:00'
   last_error: ''
 dice_state:
   tape_revision: machadan-tape-r1
@@ -149,6 +150,7 @@ world_state:
       business: 『白糸の間』を一人で営んで約4年。客は西大通りの屋敷の奥方（夜会ドレス・婚礼衣装）と冒険者の外套・鎧下の繕い。忙しい時期だけ裏通りの刺繍上手な老婦人に飾りを外注。仕事は途切れず、手が足りず断ることもある。2階が住まい（一人暮らし）
       relationship: Day1、〇〇と肉体関係。白糸の間2階に〇〇が泊まることを承諾。閨では〇〇の『メス奴隷』と宣言し『ご主人さま』と呼ぶ（店では普段どおり。仕立て代は通常どおり取る）。店の外では秘密にしてほしいと頼んでいる
       promise: 〇〇の服はどんなに忙しくても最優先で、いちばん丁寧に仕立てる（代金は通常どおり）。開業時から『誰が相手でも同じお代』を自分の決まりにしている
+      finances: 本人談：月の売上およそ6,000G（春秋は婚礼・夜会で多く、婚礼衣装1着で800〜900G。冬は繕い中心で少ない）。仕入れ・外注・消耗品・建物の借り賃を引いた手取りは月2,000G強。借金の肩代わりはしない方針。食事・寝床・客の噂話からの仕事の心当たりは提供する
     エレナとの初対面:
       character_id: Elena_003
       day: 1
@@ -623,6 +625,7 @@ session_log:
   - Day1昼過ぎ 白糸の間2階（エロシーン中）。〇〇がメス奴隷になると宣言するかと問う。クラリスは向かい合って頬を包み、〇〇のメス奴隷になると宣言（お代だけはきっちり取ると添える）。今日初めて唇にキスし、『ご主人さま』と呼ぶ
   - Day1昼過ぎ 白糸の間2階（エロシーン中）。〇〇がメス奴隷のくせに口答えかと叱る。クラリスは謝りつつも代金は店の決まりで曲げられないと小さく繰り返し、両手首を頭上に差し出してお仕置きをねだる
   - Day1昼過ぎ 白糸の間2階（エロシーン中）。〇〇が一人で切り盛りしているなら値引きしても問題ないと迫る。クラリスは一人だからこそ決まりを曲げられない、好きになった人でも同じお代と答え、思わず『好き』と漏らす。代わりに〇〇の服は最優先で丁寧に仕立てると約束し、それでも口答えならお仕置きをとねだる
+  - Day1昼過ぎ 白糸の間2階（エロシーン中）。〇〇が売上を尋ねる。クラリスは月6,000G前後、手取り2,000G強と答える。借金の肩代わりはしないが、食事・寝床・仕事の心当たりで支えると話す
 memory_log:
   encounters: []
   battles: []
