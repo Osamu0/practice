@@ -3,30 +3,34 @@ schema_version: 3
 game_version: 4.13.4
 campaign_id: main
 created_at: '2026-11-07T02:20:22+00:00'
-updated_at: '2026-11-07T02:23:53+00:00'
-save_revision: 2
+updated_at: '2026-11-07T02:25:20+00:00'
+save_revision: 3
 content_manifest_hash: 59b69015c8c813194e83a7c4b4d2b862af8f4074c2c616aa5325399df6f66460
 save_format_origin: 'System_Templates.md [TEMPLATE_SAVE] (SAVE_DATA: MachaDun v2.0)'
 transaction:
-  last_transaction_id: tx-5d7fe8c49f1242dca4bcebf850e979c1
+  last_transaction_id: tx-a1a4ffc6831344f5858c22166f7126ee
   last_committed_turn: 0
-  previous_revision_hash: 416a25393e4b6f47f6f440270da0269fb43dcd5a84e1fb0cf9c19eb5ab9af477
-  last_candidate_hash: e9e4d970cf613a300ffc9264e1e63ada471c18f439b4b095401c8e6d8529b90f
+  previous_revision_hash: b64da58a0db63fe8a37f2cfc701e3d9f52e5cc282614c4a21d0db86681215bc4
+  last_candidate_hash: a53179a97e359188cddf98f2b2bfa8e05492d560f6cab452ccb6f4bd23bc17a7
   applied_transaction_ids:
   - tx-413eae86780d496981a94b1d08250181
   - tx-5d7fe8c49f1242dca4bcebf850e979c1
+  - tx-a1a4ffc6831344f5858c22166f7126ee
 hearing_progress:
   status: in_progress
-  current_step: 3
+  current_step: 4
   completed_steps:
   - playmode
   - profile
+  - body_profile
   widget_ids:
     playmode: chat-tx-413eae86780d496981a94b1d08250181
     profile: chat-tx-5d7fe8c49f1242dca4bcebf850e979c1
+    body_male: chat-tx-a1a4ffc6831344f5858c22166f7126ee
   widget_state_versions:
     playmode: 1
     profile: 1
+    body_male: 1
 active_script:
   id: ''
   status: idle
@@ -38,7 +42,7 @@ runtime_state:
   active_scene: start
   scene_id: start
   context_pack_hash: 57dc3b969a7c5d8c7087c34e8682a3708cc1372f881b6fa81c7bcab1126c1a7f
-  last_validation_at: '2026-11-07T02:23:53+00:00'
+  last_validation_at: '2026-11-07T02:25:20+00:00'
   last_error: ''
 dice_state:
   tape_revision: machadan-tape-r1
@@ -250,7 +254,7 @@ player:
   statuses: []
   buffs: []
   ero_status: []
-player_body: ''
+player_body: '男性体型: 身長=中くらい / 筋肉=標準とムキムキの間（ほどよく筋肉質） / サイズ=普通'
 desire: ''
 ng: []
 yuri: ''
