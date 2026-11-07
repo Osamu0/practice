@@ -3,26 +3,30 @@ schema_version: 3
 game_version: 4.13.4
 campaign_id: run2
 created_at: '2026-11-07T09:22:51+00:00'
-updated_at: '2026-11-07T09:24:51+00:00'
-save_revision: 1
+updated_at: '2026-11-07T09:26:25+00:00'
+save_revision: 2
 content_manifest_hash: 59b69015c8c813194e83a7c4b4d2b862af8f4074c2c616aa5325399df6f66460
 save_format_origin: 'System_Templates.md [TEMPLATE_SAVE] (SAVE_DATA: MachaDun v2.0)'
 transaction:
-  last_transaction_id: tx-3205c8b3a3f04e16a35b2f1739e25e5a
+  last_transaction_id: tx-6a86abc0b7cc4f0aa672870ded718bc7
   last_committed_turn: 0
-  previous_revision_hash: 38df72b66f74235b691e27bfe4e351277d78d2c99a27a7afcf0b2d4dd97a7e47
-  last_candidate_hash: fcbd8ee0936b9115a4edb7be7bdc22c72267ee060871ce0f53e74c1471b7093c
+  previous_revision_hash: 0613f2856a49bb26eb04ca5933e9f150ba4b1cfa8d58138e753b70328f551307
+  last_candidate_hash: a5263e565ea3cdc7ff56bb69031bf1d9803de93a0ad2d7d2929a5224c5e7d36d
   applied_transaction_ids:
   - tx-3205c8b3a3f04e16a35b2f1739e25e5a
+  - tx-6a86abc0b7cc4f0aa672870ded718bc7
 hearing_progress:
   status: in_progress
-  current_step: 2
+  current_step: 3
   completed_steps:
   - playmode
+  - profile
   widget_ids:
     playmode: chat-tx-3205c8b3a3f04e16a35b2f1739e25e5a
+    profile: chat-tx-6a86abc0b7cc4f0aa672870ded718bc7
   widget_state_versions:
     playmode: 1
+    profile: 1
 active_script:
   id: ''
   status: idle
@@ -34,7 +38,7 @@ runtime_state:
   active_scene: start
   scene_id: start
   context_pack_hash: d9d05e09dd62fa3e0bacb62160502437c5fc465d1eba4dc8e7b0b63f53a8bdf9
-  last_validation_at: '2026-11-07T09:24:51+00:00'
+  last_validation_at: '2026-11-07T09:26:25+00:00'
   last_error: ''
 dice_state:
   tape_revision: machadan-tape-r1
@@ -165,9 +169,9 @@ player:
   character_version: 1
   character_id: player
   build_complete: false
-  name: ''
-  gender: ''
-  age: null
+  name: 〇〇
+  gender: 男性
+  age: 24
   race: ''
   job: ''
   job_profile:
