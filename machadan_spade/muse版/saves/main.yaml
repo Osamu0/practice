@@ -3,30 +3,32 @@ schema_version: 3
 game_version: 4.13.4
 campaign_id: main
 created_at: '2026-11-07T02:20:22+00:00'
-updated_at: '2026-11-07T03:14:34+00:00'
-save_revision: 5
+updated_at: '2026-11-07T03:15:36+00:00'
+save_revision: 6
 content_manifest_hash: 59b69015c8c813194e83a7c4b4d2b862af8f4074c2c616aa5325399df6f66460
 save_format_origin: 'System_Templates.md [TEMPLATE_SAVE] (SAVE_DATA: MachaDun v2.0)'
 transaction:
-  last_transaction_id: tx-f414703ccbf44741a135228596d8ca8f
+  last_transaction_id: tx-4ae8f5618012494ba201f30e8924c2ea
   last_committed_turn: 0
-  previous_revision_hash: 66f895eef0d1b4b802ab3371cbb73f18b1575e399f224e7f292bcb721b2b78db
-  last_candidate_hash: e7025b6c282e9163c96fcac8149ca360fa33b0ea67a1a74b81656261a30cf20d
+  previous_revision_hash: 6667ad8f2752be7e60319fcd19ad73b76d38668e422a208b350fb9de1c490f1a
+  last_candidate_hash: 002636046afc362f66dab4a251e5097835e28b58ead11b8f95b0efb579890a87
   applied_transaction_ids:
   - tx-413eae86780d496981a94b1d08250181
   - tx-5d7fe8c49f1242dca4bcebf850e979c1
   - tx-a1a4ffc6831344f5858c22166f7126ee
   - tx-03776c60866c49b4af53e19d0b53e47a
   - tx-f414703ccbf44741a135228596d8ca8f
+  - tx-4ae8f5618012494ba201f30e8924c2ea
 hearing_progress:
-  status: in_progress
-  current_step: 6
+  status: complete
+  current_step: 7
   completed_steps:
   - playmode
   - profile
   - body_profile
   - desire
   - partner
+  - style
   widget_ids:
     playmode: chat-tx-413eae86780d496981a94b1d08250181
     profile: chat-tx-5d7fe8c49f1242dca4bcebf850e979c1
@@ -50,7 +52,7 @@ runtime_state:
   active_scene: start
   scene_id: start
   context_pack_hash: 57dc3b969a7c5d8c7087c34e8682a3708cc1372f881b6fa81c7bcab1126c1a7f
-  last_validation_at: '2026-11-07T03:14:34+00:00'
+  last_validation_at: '2026-11-07T03:15:36+00:00'
   last_error: ''
 dice_state:
   tape_revision: machadan-tape-r1
@@ -176,7 +178,7 @@ debt_state:
     activated_day: null
 captured_girls: []
 play_mode: RP
-ero_style: ''
+ero_style: machadan
 player:
   character_version: 1
   character_id: player
