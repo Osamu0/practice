@@ -3,15 +3,15 @@ schema_version: 3
 game_version: 4.13.4
 campaign_id: main
 created_at: '2026-11-07T02:20:22+00:00'
-updated_at: '2026-11-07T03:47:10+00:00'
-save_revision: 15
+updated_at: '2026-11-07T03:49:45+00:00'
+save_revision: 16
 content_manifest_hash: 59b69015c8c813194e83a7c4b4d2b862af8f4074c2c616aa5325399df6f66460
 save_format_origin: 'System_Templates.md [TEMPLATE_SAVE] (SAVE_DATA: MachaDun v2.0)'
 transaction:
-  last_transaction_id: tx-57dbd28e9cbc49f581070c20d4aaf5ed
-  last_committed_turn: 5
-  previous_revision_hash: e64148f5eee40d7d02eae71b9e7c9e925bf3b507f3d633cca6ac910bb3b28974
-  last_candidate_hash: 58fa24e20293c4a0eb320fc81d07f88d56431918ea14f2a18775ed72a9f7f7cf
+  last_transaction_id: tx-c9f67facbb2d4621a8bc20813168b4f8
+  last_committed_turn: 6
+  previous_revision_hash: d23291c0ae4a7baed71007b38c77fcb383c13905602ad547aada216d9ca61956
+  last_candidate_hash: 80a44d4937273f66856b0524b67a4d50af801ac348cb04f035519bd5ec3e9f4e
   applied_transaction_ids:
   - tx-413eae86780d496981a94b1d08250181
   - tx-5d7fe8c49f1242dca4bcebf850e979c1
@@ -28,6 +28,7 @@ transaction:
   - tx-fcf62429bfc741ffa161193521f74d87
   - tx-24158927980e4e0db4397c9e6e57d47c
   - tx-57dbd28e9cbc49f581070c20d4aaf5ed
+  - tx-c9f67facbb2d4621a8bc20813168b4f8
 hearing_progress:
   status: complete
   current_step: 7
@@ -60,13 +61,13 @@ runtime_state:
   style_conditions: []
   active_scene: event
   scene_id: event
-  context_pack_hash: 5c613fca2890cf81d6dc91668e2f8e3c78c28152167c0fa5a88c3c9ff26a0c8e
-  last_validation_at: '2026-11-07T03:47:10+00:00'
+  context_pack_hash: 3ffbad61561a853c27776fed8a1d6639490273e8f55504a69592505cf192e0c1
+  last_validation_at: '2026-11-07T03:49:45+00:00'
   last_error: ''
 dice_state:
   tape_revision: machadan-tape-r1
   dice_cursor_d6: 0
-  dice_cursor_d10: 10
+  dice_cursor_d10: 12
 fire_state:
   holders:
   - player
@@ -120,7 +121,7 @@ world_state:
   location: 西大通り
   place_id: NOIR_CITY_WEST
   room_id: ''
-  sub_location: 銀の天秤亭の手前
+  sub_location: 西大通りから白百合香房へ入る路地の入口
   depth: null
   time_of_day: 朝
   weather: 薄い霧
@@ -467,6 +468,7 @@ session_log:
   - Day1朝 〇〇が50Gでは足りないと詰め寄る。セレナは手持ちが銀貨5枚(50G)だけと明かし、店の商品『白百合の香油』(30G相当)を上乗せして差し出す。婚約者の冒険者ガルドが苛立って近づいてくる
   - Day1朝 〇〇はセレナの治療代50Gをしれっと受け取り、ガルドに『話し合いをしていただけ』と言う。香油は受け取っていない
   - Day1朝 〇〇がガルドを言葉で圧倒（CHM対抗 30 vs 12）。ガルドは捨て台詞を残してギルドへ。セレナは礼を言い、店に来てほしいと告げて去る
+  - Day1朝 白百合香房へ向かう路地口で、道具屋のミアと偶然会う。ミアはガラス瓶の納品帰りで、ガルドとの一件を見ていた。移動イベント d10=1、種別 d10=10
 memory_log:
   encounters: []
   battles: []

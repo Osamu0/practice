@@ -1,0 +1,480 @@
+schema: MachaDun_Save_Muse_v3
+schema_version: 3
+game_version: 4.13.4
+campaign_id: main
+created_at: '2026-11-07T02:20:22+00:00'
+updated_at: '2026-11-07T03:47:10+00:00'
+save_revision: 15
+content_manifest_hash: 59b69015c8c813194e83a7c4b4d2b862af8f4074c2c616aa5325399df6f66460
+save_format_origin: 'System_Templates.md [TEMPLATE_SAVE] (SAVE_DATA: MachaDun v2.0)'
+transaction:
+  last_transaction_id: tx-57dbd28e9cbc49f581070c20d4aaf5ed
+  last_committed_turn: 5
+  previous_revision_hash: e64148f5eee40d7d02eae71b9e7c9e925bf3b507f3d633cca6ac910bb3b28974
+  last_candidate_hash: 58fa24e20293c4a0eb320fc81d07f88d56431918ea14f2a18775ed72a9f7f7cf
+  applied_transaction_ids:
+  - tx-413eae86780d496981a94b1d08250181
+  - tx-5d7fe8c49f1242dca4bcebf850e979c1
+  - tx-a1a4ffc6831344f5858c22166f7126ee
+  - tx-03776c60866c49b4af53e19d0b53e47a
+  - tx-f414703ccbf44741a135228596d8ca8f
+  - tx-4ae8f5618012494ba201f30e8924c2ea
+  - tx-877e4f53bc9d43bfbe6cbbd3b15ff252
+  - tx-510a9cb82f9d466e8e192f7f1f3f18e3
+  - tx-eabcb7008c6f49c397019cd813ca4045
+  - tx-e7953901cce546ee85dd7e91281052d8
+  - tx-cca2d88621a34e16a895c48f5aef4676
+  - tx-b871d00e0b3145d2aea6cea5bb55210b
+  - tx-fcf62429bfc741ffa161193521f74d87
+  - tx-24158927980e4e0db4397c9e6e57d47c
+  - tx-57dbd28e9cbc49f581070c20d4aaf5ed
+hearing_progress:
+  status: complete
+  current_step: 7
+  completed_steps:
+  - playmode
+  - profile
+  - body_profile
+  - desire
+  - partner
+  - style
+  widget_ids:
+    playmode: chat-tx-413eae86780d496981a94b1d08250181
+    profile: chat-tx-5d7fe8c49f1242dca4bcebf850e979c1
+    body_male: chat-tx-a1a4ffc6831344f5858c22166f7126ee
+    desire: chat-tx-03776c60866c49b4af53e19d0b53e47a
+    partner_preferences: chat-tx-f414703ccbf44741a135228596d8ca8f
+  widget_state_versions:
+    playmode: 1
+    profile: 1
+    body_male: 1
+    desire: 1
+    partner_preferences: 1
+active_script:
+  id: SCRIPT_OPENING_TUTORIAL
+  status: complete
+  cursor: 1
+  checkpoint: tutorial-told
+runtime_state:
+  ero_scene: false
+  style_conditions: []
+  active_scene: event
+  scene_id: event
+  context_pack_hash: 5c613fca2890cf81d6dc91668e2f8e3c78c28152167c0fa5a88c3c9ff26a0c8e
+  last_validation_at: '2026-11-07T03:47:10+00:00'
+  last_error: ''
+dice_state:
+  tape_revision: machadan-tape-r1
+  dice_cursor_d6: 0
+  dice_cursor_d10: 10
+fire_state:
+  holders:
+  - player
+  notes: ''
+world_state:
+  onboarding:
+    allocation_rule: all3-plus15-v1
+    body_received: true
+    allocation_complete: true
+    fire_granted: true
+    fire_explained: true
+    tutorial_complete: true
+    legacy_initial_allocation: false
+    fire_grant_transaction_id: tx-510a9cb82f9d466e8e192f7f1f3f18e3
+    initial_base_stats:
+      str: 6
+      def: 6
+      int: 6
+      spd: 3
+      tec: 3
+      chm: 9
+  campaign_lore:
+    散策案内_Lilith_000:
+      character_id: Lilith_000
+      told: true
+      day: 1
+    通貨_銀貨:
+      fact: ノワールで流通する銀貨1枚は10G
+      source: Day1 セレナとの会話
+    人物_セレナ:
+      name: セレナ
+      age: 22
+      role: 調香師。西大通り脇の路地を入ってすぐの香水店『白百合香房』の店主
+      appearance: 長身でモデル体型、胸は大きめ。亜麻色の髪を結い上げ、白い詰め襟のワンピース。灰色がかった青い瞳
+      personality: 清楚で礼儀正しく、取り乱さない。責任感が強い。押しの強い相手に弱く、内心では強く出られることに少し胸を高鳴らせる
+      relation: Day1朝、〇〇とぶつかり治療代50Gを渡した。婚約者ガルドに人前で叱られることが多い様子
+      status: 確定した事実
+    人物_ガルド:
+      name: ガルド
+      age: 29
+      role: 冒険者。革鎧に長剣。セレナの婚約者
+      personality: 短気で人前でもセレナを叱りつける
+      relation: Day1朝、西大通りで〇〇に気圧されて引き下がり、セレナを置いて銀の天秤亭へ入った
+      status: 確定した事実
+  appearance_customization:
+    version: 1
+    overrides: {}
+    resolutions: []
+  reward_state_version: 2
+  day: 1
+  location: 西大通り
+  place_id: NOIR_CITY_WEST
+  room_id: ''
+  sub_location: 銀の天秤亭の手前
+  depth: null
+  time_of_day: 朝
+  weather: 薄い霧
+  quest_active: ''
+  quest_rank: ''
+  personal_rank: ''
+  quest_access: ''
+  quests_completed:
+    E: 0
+    D: 0
+    C: 0
+    B: 0
+    A: 0
+  quest_card: null
+  event_reward_contract: null
+  pending_rewards: []
+  reward_ledger:
+  - settlement_id: EVR-main-2-serena
+    payer: 調香師セレナ
+    status: settled
+    source:
+      kind: random_event
+    components:
+    - component_id: EVR-main-2-serena-gold
+      kind: gold
+      detail:
+        estimated_value_g: 50
+        amount: 50
+      state: delivered
+      transaction_id: tx-24158927980e4e0db4397c9e6e57d47c
+      effect:
+        target: player.gold
+        before_sha256: 5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9
+        after_sha256: 1a6562590ef19d1045d06c4055742d38288e9e6dcd71ccde5cee80f1d5a774eb
+        amount: 50
+      estimated_value_g: 50
+  entitlements: []
+  lead_mode: 主人公
+  goals:
+    debt_clear: false
+    dungeon_clear: false
+    a_rank_quest: false
+  deepest_depth_reached: 0
+  defeated_floor_bosses: []
+  boss_records: []
+  dungeon_memory:
+    version: 1
+    records: {}
+  growth_state:
+    version: 1
+    boss_fruit_legacy_sources: []
+    boss_fruit_miss_streak: 0
+    c_rank_choice_fruit_status: locked
+    c_rank_choice_fruit_transaction_id: ''
+    resolutions: []
+  expedition_state:
+    active: false
+    expedition_id: ''
+    kind: none
+    fire_holders: []
+    separated_fire_holders: []
+    rebirth_pending: false
+    last_end_reason: none
+    last_ended_expedition_id: ''
+    rebirth_receipt: null
+  dungeon_run:
+    active: false
+    run_id: ''
+    trash_encounters_used: 0
+    danger_zones_resolved: 0
+    last_scene_kind: none
+    event_due: false
+    used_event_ids: []
+    current_floor: null
+    current_floor_scenes: 0
+    reward_searches_by_floor: {}
+    camp_used: false
+    boss_route_found: false
+    resource_days_by_floor: {}
+  allocation_state:
+    version: 1
+    resolutions:
+    - request_id: alloc-37a14d3c174e450b906122962600eb8e
+      transaction_id: tx-eabcb7008c6f49c397019cd813ca4045
+      mode: initial
+      actor_id: player
+      source_revision: 8
+      source_sha256: 488cb00c0be9fb22db9aa195885b3ccd97bc319e52827620f650af3eb3a6f6cf
+      profile_hash: 57ad0dbc70d81c91ff87d052693d153c42a6116b8ddf08fc71900be16f08da9e
+      values:
+        str: 6
+        def: 6
+        int: 6
+        spd: 3
+        tec: 3
+        chm: 9
+      before:
+        base_stats:
+          str: 3
+          def: 3
+          int: 3
+          spd: 3
+          tec: 3
+          chm: 3
+        growth_bonus:
+          str: 0
+          def: 0
+          int: 0
+          spd: 0
+          tec: 0
+          chm: 0
+        base_lp: 20
+        lp:
+          cur: 32
+          max: 32
+        mp:
+          cur: 6
+          max: 6
+      after:
+        base_stats:
+          str: 6
+          def: 6
+          int: 6
+          spd: 3
+          tec: 3
+          chm: 9
+        growth_bonus:
+          str: 0
+          def: 0
+          int: 0
+          spd: 0
+          tec: 0
+          chm: 0
+        base_lp: 20
+        lp:
+          cur: 33
+          max: 33
+        mp:
+          cur: 9
+          max: 9
+      consumed: null
+      fee_gold: 0
+      duration_minutes: 0
+      time_before: null
+      time_after: null
+      respec_rule: null
+      permanent_points_before: 18
+      permanent_points_after: 33
+skills: []
+skill_dormancy: []
+custom_abilities: []
+active_event: null
+ammo:
+  pools: []
+  weapon_loads: []
+shop_records:
+  mia_total: 0
+  mia_perks_claimed: []
+debt_state:
+  version: 1
+  contract_rule: staged-payoff-v1
+  unlocks:
+    lilith_intimacy: false
+    named_appearance_customization: false
+  contract_cycle_index: 0
+  contract_id: lilith-debt-cycle-0
+  principal: 10000
+  interval_days: 5
+  next_collection_day: 5
+  scheduled_due: 500
+  cycle_paid: 0
+  collection_pending: false
+  last_collection_day: null
+  collection_serial: 0
+  positive_payment_collections: 0
+  full_payment_collections: 0
+  missed_collections: 0
+  collection_ledger: []
+  active_benefits: []
+  benefit_selection:
+    benefit_id: ''
+    source: default
+    switch_available: false
+    activated_day: null
+captured_girls: []
+play_mode: RP
+ero_style: machadan
+player:
+  character_version: 1
+  character_id: player
+  build_complete: false
+  name: 〇〇
+  gender: male
+  age: 24
+  race: ''
+  job: ''
+  job_profile:
+    combat_role: unclassified
+    magic_role: unclassified
+    expertise_tags: []
+    solo_suitability: unclassified
+    party_needs: []
+  gold: 50
+  debt: 10000
+  base_stats:
+    str: 6
+    def: 6
+    int: 6
+    spd: 3
+    tec: 3
+    chm: 9
+  growth_bonus:
+    str: 0
+    def: 0
+    int: 0
+    spd: 0
+    tec: 0
+    chm: 0
+  equipment_bonus:
+    str: 0
+    def: 0
+    int: 0
+    spd: 0
+    tec: 0
+    chm: 0
+  fire_bonus:
+    str: 3
+    def: 3
+    int: 3
+    spd: 3
+    tec: 3
+    chm: 3
+  temporary_modifiers:
+    str: 0
+    def: 0
+    int: 0
+    spd: 0
+    tec: 0
+    chm: 0
+  effective_stats:
+    str: 9
+    def: 9
+    int: 9
+    spd: 6
+    tec: 6
+    chm: 12
+  base_lp: 20
+  job_lp_bonus: 0
+  fire_lp_bonus: 12
+  temporary_lp_bonus: 0
+  lp:
+    cur: 33
+    max: 33
+  mp:
+    cur: 9
+    max: 9
+  stats:
+    str: 9
+    def: 9
+    int: 9
+    spd: 6
+    tec: 6
+    chm: 12
+  equipment:
+    weapon_instance_id: null
+    armor_instance_id: null
+    offhand_instance_id: null
+    fixed:
+    - 帰還の腕輪
+  statuses: []
+  buffs: []
+  ero_status: []
+  encumbrance:
+    version: 1
+    total_weight: 0
+    raw_penalty: 0
+    applied_penalty: 0
+  stat_lp_bonus: 1
+player_body: '男性体型: 身長=中くらい / 筋肉=標準とムキムキの間（ほどよく筋肉質） / サイズ=普通'
+desire: 攻めたい（女の子を泣かせたい・翻弄したい）・れいぷごっこ等のCNC系・寝取りたい。快楽堕ちさせたい。メス奴隷にしたい。
+ng: []
+yuri: 'タチ: おまかせ・特になし / ネコ: おまかせ・特になし'
+partner_pref:
+  asked: true
+  personalities:
+  - 清楚系で可愛い系。メンタルが強い。ヒステリックにならない。変な干渉をしない。稼いでいる。奉仕好き。老化のスピードが遅い。セックス好き。下品なことも好き。どうしたいか聞いた時、こちらの雰囲気や空気を感じて良い案を出してくれる。何回ヤっても飽きない身体で、飽きさせないようにしてくれる。男を立てる。
+  sub_personalities:
+  - 甘やかし奉仕
+  - ドM
+  - 清楚ビッチ
+  body_height:
+  - 長身
+  body_build:
+  - モデル体型
+  body_bust:
+  - 大きめ
+  call:
+  - 名前
+hearing_check:
+  call_reflected: false
+  unrecovered: []
+spells: []
+equip:
+  weapon: ''
+  armor: ''
+  fixed: 帰還の腕輪
+items: []
+inventory:
+  version: 1
+  bag:
+    base_slots: 16
+    upgrade_count: 0
+    max_slots: 16
+    skill_bonus_slots: 0
+    effective_max_slots: 16
+    used_slots: 0
+  carried_stacks: []
+  warehouse:
+    stacks: []
+    instance_ids: []
+  reservations: []
+item_definitions: []
+item_instances: []
+party: []
+inn_reserve: []
+enterprise_state:
+  version: 1
+  businesses: []
+  discoveries: []
+  research_projects: []
+  recipes: []
+  order_book: []
+  commerce_ledger: []
+  reputation_ledger: []
+  lilith_investments: []
+  community_threads: []
+  aftermath_seeds: []
+npc_relationship: []
+session_log:
+  previous: ''
+  entries:
+  - Day1朝 ぬれねずみ亭を出て銀の天秤亭へ向かう途中、西大通りで調香師セレナ（22歳・その場の出会い）とぶつかる。婚約者とギルド前で待ち合わせ中。移動イベント d10=1、種別 d10=5（出会い）
+  - Day1朝 西大通り。〇〇が骨折したふりをして治療費を匂わせる。CHM対抗 22 vs セレナINT 21で成功、セレナは信じて治療代50Gを差し出そうとしている（未受領）
+  - Day1朝 〇〇が50Gでは足りないと詰め寄る。セレナは手持ちが銀貨5枚(50G)だけと明かし、店の商品『白百合の香油』(30G相当)を上乗せして差し出す。婚約者の冒険者ガルドが苛立って近づいてくる
+  - Day1朝 〇〇はセレナの治療代50Gをしれっと受け取り、ガルドに『話し合いをしていただけ』と言う。香油は受け取っていない
+  - Day1朝 〇〇がガルドを言葉で圧倒（CHM対抗 30 vs 12）。ガルドは捨て台詞を残してギルドへ。セレナは礼を言い、店に来てほしいと告げて去る
+memory_log:
+  encounters: []
+  battles: []
+  ero: []
+  turning_points: []
+design_applied:
+- 'M1: 配布版のキャストは同梱ファイルの登場人物のみ (一部キャラクターは作者版のみの収録)'
+- 'M2: 年齢不詳でも、個別正本で成人と明記された固定キャストだけを成人として扱い、数値年齢は創作しない'
+- 'M3: Boot 第3条・第5条のシステムレイヤー方式は採用しない'
+- 'M4: カスタム指示文は同梱版を使う。ルーティング表の欠落行は、対象を収録していないため無効'
+- 恋愛・性的な関わりの対象は18歳以上。18歳未満は生活・子育て等の非性的場面のみ
