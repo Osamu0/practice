@@ -3,15 +3,15 @@ schema_version: 3
 game_version: 4.13.4
 campaign_id: main
 created_at: '2026-11-07T02:20:22+00:00'
-updated_at: '2026-11-07T23:03:49+00:00'
-save_revision: 62
+updated_at: '2026-11-07T23:07:03+00:00'
+save_revision: 63
 content_manifest_hash: 59b69015c8c813194e83a7c4b4d2b862af8f4074c2c616aa5325399df6f66460
 save_format_origin: 'System_Templates.md [TEMPLATE_SAVE] (SAVE_DATA: MachaDun v2.0)'
 transaction:
-  last_transaction_id: tx-8ab7408c860c4e8dbecbc26093d41921
-  last_committed_turn: 51
-  previous_revision_hash: c6d96ceca4c8b081c732bf10d4330faeb728b8c7f72f63b6f4603890fdcfd44f
-  last_candidate_hash: 5fc65a655aa45eff3182e76470bd42440f2103b0d6e6078a7ff80053c78de6a4
+  last_transaction_id: tx-e6fb24e9e4ab4c0c9b220b2d4894bbae
+  last_committed_turn: 52
+  previous_revision_hash: cef6b1feb709d7681b4a0910625ce433978520d23dbac86a2680fa25c9dd9a84
+  last_candidate_hash: 521111e63a12fd6e0e97521299aab4e9ea41f16b15fb4aff9a61d3ac6ef9b9d3
   applied_transaction_ids:
   - tx-413eae86780d496981a94b1d08250181
   - tx-5d7fe8c49f1242dca4bcebf850e979c1
@@ -75,6 +75,7 @@ transaction:
   - tx-0566dbf240cc4549810ef81c94a628ab
   - tx-c60abf1fc0e04322a1034a2e0b9ac76a
   - tx-8ab7408c860c4e8dbecbc26093d41921
+  - tx-e6fb24e9e4ab4c0c9b220b2d4894bbae
 hearing_progress:
   status: complete
   current_step: 7
@@ -107,8 +108,8 @@ runtime_state:
   style_conditions: []
   active_scene: turn
   scene_id: turn
-  context_pack_hash: 21415add69db2a05b06a85c5c9952761cb62fea505578454923c05ba9a85f8c3
-  last_validation_at: '2026-11-07T23:03:49+00:00'
+  context_pack_hash: 4869222b7852759b66a254e2e7ddba334b5b992f0d275c1267ff1dadbbb2ab97
+  last_validation_at: '2026-11-07T23:07:03+00:00'
   last_error: ''
 dice_state:
   tape_revision: machadan-tape-r1
@@ -238,7 +239,7 @@ world_state:
     ミルカの相談の条件:
       fact: ミルカはガルドの件の相談に乗る条件として、全部終わったら一部始終を細かいところまで自分に話すことを求めた
       source: Day1昼 相談区画
-      status: 〇〇が承諾（Day1昼）。件が終わったら一部始終を細かくミルカに話す約束
+      status: 〇〇が承諾（Day1昼）。件が終わったら一部始終を細かくミルカに話す約束。Day1夕から合言葉の取り次ぎ役も務める
     人物_ドーン:
       name: ドーン
       age: 34
@@ -320,7 +321,7 @@ world_state:
     ドーンとの取り決め:
       fact: Day2昼、ドーンは銀蛇亭の裏でガルドに会い、少し渋ってから見張りを引き受けると返事する（分け前二百Gも断らない）。予定が変わればドーンが〇〇に知らせる。連絡方法：ドーンは毎日夕方の鐘の後に銀の天秤亭へ納品に来る。用がある側が受付のミルカに『斧の手入れの話がしたい』と言付け、言付けがあれば翌日の夕方に相談区画で会う。1月29日の夜、ドーンは白百合香房の裏の路地に見張りとして立ち、ガルドが裏口に入ったら合図を出す（方法は〇〇が決める：未定）
       source: Day1夕 ドーンとの相談
-      status: 取り決め（ミルカにはまだ伝えていない）
+      status: 取り決め。ミルカが合言葉『斧の手入れの話』の取り次ぎを引き受けた（Day1夕）。言付けのあった日は夜の鐘まで受付に残る
   appearance_customization:
     version: 1
     overrides: {}
@@ -777,6 +778,7 @@ session_log:
   - Day1夕 相談区画。〇〇が『あいつは本当に仲間か、人も場所も金としか見ていない』とドーンに迫る。ドーンは三年前ガルドがセレナを助けた場に自分もいたと語りつつ、今のガルドは仲間ではない、父と同じだと認める。見張りを断れば別の見張りや日の変更で動きが分からなくなるため、乗ったふりをして当日まで動きを探る案を自分から出す。条件として、セレナが傷つかない方法だと約束しろと〇〇に求める
   - Day1夕 相談区画。〇〇が『任せろ、作戦も考えている』と約束し、返事と連絡の取り方を決めようと言う。ドーンの提案：明日（Day2）の昼に銀蛇亭の裏でガルドに会い、少し渋ってから『やる』と返事する（分け前二百Gも断らない）。予定が変わればドーンが知らせる。連絡は、毎日夕方の鐘の後にドーンが納品に来るので、受付のミルカに『斧の手入れの話がしたい』と言付け、言付けがあれば翌日夕方に相談区画で会う。二十九日の夜はドーンが白百合香房の裏の路地に立ち、ガルドが裏口に入ったら合図を出す（合図の方法は〇〇が決める）。ドーンが〇〇の名前と宿を尋ねる
   - Day1夕 〇〇がドーンに名乗り、ぬれねずみ亭に泊まっていると伝える。ドーンは何か変わったら知らせると言ってギルドを出る。〇〇は受付のミルカのもとへ。帰還の冒険者で混む中、ミルカは列をさばき終えてから、ドーンの足取りが軽かったと言い、相談が無事に終わったかだけでも聞きたがる
+  - Day1夕 銀の天秤亭の受付。〇〇が『ドーンと話をつけてきた。斧の手入れの話を、だ』とだけ伝える。ミルカは斧を持たない〇〇の言葉から合言葉だと察し、ドーンと〇〇の言付けの取り次ぎを引き受ける。言付けがあった日は夜の鐘が鳴るまで受付に残ると言う（業務の一環と言い張る）
 memory_log:
   encounters: []
   battles: []
