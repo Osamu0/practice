@@ -3,15 +3,15 @@ schema_version: 3
 game_version: 4.13.4
 campaign_id: main
 created_at: '2026-11-07T02:20:22+00:00'
-updated_at: '2026-11-07T03:32:26+00:00'
-save_revision: 9
+updated_at: '2026-11-07T03:33:06+00:00'
+save_revision: 10
 content_manifest_hash: 59b69015c8c813194e83a7c4b4d2b862af8f4074c2c616aa5325399df6f66460
 save_format_origin: 'System_Templates.md [TEMPLATE_SAVE] (SAVE_DATA: MachaDun v2.0)'
 transaction:
-  last_transaction_id: tx-eabcb7008c6f49c397019cd813ca4045
+  last_transaction_id: tx-e7953901cce546ee85dd7e91281052d8
   last_committed_turn: 0
-  previous_revision_hash: 9ce5b622dd166b6f5b7347b48cf0bf0bdf0d49bd650ca22daf7b549359ab7354
-  last_candidate_hash: e4fdc008ae36d5b422378262a73a80224db9b93f21a3abcd1f3af977791a557f
+  previous_revision_hash: 1e09478820a7e404481358e6e718fcc8b9e649a36c24a21f3338fc087172ed52
+  last_candidate_hash: 1f0a324628d31e46de4494b084b7891109d0d37b2e6235b809e9af2b5342399e
   applied_transaction_ids:
   - tx-413eae86780d496981a94b1d08250181
   - tx-5d7fe8c49f1242dca4bcebf850e979c1
@@ -22,6 +22,7 @@ transaction:
   - tx-877e4f53bc9d43bfbe6cbbd3b15ff252
   - tx-510a9cb82f9d466e8e192f7f1f3f18e3
   - tx-eabcb7008c6f49c397019cd813ca4045
+  - tx-e7953901cce546ee85dd7e91281052d8
 hearing_progress:
   status: complete
   current_step: 7
@@ -45,17 +46,17 @@ hearing_progress:
     desire: 1
     partner_preferences: 1
 active_script:
-  id: SCRIPT_OPENING_FIRE
+  id: SCRIPT_OPENING_TUTORIAL
   status: complete
   cursor: 1
-  checkpoint: fire-explained-and-granted
+  checkpoint: tutorial-told
 runtime_state:
   ero_scene: false
   style_conditions: []
   active_scene: start
   scene_id: start
-  context_pack_hash: b7020043a631f04960d6dd4d76526db383b5050a606c24f476845a94a248e128
-  last_validation_at: '2026-11-07T03:32:26+00:00'
+  context_pack_hash: d77f144ccd507c46ba7d36ca46e1e90e861fbc5acf4dc0e09eaba32891d978f4
+  last_validation_at: '2026-11-07T03:33:06+00:00'
   last_error: ''
 dice_state:
   tape_revision: machadan-tape-r1
@@ -72,7 +73,7 @@ world_state:
     allocation_complete: true
     fire_granted: true
     fire_explained: true
-    tutorial_complete: false
+    tutorial_complete: true
     legacy_initial_allocation: false
     fire_grant_transaction_id: tx-510a9cb82f9d466e8e192f7f1f3f18e3
     initial_base_stats:
@@ -82,7 +83,11 @@ world_state:
       spd: 3
       tec: 3
       chm: 9
-  campaign_lore: {}
+  campaign_lore:
+    散策案内_Lilith_000:
+      character_id: Lilith_000
+      told: true
+      day: 1
   appearance_customization:
     version: 1
     overrides: {}
