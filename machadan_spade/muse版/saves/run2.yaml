@@ -3,15 +3,15 @@ schema_version: 3
 game_version: 4.13.4
 campaign_id: run2
 created_at: '2026-11-07T09:22:51+00:00'
-updated_at: '2026-11-07T10:50:27+00:00'
-save_revision: 38
+updated_at: '2026-11-07T10:53:04+00:00'
+save_revision: 39
 content_manifest_hash: 59b69015c8c813194e83a7c4b4d2b862af8f4074c2c616aa5325399df6f66460
 save_format_origin: 'System_Templates.md [TEMPLATE_SAVE] (SAVE_DATA: MachaDun v2.0)'
 transaction:
-  last_transaction_id: tx-b0f04cb2a2854e7a9b43edcad54c7425
-  last_committed_turn: 29
-  previous_revision_hash: 645fd1d5117df4653f38070af66aa42c94ec3a68d7355125e4435d82d8167e15
-  last_candidate_hash: 707c5b7c159eb7d3aaf831087542bbae7f18334abd2fed645e435ac9b54a5ff0
+  last_transaction_id: tx-3f848203c9c441208f16425262b37ac0
+  last_committed_turn: 30
+  previous_revision_hash: c76955593e403bea7b4d2f6bc99c2eb17231779e1b2db269c73737732f3df107
+  last_candidate_hash: 3215aa11f045a99cde00e0062621e2f494e241925eacccb41986453a1435262e
   applied_transaction_ids:
   - tx-3205c8b3a3f04e16a35b2f1739e25e5a
   - tx-6a86abc0b7cc4f0aa672870ded718bc7
@@ -51,6 +51,7 @@ transaction:
   - tx-1381f6c3085b467fbff10a456499348e
   - tx-afc0324e476f49c38b6ac1576faf07ad
   - tx-b0f04cb2a2854e7a9b43edcad54c7425
+  - tx-3f848203c9c441208f16425262b37ac0
 hearing_progress:
   status: complete
   current_step: 7
@@ -83,8 +84,8 @@ runtime_state:
   style_conditions: []
   active_scene: turn
   scene_id: turn
-  context_pack_hash: acac0f5d2a5535b4c2f616c7aa4d22e383228572a018e8f461fccaee0b4971e9
-  last_validation_at: '2026-11-07T10:50:27+00:00'
+  context_pack_hash: b6f02f5d3c161bb03d4d428c09c35397940175331a597fa71de0e1c2acd9f0b3
+  last_validation_at: '2026-11-07T10:53:04+00:00'
   last_error: ''
 dice_state:
   tape_revision: machadan-tape-r1
@@ -585,6 +586,7 @@ session_log:
   - Day1昼 白糸の間（エロシーン中）。〇〇が『うんと言えばすぐありつける』と迫る。クラリスは言ったら負けと拒み、逆に〇〇の先走りを指摘して胸元のボタンを外し、レースの下着の胸を見せて『わたしもお預け』と挑発。50Gのまま全部を好きにするか、お預けし合うかと問う
   - Day1昼 白糸の間（エロシーン中）。〇〇が『採寸で興奮する変態だと言いふらす』と脅す。CHM対抗 18 vs クラリスINT 19で失敗（かすり）。クラリスは涙目で値引きは拒みつつ、残り2Gを免除。誰にも言わないで、自分の変態さは〇〇だけが知っていてと甘く懇願
   - Day1昼 白糸の間（エロシーン中）。〇〇がここに泊まっていいかと尋ねる。クラリスは2階は狭いと言いつつ、今夜もその先も泊まってよいと承諾。宿代はいらないと言い、夜は静かにさせないでと甘える
+  - Day1昼 白糸の間（エロシーン中）。〇〇が宿泊を決め、しゃぶっていいと許す。クラリスがフェラ。先っぽから竿の半ばまで咥え、手でしごきつつスカート越しに自分を慰める。気持ちいいか、もっと奥か、口に出すかと尋ねる
 memory_log:
   encounters: []
   battles: []
