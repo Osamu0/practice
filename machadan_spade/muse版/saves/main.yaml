@@ -3,15 +3,15 @@ schema_version: 3
 game_version: 4.13.4
 campaign_id: main
 created_at: '2026-11-07T02:20:22+00:00'
-updated_at: '2026-11-07T04:28:15+00:00'
-save_revision: 28
+updated_at: '2026-11-07T04:30:24+00:00'
+save_revision: 29
 content_manifest_hash: 59b69015c8c813194e83a7c4b4d2b862af8f4074c2c616aa5325399df6f66460
 save_format_origin: 'System_Templates.md [TEMPLATE_SAVE] (SAVE_DATA: MachaDun v2.0)'
 transaction:
-  last_transaction_id: tx-c0f6dcfd059f440a823aa591af38695a
-  last_committed_turn: 18
-  previous_revision_hash: 2c1baa76f21df495182a2615a3a38e7f7117e6d8bb16871e4112979583f04689
-  last_candidate_hash: 378b8336602ee80deeb9c783e86007d08b4b12522b0f51dec124b142d61449db
+  last_transaction_id: tx-60b934777636420098947148b158c918
+  last_committed_turn: 19
+  previous_revision_hash: 77fd89f13616d054ce793e3cd3c7ff630041c81bf407df62dbdc1f05db3bfbaf
+  last_candidate_hash: 5b4d3f3cae582dfee4b22a4a9b0d05cc9f12dce040d3c347fece367dccf04661
   applied_transaction_ids:
   - tx-413eae86780d496981a94b1d08250181
   - tx-5d7fe8c49f1242dca4bcebf850e979c1
@@ -41,6 +41,7 @@ transaction:
   - tx-f4964227c6464496a66e297b1a41989c
   - tx-99c5ddab1aa745d6b98b4f803fd66241
   - tx-c0f6dcfd059f440a823aa591af38695a
+  - tx-60b934777636420098947148b158c918
 hearing_progress:
   status: complete
   current_step: 7
@@ -73,8 +74,8 @@ runtime_state:
   style_conditions: []
   active_scene: turn
   scene_id: turn
-  context_pack_hash: eeab8ec1ef3749de139bb8ef3cfab253a5c9b82f6868c47736fbb92feae19e7f
-  last_validation_at: '2026-11-07T04:28:15+00:00'
+  context_pack_hash: 183c0698b07160cefe0fa7f326828e59218d019ce7afab25ac41205b2fc94531
+  last_validation_at: '2026-11-07T04:30:24+00:00'
   last_error: ''
 dice_state:
   tape_revision: machadan-tape-r1
@@ -522,6 +523,7 @@ session_log:
   - Day1昼前 ミアの店。〇〇が奥で話したいと頼む。ミアは私室には入れず、店先に休憩中の札を掛けて会計台で二人きりで聞くことにする
   - Day1昼前 ミアの店。〇〇がタダで情報を引き出そうとする。CHM対抗 18 vs ミア 28で失敗。ミアはセレナとは友達だと言い返し、さわりだけ教えて、本題は情報料30Gと持ちかける
   - Day1昼前 ミアの店。〇〇が情報料30Gを払う（所持金50G→20G）。ミアからガルドの賭場通い・借金・白百合香房を担保にする話を聞く。〇〇が『調子に乗るな』と脅し、ミアは怯えつつも商売人の顔を崩さない
+  - Day1昼前 ミアの店。〇〇がミアに『俺とのビジネスの話をしたい』と切り出す。ミアは食いつき、条件次第と身構える
 memory_log:
   encounters: []
   battles: []
