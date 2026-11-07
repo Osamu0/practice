@@ -3,15 +3,15 @@ schema_version: 3
 game_version: 4.13.4
 campaign_id: run2
 created_at: '2026-11-07T09:22:51+00:00'
-updated_at: '2026-11-07T13:49:48+00:00'
-save_revision: 61
+updated_at: '2026-11-07T13:55:19+00:00'
+save_revision: 62
 content_manifest_hash: 59b69015c8c813194e83a7c4b4d2b862af8f4074c2c616aa5325399df6f66460
 save_format_origin: 'System_Templates.md [TEMPLATE_SAVE] (SAVE_DATA: MachaDun v2.0)'
 transaction:
-  last_transaction_id: tx-c4c5fdb718604ea98892ffa1f46cf42b
-  last_committed_turn: 52
-  previous_revision_hash: 8c2b628b8ac76ef8cdb4ae0b477a90ae1090677002fe1f753406e1b125a9619f
-  last_candidate_hash: bac3f3826bb04717fbc17a581f8354f5e063ec1440326c188f12ed4d47ee9d06
+  last_transaction_id: tx-f7508b9de2c243f8809acb0928c4a66a
+  last_committed_turn: 53
+  previous_revision_hash: f9da2127411786acd7718f6af184793bb3bde45a53933a5e116b534dec4b3132
+  last_candidate_hash: dff63d48e553bf4a11a222b76c6599f4efe00f5afa9eab9594e942302a738942
   applied_transaction_ids:
   - tx-3205c8b3a3f04e16a35b2f1739e25e5a
   - tx-6a86abc0b7cc4f0aa672870ded718bc7
@@ -74,6 +74,7 @@ transaction:
   - tx-eae9857fa2dc4599919bff8a26b4012b
   - tx-e5ba36aba16d47a281c4ba7022901fd0
   - tx-c4c5fdb718604ea98892ffa1f46cf42b
+  - tx-f7508b9de2c243f8809acb0928c4a66a
 hearing_progress:
   status: complete
   current_step: 7
@@ -102,12 +103,12 @@ active_script:
   cursor: 1
   checkpoint: tutorial-told
 runtime_state:
-  ero_scene: true
+  ero_scene: false
   style_conditions: []
   active_scene: turn
   scene_id: turn
-  context_pack_hash: 59489e4524b1a55f9c02746ade4424e676b708eab9bd1450e64983bf8daf1bbd
-  last_validation_at: '2026-11-07T13:49:48+00:00'
+  context_pack_hash: 2e81f404ea2653f415e18de45574d277bb06d6e8afc23c9ad28b00a00194300b
+  last_validation_at: '2026-11-07T13:55:19+00:00'
   last_error: ''
 dice_state:
   tape_revision: machadan-tape-r1
@@ -181,7 +182,7 @@ world_state:
       pickup: 白糸の間
       stats: DEF+1／重量1
       extra: 裏地の色を受取時に選べる（追加料金なし）
-      status: 仕立て中（残金2Gはクラリスが免除）
+      status: 仕立て中（Day1夜に縫い上げ、Day2朝渡し。残金2Gは免除）
     クラリス宅への宿泊:
       summary: Day1昼、〇〇が白糸の間に泊まりたいと頼み、クラリスは今夜もその先も泊まってよいと承諾。2階は寝台ひとつの狭い住まい。宿代は取らない（店の商いではないため）
       status: 承諾済み・まだ宿泊していない
@@ -196,7 +197,12 @@ world_state:
       plan: 〇〇を夜会の同伴者としてヴィオレッタに紹介。同伴の礼はヴィオレッタから〇〇へ。クラリスは紹介料を取らず、〇〇の夜会服をヴィオレッタの注文として仕立て代金を得る。夜会後のことは二人次第
       constraints: クラリスは代金の上乗せ・ごまかしを拒否
       advice: 初回の夜会では礼の話をせず退屈させない。帰りの馬車で次を頼まれたら、少し困った顔で借金があると打ち明けると気前よく出してくれるはず（クラリス談）
-      status: 提案段階
+      status: 段取り決定：Day2午後、クラリスがヴィオレッタ邸へ夜会ドレスを届ける際に〇〇が荷物持ちで同行し紹介される。同伴の話はクラリスが場の空気を見て持ちかける
+    行事_商人ギルド春の夜会:
+      day: 3
+      date: 箱庭暦1年1月3日（水）夜
+      place: 商人ギルドの館
+      note: ヴィオレッタが出席予定。クラリスがそのためのドレスを仕立てた（Day2午後に納品予定）
   appearance_customization:
     version: 1
     overrides: {}
@@ -208,7 +214,7 @@ world_state:
   room_id: ''
   sub_location: 仕立て工房『白糸の間』2階・クラリスの寝室
   depth: null
-  time_of_day: 昼
+  time_of_day: 夕
   weather: 晴れ
   quest_active: ''
   quest_rank: ''
@@ -647,6 +653,7 @@ session_log:
   - Day1昼過ぎ 白糸の間2階（エロシーン中）。〇〇がヴィオレッタの年と資産を尋ねる。クラリスは見た目は若い美人で、ドレスに月300〜800Gを惜しまず払い、商会もかなり裕福と話す。金目当てには冷たいので、がっつかず相手から欲しくなるようにと助言し、少し拗ねる
   - Day1昼過ぎ 白糸の間2階（エロシーン中）。〇〇が『クラリスが紹介料、〇〇が相手代』の二段取りで稼ごうと提案。クラリスはそのままでは信用を失うと指摘し、〇〇を夜会の同伴者として紹介し、自分は〇〇の夜会服をヴィオレッタの注文として仕立てて稼ぐ案を出す
   - Day1昼過ぎ 白糸の間2階（エロシーン中）。〇〇が仕立て代に自分への金を上乗せしろと言う。クラリスはお客様の代金をごまかすことはできないと拒否。代わりに、初回は礼を求めず退屈させず、次を頼まれた時に借金を打ち明けると気前よく出すはずと助言。だめならお仕置きをとねだる
+  - Day1夕 白糸の間2階。〇〇が『店のことになると使えない』と言い、準備を始めると告げる（エロシーン終了）。クラリスは身支度を整え、今夜冒険者の服を縫い上げると言う。明日午後にヴィオレッタへ夜会ドレスを届けるので荷物持ちで同行し紹介すると段取り。夜会は明後日夜、商人ギルドの館。夕飯を作ると申し出る
 memory_log:
   encounters: []
   battles: []
