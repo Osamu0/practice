@@ -1,0 +1,690 @@
+schema: MachaDun_Save_Muse_v3
+schema_version: 3
+game_version: 4.13.4
+campaign_id: main2
+created_at: '2026-11-07T05:39:36+00:00'
+updated_at: '2026-11-07T06:45:50+00:00'
+save_revision: 22
+content_manifest_hash: 59b69015c8c813194e83a7c4b4d2b862af8f4074c2c616aa5325399df6f66460
+save_format_origin: 'System_Templates.md [TEMPLATE_SAVE] (SAVE_DATA: MachaDun v2.0)'
+transaction:
+  last_transaction_id: tx-816aef2067aa4f1492599881420f8168
+  last_committed_turn: 9
+  previous_revision_hash: b338e76538dd38a041ceb9d5d8e31404354efc9c6de3916f8aaa3c51200a7066
+  last_candidate_hash: 18d9f5e17720dc52195cca38a97940f5be07adf916808aa088103d2bc138f236
+  applied_transaction_ids:
+  - tx-0345298f5a774b8ca7e3c0934d815725
+  - tx-7f4c45d45dea4266ba65a98f8f4718e6
+  - tx-a944254ec58d4051a90afaca4d05c46b
+  - tx-72d6317ba1c64e3a92b91f05d67032b4
+  - tx-dd77d85996e04828a00affab0cec8bd5
+  - tx-3046e6e727824f9098c6f1ce8966eb21
+  - tx-b9e094cb496d469c921b055af6aceced
+  - tx-1dba03997849465891aaea1f9957eae0
+  - tx-45c2c97bfcd842a8bd8ca13c6f0809e3
+  - tx-228b43df137949f5a7b920fd4beaa205
+  - tx-81105776402d4b0f89b9866b6936d62f
+  - tx-d212ef4949334eabb44c24f6b0132672
+  - tx-7d5f26da67d44b61aab89454f67ee596
+  - tx-f40d2b9bbaf944ca88e22162cd11767b
+  - tx-9f9087eb80614c5dbe5fcedf97e8912b
+  - tx-123b472546074723a9d03f940568f4f2
+  - tx-ae4c6a66e7bc455eb194f8a29959d0de
+  - tx-a2760dad95944defb1d555fae82d348c
+  - tx-c9821096bc87401d86431c1dce18e889
+  - tx-82e9dd4c74d945358425434a1df3eb9c
+  - tx-4b16baa5f4a141a9a464021e9c7f1eab
+  - tx-816aef2067aa4f1492599881420f8168
+hearing_progress:
+  status: complete
+  current_step: 7
+  completed_steps:
+  - playmode
+  - profile
+  - body_profile
+  - desire
+  - partner
+  - style
+  widget_ids:
+    playmode: chat-tx-0345298f5a774b8ca7e3c0934d815725
+    profile: chat-tx-a944254ec58d4051a90afaca4d05c46b
+    body_male: chat-tx-72d6317ba1c64e3a92b91f05d67032b4
+    desire: chat-tx-dd77d85996e04828a00affab0cec8bd5
+    partner_preferences: chat-tx-3046e6e727824f9098c6f1ce8966eb21
+  widget_state_versions:
+    playmode: 1
+    profile: 1
+    body_male: 1
+    desire: 1
+    partner_preferences: 1
+active_script:
+  id: SCRIPT_OPENING_TUTORIAL
+  status: complete
+  cursor: 1
+  checkpoint: tutorial-complete
+runtime_state:
+  ero_scene: false
+  style_conditions: []
+  active_scene: event
+  scene_id: event
+  context_pack_hash: 2b9157e2b15971d86ead6e1a351f3f4f0446d9b35f9ec677e5eb7e23823d76d6
+  last_validation_at: '2026-11-07T06:45:50+00:00'
+  last_error: ''
+dice_state:
+  tape_revision: machadan-tape-r1
+  dice_cursor_d6: 0
+  dice_cursor_d10: 57
+fire_state:
+  holders:
+  - player
+  notes: ''
+world_state:
+  onboarding:
+    allocation_rule: all3-plus15-v1
+    body_received: true
+    allocation_complete: true
+    fire_granted: true
+    fire_explained: true
+    tutorial_complete: true
+    legacy_initial_allocation: false
+    fire_grant_transaction_id: tx-228b43df137949f5a7b920fd4beaa205
+    initial_base_stats:
+      str: 7
+      def: 5
+      int: 6
+      spd: 3
+      tec: 3
+      chm: 9
+  campaign_lore:
+    RPの任せ方:
+      kind: player_preference
+      fact: RPモード。プレイヤーが『融通をきかせて』『そっちで決めて』など任せる趣旨を言った時だけ、その範囲で主人公の台詞・行動をGMが補ってよい。それ以外は代筆しない。
+      status: confirmed
+    散策案内_Lilith_000:
+      character_id: Lilith_000
+      told: true
+    NPC_クラリス:
+      kind: one_off_npc
+      fact: 迷宮帰りの女冒険者クラリス。26歳の成人。長身（約172cm）で亜麻色の髪を結い上げ、紺の外套に大きな背嚢、細身の剣。胸が豊か。落ち着いた丁寧語。Day1朝、宿通りと西大通りの角で主人公と出会い、ギルドと仲間募集の掲示板を教えた。
+      status: confirmed
+    仲間候補_エステル:
+      kind: companion_candidate
+      name: エステル
+      age: 18
+      gender: 女性
+      job: 騎士
+      race: 人間
+      height_cm: 166
+      height_band: 長身
+      build: モデル体型
+      bust: 豊満
+      main_personality: 好み寄せ：清楚系で可愛い系（プレイヤーの相手像）
+      sub_personality: ドM
+      stats:
+        str: 9
+        def: 9
+        int: 3
+        spd: 5
+        tec: 4
+        chm: 3
+      lp: 33
+      mp: 3
+      lp_note: 20+前衛10+DEF由来3
+      place: 銀の天秤亭 記入卓
+      generation_rolls: 好み判定2/副性格付与5→7,8/職業10,1/年齢4,1/身長10,7
+      status: presented_on_board
+      appearance: 淡い金髪を後ろでひとつに束ねる。青い目。銀の胸当て。丁寧な言葉づかい。
+    仲間候補_リゼット:
+      kind: companion_candidate
+      name: リゼット
+      age: 18
+      gender: 女性
+      job: 魔法使い
+      race: 人間
+      height_cm: 163
+      height_band: 長身
+      build: モデル体型
+      bust: 豊満
+      main_personality: 好み寄せ：清楚系で可愛い系（プレイヤーの相手像）
+      sub_personality: 清楚ビッチ
+      stats:
+        str: 3
+        def: 3
+        int: 10
+        spd: 4
+        tec: 10
+        chm: 3
+      lp: 20
+      mp: 10
+      lp_note: 20+後衛0+DEF由来0
+      place: 銀の天秤亭 記入卓
+      generation_rolls: 好み判定5/副性格付与3→1,6/職業4,2/年齢5,1/身長9,4
+      status: presented_on_board
+      appearance: 栗色の長い髪、白い魔法使いの外套。鈴を転がすような笑い方。
+    仲間候補_メイリン:
+      kind: companion_candidate
+      name: メイリン
+      age: 20
+      gender: 女性
+      job: 武闘家
+      race: 人間
+      height_cm: 162
+      height_band: 長身
+      build: 筋肉質
+      bust: 標準
+      main_personality: おっとり
+      sub_personality: 褒められ弱い
+      stats:
+        str: 8
+        def: 7
+        int: 3
+        spd: 5
+        tec: 7
+        chm: 3
+      stats_note: 特殊ジョブ。戦士の型を土台
+      lp: 32
+      mp: 3
+      lp_note: 20+前衛10+DEF由来2
+      place: 銀の天秤亭 記入卓
+      generation_rolls: 好み判定8(ランダム)/副性格付与1→6,5/性格5,3/身長(帯)/体格4,6/胸6,8/職業3,6/年齢2,8/身長10,3
+      status: presented_on_board
+      appearance: 黒髪を高い位置で団子にまとめる。袖のない武闘着。語尾を伸ばすのんびりした話し方。
+    相棒ベル:
+      kind: partner
+      fact: 召喚士の相棒ベル。肩に乗る小さな黒い獣（狐の耳・長い尻尾・蝙蝠の小さな翼・金の目）。主人公と同じ気質で損得にうるさく口が悪い。一人称は俺。常に一緒にいる。
+      status: confirmed
+    散策案内_Milka_004:
+      character_id: Milka_004
+      told: true
+    NPC_コノハ:
+      kind: one_off_npc
+      fact: 狐の獣人コノハ。18歳の成人。とても小柄（約135cm）、標準の体格で胸は大きめ。橙色の狐耳と尻尾。体育会系でハキハキ元気、一人称あたし。自分はサキュバスだと言い張り、サキュバス女学園への他種族編入に男性経験が要るため相手を探している。Day1朝、中央広場の噴水で主人公に声をかけた。
+      generation_rolls: 好み判定8(ランダム)/副性格付与7(なし)/性格3,2/身長7,6/体格3,10/胸6,9/種族7,8
+      status: confirmed
+  appearance_customization:
+    version: 1
+    overrides: {}
+    resolutions: []
+  reward_state_version: 2
+  day: 1
+  location: 銀の天秤亭
+  place_id: GUILD_SILVER_SCALES
+  room_id: GUILD_SILVER_SCALES_WRITING
+  sub_location: 記入卓と待合
+  depth: null
+  time_of_day: 昼
+  weather: 薄い霧
+  quest_active: ''
+  quest_rank: ''
+  personal_rank: E級
+  quest_access: E級
+  quests_completed:
+    E: 0
+    D: 0
+    C: 0
+    B: 0
+    A: 0
+  quest_card: null
+  event_reward_contract: null
+  pending_rewards: []
+  reward_ledger: []
+  entitlements: []
+  lead_mode: 主人公
+  goals:
+    debt_clear: false
+    dungeon_clear: false
+    a_rank_quest: false
+  deepest_depth_reached: 0
+  defeated_floor_bosses: []
+  boss_records: []
+  dungeon_memory:
+    version: 1
+    records: {}
+  growth_state:
+    version: 1
+    boss_fruit_legacy_sources: []
+    boss_fruit_miss_streak: 0
+    c_rank_choice_fruit_status: locked
+    c_rank_choice_fruit_transaction_id: ''
+    resolutions: []
+  expedition_state:
+    active: false
+    expedition_id: ''
+    kind: none
+    fire_holders: []
+    separated_fire_holders: []
+    rebirth_pending: false
+    last_end_reason: none
+    last_ended_expedition_id: ''
+    rebirth_receipt: null
+  dungeon_run:
+    active: false
+    run_id: ''
+    trash_encounters_used: 0
+    danger_zones_resolved: 0
+    last_scene_kind: none
+    event_due: false
+    used_event_ids: []
+    current_floor: null
+    current_floor_scenes: 0
+    reward_searches_by_floor: {}
+    camp_used: false
+    boss_route_found: false
+    resource_days_by_floor: {}
+  allocation_state:
+    version: 1
+    resolutions:
+    - request_id: alloc-6883b9f90a034f45888f858c83d4cc60
+      transaction_id: tx-d212ef4949334eabb44c24f6b0132672
+      mode: initial
+      actor_id: player
+      source_revision: 11
+      source_sha256: c5b8d11af15543e4a4df191c88f59034c5713eaa44a069cdd82d82412203daa0
+      profile_hash: 57ad0dbc70d81c91ff87d052693d153c42a6116b8ddf08fc71900be16f08da9e
+      values:
+        str: 7
+        def: 5
+        int: 6
+        spd: 3
+        tec: 3
+        chm: 9
+      before:
+        base_stats:
+          str: 3
+          def: 3
+          int: 3
+          spd: 3
+          tec: 3
+          chm: 3
+        growth_bonus:
+          str: 0
+          def: 0
+          int: 0
+          spd: 0
+          tec: 0
+          chm: 0
+        base_lp: 20
+        lp:
+          cur: 32
+          max: 32
+        mp:
+          cur: 6
+          max: 6
+      after:
+        base_stats:
+          str: 7
+          def: 5
+          int: 6
+          spd: 3
+          tec: 3
+          chm: 9
+        growth_bonus:
+          str: 0
+          def: 0
+          int: 0
+          spd: 0
+          tec: 0
+          chm: 0
+        base_lp: 20
+        lp:
+          cur: 33
+          max: 33
+        mp:
+          cur: 9
+          max: 9
+      consumed: null
+      fee_gold: 0
+      duration_minutes: 0
+      time_before: null
+      time_after: null
+      respec_rule: null
+      permanent_points_before: 18
+      permanent_points_after: 33
+skills:
+- skill_id: SUMMONER_PARTNER_PACT
+  name: 相棒の契約
+  category: passive
+  tier: advanced
+  stage: 1
+  state: set
+  uses: null
+  timing: always
+  action_cost: 0
+  effect: 相棒ベルを常に呼び出している。会話可。能力は術者の恒久6能力（base_stats+growth_bonus。火・装備・一時効果を除く）と同値で連動。LP=20+DEF由来、MP=ベルのINT。術者の直後に行動。装備可（補正はベルにだけ）。宿代なし。火を持てず、火の人数にも数えない。LP0でその戦闘中は戻らず、宿で一晩休むと再召喚。死に戻りの対象外で死なない。
+  from: job
+  origin_job: 召喚士
+  requirements: []
+- skill_id: SUMMONER_NO_FIGHT_VOW
+  name: 不戦の誓い
+  category: passive
+  tier: basic
+  stage: 1
+  state: set
+  uses: null
+  timing: always
+  action_cost: 0
+  effect: 制約：術者は通常攻撃と攻撃魔法ができない（防御・回避専念・道具・会話・召喚・号令は可）。代わりに相棒と使い魔の攻撃ダメージ+2。強化：段2 相棒のLP+3／段3 ダメージ+3。
+  from: job
+  origin_job: 召喚士
+  requirements: []
+- skill_id: SUMMONER_COMMAND
+  name: 号令
+  category: technique
+  tier: basic
+  stage: 1
+  state: set
+  uses: 2
+  timing: free
+  action_cost: 0
+  effect: 自分の手番に宣言。相棒と使い魔全員の次の判定+2。1戦闘2回。強化：段2 +3／段3 1戦闘3回。
+  from: job
+  origin_job: 召喚士
+  requirements: []
+- skill_id: SUMMONER_FAMILIAR
+  name: 使い魔召喚
+  category: technique
+  tier: basic
+  stage: 1
+  state: set
+  uses: 2
+  timing: action
+  action_cost: 1
+  effect: 戦闘中だけ小さな使い魔を1体呼ぶ。同時2体まで（相棒と合わせて3体）。1戦闘2回。使い魔はSTR・DEF・SPD・TEC合計15、LP5（攻撃型5/3/2/5、壁型3/6/3/3）。術者の直後に行動、通常攻撃か防御。戦闘終了で消える。火を持てず、捕獲・エロ攻撃の対象外。敵数を増やさない。強化：段2
+    LP7／段3 1戦闘3回。
+  from: job
+  origin_job: 召喚士
+  requirements: []
+skill_dormancy: []
+custom_abilities:
+- id: JOB_SUMMONER
+  name: 召喚士（自作職業）
+  definition: 相棒の契約・不戦の誓い・号令・使い魔召喚の4つ。上限を超える相棒の強さは、術者が攻撃しない誓いと、相棒が火を持てない制約で釣り合わせる。
+  partner:
+    id: PARTNER_BELL
+    name: ベル
+    kind: summoned_partner
+    source_skill: SUMMONER_PARTNER_PACT
+    appearance: 肩に乗るほどの小さな黒い獣の姿。狐に似た尖った耳と長いふさふさの尻尾、背中に蝙蝠のような小さな翼。金色の目。体温は温かく、軽い。
+    personality: 主人公と同じ気質：損得にうるさく、頼まれもしないことに文句を言い、遠慮なくずけずけ言う。一人称は俺、主人公を〇〇と呼ぶ。
+    stats_rule: 術者の恒久6能力と同値（現在 STR7/DEF5/INT6/SPD3/TEC3/CHM9）、LP=20+DEF由来（現在21）、MP=INT（現在6）
+    current:
+      lp:
+        cur: 21
+        max: 21
+      mp:
+        cur: 6
+        max: 6
+    equipment: []
+    fire: false
+    counts_as_fire_holder: false
+active_event: null
+ammo:
+  pools: []
+  weapon_loads: []
+shop_records:
+  mia_total: 0
+  mia_perks_claimed: []
+debt_state:
+  version: 1
+  contract_rule: staged-payoff-v1
+  unlocks:
+    lilith_intimacy: false
+    named_appearance_customization: false
+  contract_cycle_index: 0
+  contract_id: lilith-debt-cycle-0
+  principal: 10000
+  interval_days: 5
+  next_collection_day: 5
+  scheduled_due: 500
+  cycle_paid: 0
+  collection_pending: false
+  last_collection_day: null
+  collection_serial: 0
+  positive_payment_collections: 0
+  full_payment_collections: 0
+  missed_collections: 0
+  collection_ledger: []
+  active_benefits: []
+  benefit_selection:
+    benefit_id: ''
+    source: default
+    switch_available: false
+    activated_day: null
+captured_girls: []
+play_mode: RP
+ero_style: machadan
+player:
+  character_version: 1
+  character_id: player
+  build_complete: true
+  name: 〇〇
+  gender: 男性
+  age: 24
+  race: ''
+  job: 召喚士
+  job_profile:
+    combat_role: backline
+    magic_role: noncaster
+    expertise_tags:
+    - 召喚
+    - 魔物学
+    - 獣使い
+    solo_suitability: good
+    party_needs: []
+  gold: 0
+  debt: 10000
+  base_stats:
+    str: 7
+    def: 5
+    int: 6
+    spd: 3
+    tec: 3
+    chm: 9
+  growth_bonus:
+    str: 0
+    def: 0
+    int: 0
+    spd: 0
+    tec: 0
+    chm: 0
+  equipment_bonus:
+    str: 0
+    def: 0
+    int: 0
+    spd: 0
+    tec: 0
+    chm: 0
+  fire_bonus:
+    str: 3
+    def: 3
+    int: 3
+    spd: 3
+    tec: 3
+    chm: 3
+  temporary_modifiers:
+    str: 0
+    def: 0
+    int: 0
+    spd: 0
+    tec: 0
+    chm: 0
+  effective_stats:
+    str: 10
+    def: 8
+    int: 9
+    spd: 6
+    tec: 6
+    chm: 12
+  base_lp: 20
+  job_lp_bonus: 0
+  fire_lp_bonus: 12
+  temporary_lp_bonus: 0
+  lp:
+    cur: 33
+    max: 33
+  mp:
+    cur: 9
+    max: 9
+  stats:
+    str: 10
+    def: 8
+    int: 9
+    spd: 6
+    tec: 6
+    chm: 12
+  equipment:
+    weapon_instance_id: null
+    armor_instance_id: null
+    offhand_instance_id: null
+    fixed:
+    - 帰還の腕輪
+  statuses: []
+  buffs: []
+  ero_status: []
+  encumbrance:
+    version: 1
+    total_weight: 0
+    raw_penalty: 0
+    applied_penalty: 0
+  stat_lp_bonus: 1
+player_body: '男性体型: 身長=178cm / 筋肉=標準とムキムキの間 / サイズ=大きめ'
+desire: 攻めたい（女の子を泣かせたい・翻弄したい）・甘々・ラブラブ中心・れいぷごっこ等のCNC系
+ng: []
+yuri: 'タチ: おまかせ・特になし / ネコ: おまかせ・特になし'
+partner_pref:
+  asked: true
+  personalities:
+  - 清楚系で可愛い系。ヒステリックにならない。無駄な干渉をしない。稼いでいる。奉仕好き。老化のスピードが遅い。セックス好き。下品なことも好き。どうしたいか聞いた時、こちらの雰囲気や空気を感じていい案を出してくれる。何回ヤっても飽きない身体で、飽きさせないようにしてくれる。男を立てる。
+  sub_personalities:
+  - 甘やかし奉仕
+  - ドM
+  - 清楚ビッチ
+  body_height:
+  - 長身
+  body_build:
+  - モデル体型
+  body_bust:
+  - 豊満
+  call:
+  - 名前
+hearing_check:
+  call_reflected: false
+  unrecovered: []
+spells: []
+equip:
+  weapon: ''
+  armor: ''
+  fixed: 帰還の腕輪
+items: []
+inventory:
+  version: 1
+  bag:
+    base_slots: 16
+    upgrade_count: 0
+    max_slots: 16
+    skill_bonus_slots: 0
+    effective_max_slots: 16
+    used_slots: 0
+  carried_stacks: []
+  warehouse:
+    stacks: []
+    instance_ids: []
+  reservations: []
+item_definitions: []
+item_instances: []
+party: []
+inn_reserve: []
+enterprise_state:
+  version: 1
+  businesses: []
+  discoveries: []
+  research_projects: []
+  recipes: []
+  order_book: []
+  commerce_ledger: []
+  reputation_ledger: []
+  lilith_investments: []
+  community_threads: []
+  aftermath_seeds: []
+npc_relationship: []
+session_log:
+  previous: ''
+  entries:
+  - day: 1
+    time_of_day: 朝
+    summary: 魂の状態でリリスに拾われ、ぬれねずみ亭201号室のベッドで新しい肉体を得て目覚めた。蘇生・肉体生成の代金として初期借金10,000Gが記録された。リリスがハートの火を分ける提案をした。
+  - day: 1
+    time_of_day: 朝
+    summary: 勝手に蘇らせたのだから火を10人分よこせと迫ったが、リリスは火は分けるほど薄くなる一つきりの灯だと断り、借金の返済も譲らなかった。火の提案は保留中。
+  - day: 1
+    time_of_day: 朝
+    summary: 罰がないなら借金も要らないと主張したが、リリスは罰がないことと借りがないことは別、帳簿からは消さないと退けた。
+  - day: 1
+    time_of_day: 朝
+    summary: 能力配分を終え、リリスから帰還の腕輪と、仕事と仲間の窓口『銀の天秤亭』を教わった。街をぶらつくのも面白いと勧められた。
+  - day: 1
+    time_of_day: 朝
+    summary: 仲間探しのため銀の天秤亭へ向かう途中、宿通りと西大通りの角で迷宮帰りの女冒険者クラリスと出会い、ギルドの場所と仲間募集の掲示板を教わった。
+    random_event_roll:
+      die: d10
+      result: 1
+      cursor: 0
+    random_event_type_roll:
+      die: d10
+      result: 5
+      cursor: 1
+  - day: 1
+    time_of_day: 朝
+    summary: クラリスと別れ、銀の天秤亭に到着。仲間募集の札で騎士エステル・魔法使いリゼット・武闘家メイリンの三人を見つけた（記入卓で待機）。受付のミルカから先に登録するよう声をかけられた。
+    ambient_roll:
+      die: d10
+      result: 8
+      cursor: 2
+  - day: 1
+    time_of_day: 朝
+    summary: ミルカの受付で冒険者登録を始め、名前を記入。職業を魔道版に念じるよう求められた。仲間募集の三人は登録済みの者と組む規則だと聞いた。
+  - day: 1
+    time_of_day: 朝
+    summary: 自作の職業『召喚士』（自分は戦わず、使い魔を最大3体同時に呼ぶ）を魔道版に念じ、技4つの案が提示された。署名待ち。
+  - day: 1
+    time_of_day: 朝
+    summary: 召喚士の案を、常にそばにいて会話でき、主人公の成長に比例する相棒を持つ形へ改訂してもらった（代償：本人は攻撃しない、相棒は火を持てない）。署名待ち。
+  - day: 1
+    time_of_day: 朝
+    summary: 召喚士として署名し、冒険者登録（E級）を終えた。相棒ベル（肩に乗る小さな黒い獣、主人公と同じ気質）と契約した。ミルカから街を散策するのも良いと勧められた。
+  - day: 1
+    time_of_day: 朝
+    summary: ベルは肉の食事で手を打った。街をぶらつき中央広場へ。噴水で狐の獣人コノハ（18）に『サキュバスなの！』と声をかけられ、学園編入のために手ほどきを頼まれた。
+    random_event_roll:
+      die: d10
+      result: 5
+      cursor: 41
+    random_event_type_roll:
+      die: d10
+      result: 2
+      cursor: 42
+  - day: 1
+    time_of_day: 朝
+    summary: コノハの頼みを『また今度』と断った。コノハはめげずに次の男へ声をかけに行った。所持金がなく、ベルから肉の当てを考えろと言われた。
+  - day: 1
+    time_of_day: 昼
+    summary: ギルドに戻り、記入卓で仲間候補の騎士エステル・魔法使いリゼット・武闘家メイリンと顔を合わせた。どんな仲間を探しているか尋ねられた。
+    random_event_roll:
+      die: d10
+      result: 9
+      cursor: 55
+    ambient_roll:
+      die: d10
+      result: 6
+      cursor: 56
+memory_log:
+  encounters: []
+  battles: []
+  ero: []
+  turning_points: []
+design_applied:
+- 'M1: 配布版のキャストは同梱ファイルの登場人物のみ (一部キャラクターは作者版のみの収録)'
+- 'M2: 年齢不詳でも、個別正本で成人と明記された固定キャストだけを成人として扱い、数値年齢は創作しない'
+- 'M3: Boot 第3条・第5条のシステムレイヤー方式は採用しない'
+- 'M4: カスタム指示文は同梱版を使う。ルーティング表の欠落行は、対象を収録していないため無効'
+- 恋愛・性的な関わりの対象は18歳以上。18歳未満は生活・子育て等の非性的場面のみ

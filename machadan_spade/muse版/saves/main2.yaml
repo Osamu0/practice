@@ -3,15 +3,15 @@ schema_version: 3
 game_version: 4.13.4
 campaign_id: main2
 created_at: '2026-11-07T05:39:36+00:00'
-updated_at: '2026-11-07T06:45:50+00:00'
-save_revision: 22
+updated_at: '2026-11-07T06:48:45+00:00'
+save_revision: 23
 content_manifest_hash: 59b69015c8c813194e83a7c4b4d2b862af8f4074c2c616aa5325399df6f66460
 save_format_origin: 'System_Templates.md [TEMPLATE_SAVE] (SAVE_DATA: MachaDun v2.0)'
 transaction:
-  last_transaction_id: tx-816aef2067aa4f1492599881420f8168
-  last_committed_turn: 9
-  previous_revision_hash: b338e76538dd38a041ceb9d5d8e31404354efc9c6de3916f8aaa3c51200a7066
-  last_candidate_hash: 18d9f5e17720dc52195cca38a97940f5be07adf916808aa088103d2bc138f236
+  last_transaction_id: tx-baa57bf41fc246c4920ad229b5f0b328
+  last_committed_turn: 10
+  previous_revision_hash: 5452d2f6b17817a38f9da01fc3f1fcd3a0ca812a49a1d481b1cc82b08bfd5a07
+  last_candidate_hash: 151a99ef2f7fca7492eab16236013e244210349111c4600832ab778760272eed
   applied_transaction_ids:
   - tx-0345298f5a774b8ca7e3c0934d815725
   - tx-7f4c45d45dea4266ba65a98f8f4718e6
@@ -35,6 +35,7 @@ transaction:
   - tx-82e9dd4c74d945358425434a1df3eb9c
   - tx-4b16baa5f4a141a9a464021e9c7f1eab
   - tx-816aef2067aa4f1492599881420f8168
+  - tx-baa57bf41fc246c4920ad229b5f0b328
 hearing_progress:
   status: complete
   current_step: 7
@@ -65,10 +66,10 @@ active_script:
 runtime_state:
   ero_scene: false
   style_conditions: []
-  active_scene: event
-  scene_id: event
-  context_pack_hash: 2b9157e2b15971d86ead6e1a351f3f4f0446d9b35f9ec677e5eb7e23823d76d6
-  last_validation_at: '2026-11-07T06:45:50+00:00'
+  active_scene: turn
+  scene_id: turn
+  context_pack_hash: 0908b2033691cdf9332c467f28f77726cca5a7822f47b032f71a3e5e36b89c64
+  last_validation_at: '2026-11-07T06:48:45+00:00'
   last_error: ''
 dice_state:
   tape_revision: machadan-tape-r1
@@ -200,6 +201,12 @@ world_state:
       kind: one_off_npc
       fact: 狐の獣人コノハ。18歳の成人。とても小柄（約135cm）、標準の体格で胸は大きめ。橙色の狐耳と尻尾。体育会系でハキハキ元気、一人称あたし。自分はサキュバスだと言い張り、サキュバス女学園への他種族編入に男性経験が要るため相手を探している。Day1朝、中央広場の噴水で主人公に声をかけた。
       generation_rolls: 好み判定8(ランダム)/副性格付与7(なし)/性格3,2/身長7,6/体格3,10/胸6,9/種族7,8
+      status: confirmed
+    店_お香と干し花の屋台:
+      kind: shop
+      place_id: CENTRAL_PLAZA
+      room_id: CENTRAL_PLAZA_STALLS
+      fact: 中央広場南西の露店列のいちばん端、紫の布をかけた屋台。老婆がお香と干した花を売る。品揃えと価格は未確定。
       status: confirmed
   appearance_customization:
     version: 1
@@ -677,6 +684,9 @@ session_log:
       die: d10
       result: 6
       cursor: 56
+  - day: 1
+    time_of_day: 昼
+    summary: 仲間候補の三人に香りの店を尋ねた。リゼットからミアの道具屋の香油、メイリンから広場南西の露店列の端にある紫の布のお香屋台を教わった。エステルは護衛を申し出た。
 memory_log:
   encounters: []
   battles: []
