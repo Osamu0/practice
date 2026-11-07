@@ -3,15 +3,15 @@ schema_version: 3
 game_version: 4.13.4
 campaign_id: main2
 created_at: '2026-11-07T05:39:36+00:00'
-updated_at: '2026-11-07T06:36:31+00:00'
-save_revision: 18
+updated_at: '2026-11-07T06:39:53+00:00'
+save_revision: 19
 content_manifest_hash: 59b69015c8c813194e83a7c4b4d2b862af8f4074c2c616aa5325399df6f66460
 save_format_origin: 'System_Templates.md [TEMPLATE_SAVE] (SAVE_DATA: MachaDun v2.0)'
 transaction:
-  last_transaction_id: tx-a2760dad95944defb1d555fae82d348c
-  last_committed_turn: 5
-  previous_revision_hash: 1274a55e905663712ecf9aea99e40f12680be94ee38ee2cac3989b52326ff8d3
-  last_candidate_hash: a12a79be706748c675e9a5fc154bbe4929113cd5f2bef0cc6500ef3cbe372396
+  last_transaction_id: tx-c9821096bc87401d86431c1dce18e889
+  last_committed_turn: 6
+  previous_revision_hash: 1275a64ef72bc7c9861466e7186e23720f6557074f2a21c4ef2e6e45e801f4b2
+  last_candidate_hash: 3fbb55991268c45e9d3dc1ffbd1e2aadbda2176bc9f1bc4de012f1adaf95d6c2
   applied_transaction_ids:
   - tx-0345298f5a774b8ca7e3c0934d815725
   - tx-7f4c45d45dea4266ba65a98f8f4718e6
@@ -31,6 +31,7 @@ transaction:
   - tx-123b472546074723a9d03f940568f4f2
   - tx-ae4c6a66e7bc455eb194f8a29959d0de
   - tx-a2760dad95944defb1d555fae82d348c
+  - tx-c9821096bc87401d86431c1dce18e889
 hearing_progress:
   status: complete
   current_step: 7
@@ -63,8 +64,8 @@ runtime_state:
   style_conditions: []
   active_scene: skills
   scene_id: skills
-  context_pack_hash: 7f0bd80cc4d3e93abe3b6c9ac08cd7642901f4c5c5a114843f61ecc4d9d9d2b8
-  last_validation_at: '2026-11-07T06:36:31+00:00'
+  context_pack_hash: 918d7264b4e0fcf1b160c23270288d35bb01f1210d8b1b70868a002d4cac7781
+  last_validation_at: '2026-11-07T06:39:53+00:00'
   last_error: ''
 dice_state:
   tape_revision: machadan-tape-r1
@@ -182,6 +183,13 @@ world_state:
       place: 銀の天秤亭 記入卓
       generation_rolls: 好み判定8(ランダム)/副性格付与1→6,5/性格5,3/身長(帯)/体格4,6/胸6,8/職業3,6/年齢2,8/身長10,3
       status: presented_on_board
+    相棒ベル:
+      kind: partner
+      fact: 召喚士の相棒ベル。肩に乗る小さな黒い獣（狐の耳・長い尻尾・蝙蝠の小さな翼・金の目）。主人公と同じ気質で損得にうるさく口が悪い。一人称は俺。常に一緒にいる。
+      status: confirmed
+    散策案内_Milka_004:
+      character_id: Milka_004
+      told: true
   appearance_customization:
     version: 1
     overrides: {}
@@ -197,8 +205,8 @@ world_state:
   weather: 薄い霧
   quest_active: ''
   quest_rank: ''
-  personal_rank: ''
-  quest_access: ''
+  personal_rank: E級
+  quest_access: E級
   quests_completed:
     E: 0
     D: 0
@@ -321,9 +329,83 @@ world_state:
       respec_rule: null
       permanent_points_before: 18
       permanent_points_after: 33
-skills: []
+skills:
+- skill_id: SUMMONER_PARTNER_PACT
+  name: 相棒の契約
+  category: passive
+  tier: advanced
+  stage: 1
+  state: set
+  uses: null
+  timing: always
+  action_cost: 0
+  effect: 相棒ベルを常に呼び出している。会話可。能力は術者の恒久6能力（base_stats+growth_bonus。火・装備・一時効果を除く）と同値で連動。LP=20+DEF由来、MP=ベルのINT。術者の直後に行動。装備可（補正はベルにだけ）。宿代なし。火を持てず、火の人数にも数えない。LP0でその戦闘中は戻らず、宿で一晩休むと再召喚。死に戻りの対象外で死なない。
+  from: job
+  origin_job: 召喚士
+  requirements: []
+- skill_id: SUMMONER_NO_FIGHT_VOW
+  name: 不戦の誓い
+  category: passive
+  tier: basic
+  stage: 1
+  state: set
+  uses: null
+  timing: always
+  action_cost: 0
+  effect: 制約：術者は通常攻撃と攻撃魔法ができない（防御・回避専念・道具・会話・召喚・号令は可）。代わりに相棒と使い魔の攻撃ダメージ+2。強化：段2 相棒のLP+3／段3 ダメージ+3。
+  from: job
+  origin_job: 召喚士
+  requirements: []
+- skill_id: SUMMONER_COMMAND
+  name: 号令
+  category: technique
+  tier: basic
+  stage: 1
+  state: set
+  uses: 2
+  timing: free
+  action_cost: 0
+  effect: 自分の手番に宣言。相棒と使い魔全員の次の判定+2。1戦闘2回。強化：段2 +3／段3 1戦闘3回。
+  from: job
+  origin_job: 召喚士
+  requirements: []
+- skill_id: SUMMONER_FAMILIAR
+  name: 使い魔召喚
+  category: technique
+  tier: basic
+  stage: 1
+  state: set
+  uses: 2
+  timing: action
+  action_cost: 1
+  effect: 戦闘中だけ小さな使い魔を1体呼ぶ。同時2体まで（相棒と合わせて3体）。1戦闘2回。使い魔はSTR・DEF・SPD・TEC合計15、LP5（攻撃型5/3/2/5、壁型3/6/3/3）。術者の直後に行動、通常攻撃か防御。戦闘終了で消える。火を持てず、捕獲・エロ攻撃の対象外。敵数を増やさない。強化：段2
+    LP7／段3 1戦闘3回。
+  from: job
+  origin_job: 召喚士
+  requirements: []
 skill_dormancy: []
-custom_abilities: []
+custom_abilities:
+- id: JOB_SUMMONER
+  name: 召喚士（自作職業）
+  definition: 相棒の契約・不戦の誓い・号令・使い魔召喚の4つ。上限を超える相棒の強さは、術者が攻撃しない誓いと、相棒が火を持てない制約で釣り合わせる。
+  partner:
+    id: PARTNER_BELL
+    name: ベル
+    kind: summoned_partner
+    source_skill: SUMMONER_PARTNER_PACT
+    appearance: 肩に乗るほどの小さな黒い獣の姿。狐に似た尖った耳と長いふさふさの尻尾、背中に蝙蝠のような小さな翼。金色の目。体温は温かく、軽い。
+    personality: 主人公と同じ気質：損得にうるさく、頼まれもしないことに文句を言い、遠慮なくずけずけ言う。一人称は俺、主人公を〇〇と呼ぶ。
+    stats_rule: 術者の恒久6能力と同値（現在 STR7/DEF5/INT6/SPD3/TEC3/CHM9）、LP=20+DEF由来（現在21）、MP=INT（現在6）
+    current:
+      lp:
+        cur: 21
+        max: 21
+      mp:
+        cur: 6
+        max: 6
+    equipment: []
+    fire: false
+    counts_as_fire_holder: false
 active_event: null
 ammo:
   pools: []
@@ -363,17 +445,20 @@ ero_style: machadan
 player:
   character_version: 1
   character_id: player
-  build_complete: false
+  build_complete: true
   name: 〇〇
   gender: 男性
   age: 24
   race: ''
-  job: ''
+  job: 召喚士
   job_profile:
-    combat_role: unclassified
-    magic_role: unclassified
-    expertise_tags: []
-    solo_suitability: unclassified
+    combat_role: backline
+    magic_role: noncaster
+    expertise_tags:
+    - 召喚
+    - 魔物学
+    - 獣使い
+    solo_suitability: good
     party_needs: []
   gold: 0
   debt: 10000
@@ -553,6 +638,9 @@ session_log:
   - day: 1
     time_of_day: 朝
     summary: 召喚士の案を、常にそばにいて会話でき、主人公の成長に比例する相棒を持つ形へ改訂してもらった（代償：本人は攻撃しない、相棒は火を持てない）。署名待ち。
+  - day: 1
+    time_of_day: 朝
+    summary: 召喚士として署名し、冒険者登録（E級）を終えた。相棒ベル（肩に乗る小さな黒い獣、主人公と同じ気質）と契約した。ミルカから街を散策するのも良いと勧められた。
 memory_log:
   encounters: []
   battles: []
