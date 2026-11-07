@@ -3,15 +3,15 @@ schema_version: 3
 game_version: 4.13.4
 campaign_id: main
 created_at: '2026-11-07T02:20:22+00:00'
-updated_at: '2026-11-07T03:55:56+00:00'
-save_revision: 18
+updated_at: '2026-11-07T03:58:05+00:00'
+save_revision: 19
 content_manifest_hash: 59b69015c8c813194e83a7c4b4d2b862af8f4074c2c616aa5325399df6f66460
 save_format_origin: 'System_Templates.md [TEMPLATE_SAVE] (SAVE_DATA: MachaDun v2.0)'
 transaction:
-  last_transaction_id: tx-925926dad24a4cbeab6ed2f87a0e28c1
-  last_committed_turn: 8
-  previous_revision_hash: 3f85308d2a53a98c21312276b45cbe2b0d3d9d5607289384a6754217dc498516
-  last_candidate_hash: f98599ea27e0884a726f4cf6f106fea1696a477f09b55a110630b0a7f25c27c9
+  last_transaction_id: tx-494ffbbb97a445329ec17e07d179799c
+  last_committed_turn: 9
+  previous_revision_hash: ad0f0cedfd01ba4c265d53271ee70c8d565eacc812610cf13418e2cef503f5a2
+  last_candidate_hash: 1d90aad569ab7d1ef34f6661dca4340c926f30c503199e85c406b6d91941d107
   applied_transaction_ids:
   - tx-413eae86780d496981a94b1d08250181
   - tx-5d7fe8c49f1242dca4bcebf850e979c1
@@ -31,6 +31,7 @@ transaction:
   - tx-c9f67facbb2d4621a8bc20813168b4f8
   - tx-85ad38b212fa48d68ecb21eb52a14183
   - tx-925926dad24a4cbeab6ed2f87a0e28c1
+  - tx-494ffbbb97a445329ec17e07d179799c
 hearing_progress:
   status: complete
   current_step: 7
@@ -63,13 +64,13 @@ runtime_state:
   style_conditions: []
   active_scene: turn
   scene_id: turn
-  context_pack_hash: f4d9bd4b2f36e35bab203eb4050cbc02a7b10b8ec7950cff063ec56166507657
-  last_validation_at: '2026-11-07T03:55:56+00:00'
+  context_pack_hash: 02454f23a9f2ebc6798ec950841a8bf7db1f8925b1408a3a95ec16cbef831d53
+  last_validation_at: '2026-11-07T03:58:05+00:00'
   last_error: ''
 dice_state:
   tape_revision: machadan-tape-r1
   dice_cursor_d6: 0
-  dice_cursor_d10: 13
+  dice_cursor_d10: 17
 fire_state:
   holders:
   - player
@@ -491,6 +492,7 @@ session_log:
   - Day1朝 白百合香房へ向かう路地口で、道具屋のミアと偶然会う。ミアはガラス瓶の納品帰りで、ガルドとの一件を見ていた。移動イベント d10=1、種別 d10=10
   - Day1朝 〇〇がミアに名乗り、さっきの件の口止めと脅し混じりの念押し。ミアは面白がって承諾し、『その代わり稼いだらうちで使って』と約束させて広場へ戻る
   - Day1朝 〇〇が白百合香房を訪ねる。セレナは一人で店を開ける準備中。環境 d10=7（なし）
+  - Day1朝 白百合香房。〇〇が『医者に診せて治ったが借金になった』と嘘をつく。CHM対抗 20 vs セレナINT 16で成功。セレナは自分のせいで借金を負わせたと思い込み、何か償えることはないかと申し出る
 memory_log:
   encounters: []
   battles: []
