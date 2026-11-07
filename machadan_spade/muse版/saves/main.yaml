@@ -3,15 +3,15 @@ schema_version: 3
 game_version: 4.13.4
 campaign_id: main
 created_at: '2026-11-07T02:20:22+00:00'
-updated_at: '2026-11-07T04:02:58+00:00'
-save_revision: 21
+updated_at: '2026-11-07T04:05:35+00:00'
+save_revision: 22
 content_manifest_hash: 59b69015c8c813194e83a7c4b4d2b862af8f4074c2c616aa5325399df6f66460
 save_format_origin: 'System_Templates.md [TEMPLATE_SAVE] (SAVE_DATA: MachaDun v2.0)'
 transaction:
-  last_transaction_id: tx-d36bd2166bc347908d9de6b0ce2aed2e
-  last_committed_turn: 11
-  previous_revision_hash: a97d96af6503761b60f2ddb20e22d53f54f4bae6f8bd7ced98c07c28a61b7287
-  last_candidate_hash: 2edb02823787d297e584798c404e12f2afa6be631b056bf53c2dbdcdd35f8448
+  last_transaction_id: tx-d622bc6c22614fcd9b2aca600e99ec06
+  last_committed_turn: 12
+  previous_revision_hash: 560c6e010a9a0b2afafc0a0c8db046fe247309cfab03a37872933c402e84fd29
+  last_candidate_hash: 175f130e0977641c5f7d25c866af4b1dfb6c56cacc86839e0a7214a074e46ed0
   applied_transaction_ids:
   - tx-413eae86780d496981a94b1d08250181
   - tx-5d7fe8c49f1242dca4bcebf850e979c1
@@ -34,6 +34,7 @@ transaction:
   - tx-494ffbbb97a445329ec17e07d179799c
   - tx-054e2f0203a34c7781f0963175b6be06
   - tx-d36bd2166bc347908d9de6b0ce2aed2e
+  - tx-d622bc6c22614fcd9b2aca600e99ec06
 hearing_progress:
   status: complete
   current_step: 7
@@ -66,8 +67,8 @@ runtime_state:
   style_conditions: []
   active_scene: turn
   scene_id: turn
-  context_pack_hash: 1cb386bdc705c5150b1c7e729444d94523d79e439ed522885785ec2482f312fc
-  last_validation_at: '2026-11-07T04:02:58+00:00'
+  context_pack_hash: 957cc6a2c88b668062451a7462433c0279e9f631f5433f187230b56c4b0e8e3d
+  last_validation_at: '2026-11-07T04:05:35+00:00'
   last_error: ''
 dice_state:
   tape_revision: machadan-tape-r1
@@ -137,6 +138,9 @@ world_state:
       status: 確定した事実
     白百合香房_客層:
       fact: 昼過ぎから夕方が混む。客は『蜜の味』の娼婦、商家の奥方、贈り物を探す冒険者。調合の注文は十日先まで埋まっていて繁盛している。売上の多くを婚約者ガルドの装備代や酒代の立て替えに回していて、店の金を月末まで動かせない
+      status: セレナ本人の話
+    白百合香房_売上:
+      fact: 売上は月におよそ8,000G。材料と瓶代、家賃を引いて手元に残るのは3,000G前後。そのうち2,000G近くをガルドの立て替えに回している。店の金は月末の締めまで動かさない決まり
       status: セレナ本人の話
   appearance_customization:
     version: 1
@@ -500,6 +504,7 @@ session_log:
   - Day1朝 白百合香房。〇〇が『医者に診せて治ったが借金になった』と嘘をつく。CHM対抗 20 vs セレナINT 16で成功。セレナは自分のせいで借金を負わせたと思い込み、何か償えることはないかと申し出る
   - Day1朝 白百合香房。〇〇が店の客入りを尋ねる。セレナは繁盛していると話しつつ、売上をガルドの立て替えに回していることを漏らす
   - Day1朝 白百合香房。〇〇が遠くから来たばかりだと明かし、この世界のことを尋ねる。セレナがノワールの街と暮らし方、男女のことを教える
+  - Day1朝 白百合香房。〇〇が月の売上を尋ね、セレナは戸惑いつつ数字を打ち明ける
 memory_log:
   encounters: []
   battles: []
