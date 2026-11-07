@@ -3,15 +3,15 @@ schema_version: 3
 game_version: 4.13.4
 campaign_id: main
 created_at: '2026-11-07T02:20:22+00:00'
-updated_at: '2026-11-07T08:44:48+00:00'
-save_revision: 37
+updated_at: '2026-11-07T14:58:09+00:00'
+save_revision: 38
 content_manifest_hash: 59b69015c8c813194e83a7c4b4d2b862af8f4074c2c616aa5325399df6f66460
 save_format_origin: 'System_Templates.md [TEMPLATE_SAVE] (SAVE_DATA: MachaDun v2.0)'
 transaction:
-  last_transaction_id: tx-42b9391ad4e24a01ae35086bc7ebbce9
-  last_committed_turn: 27
-  previous_revision_hash: ad8011d43f6161ff859af63ed04589877ef90b13bfa294720f96aaadd140aed0
-  last_candidate_hash: d3e349a1e3e9416d53597617cb46df9ebc572c15b722d6b82d2edf9d23619482
+  last_transaction_id: tx-5074df791c754561955e62137d7d283b
+  last_committed_turn: 28
+  previous_revision_hash: 725710cc1c714d587164c070383c4f094f9c37bebe2c543193cbe8f449b28a91
+  last_candidate_hash: f6ced13a90884301785e04dde1b0412ddf6128e1fcf59f8076c7fbe838c8910d
   applied_transaction_ids:
   - tx-413eae86780d496981a94b1d08250181
   - tx-5d7fe8c49f1242dca4bcebf850e979c1
@@ -50,6 +50,7 @@ transaction:
   - tx-4e8fe97ee58a43809a1d689297afee59
   - tx-22adb297af7f4edfa639bff8222d45e7
   - tx-42b9391ad4e24a01ae35086bc7ebbce9
+  - tx-5074df791c754561955e62137d7d283b
 hearing_progress:
   status: complete
   current_step: 7
@@ -80,10 +81,10 @@ active_script:
 runtime_state:
   ero_scene: false
   style_conditions: []
-  active_scene: event
-  scene_id: event
-  context_pack_hash: a5d1d3e6943007f353ab31ced081e64cc9655cf8a38ea3ef2b2be3addee6688f
-  last_validation_at: '2026-11-07T08:44:48+00:00'
+  active_scene: resume
+  scene_id: resume
+  context_pack_hash: 60411736b7ff15f228c6462ca7bdfadda3f6a60745875e5f8b68d37fface6b7e
+  last_validation_at: '2026-11-07T14:58:09+00:00'
   last_error: ''
 dice_state:
   tape_revision: machadan-tape-r1
@@ -181,6 +182,10 @@ world_state:
     ノワールの権利書:
       fact: ノワールの店の権利書は役所の透かし入り羊皮紙に書かれ、街の代表ロザリアの封蝋と登録番号が押されている。紙とペンだけでは似せられない。本物と照らし合わせれば役所ですぐ見分けがつく
       status: ミアの説明
+    ガルド_Day1昼の動き:
+      fact: Day1朝に銀の天秤亭へ入ったガルドは、昼前まで記入卓で仲間と話し込み、昼に入る少し前にギルドを出て東の衛兵通りの方へ向かった
+      source: Day1昼 ミルカの話
+      status: ミルカの目撃
   appearance_customization:
     version: 1
     overrides: {}
@@ -559,6 +564,7 @@ session_log:
   - Day1昼 ミアの店を出てぬれねずみ亭へ向かう途中、宿通りへ折れる角で、荷車から落ちたらしい小さな革袋を見つける。移動イベント d10=1、種別 d10=6
   - Day1昼 落とし物の革袋は拾わずに通り過ぎ、ぬれねずみ亭へ戻る。酒場でリリスが帳簿をつけている。環境 d10=5（なし）
   - Day1昼 ぬれねずみ亭から銀の天秤亭へ。移動 d10=5（なし）、環境 d10=3（掲示板前で女冒険者が男をからかう）。受付のミルカに迎えられる
+  - Day1昼 銀の天秤亭の受付。ミルカが登録札のない〇〇に用件を尋ね、登録の手順を案内。今朝の西大通りの揉め事の噂と、ガルドが少し前にギルドを出て東の衛兵通りの方へ向かったことを伝える
 memory_log:
   encounters: []
   battles: []
