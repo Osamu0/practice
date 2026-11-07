@@ -3,15 +3,15 @@ schema_version: 3
 game_version: 4.13.4
 campaign_id: main2
 created_at: '2026-11-07T05:39:36+00:00'
-updated_at: '2026-11-07T06:15:10+00:00'
-save_revision: 11
+updated_at: '2026-11-07T06:20:16+00:00'
+save_revision: 13
 content_manifest_hash: 59b69015c8c813194e83a7c4b4d2b862af8f4074c2c616aa5325399df6f66460
 save_format_origin: 'System_Templates.md [TEMPLATE_SAVE] (SAVE_DATA: MachaDun v2.0)'
 transaction:
-  last_transaction_id: tx-81105776402d4b0f89b9866b6936d62f
+  last_transaction_id: tx-7d5f26da67d44b61aab89454f67ee596
   last_committed_turn: 0
-  previous_revision_hash: 375d4025e89c7d01858f70ae5db5f981b9176b40f27d4affae71a83fcc19d99e
-  last_candidate_hash: 60e71c6465493963819a67063b9ae766e139b5fec979a016f666320300a2a7cf
+  previous_revision_hash: dbe58eb2cb1a267f88646c903d87940ff0ec373773c6f8741cdf057882737754
+  last_candidate_hash: 6b061971da81ae33e01dc023988c4e9b9c89911846714b8a69c77edc7cb9873b
   applied_transaction_ids:
   - tx-0345298f5a774b8ca7e3c0934d815725
   - tx-7f4c45d45dea4266ba65a98f8f4718e6
@@ -24,6 +24,8 @@ transaction:
   - tx-45c2c97bfcd842a8bd8ca13c6f0809e3
   - tx-228b43df137949f5a7b920fd4beaa205
   - tx-81105776402d4b0f89b9866b6936d62f
+  - tx-d212ef4949334eabb44c24f6b0132672
+  - tx-7d5f26da67d44b61aab89454f67ee596
 hearing_progress:
   status: complete
   current_step: 7
@@ -47,17 +49,17 @@ hearing_progress:
     desire: 1
     partner_preferences: 1
 active_script:
-  id: SCRIPT_OPENING_FIRE
+  id: SCRIPT_OPENING_TUTORIAL
   status: complete
   cursor: 1
-  checkpoint: fire-explained-and-granted
+  checkpoint: tutorial-complete
 runtime_state:
   ero_scene: false
   style_conditions: []
   active_scene: start
   scene_id: start
-  context_pack_hash: 78ac02b2392940eb0f8e99d5abd122af6fb400a20befe9cda9e3f504d8af8709
-  last_validation_at: '2026-11-07T06:15:10+00:00'
+  context_pack_hash: d5c8fce13acf45a7c19726a621f1ab493cb46f0db9311b974a4e8dfafc67bfb9
+  last_validation_at: '2026-11-07T06:20:16+00:00'
   last_error: ''
 dice_state:
   tape_revision: machadan-tape-r1
@@ -71,17 +73,27 @@ world_state:
   onboarding:
     allocation_rule: all3-plus15-v1
     body_received: true
-    allocation_complete: false
+    allocation_complete: true
     fire_granted: true
     fire_explained: true
-    tutorial_complete: false
+    tutorial_complete: true
     legacy_initial_allocation: false
     fire_grant_transaction_id: tx-228b43df137949f5a7b920fd4beaa205
+    initial_base_stats:
+      str: 7
+      def: 5
+      int: 6
+      spd: 3
+      tec: 3
+      chm: 9
   campaign_lore:
     RPの任せ方:
       kind: player_preference
       fact: RPモード。プレイヤーが『融通をきかせて』『そっちで決めて』など任せる趣旨を言った時だけ、その範囲で主人公の台詞・行動をGMが補ってよい。それ以外は代筆しない。
       status: confirmed
+    散策案内_Lilith_000:
+      character_id: Lilith_000
+      told: true
   appearance_customization:
     version: 1
     overrides: {}
@@ -152,6 +164,75 @@ world_state:
     camp_used: false
     boss_route_found: false
     resource_days_by_floor: {}
+  allocation_state:
+    version: 1
+    resolutions:
+    - request_id: alloc-6883b9f90a034f45888f858c83d4cc60
+      transaction_id: tx-d212ef4949334eabb44c24f6b0132672
+      mode: initial
+      actor_id: player
+      source_revision: 11
+      source_sha256: c5b8d11af15543e4a4df191c88f59034c5713eaa44a069cdd82d82412203daa0
+      profile_hash: 57ad0dbc70d81c91ff87d052693d153c42a6116b8ddf08fc71900be16f08da9e
+      values:
+        str: 7
+        def: 5
+        int: 6
+        spd: 3
+        tec: 3
+        chm: 9
+      before:
+        base_stats:
+          str: 3
+          def: 3
+          int: 3
+          spd: 3
+          tec: 3
+          chm: 3
+        growth_bonus:
+          str: 0
+          def: 0
+          int: 0
+          spd: 0
+          tec: 0
+          chm: 0
+        base_lp: 20
+        lp:
+          cur: 32
+          max: 32
+        mp:
+          cur: 6
+          max: 6
+      after:
+        base_stats:
+          str: 7
+          def: 5
+          int: 6
+          spd: 3
+          tec: 3
+          chm: 9
+        growth_bonus:
+          str: 0
+          def: 0
+          int: 0
+          spd: 0
+          tec: 0
+          chm: 0
+        base_lp: 20
+        lp:
+          cur: 33
+          max: 33
+        mp:
+          cur: 9
+          max: 9
+      consumed: null
+      fee_gold: 0
+      duration_minutes: 0
+      time_before: null
+      time_after: null
+      respec_rule: null
+      permanent_points_before: 18
+      permanent_points_after: 33
 skills: []
 skill_dormancy: []
 custom_abilities: []
@@ -209,12 +290,12 @@ player:
   gold: 0
   debt: 10000
   base_stats:
-    str: 3
-    def: 3
-    int: 3
+    str: 7
+    def: 5
+    int: 6
     spd: 3
     tec: 3
-    chm: 3
+    chm: 9
   growth_bonus:
     str: 0
     def: 0
@@ -244,29 +325,29 @@ player:
     tec: 0
     chm: 0
   effective_stats:
-    str: 6
-    def: 6
-    int: 6
+    str: 10
+    def: 8
+    int: 9
     spd: 6
     tec: 6
-    chm: 6
+    chm: 12
   base_lp: 20
   job_lp_bonus: 0
   fire_lp_bonus: 12
   temporary_lp_bonus: 0
   lp:
-    cur: 32
-    max: 32
+    cur: 33
+    max: 33
   mp:
-    cur: 6
-    max: 6
+    cur: 9
+    max: 9
   stats:
-    str: 6
-    def: 6
-    int: 6
+    str: 10
+    def: 8
+    int: 9
     spd: 6
     tec: 6
-    chm: 6
+    chm: 12
   equipment:
     weapon_instance_id: null
     armor_instance_id: null
@@ -276,6 +357,12 @@ player:
   statuses: []
   buffs: []
   ero_status: []
+  encumbrance:
+    version: 1
+    total_weight: 0
+    raw_penalty: 0
+    applied_penalty: 0
+  stat_lp_bonus: 1
 player_body: '男性体型: 身長=178cm / 筋肉=標準とムキムキの間 / サイズ=大きめ'
 desire: 攻めたい（女の子を泣かせたい・翻弄したい）・甘々・ラブラブ中心・れいぷごっこ等のCNC系
 ng: []
@@ -348,6 +435,9 @@ session_log:
   - day: 1
     time_of_day: 朝
     summary: 罰がないなら借金も要らないと主張したが、リリスは罰がないことと借りがないことは別、帳簿からは消さないと退けた。
+  - day: 1
+    time_of_day: 朝
+    summary: 能力配分を終え、リリスから帰還の腕輪と、仕事と仲間の窓口『銀の天秤亭』を教わった。街をぶらつくのも面白いと勧められた。
 memory_log:
   encounters: []
   battles: []
