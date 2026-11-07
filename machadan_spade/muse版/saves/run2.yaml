@@ -3,15 +3,15 @@ schema_version: 3
 game_version: 4.13.4
 campaign_id: run2
 created_at: '2026-11-07T09:22:51+00:00'
-updated_at: '2026-11-07T14:22:32+00:00'
-save_revision: 68
+updated_at: '2026-11-07T14:27:26+00:00'
+save_revision: 69
 content_manifest_hash: 59b69015c8c813194e83a7c4b4d2b862af8f4074c2c616aa5325399df6f66460
 save_format_origin: 'System_Templates.md [TEMPLATE_SAVE] (SAVE_DATA: MachaDun v2.0)'
 transaction:
-  last_transaction_id: tx-16249569d950451394682c2b0903379b
-  last_committed_turn: 59
-  previous_revision_hash: 16166d1128deb4ba8bfa77287b86e77dc6d4efe7f55c564d052ef62988a02585
-  last_candidate_hash: dd3077f6fe529a3da9cfbef77952bbd3e040532cf28bf35206462dc1f93c6c8b
+  last_transaction_id: tx-6e05da2768554450b09c2abc75817acd
+  last_committed_turn: 60
+  previous_revision_hash: 63730060eb0374943c32db55ceeefc8c3f19c62a96b0fdf24d16f0027d1e8faa
+  last_candidate_hash: c1e4bd75105814125180863ffeefcb6190f9f041a5149d65eca5b345eab2ded5
   applied_transaction_ids:
   - tx-3205c8b3a3f04e16a35b2f1739e25e5a
   - tx-6a86abc0b7cc4f0aa672870ded718bc7
@@ -81,6 +81,7 @@ transaction:
   - tx-077e59ff7705487fa83ef61caa2adfcf
   - tx-b0a3b54eac4d492eb6568db532911219
   - tx-16249569d950451394682c2b0903379b
+  - tx-6e05da2768554450b09c2abc75817acd
 hearing_progress:
   status: complete
   current_step: 7
@@ -113,8 +114,8 @@ runtime_state:
   style_conditions: []
   active_scene: turn
   scene_id: turn
-  context_pack_hash: 3829c5cb0e8e02fbdf51064c3bb8bd555387aba1dadc21c27f23b62b27999015
-  last_validation_at: '2026-11-07T14:22:32+00:00'
+  context_pack_hash: 5981b74b8480c132a7cbf0b9749586f2ce55a64ce44c99ec2c962fe40d028408
+  last_validation_at: '2026-11-07T14:27:26+00:00'
   last_error: ''
 dice_state:
   tape_revision: machadan-tape-r1
@@ -200,6 +201,7 @@ world_state:
       status: Day2昼過ぎに初対面（サロン）
       soiree_escort: Day3夜会の同伴を頼んでいた親戚の甥がDay1から熱で寝込み、同伴者が空いている（執事がDay1夕に白糸の間でこぼした話）。ヴィオレッタは機嫌が悪い
       appearance: 艶やかな黒髪を高く結い上げ、細く長い首、抜けるように白い肌、切れ長の目。豊かな胸と細い腰。深い紫の部屋着に大粒の紫水晶の首飾り
+      background: 夫の死の翌月から自ら帳場に座り商会を切り盛り。夜遅くまで帳簿、朝は早い。食が細い。笑い方をまだ思い出せていない（執事談）
     計画_ヴィオレッタの夜会同伴:
       proposed_by: クラリス（〇〇の『紹介料と相手代の二段取り』案を修正）
       plan: 〇〇を夜会の同伴者としてヴィオレッタに紹介。同伴の礼はヴィオレッタから〇〇へ。クラリスは紹介料を取らず、〇〇の夜会服をヴィオレッタの注文として仕立て代金を得る。夜会後のことは二人次第
@@ -218,6 +220,11 @@ world_state:
       name: セバスチャン
       role: ヴィオレッタ邸の銀髪の老執事
       notes: Day2、〇〇にお茶を出し、ヴィオレッタが夜会の相手を失って窓の外ばかり見ていたと独り言のように漏らす
+    NPC_ドルトン商会の若旦那:
+      name: ドルトン商会の若旦那（名前未確認）
+      role: 他商会の跡取り
+      notes: ヴィオレッタにしきりに縁組の使いをよこす。狙いはヴィオレッタの商隊と倉（執事談）。Day3の夜会にも来て、連れのいないヴィオレッタの隣に真っ先に来るはず
+      status: 未対面
   appearance_customization:
     version: 1
     overrides: {}
@@ -705,6 +712,7 @@ session_log:
   - Day2昼過ぎ 〇〇がクラリスに『馬子にも衣装』と言い、ドレスの箱を抱えてヴィオレッタ邸へ。移動 d10=5（なし）、環境 d10=3（門脇で女中と庭師の戯れ）。老執事に案内され2階サロンでヴィオレッタと対面。ヴィオレッタは〇〇の肩の線に目を留め、誰かと尋ねる
   - Day2昼過ぎ ヴィオレッタ邸サロン。〇〇が名乗る。ヴィオレッタは短く応じ、ドレスの試着のためクラリスと奥の部屋へ。〇〇はサロンで待つよう言われ、老執事セバスチャンが紅茶を出す。サロンには亡夫らしい男との肖像画。執事は、初対面の男をサロンに残すのは珍しい、奥様は夜会の相手を失って沈んでいたと漏らす
   - Day2昼過ぎ ヴィオレッタ邸サロン。〇〇が執事に夜会のことを尋ねる。セバスチャンは、商人ギルド主催で今年はマルセル家の大広間、踊りと商談の場、独り身の女当主の奥様には商会目当ての男が群がる、同伴者は黙って控えることが肝要と説明。奥の部屋でヴィオレッタがドレスを気に入った様子
+  - Day2昼過ぎ ヴィオレッタ邸サロン。〇〇が面と向かって褒めるのは恥ずかしいと言い、執事の心配事を尋ねる。セバスチャンは奥様の働きすぎと食の細さ、ドルトン商会の若旦那が縁組を迫り商隊と倉を狙っていて夜会にも来るはずだと打ち明ける。ヴィオレッタが続き部屋から『殿方の目で見てほしい』と〇〇を呼ぶ
 memory_log:
   encounters: []
   battles: []
