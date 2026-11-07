@@ -3,15 +3,15 @@ schema_version: 3
 game_version: 4.13.4
 campaign_id: run2
 created_at: '2026-11-07T09:22:51+00:00'
-updated_at: '2026-11-07T13:59:33+00:00'
-save_revision: 64
+updated_at: '2026-11-07T14:01:58+00:00'
+save_revision: 65
 content_manifest_hash: 59b69015c8c813194e83a7c4b4d2b862af8f4074c2c616aa5325399df6f66460
 save_format_origin: 'System_Templates.md [TEMPLATE_SAVE] (SAVE_DATA: MachaDun v2.0)'
 transaction:
-  last_transaction_id: tx-fd998d5931024e4da88307c5be40a6f1
-  last_committed_turn: 55
-  previous_revision_hash: 4d5c9d1b8269f4de2e9cee7932fc4dc8b5b2edbe7b374cda0a2be89bdf9e03c0
-  last_candidate_hash: cd4d1504811dc7088e375a273839c25c83ee2f40ba6323f8cd2aba5b8713bc0c
+  last_transaction_id: tx-b5926e7bc14d471c9b5daf05965cb093
+  last_committed_turn: 56
+  previous_revision_hash: 3718a4738c6a16ae8bed951b5ad5fe44c25b0fbdead98617329d8e50cbed34cf
+  last_candidate_hash: 0f99a3432fae8d454a8019a11bf02e7a322a1e2b4f0757a7153e04659261c64c
   applied_transaction_ids:
   - tx-3205c8b3a3f04e16a35b2f1739e25e5a
   - tx-6a86abc0b7cc4f0aa672870ded718bc7
@@ -77,6 +77,7 @@ transaction:
   - tx-f7508b9de2c243f8809acb0928c4a66a
   - tx-e3833ad090ad4e8a8d8d886fca6e8807
   - tx-fd998d5931024e4da88307c5be40a6f1
+  - tx-b5926e7bc14d471c9b5daf05965cb093
 hearing_progress:
   status: complete
   current_step: 7
@@ -107,10 +108,10 @@ active_script:
 runtime_state:
   ero_scene: false
   style_conditions: []
-  active_scene: turn
-  scene_id: turn
-  context_pack_hash: 028578680ae0b4f8a9c7ff95b16f9c9de4a74fb3c20f156e42e41bc123a0bfeb
-  last_validation_at: '2026-11-07T13:59:33+00:00'
+  active_scene: shop
+  scene_id: shop
+  context_pack_hash: 10f7eff5e64c0d275d62eb66192842297d80aa23dbaa24040fabe4453be1e7a4
+  last_validation_at: '2026-11-07T14:01:58+00:00'
   last_error: ''
 dice_state:
   tape_revision: machadan-tape-r1
@@ -184,7 +185,7 @@ world_state:
       pickup: 白糸の間
       stats: DEF+1／重量1
       extra: 裏地の色を受取時に選べる（追加料金なし）
-      status: Day2朝に仕上がり。裏地の色選びを待って受け渡し（残金2Gは免除）
+      status: Day2朝に受け渡し済み（裏地は深い葡萄色。ヴィオレッタの好きな色としてクラリスが選んだ）
     クラリス宅への宿泊:
       summary: Day1昼、〇〇が白糸の間に泊まりたいと頼み、クラリスは今夜もその先も泊まってよいと承諾。2階は寝台ひとつの狭い住まい。宿代は取らない（店の商いではないため）
       status: Day1夜に初めて泊まった（宿代なし）
@@ -555,7 +556,7 @@ inventory:
     max_slots: 16
     skill_bonus_slots: 0
     effective_max_slots: 16
-    used_slots: 1
+    used_slots: 2
   carried_stacks:
   - stack_id: stack-run2-honey-cake-1
     item_def_id: itemdef-run2-honey-cake-3
@@ -583,7 +584,35 @@ item_definitions:
   balance_anchor:
     kind: estimated_value
     value_g: 15
-item_instances: []
+- item_def_id: itemdef-run2-adventurer-clothes-shiraito
+  name: 冒険者の服（白糸の間仕立て・葡萄色の裏地）
+  category: armor
+  specification:
+    category: armor
+    slot: armor
+    def: 1
+    weight: 1
+    base_item: 冒険者の服
+    note: 〇〇の寸法で仕立て、股まわりにゆとり。肘膝に革の当て布、縫い目二重。襟裏・袖口・前合わせの内側に深い葡萄色の裏地
+  provenance:
+    source_kind: purchase
+    source: 白糸の間（クラリス）
+    price_g: 50
+  balance_anchor:
+    kind: item_database
+    ref: 冒険者の服 50G / DEF+1 / 重量1
+item_instances:
+- instance_id: inst-run2-adventurer-clothes-1
+  item_def_id: itemdef-run2-adventurer-clothes-shiraito
+  name: 冒険者の服（白糸の間仕立て・葡萄色の裏地）
+  location: bag
+  slot_cost: 1
+  owner_character_id: player
+  specification_snapshot:
+    category: armor
+    slot: armor
+    def: 1
+    weight: 1
 party: []
 inn_reserve: []
 enterprise_state:
@@ -660,6 +689,7 @@ session_log:
   - Day1夜 白糸の間2階。〇〇が休んで眠る。夜、クラリスが夕飯（豆と腸詰めの煮込み・黒パン）で起こす。冒険者の服は縫い上がり、仕上げは明朝。ヴィオレッタの執事から、夜会の同伴予定だった甥が熱で寝込んだと聞いたと伝える。休憩 d10=1、種別
     d10=6（耳寄りな情報）
   - Day1夜 白糸の間2階。〇〇が夕飯を食べて就寝。クラリスが背中に寄り添って眠る（Hなし）。Day2朝、クラリスが仕上がった冒険者の服を持ってきて、約束の裏地の色（薄紅・空色・葡萄色・濃紺）を選ばせる
+  - Day2朝 白糸の間2階。〇〇が裏地はウケのいい色にと任せる。クラリスはヴィオレッタが紫好きだからと深い葡萄色を選び、その場で縫い付けて冒険者の服を渡す
 memory_log:
   encounters: []
   battles: []
