@@ -3,15 +3,15 @@ schema_version: 3
 game_version: 4.13.4
 campaign_id: main
 created_at: '2026-11-07T02:20:22+00:00'
-updated_at: '2026-11-07T04:23:00+00:00'
-save_revision: 26
+updated_at: '2026-11-07T04:25:35+00:00'
+save_revision: 27
 content_manifest_hash: 59b69015c8c813194e83a7c4b4d2b862af8f4074c2c616aa5325399df6f66460
 save_format_origin: 'System_Templates.md [TEMPLATE_SAVE] (SAVE_DATA: MachaDun v2.0)'
 transaction:
-  last_transaction_id: tx-f4964227c6464496a66e297b1a41989c
-  last_committed_turn: 16
-  previous_revision_hash: d0701e5dc10b506d75ce78a2f56d241550cfec02dbe81b59a6d3c81725def807
-  last_candidate_hash: a8746b0c543853e1efe2a856820fb768f539be4d3ba24cd4281e26de789da15e
+  last_transaction_id: tx-99c5ddab1aa745d6b98b4f803fd66241
+  last_committed_turn: 17
+  previous_revision_hash: 368f22a2c0f5631171ea46e42b35cd68f60e8216838cfa6bb6bde5ba602aca44
+  last_candidate_hash: f6191554384188e484299f909e2f64834cd62882a96f5eb98808ca297b1bd129
   applied_transaction_ids:
   - tx-413eae86780d496981a94b1d08250181
   - tx-5d7fe8c49f1242dca4bcebf850e979c1
@@ -39,6 +39,7 @@ transaction:
   - tx-2f196808f4804c4f90abf88443bec60e
   - tx-55c1823b3a71422e842e578f4dd42545
   - tx-f4964227c6464496a66e297b1a41989c
+  - tx-99c5ddab1aa745d6b98b4f803fd66241
 hearing_progress:
   status: complete
   current_step: 7
@@ -71,13 +72,13 @@ runtime_state:
   style_conditions: []
   active_scene: turn
   scene_id: turn
-  context_pack_hash: 4a5802fc1a9a4291836cdf4689327b77f0685bf77d6aed17a5b8133b3913d879
-  last_validation_at: '2026-11-07T04:23:00+00:00'
+  context_pack_hash: 3df2022b4874203f6db66c6fc9dc74791a1ef6d29d02e6e63cfb579973ca6cd9
+  last_validation_at: '2026-11-07T04:25:35+00:00'
   last_error: ''
 dice_state:
   tape_revision: machadan-tape-r1
   dice_cursor_d6: 0
-  dice_cursor_d10: 19
+  dice_cursor_d10: 23
 fire_state:
   holders:
   - player
@@ -147,6 +148,10 @@ world_state:
     白百合香房_売上:
       fact: 売上は月におよそ8,000G。材料と瓶代、家賃を引いて手元に残るのは3,000G前後。そのうち2,000G近くをガルドの立て替えに回している。店の金は月末の締めまで動かさない決まり
       status: セレナ本人の話
+    ミアの情報_ガルド:
+      fact: ミアはガルドについて、セレナの知らない話を握っている。情報料は30G（現金）。前払いのみ
+      teaser: ガルドは天秤亭で仕事の話をしているはずの時間に、南東の歓楽通りで目撃されている
+      status: ミアの申し出（未購入）
   appearance_customization:
     version: 1
     overrides: {}
@@ -514,6 +519,7 @@ session_log:
   - Day1朝 白百合香房。〇〇が『まだ愛しているのか』と問う。セレナは結婚ではなく婚約だと正し、恩と習慣で一緒にいるだけかもしれないと迷いを口にする
   - Day1朝 〇〇がセレナに『少し待っていてくれ』と告げて白百合香房を出て、中央広場のミアの店へ。移動 d10=4（なし）、環境 d10=2（広場で吟遊詩人と踊り子）
   - Day1昼前 ミアの店。〇〇が奥で話したいと頼む。ミアは私室には入れず、店先に休憩中の札を掛けて会計台で二人きりで聞くことにする
+  - Day1昼前 ミアの店。〇〇がタダで情報を引き出そうとする。CHM対抗 18 vs ミア 28で失敗。ミアはセレナとは友達だと言い返し、さわりだけ教えて、本題は情報料30Gと持ちかける
 memory_log:
   encounters: []
   battles: []
