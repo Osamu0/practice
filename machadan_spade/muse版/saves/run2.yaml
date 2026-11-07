@@ -3,15 +3,15 @@ schema_version: 3
 game_version: 4.13.4
 campaign_id: run2
 created_at: '2026-11-07T09:22:51+00:00'
-updated_at: '2026-11-07T13:47:10+00:00'
-save_revision: 60
+updated_at: '2026-11-07T13:49:48+00:00'
+save_revision: 61
 content_manifest_hash: 59b69015c8c813194e83a7c4b4d2b862af8f4074c2c616aa5325399df6f66460
 save_format_origin: 'System_Templates.md [TEMPLATE_SAVE] (SAVE_DATA: MachaDun v2.0)'
 transaction:
-  last_transaction_id: tx-e5ba36aba16d47a281c4ba7022901fd0
-  last_committed_turn: 51
-  previous_revision_hash: 8c0d76fd84d9034dbf3acdf194733ffa7f6021aa42dbbbca8364133da081b68a
-  last_candidate_hash: d86191ae76a38f03257ced906d45ddeea50ad63bac329de2bce46af51e17c635
+  last_transaction_id: tx-c4c5fdb718604ea98892ffa1f46cf42b
+  last_committed_turn: 52
+  previous_revision_hash: 8c2b628b8ac76ef8cdb4ae0b477a90ae1090677002fe1f753406e1b125a9619f
+  last_candidate_hash: bac3f3826bb04717fbc17a581f8354f5e063ec1440326c188f12ed4d47ee9d06
   applied_transaction_ids:
   - tx-3205c8b3a3f04e16a35b2f1739e25e5a
   - tx-6a86abc0b7cc4f0aa672870ded718bc7
@@ -73,6 +73,7 @@ transaction:
   - tx-3a9f2a05d3e14a82bd9931ebe3307628
   - tx-eae9857fa2dc4599919bff8a26b4012b
   - tx-e5ba36aba16d47a281c4ba7022901fd0
+  - tx-c4c5fdb718604ea98892ffa1f46cf42b
 hearing_progress:
   status: complete
   current_step: 7
@@ -105,8 +106,8 @@ runtime_state:
   style_conditions: []
   active_scene: turn
   scene_id: turn
-  context_pack_hash: f45346ddc7c7ff336fc4c55acfd4d79a168ed39e67b13aee40212601771c0949
-  last_validation_at: '2026-11-07T13:47:10+00:00'
+  context_pack_hash: 59489e4524b1a55f9c02746ade4424e676b708eab9bd1450e64983bf8daf1bbd
+  last_validation_at: '2026-11-07T13:49:48+00:00'
   last_error: ''
 dice_state:
   tape_revision: machadan-tape-r1
@@ -193,7 +194,9 @@ world_state:
     計画_ヴィオレッタの夜会同伴:
       proposed_by: クラリス（〇〇の『紹介料と相手代の二段取り』案を修正）
       plan: 〇〇を夜会の同伴者としてヴィオレッタに紹介。同伴の礼はヴィオレッタから〇〇へ。クラリスは紹介料を取らず、〇〇の夜会服をヴィオレッタの注文として仕立て代金を得る。夜会後のことは二人次第
-      status: 提案段階（〇〇の返答待ち）
+      constraints: クラリスは代金の上乗せ・ごまかしを拒否
+      advice: 初回の夜会では礼の話をせず退屈させない。帰りの馬車で次を頼まれたら、少し困った顔で借金があると打ち明けると気前よく出してくれるはず（クラリス談）
+      status: 提案段階
   appearance_customization:
     version: 1
     overrides: {}
@@ -643,6 +646,7 @@ session_log:
   - Day1昼過ぎ 白糸の間2階（エロシーン中）。〇〇が金持ちで欲に飢えた相手をして稼ぐと言う。クラリスは寂しさを隠しつつ、未亡人ヴィオレッタ（34歳・蔦の屋敷）と裏娼館『蜜の味』の男娼の噂を教える。明日仕上がりの服で行けば目に留まると助言し、仕事の後は帰ってきてとねだる
   - Day1昼過ぎ 白糸の間2階（エロシーン中）。〇〇がヴィオレッタの年と資産を尋ねる。クラリスは見た目は若い美人で、ドレスに月300〜800Gを惜しまず払い、商会もかなり裕福と話す。金目当てには冷たいので、がっつかず相手から欲しくなるようにと助言し、少し拗ねる
   - Day1昼過ぎ 白糸の間2階（エロシーン中）。〇〇が『クラリスが紹介料、〇〇が相手代』の二段取りで稼ごうと提案。クラリスはそのままでは信用を失うと指摘し、〇〇を夜会の同伴者として紹介し、自分は〇〇の夜会服をヴィオレッタの注文として仕立てて稼ぐ案を出す
+  - Day1昼過ぎ 白糸の間2階（エロシーン中）。〇〇が仕立て代に自分への金を上乗せしろと言う。クラリスはお客様の代金をごまかすことはできないと拒否。代わりに、初回は礼を求めず退屈させず、次を頼まれた時に借金を打ち明けると気前よく出すはずと助言。だめならお仕置きをとねだる
 memory_log:
   encounters: []
   battles: []
