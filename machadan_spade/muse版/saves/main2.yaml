@@ -3,31 +3,35 @@ schema_version: 3
 game_version: 4.13.4
 campaign_id: main2
 created_at: '2026-11-07T05:39:36+00:00'
-updated_at: '2026-11-07T05:43:32+00:00'
-save_revision: 3
+updated_at: '2026-11-07T05:52:09+00:00'
+save_revision: 4
 content_manifest_hash: 59b69015c8c813194e83a7c4b4d2b862af8f4074c2c616aa5325399df6f66460
 save_format_origin: 'System_Templates.md [TEMPLATE_SAVE] (SAVE_DATA: MachaDun v2.0)'
 transaction:
-  last_transaction_id: tx-a944254ec58d4051a90afaca4d05c46b
+  last_transaction_id: tx-72d6317ba1c64e3a92b91f05d67032b4
   last_committed_turn: 0
-  previous_revision_hash: 05c2fa7624189a615fbc83df4f3295762a33a635991bbf6077c7a3a62fb4659c
-  last_candidate_hash: 11f07a351cce1c05d3297338c8350a32aafd8d69ade706a04f15cc2dfdd4ffeb
+  previous_revision_hash: 64bf9f482fc719b259c76d72c8108eeb29d4ad3da946aea83c67757434b373cc
+  last_candidate_hash: 921b9fe8cf00e019b8980bc1d2ee6297a842018517b30c1c48fe6276c9b6906d
   applied_transaction_ids:
   - tx-0345298f5a774b8ca7e3c0934d815725
   - tx-7f4c45d45dea4266ba65a98f8f4718e6
   - tx-a944254ec58d4051a90afaca4d05c46b
+  - tx-72d6317ba1c64e3a92b91f05d67032b4
 hearing_progress:
   status: in_progress
-  current_step: 3
+  current_step: 4
   completed_steps:
   - playmode
   - profile
+  - body_profile
   widget_ids:
     playmode: chat-tx-0345298f5a774b8ca7e3c0934d815725
     profile: chat-tx-a944254ec58d4051a90afaca4d05c46b
+    body_male: chat-tx-72d6317ba1c64e3a92b91f05d67032b4
   widget_state_versions:
     playmode: 1
     profile: 1
+    body_male: 1
 active_script:
   id: ''
   status: idle
@@ -39,7 +43,7 @@ runtime_state:
   active_scene: start
   scene_id: start
   context_pack_hash: 6da4e59baa090d04c34926e05823dc480f184dce2edbfd3145baa5a4268f10bd
-  last_validation_at: '2026-11-07T05:43:32+00:00'
+  last_validation_at: '2026-11-07T05:52:09+00:00'
   last_error: ''
 dice_state:
   tape_revision: machadan-tape-r1
@@ -255,7 +259,7 @@ player:
   statuses: []
   buffs: []
   ero_status: []
-player_body: ''
+player_body: '男性体型: 身長=178cm / 筋肉=標準とムキムキの間 / サイズ=大きめ'
 desire: ''
 ng: []
 yuri: ''
