@@ -1,0 +1,1182 @@
+schema: MachaDun_Save_Muse_v3
+schema_version: 3
+game_version: 4.13.4
+campaign_id: main2
+created_at: '2026-11-07T05:39:36+00:00'
+updated_at: '2026-11-07T08:00:09+00:00'
+save_revision: 48
+content_manifest_hash: 59b69015c8c813194e83a7c4b4d2b862af8f4074c2c616aa5325399df6f66460
+save_format_origin: 'System_Templates.md [TEMPLATE_SAVE] (SAVE_DATA: MachaDun v2.0)'
+transaction:
+  last_transaction_id: tx-2b0b31ce8b86403986f11b9ee26f6814
+  last_committed_turn: 34
+  previous_revision_hash: e42cded26f760497cce33cb478338192f67313acb0b798669317f4f467a0fce2
+  last_candidate_hash: ae3431605374027275b769319f2ac03c8028697fc4bae1b04f063318d4097be2
+  applied_transaction_ids:
+  - tx-0345298f5a774b8ca7e3c0934d815725
+  - tx-7f4c45d45dea4266ba65a98f8f4718e6
+  - tx-a944254ec58d4051a90afaca4d05c46b
+  - tx-72d6317ba1c64e3a92b91f05d67032b4
+  - tx-dd77d85996e04828a00affab0cec8bd5
+  - tx-3046e6e727824f9098c6f1ce8966eb21
+  - tx-b9e094cb496d469c921b055af6aceced
+  - tx-1dba03997849465891aaea1f9957eae0
+  - tx-45c2c97bfcd842a8bd8ca13c6f0809e3
+  - tx-228b43df137949f5a7b920fd4beaa205
+  - tx-81105776402d4b0f89b9866b6936d62f
+  - tx-d212ef4949334eabb44c24f6b0132672
+  - tx-7d5f26da67d44b61aab89454f67ee596
+  - tx-f40d2b9bbaf944ca88e22162cd11767b
+  - tx-9f9087eb80614c5dbe5fcedf97e8912b
+  - tx-123b472546074723a9d03f940568f4f2
+  - tx-ae4c6a66e7bc455eb194f8a29959d0de
+  - tx-a2760dad95944defb1d555fae82d348c
+  - tx-c9821096bc87401d86431c1dce18e889
+  - tx-82e9dd4c74d945358425434a1df3eb9c
+  - tx-4b16baa5f4a141a9a464021e9c7f1eab
+  - tx-816aef2067aa4f1492599881420f8168
+  - tx-baa57bf41fc246c4920ad229b5f0b328
+  - tx-b312c8a951094ed7a27949a26bfaebf5
+  - tx-6e87781ec16640e691939554018200e4
+  - tx-9c75546e0496459590f8f586c852d6b0
+  - tx-1883c07d67734cc4b5a95733d38b0294
+  - tx-4e62a94fe47f4d03b2c523d8881ba646
+  - tx-352e4baebf434368ababf3b0b803c863
+  - tx-c0623ceb89d84c6daafdf08cf21a8cb4
+  - tx-08c6f1caf0854f6f96e2f9a0a22e6814
+  - tx-b85ffa0f8d8645d6a3a22d97c35dd71a
+  - tx-effe881bdef847429ea625988d08c8dc
+  - tx-d08c351390034b67a530ac9e5b24dc33
+  - tx-e146e525bf39441c8bbf9bddf055fca2
+  - tx-603df788dadf470f86d19214bba3c694
+  - tx-451f116a70824c709d50ea561c5c24d3
+  - tx-c77a782c6d6e4ccd9032c1787bba0171
+  - tx-535abb7bc9324261b6823227b61ae528
+  - tx-1ea2cdec0cb548749cc5aa643d1b8703
+  - tx-05698ae2892f407f8ee75c60266683d1
+  - tx-3aaf1d89a70a40938fa7678bae4c0f91
+  - tx-6cdb5b37bcd0447f8936d4b66caab0bf
+  - tx-b5ef3664324d48f490ba081e73fb8d8c
+  - tx-7f4134010e5a4bd2a00f506f02254ec0
+  - tx-c6aa87372e9446b49fcf272391eb62bd
+  - tx-30c53d41fc5d427196b3f03646d5b967
+  - tx-2b0b31ce8b86403986f11b9ee26f6814
+hearing_progress:
+  status: complete
+  current_step: 7
+  completed_steps:
+  - playmode
+  - profile
+  - body_profile
+  - desire
+  - partner
+  - style
+  widget_ids:
+    playmode: chat-tx-0345298f5a774b8ca7e3c0934d815725
+    profile: chat-tx-a944254ec58d4051a90afaca4d05c46b
+    body_male: chat-tx-72d6317ba1c64e3a92b91f05d67032b4
+    desire: chat-tx-dd77d85996e04828a00affab0cec8bd5
+    partner_preferences: chat-tx-3046e6e727824f9098c6f1ce8966eb21
+  widget_state_versions:
+    playmode: 1
+    profile: 1
+    body_male: 1
+    desire: 1
+    partner_preferences: 1
+active_script:
+  id: SCRIPT_OPENING_TUTORIAL
+  status: complete
+  cursor: 1
+  checkpoint: tutorial-complete
+runtime_state:
+  ero_scene: false
+  style_conditions: []
+  active_scene: combat
+  scene_id: combat
+  context_pack_hash: cdaf4df62c96142a1bd59744ef94aa4dfbd6c9aac452ec328079be80c3df3d82
+  last_validation_at: '2026-11-07T08:00:09+00:00'
+  last_error: ''
+dice_state:
+  tape_revision: machadan-tape-r1
+  dice_cursor_d6: 1
+  dice_cursor_d10: 92
+fire_state:
+  holders:
+  - player
+  notes: ''
+world_state:
+  onboarding:
+    allocation_rule: all3-plus15-v1
+    body_received: true
+    allocation_complete: true
+    fire_granted: true
+    fire_explained: true
+    tutorial_complete: true
+    legacy_initial_allocation: false
+    fire_grant_transaction_id: tx-228b43df137949f5a7b920fd4beaa205
+    initial_base_stats:
+      str: 7
+      def: 5
+      int: 6
+      spd: 3
+      tec: 3
+      chm: 9
+  campaign_lore:
+    RPの任せ方:
+      kind: player_preference
+      fact: RPモード。プレイヤーが『融通をきかせて』『そっちで決めて』など任せる趣旨を言った時だけ、その範囲で主人公の台詞・行動をGMが補ってよい。それ以外は代筆しない。
+      status: confirmed
+    散策案内_Lilith_000:
+      character_id: Lilith_000
+      told: true
+    NPC_クラリス:
+      kind: one_off_npc
+      fact: 迷宮帰りの女冒険者クラリス。26歳の成人。長身（約172cm）で亜麻色の髪を結い上げ、紺の外套に大きな背嚢、細身の剣。胸が豊か。落ち着いた丁寧語。Day1朝、宿通りと西大通りの角で主人公と出会い、ギルドと仲間募集の掲示板を教えた。
+      status: confirmed
+    仲間候補_エステル:
+      kind: companion_candidate
+      name: エステル
+      age: 18
+      gender: 女性
+      job: 騎士
+      race: 人間
+      height_cm: 166
+      height_band: 長身
+      build: モデル体型
+      bust: 豊満
+      main_personality: 好み寄せ：清楚系で可愛い系（プレイヤーの相手像）
+      sub_personality: ドM
+      stats:
+        str: 9
+        def: 9
+        int: 3
+        spd: 5
+        tec: 4
+        chm: 3
+      lp: 33
+      mp: 3
+      lp_note: 20+前衛10+DEF由来3
+      place: 銀の天秤亭 記入卓
+      generation_rolls: 好み判定2/副性格付与5→7,8/職業10,1/年齢4,1/身長10,7
+      status: presented_on_board
+      appearance: 淡い金髪を後ろでひとつに束ねる。青い目。銀の胸当て。丁寧な言葉づかい。
+    仲間候補_リゼット:
+      kind: companion_candidate
+      name: リゼット
+      age: 18
+      gender: 女性
+      job: 魔法使い
+      race: 人間
+      height_cm: 163
+      height_band: 長身
+      build: モデル体型
+      bust: 豊満
+      main_personality: 好み寄せ：清楚系で可愛い系（プレイヤーの相手像）
+      sub_personality: 清楚ビッチ
+      stats:
+        str: 3
+        def: 3
+        int: 10
+        spd: 4
+        tec: 10
+        chm: 3
+      lp: 20
+      mp: 10
+      lp_note: 20+後衛0+DEF由来0
+      place: 銀の天秤亭 記入卓
+      generation_rolls: 好み判定5/副性格付与3→1,6/職業4,2/年齢5,1/身長9,4
+      status: presented_on_board
+      appearance: 栗色の長い髪、白い魔法使いの外套。鈴を転がすような笑い方。
+    仲間候補_メイリン:
+      kind: companion_candidate
+      name: メイリン
+      age: 20
+      gender: 女性
+      job: 武闘家
+      race: 人間
+      height_cm: 162
+      height_band: 長身
+      build: 筋肉質
+      bust: 標準
+      main_personality: おっとり
+      sub_personality: 褒められ弱い
+      stats:
+        str: 8
+        def: 7
+        int: 3
+        spd: 5
+        tec: 7
+        chm: 3
+      stats_note: 特殊ジョブ。戦士の型を土台
+      lp: 32
+      mp: 3
+      lp_note: 20+前衛10+DEF由来2
+      place: 銀の天秤亭 記入卓
+      generation_rolls: 好み判定8(ランダム)/副性格付与1→6,5/性格5,3/身長(帯)/体格4,6/胸6,8/職業3,6/年齢2,8/身長10,3
+      status: presented_on_board
+      appearance: 黒髪を高い位置で団子にまとめる。袖のない武闘着。語尾を伸ばすのんびりした話し方。
+    相棒ベル:
+      kind: partner
+      fact: 召喚士の相棒ベル。肩に乗る小さな黒い獣（狐の耳・長い尻尾・蝙蝠の小さな翼・金の目）。主人公と同じ気質で損得にうるさく口が悪い。一人称は俺。常に一緒にいる。
+      status: confirmed
+      memory_link: ベルは主人公の魔力から生まれ、主人公の記憶（リリスの帳簿など）がおおよそ流れ込んでいる。全部ではない
+    散策案内_Milka_004:
+      character_id: Milka_004
+      told: true
+    NPC_コノハ:
+      kind: one_off_npc
+      fact: 狐の獣人コノハ。18歳の成人。とても小柄（約135cm）、標準の体格で胸は大きめ。橙色の狐耳と尻尾。体育会系でハキハキ元気、一人称あたし。自分はサキュバスだと言い張り、サキュバス女学園への他種族編入に男性経験が要るため相手を探している。Day1朝、中央広場の噴水で主人公に声をかけた。
+      generation_rolls: 好み判定8(ランダム)/副性格付与7(なし)/性格3,2/身長7,6/体格3,10/胸6,9/種族7,8
+      status: confirmed
+    店_お香と干し花の屋台:
+      kind: shop
+      place_id: CENTRAL_PLAZA
+      room_id: CENTRAL_PLAZA_STALLS
+      fact: 中央広場南西の露店列のいちばん端、紫の布をかけた屋台。老婆がお香と干した花を売る。品揃えと価格は未確定。
+      status: confirmed
+    場所_白百合香房:
+      kind: shop
+      place_id: LORE_SHIRAYURI_KOUBOU
+      parent: NOIR_CITY_WEST
+      name: 白百合香房
+      owner: セレナ
+      position: 西大通りの路地口から路地をまっすぐ入り、ひとつ目の角を右。白い百合の看板の小さな石造りの店。扉に鈴
+      fact: 香水の店。店主セレナが奥で一つずつ調合し、客に合う香りを選ぶ。昼過ぎから夕方が混む。リゼットの香りもここで作ったもの。構造・品揃え・価格は初訪問時に確定する。
+      status: 確定（リゼットの話）
+      structure:
+        outline: 灰色の石積みの二階建ての小さな店。1F南側が売り場（入口の扉に鈴、窓辺の小瓶の棚、奥にカウンター）。カウンター裏の暖簾の奥が調香室。調香室の奥に裏口と2Fへの階段。2Fはセレナの住まい（私室）
+        rooms:
+          LORE_SHIRAYURI_KOUBOU_SHOP: 売り場
+          LORE_SHIRAYURI_KOUBOU_WORKROOM: 調香室
+          LORE_SHIRAYURI_KOUBOU_UPSTAIRS: 2Fの住まい（私室）
+        customers: 夕方は娼婦・商家の奥方・贈り物を探す冒険者で混む
+      rooms_2f: 2Fは廊下を挟んでセレナの私室と、亡き（または不在の）父が使っていた部屋。父の部屋は内側から鍵がかかり、寝台と毛布がある
+      rooms_detail:
+        LORE_SHIRAYURI_KOUBOU_WORKROOM: 調香室。壁一面の硝子瓶の棚、作業台（天秤・漏斗・硝子管）、小さな炉。奥の壁際に鍵の掛かった小さな木箱（配合の書き付けと思われる）。奥に裏口と二階への細い木の階段
+        LORE_SHIRAYURI_KOUBOU_FATHER_ROOM: 二階の左の扉。窓ひとつ、寝台、古い机と椅子、衣装棚。清潔。内側から鍵
+        LORE_SHIRAYURI_KOUBOU_UPSTAIRS: 二階の右の扉がセレナの私室
+        kitchen: 台所は一階（位置は調香室の脇と補完）
+      kitchen: 一階、調香室の脇の小さな扉の向こう。石の竈、吊るした香草の束、小さな木の卓、勝手口
+    人物_セレナ:
+      kind: npc
+      name: セレナ
+      age: 32
+      role: 調香師。白百合香房の店主
+      appearance: 身長164cmの長身でモデル体型、胸は豊満で腰が細い。亜麻色の髪をきっちり結い上げ、白い詰め襟のワンピース。灰色がかった青い瞳。実年齢より若く、二十歳過ぎに見える（老化がゆっくり）
+      personality: 好み寄せ：清楚で可愛い系。取り乱さず礼儀正しい。一人称わたくし、丁寧語。無駄な干渉をせず、相手を立てる。店を自分で切り盛りして稼いでいる
+      generation_rolls: 好み判定2(好み寄せ)/副性格付与6(なし)/年齢9,8→32/身長3,5→164
+      relation: Day1昼、白百合香房への路地口で〇〇にぶつかり、干し花の籠を落とした。店でのお詫びを申し出た
+      status: 確定
+      stats:
+        str: 6
+        def: 6
+        int: 4
+        spd: 6
+        tec: 5
+        chm: 6
+        note: 非戦闘の店主。村人型を土台にCHM+1・INT-1
+    白百合香房_評判:
+      fact: セレナの香水は娼館『蜜の味』でいちばん人気。調合の注文は十日先まで埋まっている。セレナは32歳だが年下に見える。ずっと独り身で、言い寄る男は多いが仕事一筋
+      source: Day1夕、店内で娼婦二人組の噂話
+      status: 噂
+    白百合香房_材料の買い付け:
+      fact: セレナは香水の材料をいつも決まった業者から買うが、裏山の花や森の樹脂は不足しがち。冒険者が採ってくれば相場どおりに買い取ると申し出た。品目・量・価格は未確定（正式な依頼にする時に確定）
+      status: セレナの申し出（Day1夕）
+    白百合香房_売上:
+      fact: 売上はひと月およそ8,000G。材料・瓶・家賃を払うと手元に残るのは3,000G前後（花や樹脂が高い季節はもっと減る）。調合の注文は十日先まで。セレナひとりで調合・仕入れ・帳簿をこなす。父から継いで十年。店の金は月末の締めまで動かさない決まり
+      status: セレナ本人の話（Day1夕）
+    取り決め_セレナ月1000G:
+      parties:
+      - 〇〇
+      - セレナ
+      terms: 毎月の締めのあと、セレナが〇〇へ1,000Gを渡す。初回は1年1月の締め（30日目）のあと。名目は売上を上げる手伝いへのお礼。〇〇は白百合香房の売上が上がるよう協力する（方法は未定）
+      record: セレナの帳面に日付・金額・名前を記入
+      status: 成立（口約束）
+      origin: Day1夕。治療の借金を負わせたというセレナの負い目と交渉判定（24対15）で成立
+    素材_白鈴花と琥珀樹脂:
+      fact: 白百合香房の主材料。白鈴花は裏山の斜面（洞窟の入口近く、魔物が出ることがある）に咲く。琥珀樹脂は東の森の木から採れる。業者からの仕入れは量が足りず値上がり中。セレナは材料不足で注文を多数断っている（帳面の赤線）。量・売値・採取判定は正式な依頼にする時に確定し、入手時にdiscoveriesへ記録する
+      status: セレナの話（Day1夕）
+    白百合香房_人を雇わない理由:
+      fact: 売り子一人の給金は街の相場でひと月およそ1,000G。配合は父の代からの秘伝で、調香室に入れるのはよほど信頼できる者だけ。以前、手伝いの者に配合を写して他所へ持ち出されたことがある
+      status: セレナ本人の話（Day1夜）
+    白百合香房_裏口:
+      fact: Day1夜、セレナが裏口の閂を外し、戸の脇に灯りを残してくれた。〇〇は戻る時に裏口から入れる（今夜限りの好意）
+      status: 確定
+    人物_ドルフ:
+      kind: npc
+      name: ドルフ
+      age: 67
+      role: 東裏路地で質屋を営む老人
+      appearance: 小柄、白髪まじりの長い髭、片目に拡大鏡、指に煤
+      fact: Day1夜、路地で大声で金の話をする〇〇を見て、溝鼠に気をつけろと忠告。今夜中に南東の歓楽通りの客へ預かり物を届ける護衛を頼みたいと持ちかけた。礼は出すという（内容未確定）
+      status: 確定
+    集団_溝鼠:
+      kind: gang
+      name: 溝鼠
+      fact: 夜の東裏路地の暗い角にたむろするごろつき集団。全部で4〜5人。頭は片耳のギース（大柄、棍棒、昔衛兵とやり合って耳を半分なくした）。ほかはナイフを持った細身の男2〜3人（冒険者のなりそこない）。夜はギースと1〜2人が角に陣取り、通行人から財布を巻き上げる。殺しまではしない。見回りが少なく衛兵も本腰を入れていない。先週ドルフの小僧の荷を盗りかけた。戦闘値は戦闘開始時に確定
+      status: ドルフの話
+    人物_ロゼ:
+      kind: npc
+      name: ロゼ
+      role: 娼館『蜜の味』の娼婦
+      fact: 三月前に亡母の形見の銀の首飾りをドルフの質屋に入れ、Day1に利息ごと請け出した。帰り道で溝鼠に絡まれたことがあり路地に来られない。年齢・外見は初対面時に確定（成人）
+      status: ドルフの話
+  appearance_customization:
+    version: 1
+    overrides: {}
+    resolutions: []
+  reward_state_version: 2
+  day: 1
+  location: 東裏路地口と折れ路地
+  place_id: NOIR_CITY_BACK_ALLEY
+  room_id: ''
+  sub_location: 二つ目の角の先・溝鼠の溜まり場
+  depth: null
+  time_of_day: 夜
+  weather: 薄い霧
+  quest_active: 形見の首飾りの護送
+  quest_rank: ''
+  personal_rank: E級
+  quest_access: E級
+  quests_completed:
+    E: 0
+    D: 0
+    C: 0
+    B: 0
+    A: 0
+  quest_card:
+    quest_id: Q-main2-DOLF-ESCORT
+    immutable_version: 1
+    direction:
+      main: 護送
+      sub: 人情
+    motivation:
+      type: 人助け・稼ぎ
+      hook: 形見の首飾りを今夜中に持ち主へ
+    client: ドルフ（67）東裏路地の質屋。癖：拡大鏡越しに相手をじろりと見る／喋り方：かすれ声のべらんめえ／こだわり：約束は守るが前金は出さない
+    situation: ロゼ（蜜の味の娼婦）が請け出した亡母の形見の銀の首飾りを、鍵付きの黒い小箱で南東の歓楽通り『蜜の味』へ届ける。途中、東裏路地の暗い角に溝鼠（ギースと1〜2人）が陣取る
+    twist: 溝鼠は今日首飾りが請け出されたことを知っており、箱を狙っている
+    climax: 角で溝鼠に通行料と箱を要求される。主人公は攻撃できず、ベルと使い魔で切り抜けるか、別の手で通るか
+    story_beats:
+      opening:
+        must_show: ドルフから小箱を受け取る
+        hook: 角から笑い声
+      development:
+        discoverable:
+        - 溝鼠が箱のことを知っている理由
+        opportunities:
+        - 交渉
+        - 迂回
+        - 戦闘
+      reversal:
+        trigger: 角での対峙
+        revealed_fact: ギースが箱を名指しする
+        value_conflict: 金と形見
+      climax:
+        pressure: 溝鼠の要求
+        stakes: 形見と報酬
+        available_levers:
+        - ベルと使い魔
+        - 会話
+        - 迂回路
+      aftermath:
+        must_resolve:
+        - ロゼへの受け渡し
+        - ドルフへの報告
+        reaction_rules:
+        - ロゼは形見を受け取って安堵する
+    choice_space:
+      pressure: 今夜中
+      known_options:
+      - 戦って通る
+      - 交渉する
+      - 別の道を探す
+      open_solution: true
+      consequence_rules:
+      - 箱を盗られたら失敗
+      - こちらから先に手を出すと街では暴行になり得る（溝鼠が先に脅し・手を出せば正当防衛）
+    resolution:
+      main: 溝鼠を退けてロゼに届ける
+      alt: 迂回や交渉で届ける
+      open_solution: true
+    enemies: []
+    carryover: なし
+    reward_contract:
+      settlement_id: Q-main2-DOLF-ESCORT-R
+      offered: true
+      payer: ドルフ
+      guarantor: なし
+      payer_capacity: 東裏路地の質屋。現金と質流れ品の在庫
+      composition_reason: 質屋なので現金に加え、自分の店の質流れ品の割引を出せる
+      value_reference:
+        basis: M43 D級式（級のない臨時仕事）
+        rank_formula: 400+(d10-1)x22
+        roll:
+          die: d10
+          result: 2
+          cursor: 78
+        estimated_total_g: 422
+      components:
+      - component_id: gold
+        kind: gold
+        description: 現金350G
+        detail:
+          amount: 350
+        estimated_value_g: 350
+        provider: ドルフ
+        earn_condition: 小箱をロゼに直接渡し、受け取りの一筆をもらう
+        delivery_condition: 一筆をドルフの質屋へ持ち帰った時
+        state: accepted
+      - component_id: discount
+        kind: right
+        description: 質流れ品を1回だけ2割引で買える権利
+        detail:
+          delivery_target: world_state.entitlements
+          entitlement_id: ENT-main2-DOLF-DISCOUNT
+          name: ドルフの質屋 質流れ品2割引
+          issuer: ドルフ
+          scope: 東裏路地のドルフの質屋の棚にある質流れ品
+          conditions:
+          - 1回の購入で1点
+          uses_remaining: 1
+          expires: null
+        estimated_value_g: 72
+        provider: ドルフ
+        earn_condition: 同上
+        delivery_condition: 同上
+        state: accepted
+      expenses:
+        provided_materials: []
+        reimbursed_costs: []
+        unused_materials_rule: なし
+      delivery_plan:
+      - trigger: 報告
+        component_ids:
+        - gold
+        - discount
+        route: 依頼人から直接
+        place_or_contact: 東裏路地のドルフの質屋
+        fallback_holder: なし
+      outcome_rules:
+        full:
+        - 小箱をロゼに渡し一筆を持ち帰れば全額
+        partial:
+        - なし（届けたか否か）
+        failure:
+        - 小箱を盗られたら報酬なし
+        player_cancel:
+        - 届けられなければ小箱をドルフに返す。報酬なし
+        client_cancel:
+        - なし
+      renegotiable: true
+    progress:
+      stage: combat
+      flags:
+      - 小箱を受け取った
+      - 溝鼠と戦闘中
+      checks_used: 0
+      event_roll:
+        die: d10
+        result: 2
+        cursor: 79
+      combat:
+        round: 2
+        legal: 溝鼠が先に攻撃（正当防衛）
+        difficulty: 標準（味方2：主人公＋ベル。実働の敵2、見張り1は非実働）
+        enemies:
+        - id: GIES
+          name: 片耳のギース
+          stats:
+            str: 14
+            def: 6
+            int: 4
+            spd: 7
+            tec: 8
+            chm: 3
+          lp:
+            cur: 30
+            max: 30
+          weapon: 樫の棍棒
+          basis: 1Fの人間型（標準）を基準
+        - id: THUG_A
+          name: 細身の手下A
+          stats:
+            str: 11
+            def: 5
+            int: 4
+            spd: 8
+            tec: 8
+            chm: 3
+          lp:
+            cur: 16
+            max: 16
+          weapon: ナイフ
+          basis: 1F弱敵相当
+        - id: THUG_B
+          name: 細身の手下B（見張り・非実働）
+          stats:
+            str: 11
+            def: 5
+            int: 4
+            spd: 8
+            tec: 8
+            chm: 3
+          lp:
+            cur: 16
+            max: 16
+          active: false
+        allies:
+          bell:
+            lp: 21
+          familiars:
+          - id: FAM1
+            type: 攻撃型
+            stats:
+              str: 5
+              def: 3
+              spd: 2
+              tec: 5
+            lp:
+              cur: 5
+              max: 5
+            acts_from_round: 2
+        skill_uses:
+          使い魔召喚: 1
+          号令: 2
+    amendments: []
+    immutable_hash: 930c4ba868bd96eb9854e3f6bdaa3c06d299208d2f37401c9d09a262d102552f
+  event_reward_contract: null
+  pending_rewards: []
+  reward_ledger: []
+  entitlements: []
+  lead_mode: 主人公
+  goals:
+    debt_clear: false
+    dungeon_clear: false
+    a_rank_quest: false
+  deepest_depth_reached: 0
+  defeated_floor_bosses: []
+  boss_records: []
+  dungeon_memory:
+    version: 1
+    records: {}
+  growth_state:
+    version: 1
+    boss_fruit_legacy_sources: []
+    boss_fruit_miss_streak: 0
+    c_rank_choice_fruit_status: locked
+    c_rank_choice_fruit_transaction_id: ''
+    resolutions: []
+  expedition_state:
+    active: false
+    expedition_id: ''
+    kind: none
+    fire_holders: []
+    separated_fire_holders: []
+    rebirth_pending: false
+    last_end_reason: none
+    last_ended_expedition_id: ''
+    rebirth_receipt: null
+  dungeon_run:
+    active: false
+    run_id: ''
+    trash_encounters_used: 0
+    danger_zones_resolved: 0
+    last_scene_kind: none
+    event_due: false
+    used_event_ids: []
+    current_floor: null
+    current_floor_scenes: 0
+    reward_searches_by_floor: {}
+    camp_used: false
+    boss_route_found: false
+    resource_days_by_floor: {}
+  allocation_state:
+    version: 1
+    resolutions:
+    - request_id: alloc-6883b9f90a034f45888f858c83d4cc60
+      transaction_id: tx-d212ef4949334eabb44c24f6b0132672
+      mode: initial
+      actor_id: player
+      source_revision: 11
+      source_sha256: c5b8d11af15543e4a4df191c88f59034c5713eaa44a069cdd82d82412203daa0
+      profile_hash: 57ad0dbc70d81c91ff87d052693d153c42a6116b8ddf08fc71900be16f08da9e
+      values:
+        str: 7
+        def: 5
+        int: 6
+        spd: 3
+        tec: 3
+        chm: 9
+      before:
+        base_stats:
+          str: 3
+          def: 3
+          int: 3
+          spd: 3
+          tec: 3
+          chm: 3
+        growth_bonus:
+          str: 0
+          def: 0
+          int: 0
+          spd: 0
+          tec: 0
+          chm: 0
+        base_lp: 20
+        lp:
+          cur: 32
+          max: 32
+        mp:
+          cur: 6
+          max: 6
+      after:
+        base_stats:
+          str: 7
+          def: 5
+          int: 6
+          spd: 3
+          tec: 3
+          chm: 9
+        growth_bonus:
+          str: 0
+          def: 0
+          int: 0
+          spd: 0
+          tec: 0
+          chm: 0
+        base_lp: 20
+        lp:
+          cur: 33
+          max: 33
+        mp:
+          cur: 9
+          max: 9
+      consumed: null
+      fee_gold: 0
+      duration_minutes: 0
+      time_before: null
+      time_after: null
+      respec_rule: null
+      permanent_points_before: 18
+      permanent_points_after: 33
+skills:
+- skill_id: SUMMONER_PARTNER_PACT
+  name: 相棒の契約
+  category: passive
+  tier: advanced
+  stage: 1
+  state: set
+  uses: null
+  timing: always
+  action_cost: 0
+  effect: 相棒ベルを常に呼び出している。会話可。能力は術者の恒久6能力（base_stats+growth_bonus。火・装備・一時効果を除く）と同値で連動。LP=20+DEF由来、MP=ベルのINT。術者の直後に行動。装備可（補正はベルにだけ）。宿代なし。火を持てず、火の人数にも数えない。LP0でその戦闘中は戻らず、宿で一晩休むと再召喚。死に戻りの対象外で死なない。
+  from: job
+  origin_job: 召喚士
+  requirements: []
+- skill_id: SUMMONER_NO_FIGHT_VOW
+  name: 不戦の誓い
+  category: passive
+  tier: basic
+  stage: 1
+  state: set
+  uses: null
+  timing: always
+  action_cost: 0
+  effect: 制約：術者は通常攻撃と攻撃魔法ができない（防御・回避専念・道具・会話・召喚・号令は可）。代わりに相棒と使い魔の攻撃ダメージ+2。強化：段2 相棒のLP+3／段3 ダメージ+3。
+  from: job
+  origin_job: 召喚士
+  requirements: []
+- skill_id: SUMMONER_COMMAND
+  name: 号令
+  category: technique
+  tier: basic
+  stage: 1
+  state: set
+  uses: 2
+  timing: free
+  action_cost: 0
+  effect: 自分の手番に宣言。相棒と使い魔全員の次の判定+2。1戦闘2回。強化：段2 +3／段3 1戦闘3回。
+  from: job
+  origin_job: 召喚士
+  requirements: []
+- skill_id: SUMMONER_FAMILIAR
+  name: 使い魔召喚
+  category: technique
+  tier: basic
+  stage: 1
+  state: set
+  uses: 2
+  timing: action
+  action_cost: 1
+  effect: 戦闘中だけ小さな使い魔を1体呼ぶ。同時2体まで（相棒と合わせて3体）。1戦闘2回。使い魔はSTR・DEF・SPD・TEC合計15、LP5（攻撃型5/3/2/5、壁型3/6/3/3）。術者の直後に行動、通常攻撃か防御。戦闘終了で消える。火を持てず、捕獲・エロ攻撃の対象外。敵数を増やさない。強化：段2
+    LP7／段3 1戦闘3回。
+  from: job
+  origin_job: 召喚士
+  requirements: []
+skill_dormancy: []
+custom_abilities:
+- id: JOB_SUMMONER
+  name: 召喚士（自作職業）
+  definition: 相棒の契約・不戦の誓い・号令・使い魔召喚の4つ。上限を超える相棒の強さは、術者が攻撃しない誓いと、相棒が火を持てない制約で釣り合わせる。
+  partner:
+    id: PARTNER_BELL
+    name: ベル
+    kind: summoned_partner
+    source_skill: SUMMONER_PARTNER_PACT
+    appearance: 肩に乗るほどの小さな黒い獣の姿。狐に似た尖った耳と長いふさふさの尻尾、背中に蝙蝠のような小さな翼。金色の目。体温は温かく、軽い。
+    personality: 主人公と同じ気質：損得にうるさく、頼まれもしないことに文句を言い、遠慮なくずけずけ言う。一人称は俺、主人公を〇〇と呼ぶ。
+    stats_rule: 術者の恒久6能力と同値（現在 STR7/DEF5/INT6/SPD3/TEC3/CHM9）、LP=20+DEF由来（現在21）、MP=INT（現在6）
+    current:
+      lp:
+        cur: 21
+        max: 21
+      mp:
+        cur: 6
+        max: 6
+    equipment: []
+    fire: false
+    counts_as_fire_holder: false
+active_event:
+  title: 溝鼠の待ち伏せ（二段）
+  parent: Q-main2-DOLF-ESCORT
+  type: A 道中型
+  sprout_timing: 角を抜けた後、歓楽通りの手前
+  direction:
+    main: 戦闘・機転
+    sub: 人情
+  motivation:
+    type: 恨み・金
+    hook: ギースは首飾りを賭場の借りの形にするつもり
+  who:
+  - ギースの手下の細身の男（名はチュウ、20代）。癖：ナイフを指で回す／喋り方：甲高い早口／こだわり：兄貴分のギースに認められたい
+  situation: 角の溝鼠を退けても、歓楽通りへ出る手前の樽置き場にもう一人が待ち伏せ、箱をひったくろうとする
+  truth: ドルフの小僧が酒場で今日の請け出しを漏らし、溝鼠が聞きつけた。ギースは賭場に借りがあり、首飾りで払うつもり
+  resolution:
+    main: ひったくりを阻止して届ける
+    alt: 先に気づいて避ける
+    open_solution: true
+  reward: なし（経済的対価なし、M43ロールなし）
+  event_roll:
+    die: d10
+    result: 2
+    cursor: 79
+  quest_id: EV-main2-DOLF-ESCORT-1
+  reward_contract:
+    settlement_id: EV-main2-DOLF-ESCORT-1-R
+    offered: false
+    payer: なし
+    components: []
+  progress:
+    stage: seeded
+    flags: []
+  amendments: []
+  immutable_hash: 7b7feeed6ce450588aa678707024ffee330ce1d7a26e54f5e582db9195583510
+ammo:
+  pools: []
+  weapon_loads: []
+shop_records:
+  mia_total: 0
+  mia_perks_claimed: []
+debt_state:
+  version: 1
+  contract_rule: staged-payoff-v1
+  unlocks:
+    lilith_intimacy: false
+    named_appearance_customization: false
+  contract_cycle_index: 0
+  contract_id: lilith-debt-cycle-0
+  principal: 10000
+  interval_days: 5
+  next_collection_day: 5
+  scheduled_due: 500
+  cycle_paid: 0
+  collection_pending: false
+  last_collection_day: null
+  collection_serial: 0
+  positive_payment_collections: 0
+  full_payment_collections: 0
+  missed_collections: 0
+  collection_ledger: []
+  active_benefits: []
+  benefit_selection:
+    benefit_id: ''
+    source: default
+    switch_available: false
+    activated_day: null
+captured_girls: []
+play_mode: RP
+ero_style: machadan
+player:
+  character_version: 1
+  character_id: player
+  build_complete: true
+  name: 〇〇
+  gender: 男性
+  age: 24
+  race: ''
+  job: 召喚士
+  job_profile:
+    combat_role: backline
+    magic_role: noncaster
+    expertise_tags:
+    - 召喚
+    - 魔物学
+    - 獣使い
+    solo_suitability: good
+    party_needs: []
+  gold: 50
+  debt: 10000
+  base_stats:
+    str: 7
+    def: 5
+    int: 6
+    spd: 3
+    tec: 3
+    chm: 9
+  growth_bonus:
+    str: 0
+    def: 0
+    int: 0
+    spd: 0
+    tec: 0
+    chm: 0
+  equipment_bonus:
+    str: 0
+    def: 0
+    int: 0
+    spd: 0
+    tec: 0
+    chm: 0
+  fire_bonus:
+    str: 3
+    def: 3
+    int: 3
+    spd: 3
+    tec: 3
+    chm: 3
+  temporary_modifiers:
+    str: 0
+    def: 0
+    int: 0
+    spd: 0
+    tec: 0
+    chm: 0
+  effective_stats:
+    str: 10
+    def: 8
+    int: 9
+    spd: 6
+    tec: 6
+    chm: 12
+  base_lp: 20
+  job_lp_bonus: 0
+  fire_lp_bonus: 12
+  temporary_lp_bonus: 0
+  lp:
+    cur: 26
+    max: 33
+  mp:
+    cur: 9
+    max: 9
+  stats:
+    str: 10
+    def: 8
+    int: 9
+    spd: 6
+    tec: 6
+    chm: 12
+  equipment:
+    weapon_instance_id: null
+    armor_instance_id: null
+    offhand_instance_id: null
+    fixed:
+    - 帰還の腕輪
+  statuses: []
+  buffs: []
+  ero_status: []
+  encumbrance:
+    version: 1
+    total_weight: 0
+    raw_penalty: 0
+    applied_penalty: 0
+  stat_lp_bonus: 1
+player_body: '男性体型: 身長=178cm / 筋肉=標準とムキムキの間 / サイズ=大きめ'
+desire: 攻めたい（女の子を泣かせたい・翻弄したい）・甘々・ラブラブ中心・れいぷごっこ等のCNC系
+ng: []
+yuri: 'タチ: おまかせ・特になし / ネコ: おまかせ・特になし'
+partner_pref:
+  asked: true
+  personalities:
+  - 清楚系で可愛い系。ヒステリックにならない。無駄な干渉をしない。稼いでいる。奉仕好き。老化のスピードが遅い。セックス好き。下品なことも好き。どうしたいか聞いた時、こちらの雰囲気や空気を感じていい案を出してくれる。何回ヤっても飽きない身体で、飽きさせないようにしてくれる。男を立てる。
+  sub_personalities:
+  - 甘やかし奉仕
+  - ドM
+  - 清楚ビッチ
+  body_height:
+  - 長身
+  body_build:
+  - モデル体型
+  body_bust:
+  - 豊満
+  call:
+  - 名前
+hearing_check:
+  call_reflected: false
+  unrecovered: []
+spells: []
+equip:
+  weapon: ''
+  armor: ''
+  fixed: 帰還の腕輪
+items: []
+inventory:
+  version: 1
+  bag:
+    base_slots: 16
+    upgrade_count: 0
+    max_slots: 16
+    skill_bonus_slots: 0
+    effective_max_slots: 16
+    used_slots: 0
+  carried_stacks: []
+  warehouse:
+    stacks: []
+    instance_ids: []
+  reservations: []
+item_definitions: []
+item_instances: []
+party: []
+inn_reserve: []
+enterprise_state:
+  version: 1
+  businesses: []
+  discoveries: []
+  research_projects: []
+  recipes: []
+  order_book: []
+  commerce_ledger: []
+  reputation_ledger: []
+  lilith_investments: []
+  community_threads: []
+  aftermath_seeds: []
+npc_relationship: []
+session_log:
+  previous: ''
+  entries:
+  - day: 1
+    time_of_day: 朝
+    summary: 魂の状態でリリスに拾われ、ぬれねずみ亭201号室のベッドで新しい肉体を得て目覚めた。蘇生・肉体生成の代金として初期借金10,000Gが記録された。リリスがハートの火を分ける提案をした。
+  - day: 1
+    time_of_day: 朝
+    summary: 勝手に蘇らせたのだから火を10人分よこせと迫ったが、リリスは火は分けるほど薄くなる一つきりの灯だと断り、借金の返済も譲らなかった。火の提案は保留中。
+  - day: 1
+    time_of_day: 朝
+    summary: 罰がないなら借金も要らないと主張したが、リリスは罰がないことと借りがないことは別、帳簿からは消さないと退けた。
+  - day: 1
+    time_of_day: 朝
+    summary: 能力配分を終え、リリスから帰還の腕輪と、仕事と仲間の窓口『銀の天秤亭』を教わった。街をぶらつくのも面白いと勧められた。
+  - day: 1
+    time_of_day: 朝
+    summary: 仲間探しのため銀の天秤亭へ向かう途中、宿通りと西大通りの角で迷宮帰りの女冒険者クラリスと出会い、ギルドの場所と仲間募集の掲示板を教わった。
+    random_event_roll:
+      die: d10
+      result: 1
+      cursor: 0
+    random_event_type_roll:
+      die: d10
+      result: 5
+      cursor: 1
+  - day: 1
+    time_of_day: 朝
+    summary: クラリスと別れ、銀の天秤亭に到着。仲間募集の札で騎士エステル・魔法使いリゼット・武闘家メイリンの三人を見つけた（記入卓で待機）。受付のミルカから先に登録するよう声をかけられた。
+    ambient_roll:
+      die: d10
+      result: 8
+      cursor: 2
+  - day: 1
+    time_of_day: 朝
+    summary: ミルカの受付で冒険者登録を始め、名前を記入。職業を魔道版に念じるよう求められた。仲間募集の三人は登録済みの者と組む規則だと聞いた。
+  - day: 1
+    time_of_day: 朝
+    summary: 自作の職業『召喚士』（自分は戦わず、使い魔を最大3体同時に呼ぶ）を魔道版に念じ、技4つの案が提示された。署名待ち。
+  - day: 1
+    time_of_day: 朝
+    summary: 召喚士の案を、常にそばにいて会話でき、主人公の成長に比例する相棒を持つ形へ改訂してもらった（代償：本人は攻撃しない、相棒は火を持てない）。署名待ち。
+  - day: 1
+    time_of_day: 朝
+    summary: 召喚士として署名し、冒険者登録（E級）を終えた。相棒ベル（肩に乗る小さな黒い獣、主人公と同じ気質）と契約した。ミルカから街を散策するのも良いと勧められた。
+  - day: 1
+    time_of_day: 朝
+    summary: ベルは肉の食事で手を打った。街をぶらつき中央広場へ。噴水で狐の獣人コノハ（18）に『サキュバスなの！』と声をかけられ、学園編入のために手ほどきを頼まれた。
+    random_event_roll:
+      die: d10
+      result: 5
+      cursor: 41
+    random_event_type_roll:
+      die: d10
+      result: 2
+      cursor: 42
+  - day: 1
+    time_of_day: 朝
+    summary: コノハの頼みを『また今度』と断った。コノハはめげずに次の男へ声をかけに行った。所持金がなく、ベルから肉の当てを考えろと言われた。
+  - day: 1
+    time_of_day: 昼
+    summary: ギルドに戻り、記入卓で仲間候補の騎士エステル・魔法使いリゼット・武闘家メイリンと顔を合わせた。どんな仲間を探しているか尋ねられた。
+    random_event_roll:
+      die: d10
+      result: 9
+      cursor: 55
+    ambient_roll:
+      die: d10
+      result: 6
+      cursor: 56
+  - day: 1
+    time_of_day: 昼
+    summary: 仲間候補の三人に香りの店を尋ねた。リゼットからミアの道具屋の香油、メイリンから広場南西の露店列の端にある紫の布のお香屋台を教わった。エステルは護衛を申し出た。
+  - day: 1
+    time_of_day: 昼
+    summary: セレナの店を尋ねると、リゼットが香水の店『白百合香房』（西大通りから路地を入った先）を教えた。昼過ぎから混むので今がよいとのこと。エステルが案内を申し出た。
+  - day: 1
+    time_of_day: 昼
+    summary: エステルの案内を断り一人で白百合香房へ。路地口で、届け物帰りのセレナとぶつかり、干し花が散った。セレナは丁寧に詫び、店でのお詫びを申し出た。
+  - day: 1
+    time_of_day: 昼
+    summary: 骨が折れたふりをし、ベルが口裏を合わせた。だましの判定に成功（19対17）。セレナは怪我を信じ、治療代50Gか大聖堂への付き添いを申し出た（未回答）。
+    check:
+      type: CHM対抗
+      player: 19
+      target: 17
+      dice:
+      - 5
+      - 1
+      - 5
+      - 6
+      cursor_from: 63
+  - day: 1
+    time_of_day: 昼
+    summary: 50Gでは足りないと迫った。セレナは取り乱さずに非を認め、仕事ができない分も含めていくら必要か尋ねてきた。店の金は月末の締めまで動かさない決まりにしている（セレナの内心）。
+  - day: 1
+    time_of_day: 昼
+    summary: 医者に診てもらってから相談しに行くと伝え、白百合香房の場所（路地をまっすぐ、ひとつ目の角を右）を聞いた。ベルが名乗り、セレナは〇〇とベルの名を覚えた。セレナはせめて診察代として50Gを差し出している（未回答）。
+  - day: 1
+    time_of_day: 夕
+    summary: セレナから診察代50Gを受け取った。時間を空けて、夕方に白百合香房へ。店には娼婦二人と商家の奥方の客がいた。セレナが接客を中断して迎え、怪我の具合を尋ねた。大聖堂には実際には行っていない。
+    ambient_roll:
+      die: d10
+      result: 9
+      cursor: 67
+  - day: 1
+    time_of_day: 夕
+    summary: 客がはけるまで店内で待った。娼婦二人組の噂話で、セレナの香水が蜜の味で人気、注文は十日先まで埋まっている、32歳でずっと独り身だと聞いた。客が帰ると、セレナは入口の札を裏返し、大聖堂の結果を尋ねた。
+    random_event_roll:
+      die: d10
+      result: 4
+      cursor: 68
+    random_event_type_roll:
+      die: d10
+      result: 6
+      cursor: 69
+  - day: 1
+    time_of_day: 夕
+    summary: 『医者に診せて良くなったが借金になった、遠くから来たばかりで世界のことも分からない』と話した。セレナは安堵したうえで責任を感じ、治療の借金を月の締めのあとに一部持つこと、街の案内、裏山の花や森の樹脂の買い取りを申し出た。
+    note: 大聖堂へは実際には行っていない。治療の借金はセレナの思い込み
+  - day: 1
+    time_of_day: 夕
+    summary: 店を褒めて繁盛ぶりを尋ねた。セレナは客層、注文が十日先まで埋まっていること、月の売上約8,000G・手残り約3,000G、父から継いで十年ひとりで切り盛りしていることを話し、なぜこの店を知っていたのか尋ねた。
+  - day: 1
+    time_of_day: 夕
+    summary: 噂で店を知ったと答え、毎月1,000Gを渡してほしい、代わりに売上を上げる協力をすると持ちかけた。交渉判定に成功（24対15）。セレナは受け入れ、毎月の締めのあと（初回は今月末）に『手伝いへのお礼』として渡すと帳面に記した。協力の方法を尋ねられた。
+    check:
+      type: CHM対抗
+      player: 24
+      target: 15
+      dice:
+      - 6
+      - 7
+      - 3
+      - 6
+      cursor_from: 70
+      modifiers: 負い目+1／大きな要求-2
+  - day: 1
+    time_of_day: 夕
+    summary: 何が一番大変か尋ねると、セレナは材料不足（裏山の白鈴花・東の森の琥珀樹脂）を挙げ、断った注文の多さを帳面で見せた。材料集めがいちばん店のためになると提案した。
+  - day: 1
+    time_of_day: 夜
+    summary: 人を雇わないのか尋ねた。セレナは給金（月1,000G前後）と配合の秘密（以前に持ち出された）を理由に挙げた。日が暮れ、宿は決まっているかと尋ねられた。
+  - day: 1
+    time_of_day: 夜
+    summary: 宿は決まっていないと答えた（実際にはぬれねずみ亭がある）。セレナは手持ちの金がなく、店の金も締めまで動かせないため、二階の父の部屋（鍵付き）に泊まるよう申し出た。簡単な食事も出すという。
+  - day: 1
+    time_of_day: 夜
+    summary: セレナの申し出を受け、二階の父の部屋に泊めてもらうことにした。調香室を通って二階へ案内された（父以外では初めて通された、とセレナの内心）。塩漬けの豚を焼いて夕食を出すという。セレナの部屋は向かい。
+  - day: 1
+    time_of_day: 夜
+    summary: 父の部屋でベルと作戦会議。手持ち50G・Day5の取立て500G、セレナからの1,000Gは月末、仮病と宿の嘘がばれる危険、稼ぎ口（材料集め・ギルド依頼）と前衛の仲間の必要を整理した。
+  - day: 1
+    time_of_day: 夜
+    summary: ベルに『街の辺鄙な所でチンピラと喧嘩して本当に骨を折り、治療を受け、ついでに金品も』と持ちかけた。ベルは、主人公は誓いで戦えない、こちらから仕掛けると暴行・強盗でシルヴィアに捕まり借金+3,000G、向こうから絡まれた返り討ちなら正当、治療は傷の分だけ高い、と指摘した。夕食の支度ができたとセレナが呼んだ。
+  - day: 1
+    time_of_day: 夜
+    summary: 夜になってから喧嘩の計画を実行すると決め、ベルも了承（殴られ役は主人公）。セレナの台所で夕食（塩漬け豚の焼いたもの・黒パン・豆の煮込み・白鈴花入りの蜂蜜酒）。ベルには骨付きの切れ端。セレナは父がいなくなってから久しぶりの二人の夕食だと感じ、どこから来たのか尋ねた。
+  - day: 1
+    time_of_day: 夜
+    summary: 『この世界とは別のところから来た』と答えた。セレナはそれ以上詮索しなかった。夕食後に出かけると告げると、行き先も聞かずに裏口の閂を外し、灯りを残すと言ってくれた。ベルと夜の街へ出る支度をした。
+  - day: 1
+    time_of_day: 夜
+    summary: セレナに見送られて裏口から出て、夜の中央広場を抜け、ミア店脇の東裏路地へ入った。灯りの漏れる戸の奥で硬貨を数える気配と話し声。先の暗い角の向こうにも人の気配があるが、まだ誰も出てこない。
+    random_event_roll:
+      die: d10
+      result: 6
+      cursor: 74
+    ambient_roll:
+      die: d10
+      result: 6
+      cursor: 75
+  - day: 1
+    time_of_day: 夜
+    summary: 路地の奥へ進みながらベルと大声で金の話をした。質屋のドルフが裏戸から顔を出し、先の暗い角にごろつき『溝鼠』がたむろしていると忠告。今夜中に歓楽通りの客へ預かり物を届ける護衛を頼みたいと持ちかけてきた（未回答）。
+    random_event_roll:
+      die: d10
+      result: 3
+      cursor: 76
+    random_event_type_roll:
+      die: d10
+      result: 9
+      cursor: 77
+  - day: 1
+    time_of_day: 夜
+    summary: ドルフから溝鼠のことを聞いた。全部で4〜5人、頭は片耳のギース（大柄・棍棒）、夜は角にギースと1〜2人。殺しはしない。武器を持っていないことを見咎められ、ベルが『得物は俺だ』と名乗った。
+  - day: 1
+    time_of_day: 夜
+    summary: ドルフに報酬と届け物を尋ねた。中身は蜜の味のロゼの亡母の形見の銀の首飾り（鍵付きの黒い小箱）。報酬は現金350G（ロゼの受け取りの一筆と引き換え）と質流れ品の2割引1回。前金なし、盗られたら報酬なし。角から溝鼠の笑い声が聞こえた。
+    reward_value_roll:
+      die: d10
+      result: 2
+      cursor: 78
+  - day: 1
+    time_of_day: 夜
+    summary: ドルフの護送依頼を引き受け、黒い小箱を預かった。ベルに範囲攻撃はないと言われた（攻撃は1回にひとり、使い魔2体まで）。二つ目の角で片耳のギースと手下2人に通行料と小箱を要求された。ギースは今日首飾りが請け出されたことを知っていた。
+    event_roll:
+      die: d10
+      result: 2
+      cursor: 79
+  - day: 1
+    time_of_day: 夜
+    summary: ギースを挑発し、溝鼠が先に攻撃（正当防衛）。手下Aのナイフは外れ、ギースの棍棒が左の二の腕に命中（LP33→26）。使い魔（攻撃型）を1体召喚。ベルの噛みつきは外れ。手下Bは見張りで控えている。
+    combat_dice:
+      d10_from: 80
+      d10_to: 92
+      d6_from: 0
+      d6_to: 1
+memory_log:
+  encounters: []
+  battles: []
+  ero: []
+  turning_points: []
+design_applied:
+- 'M1: 配布版のキャストは同梱ファイルの登場人物のみ (一部キャラクターは作者版のみの収録)'
+- 'M2: 年齢不詳でも、個別正本で成人と明記された固定キャストだけを成人として扱い、数値年齢は創作しない'
+- 'M3: Boot 第3条・第5条のシステムレイヤー方式は採用しない'
+- 'M4: カスタム指示文は同梱版を使う。ルーティング表の欠落行は、対象を収録していないため無効'
+- 恋愛・性的な関わりの対象は18歳以上。18歳未満は生活・子育て等の非性的場面のみ

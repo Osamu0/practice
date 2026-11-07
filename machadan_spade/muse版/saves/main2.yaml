@@ -3,15 +3,15 @@ schema_version: 3
 game_version: 4.13.4
 campaign_id: main2
 created_at: '2026-11-07T05:39:36+00:00'
-updated_at: '2026-11-07T08:00:09+00:00'
-save_revision: 48
+updated_at: '2026-11-07T08:02:36+00:00'
+save_revision: 49
 content_manifest_hash: 59b69015c8c813194e83a7c4b4d2b862af8f4074c2c616aa5325399df6f66460
 save_format_origin: 'System_Templates.md [TEMPLATE_SAVE] (SAVE_DATA: MachaDun v2.0)'
 transaction:
-  last_transaction_id: tx-2b0b31ce8b86403986f11b9ee26f6814
-  last_committed_turn: 34
-  previous_revision_hash: e42cded26f760497cce33cb478338192f67313acb0b798669317f4f467a0fce2
-  last_candidate_hash: ae3431605374027275b769319f2ac03c8028697fc4bae1b04f063318d4097be2
+  last_transaction_id: tx-ff4c4ab22a63438ca6e77195dbf943f2
+  last_committed_turn: 35
+  previous_revision_hash: 0e7a3643805df4888a54965e8885cbcf6ec669a1e59abc3638b789b327ab1054
+  last_candidate_hash: 755acdd5d8d24b6079f64cba29ae3cc460aef2e9b7249efa294e346aa7d44681
   applied_transaction_ids:
   - tx-0345298f5a774b8ca7e3c0934d815725
   - tx-7f4c45d45dea4266ba65a98f8f4718e6
@@ -61,6 +61,7 @@ transaction:
   - tx-c6aa87372e9446b49fcf272391eb62bd
   - tx-30c53d41fc5d427196b3f03646d5b967
   - tx-2b0b31ce8b86403986f11b9ee26f6814
+  - tx-ff4c4ab22a63438ca6e77195dbf943f2
 hearing_progress:
   status: complete
   current_step: 7
@@ -93,13 +94,13 @@ runtime_state:
   style_conditions: []
   active_scene: combat
   scene_id: combat
-  context_pack_hash: cdaf4df62c96142a1bd59744ef94aa4dfbd6c9aac452ec328079be80c3df3d82
-  last_validation_at: '2026-11-07T08:00:09+00:00'
+  context_pack_hash: f659806cd05b0e46794229445272b6674fde058992bae26d8eb45273d4d4c968
+  last_validation_at: '2026-11-07T08:02:36+00:00'
   last_error: ''
 dice_state:
   tape_revision: machadan-tape-r1
-  dice_cursor_d6: 1
-  dice_cursor_d10: 92
+  dice_cursor_d6: 2
+  dice_cursor_d10: 108
 fire_state:
   holders:
   - player
@@ -480,7 +481,7 @@ world_state:
         result: 2
         cursor: 79
       combat:
-        round: 2
+        round: 3
         legal: 溝鼠が先に攻撃（正当防衛）
         difficulty: 標準（味方2：主人公＋ベル。実働の敵2、見張り1は非実働）
         enemies:
@@ -508,7 +509,7 @@ world_state:
             tec: 8
             chm: 3
           lp:
-            cur: 16
+            cur: 13
             max: 16
           weapon: ナイフ
           basis: 1F弱敵相当
@@ -540,9 +541,20 @@ world_state:
               cur: 5
               max: 5
             acts_from_round: 2
+          - id: FAM2
+            type: 攻撃型
+            stats:
+              str: 5
+              def: 3
+              spd: 2
+              tec: 5
+            lp:
+              cur: 5
+              max: 5
+            acts_from_round: 3
         skill_uses:
-          使い魔召喚: 1
-          号令: 2
+          使い魔召喚: 0
+          号令: 1
     amendments: []
     immutable_hash: 930c4ba868bd96eb9854e3f6bdaa3c06d299208d2f37401c9d09a262d102552f
   event_reward_contract: null
@@ -1169,6 +1181,14 @@ session_log:
       d10_to: 92
       d6_from: 0
       d6_to: 1
+  - day: 1
+    time_of_day: 夜
+    summary: 戦闘第2ラウンド。手下Aとギースの攻撃はどちらも外れ。号令をかけ、使い魔（攻撃型）2体目を召喚。ベルは外したが、使い魔1が手下Aの太ももに角を突き立てた（LP16→13）。
+    combat_dice:
+      d10_from: 92
+      d10_to: 108
+      d6_from: 1
+      d6_to: 2
 memory_log:
   encounters: []
   battles: []
