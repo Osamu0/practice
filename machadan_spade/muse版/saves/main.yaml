@@ -3,15 +3,15 @@ schema_version: 3
 game_version: 4.13.4
 campaign_id: main
 created_at: '2026-11-07T02:20:22+00:00'
-updated_at: '2026-11-07T23:07:03+00:00'
-save_revision: 63
+updated_at: '2026-11-07T23:39:42+00:00'
+save_revision: 64
 content_manifest_hash: 59b69015c8c813194e83a7c4b4d2b862af8f4074c2c616aa5325399df6f66460
 save_format_origin: 'System_Templates.md [TEMPLATE_SAVE] (SAVE_DATA: MachaDun v2.0)'
 transaction:
-  last_transaction_id: tx-e6fb24e9e4ab4c0c9b220b2d4894bbae
-  last_committed_turn: 52
-  previous_revision_hash: cef6b1feb709d7681b4a0910625ce433978520d23dbac86a2680fa25c9dd9a84
-  last_candidate_hash: 521111e63a12fd6e0e97521299aab4e9ea41f16b15fb4aff9a61d3ac6ef9b9d3
+  last_transaction_id: tx-3fd10004879945759aebc50b0373e865
+  last_committed_turn: 53
+  previous_revision_hash: acc8fe728e9e55f5d32881ac6e6a3e30620e44def8036959c0b930d67c114be6
+  last_candidate_hash: 0580e64dbdd8565cb09ebbf7d76f5f1184301d7ab73584526c8840bef8caa413
   applied_transaction_ids:
   - tx-413eae86780d496981a94b1d08250181
   - tx-5d7fe8c49f1242dca4bcebf850e979c1
@@ -76,6 +76,7 @@ transaction:
   - tx-c60abf1fc0e04322a1034a2e0b9ac76a
   - tx-8ab7408c860c4e8dbecbc26093d41921
   - tx-e6fb24e9e4ab4c0c9b220b2d4894bbae
+  - tx-3fd10004879945759aebc50b0373e865
 hearing_progress:
   status: complete
   current_step: 7
@@ -106,15 +107,15 @@ active_script:
 runtime_state:
   ero_scene: false
   style_conditions: []
-  active_scene: turn
-  scene_id: turn
-  context_pack_hash: 4869222b7852759b66a254e2e7ddba334b5b992f0d275c1267ff1dadbbb2ab97
-  last_validation_at: '2026-11-07T23:07:03+00:00'
+  active_scene: event
+  scene_id: event
+  context_pack_hash: b033377cde7b114cfdb6d209a834cf5267883c1c2f9c1775034b2248aa0dccd3
+  last_validation_at: '2026-11-07T23:39:42+00:00'
   last_error: ''
 dice_state:
   tape_revision: machadan-tape-r1
   dice_cursor_d6: 0
-  dice_cursor_d10: 44
+  dice_cursor_d10: 46
 fire_state:
   holders:
   - player
@@ -322,6 +323,10 @@ world_state:
       fact: Day2昼、ドーンは銀蛇亭の裏でガルドに会い、少し渋ってから見張りを引き受けると返事する（分け前二百Gも断らない）。予定が変わればドーンが〇〇に知らせる。連絡方法：ドーンは毎日夕方の鐘の後に銀の天秤亭へ納品に来る。用がある側が受付のミルカに『斧の手入れの話がしたい』と言付け、言付けがあれば翌日の夕方に相談区画で会う。1月29日の夜、ドーンは白百合香房の裏の路地に見張りとして立ち、ガルドが裏口に入ったら合図を出す（方法は〇〇が決める：未定）
       source: Day1夕 ドーンとの相談
       status: 取り決め。ミルカが合言葉『斧の手入れの話』の取り次ぎを引き受けた（Day1夕）。言付けのあった日は夜の鐘まで受付に残る
+    ミルカの素顔:
+      fact: メガネを外した素顔は思ったより幼く、まつげの影が長い。勤務の終わりには帳簿を閉じ、メガネを布で拭く
+      source: Day1夜
+      status: 確定した事実
   appearance_customization:
     version: 1
     overrides: {}
@@ -333,8 +338,8 @@ world_state:
   room_id: GUILD_SILVER_SCALES_RECEPTION
   sub_location: ミルカの受付カウンター
   depth: null
-  time_of_day: 夕
-  weather: 薄い霧
+  time_of_day: 夜
+  weather: 霧
   quest_active: ''
   quest_rank: ''
   personal_rank: ''
@@ -779,6 +784,7 @@ session_log:
   - Day1夕 相談区画。〇〇が『任せろ、作戦も考えている』と約束し、返事と連絡の取り方を決めようと言う。ドーンの提案：明日（Day2）の昼に銀蛇亭の裏でガルドに会い、少し渋ってから『やる』と返事する（分け前二百Gも断らない）。予定が変わればドーンが知らせる。連絡は、毎日夕方の鐘の後にドーンが納品に来るので、受付のミルカに『斧の手入れの話がしたい』と言付け、言付けがあれば翌日夕方に相談区画で会う。二十九日の夜はドーンが白百合香房の裏の路地に立ち、ガルドが裏口に入ったら合図を出す（合図の方法は〇〇が決める）。ドーンが〇〇の名前と宿を尋ねる
   - Day1夕 〇〇がドーンに名乗り、ぬれねずみ亭に泊まっていると伝える。ドーンは何か変わったら知らせると言ってギルドを出る。〇〇は受付のミルカのもとへ。帰還の冒険者で混む中、ミルカは列をさばき終えてから、ドーンの足取りが軽かったと言い、相談が無事に終わったかだけでも聞きたがる
   - Day1夕 銀の天秤亭の受付。〇〇が『ドーンと話をつけてきた。斧の手入れの話を、だ』とだけ伝える。ミルカは斧を持たない〇〇の言葉から合言葉だと察し、ドーンと〇〇の言付けの取り次ぎを引き受ける。言付けがあった日は夜の鐘が鳴るまで受付に残ると言う（業務の一環と言い張る）
+  - Day1夕〜夜 〇〇は夜まで時間を潰す。暇つぶしの出来事 d10=7（なし）。夜の鐘のあと銀の天秤亭へ戻る。環境 d10=3（記入卓の奥で、稼ぎ頭の女冒険者が仲間の男の膝に引き倒されて甘い声）。ミルカは帳簿を閉じてメガネを拭いているところで、〇〇に気づいて慌てる。ちょうど上がるところだと言う
 memory_log:
   encounters: []
   battles: []
