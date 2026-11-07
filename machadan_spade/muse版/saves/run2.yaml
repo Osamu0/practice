@@ -3,15 +3,15 @@ schema_version: 3
 game_version: 4.13.4
 campaign_id: run2
 created_at: '2026-11-07T09:22:51+00:00'
-updated_at: '2026-11-07T10:01:38+00:00'
-save_revision: 17
+updated_at: '2026-11-07T10:03:54+00:00'
+save_revision: 18
 content_manifest_hash: 59b69015c8c813194e83a7c4b4d2b862af8f4074c2c616aa5325399df6f66460
 save_format_origin: 'System_Templates.md [TEMPLATE_SAVE] (SAVE_DATA: MachaDun v2.0)'
 transaction:
-  last_transaction_id: tx-6fed3d86d20444689b73f19b75f964ea
-  last_committed_turn: 8
-  previous_revision_hash: 9bd0928c6bfa37f63eb9af9ed07bf3628d47ba888b37951ec90d1f4871778215
-  last_candidate_hash: 9b6e4e97623ceb166f63cda709c94e72e794c21643242308f8469af81fc1a330
+  last_transaction_id: tx-201cd8831a6446ce8c3113af606a9d51
+  last_committed_turn: 9
+  previous_revision_hash: 8237ab8ed25f607d2b25ff0a6f393375aba661e1a0e87c6d8ed1c42ef72e9a52
+  last_candidate_hash: 830c7429e534f1ec6aea1b5e168c79557736676db3c53a22f6a10a036177b38f
   applied_transaction_ids:
   - tx-3205c8b3a3f04e16a35b2f1739e25e5a
   - tx-6a86abc0b7cc4f0aa672870ded718bc7
@@ -30,6 +30,7 @@ transaction:
   - tx-edae842d26bb4eeaa2aca99796c6a97e
   - tx-0b8721ab6b19441ab0f23a20e83eac2f
   - tx-6fed3d86d20444689b73f19b75f964ea
+  - tx-201cd8831a6446ce8c3113af606a9d51
 hearing_progress:
   status: complete
   current_step: 7
@@ -60,10 +61,10 @@ active_script:
 runtime_state:
   ero_scene: false
   style_conditions: []
-  active_scene: shop
-  scene_id: shop
-  context_pack_hash: be45576d70141908c67385bce26548de0d326ab6930a82bb620a8f1570fececd
-  last_validation_at: '2026-11-07T10:01:38+00:00'
+  active_scene: turn
+  scene_id: turn
+  context_pack_hash: 491536766df21741b2ac3bdeb61d74d0079c2d1991962d39c0e9f67a0d332488
+  last_validation_at: '2026-11-07T10:03:54+00:00'
   last_error: ''
 dice_state:
   tape_revision: machadan-tape-r1
@@ -468,6 +469,7 @@ session_log:
   - Day1朝 〇〇が路地の石壁に腕をぶつけて打ち身を作る（LP33→32）。中央広場を抜けて大聖堂の治療受付へ。移動 d10=8（なし）、環境 d10=10（なし）。エレナが痣に見入りつつ治療を申し出る（1LP=2G、未実施）
   - Day1朝 大聖堂の治療受付。〇〇が何をしている所か尋ね、エレナが治療・礼拝・告解・聖水の泉、冒険者への危ない頼み事を案内する。打ち身は未治療
   - Day1朝 大聖堂の治療受付。〇〇がエレナの本音を笑って指摘。エレナは傷を見るとどきどきすると打ち明け、腕の打ち身を治療（LP32→33、2G支払い）。治療後のエレナは上気して熱っぽい
+  - Day1朝 大聖堂。〇〇が治療費のオマケを求めるが、エレナは値引きを断る。代わりに次の怪我はいちばんに丁寧に診ると約束（料金は通常どおり）。わざと怪我するのはだめと釘を刺す
 memory_log:
   encounters: []
   battles: []
