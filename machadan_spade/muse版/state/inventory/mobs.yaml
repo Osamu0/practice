@@ -1,0 +1,14 @@
+schema: machadan-inventory-v1
+kind: mobs
+limits:
+  town: 12
+  companions: 12
+  brothel: 12
+  travelers: 12
+  students: 12
+entries: []
+applied_runs: []
+use_receipts: {}
+updated_at: '2026-11-07T06:26:37+00:00'
+generation: 4.13.4-23977412f08c4d73
+package_version: 4.13.4
