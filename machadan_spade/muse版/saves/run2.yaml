@@ -3,15 +3,15 @@ schema_version: 3
 game_version: 4.13.4
 campaign_id: run2
 created_at: '2026-11-07T09:22:51+00:00'
-updated_at: '2026-11-07T14:19:18+00:00'
-save_revision: 67
+updated_at: '2026-11-07T14:22:32+00:00'
+save_revision: 68
 content_manifest_hash: 59b69015c8c813194e83a7c4b4d2b862af8f4074c2c616aa5325399df6f66460
 save_format_origin: 'System_Templates.md [TEMPLATE_SAVE] (SAVE_DATA: MachaDun v2.0)'
 transaction:
-  last_transaction_id: tx-b0a3b54eac4d492eb6568db532911219
-  last_committed_turn: 58
-  previous_revision_hash: 0d443026f7679b2f4a1bfa95bfda22779dca4dd63febd8ef674721576016a187
-  last_candidate_hash: cf64c4f68527c5c59e93f9758422efc74fb51587793726b59eae123e37b572cf
+  last_transaction_id: tx-16249569d950451394682c2b0903379b
+  last_committed_turn: 59
+  previous_revision_hash: 16166d1128deb4ba8bfa77287b86e77dc6d4efe7f55c564d052ef62988a02585
+  last_candidate_hash: dd3077f6fe529a3da9cfbef77952bbd3e040532cf28bf35206462dc1f93c6c8b
   applied_transaction_ids:
   - tx-3205c8b3a3f04e16a35b2f1739e25e5a
   - tx-6a86abc0b7cc4f0aa672870ded718bc7
@@ -80,6 +80,7 @@ transaction:
   - tx-ef1195a79d064d42a0dd537e66429cc8
   - tx-077e59ff7705487fa83ef61caa2adfcf
   - tx-b0a3b54eac4d492eb6568db532911219
+  - tx-16249569d950451394682c2b0903379b
 hearing_progress:
   status: complete
   current_step: 7
@@ -112,8 +113,8 @@ runtime_state:
   style_conditions: []
   active_scene: turn
   scene_id: turn
-  context_pack_hash: 9729fa7603964433ab1b2e62e1c97379fdd79cb2efe544687d09fdf00645ec10
-  last_validation_at: '2026-11-07T14:19:18+00:00'
+  context_pack_hash: 3829c5cb0e8e02fbdf51064c3bb8bd555387aba1dadc21c27f23b62b27999015
+  last_validation_at: '2026-11-07T14:22:32+00:00'
   last_error: ''
 dice_state:
   tape_revision: machadan-tape-r1
@@ -207,9 +208,9 @@ world_state:
       status: 段取り決定：Day2午後、クラリスがヴィオレッタ邸へ夜会ドレスを届ける際に〇〇が荷物持ちで同行し紹介される。同伴の話はクラリスが場の空気を見て持ちかける
     行事_商人ギルド春の夜会:
       day: 3
-      date: 箱庭暦1年1月3日（水）夜
-      place: 商人ギルドの館
-      note: ヴィオレッタが出席予定。クラリスがそのためのドレスを仕立てた（Day2午後に納品予定）
+      date: 箱庭暦1年1月3日（水）夜の鐘から
+      place: 毛織物商マルセル家の屋敷の大広間（商人ギルド主催・会場は大商家の持ち回り。ギルドの窓口自体は銀の天秤亭の相談区画）
+      note: 各商家の当主と連れが出席。楽団、輪舞と円舞、葡萄酒。実態は商談の場。独り身の女当主ヴィオレッタには商会目当ての男が群がる。同伴者は当主の隣で控え、話を遮らないことが肝要（執事セバスチャン談）。Day1にクラリスが言った『商人ギルドの館』はこの会場のこと
     ヴィオレッタ邸_構造:
       place_id: NOIR_CITY_WEST
       summary: 西大通りの一番奥。蔦に覆われた石塀と鉄の門、門番あり。紫の硝子窓が並ぶ三階建て。銀髪の老執事。1階から磨かれた階段、廊下に紫の花の絵と紫硝子の花瓶。2階にサロン（窓辺に長椅子、香水の匂い）
@@ -703,6 +704,7 @@ session_log:
   - Day2朝〜昼 白糸の間2階。〇〇が冒険者の服に着替えて休む（DEF+1）。休憩 d10=5（なし）。午後、よそゆきのクラリスがヴィオレッタのドレスの箱を持ってきて、荷物持ちを頼む
   - Day2昼過ぎ 〇〇がクラリスに『馬子にも衣装』と言い、ドレスの箱を抱えてヴィオレッタ邸へ。移動 d10=5（なし）、環境 d10=3（門脇で女中と庭師の戯れ）。老執事に案内され2階サロンでヴィオレッタと対面。ヴィオレッタは〇〇の肩の線に目を留め、誰かと尋ねる
   - Day2昼過ぎ ヴィオレッタ邸サロン。〇〇が名乗る。ヴィオレッタは短く応じ、ドレスの試着のためクラリスと奥の部屋へ。〇〇はサロンで待つよう言われ、老執事セバスチャンが紅茶を出す。サロンには亡夫らしい男との肖像画。執事は、初対面の男をサロンに残すのは珍しい、奥様は夜会の相手を失って沈んでいたと漏らす
+  - Day2昼過ぎ ヴィオレッタ邸サロン。〇〇が執事に夜会のことを尋ねる。セバスチャンは、商人ギルド主催で今年はマルセル家の大広間、踊りと商談の場、独り身の女当主の奥様には商会目当ての男が群がる、同伴者は黙って控えることが肝要と説明。奥の部屋でヴィオレッタがドレスを気に入った様子
 memory_log:
   encounters: []
   battles: []
