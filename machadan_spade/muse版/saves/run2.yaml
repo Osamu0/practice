@@ -3,15 +3,15 @@ schema_version: 3
 game_version: 4.13.4
 campaign_id: run2
 created_at: '2026-11-07T09:22:51+00:00'
-updated_at: '2026-11-07T10:57:51+00:00'
-save_revision: 41
+updated_at: '2026-11-07T11:00:13+00:00'
+save_revision: 42
 content_manifest_hash: 59b69015c8c813194e83a7c4b4d2b862af8f4074c2c616aa5325399df6f66460
 save_format_origin: 'System_Templates.md [TEMPLATE_SAVE] (SAVE_DATA: MachaDun v2.0)'
 transaction:
-  last_transaction_id: tx-8a9746d26b944126a01e8bf95a27b202
-  last_committed_turn: 32
-  previous_revision_hash: 97c3adddd0cc7d167cdf58f0f348fd50ac4cf62b6e8dbd6fe3723109302d6e34
-  last_candidate_hash: 749642bc2fd5000cd24c01d9f958e8c1dee2e5d0c4caf689ac6c5d2e5844cc6a
+  last_transaction_id: tx-e7799b9a892842f592fdfe803cdd5074
+  last_committed_turn: 33
+  previous_revision_hash: 7f2ecd6bbd398d65f34a219f5af8d20fb69337b3efbb61be8e0ad527193d835e
+  last_candidate_hash: 80605afb92c85fe86c9abb14e5e733581b00bf1c395c6418697f87f845226725
   applied_transaction_ids:
   - tx-3205c8b3a3f04e16a35b2f1739e25e5a
   - tx-6a86abc0b7cc4f0aa672870ded718bc7
@@ -54,6 +54,7 @@ transaction:
   - tx-3f848203c9c441208f16425262b37ac0
   - tx-5d77de911cb24a5aaa52ad92f11ec914
   - tx-8a9746d26b944126a01e8bf95a27b202
+  - tx-e7799b9a892842f592fdfe803cdd5074
 hearing_progress:
   status: complete
   current_step: 7
@@ -86,8 +87,8 @@ runtime_state:
   style_conditions: []
   active_scene: turn
   scene_id: turn
-  context_pack_hash: 2c85a2a97cc1e390781696b0aa8df9f8f1901d505e663cc6f1f5ec7df38132c2
-  last_validation_at: '2026-11-07T10:57:51+00:00'
+  context_pack_hash: 500f9b7b1248254256aab3a84cacc6d2875452c461564308137f646ed8dc7614
+  last_validation_at: '2026-11-07T11:00:13+00:00'
   last_error: ''
 dice_state:
   tape_revision: machadan-tape-r1
@@ -591,6 +592,7 @@ session_log:
   - Day1昼 白糸の間（エロシーン中）。〇〇が宿泊を決め、しゃぶっていいと許す。クラリスがフェラ。先っぽから竿の半ばまで咥え、手でしごきつつスカート越しに自分を慰める。気持ちいいか、もっと奥か、口に出すかと尋ねる
   - Day1昼 白糸の間（エロシーン中）。〇〇がもっと奥までと煽る。クラリスが涙を零しながら喉の奥まで根元まで咥え込み、ゆっくり喉で扱く。スカート越しに自分も擦り、褒めてと見上げ、いっぱい出してとねだって再び咥える
   - Day1昼 白糸の間（エロシーン中）。〇〇が『君の口はオナホ』と言いかける。クラリスは意味を推し量り『殿方が気持ちよくなる道具』と理解して昂ぶり、手を膝に揃えて口を大きく開け舌を差し出し、頭をつかんで好きに使ってとねだる
+  - Day1昼 白糸の間（エロシーン中）。〇〇がクラリスの頭を掴み、遠慮なく喉の奥まで突き込む。クラリスはスカートの中で自分を擦りながら喉を使われ、潮を吹いて絶頂。喉で搾りながら『全部のませて』と欲しがる（〇〇はまだ射精していない）
 memory_log:
   encounters: []
   battles: []
@@ -599,6 +601,10 @@ memory_log:
     partner: クラリス
     place: 白糸の間 店内（鍵・カーテン閉め）
     summary: 採寸の流れから〇〇が誘い、クラリスが自ら店を閉めて膝をつく。第一幕
+  - day: 1
+    partner: クラリス
+    place: 白糸の間 店内
+    summary: フェラから喉奥までのイラマチオ。クラリスは自分で触りながら喉を使われて絶頂（初絶頂）
   turning_points: []
 design_applied:
 - 'M1: 配布版のキャストは同梱ファイルの登場人物のみ (一部キャラクターは作者版のみの収録)'
