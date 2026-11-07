@@ -1,0 +1,12 @@
+schema: machadan-inventory-v1
+kind: events
+limits:
+  town: 15
+  road: 15
+  dungeon: 15
+entries: []
+applied_runs: []
+use_receipts: {}
+updated_at: '2026-11-07T03:38:34+00:00'
+generation: 4.13.4-d8231c93f9b740db
+package_version: 4.13.4

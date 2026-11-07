@@ -1,0 +1,8 @@
+{
+  "schema": "machadan-inventory-lifecycle-v1",
+  "package_version": "4.13.4",
+  "generation": "4.13.4-d8231c93f9b740db",
+  "id_epoch": "d8231c93f9b740db",
+  "reason": "empty-initialization",
+  "created_at": "2026-11-07T03:38:34+00:00"
+}
