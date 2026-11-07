@@ -3,15 +3,15 @@ schema_version: 3
 game_version: 4.13.4
 campaign_id: main
 created_at: '2026-11-07T02:20:22+00:00'
-updated_at: '2026-11-07T22:59:49+00:00'
-save_revision: 61
+updated_at: '2026-11-07T23:03:49+00:00'
+save_revision: 62
 content_manifest_hash: 59b69015c8c813194e83a7c4b4d2b862af8f4074c2c616aa5325399df6f66460
 save_format_origin: 'System_Templates.md [TEMPLATE_SAVE] (SAVE_DATA: MachaDun v2.0)'
 transaction:
-  last_transaction_id: tx-c60abf1fc0e04322a1034a2e0b9ac76a
-  last_committed_turn: 50
-  previous_revision_hash: 721642145da414fe89378d26a165f1c9faa944b5c845f40c8dd9d740f8102dbd
-  last_candidate_hash: c1593227d79dca3bfddaed4f5686d9e3957c48c3d08cf078fb35e55019f342a6
+  last_transaction_id: tx-8ab7408c860c4e8dbecbc26093d41921
+  last_committed_turn: 51
+  previous_revision_hash: c6d96ceca4c8b081c732bf10d4330faeb728b8c7f72f63b6f4603890fdcfd44f
+  last_candidate_hash: 5fc65a655aa45eff3182e76470bd42440f2103b0d6e6078a7ff80053c78de6a4
   applied_transaction_ids:
   - tx-413eae86780d496981a94b1d08250181
   - tx-5d7fe8c49f1242dca4bcebf850e979c1
@@ -74,6 +74,7 @@ transaction:
   - tx-c998872890d649189e8440763be0239f
   - tx-0566dbf240cc4549810ef81c94a628ab
   - tx-c60abf1fc0e04322a1034a2e0b9ac76a
+  - tx-8ab7408c860c4e8dbecbc26093d41921
 hearing_progress:
   status: complete
   current_step: 7
@@ -106,8 +107,8 @@ runtime_state:
   style_conditions: []
   active_scene: turn
   scene_id: turn
-  context_pack_hash: a33eeca7a97969f4f9e6add32693f511af1202eb3269bbf936d5c3b05b5daabe
-  last_validation_at: '2026-11-07T22:59:49+00:00'
+  context_pack_hash: 21415add69db2a05b06a85c5c9952761cb62fea505578454923c05ba9a85f8c3
+  last_validation_at: '2026-11-07T23:03:49+00:00'
   last_error: ''
 dice_state:
   tape_revision: machadan-tape-r1
@@ -246,7 +247,7 @@ world_state:
       personality: 無口だが嘘のつけない人。大事にしているものを雑に扱われると口を閉ざす（ミルカの見立て）
       habit: 夕方の鐘の後、一人で銀の天秤亭の納品口へ素材を売りに来る。納品後は中央広場で焼き菓子を一袋買い、西南の住居路地へ帰る
       background: 酒も賭けもしない（父親が骰子で家をなくした、と酒場で話していた）。一年ほど前ダンジョン三階で大怪我をし、ガルドに背負われて帰った。それ以来『あいつには借りがある』と言い、組み続けている。妹と二人暮らし。先月、掲示壁の仲間募集欄を長く眺めていた
-      relation: Day1朝、シラスの書き付けを覗き込むとき一人だけ顔をしかめていた。ガルドの銀蛇亭通いをよく思っていない様子（ミルカの見立て）
+      relation: Day1朝、シラスの書き付けを覗き込むとき一人だけ顔をしかめていた。Day1夕、〇〇に計画を打ち明け、乗ったふりで協力すると決めた。〇〇の名前とぬれねずみ亭に泊まっていることを知った
       status: ミルカの話とDay1夕の本人の話。〇〇に計画を打ち明け、協力を求められる立場
     ミルカの二つの手:
       fact: ①見張って押さえる：権利書を置いたままセレナにだけ話し、持ち出した者を尾行して銀蛇亭の裏で衛兵隊に押さえさせる。②先に日付と持ち出す者を割り出す：夕方に納品口へ来るドーンに当たる／セレナに店の月末の締めの日を聞く。どちらもセレナの協力が要る。ミルカは夕方ドーンが来たら気づく程度は手伝える
@@ -328,8 +329,8 @@ world_state:
   day: 1
   location: 銀の天秤亭
   place_id: GUILD_SILVER_SCALES
-  room_id: GUILD_SILVER_SCALES_CONSULT
-  sub_location: 相談・転職手続きの区画（ドーンと二人）
+  room_id: GUILD_SILVER_SCALES_RECEPTION
+  sub_location: ミルカの受付カウンター
   depth: null
   time_of_day: 夕
   weather: 薄い霧
@@ -775,6 +776,7 @@ session_log:
     vs ドーンINT 7+2+8=17で成功。ドーンが計画を明かす：今朝シラスが出した証文の下書き『白百合香房の権利を借金三千Gのカタとして銀蛇亭のバルトに渡す』、セレナの署名欄つき。決行は月の二十九日の夜（締めの前の晩、セレナが眠った後）。ガルドが合鍵で裏口から入り2Fから権利書を持ち出し、シラスが証文にセレナの名を書き、夜のうちに銀蛇亭の裏でバルトに渡す。ドーンは路地の見張り役、分け前二百G、返事は三日のうちに。まだ返事はしていない。ドーンは『俺に何をしろって言うんだ』と問う
   - Day1夕 相談区画。〇〇が『あいつは本当に仲間か、人も場所も金としか見ていない』とドーンに迫る。ドーンは三年前ガルドがセレナを助けた場に自分もいたと語りつつ、今のガルドは仲間ではない、父と同じだと認める。見張りを断れば別の見張りや日の変更で動きが分からなくなるため、乗ったふりをして当日まで動きを探る案を自分から出す。条件として、セレナが傷つかない方法だと約束しろと〇〇に求める
   - Day1夕 相談区画。〇〇が『任せろ、作戦も考えている』と約束し、返事と連絡の取り方を決めようと言う。ドーンの提案：明日（Day2）の昼に銀蛇亭の裏でガルドに会い、少し渋ってから『やる』と返事する（分け前二百Gも断らない）。予定が変わればドーンが知らせる。連絡は、毎日夕方の鐘の後にドーンが納品に来るので、受付のミルカに『斧の手入れの話がしたい』と言付け、言付けがあれば翌日夕方に相談区画で会う。二十九日の夜はドーンが白百合香房の裏の路地に立ち、ガルドが裏口に入ったら合図を出す（合図の方法は〇〇が決める）。ドーンが〇〇の名前と宿を尋ねる
+  - Day1夕 〇〇がドーンに名乗り、ぬれねずみ亭に泊まっていると伝える。ドーンは何か変わったら知らせると言ってギルドを出る。〇〇は受付のミルカのもとへ。帰還の冒険者で混む中、ミルカは列をさばき終えてから、ドーンの足取りが軽かったと言い、相談が無事に終わったかだけでも聞きたがる
 memory_log:
   encounters: []
   battles: []
