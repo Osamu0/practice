@@ -3,15 +3,15 @@ schema_version: 3
 game_version: 4.13.4
 campaign_id: main
 created_at: '2026-11-07T02:20:22+00:00'
-updated_at: '2026-11-07T15:00:28+00:00'
-save_revision: 39
+updated_at: '2026-11-07T15:03:26+00:00'
+save_revision: 40
 content_manifest_hash: 59b69015c8c813194e83a7c4b4d2b862af8f4074c2c616aa5325399df6f66460
 save_format_origin: 'System_Templates.md [TEMPLATE_SAVE] (SAVE_DATA: MachaDun v2.0)'
 transaction:
-  last_transaction_id: tx-c4412e93718342d398b4b3bad8ff93c9
-  last_committed_turn: 29
-  previous_revision_hash: e2f8de8addf92f88c784865d7403150c0d49e238b0b88232f018bab7084c4bbd
-  last_candidate_hash: 9cb88d3218f9b73d79408a696bc1db73234592d2d73bb1deb4483555d52328ff
+  last_transaction_id: tx-233e203ef5f04b6c9e08f50df5f38e41
+  last_committed_turn: 30
+  previous_revision_hash: ce95f08a1e8effb9bbe489322c97668616fde6fb77a7f51ee268985bfd047c1f
+  last_candidate_hash: 755eb12dcc5f78edfb84430adc9daa1f81e8e751d788e92a67940dfc1c194d97
   applied_transaction_ids:
   - tx-413eae86780d496981a94b1d08250181
   - tx-5d7fe8c49f1242dca4bcebf850e979c1
@@ -52,6 +52,7 @@ transaction:
   - tx-42b9391ad4e24a01ae35086bc7ebbce9
   - tx-5074df791c754561955e62137d7d283b
   - tx-c4412e93718342d398b4b3bad8ff93c9
+  - tx-233e203ef5f04b6c9e08f50df5f38e41
 hearing_progress:
   status: complete
   current_step: 7
@@ -84,8 +85,8 @@ runtime_state:
   style_conditions: []
   active_scene: turn
   scene_id: turn
-  context_pack_hash: 2cbf808ea07dc9604f84ddeeae6d6b56f60c82df77d15ea7a44ab044c1610ec5
-  last_validation_at: '2026-11-07T15:00:28+00:00'
+  context_pack_hash: 81c49fde5156d0a4be135445a97f61d912c1dd7023181265d4b1e8d2e5a81aea
+  last_validation_at: '2026-11-07T15:03:26+00:00'
   last_error: ''
 dice_state:
   tape_revision: machadan-tape-r1
@@ -192,9 +193,14 @@ world_state:
       source: Day1昼 ミルカの話（広間で知れ渡っている範囲）
       status: ミルカの話
     灰色外套の男:
-      fact: Day1の朝から昼前、銀の天秤亭の記入卓でガルドと話し込んでいた冒険者ではない細身の男。灰色の外套、指に細い銀の蛇の指輪。甘い葉巻の匂い。書き付けを一枚出してガルドに見せ、ガルドと連れ立ってギルドを出て東の衛兵通りの方へ向かった
+      fact: 銀の天秤亭の記入卓に現れる冒険者ではない細身の男。灰色の外套、指に細い銀の蛇の指輪、甘い葉巻の匂い。この一月で三度来ており、いつも開いてすぐ記入卓の一番奥の柱の陰の席に座る。依頼は見ず、茶を一杯頼んで銀貨で払い釣りを受け取らない。前の二度はE級の若い冒険者と話し、その二人はその後ギルドに来なくなった。Day1朝はガルド・ドーンと話し込み、端に赤い封蝋の付いた書き付けを見せ、三人で東の衛兵通りの方へ出た。ガルドは男を『シラス』と呼んだ
       source: Day1昼 ミルカの目撃
-      status: ミルカの目撃。身元は未確認（バルトの手下の可能性）
+      status: ミルカの目撃。名前『シラス』が本名かは不明。身元未確認（バルトの手下の可能性）
+    記入卓の籠_ガルドの書き損じ:
+      fact: Day1朝、シラスが出ていった後、ガルドが記入卓で何かを書き損じて丸め、記入卓の足元の籠へ捨てた。ミルカは見ていたが口にしていない（ギルドのごみとして言わなかった）。籠はまだ片付けられていない
+      place_id: GUILD_SILVER_SCALES
+      room_id: GUILD_SILVER_SCALES_WRITING
+      status: 確定した事実（〇〇は未把握。ミルカの視線が籠へ流れたのは見えている）
   appearance_customization:
     version: 1
     overrides: {}
@@ -575,6 +581,7 @@ session_log:
   - Day1昼 ぬれねずみ亭から銀の天秤亭へ。移動 d10=5（なし）、環境 d10=3（掲示板前で女冒険者が男をからかう）。受付のミルカに迎えられる
   - Day1昼 銀の天秤亭の受付。ミルカが登録札のない〇〇に用件を尋ね、登録の手順を案内。今朝の西大通りの揉め事の噂と、ガルドが少し前にギルドを出て東の衛兵通りの方へ向かったことを伝える
   - Day1昼 銀の天秤亭の受付。〇〇がガルドの評判と話し相手を尋ねる。ミルカは依頼記録は明かせないとしつつ、広間で誰でも見られたことだけを話す：ガルドはD級四年目で最近は報告が少ない。記入卓で斧使いの仲間ドーンと、甘い葉巻の匂いをさせた灰色外套の細い男と話し込み、男の出した書き付けを覗き込んでいた
+  - Day1昼 銀の天秤亭の受付。〇〇は理由を答えずに灰色外套の男のことを重ねて尋ねる。ミルカは答えなかったことを覚えておくと言いつつ、男についてさらに話す：この一月で三度目、開店直後に記入卓の奥の柱の陰に座る、依頼は見ない。前の二度はE級の若い冒険者と話し、その二人はその後来なくなった。ガルドは男を『シラス』と呼んだ。書き付けの端に赤い封蝋（役所の紫ではない）。ミルカの視線が記入卓足元の籠へ一瞬流れる
 memory_log:
   encounters: []
   battles: []
