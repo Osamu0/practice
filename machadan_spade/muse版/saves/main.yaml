@@ -3,15 +3,15 @@ schema_version: 3
 game_version: 4.13.4
 campaign_id: main
 created_at: '2026-11-07T02:20:22+00:00'
-updated_at: '2026-11-07T22:47:15+00:00'
-save_revision: 57
+updated_at: '2026-11-07T22:50:23+00:00'
+save_revision: 58
 content_manifest_hash: 59b69015c8c813194e83a7c4b4d2b862af8f4074c2c616aa5325399df6f66460
 save_format_origin: 'System_Templates.md [TEMPLATE_SAVE] (SAVE_DATA: MachaDun v2.0)'
 transaction:
-  last_transaction_id: tx-c3ef299b1f8d4ef1a4283de5f47a5cb0
-  last_committed_turn: 46
-  previous_revision_hash: a999848ffa58c418dec0759f3ce47b78769f418a0661d701edf352f002f7f372
-  last_candidate_hash: 7de9ab5832bc33c8e9b74f6c491aed8a0e28c9280235f076cc9cb632453303a3
+  last_transaction_id: tx-0d3a19f906af42778ce33b516f4a3ae4
+  last_committed_turn: 47
+  previous_revision_hash: d2a6551600fb9d1bf5461c9db89b263eae747380b67ff1ea5ded1bd884e46553
+  last_candidate_hash: de4ab88b30a00099e53be76b556f7c4ce537e2bcb309dd26fbd1f9455c3e552d
   applied_transaction_ids:
   - tx-413eae86780d496981a94b1d08250181
   - tx-5d7fe8c49f1242dca4bcebf850e979c1
@@ -70,6 +70,7 @@ transaction:
   - tx-c079a4567e94445599f7e01a12a75d43
   - tx-c4d08a35b2fb431182d41a07ac4bfa9e
   - tx-c3ef299b1f8d4ef1a4283de5f47a5cb0
+  - tx-0d3a19f906af42778ce33b516f4a3ae4
 hearing_progress:
   status: complete
   current_step: 7
@@ -102,8 +103,8 @@ runtime_state:
   style_conditions: []
   active_scene: turn
   scene_id: turn
-  context_pack_hash: 23c543e4a8ee46a39d46ae02a8e7a6cf1503bec9a7d580472bab74ff9afa990c
-  last_validation_at: '2026-11-07T22:47:15+00:00'
+  context_pack_hash: bf4f846b15a645cb57a2b9e6b4165b4a8e8e069786e4da6470e2ff95f352afb9
+  last_validation_at: '2026-11-07T22:50:23+00:00'
   last_error: ''
 dice_state:
   tape_revision: machadan-tape-r1
@@ -295,6 +296,10 @@ world_state:
       status: 確定した事実
     ドーンの言葉_ガルド:
       fact: ドーンはガルドと組んで四年。一年前ダンジョン三階で腹を裂かれ、ガルドが背負って上まで戻ってくれた恩がある。仲間募集の札は出しておらず出す気もないと言う。一方、初対面の〇〇に『最近のあいつは昔のあいつじゃねえ。今から組む相手を探してるなら、ガルドはやめとけ』と漏らした
+      source: Day1夕 ドーン本人の言葉
+      status: 確定した事実
+    ドーンの言葉_ガルドの変化:
+      fact: 四年前のガルドは依頼を選び、危ない時は引き、稼ぎの半分を貯めるまっとうな剣士だった。セレナと婚約した時は酒場でドーンに三杯おごった（人におごったのはそれきり）。半年ほど前から銀蛇亭に出入りし始め、依頼に出なくなり、報酬の前借りの話ばかり。負けた日はセレナに当たり人前で怒鳴る。最近は灰色外套の葉巻臭い男（シラス）とつるみ、その男が来るとガルドの目つきが変わる。ドーンはその先を知っている様子だが『ガルドの仲間として言えねえ』と口を閉ざした
       source: Day1夕 ドーン本人の言葉
       status: 確定した事実
   appearance_customization:
@@ -747,6 +752,7 @@ session_log:
   - Day1昼過ぎ〜夕 銀の天秤亭の記入卓でドーンを待つ。待つ間の出来事 d10=10（なし）。夕方の鐘のあと、ドーンが一人で来て東奥の納品口で灰色の毛皮と牙を売る。ミルカが目配せで知らせる。ドーンは疲れた顔で、眉間に深い縦皺
   - Day1夕 銀の天秤亭。〇〇の合図でミルカがドーンを呼び止め、先月の仲間募集の件として『組む相手を探している方』と〇〇を紹介する。ドーンは登録札がないことに気づき、ガルドを通さず自分に話が来たことをいぶかしむ（『ガルドとは組まねえのか』）。ミルカが相談区画を勧めて受付に戻り、ドーンは『少しなら』と脇扉へ向かう
   - Day1夕 銀の天秤亭の相談区画でドーンと二人。〇〇が仲間募集をしているのかと尋ねる。ドーンは掲示壁を見ていただけで札は出していない、出す気もないと答える。ガルドと組んで四年、一年前に三階で腹を裂かれガルドに背負われて助かった恩があると語る。一方で『最近のあいつは昔のあいつじゃねえ、組むならガルドはやめとけ』と漏らし、〇〇に何ができるのかと問う
+  - Day1夕 相談区画。〇〇が『これからだから何でもできるようになれる』と答え、昔のガルドとの違いを尋ねる。ドーンは、四年前のガルドはまっとうな剣士で貯金もし、セレナと婚約した時は酒をおごったと語る。半年ほど前から銀蛇亭に出入りし、依頼に出ず前借りの話ばかり、負けた日はセレナに当たると話す。父の件にも触れ、最近は灰色外套の葉巻臭い男とつるみ、その男が来るとガルドの目つきが変わると言う。続きは『ガルドの仲間として言えねえ』と止め、〇〇がなぜそこまで聞くのかと問い返す
 memory_log:
   encounters: []
   battles: []
