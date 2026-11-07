@@ -3,15 +3,15 @@ schema_version: 3
 game_version: 4.13.4
 campaign_id: run2
 created_at: '2026-11-07T09:22:51+00:00'
-updated_at: '2026-11-07T10:26:16+00:00'
-save_revision: 29
+updated_at: '2026-11-07T10:28:27+00:00'
+save_revision: 30
 content_manifest_hash: 59b69015c8c813194e83a7c4b4d2b862af8f4074c2c616aa5325399df6f66460
 save_format_origin: 'System_Templates.md [TEMPLATE_SAVE] (SAVE_DATA: MachaDun v2.0)'
 transaction:
-  last_transaction_id: tx-35d3aa51cf25494da0c5459229317d66
-  last_committed_turn: 20
-  previous_revision_hash: fcafede24d5873b8cdf6a78e8b936db3c5c0a4b0dd7ac8fa35341761ff70a1a6
-  last_candidate_hash: 87420474b594379947a62e7282fe11698e94d2eb3a2d8afacb2ee0019c8623c0
+  last_transaction_id: tx-ca37c5af6f2c4d42ac29d4138b8b1dd0
+  last_committed_turn: 21
+  previous_revision_hash: 7c7b011e6ed352d8482ddb6ba5f5c43f9d2b9f628efc28a9864a48417805d589
+  last_candidate_hash: e245cb4ee19d7b6d407acfc66b21948627fa66f705e7d837e44b80edc2eedf5a
   applied_transaction_ids:
   - tx-3205c8b3a3f04e16a35b2f1739e25e5a
   - tx-6a86abc0b7cc4f0aa672870ded718bc7
@@ -42,6 +42,7 @@ transaction:
   - tx-a88476b4ab5a40458e37b7f43c3759df
   - tx-448c2c6ebf73405d95f0ec9f03ea632d
   - tx-35d3aa51cf25494da0c5459229317d66
+  - tx-ca37c5af6f2c4d42ac29d4138b8b1dd0
 hearing_progress:
   status: complete
   current_step: 7
@@ -74,8 +75,8 @@ runtime_state:
   style_conditions: []
   active_scene: shop
   scene_id: shop
-  context_pack_hash: 1f6bd45ac7ef8ab920079102e8ef58ff5bab036bbd39fa6784f7c79fcf4b8866
-  last_validation_at: '2026-11-07T10:26:16+00:00'
+  context_pack_hash: 586d87863bd4ca35849a272df286d0cebb11d72836c02f8adccb2bceb6d153d0
+  last_validation_at: '2026-11-07T10:28:27+00:00'
   last_error: ''
 dice_state:
   tape_revision: machadan-tape-r1
@@ -135,6 +136,16 @@ world_state:
       place_id: NOIR_CITY_WEST
       summary: 西大通り、宿通りへ折れる角から二軒目。上半分が硝子の扉に鈴。1F表：窓辺にトルソー3体、壁一面の反物棚。奥に大きな作業台。紺の厚いカーテンで仕切った試着の間。2Fはクラリスの住まい（未訪問）
       owner: クラリス
+    注文_白糸の間_冒険者の服:
+      item: 冒険者の服（仕立て・〇〇の寸法、股まわりにゆとり）
+      price_g: 50
+      paid_g: 48
+      due_g: 2
+      ready: Day2朝
+      pickup: 白糸の間
+      stats: DEF+1／重量1
+      extra: 裏地の色を受取時に選べる（追加料金なし）
+      status: 仕立て中
   appearance_customization:
     version: 1
     overrides: {}
@@ -371,7 +382,7 @@ player:
     expertise_tags: []
     solo_suitability: unclassified
     party_needs: []
-  gold: 48
+  gold: 0
   debt: 10000
   base_stats:
     str: 5
@@ -553,6 +564,7 @@ session_log:
   - Day1昼 白糸の間。〇〇がお詫びに装備を作ってと頼む。クラリスはタダは断りつつ、冒険者の服（50G・DEF+1・重量1）の仕立てを提案。明朝渡し、不足分は受取時でよい（未注文）
   - Day1昼 白糸の間。〇〇が冒険者の服を40Gに値切る。CHM 8+2d10(2,5)=15 vs 標準19で失敗、50Gのまま。クラリスは生地と縫製を説明し、肩幅をきっちり合わせると約束（未注文）
   - Day1昼 白糸の間。〇〇が45Gを提示（同じ値切りの繰り返しのため判定なし）。クラリスは笑いつつ50Gを譲らず、注文すれば裏地の色を選べるオマケを提案
+  - Day1昼 白糸の間。〇〇が50Gで冒険者の服を注文し、股関節まわりの採寸を頼む。クラリスが採寸、股下で大きさに気づいて赤面しつつ前のゆとりを多めに取る。48Gを支払い、残り2Gは明朝の受取時
 memory_log:
   encounters: []
   battles: []
