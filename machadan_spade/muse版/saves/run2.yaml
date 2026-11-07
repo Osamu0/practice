@@ -3,15 +3,15 @@ schema_version: 3
 game_version: 4.13.4
 campaign_id: run2
 created_at: '2026-11-07T09:22:51+00:00'
-updated_at: '2026-11-07T14:30:40+00:00'
-save_revision: 70
+updated_at: '2026-11-07T14:35:49+00:00'
+save_revision: 71
 content_manifest_hash: 59b69015c8c813194e83a7c4b4d2b862af8f4074c2c616aa5325399df6f66460
 save_format_origin: 'System_Templates.md [TEMPLATE_SAVE] (SAVE_DATA: MachaDun v2.0)'
 transaction:
-  last_transaction_id: tx-85246d81531b400aa40daefa2b819c11
-  last_committed_turn: 61
-  previous_revision_hash: 8a38db1cba6597ca6ac4ec6608b84dcb40d819754885d0eca78cd629a0b46b4e
-  last_candidate_hash: 9728912d07803f908528f2a7e818d8ddeb4807588e57f00f513cb5b5ba1fe52c
+  last_transaction_id: tx-e4957fa676db400d92f357313886c64b
+  last_committed_turn: 62
+  previous_revision_hash: d58016952bed8ead6dc4f7bb251fedbc5039cb207d45c69f27a21309df9aebfe
+  last_candidate_hash: f50763ad93b98d127e083cc54d04d9014093686792d1d0fce1e74e749cce721f
   applied_transaction_ids:
   - tx-3205c8b3a3f04e16a35b2f1739e25e5a
   - tx-6a86abc0b7cc4f0aa672870ded718bc7
@@ -83,6 +83,7 @@ transaction:
   - tx-16249569d950451394682c2b0903379b
   - tx-6e05da2768554450b09c2abc75817acd
   - tx-85246d81531b400aa40daefa2b819c11
+  - tx-e4957fa676db400d92f357313886c64b
 hearing_progress:
   status: complete
   current_step: 7
@@ -115,13 +116,13 @@ runtime_state:
   style_conditions: []
   active_scene: turn
   scene_id: turn
-  context_pack_hash: f1ff9b471e112dc8075f29028e2151e7edbe3721d1d4d61492e90895c4f46570
-  last_validation_at: '2026-11-07T14:30:40+00:00'
+  context_pack_hash: 86f12ec665785dc723515566b1dfd7b7e372395991196f5dce69f5fc4f16550c
+  last_validation_at: '2026-11-07T14:35:49+00:00'
   last_error: ''
 dice_state:
   tape_revision: machadan-tape-r1
   dice_cursor_d6: 0
-  dice_cursor_d10: 29
+  dice_cursor_d10: 31
 fire_state:
   holders:
   - player
@@ -715,6 +716,7 @@ session_log:
   - Day2昼過ぎ ヴィオレッタ邸サロン。〇〇が執事に夜会のことを尋ねる。セバスチャンは、商人ギルド主催で今年はマルセル家の大広間、踊りと商談の場、独り身の女当主の奥様には商会目当ての男が群がる、同伴者は黙って控えることが肝要と説明。奥の部屋でヴィオレッタがドレスを気に入った様子
   - Day2昼過ぎ ヴィオレッタ邸サロン。〇〇が面と向かって褒めるのは恥ずかしいと言い、執事の心配事を尋ねる。セバスチャンは奥様の働きすぎと食の細さ、ドルトン商会の若旦那が縁組を迫り商隊と倉を狙っていて夜会にも来るはずだと打ち明ける。ヴィオレッタが続き部屋から『殿方の目で見てほしい』と〇〇を呼ぶ
   - Day2昼過ぎ ヴィオレッタ邸の衣装部屋。〇〇が入ると、夜会用の紫のドレスを着たヴィオレッタが姿見の前に立ち、殿方の目で正直に感想をと求める。執事との会話は聞こえていた様子
+  - Day2昼過ぎ ヴィオレッタ邸の衣装部屋。〇〇がドレスを気品があると褒め、帳簿は分からないと苦笑。CHM 8+2d10(3,4)=15 vs 標準19で失敗。ヴィオレッタは褒め言葉はありふれていると受け取るが、帳簿を狙わない男だとは認める。ドレスの丈はこのままで明日夕方までに届けるようクラリスに指示し、夜会は早めに切り上げる、踊りを断るのに飽きたと漏らす
 memory_log:
   encounters: []
   battles: []
