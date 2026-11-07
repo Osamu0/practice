@@ -3,15 +3,15 @@ schema_version: 3
 game_version: 4.13.4
 campaign_id: run2
 created_at: '2026-11-07T09:22:51+00:00'
-updated_at: '2026-11-07T14:01:58+00:00'
+updated_at: '2026-11-07T14:05:38+00:00'
 save_revision: 65
 content_manifest_hash: 59b69015c8c813194e83a7c4b4d2b862af8f4074c2c616aa5325399df6f66460
 save_format_origin: 'System_Templates.md [TEMPLATE_SAVE] (SAVE_DATA: MachaDun v2.0)'
 transaction:
-  last_transaction_id: tx-b5926e7bc14d471c9b5daf05965cb093
+  last_transaction_id: tx-ef1195a79d064d42a0dd537e66429cc8
   last_committed_turn: 56
   previous_revision_hash: 3718a4738c6a16ae8bed951b5ad5fe44c25b0fbdead98617329d8e50cbed34cf
-  last_candidate_hash: 0f99a3432fae8d454a8019a11bf02e7a322a1e2b4f0757a7153e04659261c64c
+  last_candidate_hash: f316d52ccbde1f04e7c4b8a008a82fdc18448e6ed1ef852664838bedd173922d
   applied_transaction_ids:
   - tx-3205c8b3a3f04e16a35b2f1739e25e5a
   - tx-6a86abc0b7cc4f0aa672870ded718bc7
@@ -77,7 +77,7 @@ transaction:
   - tx-f7508b9de2c243f8809acb0928c4a66a
   - tx-e3833ad090ad4e8a8d8d886fca6e8807
   - tx-fd998d5931024e4da88307c5be40a6f1
-  - tx-b5926e7bc14d471c9b5daf05965cb093
+  - tx-ef1195a79d064d42a0dd537e66429cc8
 hearing_progress:
   status: complete
   current_step: 7
@@ -108,15 +108,15 @@ active_script:
 runtime_state:
   ero_scene: false
   style_conditions: []
-  active_scene: shop
-  scene_id: shop
-  context_pack_hash: 10f7eff5e64c0d275d62eb66192842297d80aa23dbaa24040fabe4453be1e7a4
-  last_validation_at: '2026-11-07T14:01:58+00:00'
+  active_scene: event
+  scene_id: event
+  context_pack_hash: dbd68d742ca252a6c118862093aa77c28d8cfbd3c45cbf669ae8c678771c2a8b
+  last_validation_at: '2026-11-07T14:05:38+00:00'
   last_error: ''
 dice_state:
   tape_revision: machadan-tape-r1
   dice_cursor_d6: 0
-  dice_cursor_d10: 26
+  dice_cursor_d10: 27
 fire_state:
   holders:
   - player
@@ -218,7 +218,7 @@ world_state:
   room_id: ''
   sub_location: 仕立て工房『白糸の間』2階・クラリスの寝室
   depth: null
-  time_of_day: 朝
+  time_of_day: 昼
   weather: 晴れ
   quest_active: ''
   quest_rank: ''
@@ -461,7 +461,7 @@ player:
     chm: 0
   equipment_bonus:
     str: 0
-    def: 0
+    def: 1
     int: 0
     spd: 0
     tec: 0
@@ -482,7 +482,7 @@ player:
     chm: 0
   effective_stats:
     str: 8
-    def: 8
+    def: 9
     int: 11
     spd: 8
     tec: 8
@@ -499,14 +499,14 @@ player:
     max: 11
   stats:
     str: 8
-    def: 8
+    def: 9
     int: 11
     spd: 8
     tec: 8
     chm: 8
   equipment:
     weapon_instance_id: null
-    armor_instance_id: null
+    armor_instance_id: inst-run2-adventurer-clothes-1
     offhand_instance_id: null
     fixed:
     - 帰還の腕輪
@@ -515,7 +515,7 @@ player:
   ero_status: []
   encumbrance:
     version: 1
-    total_weight: 0
+    total_weight: 1
     raw_penalty: 0
     applied_penalty: 0
   stat_lp_bonus: 1
@@ -545,7 +545,7 @@ hearing_check:
 spells: []
 equip:
   weapon: ''
-  armor: ''
+  armor: 冒険者の服（白糸の間仕立て・葡萄色の裏地）
   fixed: 帰還の腕輪
 items: []
 inventory:
@@ -556,7 +556,7 @@ inventory:
     max_slots: 16
     skill_bonus_slots: 0
     effective_max_slots: 16
-    used_slots: 2
+    used_slots: 1
   carried_stacks:
   - stack_id: stack-run2-honey-cake-1
     item_def_id: itemdef-run2-honey-cake-3
@@ -605,8 +605,8 @@ item_instances:
 - instance_id: inst-run2-adventurer-clothes-1
   item_def_id: itemdef-run2-adventurer-clothes-shiraito
   name: 冒険者の服（白糸の間仕立て・葡萄色の裏地）
-  location: bag
-  slot_cost: 1
+  location: equipped
+  slot_cost: 0
   owner_character_id: player
   specification_snapshot:
     category: armor
@@ -690,6 +690,7 @@ session_log:
     d10=6（耳寄りな情報）
   - Day1夜 白糸の間2階。〇〇が夕飯を食べて就寝。クラリスが背中に寄り添って眠る（Hなし）。Day2朝、クラリスが仕上がった冒険者の服を持ってきて、約束の裏地の色（薄紅・空色・葡萄色・濃紺）を選ばせる
   - Day2朝 白糸の間2階。〇〇が裏地はウケのいい色にと任せる。クラリスはヴィオレッタが紫好きだからと深い葡萄色を選び、その場で縫い付けて冒険者の服を渡す
+  - Day2朝〜昼 白糸の間2階。〇〇が冒険者の服に着替えて休む（DEF+1）。休憩 d10=5（なし）。午後、よそゆきのクラリスがヴィオレッタのドレスの箱を持ってきて、荷物持ちを頼む
 memory_log:
   encounters: []
   battles: []
