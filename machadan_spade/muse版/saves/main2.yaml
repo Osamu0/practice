@@ -3,15 +3,15 @@ schema_version: 3
 game_version: 4.13.4
 campaign_id: main2
 created_at: '2026-11-07T05:39:36+00:00'
-updated_at: '2026-11-07T06:42:29+00:00'
-save_revision: 20
+updated_at: '2026-11-07T06:43:52+00:00'
+save_revision: 21
 content_manifest_hash: 59b69015c8c813194e83a7c4b4d2b862af8f4074c2c616aa5325399df6f66460
 save_format_origin: 'System_Templates.md [TEMPLATE_SAVE] (SAVE_DATA: MachaDun v2.0)'
 transaction:
-  last_transaction_id: tx-82e9dd4c74d945358425434a1df3eb9c
-  last_committed_turn: 7
-  previous_revision_hash: dc3feda325ae47f1a52af75be64eff8e838418effe794f9f802f18b8a5e6dcd8
-  last_candidate_hash: 2809b76dd19067a8c6d1d0933f04e372ab98a962dadf22da16278b60ab7fd665
+  last_transaction_id: tx-4b16baa5f4a141a9a464021e9c7f1eab
+  last_committed_turn: 8
+  previous_revision_hash: 7ea4080c3d88b4bfaceec076ae3ecd0dfb8afc087ebd7834efc8beb1b7077a64
+  last_candidate_hash: b7831fafb7a6bf9ef7ccfa2ddc672d25053205adac76e5b0b0e75fefe7b6468e
   applied_transaction_ids:
   - tx-0345298f5a774b8ca7e3c0934d815725
   - tx-7f4c45d45dea4266ba65a98f8f4718e6
@@ -33,6 +33,7 @@ transaction:
   - tx-a2760dad95944defb1d555fae82d348c
   - tx-c9821096bc87401d86431c1dce18e889
   - tx-82e9dd4c74d945358425434a1df3eb9c
+  - tx-4b16baa5f4a141a9a464021e9c7f1eab
 hearing_progress:
   status: complete
   current_step: 7
@@ -65,8 +66,8 @@ runtime_state:
   style_conditions: []
   active_scene: event
   scene_id: event
-  context_pack_hash: 2e215f007854c592b084196044786f7d053bd8be201ba6f1fc659beb17881a72
-  last_validation_at: '2026-11-07T06:42:29+00:00'
+  context_pack_hash: 12e681ff8eed82248b0296245a2b17b88637583128c929328323dafe01fd9643
+  last_validation_at: '2026-11-07T06:43:52+00:00'
   last_error: ''
 dice_state:
   tape_revision: machadan-tape-r1
@@ -658,6 +659,9 @@ session_log:
       die: d10
       result: 2
       cursor: 42
+  - day: 1
+    time_of_day: 朝
+    summary: コノハの頼みを『また今度』と断った。コノハはめげずに次の男へ声をかけに行った。所持金がなく、ベルから肉の当てを考えろと言われた。
 memory_log:
   encounters: []
   battles: []
