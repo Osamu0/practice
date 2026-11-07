@@ -3,15 +3,15 @@ schema_version: 3
 game_version: 4.13.4
 campaign_id: main2
 created_at: '2026-11-07T05:39:36+00:00'
-updated_at: '2026-11-07T07:39:13+00:00'
-save_revision: 40
+updated_at: '2026-11-07T07:42:07+00:00'
+save_revision: 41
 content_manifest_hash: 59b69015c8c813194e83a7c4b4d2b862af8f4074c2c616aa5325399df6f66460
 save_format_origin: 'System_Templates.md [TEMPLATE_SAVE] (SAVE_DATA: MachaDun v2.0)'
 transaction:
-  last_transaction_id: tx-1ea2cdec0cb548749cc5aa643d1b8703
-  last_committed_turn: 26
-  previous_revision_hash: aae6ebd693d57568201f039baad3d972b7d8af2f6fe69cd9070a3079cb189f59
-  last_candidate_hash: a345437cafd5e3b9afd84b15789b6ae3eca0498dc82e435adc59177883c63c24
+  last_transaction_id: tx-05698ae2892f407f8ee75c60266683d1
+  last_committed_turn: 27
+  previous_revision_hash: 80b32cf565a44962219b714d730086cdbfe49578c4db0fe15d708da071fad2b7
+  last_candidate_hash: 4cec1a9b9d4c08f3a4d649b962ea06bb1d8501bdd004f26ae58ba6265075a409
   applied_transaction_ids:
   - tx-0345298f5a774b8ca7e3c0934d815725
   - tx-7f4c45d45dea4266ba65a98f8f4718e6
@@ -53,6 +53,7 @@ transaction:
   - tx-c77a782c6d6e4ccd9032c1787bba0171
   - tx-535abb7bc9324261b6823227b61ae528
   - tx-1ea2cdec0cb548749cc5aa643d1b8703
+  - tx-05698ae2892f407f8ee75c60266683d1
 hearing_progress:
   status: complete
   current_step: 7
@@ -85,8 +86,8 @@ runtime_state:
   style_conditions: []
   active_scene: turn
   scene_id: turn
-  context_pack_hash: d6f43fe5890c0ebb9bd5d595f997aad0ac89f05e0cea80666636d27b42b2bed1
-  last_validation_at: '2026-11-07T07:39:13+00:00'
+  context_pack_hash: 3fb4b5cf4adf7aa760a85835d33470e81727ec86538f353d425fb28a1ee230f2
+  last_validation_at: '2026-11-07T07:42:07+00:00'
   last_error: ''
 dice_state:
   tape_revision: machadan-tape-r1
@@ -248,6 +249,7 @@ world_state:
         LORE_SHIRAYURI_KOUBOU_FATHER_ROOM: 二階の左の扉。窓ひとつ、寝台、古い机と椅子、衣装棚。清潔。内側から鍵
         LORE_SHIRAYURI_KOUBOU_UPSTAIRS: 二階の右の扉がセレナの私室
         kitchen: 台所は一階（位置は調香室の脇と補完）
+      kitchen: 一階、調香室の脇の小さな扉の向こう。石の竈、吊るした香草の束、小さな木の卓、勝手口
     人物_セレナ:
       kind: npc
       name: セレナ
@@ -298,8 +300,8 @@ world_state:
   day: 1
   location: 白百合香房
   place_id: LORE_SHIRAYURI_KOUBOU
-  room_id: LORE_SHIRAYURI_KOUBOU_FATHER_ROOM
-  sub_location: 二階・父の部屋
+  room_id: LORE_SHIRAYURI_KOUBOU_KITCHEN
+  sub_location: 一階・台所
   depth: null
   time_of_day: 夜
   weather: 薄い霧
@@ -851,6 +853,9 @@ session_log:
   - day: 1
     time_of_day: 夜
     summary: ベルに『街の辺鄙な所でチンピラと喧嘩して本当に骨を折り、治療を受け、ついでに金品も』と持ちかけた。ベルは、主人公は誓いで戦えない、こちらから仕掛けると暴行・強盗でシルヴィアに捕まり借金+3,000G、向こうから絡まれた返り討ちなら正当、治療は傷の分だけ高い、と指摘した。夕食の支度ができたとセレナが呼んだ。
+  - day: 1
+    time_of_day: 夜
+    summary: 夜になってから喧嘩の計画を実行すると決め、ベルも了承（殴られ役は主人公）。セレナの台所で夕食（塩漬け豚の焼いたもの・黒パン・豆の煮込み・白鈴花入りの蜂蜜酒）。ベルには骨付きの切れ端。セレナは父がいなくなってから久しぶりの二人の夕食だと感じ、どこから来たのか尋ねた。
 memory_log:
   encounters: []
   battles: []
