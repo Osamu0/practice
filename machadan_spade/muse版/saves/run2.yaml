@@ -3,15 +3,15 @@ schema_version: 3
 game_version: 4.13.4
 campaign_id: run2
 created_at: '2026-11-07T09:22:51+00:00'
-updated_at: '2026-11-07T13:35:41+00:00'
-save_revision: 57
+updated_at: '2026-11-07T13:39:15+00:00'
+save_revision: 58
 content_manifest_hash: 59b69015c8c813194e83a7c4b4d2b862af8f4074c2c616aa5325399df6f66460
 save_format_origin: 'System_Templates.md [TEMPLATE_SAVE] (SAVE_DATA: MachaDun v2.0)'
 transaction:
-  last_transaction_id: tx-dea985ae958941cf97f2f980123856e8
-  last_committed_turn: 48
-  previous_revision_hash: b3e55b348af11cff47b943f64d3a1bf6b146cd7f86d9c841f10577cb1ab01c7e
-  last_candidate_hash: faab8402dd40a6eb880646e89ae1f53ad18d7acc52970d6de9f32bca7b5c647f
+  last_transaction_id: tx-3a9f2a05d3e14a82bd9931ebe3307628
+  last_committed_turn: 49
+  previous_revision_hash: d792af5699a294494eeccb3ce0371dfdbc301750caba91bfc22e4eba49f47f8d
+  last_candidate_hash: 7105fbbda47ec3e31334072863ac995d03111b7655eee93ed6cf0b4f86a3db82
   applied_transaction_ids:
   - tx-3205c8b3a3f04e16a35b2f1739e25e5a
   - tx-6a86abc0b7cc4f0aa672870ded718bc7
@@ -70,6 +70,7 @@ transaction:
   - tx-1eed5b34471a482b86675604eb7e45fe
   - tx-e1c3f3b6785e45efa07afc8d295b853b
   - tx-dea985ae958941cf97f2f980123856e8
+  - tx-3a9f2a05d3e14a82bd9931ebe3307628
 hearing_progress:
   status: complete
   current_step: 7
@@ -102,8 +103,8 @@ runtime_state:
   style_conditions: []
   active_scene: turn
   scene_id: turn
-  context_pack_hash: 9d6beec7a4323df6fabf83127672498d647e9fbb4e1abb1a2c4e2da6a52a52d5
-  last_validation_at: '2026-11-07T13:35:41+00:00'
+  context_pack_hash: bd4135a7296ceda0c532546fa335b2a724b2b0e3f0f195d8ee2421297e69c8a5
+  last_validation_at: '2026-11-07T13:39:15+00:00'
   last_error: ''
 dice_state:
   tape_revision: machadan-tape-r1
@@ -151,6 +152,7 @@ world_state:
       relationship: Day1、〇〇と肉体関係。白糸の間2階に〇〇が泊まることを承諾。閨では〇〇の『メス奴隷』と宣言し『ご主人さま』と呼ぶ（店では普段どおり。仕立て代は通常どおり取る）。店の外では秘密にしてほしいと頼んでいる
       promise: 〇〇の服はどんなに忙しくても最優先で、いちばん丁寧に仕立てる（代金は通常どおり）。開業時から『誰が相手でも同じお代』を自分の決まりにしている
       finances: 本人談：月の売上およそ6,000G（春秋は婚礼・夜会で多く、婚礼衣装1着で800〜900G。冬は繕い中心で少ない）。仕入れ・外注・消耗品・建物の借り賃を引いた手取りは月2,000G強。借金の肩代わりはしない方針。食事・寝床・客の噂話からの仕事の心当たりは提供する
+      jealousy: 〇〇がほかの女の相手をして稼ぐと言った時、胸がちくりとしたが取り乱さず心当たりを教えた。仕事の後は必ず帰ってきてと頼み『全部上書きする』と言う
     エレナとの初対面:
       character_id: Elena_003
       day: 1
@@ -180,6 +182,12 @@ world_state:
     クラリス宅への宿泊:
       summary: Day1昼、〇〇が白糸の間に泊まりたいと頼み、クラリスは今夜もその先も泊まってよいと承諾。2階は寝台ひとつの狭い住まい。宿代は取らない（店の商いではないため）
       status: 承諾済み・まだ宿泊していない
+    NPC_ヴィオレッタ:
+      name: ヴィオレッタ
+      age: 34
+      role: 西大通りの一番奥、蔦の絡む屋敷の未亡人。3年前に亡くした夫の交易商会を継ぎ裕福
+      notes: 白糸の間の常連。毎月ドレスを頼む。採寸のたびに若い男を恋しがるそぶり。夜会で言い寄るのは金目当ての年寄りばかりで退屈している（クラリス談・未対面）
+      status: 未対面（噂のみ）
   appearance_customization:
     version: 1
     overrides: {}
@@ -626,6 +634,7 @@ session_log:
   - Day1昼過ぎ 白糸の間2階（エロシーン中）。〇〇がメス奴隷のくせに口答えかと叱る。クラリスは謝りつつも代金は店の決まりで曲げられないと小さく繰り返し、両手首を頭上に差し出してお仕置きをねだる
   - Day1昼過ぎ 白糸の間2階（エロシーン中）。〇〇が一人で切り盛りしているなら値引きしても問題ないと迫る。クラリスは一人だからこそ決まりを曲げられない、好きになった人でも同じお代と答え、思わず『好き』と漏らす。代わりに〇〇の服は最優先で丁寧に仕立てると約束し、それでも口答えならお仕置きをとねだる
   - Day1昼過ぎ 白糸の間2階（エロシーン中）。〇〇が売上を尋ねる。クラリスは月6,000G前後、手取り2,000G強と答える。借金の肩代わりはしないが、食事・寝床・仕事の心当たりで支えると話す
+  - Day1昼過ぎ 白糸の間2階（エロシーン中）。〇〇が金持ちで欲に飢えた相手をして稼ぐと言う。クラリスは寂しさを隠しつつ、未亡人ヴィオレッタ（34歳・蔦の屋敷）と裏娼館『蜜の味』の男娼の噂を教える。明日仕上がりの服で行けば目に留まると助言し、仕事の後は帰ってきてとねだる
 memory_log:
   encounters: []
   battles: []
