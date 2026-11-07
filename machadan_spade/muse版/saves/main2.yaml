@@ -3,15 +3,15 @@ schema_version: 3
 game_version: 4.13.4
 campaign_id: main2
 created_at: '2026-11-07T05:39:36+00:00'
-updated_at: '2026-11-07T07:33:37+00:00'
-save_revision: 39
+updated_at: '2026-11-07T07:39:13+00:00'
+save_revision: 40
 content_manifest_hash: 59b69015c8c813194e83a7c4b4d2b862af8f4074c2c616aa5325399df6f66460
 save_format_origin: 'System_Templates.md [TEMPLATE_SAVE] (SAVE_DATA: MachaDun v2.0)'
 transaction:
-  last_transaction_id: tx-535abb7bc9324261b6823227b61ae528
-  last_committed_turn: 25
-  previous_revision_hash: 36d82b53c2ba3d2d251b6e8cbca25f430771718252bf50262b06f75c3356546d
-  last_candidate_hash: 8ae3abe9393c5cf9e36aba64263ebdbbf0ffbc5c4bca0176656d18f8ca78037c
+  last_transaction_id: tx-1ea2cdec0cb548749cc5aa643d1b8703
+  last_committed_turn: 26
+  previous_revision_hash: aae6ebd693d57568201f039baad3d972b7d8af2f6fe69cd9070a3079cb189f59
+  last_candidate_hash: a345437cafd5e3b9afd84b15789b6ae3eca0498dc82e435adc59177883c63c24
   applied_transaction_ids:
   - tx-0345298f5a774b8ca7e3c0934d815725
   - tx-7f4c45d45dea4266ba65a98f8f4718e6
@@ -52,6 +52,7 @@ transaction:
   - tx-451f116a70824c709d50ea561c5c24d3
   - tx-c77a782c6d6e4ccd9032c1787bba0171
   - tx-535abb7bc9324261b6823227b61ae528
+  - tx-1ea2cdec0cb548749cc5aa643d1b8703
 hearing_progress:
   status: complete
   current_step: 7
@@ -84,8 +85,8 @@ runtime_state:
   style_conditions: []
   active_scene: turn
   scene_id: turn
-  context_pack_hash: cd57af70f0fff34042a0f6be828dce14b720591acf45deffc0c6259dd2392e6a
-  last_validation_at: '2026-11-07T07:33:37+00:00'
+  context_pack_hash: d6f43fe5890c0ebb9bd5d595f997aad0ac89f05e0cea80666636d27b42b2bed1
+  last_validation_at: '2026-11-07T07:39:13+00:00'
   last_error: ''
 dice_state:
   tape_revision: machadan-tape-r1
@@ -210,6 +211,7 @@ world_state:
       kind: partner
       fact: 召喚士の相棒ベル。肩に乗る小さな黒い獣（狐の耳・長い尻尾・蝙蝠の小さな翼・金の目）。主人公と同じ気質で損得にうるさく口が悪い。一人称は俺。常に一緒にいる。
       status: confirmed
+      memory_link: ベルは主人公の魔力から生まれ、主人公の記憶（リリスの帳簿など）がおおよそ流れ込んでいる。全部ではない
     散策案内_Milka_004:
       character_id: Milka_004
       told: true
@@ -846,6 +848,9 @@ session_log:
   - day: 1
     time_of_day: 夜
     summary: 父の部屋でベルと作戦会議。手持ち50G・Day5の取立て500G、セレナからの1,000Gは月末、仮病と宿の嘘がばれる危険、稼ぎ口（材料集め・ギルド依頼）と前衛の仲間の必要を整理した。
+  - day: 1
+    time_of_day: 夜
+    summary: ベルに『街の辺鄙な所でチンピラと喧嘩して本当に骨を折り、治療を受け、ついでに金品も』と持ちかけた。ベルは、主人公は誓いで戦えない、こちらから仕掛けると暴行・強盗でシルヴィアに捕まり借金+3,000G、向こうから絡まれた返り討ちなら正当、治療は傷の分だけ高い、と指摘した。夕食の支度ができたとセレナが呼んだ。
 memory_log:
   encounters: []
   battles: []
