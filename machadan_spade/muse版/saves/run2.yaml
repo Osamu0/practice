@@ -3,15 +3,15 @@ schema_version: 3
 game_version: 4.13.4
 campaign_id: run2
 created_at: '2026-11-07T09:22:51+00:00'
-updated_at: '2026-11-07T10:13:18+00:00'
-save_revision: 23
+updated_at: '2026-11-07T10:15:43+00:00'
+save_revision: 24
 content_manifest_hash: 59b69015c8c813194e83a7c4b4d2b862af8f4074c2c616aa5325399df6f66460
 save_format_origin: 'System_Templates.md [TEMPLATE_SAVE] (SAVE_DATA: MachaDun v2.0)'
 transaction:
-  last_transaction_id: tx-5bb5969c2c5449eabfdc8da5b2936c9b
-  last_committed_turn: 14
-  previous_revision_hash: b3ea64eb3021022d2c270f767c4d5cdd1d61112abbf2d4d194a5edc3efdf8638
-  last_candidate_hash: 33632d8fe1acb6d028ce4e8e686e296c018eebd6de1b9f7ed28bd0427d08e71b
+  last_transaction_id: tx-7c429c433b514c71a159c471f9fe2862
+  last_committed_turn: 15
+  previous_revision_hash: 973a4a9b383b3b02ea1933d472b61fa618f647c38efbf62178f827b47d2e3c90
+  last_candidate_hash: c932a14d4c5fbed1ce4786dd441a7aa5c4895cbe21c9bfc6d58b3e87cdddbbe3
   applied_transaction_ids:
   - tx-3205c8b3a3f04e16a35b2f1739e25e5a
   - tx-6a86abc0b7cc4f0aa672870ded718bc7
@@ -36,6 +36,7 @@ transaction:
   - tx-307b182470f344be92c73ca18cd01d6a
   - tx-30af6838dd4c4c25a69d810db3f1bdf6
   - tx-5bb5969c2c5449eabfdc8da5b2936c9b
+  - tx-7c429c433b514c71a159c471f9fe2862
 hearing_progress:
   status: complete
   current_step: 7
@@ -66,15 +67,15 @@ active_script:
 runtime_state:
   ero_scene: false
   style_conditions: []
-  active_scene: event
-  scene_id: event
-  context_pack_hash: 589137da30dfa7df6002cf4194ae6fed594591509284fe2ccff3de26c47e1022
-  last_validation_at: '2026-11-07T10:13:18+00:00'
+  active_scene: turn
+  scene_id: turn
+  context_pack_hash: da5147a674e2457b10d23d423a1fd742090a97b55728a87ea3209f4a2c5c789b
+  last_validation_at: '2026-11-07T10:15:43+00:00'
   last_error: ''
 dice_state:
   tape_revision: machadan-tape-r1
   dice_cursor_d6: 0
-  dice_cursor_d10: 14
+  dice_cursor_d10: 18
 fire_state:
   holders:
   - player
@@ -540,6 +541,7 @@ session_log:
   - Day1朝 中央広場。〇〇がタダでは手伝わないと告げる。ポーラ（20歳）は現金がなく、礼として蜂蜜焼き3個入り1包み（15G相当）を提示（未受領）。また買いに来ればひとつオマケすると言う
   - Day1朝 中央広場。〇〇が屋台車を押す。STR 8+2d10(1,10)=19 vs 標準19で成功。車輪が溝から抜け、ポーラから蜂蜜焼き（3個入り）1包みを受け取る
   - Day1昼前 〇〇がクラリスの『白糸の間』を訪ねる。移動 d10=7（なし）、環境 d10=5（なし）。仮縫いのローレンス夫人を見送ったクラリスが、体の具合と大聖堂に行ったかを尋ねる
+  - Day1昼前 白糸の間。〇〇が治療で借金になったと匂わせ、この世界に来たばかりだと話す。CHM対抗 12 vs クラリスINT 17で失敗。クラリスは治療で借金とは信じないが、来たばかりで借金があることは受け入れ、深く詮索しない。服が体に合っていないと指摘し、お茶を勧める
 memory_log:
   encounters: []
   battles: []
