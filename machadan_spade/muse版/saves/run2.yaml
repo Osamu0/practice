@@ -3,15 +3,15 @@ schema_version: 3
 game_version: 4.13.4
 campaign_id: run2
 created_at: '2026-11-07T09:22:51+00:00'
-updated_at: '2026-11-07T09:56:50+00:00'
-save_revision: 15
+updated_at: '2026-11-07T09:59:15+00:00'
+save_revision: 16
 content_manifest_hash: 59b69015c8c813194e83a7c4b4d2b862af8f4074c2c616aa5325399df6f66460
 save_format_origin: 'System_Templates.md [TEMPLATE_SAVE] (SAVE_DATA: MachaDun v2.0)'
 transaction:
-  last_transaction_id: tx-edae842d26bb4eeaa2aca99796c6a97e
-  last_committed_turn: 6
-  previous_revision_hash: 7bfce89ad90f32334011dd0a468307fdc9f79a69f8059be6343f91fe3dd1cb3f
-  last_candidate_hash: 429d0d6b27c1819b1f877431510e18bfe6f6053643473b72d4d74860a6ba6c14
+  last_transaction_id: tx-0b8721ab6b19441ab0f23a20e83eac2f
+  last_committed_turn: 7
+  previous_revision_hash: 10a46e510d3305c4f7a9a060ad75b3555e8bc04c35c52a1bd7682513297392fe
+  last_candidate_hash: 43c89be5caab35a2ba835cc84197c82a6079c118970a62b1dc842cd5105a48d5
   applied_transaction_ids:
   - tx-3205c8b3a3f04e16a35b2f1739e25e5a
   - tx-6a86abc0b7cc4f0aa672870ded718bc7
@@ -28,6 +28,7 @@ transaction:
   - tx-a963a9aabe404be6965c8b0087edc7a0
   - tx-6d8b3da3b93e4570a3c8a67338735259
   - tx-edae842d26bb4eeaa2aca99796c6a97e
+  - tx-0b8721ab6b19441ab0f23a20e83eac2f
 hearing_progress:
   status: complete
   current_step: 7
@@ -58,10 +59,10 @@ active_script:
 runtime_state:
   ero_scene: false
   style_conditions: []
-  active_scene: event
-  scene_id: event
-  context_pack_hash: 915412ee0469b29b9bd9bf28620aac188943ea99d81f31c69a02d1da6c2255cf
-  last_validation_at: '2026-11-07T09:56:50+00:00'
+  active_scene: turn
+  scene_id: turn
+  context_pack_hash: 3ff374b07883ecb5e070cf99ab3c7e106f4ebda409968d68199fd43879cc43a8
+  last_validation_at: '2026-11-07T09:59:15+00:00'
   last_error: ''
 dice_state:
   tape_revision: machadan-tape-r1
@@ -464,6 +465,7 @@ session_log:
   - Day1朝 西大通り。〇〇が『医者には自分で行くから誠意を』と求める。クラリスは少し引っかかりつつも争わず、手持ちの銀貨5枚（50G）を見舞金として差し出す（未受領）。骨に障りがあれば工房を訪ねてと告げる
   - Day1朝 西大通り。〇〇がクラリスの見舞金50Gを受け取り、後で『白糸の間』へ顔を出すと告げる
   - Day1朝 〇〇が路地の石壁に腕をぶつけて打ち身を作る（LP33→32）。中央広場を抜けて大聖堂の治療受付へ。移動 d10=8（なし）、環境 d10=10（なし）。エレナが痣に見入りつつ治療を申し出る（1LP=2G、未実施）
+  - Day1朝 大聖堂の治療受付。〇〇が何をしている所か尋ね、エレナが治療・礼拝・告解・聖水の泉、冒険者への危ない頼み事を案内する。打ち身は未治療
 memory_log:
   encounters: []
   battles: []
