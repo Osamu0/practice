@@ -3,15 +3,15 @@ schema_version: 3
 game_version: 4.13.4
 campaign_id: run2
 created_at: '2026-11-07T09:22:51+00:00'
-updated_at: '2026-11-07T13:16:36+00:00'
-save_revision: 52
+updated_at: '2026-11-07T13:25:37+00:00'
+save_revision: 53
 content_manifest_hash: 59b69015c8c813194e83a7c4b4d2b862af8f4074c2c616aa5325399df6f66460
 save_format_origin: 'System_Templates.md [TEMPLATE_SAVE] (SAVE_DATA: MachaDun v2.0)'
 transaction:
-  last_transaction_id: tx-150d8bd805574ab8a17ca8e7728b7ab8
-  last_committed_turn: 43
-  previous_revision_hash: 95163cc6ef04627a69708d2b56f314371207266496e026defeb6c211cf162fac
-  last_candidate_hash: e5251dfcc125e53aabd0aecc9fedf2b2271ae346aeb4b5eb47bf3d15cbee23ff
+  last_transaction_id: tx-cbfcf4f0447848188a4de828e7446766
+  last_committed_turn: 44
+  previous_revision_hash: 49c25c31956f4d961558850381b6e7c374c1d279ca06b66d08e6ae207340fc99
+  last_candidate_hash: 24a2be6698b2378efe0d86d1bcb01742eca45786c0ae07b002783e4e8045fad8
   applied_transaction_ids:
   - tx-3205c8b3a3f04e16a35b2f1739e25e5a
   - tx-6a86abc0b7cc4f0aa672870ded718bc7
@@ -65,6 +65,7 @@ transaction:
   - tx-bc09d7a28a404c818d9c21b834e81269
   - tx-8081be3434144604bd69065ad9f44993
   - tx-150d8bd805574ab8a17ca8e7728b7ab8
+  - tx-cbfcf4f0447848188a4de828e7446766
 hearing_progress:
   status: complete
   current_step: 7
@@ -97,8 +98,8 @@ runtime_state:
   style_conditions: []
   active_scene: turn
   scene_id: turn
-  context_pack_hash: 20992155ca40548e925516ecc6413e4459b6ab18129bfed5a97599623be00917
-  last_validation_at: '2026-11-07T13:16:36+00:00'
+  context_pack_hash: 262fd20caef04653c49b00bae5b3fe863b60a03643ae7437db9e4d0a52e21f42
+  last_validation_at: '2026-11-07T13:25:37+00:00'
   last_error: ''
 dice_state:
   tape_revision: machadan-tape-r1
@@ -613,6 +614,7 @@ session_log:
   - Day1昼過ぎ 白糸の間（エロシーン中）。〇〇が二階で種付けすると告げる。クラリスが手を引いて階段を上がり2階の寝室へ。全裸になって寝台に仰向けになり、脚を開いて種でいっぱいにしてとねだる
   - Day1昼過ぎ 白糸の間2階（エロシーン中）。〇〇が寝バックで犯すと宣言。クラリスはうつ伏せでお尻を差し出し、閉じた脚のまま後ろから突かれる。窓の外に人の声が聞こえる中で声を上げ、また絶頂寸前（〇〇の二発目はまだ）
   - Day1昼過ぎ 白糸の間2階（エロシーン中）。〇〇が寝バックのまま奥に二発目を中出し。クラリスは同時に絶頂し潮を吹き、好きと叫ぶ。窓の外の通行人に声を聞かれる
+  - Day1昼過ぎ 白糸の間2階（エロシーン中・余韻）。〇〇が外に聞かれた、明日どう仕事するのかとからかう。クラリスはどこの家か分からないはずと言い訳しつつ、明日はすまして働くが今日を思い出すと甘える。店の外では秘密にして、閉店後は〇〇だけのクラリスでいると約束を求める
 memory_log:
   encounters: []
   battles: []
