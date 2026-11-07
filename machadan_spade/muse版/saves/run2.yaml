@@ -3,15 +3,15 @@ schema_version: 3
 game_version: 4.13.4
 campaign_id: run2
 created_at: '2026-11-07T09:22:51+00:00'
-updated_at: '2026-11-07T10:08:55+00:00'
-save_revision: 21
+updated_at: '2026-11-07T10:11:46+00:00'
+save_revision: 22
 content_manifest_hash: 59b69015c8c813194e83a7c4b4d2b862af8f4074c2c616aa5325399df6f66460
 save_format_origin: 'System_Templates.md [TEMPLATE_SAVE] (SAVE_DATA: MachaDun v2.0)'
 transaction:
-  last_transaction_id: tx-307b182470f344be92c73ca18cd01d6a
-  last_committed_turn: 12
-  previous_revision_hash: a61fe4b4d72237d7ca05a8067252e16f95af6ab975faf3d0129da25247638168
-  last_candidate_hash: 5f5e954728e12be2759579423dc2a4e384844ebd62fbd0140fa16c6ea85f296e
+  last_transaction_id: tx-30af6838dd4c4c25a69d810db3f1bdf6
+  last_committed_turn: 13
+  previous_revision_hash: 0727c7ee514d44f694c4c670aa7f6fcc37a6c4f909134702904aad71ddc0235d
+  last_candidate_hash: db7d997838378c971e39f8a7fcac05553c37d7b891ac9aeac92783015db11e8e
   applied_transaction_ids:
   - tx-3205c8b3a3f04e16a35b2f1739e25e5a
   - tx-6a86abc0b7cc4f0aa672870ded718bc7
@@ -34,6 +34,7 @@ transaction:
   - tx-87e430e8e0a64db180274727bbe7eb27
   - tx-8a74193d2b434134845517066c0d451a
   - tx-307b182470f344be92c73ca18cd01d6a
+  - tx-30af6838dd4c4c25a69d810db3f1bdf6
 hearing_progress:
   status: complete
   current_step: 7
@@ -66,13 +67,13 @@ runtime_state:
   style_conditions: []
   active_scene: event
   scene_id: event
-  context_pack_hash: 0b2bc8a2753b9518b29c0d8c885d4a28e9553dab93d4d396d2e4ad2b51d327a5
-  last_validation_at: '2026-11-07T10:08:55+00:00'
+  context_pack_hash: d24b81717b69f48affb92ff363d5bf049b567b92abea21689ed91e7b5af9569e
+  last_validation_at: '2026-11-07T10:11:46+00:00'
   last_error: ''
 dice_state:
   tape_revision: machadan-tape-r1
   dice_cursor_d6: 0
-  dice_cursor_d10: 10
+  dice_cursor_d10: 12
 fire_state:
   holders:
   - player
@@ -121,7 +122,7 @@ world_state:
       role: 中央広場の焼き菓子屋台『蜂蜜焼き』の売り子
       appearance: 赤いバンダナで髪をまとめる。細い腕
       first_met: Day1朝 屋台車が溝にはまり〇〇に手伝いを頼む
-      status: その場の出会い（移動イベント）
+      status: 屋台車を押してもらい礼に蜂蜜焼きを渡した。また買いに来ればひとつオマケの約束
   appearance_customization:
     version: 1
     overrides: {}
@@ -146,21 +147,7 @@ world_state:
     B: 0
     A: 0
   quest_card: null
-  event_reward_contract:
-    settlement_id: EVR-run2-12-paula-honeycake
-    offered: true
-    payer: ポーラ（中央広場の焼き菓子屋台）
-    components:
-    - component_id: EVR-run2-12-paula-honeycake-item
-      kind: item
-      detail:
-        estimated_value_g: 15
-        item_name: 蜂蜜焼き（3個入り）
-        quantity: 1
-      state: offered
-    delivery_plan:
-    - trigger: 屋台車を溝から出した後
-      route: 提供者から直接
+  event_reward_contract: null
   pending_rewards: []
   reward_ledger:
   - settlement_id: EVR-run2-4-clarisse-mimai
@@ -182,6 +169,30 @@ world_state:
         after_sha256: 1a6562590ef19d1045d06c4055742d38288e9e6dcd71ccde5cee80f1d5a774eb
         amount: 50
       estimated_value_g: 50
+  - settlement_id: EVR-run2-12-paula-honeycake
+    payer: ポーラ（中央広場の焼き菓子屋台）
+    status: settled
+    source:
+      kind: random_event
+    components:
+    - component_id: EVR-run2-12-paula-honeycake-item
+      kind: item
+      detail:
+        estimated_value_g: 15
+        item_name: 蜂蜜焼き（3個入り）
+        quantity: 1
+      state: delivered
+      transaction_id: tx-30af6838dd4c4c25a69d810db3f1bdf6
+      estimated_value_g: 15
+      effect:
+        target: inventory_bundle
+        before_sha256: 5ccd107aca48bde4d5be348f3ff9d4122f7f8b67b91785ac89c4f060d6817137
+        after_sha256: be0d32201446e32ce3ea60a5dcd62050da5d2eabce9ac756d51250f8b83979e7
+        added_items:
+        - item_name: 蜂蜜焼き（3個入り）
+          quantity: 1
+        item_name: 蜂蜜焼き（3個入り）
+        quantity: 1
   entitlements: []
   lead_mode: 主人公
   goals:
@@ -461,13 +472,34 @@ inventory:
     max_slots: 16
     skill_bonus_slots: 0
     effective_max_slots: 16
-    used_slots: 0
-  carried_stacks: []
+    used_slots: 1
+  carried_stacks:
+  - stack_id: stack-run2-honey-cake-1
+    item_def_id: itemdef-run2-honey-cake-3
+    name: 蜂蜜焼き（3個入り）
+    category: consumable
+    count: 1
+    stack_cap: 10
+    slot_cost: 1
+    reserved_quantity: 0
   warehouse:
     stacks: []
     instance_ids: []
   reservations: []
-item_definitions: []
+item_definitions:
+- item_def_id: itemdef-run2-honey-cake-3
+  name: 蜂蜜焼き（3個入り）
+  category: consumable
+  specification:
+    category: consumable
+    use: 食料（軽食）。ポーラの屋台の焼き菓子3個入り
+    weight: 0
+  provenance:
+    source_kind: random_event
+    source: EVR-run2-12-paula-honeycake
+  balance_anchor:
+    kind: estimated_value
+    value_g: 15
 item_instances: []
 party: []
 inn_reserve: []
@@ -501,6 +533,7 @@ session_log:
   - Day1朝 大聖堂。〇〇が『オマケがないならもう来ない』と告げて去る。エレナは涙ぐみつつも値引きはせず、いつでも来てと見送る。〇〇は大聖堂の前庭へ。霧が晴れる
   - Day1朝 クラリスの店へ向かう途中、中央広場の西口手前で焼き菓子屋台の娘（20歳前後・赤いバンダナ）が、溝にはまった屋台車を押せず困っている。手伝いを頼まれる。移動イベント d10=1、種別 d10=4（困っている人）
   - Day1朝 中央広場。〇〇がタダでは手伝わないと告げる。ポーラ（20歳）は現金がなく、礼として蜂蜜焼き3個入り1包み（15G相当）を提示（未受領）。また買いに来ればひとつオマケすると言う
+  - Day1朝 中央広場。〇〇が屋台車を押す。STR 8+2d10(1,10)=19 vs 標準19で成功。車輪が溝から抜け、ポーラから蜂蜜焼き（3個入り）1包みを受け取る
 memory_log:
   encounters: []
   battles: []
