@@ -3,15 +3,15 @@ schema_version: 3
 game_version: 4.13.4
 campaign_id: main2
 created_at: '2026-11-07T05:39:36+00:00'
-updated_at: '2026-11-07T07:06:51+00:00'
-save_revision: 31
+updated_at: '2026-11-07T07:09:48+00:00'
+save_revision: 32
 content_manifest_hash: 59b69015c8c813194e83a7c4b4d2b862af8f4074c2c616aa5325399df6f66460
 save_format_origin: 'System_Templates.md [TEMPLATE_SAVE] (SAVE_DATA: MachaDun v2.0)'
 transaction:
-  last_transaction_id: tx-08c6f1caf0854f6f96e2f9a0a22e6814
-  last_committed_turn: 17
-  previous_revision_hash: 5ab9da677bb32759c0eb40184728d4e9a1384424c01508863861ca7ae3bcd1ab
-  last_candidate_hash: d45acc6330193246334fed9e26089886c25571d80e57ae63e86017295dc3bca5
+  last_transaction_id: tx-b85ffa0f8d8645d6a3a22d97c35dd71a
+  last_committed_turn: 18
+  previous_revision_hash: 6535ade58bf3cffc1d983d715972ee51eb73b5d176058c21f10dafd5598eae34
+  last_candidate_hash: 94172b7e577df9e722f9d293c42639677b32940447dd301e8d31440a7043f3a0
   applied_transaction_ids:
   - tx-0345298f5a774b8ca7e3c0934d815725
   - tx-7f4c45d45dea4266ba65a98f8f4718e6
@@ -44,6 +44,7 @@ transaction:
   - tx-352e4baebf434368ababf3b0b803c863
   - tx-c0623ceb89d84c6daafdf08cf21a8cb4
   - tx-08c6f1caf0854f6f96e2f9a0a22e6814
+  - tx-b85ffa0f8d8645d6a3a22d97c35dd71a
 hearing_progress:
   status: complete
   current_step: 7
@@ -74,10 +75,10 @@ active_script:
 runtime_state:
   ero_scene: false
   style_conditions: []
-  active_scene: event
-  scene_id: event
-  context_pack_hash: cfefc615d506ed163744c26d2d61ca5a64df06175a0c9bd520ec6e12e3a2cc49
-  last_validation_at: '2026-11-07T07:06:51+00:00'
+  active_scene: turn
+  scene_id: turn
+  context_pack_hash: 7be200d5f8501c12873a7ffc2d46de5d5ae82e3851056f1a18abab6768c6233c
+  last_validation_at: '2026-11-07T07:09:48+00:00'
   last_error: ''
 dice_state:
   tape_revision: machadan-tape-r1
@@ -254,6 +255,9 @@ world_state:
       fact: セレナの香水は娼館『蜜の味』でいちばん人気。調合の注文は十日先まで埋まっている。セレナは32歳だが年下に見える。ずっと独り身で、言い寄る男は多いが仕事一筋
       source: Day1夕、店内で娼婦二人組の噂話
       status: 噂
+    白百合香房_材料の買い付け:
+      fact: セレナは香水の材料をいつも決まった業者から買うが、裏山の花や森の樹脂は不足しがち。冒険者が採ってくれば相場どおりに買い取ると申し出た。品目・量・価格は未確定（正式な依頼にする時に確定）
+      status: セレナの申し出（Day1夕）
   appearance_customization:
     version: 1
     overrides: {}
@@ -776,6 +780,10 @@ session_log:
       die: d10
       result: 6
       cursor: 69
+  - day: 1
+    time_of_day: 夕
+    summary: 『医者に診せて良くなったが借金になった、遠くから来たばかりで世界のことも分からない』と話した。セレナは安堵したうえで責任を感じ、治療の借金を月の締めのあとに一部持つこと、街の案内、裏山の花や森の樹脂の買い取りを申し出た。
+    note: 大聖堂へは実際には行っていない。治療の借金はセレナの思い込み
 memory_log:
   encounters: []
   battles: []
