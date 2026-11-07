@@ -3,15 +3,15 @@ schema_version: 3
 game_version: 4.13.4
 campaign_id: run2
 created_at: '2026-11-07T09:22:51+00:00'
-updated_at: '2026-11-07T10:07:01+00:00'
-save_revision: 20
+updated_at: '2026-11-07T10:08:55+00:00'
+save_revision: 21
 content_manifest_hash: 59b69015c8c813194e83a7c4b4d2b862af8f4074c2c616aa5325399df6f66460
 save_format_origin: 'System_Templates.md [TEMPLATE_SAVE] (SAVE_DATA: MachaDun v2.0)'
 transaction:
-  last_transaction_id: tx-8a74193d2b434134845517066c0d451a
-  last_committed_turn: 11
-  previous_revision_hash: 7309e64388d5890bc3b2814088b6cf5b8fd0e4f0b0b7be0a8c8c04e9a5b79784
-  last_candidate_hash: 3ae8a69d77626715c1b12a20e2e9e7e1cf6b42fbcda80e04d70a2ade34ff454d
+  last_transaction_id: tx-307b182470f344be92c73ca18cd01d6a
+  last_committed_turn: 12
+  previous_revision_hash: a61fe4b4d72237d7ca05a8067252e16f95af6ab975faf3d0129da25247638168
+  last_candidate_hash: 5f5e954728e12be2759579423dc2a4e384844ebd62fbd0140fa16c6ea85f296e
   applied_transaction_ids:
   - tx-3205c8b3a3f04e16a35b2f1739e25e5a
   - tx-6a86abc0b7cc4f0aa672870ded718bc7
@@ -33,6 +33,7 @@ transaction:
   - tx-201cd8831a6446ce8c3113af606a9d51
   - tx-87e430e8e0a64db180274727bbe7eb27
   - tx-8a74193d2b434134845517066c0d451a
+  - tx-307b182470f344be92c73ca18cd01d6a
 hearing_progress:
   status: complete
   current_step: 7
@@ -65,8 +66,8 @@ runtime_state:
   style_conditions: []
   active_scene: event
   scene_id: event
-  context_pack_hash: 1e0314ed26b54b7a6f04f8691339c89ef9dd71bd7ab811deb48d4036f9dbe7e7
-  last_validation_at: '2026-11-07T10:07:01+00:00'
+  context_pack_hash: 0b2bc8a2753b9518b29c0d8c885d4a28e9553dab93d4d396d2e4ad2b51d327a5
+  last_validation_at: '2026-11-07T10:08:55+00:00'
   last_error: ''
 dice_state:
   tape_revision: machadan-tape-r1
@@ -114,6 +115,13 @@ world_state:
       character_id: Elena_003
       day: 1
       summary: 〇〇の打ち身を治療。本音（傷に昂る性質）を〇〇に見抜かれ打ち明けた。オマケを断ったところ〇〇に『もう来ない』と言われ、気落ちしつつ『いつでも来て』と見送った
+    NPC_ポーラ:
+      name: ポーラ
+      age: 20
+      role: 中央広場の焼き菓子屋台『蜂蜜焼き』の売り子
+      appearance: 赤いバンダナで髪をまとめる。細い腕
+      first_met: Day1朝 屋台車が溝にはまり〇〇に手伝いを頼む
+      status: その場の出会い（移動イベント）
   appearance_customization:
     version: 1
     overrides: {}
@@ -138,7 +146,21 @@ world_state:
     B: 0
     A: 0
   quest_card: null
-  event_reward_contract: null
+  event_reward_contract:
+    settlement_id: EVR-run2-12-paula-honeycake
+    offered: true
+    payer: ポーラ（中央広場の焼き菓子屋台）
+    components:
+    - component_id: EVR-run2-12-paula-honeycake-item
+      kind: item
+      detail:
+        estimated_value_g: 15
+        item_name: 蜂蜜焼き（3個入り）
+        quantity: 1
+      state: offered
+    delivery_plan:
+    - trigger: 屋台車を溝から出した後
+      route: 提供者から直接
   pending_rewards: []
   reward_ledger:
   - settlement_id: EVR-run2-4-clarisse-mimai
@@ -478,6 +500,7 @@ session_log:
   - Day1朝 大聖堂。〇〇が治療費のオマケを求めるが、エレナは値引きを断る。代わりに次の怪我はいちばんに丁寧に診ると約束（料金は通常どおり）。わざと怪我するのはだめと釘を刺す
   - Day1朝 大聖堂。〇〇が『オマケがないならもう来ない』と告げて去る。エレナは涙ぐみつつも値引きはせず、いつでも来てと見送る。〇〇は大聖堂の前庭へ。霧が晴れる
   - Day1朝 クラリスの店へ向かう途中、中央広場の西口手前で焼き菓子屋台の娘（20歳前後・赤いバンダナ）が、溝にはまった屋台車を押せず困っている。手伝いを頼まれる。移動イベント d10=1、種別 d10=4（困っている人）
+  - Day1朝 中央広場。〇〇がタダでは手伝わないと告げる。ポーラ（20歳）は現金がなく、礼として蜂蜜焼き3個入り1包み（15G相当）を提示（未受領）。また買いに来ればひとつオマケすると言う
 memory_log:
   encounters: []
   battles: []
