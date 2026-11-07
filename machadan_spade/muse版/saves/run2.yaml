@@ -3,15 +3,15 @@ schema_version: 3
 game_version: 4.13.4
 campaign_id: run2
 created_at: '2026-11-07T09:22:51+00:00'
-updated_at: '2026-11-07T14:41:50+00:00'
-save_revision: 72
+updated_at: '2026-11-07T14:47:45+00:00'
+save_revision: 73
 content_manifest_hash: 59b69015c8c813194e83a7c4b4d2b862af8f4074c2c616aa5325399df6f66460
 save_format_origin: 'System_Templates.md [TEMPLATE_SAVE] (SAVE_DATA: MachaDun v2.0)'
 transaction:
-  last_transaction_id: tx-dade531b38464182b8ce87c3e3122e27
-  last_committed_turn: 63
-  previous_revision_hash: 60ce32b7460f6ed5388c817630a296cfc04fae5b19e4468a8ee912bb7b1889fc
-  last_candidate_hash: 8642b19a0a07b3271f6fd50136f2397d9ee04176fcd494580041aec69a47eefd
+  last_transaction_id: tx-57b91d52a36b4e49950974729b66720b
+  last_committed_turn: 64
+  previous_revision_hash: 1b0bd403c045a75437bb6b7c89e2efe2f51320a8287c889c9213ae63a90b2b61
+  last_candidate_hash: eb857e3bcc8190b35bb7f0c81efb842c9e9ac0fd9c0d6220501649cc3d607e9b
   applied_transaction_ids:
   - tx-3205c8b3a3f04e16a35b2f1739e25e5a
   - tx-6a86abc0b7cc4f0aa672870ded718bc7
@@ -85,6 +85,7 @@ transaction:
   - tx-85246d81531b400aa40daefa2b819c11
   - tx-e4957fa676db400d92f357313886c64b
   - tx-dade531b38464182b8ce87c3e3122e27
+  - tx-57b91d52a36b4e49950974729b66720b
 hearing_progress:
   status: complete
   current_step: 7
@@ -117,8 +118,8 @@ runtime_state:
   style_conditions: []
   active_scene: turn
   scene_id: turn
-  context_pack_hash: da8e493d3b6c7c91c63a132b911f472448e309dd4ccd0fa43bdfb53f87b3bcb2
-  last_validation_at: '2026-11-07T14:41:50+00:00'
+  context_pack_hash: e4a599c335a62b551d497c273637f4353fb739ff36146aebeed2b3b1a3ea0b60
+  last_validation_at: '2026-11-07T14:47:45+00:00'
   last_error: ''
 dice_state:
   tape_revision: machadan-tape-r1
@@ -234,12 +235,12 @@ world_state:
     resolutions: []
   reward_state_version: 2
   day: 2
-  location: ヴィオレッタの屋敷
+  location: 西大通り
   place_id: NOIR_CITY_WEST
   room_id: ''
-  sub_location: ヴィオレッタ邸2階・サロン奥の衣装部屋
+  sub_location: ヴィオレッタ邸から少し離れた角
   depth: null
-  time_of_day: 昼
+  time_of_day: 夕
   weather: 晴れ
   quest_active: ''
   quest_rank: ''
@@ -719,6 +720,7 @@ session_log:
   - Day2昼過ぎ ヴィオレッタ邸の衣装部屋。〇〇が入ると、夜会用の紫のドレスを着たヴィオレッタが姿見の前に立ち、殿方の目で正直に感想をと求める。執事との会話は聞こえていた様子
   - Day2昼過ぎ ヴィオレッタ邸の衣装部屋。〇〇がドレスを気品があると褒め、帳簿は分からないと苦笑。CHM 8+2d10(3,4)=15 vs 標準19で失敗。ヴィオレッタは褒め言葉はありふれていると受け取るが、帳簿を狙わない男だとは認める。ドレスの丈はこのままで明日夕方までに届けるようクラリスに指示し、夜会は早めに切り上げる、踊りを断るのに飽きたと漏らす
   - Day2昼過ぎ ヴィオレッタ邸の衣装部屋。〇〇が裏地を見せながら、踊りの申し込みの火の粉を払うと申し出る。CHM 8+2+2d10(4,6)=20 vs 標準19で成功。ヴィオレッタは葡萄色の裏地をクラリスの仕業と見抜いて笑い、ドルトン商会の若旦那も来ると告げたうえで、〇〇を夜会の同伴に『お試し』で起用。〇〇の夜会服（黒・裏は葡萄色）をクラリスに注文
+  - Day2夕 〇〇が同伴を引き受け、途中で帰されないよう頑張ると答える。ヴィオレッタは期待しないで待つと返す。セバスチャンが門まで見送り、明日夜の鐘の前に待つと告げる。角を曲がったところでクラリスが大喜びし、今夜は夜会服を徹夜で縫う、寸法をもう一度測らせてと言う
 memory_log:
   encounters: []
   battles: []
