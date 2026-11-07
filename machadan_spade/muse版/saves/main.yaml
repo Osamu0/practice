@@ -3,15 +3,15 @@ schema_version: 3
 game_version: 4.13.4
 campaign_id: main
 created_at: '2026-11-07T02:20:22+00:00'
-updated_at: '2026-11-07T04:36:16+00:00'
-save_revision: 30
+updated_at: '2026-11-07T04:38:46+00:00'
+save_revision: 31
 content_manifest_hash: 59b69015c8c813194e83a7c4b4d2b862af8f4074c2c616aa5325399df6f66460
 save_format_origin: 'System_Templates.md [TEMPLATE_SAVE] (SAVE_DATA: MachaDun v2.0)'
 transaction:
-  last_transaction_id: tx-7a77800b1eb9468cac3c74908a4ba123
-  last_committed_turn: 20
-  previous_revision_hash: fbd11f286c9ceb46272684be883dce627510fc0b8c48ae734706bcbbe4599c43
-  last_candidate_hash: 91ee9454f4a7e468d2ce6da332cfd19c34cbe77f4ed01c6866243d9fe699460b
+  last_transaction_id: tx-0e85847a344e41e0a3fa937677e1b9a4
+  last_committed_turn: 21
+  previous_revision_hash: eb5d14db5f240a529549d2d58aef39b3083e5e7d29e8b438197169a715e8d1fc
+  last_candidate_hash: e62924dd415926517a32a393fba079aaef356e446020bc0658335943fe0cb49b
   applied_transaction_ids:
   - tx-413eae86780d496981a94b1d08250181
   - tx-5d7fe8c49f1242dca4bcebf850e979c1
@@ -43,6 +43,7 @@ transaction:
   - tx-c0f6dcfd059f440a823aa591af38695a
   - tx-60b934777636420098947148b158c918
   - tx-7a77800b1eb9468cac3c74908a4ba123
+  - tx-0e85847a344e41e0a3fa937677e1b9a4
 hearing_progress:
   status: complete
   current_step: 7
@@ -75,8 +76,8 @@ runtime_state:
   style_conditions: []
   active_scene: turn
   scene_id: turn
-  context_pack_hash: 59ac79da182f32862f4c3e4d8755a85c72647792529108afd5b1ff958a483065
-  last_validation_at: '2026-11-07T04:36:16+00:00'
+  context_pack_hash: 33e3b0862b16bb94dc6f4b07a01e59ea69b0c471cb83c286d888430a045abf6f
+  last_validation_at: '2026-11-07T04:38:46+00:00'
   last_error: ''
 dice_state:
   tape_revision: machadan-tape-r1
@@ -155,6 +156,14 @@ world_state:
       fact: ガルドは昼過ぎに南東の歓楽通りの賭場『銀蛇亭』に通い、負けが込んで金貸しのバルトに約3,000Gの借りがある。返済の当てとして、セレナの店『白百合香房』の権利を担保に入れる話をバルトとしているのをミアが聞いた。歓楽通りの娼婦にも馴染みがいるらしい
       source: ミアの目撃と立ち聞き。Day1に〇〇が30Gで購入
       status: ミアの情報（未確認の部分あり）
+    密約_ミアとガルド排除:
+      parties:
+      - 〇〇
+      - Mia_001
+      agreed_in_principle: true
+      plan: ガルドを嵌めてセレナの前から消す。その後、白百合香房の客を増やし、セレナから〇〇の借金返済に月1,000Gを回してもらう（セレナ本人の同意が前提）。セレナの客をミアの店へ紹介する
+      mia_terms: 白百合香房の瓶の卸をミアの店が独占する／香房の会計台にミアの店の案内札を置く。手間賃は取らない代わりに、〇〇が冒険で得た素材をまずミアの店に持ち込む
+      status: 口約束。セレナの同意とガルドの件はまだ何も決まっていない
   appearance_customization:
     version: 1
     overrides: {}
@@ -526,6 +535,7 @@ session_log:
   - Day1昼前 ミアの店。〇〇が情報料30Gを払う（所持金50G→20G）。ミアからガルドの賭場通い・借金・白百合香房を担保にする話を聞く。〇〇が『調子に乗るな』と脅し、ミアは怯えつつも商売人の顔を崩さない
   - Day1昼前 ミアの店。〇〇がミアに『俺とのビジネスの話をしたい』と切り出す。ミアは食いつき、条件次第と身構える
   - Day1昼前 ミアの店。〇〇がミアに計画を明かす：ガルドを嵌めてセレナから遠ざけ、白百合香房の売上の一部を自分の借金返済に回させたい。ミアは仮病を見抜いた上で話に乗りかけ、自分の取り分とセレナを潰さないことを条件に出す
+  - Day1昼前 ミアの店。〇〇がミアに条件を示す（自分の取り分は月1,000G、香房の売上を伸ばし、香房からミアの店へ客を回す）。ミアは瓶の卸の独占と素材の優先持ち込みを条件に、口約束で手を組む
 memory_log:
   encounters: []
   battles: []
