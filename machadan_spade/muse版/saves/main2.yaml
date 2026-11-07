@@ -3,15 +3,15 @@ schema_version: 3
 game_version: 4.13.4
 campaign_id: main2
 created_at: '2026-11-07T05:39:36+00:00'
-updated_at: '2026-11-07T07:19:52+00:00'
-save_revision: 35
+updated_at: '2026-11-07T07:27:24+00:00'
+save_revision: 36
 content_manifest_hash: 59b69015c8c813194e83a7c4b4d2b862af8f4074c2c616aa5325399df6f66460
 save_format_origin: 'System_Templates.md [TEMPLATE_SAVE] (SAVE_DATA: MachaDun v2.0)'
 transaction:
-  last_transaction_id: tx-e146e525bf39441c8bbf9bddf055fca2
-  last_committed_turn: 21
-  previous_revision_hash: 231a3400b3b5aca8db6297a6e172c0951697106f9c93f346db21e9a0ba021aec
-  last_candidate_hash: 3acf54b5578241d331e88942d13f48c17ed089851b17b0bb8623eeead5b7aa16
+  last_transaction_id: tx-603df788dadf470f86d19214bba3c694
+  last_committed_turn: 22
+  previous_revision_hash: 31a9b414c0cd90095f3d786a754945f68e2a4f0c9b0b5f8eee9597989e8aac16
+  last_candidate_hash: 5b5c209fddc9642e935979e1e58c7a2bee3071699f9c9a6e8d0f0cc9057459f1
   applied_transaction_ids:
   - tx-0345298f5a774b8ca7e3c0934d815725
   - tx-7f4c45d45dea4266ba65a98f8f4718e6
@@ -48,6 +48,7 @@ transaction:
   - tx-effe881bdef847429ea625988d08c8dc
   - tx-d08c351390034b67a530ac9e5b24dc33
   - tx-e146e525bf39441c8bbf9bddf055fca2
+  - tx-603df788dadf470f86d19214bba3c694
 hearing_progress:
   status: complete
   current_step: 7
@@ -80,8 +81,8 @@ runtime_state:
   style_conditions: []
   active_scene: turn
   scene_id: turn
-  context_pack_hash: e64747b6c5568b78cece3053edf2b7194baa1f9249b7aef7aefbe9ab023e19bd
-  last_validation_at: '2026-11-07T07:19:52+00:00'
+  context_pack_hash: 9c78550f393d590233a042965f8a74d06203dd072a60ee05f744d976024e3bea
+  last_validation_at: '2026-11-07T07:27:24+00:00'
   last_error: ''
 dice_state:
   tape_revision: machadan-tape-r1
@@ -275,6 +276,9 @@ world_state:
     素材_白鈴花と琥珀樹脂:
       fact: 白百合香房の主材料。白鈴花は裏山の斜面（洞窟の入口近く、魔物が出ることがある）に咲く。琥珀樹脂は東の森の木から採れる。業者からの仕入れは量が足りず値上がり中。セレナは材料不足で注文を多数断っている（帳面の赤線）。量・売値・採取判定は正式な依頼にする時に確定し、入手時にdiscoveriesへ記録する
       status: セレナの話（Day1夕）
+    白百合香房_人を雇わない理由:
+      fact: 売り子一人の給金は街の相場でひと月およそ1,000G。配合は父の代からの秘伝で、調香室に入れるのはよほど信頼できる者だけ。以前、手伝いの者に配合を写して他所へ持ち出されたことがある
+      status: セレナ本人の話（Day1夜）
   appearance_customization:
     version: 1
     overrides: {}
@@ -286,7 +290,7 @@ world_state:
   room_id: LORE_SHIRAYURI_KOUBOU_SHOP
   sub_location: 売り場
   depth: null
-  time_of_day: 夕
+  time_of_day: 夜
   weather: 薄い霧
   quest_active: ''
   quest_rank: ''
@@ -821,6 +825,9 @@ session_log:
   - day: 1
     time_of_day: 夕
     summary: 何が一番大変か尋ねると、セレナは材料不足（裏山の白鈴花・東の森の琥珀樹脂）を挙げ、断った注文の多さを帳面で見せた。材料集めがいちばん店のためになると提案した。
+  - day: 1
+    time_of_day: 夜
+    summary: 人を雇わないのか尋ねた。セレナは給金（月1,000G前後）と配合の秘密（以前に持ち出された）を理由に挙げた。日が暮れ、宿は決まっているかと尋ねられた。
 memory_log:
   encounters: []
   battles: []
