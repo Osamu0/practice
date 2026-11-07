@@ -3,15 +3,15 @@ schema_version: 3
 game_version: 4.13.4
 campaign_id: main
 created_at: '2026-11-07T02:20:22+00:00'
-updated_at: '2026-11-07T04:41:14+00:00'
-save_revision: 32
+updated_at: '2026-11-07T04:56:42+00:00'
+save_revision: 33
 content_manifest_hash: 59b69015c8c813194e83a7c4b4d2b862af8f4074c2c616aa5325399df6f66460
 save_format_origin: 'System_Templates.md [TEMPLATE_SAVE] (SAVE_DATA: MachaDun v2.0)'
 transaction:
-  last_transaction_id: tx-851a6eb8f0204580b0f3ca2e6bb82aec
-  last_committed_turn: 22
-  previous_revision_hash: 51e1c10baac8fe1608985ad6d0f4524925718d0e527b2dc9e1adf240450404e3
-  last_candidate_hash: 33e4a49e37465394d33d11f31d635440943fbeee21903b9a98d3b1d38e76bfdb
+  last_transaction_id: tx-e352b5ab0acf4aa4878c5314fdb2d95c
+  last_committed_turn: 23
+  previous_revision_hash: 3ff59387c4561530077fd562a89df4a0cfc2ce678439c43e2b941d71bcd8f450
+  last_candidate_hash: 0aa44ca28623793ee2b0e396392f78049878c25cf1919e3682b3ed6d3f9dcef1
   applied_transaction_ids:
   - tx-413eae86780d496981a94b1d08250181
   - tx-5d7fe8c49f1242dca4bcebf850e979c1
@@ -45,6 +45,7 @@ transaction:
   - tx-7a77800b1eb9468cac3c74908a4ba123
   - tx-0e85847a344e41e0a3fa937677e1b9a4
   - tx-851a6eb8f0204580b0f3ca2e6bb82aec
+  - tx-e352b5ab0acf4aa4878c5314fdb2d95c
 hearing_progress:
   status: complete
   current_step: 7
@@ -77,8 +78,8 @@ runtime_state:
   style_conditions: []
   active_scene: turn
   scene_id: turn
-  context_pack_hash: 977de80519b7225911c72c2b2501dda5b14996d62a58c8e9c3a996bbdc7a5c5b
-  last_validation_at: '2026-11-07T04:41:14+00:00'
+  context_pack_hash: ea9f3bab64de65e8e9cdb894e580d659f157be195b70c65c21f72ca082aa5427
+  last_validation_at: '2026-11-07T04:56:42+00:00'
   last_error: ''
 dice_state:
   tape_revision: machadan-tape-r1
@@ -165,6 +166,14 @@ world_state:
       plan: ガルドを嵌めてセレナの前から消す。その後、白百合香房の客を増やし、セレナから〇〇の借金返済に月1,000Gを回してもらう（セレナ本人の同意が前提）。セレナの客をミアの店へ紹介する
       mia_terms: 白百合香房の瓶の卸をミアの店が独占する／香房の会計台にミアの店の案内札を置く。手間賃は取らない代わりに、〇〇が冒険で得た素材をまずミアの店に持ち込む
       status: 〇〇がミアの3条件を呑み、口約束で手を組んだ。セレナの同意とガルドの件はまだ
+    人物_バルト:
+      name: バルト
+      age: 45
+      role: 南東の歓楽通りで賭場『銀蛇亭』の裏手に事務所を構える金貸し
+      appearance: 小太りで、指に太い金の指輪を三つ。いつも甘い葉巻の匂いをさせている
+      personality: 笑顔は崩さないが、取り立ては手下に容赦なくやらせる。表向きは商人で、衛兵の前では手を汚さない
+      relation: ガルドに約3,000G貸している。白百合香房の権利書を借金のカタに欲しがっている
+      status: ミアの話
   appearance_customization:
     version: 1
     overrides: {}
@@ -538,6 +547,7 @@ session_log:
   - Day1昼前 ミアの店。〇〇がミアに計画を明かす：ガルドを嵌めてセレナから遠ざけ、白百合香房の売上の一部を自分の借金返済に回させたい。ミアは仮病を見抜いた上で話に乗りかけ、自分の取り分とセレナを潰さないことを条件に出す
   - Day1昼前 ミアの店。〇〇がミアに条件を示す（自分の取り分は月1,000G、香房の売上を伸ばし、香房からミアの店へ客を回す）。ミアは瓶の卸の独占と素材の優先持ち込みを条件に、口約束で手を組む
   - Day1昼前 ミアの店。〇〇がミアの条件を呑んで手を組む。ミアがガルドを嵌める案を三つ出す（偽の権利書の罠／賭場での勝負／バルトへの密告）
+  - Day1昼前 ミアの店。〇〇は、セレナと良い関係になり幸せになってほしいと言い、権利書の罠で衛兵に押さえさせる案を選ぶ。ミアがバルトのことを説明し、この策にはセレナ本人の協力が要ると話す
 memory_log:
   encounters: []
   battles: []
