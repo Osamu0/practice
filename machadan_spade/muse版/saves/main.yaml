@@ -3,15 +3,15 @@ schema_version: 3
 game_version: 4.13.4
 campaign_id: main
 created_at: '2026-11-07T02:20:22+00:00'
-updated_at: '2026-11-08T03:52:20+00:00'
-save_revision: 90
+updated_at: '2026-11-08T03:59:14+00:00'
+save_revision: 91
 content_manifest_hash: 59b69015c8c813194e83a7c4b4d2b862af8f4074c2c616aa5325399df6f66460
 save_format_origin: 'System_Templates.md [TEMPLATE_SAVE] (SAVE_DATA: MachaDun v2.0)'
 transaction:
-  last_transaction_id: tx-d7b5b262bd014720813a098db4dfca58
-  last_committed_turn: 79
-  previous_revision_hash: fa253023b223b3bd57cbdafccf20279f67ebce4212fc3eac661fff60eaa29f28
-  last_candidate_hash: a66784cf8629e1afb25e4ceaea8100fc4efe92aa491e8e8904d11c1f6b47761d
+  last_transaction_id: tx-24d054e607e1463a8bbe6c203ebf72cc
+  last_committed_turn: 80
+  previous_revision_hash: 29b15d16230a19839b16ad2b0aa88ebb6bf26ca14ff2c4e349d4d9924edc9d99
+  last_candidate_hash: 2dacd40891444f5546afdf5aa7da55d980b4ce36629be6fe5bb4f1f77af7c7a9
   applied_transaction_ids:
   - tx-413eae86780d496981a94b1d08250181
   - tx-5d7fe8c49f1242dca4bcebf850e979c1
@@ -103,6 +103,7 @@ transaction:
   - tx-296bbc38d62c49bab8066c172d463f16
   - tx-69190d4c9361430aa18eeabb1030bc66
   - tx-d7b5b262bd014720813a098db4dfca58
+  - tx-24d054e607e1463a8bbe6c203ebf72cc
 hearing_progress:
   status: complete
   current_step: 7
@@ -133,10 +134,10 @@ active_script:
 runtime_state:
   ero_scene: false
   style_conditions: []
-  active_scene: event
-  scene_id: event
-  context_pack_hash: c785237bcc39ddb7eb02c413d5eec2bb8527f2b334ba28081a739ef278dc9e81
-  last_validation_at: '2026-11-08T03:52:20+00:00'
+  active_scene: skills
+  scene_id: skills
+  context_pack_hash: c9d8503a03f68a2b6585d1c2cf06fe4ebaf02da966c8269f49631347d81afb07
+  last_validation_at: '2026-11-08T03:59:14+00:00'
   last_error: ''
 dice_state:
   tape_revision: machadan-tape-r1
@@ -884,6 +885,7 @@ session_log:
   - Day1夜 ミルカの部屋・寝台。〇〇が『俺もイくぞ、中にたっぷり出してやる』と言い、子宮口に押しつけたまま中出しする。ミルカは脚で腰を引き寄せて離さず、注がれながら絶頂し、『すき、ご主人様すき、もっと奥に覚えさせて』とうわごとのように繰り返す
   - Day1夜〜Day2朝 ミルカの部屋。〇〇が『朝まで犯してやる』と、抜かずに二回戦から朝まで犯し続ける（正常位、後背位で三つ編みを掴んで、夜半にはミルカが自分からメガネをかけ直し、小卓をカウンター代わりにして帳面の願望どおりに）。夜明け前、階下のパン屋の窯の音で朝を迎える。ミルカは一睡もしていないが寝坊はしていないと言い、あと半刻でギルドを開けなければならないと告げ、〇〇の手を握ったまま『ご主人様、今日はどうなさいますか』と尋ねる。エロシーン終了（場面転換：夜明け）
   - Day2朝 ミルカが身支度を整え、〇〇と一緒にギルドへ。移動 d10=10（なし）、環境 d10=6（なし）。ミルカがギルドを開け、今日の予定を確認する：昼にドーンが銀蛇亭の裏でガルドに返事、結果は夕方の鐘のあとドーンの納品時に分かる。すりの件は昼休みにミルカが詰め所へ届ける。所持金のない〇〇に、今のうちに冒険者登録をして見習いの依頼を受けるよう勧める
+  - Day2朝 銀の天秤亭の受付。〇〇が冒険者登録をする、おまけしてくれるよなと言う。ミルカは登録料はもともと無料なので値引きはできないと笑い、おまけとして職業選びの正直な見立てと、最初の見習い依頼を割のいいものから並べておくことを申し出る。申込用紙に名前と年齢（24）を記入し、職業の冊子を見せて見立てを伝える（力・丈夫さ・頭は並以上、足と手先は苦手、いちばんは人を動かす力。前衛なら戦士か騎士、話と駆け引きなら踊り子、自由な職業も可）
 memory_log:
   encounters: []
   battles: []
