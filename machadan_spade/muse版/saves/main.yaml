@@ -3,15 +3,15 @@ schema_version: 3
 game_version: 4.13.4
 campaign_id: main
 created_at: '2026-11-07T02:20:22+00:00'
-updated_at: '2026-11-07T23:44:31+00:00'
-save_revision: 65
+updated_at: '2026-11-08T00:35:39+00:00'
+save_revision: 66
 content_manifest_hash: 59b69015c8c813194e83a7c4b4d2b862af8f4074c2c616aa5325399df6f66460
 save_format_origin: 'System_Templates.md [TEMPLATE_SAVE] (SAVE_DATA: MachaDun v2.0)'
 transaction:
-  last_transaction_id: tx-f6f657e26c544fe9abc81d8a41caf9ce
-  last_committed_turn: 54
-  previous_revision_hash: 52184681ec1e51bcb20535dfcab16e1a9ccaca2fbd644a8aa359b90655dbfea6
-  last_candidate_hash: 777877ce6451c9ac6610cb9ad5369509e8a1829751ed2c9a2647ca14a728ef0b
+  last_transaction_id: tx-15d142d063704dae99b36a9517ac52d3
+  last_committed_turn: 55
+  previous_revision_hash: eb039c6a91a0f2b6c5e05d142fea5fac73eedf8ef7bc17af860bbfa17f2182ed
+  last_candidate_hash: be8413e67de9a22e4b29a3394e1f0813d8f8e16c1f86bcb9c048cde5f729f701
   applied_transaction_ids:
   - tx-413eae86780d496981a94b1d08250181
   - tx-5d7fe8c49f1242dca4bcebf850e979c1
@@ -78,6 +78,7 @@ transaction:
   - tx-e6fb24e9e4ab4c0c9b220b2d4894bbae
   - tx-3fd10004879945759aebc50b0373e865
   - tx-f6f657e26c544fe9abc81d8a41caf9ce
+  - tx-15d142d063704dae99b36a9517ac52d3
 hearing_progress:
   status: complete
   current_step: 7
@@ -110,8 +111,8 @@ runtime_state:
   style_conditions: []
   active_scene: turn
   scene_id: turn
-  context_pack_hash: dcd35bcbd0680b4afd94b4260525bb3763fac815ce53c6ebfcf24e85a2466b47
-  last_validation_at: '2026-11-07T23:44:31+00:00'
+  context_pack_hash: 8fadb2746e3ae2fe090ed02b1ff5cae2643d75073765e65485c3c769f2a8bc13
+  last_validation_at: '2026-11-08T00:35:39+00:00'
   last_error: ''
 dice_state:
   tape_revision: machadan-tape-r1
@@ -331,6 +332,11 @@ world_state:
     記入卓の長椅子の組:
       fact: 銀の天秤亭の記入卓の奥、柱の陰の長椅子で、帰還報告のあとに毎回いちゃつく冒険者の組がいる。稼ぎが一番だった者が膝に乗せられる決まり。Day1夜は女冒険者リズが乗せられていた。先月だけで七回。長椅子の脚は二回直してある（ミルカが記録している）
       source: Day1夜 ミルカの話
+      status: 確定した事実
+    ミルカの住まい:
+      fact: 東の衛兵通りから一本裏へ入った角のパン屋の二階を間借りしている。朝はパンの焼ける匂いで目が覚め、寝坊したことはない。銀の天秤亭から中央広場を抜けて徒歩十分ほど。衛兵の詰め所が近い。毎晩一人で帰っている。帰りは灰色の外套と小さな革の鞄
+      place_id: NOIR_CITY_EAST
+      source: Day1夜 ミルカ本人の話
       status: 確定した事実
   appearance_customization:
     version: 1
@@ -791,6 +797,7 @@ session_log:
   - Day1夕 銀の天秤亭の受付。〇〇が『ドーンと話をつけてきた。斧の手入れの話を、だ』とだけ伝える。ミルカは斧を持たない〇〇の言葉から合言葉だと察し、ドーンと〇〇の言付けの取り次ぎを引き受ける。言付けがあった日は夜の鐘が鳴るまで受付に残ると言う（業務の一環と言い張る）
   - Day1夕〜夜 〇〇は夜まで時間を潰す。暇つぶしの出来事 d10=7（なし）。夜の鐘のあと銀の天秤亭へ戻る。環境 d10=3（記入卓の奥で、稼ぎ頭の女冒険者が仲間の男の膝に引き倒されて甘い声）。ミルカは帳簿を閉じてメガネを拭いているところで、〇〇に気づいて慌てる。ちょうど上がるところだと言う
   - Day1夜 銀の天秤亭の受付。〇〇が記入卓の二人はいつもお盛んだ、ミルカもいつも目で追っていると笑う。ミルカは否定しつつ、先月だけで七回、稼ぎ頭が膝に乗る決まり、今日はリズ、長椅子の脚は二回直したと口を滑らせ真っ赤になる。からかうのが楽しいかと拗ね、ボタンに触れながら『もう上がりなんです』と言うが、帰り支度の手は止まっている
+  - Day1夜 銀の天秤亭の受付。〇〇が『七回、ちゃんと追ってる』と笑い、ミルカの住まいを尋ねる。ミルカは東の衛兵通りから一本裏の角のパン屋の二階を借りていると答える（ギルドから中央広場を抜けて十分ほど、詰め所が近い）。帰り支度をしながら、〇〇の宿とは反対方向だと言い、答えを待つ
 memory_log:
   encounters: []
   battles: []
