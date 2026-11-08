@@ -3,15 +3,15 @@ schema_version: 3
 game_version: 4.13.4
 campaign_id: main
 created_at: '2026-11-07T02:20:22+00:00'
-updated_at: '2026-11-08T01:44:28+00:00'
-save_revision: 84
+updated_at: '2026-11-08T01:53:55+00:00'
+save_revision: 85
 content_manifest_hash: 59b69015c8c813194e83a7c4b4d2b862af8f4074c2c616aa5325399df6f66460
 save_format_origin: 'System_Templates.md [TEMPLATE_SAVE] (SAVE_DATA: MachaDun v2.0)'
 transaction:
-  last_transaction_id: tx-6e08005be067412a9f7ee5614cb9f70b
-  last_committed_turn: 73
-  previous_revision_hash: f7a50d7816c06306f7bf48a4ea17823fc54dc4945bbda6d9633a898e6a64b396
-  last_candidate_hash: 76b16ac03891c93ae9d3000aea720d1f6e4b00b31258bb4d71470585e618f81e
+  last_transaction_id: tx-1f818a731a93496eb9125adde1bff54e
+  last_committed_turn: 74
+  previous_revision_hash: b98a6a24f89302110e6c7e651e81273d457b26142e056017626e3a80870e15a3
+  last_candidate_hash: 4dc3f2ec9a9a90749448925d881fee594cc3c3d93f93186ace41bc5508c7cb33
   applied_transaction_ids:
   - tx-413eae86780d496981a94b1d08250181
   - tx-5d7fe8c49f1242dca4bcebf850e979c1
@@ -97,6 +97,7 @@ transaction:
   - tx-0d30ee5b031240d58039763f43c338ca
   - tx-36b2eb14d1944c41a2b9f89fbacbecc0
   - tx-6e08005be067412a9f7ee5614cb9f70b
+  - tx-1f818a731a93496eb9125adde1bff54e
 hearing_progress:
   status: complete
   current_step: 7
@@ -129,8 +130,8 @@ runtime_state:
   style_conditions: []
   active_scene: style
   scene_id: style
-  context_pack_hash: 1034378d2f5312b014cf30f575cfb1b170d80b1cd445345b69ae6f97ce76c207
-  last_validation_at: '2026-11-08T01:44:28+00:00'
+  context_pack_hash: fa373e7388ac54251aaa69aa902d3601e4eacc677883ec2892b6d2c5652e0a8b
+  last_validation_at: '2026-11-08T01:53:55+00:00'
   last_error: ''
 dice_state:
   tape_revision: machadan-tape-r1
@@ -863,6 +864,7 @@ session_log:
   - Day1夜 ミルカの部屋。〇〇が『うまいじゃないか、もっと激しくできるか』と言う。褒められて嬉しそうなミルカは、えずきながらも深く咥え、両手と口と舌で激しくしゃぶる。メガネは鼻先までずれて真っ白に曇る。『〇〇さんのせーえき、口の中に全部記録させてください』とねだって、また深く咥え込む（第二幕・奉仕）
   - Day1夜 ミルカの部屋。〇〇が『出すぞ』とミルカの頭を押さえて口の中に射精し、『溢すな、しっかり覚えろ』と言う。ミルカは一滴も溢さず受け止め、口を開いて見せてから全部飲み込み、味を報告する。下腹を押さえて『ここがまだ記録してないって言ってます』と挿入をねだる（第二幕の終わり）
   - Day1夜 ミルカの部屋。〇〇が『そこにもちゃんと覚えさせないと』と言う。ミルカは自分で寝台へ這って仰向けになり、メガネをかけたまま自分から脚を開いて『ここに教えてください』とねだる。〇〇がゆっくり挿入し、ミルカの初めてを奪う（痛みは一瞬）。根元まで入り奥に当たる。ミルカは首にしがみつき『動いてください、全部覚えます』とねだる（第三幕）
+  - Day1夜 ミルカの部屋・寝台。〇〇が『このちんこをちゃんと覚えろ』とピストンする。ミルカは形も熱さも奥の当たる所も覚えていると叫び、脚を〇〇の腰に巻きつけて引き寄せる。奥をこりこりと突かれて、おちんぽで初めての絶頂（通算3回目、潮吹き）
 memory_log:
   encounters: []
   battles: []
