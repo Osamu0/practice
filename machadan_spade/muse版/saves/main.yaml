@@ -3,15 +3,15 @@ schema_version: 3
 game_version: 4.13.4
 campaign_id: main
 created_at: '2026-11-07T02:20:22+00:00'
-updated_at: '2026-11-08T00:49:07+00:00'
-save_revision: 70
+updated_at: '2026-11-08T00:51:03+00:00'
+save_revision: 71
 content_manifest_hash: 59b69015c8c813194e83a7c4b4d2b862af8f4074c2c616aa5325399df6f66460
 save_format_origin: 'System_Templates.md [TEMPLATE_SAVE] (SAVE_DATA: MachaDun v2.0)'
 transaction:
-  last_transaction_id: tx-cfa1db09fb534d8d9e999f118b8f3517
-  last_committed_turn: 59
-  previous_revision_hash: 51de39dd5653140157a5101a9d4244e83a16923accd7f915677e2a9fbcfa3d8a
-  last_candidate_hash: e0080d59f347479f7cc2f9a70b09f48cd868532a7a21d3b47e081e02993c1a25
+  last_transaction_id: tx-41f60b2291ee4c52b1a7e12cd65183d6
+  last_committed_turn: 60
+  previous_revision_hash: 9d2f66539f8b38bb79e1f5e04dc16fc0f55f15d62651f8be7243806fb0518865
+  last_candidate_hash: 3fa10ca2a71dc2b31da0d00c87b4e139a42eafb1363de4d9dc2e574523fe15f9
   applied_transaction_ids:
   - tx-413eae86780d496981a94b1d08250181
   - tx-5d7fe8c49f1242dca4bcebf850e979c1
@@ -83,6 +83,7 @@ transaction:
   - tx-a61b93b9d904443e87d6f9335fd20b39
   - tx-db1ce5955cc241ac8c5b222f07ba0c45
   - tx-cfa1db09fb534d8d9e999f118b8f3517
+  - tx-41f60b2291ee4c52b1a7e12cd65183d6
 hearing_progress:
   status: complete
   current_step: 7
@@ -115,8 +116,8 @@ runtime_state:
   style_conditions: []
   active_scene: turn
   scene_id: turn
-  context_pack_hash: cc66469885aa6982ab8d1dc0ca84a8c94ae30375230102221d166c0c29e24758
-  last_validation_at: '2026-11-08T00:49:07+00:00'
+  context_pack_hash: 97f98a65fe85c9d3ec5e9dab39e0c3c94c868bbf4eb9ae148e501e21debf3402
+  last_validation_at: '2026-11-08T00:51:03+00:00'
   last_error: ''
 dice_state:
   tape_revision: machadan-tape-r1
@@ -360,6 +361,9 @@ world_state:
       status: 確定した事実
     ミルカの部屋_初めての客:
       fact: Day1夜、〇〇がミルカの部屋に入った初めての客になった
+      status: 確定した事実
+    ミルカの気持ち_〇〇:
+      fact: Day1夜、自室で〇〇に黒い帳面を読まれ、報告書の先が知りたくて記録してしまう自分を打ち明けた。今日の〇〇（セレナに絡んでいた人、権利書を預かってきた人、ドーンの眉間の皺をほどいた人、自分をからかって笑っていた人）のことも書くつもりだったが『続きが分からない』と言い、メガネを外さないまま『続き、教えてくれませんか』と自分から誘った
       status: 確定した事実
   appearance_customization:
     version: 1
@@ -826,6 +830,7 @@ session_log:
   - Day1夜 〇〇はすりを深追いせず、ミルカを送ることを選ぶ。ミルカは冷静な判断だと微笑み、明日自分から詰め所にすりのことを届けると言う。衛兵通りを抜けて、一本裏の角のパン屋へ（見送り後の到着）。ミルカは外階段の一段目で足を止め、礼を言ったあと、お茶くらいなら出せると〇〇を二階へ誘う
   - Day1夜 〇〇がミルカの誘いに応じて二階の部屋へ上がる。狭い部屋に小窓、窓際の寝台、小卓と椅子二脚、壁の棚には年と月を書いた黒い革表紙の帳面が並ぶ。ミルカは客を入れるのは初めてだと言い、緊張しながら茶を淹れる。帳面を見られることを気にしている。茶碗を渡す時に指先が触れ、ミルカは手を引っ込めなかった
   - Day1夜 ミルカの部屋。〇〇が棚の黒い帳面『前年・十二月』を手に取って開く。中は記入卓の長椅子の組の記録（所要時間、脚の軋みの回数）や、冒険者の艶のある報告の書き写しと『所感：確認したい』の書き添え。日付のない頁には『カウンターの上。閉店後。メガネは外さないまま。強い人に、だめと言っても聞いてもらえずに』という願望の走り書き。ミルカは悲鳴を上げて帳面を掴むが力が入らず、業務の改善案だと言い訳しながら〇〇の胸に触れそうな距離で『読んだなら、責任とってください』と言う
+  - Day1夜 ミルカの部屋。〇〇が、真面目だと思っていたのにこんな記録まで、ギルドで目で追っていたのも頷けるとからかう。ミルカは〇〇の胸に額をつけ、報告書の先が知りたくて書いてしまうこと、七回全部数えていたことを打ち明ける。今日の〇〇のことも帰ったら書くつもりだったが続きが分からないと言い、胸元を掴んで引き寄せ『続き、教えてくれませんか』とメガネを外さないまま誘う
 memory_log:
   encounters: []
   battles: []
