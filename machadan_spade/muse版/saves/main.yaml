@@ -3,15 +3,15 @@ schema_version: 3
 game_version: 4.13.4
 campaign_id: main
 created_at: '2026-11-07T02:20:22+00:00'
-updated_at: '2026-11-08T00:38:44+00:00'
-save_revision: 67
+updated_at: '2026-11-08T00:42:26+00:00'
+save_revision: 68
 content_manifest_hash: 59b69015c8c813194e83a7c4b4d2b862af8f4074c2c616aa5325399df6f66460
 save_format_origin: 'System_Templates.md [TEMPLATE_SAVE] (SAVE_DATA: MachaDun v2.0)'
 transaction:
-  last_transaction_id: tx-9d19e49948fc4fb0969c6dddcbd16593
-  last_committed_turn: 56
-  previous_revision_hash: bf10efe76f25edecb2fd70a3328b76c716b107569f47a34633ae78c5bc628b0c
-  last_candidate_hash: b8db07b21a1fd7e4f39bfabea05588bd1220fa71c4aeed308de58c879253b480
+  last_transaction_id: tx-a61b93b9d904443e87d6f9335fd20b39
+  last_committed_turn: 57
+  previous_revision_hash: a00074342d0d9755dd196d56e430bcc3e00e3164c7f19ae1944a015893741f15
+  last_candidate_hash: d54d70c476e38d1b3b94562b0dd4e8f63383e6b7970108796067568c5d03ff61
   applied_transaction_ids:
   - tx-413eae86780d496981a94b1d08250181
   - tx-5d7fe8c49f1242dca4bcebf850e979c1
@@ -80,6 +80,7 @@ transaction:
   - tx-f6f657e26c544fe9abc81d8a41caf9ce
   - tx-15d142d063704dae99b36a9517ac52d3
   - tx-9d19e49948fc4fb0969c6dddcbd16593
+  - tx-a61b93b9d904443e87d6f9335fd20b39
 hearing_progress:
   status: complete
   current_step: 7
@@ -110,10 +111,10 @@ active_script:
 runtime_state:
   ero_scene: false
   style_conditions: []
-  active_scene: event
-  scene_id: event
-  context_pack_hash: ba79782f7bac69e2acc34b5b9cffe6572a44399a7f2680c17ac18a8dbfae4459
-  last_validation_at: '2026-11-08T00:38:44+00:00'
+  active_scene: turn
+  scene_id: turn
+  context_pack_hash: 85c88fcd3f66d60e2052ef49990b251bdb34ae81b2108630e9f8064be5006bec
+  last_validation_at: '2026-11-08T00:42:26+00:00'
   last_error: ''
 dice_state:
   tape_revision: machadan-tape-r1
@@ -339,16 +340,29 @@ world_state:
       place_id: NOIR_CITY_EAST
       source: Day1夜 ミルカ本人の話
       status: 確定した事実
+    場所_ミルカの住まい:
+      place_id: LORE_MILKA_HOME
+      parent: NOIR_CITY_EAST
+      name: ミルカの住まい（パン屋の二階）
+      position: 東の衛兵通りから一本裏へ折れた角。通りの先に衛兵詰め所の灯りが見える
+      structure: 1Fは小さなパン屋（木の看板に麦の穂と丸いパンの絵、夜は鎧戸）。店の脇に二階へ上がる木の外階段。2Fがミルカの間借りの部屋（狭い）
+      rooms:
+        LORE_MILKA_HOME_STAIR: パン屋脇の外階段
+        LORE_MILKA_HOME_ROOM: 2Fのミルカの部屋
+      status: 確定した事実
+    すり_広場東辺:
+      fact: Day1夜、中央広場の東辺（ミアの店脇の路地口）で頭巾をかぶった小柄なすり（若い声）に〇〇の財布（20G）を切り取られた。すりは東の裏路地へ逃げた。書類には手を出さなかった。ミルカが翌日（Day2）自分から詰め所に届けると言った
+      status: 確定した事実
   appearance_customization:
     version: 1
     overrides: {}
     resolutions: []
   reward_state_version: 2
   day: 1
-  location: 中央広場
-  place_id: NOIR_CITY_PLAZA
-  room_id: ''
-  sub_location: 広場の東辺、ミアの店脇の路地口の前（ミルカと一緒）
+  location: ミルカの住まい（パン屋の二階）
+  place_id: LORE_MILKA_HOME
+  room_id: LORE_MILKA_HOME_STAIR
+  sub_location: パン屋脇の外階段の下
   depth: null
   time_of_day: 夜
   weather: 霧
@@ -801,6 +815,7 @@ session_log:
   - Day1夜 銀の天秤亭の受付。〇〇が『七回、ちゃんと追ってる』と笑い、ミルカの住まいを尋ねる。ミルカは東の衛兵通りから一本裏の角のパン屋の二階を借りていると答える（ギルドから中央広場を抜けて十分ほど、詰め所が近い）。帰り支度をしながら、〇〇の宿とは反対方向だと言い、答えを待つ
   - Day1夜 〇〇がミルカを家まで送ると申し出て、二人で天秤亭を出る。移動イベント d10=2、種別 d10=7（小さな損）。中央広場の東辺、ミアの店脇の路地口の前で、頭巾をかぶった小柄なすりにぶつかられる。気づく判定 INT 9+6+3=18
     vs 標準19で失敗、腰の財布（20G）の紐を切られて盗られる。懐の書類挟み（権利書など）は無事。すりは東の裏路地へ逃げ込む。ミルカは詰め所への届け出もできると言う
+  - Day1夜 〇〇はすりを深追いせず、ミルカを送ることを選ぶ。ミルカは冷静な判断だと微笑み、明日自分から詰め所にすりのことを届けると言う。衛兵通りを抜けて、一本裏の角のパン屋へ（見送り後の到着）。ミルカは外階段の一段目で足を止め、礼を言ったあと、お茶くらいなら出せると〇〇を二階へ誘う
 memory_log:
   encounters: []
   battles: []
