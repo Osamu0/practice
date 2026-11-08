@@ -3,15 +3,15 @@ schema_version: 3
 game_version: 4.13.4
 campaign_id: main
 created_at: '2026-11-07T02:20:22+00:00'
-updated_at: '2026-11-08T01:23:58+00:00'
-save_revision: 80
+updated_at: '2026-11-08T01:25:54+00:00'
+save_revision: 81
 content_manifest_hash: 59b69015c8c813194e83a7c4b4d2b862af8f4074c2c616aa5325399df6f66460
 save_format_origin: 'System_Templates.md [TEMPLATE_SAVE] (SAVE_DATA: MachaDun v2.0)'
 transaction:
-  last_transaction_id: tx-8f583155f0244958ae952e5d89bf03b6
-  last_committed_turn: 69
-  previous_revision_hash: f683a1706512eb8cb66ce74c596c8e467763b40bd93b84eb0ae71e91eb7b257b
-  last_candidate_hash: b75db2214574165dab2378290dc620375bdc883e247b0b65f90905d6b6e48c41
+  last_transaction_id: tx-92db7c06a33341259d358eca7cc67685
+  last_committed_turn: 70
+  previous_revision_hash: 168b5112c9837be3efaa608b3cf75dd4effc1a3b2e581f2a5034b3bad2b66437
+  last_candidate_hash: 9cb59186a4bc425249b651022761f2327ec9aa634bad94ae7f20d57ecd7e5d8d
   applied_transaction_ids:
   - tx-413eae86780d496981a94b1d08250181
   - tx-5d7fe8c49f1242dca4bcebf850e979c1
@@ -93,6 +93,7 @@ transaction:
   - tx-1f74d68c36084316adb31b00291ea24e
   - tx-daf3aea3524243e597487f4d5f8489da
   - tx-8f583155f0244958ae952e5d89bf03b6
+  - tx-92db7c06a33341259d358eca7cc67685
 hearing_progress:
   status: complete
   current_step: 7
@@ -125,8 +126,8 @@ runtime_state:
   style_conditions: []
   active_scene: style
   scene_id: style
-  context_pack_hash: 83365bcdc3d6068ea9ef4c31c4748b3eebad477ddbb811e06539c196340678fd
-  last_validation_at: '2026-11-08T01:23:58+00:00'
+  context_pack_hash: 084be6e148e845ff59e4e4b1392b05bf84cdf6ef2a5bb35da705c4b4475544e4
+  last_validation_at: '2026-11-08T01:25:54+00:00'
   last_error: ''
 dice_state:
   tape_revision: machadan-tape-r1
@@ -852,6 +853,7 @@ session_log:
   - Day1夜 ミルカの部屋。〇〇が『そんなに欲しいなら脱がせてくれるよな』と言う。ミルカは床に膝をつき、ベルトに手間取りながら〇〇のズボンと下着を下ろす。初めて本物のおちんぽを間近で見て見入り、先っぽに自分から小さくキスをして、『このあとどうすればいいか教えてください』と上目づかいでねだる（第二幕・奉仕の入口）
   - Day1夜 ミルカの部屋。〇〇が『記録に残せるように形や匂いをしっかり覚えろ』と言う。ミルカは床のメガネを自分でかけ直し、おちんぽのカリ、筋、熱さ、太さを指でなぞって確かめ、匂いを嗅ぎ、先走りを舐めて味を確かめる。また濡れながら、『口の中の感じも確かめてもいいですか』とねだる（第二幕・奉仕）
   - Day1夜 ミルカの部屋。〇〇が『思う存分確かめていい』と許す。ミルカは初めてのフェラで、根元までは入らず咳き込みながらも、届くところまで丁寧に舐め、吸い、反応を一つずつ確かめる。曇ったメガネのまま、無意識に自分のアソコを指でかき回す。『出すなら口の中で確かめたい、それとも』と言い、指で自分のおまんこを開いてみせる（第二幕・奉仕）
+  - Day1夜 ミルカの部屋。〇〇が玉の方も頼むと言う。ミルカは報告書で読んだ『袋まで丁寧に』を思い出し、匂いを嗅ぎ、舌で舐め、片方ずつ唇で包んで優しく転がしながら竿をしごき続ける。自分のアソコを弄りながら『こうで合ってますか』と上目づかいで確かめる（第二幕・奉仕）
 memory_log:
   encounters: []
   battles: []
