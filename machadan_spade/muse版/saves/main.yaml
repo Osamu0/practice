@@ -3,15 +3,15 @@ schema_version: 3
 game_version: 4.13.4
 campaign_id: main
 created_at: '2026-11-07T02:20:22+00:00'
-updated_at: '2026-11-08T00:35:39+00:00'
-save_revision: 66
+updated_at: '2026-11-08T00:38:44+00:00'
+save_revision: 67
 content_manifest_hash: 59b69015c8c813194e83a7c4b4d2b862af8f4074c2c616aa5325399df6f66460
 save_format_origin: 'System_Templates.md [TEMPLATE_SAVE] (SAVE_DATA: MachaDun v2.0)'
 transaction:
-  last_transaction_id: tx-15d142d063704dae99b36a9517ac52d3
-  last_committed_turn: 55
-  previous_revision_hash: eb039c6a91a0f2b6c5e05d142fea5fac73eedf8ef7bc17af860bbfa17f2182ed
-  last_candidate_hash: be8413e67de9a22e4b29a3394e1f0813d8f8e16c1f86bcb9c048cde5f729f701
+  last_transaction_id: tx-9d19e49948fc4fb0969c6dddcbd16593
+  last_committed_turn: 56
+  previous_revision_hash: bf10efe76f25edecb2fd70a3328b76c716b107569f47a34633ae78c5bc628b0c
+  last_candidate_hash: b8db07b21a1fd7e4f39bfabea05588bd1220fa71c4aeed308de58c879253b480
   applied_transaction_ids:
   - tx-413eae86780d496981a94b1d08250181
   - tx-5d7fe8c49f1242dca4bcebf850e979c1
@@ -79,6 +79,7 @@ transaction:
   - tx-3fd10004879945759aebc50b0373e865
   - tx-f6f657e26c544fe9abc81d8a41caf9ce
   - tx-15d142d063704dae99b36a9517ac52d3
+  - tx-9d19e49948fc4fb0969c6dddcbd16593
 hearing_progress:
   status: complete
   current_step: 7
@@ -109,15 +110,15 @@ active_script:
 runtime_state:
   ero_scene: false
   style_conditions: []
-  active_scene: turn
-  scene_id: turn
-  context_pack_hash: 8fadb2746e3ae2fe090ed02b1ff5cae2643d75073765e65485c3c769f2a8bc13
-  last_validation_at: '2026-11-08T00:35:39+00:00'
+  active_scene: event
+  scene_id: event
+  context_pack_hash: ba79782f7bac69e2acc34b5b9cffe6572a44399a7f2680c17ac18a8dbfae4459
+  last_validation_at: '2026-11-08T00:38:44+00:00'
   last_error: ''
 dice_state:
   tape_revision: machadan-tape-r1
   dice_cursor_d6: 0
-  dice_cursor_d10: 46
+  dice_cursor_d10: 50
 fire_state:
   holders:
   - player
@@ -344,10 +345,10 @@ world_state:
     resolutions: []
   reward_state_version: 2
   day: 1
-  location: 銀の天秤亭
-  place_id: GUILD_SILVER_SCALES
-  room_id: GUILD_SILVER_SCALES_RECEPTION
-  sub_location: ミルカの受付カウンター
+  location: 中央広場
+  place_id: NOIR_CITY_PLAZA
+  room_id: ''
+  sub_location: 広場の東辺、ミアの店脇の路地口の前（ミルカと一緒）
   depth: null
   time_of_day: 夜
   weather: 霧
@@ -550,7 +551,7 @@ player:
     expertise_tags: []
     solo_suitability: unclassified
     party_needs: []
-  gold: 20
+  gold: 0
   debt: 10000
   base_stats:
     str: 6
@@ -798,6 +799,8 @@ session_log:
   - Day1夕〜夜 〇〇は夜まで時間を潰す。暇つぶしの出来事 d10=7（なし）。夜の鐘のあと銀の天秤亭へ戻る。環境 d10=3（記入卓の奥で、稼ぎ頭の女冒険者が仲間の男の膝に引き倒されて甘い声）。ミルカは帳簿を閉じてメガネを拭いているところで、〇〇に気づいて慌てる。ちょうど上がるところだと言う
   - Day1夜 銀の天秤亭の受付。〇〇が記入卓の二人はいつもお盛んだ、ミルカもいつも目で追っていると笑う。ミルカは否定しつつ、先月だけで七回、稼ぎ頭が膝に乗る決まり、今日はリズ、長椅子の脚は二回直したと口を滑らせ真っ赤になる。からかうのが楽しいかと拗ね、ボタンに触れながら『もう上がりなんです』と言うが、帰り支度の手は止まっている
   - Day1夜 銀の天秤亭の受付。〇〇が『七回、ちゃんと追ってる』と笑い、ミルカの住まいを尋ねる。ミルカは東の衛兵通りから一本裏の角のパン屋の二階を借りていると答える（ギルドから中央広場を抜けて十分ほど、詰め所が近い）。帰り支度をしながら、〇〇の宿とは反対方向だと言い、答えを待つ
+  - Day1夜 〇〇がミルカを家まで送ると申し出て、二人で天秤亭を出る。移動イベント d10=2、種別 d10=7（小さな損）。中央広場の東辺、ミアの店脇の路地口の前で、頭巾をかぶった小柄なすりにぶつかられる。気づく判定 INT 9+6+3=18
+    vs 標準19で失敗、腰の財布（20G）の紐を切られて盗られる。懐の書類挟み（権利書など）は無事。すりは東の裏路地へ逃げ込む。ミルカは詰め所への届け出もできると言う
 memory_log:
   encounters: []
   battles: []
