@@ -3,15 +3,15 @@ schema_version: 3
 game_version: 4.13.4
 campaign_id: main
 created_at: '2026-11-07T02:20:22+00:00'
-updated_at: '2026-11-08T01:15:20+00:00'
-save_revision: 77
+updated_at: '2026-11-08T01:17:42+00:00'
+save_revision: 78
 content_manifest_hash: 59b69015c8c813194e83a7c4b4d2b862af8f4074c2c616aa5325399df6f66460
 save_format_origin: 'System_Templates.md [TEMPLATE_SAVE] (SAVE_DATA: MachaDun v2.0)'
 transaction:
-  last_transaction_id: tx-b45c5e5721374266a860d8d0b32c1bb5
-  last_committed_turn: 66
-  previous_revision_hash: 9b1958e5aa08e265171e5a053b41b73cca07caeb7d9edf9db734a40766fff59e
-  last_candidate_hash: 4c3bd87b1bf778cfe54539c074bbb5e6255ad223b07d07f1dcbeefa6e2b77bb3
+  last_transaction_id: tx-1f74d68c36084316adb31b00291ea24e
+  last_committed_turn: 67
+  previous_revision_hash: 5df1a1a4aa9c6feadc216373fd2112932b45fdc0d8bc66c18f386b99602d3ae5
+  last_candidate_hash: 26b5e14eae9ec36795295a46791277c678aa035a69c049a9fb1aef96614e92de
   applied_transaction_ids:
   - tx-413eae86780d496981a94b1d08250181
   - tx-5d7fe8c49f1242dca4bcebf850e979c1
@@ -90,6 +90,7 @@ transaction:
   - tx-1ee3b3a38c2d4259b017b5b2d4e48d0e
   - tx-c75698b8f50f4c62bbb13527b45c0321
   - tx-b45c5e5721374266a860d8d0b32c1bb5
+  - tx-1f74d68c36084316adb31b00291ea24e
 hearing_progress:
   status: complete
   current_step: 7
@@ -122,8 +123,8 @@ runtime_state:
   style_conditions: []
   active_scene: style
   scene_id: style
-  context_pack_hash: 33874f716ffd1504aa1af5c289e2ec59c41f2410139e6ef3c43d25a9967eb1e0
-  last_validation_at: '2026-11-08T01:15:20+00:00'
+  context_pack_hash: 2363a134ebb8637ecab3528888242d2fedf1bef162eb34faed1c49e0f6c30339
+  last_validation_at: '2026-11-08T01:17:42+00:00'
   last_error: ''
 dice_state:
   tape_revision: machadan-tape-r1
@@ -846,6 +847,7 @@ session_log:
   - Day1夜 ミルカの部屋。〇〇がレースをずり上げ、ミルカのおっぱいを激しく揉みしだき、乳首を吸い、つねる。ミルカは棚に背を当てて甘い声を上げ、〇〇の頭を自分の胸に抱え込む。おっぱいだけでイきそうになりながら、スカートの中もぐしょぐしょだと下への愛撫をねだる（第二幕）
   - Day1夜 ミルカの部屋。〇〇がスカートの中へ手を入れ、ぐっしょり濡れたショーツ越しに触れたあと脱がせて手マンする。ミルカは自分から脚を開いてスカートをたくし上げ、〇〇の手首を掴んで奥へ押しつけ、指だけで潮を吹いてイく（第二幕・ミルカ1回目の絶頂）。棚の帳面が一冊床に落ちた
   - Day1夜 ミルカの部屋。〇〇が『すぐイったね、ギルドで追っかけてただけある』とからかい、イったばかりのミルカを手マンし続ける。ミルカは膝が抜けて〇〇の首にしがみつき、『指じゃ足りない、次は〇〇さんのおちんぽで、帳面のカウンターのページみたいに』とねだりながら、前より大きく潮を吹いて2回目の絶頂（第二幕）
+  - Day1夜 ミルカの部屋。〇〇が『そんなに欲しいなら脱がせてくれるよな』と言う。ミルカは床に膝をつき、ベルトに手間取りながら〇〇のズボンと下着を下ろす。初めて本物のおちんぽを間近で見て見入り、先っぽに自分から小さくキスをして、『このあとどうすればいいか教えてください』と上目づかいでねだる（第二幕・奉仕の入口）
 memory_log:
   encounters: []
   battles: []
