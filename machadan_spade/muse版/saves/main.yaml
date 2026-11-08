@@ -3,15 +3,15 @@ schema_version: 3
 game_version: 4.13.4
 campaign_id: main
 created_at: '2026-11-07T02:20:22+00:00'
-updated_at: '2026-11-08T04:06:43+00:00'
-save_revision: 92
+updated_at: '2026-11-08T04:09:59+00:00'
+save_revision: 93
 content_manifest_hash: 59b69015c8c813194e83a7c4b4d2b862af8f4074c2c616aa5325399df6f66460
 save_format_origin: 'System_Templates.md [TEMPLATE_SAVE] (SAVE_DATA: MachaDun v2.0)'
 transaction:
-  last_transaction_id: tx-35b4a49937cc48398796cdfc6fe1278c
-  last_committed_turn: 81
-  previous_revision_hash: 84253d7b429af6e32f7bb10a2d5568235dfda95122f3c291bd668a81a884ba29
-  last_candidate_hash: 41385f17767e853e6b7cd4d05c50ce837a0346d0f8998543f76d09d651e10d1a
+  last_transaction_id: tx-9c42e2bce3bf499f9818dc35d765f121
+  last_committed_turn: 82
+  previous_revision_hash: f56b2670c212090ca4e224202ab91000e885d44b6f924bc8e0fc754537c0cc4f
+  last_candidate_hash: 8ee934741db54d84ef31daf9cfa3c62d30a1750150b38738cc9ce968f99b7550
   applied_transaction_ids:
   - tx-413eae86780d496981a94b1d08250181
   - tx-5d7fe8c49f1242dca4bcebf850e979c1
@@ -105,6 +105,7 @@ transaction:
   - tx-d7b5b262bd014720813a098db4dfca58
   - tx-24d054e607e1463a8bbe6c203ebf72cc
   - tx-35b4a49937cc48398796cdfc6fe1278c
+  - tx-9c42e2bce3bf499f9818dc35d765f121
 hearing_progress:
   status: complete
   current_step: 7
@@ -137,8 +138,8 @@ runtime_state:
   style_conditions: []
   active_scene: skills
   scene_id: skills
-  context_pack_hash: adeaa57c727b51baa66c1b576c1c4962ce364cbc7ac4e951a644112d48383aad
-  last_validation_at: '2026-11-08T04:06:43+00:00'
+  context_pack_hash: 829ef2d78e3b02554b113d119c239df2dd3c1119dd751dbd6d3f2b768d326cb3
+  last_validation_at: '2026-11-08T04:09:59+00:00'
   last_error: ''
 dice_state:
   tape_revision: machadan-tape-r1
@@ -894,6 +895,7 @@ session_log:
   - Day2朝 ミルカが身支度を整え、〇〇と一緒にギルドへ。移動 d10=10（なし）、環境 d10=6（なし）。ミルカがギルドを開け、今日の予定を確認する：昼にドーンが銀蛇亭の裏でガルドに返事、結果は夕方の鐘のあとドーンの納品時に分かる。すりの件は昼休みにミルカが詰め所へ届ける。所持金のない〇〇に、今のうちに冒険者登録をして見習いの依頼を受けるよう勧める
   - Day2朝 銀の天秤亭の受付。〇〇が冒険者登録をする、おまけしてくれるよなと言う。ミルカは登録料はもともと無料なので値引きはできないと笑い、おまけとして職業選びの正直な見立てと、最初の見習い依頼を割のいいものから並べておくことを申し出る。申込用紙に名前と年齢（24）を記入し、職業の冊子を見せて見立てを伝える（力・丈夫さ・頭は並以上、足と手先は苦手、いちばんは人を動かす力。前衛なら戦士か騎士、話と駆け引きなら踊り子、自由な職業も可）
   - Day2朝 銀の天秤亭の受付。〇〇が召喚士を希望する。ミルカが魔道版を出し判定：普通の職業として承認（中衛・LP+5、魔法枠6の術者、ひとり旅は不向き）。ただし召喚は最低でもT3の魔法で冴え（INT）15が必要、〇〇は9なので今日すぐは召喚できないと正直に伝え、初期の技4つ（契約の鎖・号令・魔力の器・契約の心得）と初期魔法（魔弾＋T1を1つ）を示して、この内容でよいか確認を求める（未確定）
+  - Day2朝 銀の天秤亭の受付。〇〇が冴えをおまけしてくれ、昨日言ったことを覚えているよなと迫る。ミルカは真っ赤になって全部覚えている、できることなら何でもすると言いつつ、魔道版は見せるだけで冴えは増やせない、上げるには能力の実か再訓練（100G・半日・ギルドの決まりでまけられない）しかないと説明。冴え15にはほかの能力から6点を回す必要があると忠告し、再訓練の100Gを自分のお給金から立て替える（返済日を帳面に記録）と申し出る（未回答）
 memory_log:
   encounters: []
   battles: []
