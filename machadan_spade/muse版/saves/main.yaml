@@ -3,15 +3,15 @@ schema_version: 3
 game_version: 4.13.4
 campaign_id: main
 created_at: '2026-11-07T02:20:22+00:00'
-updated_at: '2026-11-08T01:03:42+00:00'
-save_revision: 74
+updated_at: '2026-11-08T01:09:11+00:00'
+save_revision: 75
 content_manifest_hash: 59b69015c8c813194e83a7c4b4d2b862af8f4074c2c616aa5325399df6f66460
 save_format_origin: 'System_Templates.md [TEMPLATE_SAVE] (SAVE_DATA: MachaDun v2.0)'
 transaction:
-  last_transaction_id: tx-138c1db7df304ab493a1df403171ef54
-  last_committed_turn: 63
-  previous_revision_hash: 6e1d7f8b32ebda64d7a37cc018ff51e37f949b8ee0342c55e308b16051afd074
-  last_candidate_hash: 8b0bca1a94056bfc238f708bcad162b7f376206530c7dc1f5b424a4a279c163e
+  last_transaction_id: tx-1ee3b3a38c2d4259b017b5b2d4e48d0e
+  last_committed_turn: 64
+  previous_revision_hash: 37429b3ed0ec5da772f23601945de455336cb5eef3101ca66c8631cb9ff2dcd0
+  last_candidate_hash: a2329993eee2247bb8d338b9697c6db8bfd896b737674188db213f08b746117c
   applied_transaction_ids:
   - tx-413eae86780d496981a94b1d08250181
   - tx-5d7fe8c49f1242dca4bcebf850e979c1
@@ -87,6 +87,7 @@ transaction:
   - tx-186787c6357b4cd69821a36b7aaa8513
   - tx-674d2d2400994156bb96fd1514bc31e5
   - tx-138c1db7df304ab493a1df403171ef54
+  - tx-1ee3b3a38c2d4259b017b5b2d4e48d0e
 hearing_progress:
   status: complete
   current_step: 7
@@ -119,8 +120,8 @@ runtime_state:
   style_conditions: []
   active_scene: style
   scene_id: style
-  context_pack_hash: 577b6d776e4680bddda25f32113f8e14d8f2044f180d7078a9e9e88369920d5a
-  last_validation_at: '2026-11-08T01:03:42+00:00'
+  context_pack_hash: 95c925a4ac580f6b518d8669e863366afd9387742c1bad1bb329966749a513da
+  last_validation_at: '2026-11-08T01:09:11+00:00'
   last_error: ''
 dice_state:
   tape_revision: machadan-tape-r1
@@ -840,6 +841,7 @@ session_log:
   - Day1夜 ミルカの部屋。〇〇が『実体験に勝るものはない』と言い、ミルカのメガネを外してキスをする。ミルカは帳面と違う（外さないままと書いたのに）と甘く抗議するが、キスで力が抜け、自分から胸元を引き寄せて背伸びし、『もっと近くで教えて、続き全部記録します』とぎこちなく自分からキスを返す（エロシーン開始・第一幕）
   - Day1夜 ミルカの部屋。〇〇が『キスどうだ、もっとしたいだろ』と言いながらブラウスのボタンを外していく。下から白い透けるレースの下着が現れ、ミルカは見ないでと言いかけるが、『したいです、決まってます』と認め、五つ目のボタンを自分で外し、ブラウスの前を自ら開いて『近くで見てください』と見せる（第一幕〜第二幕の入口）
   - Day1夜 ミルカの部屋。〇〇がレース越しにミルカのおっぱいを揉みしだきながら何カップか尋ねる。ミルカはDカップと答え、聞かれたのは初めてだと言う。乳首が硬くなり、だめと言いつつ胸を突き出し、〇〇の手首を掴んで自分から胸へ押しつけ、レースの縁へ導いて『直に触って確かめてください』とねだる（第二幕）
+  - Day1夜 ミルカの部屋。〇〇がレースをずり上げ、ミルカのおっぱいを激しく揉みしだき、乳首を吸い、つねる。ミルカは棚に背を当てて甘い声を上げ、〇〇の頭を自分の胸に抱え込む。おっぱいだけでイきそうになりながら、スカートの中もぐしょぐしょだと下への愛撫をねだる（第二幕）
 memory_log:
   encounters: []
   battles: []
