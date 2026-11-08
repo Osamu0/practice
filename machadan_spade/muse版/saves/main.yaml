@@ -3,15 +3,15 @@ schema_version: 3
 game_version: 4.13.4
 campaign_id: main
 created_at: '2026-11-07T02:20:22+00:00'
-updated_at: '2026-11-08T02:27:32+00:00'
-save_revision: 88
+updated_at: '2026-11-08T02:34:28+00:00'
+save_revision: 89
 content_manifest_hash: 59b69015c8c813194e83a7c4b4d2b862af8f4074c2c616aa5325399df6f66460
 save_format_origin: 'System_Templates.md [TEMPLATE_SAVE] (SAVE_DATA: MachaDun v2.0)'
 transaction:
-  last_transaction_id: tx-296bbc38d62c49bab8066c172d463f16
-  last_committed_turn: 77
-  previous_revision_hash: e4caf99a7cd152d20ca94594e2e8e35a90a9bd0b26546d421aa24031f553aaa6
-  last_candidate_hash: 4d344d0af1628a5b428655a49c117f6a8e76b64fb3721ef47a81529a803ac085
+  last_transaction_id: tx-69190d4c9361430aa18eeabb1030bc66
+  last_committed_turn: 78
+  previous_revision_hash: 7e605a99548ed31598ebb4c03c068ba1bb47b4ad6f5f26c3017101181bba961f
+  last_candidate_hash: 64938c55f19d51f2df920512c679ba8a9bdafadb79b7b92648897c27a9e11515
   applied_transaction_ids:
   - tx-413eae86780d496981a94b1d08250181
   - tx-5d7fe8c49f1242dca4bcebf850e979c1
@@ -101,6 +101,7 @@ transaction:
   - tx-8dbb416bd6094042ab54e8af3a9ac292
   - tx-dd1ac97edf0c473f912da1176896b537
   - tx-296bbc38d62c49bab8066c172d463f16
+  - tx-69190d4c9361430aa18eeabb1030bc66
 hearing_progress:
   status: complete
   current_step: 7
@@ -133,8 +134,8 @@ runtime_state:
   style_conditions: []
   active_scene: style
   scene_id: style
-  context_pack_hash: 8856e4590efbc1615a1a6b5409ee62dcb96f4ab57099f48c3b5b9aa26004d90e
-  last_validation_at: '2026-11-08T02:27:32+00:00'
+  context_pack_hash: e953ef3e3a85bd17a025dfea5cfd2ccbd386d86ef51b4aa0dc53fcf3d2227e5c
+  last_validation_at: '2026-11-08T02:34:28+00:00'
   last_error: ''
 dice_state:
   tape_revision: machadan-tape-r1
@@ -391,19 +392,25 @@ world_state:
     ミルカ_言いなりの誓い:
       fact: Day1夜、〇〇に激しく突かれながら『〇〇さんの言いなりになる、何でも言うことを聞く、ギルドでも受付でもどこでも言われたらすぐ脚を開く、帳面も〇〇さんのことだけにする』と叫び、絶頂のなかで〇〇を『ご主人様』と呼んだ。さらに『逆らいません、捨てないで、ミルカのおまんこをご主人様のおちんぽ専用にしてください』と懇願した。行為中の言葉であり、商いや業務上の対価が無料になるわけではない（コア§1）
       status: 確定した事実（行為中の誓い）
+    ミルカとの関係:
+      fact: Day1夜からDay2朝まで、ミルカの部屋で朝まで交わった。ミルカは二人きりの時〇〇を『ご主人様』と呼ぶ。帳面の願望（カウンター代わりの小卓、メガネのまま）も叶えた。関係は数値化しない。商いや業務の対価は無料にならない（コア§1）
+      status: 確定した事実
+    宿泊_Day1夜:
+      fact: Day1の夜はぬれねずみ亭ではなくミルカの部屋で過ごした（宿代は発生していない）
+      status: 確定した事実
   appearance_customization:
     version: 1
     overrides: {}
     resolutions: []
   reward_state_version: 2
-  day: 1
+  day: 2
   location: ミルカの住まい（パン屋の二階）
   place_id: LORE_MILKA_HOME
   room_id: LORE_MILKA_HOME_ROOM
   sub_location: 2Fのミルカの部屋（ミルカと二人）
   depth: null
-  time_of_day: 夜
-  weather: 霧
+  time_of_day: 朝
+  weather: 朝霧
   quest_active: ''
   quest_rank: ''
   personal_rank: ''
@@ -874,13 +881,16 @@ session_log:
   - Day1夜 ミルカの部屋・寝台。〇〇が『ちゃんと覚えろ、俺の言いなりになるんだ』とイったばかりのミルカを激しく突く。ミルカは『言いなりになります、何でも言うことを聞きます、ギルドでも受付でもどこでも〇〇さんが言ったらすぐ脚を開きます、帳面も〇〇さんのことだけにします』と叫び、連続で絶頂しながら『ご主人様』と呼ぶ（通算4回目）
   - Day1夜 ミルカの部屋・寝台。〇〇が『言いなりになるならこのちんこを何回も味わえる、逆らったら終わりだ』と言い、降りてきた子宮口を責め続ける。ミルカは『逆らいません、毎晩このおちんぽで奥をこりこりしてほしい、捨てないで、ミルカのおまんこをご主人様のおちんぽ専用にしてください』と叫び、絶頂が止まらなくなったまま今夜いちばん大きな奥イキをする（通算5回目以降）。メガネが敷布に落ちる
   - Day1夜 ミルカの部屋・寝台。〇〇が『俺もイくぞ、中にたっぷり出してやる』と言い、子宮口に押しつけたまま中出しする。ミルカは脚で腰を引き寄せて離さず、注がれながら絶頂し、『すき、ご主人様すき、もっと奥に覚えさせて』とうわごとのように繰り返す
+  - Day1夜〜Day2朝 ミルカの部屋。〇〇が『朝まで犯してやる』と、抜かずに二回戦から朝まで犯し続ける（正常位、後背位で三つ編みを掴んで、夜半にはミルカが自分からメガネをかけ直し、小卓をカウンター代わりにして帳面の願望どおりに）。夜明け前、階下のパン屋の窯の音で朝を迎える。ミルカは一睡もしていないが寝坊はしていないと言い、あと半刻でギルドを開けなければならないと告げ、〇〇の手を握ったまま『ご主人様、今日はどうなさいますか』と尋ねる。エロシーン終了（場面転換：夜明け）
 memory_log:
   encounters: []
   battles: []
   ero:
   - Day1夜 ミルカ（ミルカの部屋）：初めてのキス、胸責め、手マンで2回絶頂（潮吹き）、初めてのフェラと玉舐め、口内射精を溢さず飲み込む
   - Day1夜 ミルカ（ミルカの部屋・寝台）：初めての挿入（処女）。メガネのまま正常位、脚を巻きつけて離さない。子宮口責めで止まらない奥イキ、『言いなりになる』『ご主人様』『おちんぽ専用にして』と誓い、中出しで絶頂
-  turning_points: []
+  - Day1夜〜Day2朝 ミルカ（ミルカの部屋）：朝まで抜かずの連戦。四つん這いで三つ編みを掴まれて後ろから。夜半にミルカが自らメガネをかけ直し、小卓をカウンター代わりに帳面の願望（閉店後のカウンター、メガネのまま、だめと言っても聞いてもらえない）を叶える。夜明けの窯の音まで
+  turning_points:
+  - Day1夜 ミルカと初めて結ばれ、ミルカが〇〇を『ご主人様』と呼ぶようになる
 design_applied:
 - 'M1: 配布版のキャストは同梱ファイルの登場人物のみ (一部キャラクターは作者版のみの収録)'
 - 'M2: 年齢不詳でも、個別正本で成人と明記された固定キャストだけを成人として扱い、数値年齢は創作しない'
