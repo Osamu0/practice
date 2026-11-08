@@ -3,15 +3,15 @@ schema_version: 3
 game_version: 4.13.4
 campaign_id: main
 created_at: '2026-11-07T02:20:22+00:00'
-updated_at: '2026-11-08T01:34:20+00:00'
-save_revision: 83
+updated_at: '2026-11-08T01:44:28+00:00'
+save_revision: 84
 content_manifest_hash: 59b69015c8c813194e83a7c4b4d2b862af8f4074c2c616aa5325399df6f66460
 save_format_origin: 'System_Templates.md [TEMPLATE_SAVE] (SAVE_DATA: MachaDun v2.0)'
 transaction:
-  last_transaction_id: tx-36b2eb14d1944c41a2b9f89fbacbecc0
-  last_committed_turn: 72
-  previous_revision_hash: 6a86f24fab60f66b3d78155f76424d844a9f15a51f2b27473da0cca7797efb4a
-  last_candidate_hash: 076659bb7706bb63abb293a82aaa51a7e0a4d8432bd50e2259cba8c09a6900ed
+  last_transaction_id: tx-6e08005be067412a9f7ee5614cb9f70b
+  last_committed_turn: 73
+  previous_revision_hash: f7a50d7816c06306f7bf48a4ea17823fc54dc4945bbda6d9633a898e6a64b396
+  last_candidate_hash: 76b16ac03891c93ae9d3000aea720d1f6e4b00b31258bb4d71470585e618f81e
   applied_transaction_ids:
   - tx-413eae86780d496981a94b1d08250181
   - tx-5d7fe8c49f1242dca4bcebf850e979c1
@@ -96,6 +96,7 @@ transaction:
   - tx-92db7c06a33341259d358eca7cc67685
   - tx-0d30ee5b031240d58039763f43c338ca
   - tx-36b2eb14d1944c41a2b9f89fbacbecc0
+  - tx-6e08005be067412a9f7ee5614cb9f70b
 hearing_progress:
   status: complete
   current_step: 7
@@ -128,8 +129,8 @@ runtime_state:
   style_conditions: []
   active_scene: style
   scene_id: style
-  context_pack_hash: 9ec2f5e24199868c556663929238093607d2d381c3b26aa4355f61a58d919779
-  last_validation_at: '2026-11-08T01:34:20+00:00'
+  context_pack_hash: 1034378d2f5312b014cf30f575cfb1b170d80b1cd445345b69ae6f97ce76c207
+  last_validation_at: '2026-11-08T01:44:28+00:00'
   last_error: ''
 dice_state:
   tape_revision: machadan-tape-r1
@@ -379,6 +380,9 @@ world_state:
       status: 確定した事実
     ミルカ_初めてのキス:
       fact: Day1夜、自室で〇〇にメガネを外されてキスされた。報告書でしか知らなかったキスの柔らかさと熱に頭が真っ白になり、自分から背伸びしてキスを返した
+      status: 確定した事実
+    ミルカ_初めて:
+      fact: Day1夜、ミルカは自室の寝台で〇〇と初めて交わった（処女だった）。メガネはかけたまま。痛みは一瞬で、すぐに快感に変わった
       status: 確定した事実
   appearance_customization:
     version: 1
@@ -858,6 +862,7 @@ session_log:
   - Day1夜 ミルカの部屋。〇〇が玉の方も頼むと言う。ミルカは報告書で読んだ『袋まで丁寧に』を思い出し、匂いを嗅ぎ、舌で舐め、片方ずつ唇で包んで優しく転がしながら竿をしごき続ける。自分のアソコを弄りながら『こうで合ってますか』と上目づかいで確かめる（第二幕・奉仕）
   - Day1夜 ミルカの部屋。〇〇が『うまいじゃないか、もっと激しくできるか』と言う。褒められて嬉しそうなミルカは、えずきながらも深く咥え、両手と口と舌で激しくしゃぶる。メガネは鼻先までずれて真っ白に曇る。『〇〇さんのせーえき、口の中に全部記録させてください』とねだって、また深く咥え込む（第二幕・奉仕）
   - Day1夜 ミルカの部屋。〇〇が『出すぞ』とミルカの頭を押さえて口の中に射精し、『溢すな、しっかり覚えろ』と言う。ミルカは一滴も溢さず受け止め、口を開いて見せてから全部飲み込み、味を報告する。下腹を押さえて『ここがまだ記録してないって言ってます』と挿入をねだる（第二幕の終わり）
+  - Day1夜 ミルカの部屋。〇〇が『そこにもちゃんと覚えさせないと』と言う。ミルカは自分で寝台へ這って仰向けになり、メガネをかけたまま自分から脚を開いて『ここに教えてください』とねだる。〇〇がゆっくり挿入し、ミルカの初めてを奪う（痛みは一瞬）。根元まで入り奥に当たる。ミルカは首にしがみつき『動いてください、全部覚えます』とねだる（第三幕）
 memory_log:
   encounters: []
   battles: []
