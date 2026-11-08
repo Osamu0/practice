@@ -3,15 +3,15 @@ schema_version: 3
 game_version: 4.13.4
 campaign_id: main
 created_at: '2026-11-07T02:20:22+00:00'
-updated_at: '2026-11-08T00:45:33+00:00'
-save_revision: 69
+updated_at: '2026-11-08T00:49:07+00:00'
+save_revision: 70
 content_manifest_hash: 59b69015c8c813194e83a7c4b4d2b862af8f4074c2c616aa5325399df6f66460
 save_format_origin: 'System_Templates.md [TEMPLATE_SAVE] (SAVE_DATA: MachaDun v2.0)'
 transaction:
-  last_transaction_id: tx-db1ce5955cc241ac8c5b222f07ba0c45
-  last_committed_turn: 58
-  previous_revision_hash: c6e33a5d1c837401cfca57f55ecacf689252131e7f5e968a45c2b851930283c7
-  last_candidate_hash: e976b2f8751fd7510130447e135fc5fededec5d10b611b2ffb07c9758fb31935
+  last_transaction_id: tx-cfa1db09fb534d8d9e999f118b8f3517
+  last_committed_turn: 59
+  previous_revision_hash: 51de39dd5653140157a5101a9d4244e83a16923accd7f915677e2a9fbcfa3d8a
+  last_candidate_hash: e0080d59f347479f7cc2f9a70b09f48cd868532a7a21d3b47e081e02993c1a25
   applied_transaction_ids:
   - tx-413eae86780d496981a94b1d08250181
   - tx-5d7fe8c49f1242dca4bcebf850e979c1
@@ -82,6 +82,7 @@ transaction:
   - tx-9d19e49948fc4fb0969c6dddcbd16593
   - tx-a61b93b9d904443e87d6f9335fd20b39
   - tx-db1ce5955cc241ac8c5b222f07ba0c45
+  - tx-cfa1db09fb534d8d9e999f118b8f3517
 hearing_progress:
   status: complete
   current_step: 7
@@ -114,8 +115,8 @@ runtime_state:
   style_conditions: []
   active_scene: turn
   scene_id: turn
-  context_pack_hash: ca0e84203ab7adce42fc4d8f48c77b23aeadaef8889b237d59ff666e9794a0ea
-  last_validation_at: '2026-11-08T00:45:33+00:00'
+  context_pack_hash: cc66469885aa6982ab8d1dc0ca84a8c94ae30375230102221d166c0c29e24758
+  last_validation_at: '2026-11-08T00:49:07+00:00'
   last_error: ''
 dice_state:
   tape_revision: machadan-tape-r1
@@ -355,8 +356,8 @@ world_state:
       fact: Day1夜、中央広場の東辺（ミアの店脇の路地口）で頭巾をかぶった小柄なすり（若い声）に〇〇の財布（20G）を切り取られた。すりは東の裏路地へ逃げた。書類には手を出さなかった。ミルカが翌日（Day2）自分から詰め所に届けると言った
       status: 確定した事実
     ミルカの黒い帳面:
-      fact: ミルカの部屋の棚に、年と月を背に書いた黒い革表紙の帳面が並ぶ。ミルカは『業務の写し』に見えると思っているが、中を見られるのを強く気にしている（中身は未確認。冒険者たちの艶のある報告の記録と思われる）
-      status: 確定した事実（中身は〇〇未確認）
+      fact: ミルカの部屋の棚に、年と月を背に書いた黒い革表紙の帳面が並ぶ。中身は冒険者たちの艶のある報告やギルドで見た光景の細かな記録（日付・場所・所要時間・長椅子の軋みの回数など）と、『所感：確認したい』のような本人の書き添え。日付のない頁には自分の願望（閉店後のカウンターの上で、メガネを外さないまま、強い人にだめと言っても聞いてもらえずに）を書いている。Day1夜、〇〇が『前年・十二月』の一冊を読んだ
+      status: 確定した事実
     ミルカの部屋_初めての客:
       fact: Day1夜、〇〇がミルカの部屋に入った初めての客になった
       status: 確定した事実
@@ -824,6 +825,7 @@ session_log:
     vs 標準19で失敗、腰の財布（20G）の紐を切られて盗られる。懐の書類挟み（権利書など）は無事。すりは東の裏路地へ逃げ込む。ミルカは詰め所への届け出もできると言う
   - Day1夜 〇〇はすりを深追いせず、ミルカを送ることを選ぶ。ミルカは冷静な判断だと微笑み、明日自分から詰め所にすりのことを届けると言う。衛兵通りを抜けて、一本裏の角のパン屋へ（見送り後の到着）。ミルカは外階段の一段目で足を止め、礼を言ったあと、お茶くらいなら出せると〇〇を二階へ誘う
   - Day1夜 〇〇がミルカの誘いに応じて二階の部屋へ上がる。狭い部屋に小窓、窓際の寝台、小卓と椅子二脚、壁の棚には年と月を書いた黒い革表紙の帳面が並ぶ。ミルカは客を入れるのは初めてだと言い、緊張しながら茶を淹れる。帳面を見られることを気にしている。茶碗を渡す時に指先が触れ、ミルカは手を引っ込めなかった
+  - Day1夜 ミルカの部屋。〇〇が棚の黒い帳面『前年・十二月』を手に取って開く。中は記入卓の長椅子の組の記録（所要時間、脚の軋みの回数）や、冒険者の艶のある報告の書き写しと『所感：確認したい』の書き添え。日付のない頁には『カウンターの上。閉店後。メガネは外さないまま。強い人に、だめと言っても聞いてもらえずに』という願望の走り書き。ミルカは悲鳴を上げて帳面を掴むが力が入らず、業務の改善案だと言い訳しながら〇〇の胸に触れそうな距離で『読んだなら、責任とってください』と言う
 memory_log:
   encounters: []
   battles: []
