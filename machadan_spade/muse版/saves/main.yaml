@@ -3,15 +3,15 @@ schema_version: 3
 game_version: 4.13.4
 campaign_id: main
 created_at: '2026-11-07T02:20:22+00:00'
-updated_at: '2026-11-08T00:51:03+00:00'
-save_revision: 71
+updated_at: '2026-11-08T00:53:30+00:00'
+save_revision: 72
 content_manifest_hash: 59b69015c8c813194e83a7c4b4d2b862af8f4074c2c616aa5325399df6f66460
 save_format_origin: 'System_Templates.md [TEMPLATE_SAVE] (SAVE_DATA: MachaDun v2.0)'
 transaction:
-  last_transaction_id: tx-41f60b2291ee4c52b1a7e12cd65183d6
-  last_committed_turn: 60
-  previous_revision_hash: 9d2f66539f8b38bb79e1f5e04dc16fc0f55f15d62651f8be7243806fb0518865
-  last_candidate_hash: 3fa10ca2a71dc2b31da0d00c87b4e139a42eafb1363de4d9dc2e574523fe15f9
+  last_transaction_id: tx-186787c6357b4cd69821a36b7aaa8513
+  last_committed_turn: 61
+  previous_revision_hash: 538dc9735c2ba4014f118cb3d1b6ed85e666ed6a167af186dbb3d8782126db28
+  last_candidate_hash: 5c4498845fd133402368dfd6f5aba1202c1bdc6396eae478540aafaa41737608
   applied_transaction_ids:
   - tx-413eae86780d496981a94b1d08250181
   - tx-5d7fe8c49f1242dca4bcebf850e979c1
@@ -84,6 +84,7 @@ transaction:
   - tx-db1ce5955cc241ac8c5b222f07ba0c45
   - tx-cfa1db09fb534d8d9e999f118b8f3517
   - tx-41f60b2291ee4c52b1a7e12cd65183d6
+  - tx-186787c6357b4cd69821a36b7aaa8513
 hearing_progress:
   status: complete
   current_step: 7
@@ -112,12 +113,12 @@ active_script:
   cursor: 1
   checkpoint: tutorial-told
 runtime_state:
-  ero_scene: false
+  ero_scene: true
   style_conditions: []
-  active_scene: turn
-  scene_id: turn
-  context_pack_hash: 97f98a65fe85c9d3ec5e9dab39e0c3c94c868bbf4eb9ae148e501e21debf3402
-  last_validation_at: '2026-11-08T00:51:03+00:00'
+  active_scene: style
+  scene_id: style
+  context_pack_hash: d568629dc69ccc389c4af0f7f4cb6461b13f14eaa4f2f8fe0653a7c5dd776859
+  last_validation_at: '2026-11-08T00:53:30+00:00'
   last_error: ''
 dice_state:
   tape_revision: machadan-tape-r1
@@ -364,6 +365,9 @@ world_state:
       status: 確定した事実
     ミルカの気持ち_〇〇:
       fact: Day1夜、自室で〇〇に黒い帳面を読まれ、報告書の先が知りたくて記録してしまう自分を打ち明けた。今日の〇〇（セレナに絡んでいた人、権利書を預かってきた人、ドーンの眉間の皺をほどいた人、自分をからかって笑っていた人）のことも書くつもりだったが『続きが分からない』と言い、メガネを外さないまま『続き、教えてくれませんか』と自分から誘った
+      status: 確定した事実
+    ミルカ_初めてのキス:
+      fact: Day1夜、自室で〇〇にメガネを外されてキスされた。報告書でしか知らなかったキスの柔らかさと熱に頭が真っ白になり、自分から背伸びしてキスを返した
       status: 確定した事実
   appearance_customization:
     version: 1
@@ -831,6 +835,7 @@ session_log:
   - Day1夜 〇〇がミルカの誘いに応じて二階の部屋へ上がる。狭い部屋に小窓、窓際の寝台、小卓と椅子二脚、壁の棚には年と月を書いた黒い革表紙の帳面が並ぶ。ミルカは客を入れるのは初めてだと言い、緊張しながら茶を淹れる。帳面を見られることを気にしている。茶碗を渡す時に指先が触れ、ミルカは手を引っ込めなかった
   - Day1夜 ミルカの部屋。〇〇が棚の黒い帳面『前年・十二月』を手に取って開く。中は記入卓の長椅子の組の記録（所要時間、脚の軋みの回数）や、冒険者の艶のある報告の書き写しと『所感：確認したい』の書き添え。日付のない頁には『カウンターの上。閉店後。メガネは外さないまま。強い人に、だめと言っても聞いてもらえずに』という願望の走り書き。ミルカは悲鳴を上げて帳面を掴むが力が入らず、業務の改善案だと言い訳しながら〇〇の胸に触れそうな距離で『読んだなら、責任とってください』と言う
   - Day1夜 ミルカの部屋。〇〇が、真面目だと思っていたのにこんな記録まで、ギルドで目で追っていたのも頷けるとからかう。ミルカは〇〇の胸に額をつけ、報告書の先が知りたくて書いてしまうこと、七回全部数えていたことを打ち明ける。今日の〇〇のことも帰ったら書くつもりだったが続きが分からないと言い、胸元を掴んで引き寄せ『続き、教えてくれませんか』とメガネを外さないまま誘う
+  - Day1夜 ミルカの部屋。〇〇が『実体験に勝るものはない』と言い、ミルカのメガネを外してキスをする。ミルカは帳面と違う（外さないままと書いたのに）と甘く抗議するが、キスで力が抜け、自分から胸元を引き寄せて背伸びし、『もっと近くで教えて、続き全部記録します』とぎこちなく自分からキスを返す（エロシーン開始・第一幕）
 memory_log:
   encounters: []
   battles: []
