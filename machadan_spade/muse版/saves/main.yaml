@@ -3,15 +3,15 @@ schema_version: 3
 game_version: 4.13.4
 campaign_id: main
 created_at: '2026-11-07T02:20:22+00:00'
-updated_at: '2026-11-08T02:34:28+00:00'
-save_revision: 89
+updated_at: '2026-11-08T03:52:20+00:00'
+save_revision: 90
 content_manifest_hash: 59b69015c8c813194e83a7c4b4d2b862af8f4074c2c616aa5325399df6f66460
 save_format_origin: 'System_Templates.md [TEMPLATE_SAVE] (SAVE_DATA: MachaDun v2.0)'
 transaction:
-  last_transaction_id: tx-69190d4c9361430aa18eeabb1030bc66
-  last_committed_turn: 78
-  previous_revision_hash: 7e605a99548ed31598ebb4c03c068ba1bb47b4ad6f5f26c3017101181bba961f
-  last_candidate_hash: 64938c55f19d51f2df920512c679ba8a9bdafadb79b7b92648897c27a9e11515
+  last_transaction_id: tx-d7b5b262bd014720813a098db4dfca58
+  last_committed_turn: 79
+  previous_revision_hash: fa253023b223b3bd57cbdafccf20279f67ebce4212fc3eac661fff60eaa29f28
+  last_candidate_hash: a66784cf8629e1afb25e4ceaea8100fc4efe92aa491e8e8904d11c1f6b47761d
   applied_transaction_ids:
   - tx-413eae86780d496981a94b1d08250181
   - tx-5d7fe8c49f1242dca4bcebf850e979c1
@@ -102,6 +102,7 @@ transaction:
   - tx-dd1ac97edf0c473f912da1176896b537
   - tx-296bbc38d62c49bab8066c172d463f16
   - tx-69190d4c9361430aa18eeabb1030bc66
+  - tx-d7b5b262bd014720813a098db4dfca58
 hearing_progress:
   status: complete
   current_step: 7
@@ -130,17 +131,17 @@ active_script:
   cursor: 1
   checkpoint: tutorial-told
 runtime_state:
-  ero_scene: true
+  ero_scene: false
   style_conditions: []
-  active_scene: style
-  scene_id: style
-  context_pack_hash: e953ef3e3a85bd17a025dfea5cfd2ccbd386d86ef51b4aa0dc53fcf3d2227e5c
-  last_validation_at: '2026-11-08T02:34:28+00:00'
+  active_scene: event
+  scene_id: event
+  context_pack_hash: c785237bcc39ddb7eb02c413d5eec2bb8527f2b334ba28081a739ef278dc9e81
+  last_validation_at: '2026-11-08T03:52:20+00:00'
   last_error: ''
 dice_state:
   tape_revision: machadan-tape-r1
   dice_cursor_d6: 0
-  dice_cursor_d10: 50
+  dice_cursor_d10: 52
 fire_state:
   holders:
   - player
@@ -404,10 +405,10 @@ world_state:
     resolutions: []
   reward_state_version: 2
   day: 2
-  location: ミルカの住まい（パン屋の二階）
-  place_id: LORE_MILKA_HOME
-  room_id: LORE_MILKA_HOME_ROOM
-  sub_location: 2Fのミルカの部屋（ミルカと二人）
+  location: 銀の天秤亭
+  place_id: GUILD_SILVER_SCALES
+  room_id: GUILD_SILVER_SCALES_RECEPTION
+  sub_location: ミルカの受付カウンター
   depth: null
   time_of_day: 朝
   weather: 朝霧
@@ -882,6 +883,7 @@ session_log:
   - Day1夜 ミルカの部屋・寝台。〇〇が『言いなりになるならこのちんこを何回も味わえる、逆らったら終わりだ』と言い、降りてきた子宮口を責め続ける。ミルカは『逆らいません、毎晩このおちんぽで奥をこりこりしてほしい、捨てないで、ミルカのおまんこをご主人様のおちんぽ専用にしてください』と叫び、絶頂が止まらなくなったまま今夜いちばん大きな奥イキをする（通算5回目以降）。メガネが敷布に落ちる
   - Day1夜 ミルカの部屋・寝台。〇〇が『俺もイくぞ、中にたっぷり出してやる』と言い、子宮口に押しつけたまま中出しする。ミルカは脚で腰を引き寄せて離さず、注がれながら絶頂し、『すき、ご主人様すき、もっと奥に覚えさせて』とうわごとのように繰り返す
   - Day1夜〜Day2朝 ミルカの部屋。〇〇が『朝まで犯してやる』と、抜かずに二回戦から朝まで犯し続ける（正常位、後背位で三つ編みを掴んで、夜半にはミルカが自分からメガネをかけ直し、小卓をカウンター代わりにして帳面の願望どおりに）。夜明け前、階下のパン屋の窯の音で朝を迎える。ミルカは一睡もしていないが寝坊はしていないと言い、あと半刻でギルドを開けなければならないと告げ、〇〇の手を握ったまま『ご主人様、今日はどうなさいますか』と尋ねる。エロシーン終了（場面転換：夜明け）
+  - Day2朝 ミルカが身支度を整え、〇〇と一緒にギルドへ。移動 d10=10（なし）、環境 d10=6（なし）。ミルカがギルドを開け、今日の予定を確認する：昼にドーンが銀蛇亭の裏でガルドに返事、結果は夕方の鐘のあとドーンの納品時に分かる。すりの件は昼休みにミルカが詰め所へ届ける。所持金のない〇〇に、今のうちに冒険者登録をして見習いの依頼を受けるよう勧める
 memory_log:
   encounters: []
   battles: []
