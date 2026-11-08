@@ -3,15 +3,15 @@ schema_version: 3
 game_version: 4.13.4
 campaign_id: main
 created_at: '2026-11-07T02:20:22+00:00'
-updated_at: '2026-11-08T00:42:26+00:00'
-save_revision: 68
+updated_at: '2026-11-08T00:45:33+00:00'
+save_revision: 69
 content_manifest_hash: 59b69015c8c813194e83a7c4b4d2b862af8f4074c2c616aa5325399df6f66460
 save_format_origin: 'System_Templates.md [TEMPLATE_SAVE] (SAVE_DATA: MachaDun v2.0)'
 transaction:
-  last_transaction_id: tx-a61b93b9d904443e87d6f9335fd20b39
-  last_committed_turn: 57
-  previous_revision_hash: a00074342d0d9755dd196d56e430bcc3e00e3164c7f19ae1944a015893741f15
-  last_candidate_hash: d54d70c476e38d1b3b94562b0dd4e8f63383e6b7970108796067568c5d03ff61
+  last_transaction_id: tx-db1ce5955cc241ac8c5b222f07ba0c45
+  last_committed_turn: 58
+  previous_revision_hash: c6e33a5d1c837401cfca57f55ecacf689252131e7f5e968a45c2b851930283c7
+  last_candidate_hash: e976b2f8751fd7510130447e135fc5fededec5d10b611b2ffb07c9758fb31935
   applied_transaction_ids:
   - tx-413eae86780d496981a94b1d08250181
   - tx-5d7fe8c49f1242dca4bcebf850e979c1
@@ -81,6 +81,7 @@ transaction:
   - tx-15d142d063704dae99b36a9517ac52d3
   - tx-9d19e49948fc4fb0969c6dddcbd16593
   - tx-a61b93b9d904443e87d6f9335fd20b39
+  - tx-db1ce5955cc241ac8c5b222f07ba0c45
 hearing_progress:
   status: complete
   current_step: 7
@@ -113,8 +114,8 @@ runtime_state:
   style_conditions: []
   active_scene: turn
   scene_id: turn
-  context_pack_hash: 85c88fcd3f66d60e2052ef49990b251bdb34ae81b2108630e9f8064be5006bec
-  last_validation_at: '2026-11-08T00:42:26+00:00'
+  context_pack_hash: ca0e84203ab7adce42fc4d8f48c77b23aeadaef8889b237d59ff666e9794a0ea
+  last_validation_at: '2026-11-08T00:45:33+00:00'
   last_error: ''
 dice_state:
   tape_revision: machadan-tape-r1
@@ -345,13 +346,19 @@ world_state:
       parent: NOIR_CITY_EAST
       name: ミルカの住まい（パン屋の二階）
       position: 東の衛兵通りから一本裏へ折れた角。通りの先に衛兵詰め所の灯りが見える
-      structure: 1Fは小さなパン屋（木の看板に麦の穂と丸いパンの絵、夜は鎧戸）。店の脇に二階へ上がる木の外階段。2Fがミルカの間借りの部屋（狭い）
+      structure: 1Fは小さなパン屋（木の看板に麦の穂と丸いパンの絵、夜は鎧戸）。店の脇に二階へ上がる木の外階段。2Fがミルカの間借りの部屋：狭く梁が低い。通りに面した小窓、窓際に寝台、小卓と椅子二脚（片方がぐらつく）、壁の棚に年と月を背に書いた黒い革表紙の帳面がずらりと並ぶ、掛け釘、小さな魔力炉と薬缶、壁の魔力灯。階下の窯の音が夜明け前に床から響く
       rooms:
         LORE_MILKA_HOME_STAIR: パン屋脇の外階段
         LORE_MILKA_HOME_ROOM: 2Fのミルカの部屋
       status: 確定した事実
     すり_広場東辺:
       fact: Day1夜、中央広場の東辺（ミアの店脇の路地口）で頭巾をかぶった小柄なすり（若い声）に〇〇の財布（20G）を切り取られた。すりは東の裏路地へ逃げた。書類には手を出さなかった。ミルカが翌日（Day2）自分から詰め所に届けると言った
+      status: 確定した事実
+    ミルカの黒い帳面:
+      fact: ミルカの部屋の棚に、年と月を背に書いた黒い革表紙の帳面が並ぶ。ミルカは『業務の写し』に見えると思っているが、中を見られるのを強く気にしている（中身は未確認。冒険者たちの艶のある報告の記録と思われる）
+      status: 確定した事実（中身は〇〇未確認）
+    ミルカの部屋_初めての客:
+      fact: Day1夜、〇〇がミルカの部屋に入った初めての客になった
       status: 確定した事実
   appearance_customization:
     version: 1
@@ -361,8 +368,8 @@ world_state:
   day: 1
   location: ミルカの住まい（パン屋の二階）
   place_id: LORE_MILKA_HOME
-  room_id: LORE_MILKA_HOME_STAIR
-  sub_location: パン屋脇の外階段の下
+  room_id: LORE_MILKA_HOME_ROOM
+  sub_location: 2Fのミルカの部屋（ミルカと二人）
   depth: null
   time_of_day: 夜
   weather: 霧
@@ -816,6 +823,7 @@ session_log:
   - Day1夜 〇〇がミルカを家まで送ると申し出て、二人で天秤亭を出る。移動イベント d10=2、種別 d10=7（小さな損）。中央広場の東辺、ミアの店脇の路地口の前で、頭巾をかぶった小柄なすりにぶつかられる。気づく判定 INT 9+6+3=18
     vs 標準19で失敗、腰の財布（20G）の紐を切られて盗られる。懐の書類挟み（権利書など）は無事。すりは東の裏路地へ逃げ込む。ミルカは詰め所への届け出もできると言う
   - Day1夜 〇〇はすりを深追いせず、ミルカを送ることを選ぶ。ミルカは冷静な判断だと微笑み、明日自分から詰め所にすりのことを届けると言う。衛兵通りを抜けて、一本裏の角のパン屋へ（見送り後の到着）。ミルカは外階段の一段目で足を止め、礼を言ったあと、お茶くらいなら出せると〇〇を二階へ誘う
+  - Day1夜 〇〇がミルカの誘いに応じて二階の部屋へ上がる。狭い部屋に小窓、窓際の寝台、小卓と椅子二脚、壁の棚には年と月を書いた黒い革表紙の帳面が並ぶ。ミルカは客を入れるのは初めてだと言い、緊張しながら茶を淹れる。帳面を見られることを気にしている。茶碗を渡す時に指先が触れ、ミルカは手を引っ込めなかった
 memory_log:
   encounters: []
   battles: []
