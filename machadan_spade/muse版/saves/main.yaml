@@ -3,15 +3,15 @@ schema_version: 3
 game_version: 4.13.4
 campaign_id: main
 created_at: '2026-11-07T02:20:22+00:00'
-updated_at: '2026-11-08T01:53:55+00:00'
-save_revision: 85
+updated_at: '2026-11-08T01:57:08+00:00'
+save_revision: 86
 content_manifest_hash: 59b69015c8c813194e83a7c4b4d2b862af8f4074c2c616aa5325399df6f66460
 save_format_origin: 'System_Templates.md [TEMPLATE_SAVE] (SAVE_DATA: MachaDun v2.0)'
 transaction:
-  last_transaction_id: tx-1f818a731a93496eb9125adde1bff54e
-  last_committed_turn: 74
-  previous_revision_hash: b98a6a24f89302110e6c7e651e81273d457b26142e056017626e3a80870e15a3
-  last_candidate_hash: 4dc3f2ec9a9a90749448925d881fee594cc3c3d93f93186ace41bc5508c7cb33
+  last_transaction_id: tx-8dbb416bd6094042ab54e8af3a9ac292
+  last_committed_turn: 75
+  previous_revision_hash: f905ec51bd14c28c5c961788966b3c132613494a72fb890d44fe7ffc6748571f
+  last_candidate_hash: 350cfb8a976c96fbacaed74a040b2e4e6c2f87c87909089ddedc1cd737f162c7
   applied_transaction_ids:
   - tx-413eae86780d496981a94b1d08250181
   - tx-5d7fe8c49f1242dca4bcebf850e979c1
@@ -98,6 +98,7 @@ transaction:
   - tx-36b2eb14d1944c41a2b9f89fbacbecc0
   - tx-6e08005be067412a9f7ee5614cb9f70b
   - tx-1f818a731a93496eb9125adde1bff54e
+  - tx-8dbb416bd6094042ab54e8af3a9ac292
 hearing_progress:
   status: complete
   current_step: 7
@@ -130,8 +131,8 @@ runtime_state:
   style_conditions: []
   active_scene: style
   scene_id: style
-  context_pack_hash: fa373e7388ac54251aaa69aa902d3601e4eacc677883ec2892b6d2c5652e0a8b
-  last_validation_at: '2026-11-08T01:53:55+00:00'
+  context_pack_hash: af9e31f56cd28f2531ed5fa95f52aef0f2b260d5415f21f84883fcbfd25d725a
+  last_validation_at: '2026-11-08T01:57:08+00:00'
   last_error: ''
 dice_state:
   tape_revision: machadan-tape-r1
@@ -385,6 +386,9 @@ world_state:
     ミルカ_初めて:
       fact: Day1夜、ミルカは自室の寝台で〇〇と初めて交わった（処女だった）。メガネはかけたまま。痛みは一瞬で、すぐに快感に変わった
       status: 確定した事実
+    ミルカ_言いなりの誓い:
+      fact: Day1夜、〇〇に激しく突かれながら『〇〇さんの言いなりになる、何でも言うことを聞く、ギルドでも受付でもどこでも言われたらすぐ脚を開く、帳面も〇〇さんのことだけにする』と叫び、絶頂のなかで〇〇を『ご主人様』と呼んだ。行為中の言葉であり、商いや業務上の対価が無料になるわけではない（コア§1）
+      status: 確定した事実（行為中の誓い）
   appearance_customization:
     version: 1
     overrides: {}
@@ -865,6 +869,7 @@ session_log:
   - Day1夜 ミルカの部屋。〇〇が『出すぞ』とミルカの頭を押さえて口の中に射精し、『溢すな、しっかり覚えろ』と言う。ミルカは一滴も溢さず受け止め、口を開いて見せてから全部飲み込み、味を報告する。下腹を押さえて『ここがまだ記録してないって言ってます』と挿入をねだる（第二幕の終わり）
   - Day1夜 ミルカの部屋。〇〇が『そこにもちゃんと覚えさせないと』と言う。ミルカは自分で寝台へ這って仰向けになり、メガネをかけたまま自分から脚を開いて『ここに教えてください』とねだる。〇〇がゆっくり挿入し、ミルカの初めてを奪う（痛みは一瞬）。根元まで入り奥に当たる。ミルカは首にしがみつき『動いてください、全部覚えます』とねだる（第三幕）
   - Day1夜 ミルカの部屋・寝台。〇〇が『このちんこをちゃんと覚えろ』とピストンする。ミルカは形も熱さも奥の当たる所も覚えていると叫び、脚を〇〇の腰に巻きつけて引き寄せる。奥をこりこりと突かれて、おちんぽで初めての絶頂（通算3回目、潮吹き）
+  - Day1夜 ミルカの部屋・寝台。〇〇が『ちゃんと覚えろ、俺の言いなりになるんだ』とイったばかりのミルカを激しく突く。ミルカは『言いなりになります、何でも言うことを聞きます、ギルドでも受付でもどこでも〇〇さんが言ったらすぐ脚を開きます、帳面も〇〇さんのことだけにします』と叫び、連続で絶頂しながら『ご主人様』と呼ぶ（通算4回目）
 memory_log:
   encounters: []
   battles: []
