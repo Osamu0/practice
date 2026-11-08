@@ -3,15 +3,15 @@ schema_version: 3
 game_version: 4.13.4
 campaign_id: main
 created_at: '2026-11-07T02:20:22+00:00'
-updated_at: '2026-11-08T00:53:30+00:00'
-save_revision: 72
+updated_at: '2026-11-08T01:01:03+00:00'
+save_revision: 73
 content_manifest_hash: 59b69015c8c813194e83a7c4b4d2b862af8f4074c2c616aa5325399df6f66460
 save_format_origin: 'System_Templates.md [TEMPLATE_SAVE] (SAVE_DATA: MachaDun v2.0)'
 transaction:
-  last_transaction_id: tx-186787c6357b4cd69821a36b7aaa8513
-  last_committed_turn: 61
-  previous_revision_hash: 538dc9735c2ba4014f118cb3d1b6ed85e666ed6a167af186dbb3d8782126db28
-  last_candidate_hash: 5c4498845fd133402368dfd6f5aba1202c1bdc6396eae478540aafaa41737608
+  last_transaction_id: tx-674d2d2400994156bb96fd1514bc31e5
+  last_committed_turn: 62
+  previous_revision_hash: 938cd4159f79f98506d1bdc6b6e7e17feae50527dc8adb28984636c084ef4757
+  last_candidate_hash: dcc3cddf4b0efea47de6cd662d7b01fe70987ab51851bc6b285e49362f21eab3
   applied_transaction_ids:
   - tx-413eae86780d496981a94b1d08250181
   - tx-5d7fe8c49f1242dca4bcebf850e979c1
@@ -85,6 +85,7 @@ transaction:
   - tx-cfa1db09fb534d8d9e999f118b8f3517
   - tx-41f60b2291ee4c52b1a7e12cd65183d6
   - tx-186787c6357b4cd69821a36b7aaa8513
+  - tx-674d2d2400994156bb96fd1514bc31e5
 hearing_progress:
   status: complete
   current_step: 7
@@ -117,8 +118,8 @@ runtime_state:
   style_conditions: []
   active_scene: style
   scene_id: style
-  context_pack_hash: d568629dc69ccc389c4af0f7f4cb6461b13f14eaa4f2f8fe0653a7c5dd776859
-  last_validation_at: '2026-11-08T00:53:30+00:00'
+  context_pack_hash: d634dc61d9979a1defe44722b11b963d4954b40bc6feb8e9d31c4c8400ce8377
+  last_validation_at: '2026-11-08T01:01:03+00:00'
   last_error: ''
 dice_state:
   tape_revision: machadan-tape-r1
@@ -836,6 +837,7 @@ session_log:
   - Day1夜 ミルカの部屋。〇〇が棚の黒い帳面『前年・十二月』を手に取って開く。中は記入卓の長椅子の組の記録（所要時間、脚の軋みの回数）や、冒険者の艶のある報告の書き写しと『所感：確認したい』の書き添え。日付のない頁には『カウンターの上。閉店後。メガネは外さないまま。強い人に、だめと言っても聞いてもらえずに』という願望の走り書き。ミルカは悲鳴を上げて帳面を掴むが力が入らず、業務の改善案だと言い訳しながら〇〇の胸に触れそうな距離で『読んだなら、責任とってください』と言う
   - Day1夜 ミルカの部屋。〇〇が、真面目だと思っていたのにこんな記録まで、ギルドで目で追っていたのも頷けるとからかう。ミルカは〇〇の胸に額をつけ、報告書の先が知りたくて書いてしまうこと、七回全部数えていたことを打ち明ける。今日の〇〇のことも帰ったら書くつもりだったが続きが分からないと言い、胸元を掴んで引き寄せ『続き、教えてくれませんか』とメガネを外さないまま誘う
   - Day1夜 ミルカの部屋。〇〇が『実体験に勝るものはない』と言い、ミルカのメガネを外してキスをする。ミルカは帳面と違う（外さないままと書いたのに）と甘く抗議するが、キスで力が抜け、自分から胸元を引き寄せて背伸びし、『もっと近くで教えて、続き全部記録します』とぎこちなく自分からキスを返す（エロシーン開始・第一幕）
+  - Day1夜 ミルカの部屋。〇〇が『キスどうだ、もっとしたいだろ』と言いながらブラウスのボタンを外していく。下から白い透けるレースの下着が現れ、ミルカは見ないでと言いかけるが、『したいです、決まってます』と認め、五つ目のボタンを自分で外し、ブラウスの前を自ら開いて『近くで見てください』と見せる（第一幕〜第二幕の入口）
 memory_log:
   encounters: []
   battles: []
