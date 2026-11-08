@@ -3,15 +3,15 @@ schema_version: 3
 game_version: 4.13.4
 campaign_id: main
 created_at: '2026-11-07T02:20:22+00:00'
-updated_at: '2026-11-08T01:17:42+00:00'
-save_revision: 78
+updated_at: '2026-11-08T01:22:18+00:00'
+save_revision: 79
 content_manifest_hash: 59b69015c8c813194e83a7c4b4d2b862af8f4074c2c616aa5325399df6f66460
 save_format_origin: 'System_Templates.md [TEMPLATE_SAVE] (SAVE_DATA: MachaDun v2.0)'
 transaction:
-  last_transaction_id: tx-1f74d68c36084316adb31b00291ea24e
-  last_committed_turn: 67
-  previous_revision_hash: 5df1a1a4aa9c6feadc216373fd2112932b45fdc0d8bc66c18f386b99602d3ae5
-  last_candidate_hash: 26b5e14eae9ec36795295a46791277c678aa035a69c049a9fb1aef96614e92de
+  last_transaction_id: tx-daf3aea3524243e597487f4d5f8489da
+  last_committed_turn: 68
+  previous_revision_hash: e808c2bf83f54a9a780c7562922637ed9f6a205b7a78bec2b368d0fefbf6c539
+  last_candidate_hash: 6241295f5e5747174495b523c795338c3e98a6d31dfe4b4c6056118d64bfcb22
   applied_transaction_ids:
   - tx-413eae86780d496981a94b1d08250181
   - tx-5d7fe8c49f1242dca4bcebf850e979c1
@@ -91,6 +91,7 @@ transaction:
   - tx-c75698b8f50f4c62bbb13527b45c0321
   - tx-b45c5e5721374266a860d8d0b32c1bb5
   - tx-1f74d68c36084316adb31b00291ea24e
+  - tx-daf3aea3524243e597487f4d5f8489da
 hearing_progress:
   status: complete
   current_step: 7
@@ -123,8 +124,8 @@ runtime_state:
   style_conditions: []
   active_scene: style
   scene_id: style
-  context_pack_hash: 2363a134ebb8637ecab3528888242d2fedf1bef162eb34faed1c49e0f6c30339
-  last_validation_at: '2026-11-08T01:17:42+00:00'
+  context_pack_hash: 78ef0988fe6ab860ecddd094cddda93d42d926898a53764c4707077d3eebe010
+  last_validation_at: '2026-11-08T01:22:18+00:00'
   last_error: ''
 dice_state:
   tape_revision: machadan-tape-r1
@@ -848,6 +849,7 @@ session_log:
   - Day1夜 ミルカの部屋。〇〇がスカートの中へ手を入れ、ぐっしょり濡れたショーツ越しに触れたあと脱がせて手マンする。ミルカは自分から脚を開いてスカートをたくし上げ、〇〇の手首を掴んで奥へ押しつけ、指だけで潮を吹いてイく（第二幕・ミルカ1回目の絶頂）。棚の帳面が一冊床に落ちた
   - Day1夜 ミルカの部屋。〇〇が『すぐイったね、ギルドで追っかけてただけある』とからかい、イったばかりのミルカを手マンし続ける。ミルカは膝が抜けて〇〇の首にしがみつき、『指じゃ足りない、次は〇〇さんのおちんぽで、帳面のカウンターのページみたいに』とねだりながら、前より大きく潮を吹いて2回目の絶頂（第二幕）
   - Day1夜 ミルカの部屋。〇〇が『そんなに欲しいなら脱がせてくれるよな』と言う。ミルカは床に膝をつき、ベルトに手間取りながら〇〇のズボンと下着を下ろす。初めて本物のおちんぽを間近で見て見入り、先っぽに自分から小さくキスをして、『このあとどうすればいいか教えてください』と上目づかいでねだる（第二幕・奉仕の入口）
+  - Day1夜 ミルカの部屋。〇〇が『記録に残せるように形や匂いをしっかり覚えろ』と言う。ミルカは床のメガネを自分でかけ直し、おちんぽのカリ、筋、熱さ、太さを指でなぞって確かめ、匂いを嗅ぎ、先走りを舐めて味を確かめる。また濡れながら、『口の中の感じも確かめてもいいですか』とねだる（第二幕・奉仕）
 memory_log:
   encounters: []
   battles: []
