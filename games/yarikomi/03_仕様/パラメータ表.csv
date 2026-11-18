@@ -44,7 +44,7 @@ part.leafSpring.weight,1,段,○,仮
 part.leafSpring.flammability,1,—,○,仮
 part.leafSpring.burnTurns,3,手,○,仮
 part.leafSpring.hardness,2,段,○,仮
-part.leafSpring.springPower,3,段,○,仮
+part.leafSpring.springPower,4,段,○,仮
 part.stoneWeight.weight,3,段,○,仮
 part.stoneWeight.flammability,0,—,—,固定
 part.stoneWeight.hardness,5,段,○,仮

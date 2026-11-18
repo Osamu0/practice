@@ -471,6 +471,8 @@ class State:
         occ = self.occ()
         for d in (-1, 1):
             acts.append(("move", d))
+            if self.cfg.climb_objects:
+                acts.append(("climb", d))
         # 置く
         for ti, tool in enumerate(sorted(set(self.inv))):
             seen = set()
@@ -496,22 +498,19 @@ class State:
         li = s.leader()
         L = s.objs[li]
         occ = s.occ()
-        if act[0] == "move":
+        if act[0] in ("move", "climb"):
             d = act[1]
             tx, ty = L.x + d, L.y
             if not (0 <= tx < W):
                 return None
-
-            def solid(x, y):
-                if s.ground(x, y):
-                    return True
-                if s.cfg.climb_objects:
-                    j = occ.get((x, y))
-                    return j is not None and s.objs[j].kind in ("part", "grave", "cargo")
-                return False
-
             j = occ.get((tx, ty))
-            if s.ground(tx, ty) or (s.cfg.climb_objects and j is not None and solid(tx, ty)):
+            target_solid = s.ground(tx, ty)
+            if act[0] == "climb":
+                # 物の上に登る（仕様の読み方の違い。cfg.climb_objects のときだけ）
+                if not s.cfg.climb_objects or j is None or s.objs[j].kind not in ("part", "grave", "cargo"):
+                    return None
+                target_solid = True
+            if target_solid:
                 ok = False
                 for k in range(1, P["leader.climbHeight"] + 1):
                     if not s.free(L.x, L.y - k, occ):
@@ -521,13 +520,9 @@ class State:
                         ok = True
                         break
                 if not ok:
-                    # 押す
-                    if j is None:
-                        return None
-                    return s._push(L, j, d) if s.cfg.climb_objects else None
+                    return None
             elif j is not None:
-                r = s._push(L, j, d)
-                if r is None:
+                if s._push(L, j, d) is None:
                     return None
             else:
                 L.x = tx
@@ -683,6 +678,8 @@ def fmt_act(a):
         return f"置く{[t[2] + ('' if t[3] is None else '(' + t[3] + ')') for t in a[1]]}@({a[2]},{a[3]})"
     if a[0] == "move":
         return "進む東" if a[1] == 1 else "進む西"
+    if a[0] == "climb":
+        return "登る東" if a[1] == 1 else "登る西"
     if a[0] == "pick":
         return "拾う"
     return "待つ"
