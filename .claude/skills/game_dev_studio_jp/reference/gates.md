@@ -14,7 +14,7 @@
 | 06〜08 | タスクごと | プロデューサー | タスクの完了条件、コードレビューの「必ず直す」が0、通しのビルドが壊れていない |
 | **C アルファ** | 09 アルファ | **オーナー** | 必須の機能がすべて入り、最初から最後まで通して遊べる |
 | 10 | 10 ベータ | プロデューサー | コンテンツが確定し、致命・重大なバグが0に近づき、初見テストで大きな迷いがない |
-| **D リリース** | 11 QA・最終審査 | **オーナー** | リリース判定が「出せる」、審査の「否」が0 |
+| **D リリース** | 11 QA・最終審査 | **オーナー** | リリース判定が「出せる」、技術要件と素材の確認の「否」が0 |
 | 12 | 保守のパッチごと | プロデューサー | 回帰テストが通り、古いセーブが読める |
 
 ## 判定のしかた
@@ -29,14 +29,14 @@
 
 | ゲート | 監修 |
 |---|---|
-| A 企画 | `game-biz-executive`、`game-design-creative-director`、`game-legal-ip`（タイトル・似すぎ）、外に出すなら `game-mkt-director` |
+| A 企画 | `game-design-creative-director`、`game-story-director` |
 | 02 プリプロ | `game-design-director`、`game-tech-director`、`game-audio-director` |
 | 03 仕様 | `game-spec-review`、`game-design-director` |
-| B 縦切り | `game-biz-executive`、`game-design-director`、`game-design-creative-director`、`game-art-director` |
+| B 縦切り | `game-design-director`、`game-design-creative-director`、`game-art-director` |
 | 05 開発開始 | `game-tech-director` |
-| C アルファ | `game-biz-executive`、`game-design-director`、`game-design-creative-director`、`game-tech-director`、`game-art-director`、`game-qa-lead` |
+| C アルファ | `game-design-director`、`game-design-creative-director`、`game-tech-director`、`game-art-director`、`game-qa-lead` |
 | 10 ベータ | `game-design-director`、`game-art-director`、`game-audio-director`、`game-story-dialogue-review`、多言語なら `game-loc-lqa` |
-| D リリース | `game-biz-executive`、`game-tech-director`、`game-design-creative-director`、`game-qa-release-judge`、外に出すなら `game-legal`、`game-legal-ip` |
+| D リリース | `game-tech-director`、`game-design-creative-director`、`game-qa-lead`、`game-qa-release-judge` |
 
 ## 戻り方
 
@@ -56,4 +56,4 @@
 2. 02〜03 をまとめる：`game-preprod-designer` が柱とコアループを、`game-spec-writer` が1ファイルの仕様を書く
 3. 04〜08 をまとめる：プロトをそのまま育てる（`game-sys-gameplay` が実装、`game-content-*` が中身、`game-proto-playtester` が遊ぶ）
 4. 09〜10 をまとめる：`game-alpha-playtest` と `game-beta-firsttime` で遊び、`game-beta-bugfix` と `game-beta-polish` で直す
-5. 11：`game-qa-tester` と `game-qa-release-judge`（配信するなら `game-qa-compliance` も）→ **ゲートD**
+5. 11：`game-qa-tester` と `game-qa-release-judge`（素材やライブラリを使うなら `game-qa-compliance` も）→ **ゲートD**

@@ -1,11 +1,15 @@
 ---
 name: game_dev_studio_jp
-description: ゲームを、部門ごとに雇ってある仕事人（.claude/agents/ の game-* エージェント103人。現実のゲーム会社の約250職種を割り振ってある）で、企画から保守まで作るための、プロデューサー（メインのClaude）の手順。企画構想立案、プリプロダクション、仕様書作成、プロトタイプ作成、本格的な開発開始、ゲームシステム、コンテンツ制作、統合・演出制作、アルファ版、ベータ版、品質保証・最終審査、保守の12部門。部門の呼び方、渡し方、ゲート（次の部門に進む判定）、進行表、プロジェクトのフォルダの作り方。Use when ゲームを作る・企画する・仕様を書く・プロトタイプを作る・実装する・テストする・リリースする・アップデートするとき、ゲーム開発のチームを動かすとき。
+description: ゲームを、部門ごとに雇ってある仕事人（.claude/agents/ の game-* エージェント85人。現実のゲーム会社の職種のうち、ゲームを作る仕事に直接関わるものを割り振ってある）で、企画から保守まで作るための、プロデューサー（メインのClaude）の手順。企画構想立案、プリプロダクション、仕様書作成、プロトタイプ作成、本格的な開発開始、ゲームシステム、コンテンツ制作、統合・演出制作、アルファ版、ベータ版、品質保証・最終審査、保守の12部門。部門の呼び方、渡し方、ゲート（次の部門に進む判定）、進行表、プロジェクトのフォルダの作り方。Use when ゲームを作る・企画する・仕様を書く・プロトタイプを作る・実装する・テストする・リリースする・アップデートするとき、ゲーム開発のチームを動かすとき。
 ---
 
 # game_dev_studio_jp
 
-ゲームを、役割を分けた仕事人で作るための手順。仕事人は `.claude/agents/game-*` に最初から雇ってある（103人）。現実のゲーム会社の職種（経営、デザイン、プログラム、アート、アニメ、シナリオ、サウンド、制作管理、QA、ローカライズ、リリース、宣伝、販売、運営、研究開発、法務など）を、どの仕事人が兼ねるかは `reference/roster.md`。プロジェクトごとにチームを作り直さない。プロジェクトのフォルダには、そのプロジェクトだけの違い（`開発チーム.md`）だけを書く。
+ゲームを、役割を分けた仕事人で作るための手順。仕事人は `.claude/agents/game-*` に最初から雇ってある（85人）。現実のゲーム会社の職種のうち、ゲームを作る仕事に直接関わるもの（ゲームデザイン、プログラム、アート、アニメ・映像、シナリオ、サウンド、制作管理、QA、ローカライズ、運営、研究開発の158職種）を、どの仕事人が兼ねるかは `reference/roster.md`。
+
+このスキルは、ゲームを作るところまでを受け持つ。経営、財務・経理、法務、営業・販売、宣伝、外部への発注、配信の手続きはしない。
+
+プロジェクトごとにチームを作り直さない。プロジェクトのフォルダには、そのプロジェクトだけの違い（`開発チーム.md`）だけを書く。
 
 - **プロデューサー**：メインのClaude。部門の順番を決め、仕事人を呼び、返ってきたものをまとめ、ゲートを判定し、`進行表.md` を書き、コミットする
 - **オーナー**：ユーザー。企画・縦切り・アルファ・リリースの4つのゲートで、必ず判断をもらう
@@ -20,9 +24,8 @@ description: ゲームを、部門ごとに雇ってある仕事人（.claude/ag
 - 事実（市場、規約、ライセンス、エンジンの版）は調べて出典を書く。わからないことは「わからない」と書く。数字を作らない
 - 動くものは実際に動かして確かめる。動かせなかったら、そう書く。遊んだふり・テストしたふりをしない
 - 決めていないことは「未決」として残す。推測で埋めない
-- 外に出ること（公開、投稿、送信、発注、支払い、契約、申し込み、ストアへの提出、本番のサーバーの操作）は、仕事人もプロデューサーもしない。案と書類までを作り、オーナーに渡す
-- 人の体や現場が要る仕事（声、モーションキャプチャー、撮影、収録）は、仕事人が手配書と受け入れの条件を書き、手配はオーナーが行う
-- 法務・知的財産・財務の仕事人の返事は、専門家に確かめる前の整理。法的・会計の助言として扱わない
+- 公開、投稿、本番のサーバーの操作など、外に出ることはしない
+- この環境で作れないもの（人の声、細かいイラスト、録音した音など）は、仮の資産（プレースホルダー）で置いて先に進み、資産一覧に「仮」と、本番で要るものを書く
 
 ## 部門と仕事人
 
@@ -31,18 +34,18 @@ description: ゲームを、部門ごとに雇ってある仕事人（.claude/ag
 <!-- phase-table:begin -->
 | # | 部門 | 中心の仕事人 | 加わる仕事人 |
 |---|---|---|---|
-| 1 | 企画構想立案 | `game-concept-planner`、`game-concept-market`、`game-concept-ideas` | `game-biz-executive`、`game-biz-planning`、`game-biz-finance`、`game-design-creative-director`、`game-art-concept`、`game-story-director`、`game-pm-secretary`、`game-loc-culturalize`、`game-mkt-director`、`game-mkt-copy`、`game-sales-publisher`、`game-sales-pricing`、`game-legal`、`game-legal-ip` |
-| 2 | プリプロダクション | `game-preprod-designer`、`game-preprod-tech`、`game-preprod-art`、`game-preprod-producer` | `game-biz-planning`、`game-biz-finance`、`game-design-director`、`game-design-creative-director`、`game-design-systems`、`game-design-world`、`game-design-ux`、`game-tech-director`、`game-tech-engine`、`game-tech-network`、`game-tech-platform`、`game-art-concept`、`game-art-technical`、`game-story-director`、`game-story-lore`、`game-audio-director`、`game-pm-manager`、`game-pm-outsourcing`、`game-rnd-engineer`、`game-legal` |
+| 1 | 企画構想立案 | `game-concept-planner`、`game-concept-market`、`game-concept-ideas` | `game-design-creative-director`、`game-art-concept`、`game-story-director`、`game-pm-secretary`、`game-loc-culturalize` |
+| 2 | プリプロダクション | `game-preprod-designer`、`game-preprod-tech`、`game-preprod-art`、`game-preprod-producer` | `game-design-director`、`game-design-creative-director`、`game-design-systems`、`game-design-world`、`game-design-ux`、`game-tech-director`、`game-tech-engine`、`game-tech-network`、`game-tech-platform`、`game-art-concept`、`game-art-technical`、`game-story-director`、`game-story-lore`、`game-audio-director`、`game-pm-manager`、`game-rnd-engineer` |
 | 3 | 仕様書作成 | `game-spec-writer`、`game-spec-balance`、`game-spec-review` | `game-design-director`、`game-design-systems`、`game-design-combat`、`game-design-economy`、`game-design-world`、`game-design-quest`、`game-design-ai`、`game-design-ux`、`game-design-social`、`game-story-director`、`game-loc-director`、`game-ops-analyst` |
-| 4 | プロトタイプ作成 | `game-proto-programmer`、`game-proto-playtester` | `game-biz-executive`、`game-design-director`、`game-design-creative-director`、`game-design-systems`、`game-design-combat`、`game-design-ux`、`game-art-director`、`game-anim-animator`、`game-qa-usability`、`game-mkt-director`、`game-mkt-planner`、`game-mkt-creative`、`game-rnd-engineer` |
+| 4 | プロトタイプ作成 | `game-proto-programmer`、`game-proto-playtester` | `game-design-director`、`game-design-creative-director`、`game-design-systems`、`game-design-combat`、`game-design-ux`、`game-art-director`、`game-anim-animator`、`game-qa-usability`、`game-rnd-engineer` |
 | 5 | 本格的な開発開始 | `game-prod-architect`、`game-prod-planner`、`game-prod-pipeline` | `game-tech-director`、`game-tech-engine`、`game-tech-graphics`、`game-tech-network`、`game-tech-backend`、`game-tech-tools`、`game-tech-platform`、`game-art-technical`、`game-pm-manager`、`game-pm-secretary`、`game-qa-automation` |
 | 6 | ゲームシステム | `game-sys-gameplay`、`game-sys-ai`、`game-sys-ui`、`game-sys-code-review` | `game-design-director`、`game-design-systems`、`game-design-combat`、`game-design-ai`、`game-design-ux`、`game-design-social`、`game-tech-director`、`game-tech-engine`、`game-tech-graphics`、`game-tech-network`、`game-tech-backend`、`game-tech-security`、`game-tech-performance`、`game-audio-engineer`、`game-pm-manager`、`game-qa-lead`、`game-qa-automation`、`game-ops-analyst` |
-| 7 | コンテンツ制作 | `game-content-level`、`game-content-scenario`、`game-content-art`、`game-content-sound` | `game-design-director`、`game-design-world`、`game-design-quest`、`game-tech-tools`、`game-art-director`、`game-art-concept`、`game-art-3d`、`game-art-lighting`、`game-art-vfx`、`game-art-ui`、`game-art-technical`、`game-anim-animator`、`game-anim-mocap`、`game-story-director`、`game-story-lore`、`game-story-quest-writer`、`game-story-dialogue`、`game-story-dialogue-review`、`game-audio-director`、`game-audio-composer`、`game-audio-voice`、`game-pm-manager`、`game-pm-outsourcing`、`game-loc-director`、`game-loc-translator`、`game-loc-culturalize`、`game-legal-ip` |
+| 7 | コンテンツ制作 | `game-content-level`、`game-content-scenario`、`game-content-art`、`game-content-sound` | `game-design-director`、`game-design-world`、`game-design-quest`、`game-tech-tools`、`game-art-director`、`game-art-concept`、`game-art-3d`、`game-art-lighting`、`game-art-vfx`、`game-art-ui`、`game-art-technical`、`game-anim-animator`、`game-story-director`、`game-story-lore`、`game-story-quest-writer`、`game-story-dialogue`、`game-story-dialogue-review`、`game-audio-director`、`game-audio-composer`、`game-audio-voice`、`game-pm-manager`、`game-loc-director`、`game-loc-translator`、`game-loc-culturalize` |
 | 8 | 統合・演出制作 | `game-integ-integrator`、`game-integ-direction` | `game-design-director`、`game-design-creative-director`、`game-tech-graphics`、`game-tech-performance`、`game-art-director`、`game-art-lighting`、`game-art-vfx`、`game-art-ui`、`game-art-technical`、`game-anim-animator`、`game-anim-cinematic`、`game-story-director`、`game-audio-director`、`game-audio-engineer`、`game-audio-voice`、`game-pm-manager` |
-| 9 | アルファ版 | `game-alpha-judge`、`game-alpha-playtest` | `game-biz-executive`、`game-design-director`、`game-design-creative-director`、`game-tech-director`、`game-art-director`、`game-pm-manager`、`game-pm-secretary`、`game-qa-lead`、`game-qa-usability`、`game-release-store`、`game-mkt-director`、`game-mkt-planner`、`game-mkt-community`、`game-mkt-pr`、`game-mkt-creative`、`game-sales-publisher` |
-| 10 | ベータ版 | `game-beta-bugfix`、`game-beta-polish`、`game-beta-firsttime` | `game-design-director`、`game-design-combat`、`game-design-economy`、`game-design-ux`、`game-tech-performance`、`game-tech-platform`、`game-art-director`、`game-story-dialogue-review`、`game-audio-director`、`game-audio-engineer`、`game-pm-manager`、`game-qa-lead`、`game-qa-automation`、`game-qa-load-compat`、`game-qa-usability`、`game-loc-director`、`game-loc-translator`、`game-loc-culturalize`、`game-loc-lqa`、`game-release-store`、`game-mkt-planner`、`game-mkt-community`、`game-mkt-creative`、`game-mkt-copy`、`game-ops-analyst` |
-| 11 | 品質保証・最終審査 | `game-qa-tester`、`game-qa-compliance`、`game-qa-release-judge` | `game-biz-executive`、`game-biz-finance`、`game-design-creative-director`、`game-tech-director`、`game-tech-security`、`game-tech-performance`、`game-tech-platform`、`game-pm-manager`、`game-pm-outsourcing`、`game-qa-lead`、`game-qa-automation`、`game-qa-load-compat`、`game-loc-director`、`game-loc-lqa`、`game-release-manager`、`game-release-store`、`game-mkt-director`、`game-mkt-planner`、`game-mkt-community`、`game-mkt-pr`、`game-mkt-creative`、`game-mkt-copy`、`game-sales-publisher`、`game-sales-pricing`、`game-ops-cs`、`game-ops-infra`、`game-legal`、`game-legal-ip` |
-| 12 | 保守 | `game-ops-support`、`game-ops-live` | `game-biz-planning`、`game-biz-finance`、`game-design-economy`、`game-design-quest`、`game-design-social`、`game-tech-backend`、`game-tech-security`、`game-pm-secretary`、`game-release-manager`、`game-mkt-planner`、`game-mkt-community`、`game-sales-pricing`、`game-ops-analyst`、`game-ops-cs`、`game-ops-infra`、`game-legal` |
+| 9 | アルファ版 | `game-alpha-judge`、`game-alpha-playtest` | `game-design-director`、`game-design-creative-director`、`game-tech-director`、`game-art-director`、`game-pm-manager`、`game-pm-secretary`、`game-qa-lead`、`game-qa-usability` |
+| 10 | ベータ版 | `game-beta-bugfix`、`game-beta-polish`、`game-beta-firsttime` | `game-design-director`、`game-design-combat`、`game-design-economy`、`game-design-ux`、`game-tech-performance`、`game-tech-platform`、`game-art-director`、`game-story-dialogue-review`、`game-audio-director`、`game-audio-engineer`、`game-pm-manager`、`game-qa-lead`、`game-qa-automation`、`game-qa-load-compat`、`game-qa-usability`、`game-loc-director`、`game-loc-translator`、`game-loc-culturalize`、`game-loc-lqa`、`game-ops-analyst` |
+| 11 | 品質保証・最終審査 | `game-qa-tester`、`game-qa-compliance`、`game-qa-release-judge` | `game-tech-director`、`game-tech-security`、`game-tech-performance`、`game-tech-platform`、`game-pm-manager`、`game-qa-lead`、`game-qa-automation`、`game-qa-load-compat`、`game-loc-director`、`game-loc-lqa`、`game-ops-infra` |
+| 12 | 保守 | `game-ops-support`、`game-ops-live` | `game-design-economy`、`game-design-quest`、`game-design-social`、`game-tech-backend`、`game-tech-security`、`game-pm-secretary`、`game-ops-analyst`、`game-ops-infra` |
 <!-- phase-table:end -->
 
 ### 中心の仕事人（35人）
@@ -80,21 +83,18 @@ description: ゲームを、部門ごとに雇ってある仕事人（.claude/ag
 | | | `game-beta-polish` | 調整・ポリッシュ（機能は足さない） | 書く |
 | | | `game-beta-firsttime` | 初見プレイヤー（仕様を読まずに遊ぶ） | 書かない |
 | 11 | 品質保証・最終審査 | `game-qa-tester` | テスト計画・実行・バグ報告（本番コードは触らない） | テストとバグ表だけ |
-| | | `game-qa-compliance` | 規約・権利・年齢区分・ライセンス審査 | 書かない |
+| | | `game-qa-compliance` | 技術要件・素材の使い方・クレジットの確認 | 書かない |
 | | | `game-qa-release-judge` | リリース判定 | 書かない |
 | 12 | 保守 | `game-ops-support` | 不具合の切り分け、パッチ、パッチノート | 書く |
 | | | `game-ops-live` | 運営・アップデート計画 | 書く |
 
-### 加わる仕事人（68人、職種の部門ごと）
+### 加わる仕事人（50人、職種の部門ごと）
 
 <!-- group-table:begin -->
 | 職種の部門 | 仕事人 | 役割 | 参加する部門 |
 |---|---|---|---|
-| 経営・事業 | `game-biz-executive` | 事業判断 | 01、04、09、11 |
-|  | `game-biz-planning` | 事業企画 | 01、02、12 |
-|  | `game-biz-finance` | 財務・予算 | 01、02、11、12 |
 | 企画・ゲームデザイン | `game-design-director` | ゲームディレクター | 02、03、04、06、07、08、09、10 |
-|  | `game-design-creative-director` | クリエイティブディレクター | 01、02、04、08、09、11 |
+|  | `game-design-creative-director` | クリエイティブディレクター | 01、02、04、08、09 |
 |  | `game-design-systems` | システムデザイン | 02、03、04、06 |
 |  | `game-design-combat` | バトル・スキル設計 | 03、04、06、10 |
 |  | `game-design-economy` | 経済・アイテム設計 | 03、10、12 |
@@ -121,7 +121,6 @@ description: ゲームを、部門ごとに雇ってある仕事人（.claude/ag
 |  | `game-art-technical` | テクニカルアート | 02、05、07、08 |
 | アニメーション・映像 | `game-anim-animator` | アニメーション | 04、07、08 |
 |  | `game-anim-cinematic` | カットシーン・映像 | 08 |
-|  | `game-anim-mocap` | モーションキャプチャー手配 | 07 |
 | シナリオ・ナラティブ | `game-story-director` | ナラティブ設計 | 01、02、03、07、08 |
 |  | `game-story-lore` | 世界観・キャラ設定 | 02、07 |
 |  | `game-story-quest-writer` | サブシナリオ・クエスト | 07 |
@@ -132,7 +131,6 @@ description: ゲームを、部門ごとに雇ってある仕事人（.claude/ag
 |  | `game-audio-engineer` | 音の実装・ミックス | 06、08、10 |
 |  | `game-audio-voice` | ボイス | 07、08 |
 | 制作管理 | `game-pm-manager` | 進行管理 | 02、05、06、07、08、09、10、11 |
-|  | `game-pm-outsourcing` | 外注・調達 | 02、07、11 |
 |  | `game-pm-secretary` | 会議・情報管理 | 01、05、09、12 |
 | 品質保証・QA | `game-qa-lead` | QAリード | 06、09、10、11 |
 |  | `game-qa-automation` | 自動テスト | 05、06、10、11 |
@@ -142,32 +140,18 @@ description: ゲームを、部門ごとに雇ってある仕事人（.claude/ag
 |  | `game-loc-translator` | 翻訳・字幕 | 07、10 |
 |  | `game-loc-culturalize` | カルチャライズ | 01、07、10 |
 |  | `game-loc-lqa` | LQA・言語監修 | 10、11 |
-| リリース・配信 | `game-release-manager` | リリース管理 | 11、12 |
-|  | `game-release-store` | ストアページ | 09、10、11 |
-| マーケティング・宣伝 | `game-mkt-director` | マーケティング戦略 | 01、04、09、11 |
-|  | `game-mkt-planner` | 宣伝の計画・広告 | 04、09、10、11、12 |
-|  | `game-mkt-community` | SNS・コミュニティ | 09、10、11、12 |
-|  | `game-mkt-pr` | PR・広報 | 09、11 |
-|  | `game-mkt-creative` | 宣伝の制作物 | 04、09、10、11 |
-|  | `game-mkt-copy` | コピー | 01、10、11 |
-| 販売・出版 | `game-sales-publisher` | 販売計画 | 01、09、11 |
-|  | `game-sales-pricing` | 価格戦略 | 01、11、12 |
 | 運営・ライブサービス | `game-ops-analyst` | データ分析 | 03、06、10、12 |
-|  | `game-ops-cs` | カスタマーサポート | 11、12 |
 |  | `game-ops-infra` | インフラ・サーバー運用 | 11、12 |
 | 研究開発 | `game-rnd-engineer` | 研究開発 | 02、04 |
-| 法務・知的財産 | `game-legal` | 法務・契約 | 01、02、11、12 |
-|  | `game-legal-ip` | 知的財産・ライセンス | 01、07、11 |
 <!-- group-table:end -->
 
 ### 加わる仕事人の呼び方
 
 - **全員を毎回呼ばない**。プロジェクトに要る人だけを、`開発チーム.md` の「使う仕事人」で決める。既定は、中心の35人＋監修（ディレクター職）＋そのゲームに要る専門家
-  - 例：1画面のブラウザゲームなら、ネットワーク・サーバー・3D・モーキャプ・ボイス・ローカライズ・販売は呼ばない
+  - 例：1画面のブラウザゲームなら、ネットワーク・サーバー・3D・ボイス・ローカライズは呼ばない
   - 例：オンライン対戦なら、`game-tech-network`、`game-tech-backend`、`game-tech-security`、`game-qa-load-compat`、`game-ops-infra` を足す
-- **監修・判定の担当**（`game-biz-executive`、`game-design-director`、`game-design-creative-director`、`game-tech-director`、`game-art-director`、`game-audio-director`、`game-story-dialogue-review` など）は、作る担当のあと、ゲートの前に呼ぶ
+- **監修・判定の担当**（`game-design-director`、`game-design-creative-director`、`game-tech-director`、`game-art-director`、`game-audio-director`、`game-story-dialogue-review` など）は、作る担当のあと、ゲートの前に呼ぶ
 - **専門の作る担当**（バトル、経済、ネットワーク、作曲、翻訳など）は、中心の仕事人の仕事のうち、その専門の部分を受け持つ。中心の仕事人と同じファイルを書くときは、どちらが書くかを渡すときに決める（例：戦闘の機能仕様は `game-design-combat` が書き、`game-spec-writer` はGDDからつなぐ）
-- **宣伝・販売・法務**は、ゲームを外に出すときだけ。出さない（自分で遊ぶだけの）プロジェクトでは呼ばない
 
 ## 全体の流れ
 
@@ -207,7 +191,7 @@ description: ゲームを、部門ごとに雇ってある仕事人（.claude/ag
 
 | ファイル | 中身 |
 |---|---|
-| `reference/roster.md` | 約250の職種と、それを兼ねる仕事人・参加する部門の名簿 |
+| `reference/roster.md` | ゲーム開発に直接関わる職種と、それを兼ねる仕事人・参加する部門の名簿。取り入れなかった職種の一覧 |
 | `reference/project_folder.md` | プロジェクトのフォルダの形、`進行表.md`、`開発チーム.md` |
 | `reference/gates.md` | ゲートの一覧と判定のしかた、戻り方、小さなゲームの近道 |
 | `reference/01_concept.md` | 企画構想立案：企画書の型、呼ぶ順、ゲートA |
@@ -220,7 +204,7 @@ description: ゲームを、部門ごとに雇ってある仕事人（.claude/ag
 | `reference/08_integration.md` | 統合・演出制作：通しのビルド、演出 |
 | `reference/09_alpha.md` | アルファ版：条件、判定、ゲートC |
 | `reference/10_beta.md` | ベータ版：バグ表、調整、初見テスト |
-| `reference/11_qa_release.md` | 品質保証・最終審査：テスト、審査、リリースの条件、ゲートD |
+| `reference/11_qa_release.md` | 品質保証・最終審査：テスト、技術要件と素材の確認、リリースの条件、ゲートD |
 | `reference/12_maintenance.md` | 保守：不具合受付、パッチ、アップデート |
 | `reference/sources.md` | 工程の定義を調べた出典 |
 | `tools/gen_agents.py`、`tools/gen_roster.py` | 仕事人のファイル、名簿、この表を作り直すスクリプト（仕事人を直すときは `gen_agents.py` を直して両方を流す） |
