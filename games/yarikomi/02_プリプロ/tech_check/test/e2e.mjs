@@ -15,6 +15,7 @@ const results = [];
 const check = (name, ok, detail = '') => { results.push({ name, ok, detail }); console.log(`${ok ? 'OK  ' : 'NG  '} ${name}${detail ? '  — ' + detail : ''}`); };
 
 const server = spawn('node_modules/.bin/vite', ['preview', '--port', String(PORT), '--strictPort'], { stdio: 'pipe' });
+process.on('exit', () => server.kill()); // 途中で落ちても、サーバーを残さない
 await new Promise((res, rej) => { server.stdout.on('data', d => String(d).includes('Local') && res()); setTimeout(() => rej(new Error('server timeout')), 15000); });
 
 const browser = await chromium.launch({ channel: process.env.PW_CHANNEL ?? 'chrome' });
@@ -128,10 +129,11 @@ for (const p of profiles) {
   check('保存を消したあと、文字から読み込んで元どおり', fresh !== fpBrowser && await page.evaluate(() => window.__tc.fingerprint()) === fpBrowser);
   await page.evaluate(k => localStorage.removeItem(k), await page.evaluate(() => window.__tc.SAVE_KEY));
   await page.reload(); await page.waitForSelector('.cell');
-  await page.setInputFiles('#file', dlPath);
+  await tapOrClick('#io-btn'); // 人が使うときと同じく、パネルを開いてからファイルを選ぶ
+  // パスで渡すと、パスに日本語（このフォルダ名）があるとき Playwright が黙って何も選ばなかった。中身で渡す
+  await page.setInputFiles('#file', { name: dl.suggestedFilename(), mimeType: 'text/plain', buffer: readFileSync(dlPath) });
   await page.waitForFunction(fp => window.__tc.fingerprint() === fp, fpBrowser, { timeout: 3000 }).catch(() => {});
   check('ファイルから読み込んで元どおり', await page.evaluate(() => window.__tc.fingerprint()) === fpBrowser, (await page.textContent('#log')).slice(0, 80));
-  await tapOrClick('#io-btn');
   await page.fill('#io-text', text.slice(0, -1) + (text.endsWith('0') ? '1' : '0'));
   await tapOrClick('#imp');
   check('書き換えた文字は読み込みを断る', (await page.textContent('#log')).includes('読み込めなかった') && await page.evaluate(() => window.__tc.fingerprint()) === fpBrowser);
