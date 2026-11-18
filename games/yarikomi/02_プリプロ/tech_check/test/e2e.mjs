@@ -14,7 +14,7 @@ mkdirSync('test-results', { recursive: true });
 const results = [];
 const check = (name, ok, detail = '') => { results.push({ name, ok, detail }); console.log(`${ok ? 'OK  ' : 'NG  '} ${name}${detail ? '  — ' + detail : ''}`); };
 
-const server = spawn('npx', ['vite', 'preview', '--port', String(PORT), '--strictPort'], { stdio: 'pipe' });
+const server = spawn('node_modules/.bin/vite', ['preview', '--port', String(PORT), '--strictPort'], { stdio: 'pipe' });
 await new Promise((res, rej) => { server.stdout.on('data', d => String(d).includes('Local') && res()); setTimeout(() => rej(new Error('server timeout')), 15000); });
 
 const browser = await chromium.launch({ channel: process.env.PW_CHANNEL ?? 'chrome' });
@@ -77,9 +77,10 @@ for (const p of profiles) {
   check('次の1手で変わるマスに印が出る', await page.$eval('.cell[data-i="2"]', e => e.classList.contains('next')));
 
   // 1手進める：重りが落ち、板の上で止まる
+  await page.evaluate(() => { window.__clicks = 0; document.getElementById('step').addEventListener('click', () => window.__clicks++); });
   for (let i = 0; i < 4; i++) await tapOrClick('#step');
   st = await page.evaluate(() => window.__tc.state);
-  check('1手ずつ規則で動く（重りが板の上で止まる）', st.cells[12].k === 'W' && st.turn === 4, `turn=${st.turn}`);
+  check('1手ずつ規則で動く（重りが板の上で止まる）', st.cells[12].k === 'W' && st.turn === 4, `turn=${st.turn} click=${await page.evaluate(() => window.__clicks)} 盤=${st.cells.map(c => c.k).join('')}`);
   await page.screenshot({ path: `test-results/${tag}-play.png` });
 
   // 決定性：ブラウザの盤面の指紋 ＝ 同じ記録を Node で再生した指紋
@@ -129,7 +130,7 @@ for (const p of profiles) {
   await page.reload(); await page.waitForSelector('.cell');
   await page.setInputFiles('#file', dlPath);
   await page.waitForFunction(fp => window.__tc.fingerprint() === fp, fpBrowser, { timeout: 3000 }).catch(() => {});
-  check('ファイルから読み込んで元どおり', await page.evaluate(() => window.__tc.fingerprint()) === fpBrowser);
+  check('ファイルから読み込んで元どおり', await page.evaluate(() => window.__tc.fingerprint()) === fpBrowser, (await page.textContent('#log')).slice(0, 80));
   await tapOrClick('#io-btn');
   await page.fill('#io-text', text.slice(0, -1) + (text.endsWith('0') ? '1' : '0'));
   await tapOrClick('#imp');

@@ -61,8 +61,11 @@ $('shelf').addEventListener('pointerdown', e => {
   const b = (e.target as HTMLElement).closest<HTMLElement>('.part');
   if (!b) return;
   drag = { k: b.dataset.k as Exclude<Kind, '.'>, sx: e.clientX, sy: e.clientY, moved: false };
-  (e.target as HTMLElement).releasePointerCapture?.(e.pointerId); // タッチの暗黙のキャプチャを外す
+  // 指を離した場所は座標（elementFromPoint）で調べるので、タッチの暗黙のキャプチャはそのままにする
 });
+// 棚から始めたドラッグの touchmove を止める。止めないと、ドラッグの直後の1回のタップで click が出なかった
+// （Chrome のタッチのエミュレーション、touch-action:none の上でのドラッグで再現。実機で同じかは未確認）
+$('shelf').addEventListener('touchmove', e => e.preventDefault(), { passive: false });
 document.addEventListener('pointermove', e => {
   if (!drag) return;
   if (Math.hypot(e.clientX - drag.sx, e.clientY - drag.sy) > 8) drag.moved = true;
@@ -92,7 +95,8 @@ $('exp').addEventListener('click', () => { ($('io-text') as HTMLTextAreaElement)
 $('imp').addEventListener('click', () => load(($('io-text') as HTMLTextAreaElement).value));
 $('dl').addEventListener('click', () => {
   const url = URL.createObjectURL(new Blob([exportText(s)], { type: 'text/plain' }));
-  const a = document.createElement('a'); a.href = url; a.download = `yarikomi-save-${s.seed}-t${s.turn}.txt`; a.click();
+  const a = document.createElement('a'); a.href = url; // ファイル名は英数字だけ（日本語だと Chrome で「download」になった）
+  a.download = `yarikomi-save-t${s.turn}-${fingerprint(s)}.txt`; a.click();
   setTimeout(() => URL.revokeObjectURL(url), 1000);
 });
 $('file').addEventListener('change', async e => {
