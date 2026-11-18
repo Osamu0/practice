@@ -23,6 +23,21 @@
 - 判定する担当（`game-alpha-judge`、`game-qa-release-judge` など）がいる部門は、その担当の判定を材料にする。プロデューサーが条件をゆるめるときは、理由を書く
 - オーナーのゲートでは、判定の材料を渡してオーナーに決めてもらう。オーナーの返事なしに進まない
 
+## ゲートの前に呼ぶ監修
+
+使う仕事人に入っている人だけを呼ぶ。互いに依存しないので**同時に**呼ぶ。
+
+| ゲート | 監修 |
+|---|---|
+| A 企画 | `game-biz-executive`、`game-design-creative-director`、`game-legal-ip`（タイトル・似すぎ）、外に出すなら `game-mkt-director` |
+| 02 プリプロ | `game-design-director`、`game-tech-director`、`game-audio-director` |
+| 03 仕様 | `game-spec-review`、`game-design-director` |
+| B 縦切り | `game-biz-executive`、`game-design-director`、`game-design-creative-director`、`game-art-director` |
+| 05 開発開始 | `game-tech-director` |
+| C アルファ | `game-biz-executive`、`game-design-director`、`game-design-creative-director`、`game-tech-director`、`game-art-director`、`game-qa-lead` |
+| 10 ベータ | `game-design-director`、`game-art-director`、`game-audio-director`、`game-story-dialogue-review`、多言語なら `game-loc-lqa` |
+| D リリース | `game-biz-executive`、`game-tech-director`、`game-design-creative-director`、`game-qa-release-judge`、外に出すなら `game-legal`、`game-legal-ip` |
+
 ## 戻り方
 
 | 起きたこと | 戻る先 |
