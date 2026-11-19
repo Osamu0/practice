@@ -4,7 +4,7 @@
 入っている規則：重さ（ずれる 2-4）、落ちる（2-5、当たる、谷底、落ちて死ぬ、下敷き）、弾む（縮む・打ち出す 2-2、投げ当て）、
 当主の手（挑む.md 3.1 の「進む」の3候補＝入る・登る・押す、置く、拾う、待つ）、敵（仮の歩く敵）、掟の大風（続きの動き）、長雨（重さの足し）。
 谷と一生の小さな模型（Valley）：代の始めの棚（start.parts／heir.startParts）、拾うのはその代で初めて解けたときだけ、
-死んだときの遺品（relic.wearOnDeath）、代替わりの傷み（仕掛け＝wearPerGen＋掟の足し、遺品＝wearPerGen だけ・その代替わりで建った墓は除く）。
+死んだときの遺品（relic.wearOnDeath。2 をこえる部品は墓に入らず消える）、代替わりの傷み（仕掛け＝wearPerGen＋掟の足し、遺品＝wearPerGen だけ・その代替わりで建った墓は除く）。
 入っていない規則：燃える（2-1）、引っぱる（2-3、縄・滑車・当主が引く）、水。→ これらの最強の一択・詰みは確かめていない。
 
 値は ../パラメータ表.csv から読む（数を直に書かない）。
@@ -469,14 +469,14 @@ class State:
 
     # --- 段1「進む」の3候補（挑む.md 3.1）。どれも手の始めの盤面で決める ---
     def _climb_solid(self, x, y, occ, sup, gid):
-        """登る足場：地面、固定物、支えのある組のマス（当主は除く）"""
+        """登る足場：地面、固定物、支えのある組のマス（当主と敵は除く）"""
         if not (0 <= x < W and 0 <= y < H):
             return False
         if self.ground(x, y):
             return True
         j = occ.get((x, y))
-        if j is None or self.objs[j].kind == "leader":
-            return False
+        if j is None or self.objs[j].kind in ("leader", "enemy"):
+            return False  # 当主と敵は足場にならない（プロデューサーの決め、2026-11-19）
         return gid[j] in sup  # sup には固定の組も入っている
 
     def climb_dest(self, d):
@@ -781,7 +781,7 @@ class Grave:
 class Valley:
     """relic_decay：墓の遺品も代替わりで傷むか。relic_skip_new：その代替わりで建った墓の遺品には足さないか（今の仕様＝True）"""
 
-    def __init__(self, seed=1, relic_decay=True, relic_skip_new=True, first_pick_only=True, death_cap=True):
+    def __init__(self, seed=1, relic_decay=True, relic_skip_new=True, first_pick_only=True, death_cap=False):
         self.seed = seed
         self.gen = 1
         self.laws = set()
@@ -792,7 +792,8 @@ class Valley:
         self.fixtures = []  # [{(x, y): (part, wear)}] 谷に据えた仕掛け
         self.picked = set()  # この代に拾った場所（この代の記録から決まる、の写し）
         self.relic_decay, self.relic_skip_new, self.first_pick_only = relic_decay, relic_skip_new, first_pick_only
-        # death_cap：遺品になるときの傷みを壊れかけ（2）で止める（今の仕様）。False なら、2 をこえる部品は墓に入らず消える（案）
+        # death_cap：True＝遺品になるときの傷みを壊れかけ（2）で止める（前の仕様。毎代取り戻すと消えない：パラメータ表 13.3 #10）。
+        # False（既定＝今の仕様）＝2 をこえる部品は墓に入らず消える
         self.death_cap = death_cap
 
     # 結果：拾う（谷と一生の流れ.md 3章）

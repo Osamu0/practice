@@ -216,6 +216,13 @@ s = board([".......", ".......", ".......", ".......", ".......", "...##..", "##
 L = s.add(Obj("leader", 2, 5))
 check("C-11 地面の段差（高さ1）には登るが出る", ("climb", 1) in s.actions())
 
+# 敵は足場にならない（プロデューサーの決め 2026-11-19）
+s = board(FLAT)
+L = s.add(Obj("leader", 2, 5))
+s.add(Obj("enemy", 3, 5))
+acts = s.actions()
+check("C-11 支えのある敵には「登る」の候補が出ない（押すは重さしだい）", ("climb", 1) not in acts and ("push", 1) in acts, acts)
+
 # 先祖の仕掛けは挑む中は拾えない（挑む.md 3章）
 s = board(FLAT)
 L = s.add(Obj("leader", 2, 5))
@@ -272,6 +279,27 @@ pl = [w for p, w in A.parts if p == "plank"]
 check(f"H-21 前の代の墓 A の遺品は {wg} だけ傷む（長雨の足しはない）", sorted(pl) == [wd + wg, wd + wg, wd + wg] and ("pebble", 2) not in A.parts and all(w <= 2 for _, w in A.parts), A.parts)
 check("H-21 壊れかけをこえた部品は消え、残った橋は2つの部品に分かれる", A.tools == [] and len(A.parts) == 3, (A.tools, A.parts))
 check("H-21 この代に建った墓 B の遺品は、その代替わりでは変わらない", B.parts == [("spring", wd)], B.parts)
+
+# H-06（直した仕様）：遺品になるとき、壊れかけ（2）をこえる部品は墓に入らず消える
+v = Valley(seed=7)
+v.shelf = [("plank", 2), ("pebble", 0)]
+v.tools = [{(0, 0): ("plank", 0), (1, 0): ("plank", 2), (2, 0): ("plank", 0)}]
+G = v.die()
+check("H-06 傷み2の部品は死んだとき消え、残りは傷み relic.wearOnDeath で墓に入る", G.parts == [("plank", wd), ("plank", wd), ("pebble", wd)] and G.tools == [], (G.tools, G.parts))
+# 毎代取り戻して持ち続けた道具は、作った代＋2代で消える
+v = Valley(seed=7)
+v.tools = [{(i, 0): ("plank", 0) for i in range(3)}]
+n = 0
+for g in range(10):
+    if g:
+        for gr in reversed(v.graves):
+            v.retrieve(gr)
+    if not v.tools:
+        break
+    n += 1
+    v.die()
+    v.succession()
+check("H-06 毎代取り戻して持ち続けた道具は 3 代（作った代＋2代）で消える", n == 3, n)
 
 print(f"\n{ok} OK / {ng} NG")
 raise SystemExit(1 if ng else 0)

@@ -135,6 +135,6 @@ enemy.crawler.flammability,1,—,○,仮
 challenge.cargo.weight,3,段,○,仮（場所ごとの初期値）
 challenge.cargo.hardness,4,段,○,仮
 challenge.cargo.flammability,1,—,○,仮
-start.parts,"plank:3,stoneWeight:1,pebble:1",個,○,新しい名前の案
-heir.startParts,"plank:2,pebble:1,spring:1",個,○,新しい名前の案
+start.parts,"plank:3,stoneWeight:1,pebble:1",個,○,仮
+heir.startParts,"plank:3,spring:1",個,○,仮
 save.exportNudgeDays,5,日,○,仮

@@ -132,15 +132,17 @@ CH = {
         "##..###",
         "##..###"], objs=[
         ".......", ".......", ".......", ".......", "L......", ".......", "......."]),
-    "仮3 敵を落とす（追い払う）": dict(kind="repel", edir=0, map=[
+    # 仮3 は 1.2 の直した決まり（組み合わせる物も道具なしでは越えられない）に合わせて直した【仮】：
+    # 高さ2の壁の向こうの、深さ2の穴の底に敵。当主が飛び下りると 3 マス落ちて死ぬ。押しても届かない。重い物を落とす・投げるが要る
+    "仮3 壁の向こうの穴の敵（追い払う・仮）": dict(kind="repel", edir=0, map=[
         ".......",
         ".......",
-        ".......",
-        "...#...",
-        "...#...",
-        "######.",
-        "######."], objs=[
-        ".......", ".......", ".......", ".......", "L....E.", ".......", "......."]),
+        "..#....",
+        "..#....",
+        "###.###",
+        "###.###",
+        "#######"], objs=[
+        ".......", ".......", ".......", "L......", ".......", "...E...", "......."]),
     "仮4 荷を段の上へ運ぶ（運ぶ）": dict(kind="carry", goal=(6, 2), map=[
         ".......",
         ".......",
@@ -222,13 +224,15 @@ say("\n  解き方の例:")
 for (tn, cn), (n, path) in res1.items():
     if n is not None and tn in ("ironSpring(up)", "spring(up)", "板4", "板3＋西端に石", "stoneWeight", "石＋ばね(東)"):
         say(f"   {tn} / {cn}: " + " → ".join(fmt_act(a) for a in path))
+LIMIT = (len(TOOLS) - 1) // 2  # 07 の目安：道具1つで解ける種類は半分（21 種なら 10 種）まで（谷と一生 1.2）
+say(f"  1.2 の目安：道具1つで解ける種類は {LIMIT} 種まで")
 for cn in CH:
     k = sum(res1[(tn, cn)][0] is not None for tn in TOOLS if tn != "（素手）")
-    if k * 2 > len(TOOLS) - 1:
+    if k > LIMIT:
         tag = "谷と一生 1.2 の決まりで作らない形" if cn in STEP_ONLY else "要注意"
         say(f"  注：{cn} は {len(TOOLS) - 1} 種のうち {k} 種の道具で解ける（踏み台。{tag}）")
         if cn not in STEP_ONLY:
-            problem("最強の一択(課題の作り)", f"{cn}：1.2 の決まりの形なのに、{k} 種の道具1つで解ける")
+            problem("最強の一択(課題の作り)", f"{cn}：1.2 の決まりの形なのに、{k} 種の道具1つで解ける（目安 {LIMIT} 種まで）")
 
 
 if not QUICK:
@@ -358,7 +362,7 @@ say("5. 代をまたいで手元に来る部品の数（遺品・仕掛け・拾
 say("=" * 70)
 
 
-def chronicle(gens, solves_per_life, relic_decay, relic_skip_new=True, farm=False, heir_override=None, death_cap=True):
+def chronicle(gens, solves_per_life, relic_decay, relic_skip_new=True, farm=False, heir_override=None, death_cap=False):
     """部品の数だけを数える粗い模型（強さの差は見ない）。一生で solves_per_life の場所を解き、
     1つおきに部品3つの仕掛けを据える。代の始めに、新しい墓から順に棚の上限まで取り戻す（墓にはいつも届くとする）。
     farm：同じ場所を5回ずつ解く。戻り値：[(代, 代の始めの手元, 谷に眠る部品, 取り戻した部品の傷み)]"""
@@ -388,10 +392,10 @@ def chronicle(gens, solves_per_life, relic_decay, relic_skip_new=True, farm=Fals
 heir_n = len(parse_parts(P["heir.startParts"]))
 cap = P["leader.carryParts"]
 cases = (
-    ("A 墓の遺品は傷まない（前の仕様）", dict(relic_decay=False)),
-    ("B 遺品も傷む・死んだ直後の代替わりから足す", dict(relic_decay=True, relic_skip_new=False)),
-    ("C 遺品も傷む・次の代替わりから足す（今の仕様の案）", dict(relic_decay=True, relic_skip_new=True)),
-    ("D C＋死んだとき壊れかけ(2)をこえる部品は消える（案）", dict(relic_decay=True, relic_skip_new=True, death_cap=False)),
+    ("A 墓の遺品は傷まない（前の仕様）", dict(relic_decay=False, death_cap=True)),
+    ("B 遺品も傷む・死んだ直後の代替わりから足す", dict(relic_decay=True, relic_skip_new=False, death_cap=True)),
+    ("C 遺品も傷む・次の代替わりから足す・死んだとき 2 で止める", dict(relic_decay=True, relic_skip_new=True, death_cap=True)),
+    ("D C＋死んだとき壊れかけ(2)をこえる部品は消える（今の仕様）", dict(relic_decay=True, relic_skip_new=True, death_cap=False)),
 )
 summary = {}
 for label, kw in cases:
@@ -409,7 +413,7 @@ for label, kw in cases:
     if not kw.get("relic_decay"):
         say("   → 谷に眠る部品が代ごとに増え続ける（遺品が傷まない場合。今の仕様ではない）")
 r = chronicle(30, 5, relic_decay=True, relic_skip_new=True, farm=True)
-say(f"\n  [C で、同じ場所を5回ずつ解く] 谷に眠る部品：" + " ".join(f"{g}代:{s}" for g, a, s, _ in r[:10]))
+say(f"\n  [D（今の仕様）で、同じ場所を5回ずつ解く] 谷に眠る部品：" + " ".join(f"{g}代:{s}" for g, a, s, _ in r[:10]))
 r0 = chronicle(10, 5, relic_decay=True, relic_skip_new=True, heir_override=[])
 say(f"\n  [子に最初の部品なし（前の仕様）・墓にはいつも届くとき] 代の始めの手元：" + " ".join(f"{g}代:{a}" for g, a, s, _ in r0))
 say(f"   今の仕様は heir.startParts（{heir_n} 個）＋取り戻した遺品。墓が届かない場所でも {heir_n} 個で組める（3b）")
@@ -418,8 +422,8 @@ say("   手元に来るのは棚の上限（leader.carryParts）でいつも頭�
 # 1つの道具を、どの代も墓から取り戻して持ち続けたら、何代もつか（直さない）
 say("\n  先祖の道具（板3）を、どの代も親の墓から取り戻して持ち歩き、直さずに使い続けると、何代まで残るか")
 lineage = {}
-for label, kw in (("B 直後から足す", dict(relic_skip_new=False)), ("C 次の代替わりから（今の仕様の案）", dict(relic_skip_new=True)),
-                  ("C＋死んだとき 2 をこえる部品は消える（案）", dict(relic_skip_new=True, death_cap=False))):
+for label, kw in (("B 直後から足す（前の案）", dict(relic_skip_new=False, death_cap=True)), ("C 次の代替わりから・死んだとき 2 で止める（前の案）", dict(relic_skip_new=True, death_cap=True)),
+                  ("D 次の代替わりから・死んだとき 2 をこえる部品は消える（今の仕様）", dict(relic_skip_new=True, death_cap=False))):
     v = Valley(seed=5, **kw)
     v.tools = [{(i, 0): ("plank", 0) for i in range(3)}]
     trace = []
@@ -434,7 +438,9 @@ for label, kw in (("B 直後から足す", dict(relic_skip_new=False)), ("C 次�
         v.succession()
     lineage[label] = len(trace)
     say(f"   {label}：{len(trace)} 代が使えた（各代の始めの傷み {trace}）" + ("（20代で打ち切り＝消えない）" if len(trace) >= 20 else ""))
-    if len(trace) >= 20 and kw.get("death_cap", True):
+    if len(trace) >= 20:
+        say(f"   → {label} は毎代取り戻すと消えない" + ("" if kw["death_cap"] else "（今の仕様なので問題）"))
+    if len(trace) >= 20 and not kw["death_cap"]:
         problem("実質の上乗せ", f"{label}：毎代取り戻すと、遺品の道具が壊れかけのまま消えない（relic.wearOnDeath が 2 で止まり、新しい墓は傷まないため）。焼き込んだ癖も代をこえて残る")
 
 # 焼き込みが重ならないか
