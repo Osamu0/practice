@@ -109,7 +109,7 @@ calamity.stagePerGen,1,段,○,仮
 calamity.endStage,未決,段,—,オーナーの未決
 calamity.fixtureWearAdd,0,段,○,仮（縦切りは0）
 unlock.stages,2,段,○,仮
-proto.lifeChallenges,3,課題,○,仮（04のプロトだけ）
+proto.lifeChallenges,3,個,○,仮（04のプロトだけ）
 notebook.pages,6,ページ,○,仮
 notebook.writesPerLife,,枚,○,上限なし
 relic.wearOnDeath,1,段,○,仮

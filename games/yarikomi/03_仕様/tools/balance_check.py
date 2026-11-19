@@ -421,8 +421,8 @@ for kind in ("cliff", "gap"):
     say(f"  試し場「{ {'cliff': '崖', 'gap': '割れ目'}[kind] }」板3 を {x0}〜{x0 + 2} 列、東の端に人形：{a[1]}（{a[0]}手目）"
         f" → 西の端に試しの重り：{b[1] if b[0] else '動かない（押さえられた）'}")
     if a[0] is None or b[0] is not None:
-        why = "板が落ちずに東・西へずれ続ける（ずれた先の向こう岸で支えができる）" if a[0] is None else "重りを載せても止まらない"
-        problem("最初の5分(試し場)", f"試し場「{ {'cliff': '崖', 'gap': '割れ目'}[kind] }」（trial.gapWidth={P['trial.gapWidth']}）で、人形を乗せた板3 が{why}")
+        why = "落ちずに東・西へずれ続ける（ずれた先の向こう岸で支えができる）" if a[0] is None else "重りを載せても止まらない"
+        problem("最初の5分(試し場)", f"試し場「{ {'cliff': '崖', 'gap': '割れ目'}[kind] }」（trial.gapWidth={P['trial.gapWidth']}）で、人形を乗せた板3 は{why}")
 ch2 = CH["仮2 割れ目を渡る（渡る）"]
 need_stone_tools = {"板3＋西端に石": TOOLS["板3＋西端に石"]}
 plank_only = {k: TOOLS[k] for k in ("plank", "板2", "板3")}

@@ -237,7 +237,7 @@ s.add(Obj("part", 3, 5, "plank"))  # 真下 (3,6) が空き＝支えのない組
 acts = s.actions()
 check("C-21 支えのない板には「登る」の候補が出ない（押すは出てよい）", ("climb", 1) not in acts and ("push", 1) in acts, acts)
 
-# C-11 の残り：固定物（墓）に登れる。頭の上がふさがっていると、段が高すぎると、登るは出ない
+# C-11 の残り：固定物（打った杭）に登れる（墓は地の印なので登れない：R-24）。頭の上がふさがっていると、段が高すぎると、登るは出ない
 s = board(FLAT)
 L = s.add(Obj("leader", 2, 5))
 s.add(Obj("part", 3, 5, "stake"))
