@@ -1,4 +1,4 @@
-# iPhone で遊ぶ手順（Cloudflare Pages ＋ Cloudflare Access）
+# iPhone で遊ぶ手順（Cloudflare Pages の GitHub 連携 ＋ Cloudflare Access）
 
 オーナーだけが開ける形で、ゲームを iPhone のブラウザで遊べるようにする手順です。
 **置く操作・設定はオーナーが行います**（スタジオは公開の操作をしません）。
@@ -10,17 +10,27 @@
 ## 用意するもの
 - Cloudflare のアカウント（無料）
 - 遊ぶ人のメールアドレス（オーナーのもの。ここにログインのコードが届きます）
-- ゲームのファイル：このフォルダの `yarikomi_q1.zip`（GitHub の画面からダウンロード）
+- スマホだけでできます（ファイルを置く操作はありません。Cloudflare が GitHub のこのリポジトリから直接ゲームを取りに行きます）
 
-## 1. ゲームを置く（Cloudflare Pages の Direct Upload）
+ゲームのファイルは、リポジトリの `games/yarikomi/public/` にスタジオが置きます（英数字だけのフォルダ）。スタジオが新しい版をプッシュすると、自動で入れ替わります。
+
+## 1. ゲームを置く（Cloudflare Pages の GitHub 連携）
 1. Cloudflare のダッシュボードで **Workers & Pages** を開く
-2. **Create application** → **Pages** のほうの **Get started** → **Drag and drop your files**（または Upload assets）
-3. プロジェクト名を入れる（例：`tsugite-kobo`。これが `tsugite-kobo.pages.dev` という住所になります。実在の名前やオーナーの名前は入れないのがおすすめ）
-4. `yarikomi_q1.zip` をそのまま落とす → **Deploy site**
-5. 出てきた `https://<プロジェクト名>.pages.dev` を PC で開き、ゲームのタイトルが出るか確かめる
+2. **Create application** → **Pages** のほうを選ぶ → **Connect to Git**（Import an existing Git repository）
+3. GitHub を選び、Cloudflare に GitHub を使う許可を出す。読ませるリポジトリは **このリポジトリだけ**（Only select repositories で `practice`）を選ぶのがおすすめ
+4. リポジトリ `practice` を選んで次へ
+5. 設定を入れる
+   - Project name：例 `tsugite-kobo`（これが `tsugite-kobo.pages.dev` という住所になります。実在の名前やオーナーの名前は入れないのがおすすめ）
+   - Production branch：`claude/friendly-galileo-eof9nq`
+   - Framework preset：**None**
+   - Build command：**空のまま**
+   - Build output directory：`games/yarikomi/public`
+6. **Save and Deploy** を押し、終わるまで待つ
+7. 出てきた `https://<プロジェクト名>.pages.dev` を開き、ゲームのタイトルが出るか確かめる（ここで開けたら、すぐに 2. へ進んでください）
+8. 余計な確認用の公開を減らすため、プロジェクトの **Settings** → **Builds**（または Builds & deployments）→ **Branch control** で、Preview branch を **None** にして保存する（本番のブランチだけが公開されます）
 
-出典：[Cloudflare Docs：Direct Upload](https://developers.cloudflare.com/pages/get-started/direct-upload/)
-注意：Direct Upload で作ったプロジェクトは、あとから GitHub 連携には切り替えられません（必要になったら別のプロジェクトを作ります。同じ文書より）。
+出典：[Cloudflare Docs：はじめての Pages（Git 連携）](https://developers.cloudflare.com/pages/get-started/guide/)、[Cloudflare Docs：GitHub integration](https://developers.cloudflare.com/pages/configuration/git-integration/github-integration/)、[Cloudflare Docs：Branch build controls](https://developers.cloudflare.com/pages/platform/branch-build-controls/)
+注意：GitHub 連携で作ったプロジェクトは、あとから Direct Upload（zip を置く形）には切り替えられません（同じ文書より）。PC から zip を置く形にしたくなったら、別のプロジェクトを作ります（zip は `yarikomi_q1.zip` に残してあります）。
 
 ## 2. オーナーだけが開けるようにする（Cloudflare Access）
 **この手順を終えるまで、住所を誰にも教えないでください**（終えるまでは誰でも開けます）。
@@ -50,4 +60,4 @@
 3. 遊んだら、メニュー →「記録」を開き、**書き出し**の文字をコピーしてスタジオ（このチャット）に貼ってください。解けるまでの時間・置き間違い・試した回数を見ます
 
 ## 5. 新しい版に入れ替えるとき
-スタジオが新しい zip をこのフォルダに置いたら、Pages のプロジェクトで **Create deployment**（Create new deployment）→ 本番（Production）を選んで zip を落とす。Access の設定はそのまま効きます。
+スタジオが `games/yarikomi/public/` を新しい版にしてプッシュすると、Cloudflare が自動で入れ替えます。オーナーの操作は要りません。Access の設定もそのまま効きます。
