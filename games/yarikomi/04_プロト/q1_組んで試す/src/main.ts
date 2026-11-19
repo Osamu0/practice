@@ -346,7 +346,7 @@ function renderTrial() {
   hand(`<div class="row"><button data-a="tDoll" class="${t.armed === 'doll' ? 'sel' : ''}">人形</button><button data-a="tWeight" class="${t.armed === 'weight' ? 'sel' : ''}">試しの重り</button>
       <button data-a="tLeft" ${t0 ? '' : 'disabled'} aria-label="道具を西へ">◀ 道具</button><button data-a="tRight" ${t0 ? '' : 'disabled'} aria-label="道具を東へ">道具 ▶</button></div>
     <div class="chips">${(['flat', 'cliff', 'gap'] as const).map(k => `<button data-a="tTerrain" data-k="${k}" class="${t.kind === k ? 'sel' : ''}" ${t0 ? '' : 'disabled'}>${{ flat: '平ら', cliff: '崖', gap: '割れ目' }[k]}</button>`).join('')}</div>`);
-  thumb(`<button data-a="toBench2">組む</button><button data-a="tReset" ${t0 && !t.adds.length ? 'disabled' : ''}>最初に戻す</button><button class="main" data-a="tStep">送る</button><button data-a="tRun">続けて</button>`);
+  thumb(`<button data-a="toBench2">組む</button><button data-a="tReset" ${t0 && !t.adds.length ? 'disabled' : ''}>最初へ</button><button class="main" data-a="tStep">送る</button><button data-a="tRun">続けて</button>`);
 }
 
 // 挑む
