@@ -71,14 +71,47 @@ t = s.do(("wait",))
 # M東 = (1+3)*1 = 4、R東 = (1+3)*1 = 4 → 等しいのでずれない
 check("R-04 張り出し1マス・当主3 と 西1マスに石3＋板 は釣り合ってずれない", t.objs[ids[0]].x == 0)
 
-# R-05：支えのない重り2つを縦に積む → 下から順に、重ならない
+# R-05（M7）：支えのない重りを2つ縦に積む → 1つの落ちる動きとして同じマス数だけ下へ動き、床の上で積み重なったまま止まる。
+#   下の重りは壊れない（傷みも変わらない）。上の重りの落ちた距離が minFall 以上でも、上と下の間で当たるは起きない
 s = board([".......", ".......", ".......", ".......", ".......", ".......", "#######"])
 a = s.add(Obj("part", 3, 1, "stoneWeight"))
 b = s.add(Obj("part", 3, 0, "stoneWeight"))
-t = s.do(("wait",)) if False else None
 s.add(Obj("leader", 0, 5))
 t = s.do(("wait",))
-check("R-05 2つとも落ちて重ならない", (t.objs[a].x, t.objs[a].y) == (3, 5) and (t.objs[b].x, t.objs[b].y) == (3, 4), [(t.objs[a].y), (t.objs[b].y)])
+check("R-05 2つは同じマス数（4）だけ下へ動き、床の上で積み重なって止まる", (t.objs[a].x, t.objs[a].y) == (3, 5) and (t.objs[b].x, t.objs[b].y) == (3, 4), [(t.objs[a].y), (t.objs[b].y)])
+check("R-05 下の重りは壊れない（傷み0のまま。上の重りも傷まない）", t.objs[a].wear == 0 and t.objs[b].wear == 0 and 4 >= P["rule.impact.minFall"], (t.objs[a].wear, t.objs[b].wear))
+# 一緒に落ちた物が、落ちていなかった物で止まったときは当たる（下の物 X は落ちていない板）
+s = board([".......", ".......", ".......", ".......", ".......", ".......", "#######"])
+x0 = s.add(Obj("part", 3, 5, "plank"))
+a = s.add(Obj("part", 3, 2, "pebble"))
+b = s.add(Obj("part", 3, 1, "pebble"))
+s.add(Obj("leader", 0, 5))
+t = s.do(("wait",))
+check("R-05 積み重なって落ちた小石2つ（重さ2）が、床の板（硬さ2）で止まると板だけが当たる（重さはまとまりの和）", t.objs[x0].wear == P["rule.impact.wearAdd"] and t.objs[a].wear == 0 and t.objs[b].wear == 0 and t.objs[a].y == 4 and t.objs[b].y == 3, (t.objs[x0].wear, t.objs[a].y, t.objs[b].y))
+
+# R-30（M8）：幅2の板が、真下の別々の物 A・B の上へ落ちる → 条件を満たすものは全部壊れる（重さは割らない）。
+#   A・B が傷み2なら両方消え、板は支えがなくなるが、その手ではそこに止まり、次の手で落ちる
+s = board([".......", ".......", ".......", ".......", ".......", ".......", "#######"])
+s.add(Obj("leader", 0, 5))
+A = s.add(Obj("part", 2, 5, "plank", wear=2))
+B = s.add(Obj("part", 3, 5, "plank", wear=2))
+p1 = s.add(Obj("part", 2, 2, "plank"))
+p2 = s.add(Obj("part", 3, 2, "plank"))
+s.links.add((p1, p2))
+t = s.do(("wait",))
+check("R-30 板2（重さ2）が A・B（硬さ2、傷み2）に落ちると両方消える", A not in t.objs and B not in t.objs, sorted(t.objs))
+check("R-30 支えがなくなった板は、その手ではそのマスに止まる", (t.objs[p1].y, t.objs[p2].y) == (4, 4), (t.objs[p1].y, t.objs[p2].y))
+t2 = t.do(("wait",))
+check("R-30 次の手の 2-5 で落ちる", (t2.objs[p1].y, t2.objs[p2].y) == (5, 5), (t2.objs[p1].y, t2.objs[p2].y))
+s = board([".......", ".......", ".......", ".......", ".......", ".......", "#######"])
+s.add(Obj("leader", 0, 5))
+A = s.add(Obj("part", 2, 5, "plank"))
+B = s.add(Obj("part", 3, 5, "stoneWeight"))
+p1 = s.add(Obj("part", 2, 2, "plank"))
+p2 = s.add(Obj("part", 3, 2, "plank"))
+s.links.add((p1, p2))
+t = s.do(("wait",))
+check("R-30 硬さが重さより大きい B（石 5）は壊れず、A（板 2）だけが傷む", t.objs[A].wear == P["rule.impact.wearAdd"] and t.objs[B].wear == 0, (t.objs[A].wear, t.objs[B].wear))
 
 # R-08：上向きのばねの上に重りを落とす → 縮む（当たらない）→ 次の手で max(0,強さ−重さ) 上がる
 s = board([".......", ".......", ".......", ".......", ".......", ".......", "#######"])
@@ -109,13 +142,22 @@ s.comp[sp] = (w, (1, 5), (2, 5))
 t = s.do(("wait",))
 check("R-12 石(3)≥敵の硬さ(3)で追い払う", e not in t.objs and t.objs[w].x == 4, (t.objs[w].x, e in t.objs))
 
-# R-24：墓の上に重い組を落としても壊れない
+# R-24（M13）：墓は地の印。真上から重りを落とすと、印のマスに入って真下の地面で止まる。印は残る。印へは「登る」が出ず「入る」が出る
 s = board([".......", ".......", ".......", ".......", ".......", ".......", "#######"])
-s.add(Obj("leader", 0, 5))
-g = s.add(Obj("grave", 3, 5))
+s.add(Obj("leader", 2, 5))
+s.add_grave(3, 5)
 w = s.add(Obj("part", 3, 0, "ironWeight"))
 t = s.do(("wait",))
-check("R-24 墓は残り、重りは墓の上", g in t.objs and t.objs[w].y == 4)
+check("R-24 重りは墓の印のマス (3,5) で止まり、印は残る", (t.objs[w].x, t.objs[w].y) == (3, 5) and (3, 5) in t.marks, (t.objs[w].x, t.objs[w].y))
+s = board([".......", ".......", ".......", ".......", ".......", ".......", "#######"])
+s.add(Obj("leader", 2, 5))
+s.add_grave(3, 5)
+acts = s.actions()
+check("R-24 墓の印の隣：「登る」は出ず「入る」が出る", ("climb", 1) not in acts and ("enter", 1) in acts, acts)
+s = board([".......", ".......", ".......", ".......", ".......", ".......", "#######"], Cfg(grave_solid=True))
+s.add(Obj("leader", 2, 5))
+s.add_grave(3, 5)
+check("（前の決め grave_solid=True では墓に登れた）", ("climb", 1) in s.actions())
 
 # 当主が落ちて死ぬ高さ
 s = board([".......", ".......", ".......", ".......", ".......", ".......", "#######"])
@@ -198,8 +240,8 @@ check("C-21 支えのない板には「登る」の候補が出ない（押す�
 # C-11 の残り：固定物（墓）に登れる。頭の上がふさがっていると、段が高すぎると、登るは出ない
 s = board(FLAT)
 L = s.add(Obj("leader", 2, 5))
-s.add(Obj("grave", 3, 5))
-check("C-11 墓（固定物）にも登れる", ("climb", 1) in s.actions() and ("push", 1) not in s.actions())
+s.add(Obj("part", 3, 5, "stake"))
+check("C-11 打った杭（固定物）にも登れる。押すは出ない", ("climb", 1) in s.actions() and ("push", 1) not in s.actions())
 s = board([".......", ".......", ".......", ".......", "..#....", ".......", "#######"])
 L = s.add(Obj("leader", 2, 5))
 s.add(Obj("part", 3, 5, "pebble"))
@@ -228,6 +270,48 @@ s = board(FLAT)
 L = s.add(Obj("leader", 2, 5))
 s.add(Obj("part", 3, 5, "plank", anc=True))
 check("先祖の仕掛けには「拾う」の候補が出ない", not any(a[0] == "pick" for a in s.actions()))
+
+# R-29（M2 の決め(b)）：地面に杭を打ち、東へ板2をつないで張り出させた組
+CL = [".......", ".......", ".......", ".......", ".......", ".......", "##....."]
+def stake_board(cfg=None):
+    s = board(CL, cfg)
+    st = s.add(Obj("part", 1, 5, "stake"))
+    p1 = s.add(Obj("part", 2, 5, "plank"))
+    p2 = s.add(Obj("part", 3, 5, "plank"))
+    s.links |= {(st, p1), (p1, p2)}
+    return s, st, p1, p2
+s, st, p1, p2 = stake_board()
+L = s.add(Obj("leader", 3, 4))
+t = s.do(("wait",))
+check("R-29 張り出しの東の端に当主が立っても（M東＞R東）、杭を含む組はずれない・落ちない", [(t.objs[i].x, t.objs[i].y) for i in (st, p1, p2)] == [(1, 5), (2, 5), (3, 5)] and (t.objs[L].x, t.objs[L].y) == (3, 4) and t.dead is None)
+s, st, p1, p2 = stake_board()
+s.add(Obj("leader", 6, 0))
+s.objs[s.leader()].y = 0
+W1 = s.add(Obj("part", 3, 2, "stoneWeight"))
+W2 = s.add(Obj("part", 1, 2, "stoneWeight"))
+s.terrain = list(CL[:6]) + ["##....#"]
+s.objs[s.leader()].x, s.objs[s.leader()].y = 6, 5
+t = s.do(("wait",))
+check("R-29 張り出した板に石（3 ≥ 板の硬さ 2）を2マス落とすと板は傷む。杭（石 3 ≥ 杭の硬さ 3）は壊れない",
+      t.objs[p2].wear == P["rule.impact.wearAdd"] and t.objs[st].wear == 0, (t.objs[p2].wear, t.objs[st].wear))
+s, st, p1, p2 = stake_board()
+s.terrain = list(CL[:5]) + [".......", "##....."]
+s.objs[st].y = s.objs[p1].y = s.objs[p2].y = 5
+L = s.add(Obj("leader", 0, 5))
+acts = s.actions()
+check("R-29 杭を含む組の隣で「押す」の候補は出ない", ("push", 1) not in acts, acts)
+s = board(FLAT)
+s.add(Obj("leader", 2, 5))
+k = s.add(Obj("part", 3, 5, "stake"))
+check("R-29 杭1つ（打った杭）は拾う候補に出る（案）", any(a[0] == "pick" and k in a[1] for a in s.actions()))
+s = board(FLAT, Cfg(stake_pick=False))
+s.add(Obj("leader", 2, 5))
+s.add(Obj("part", 3, 5, "stake"))
+check("R-29 Cfg(stake_pick=False) の読み方では打った杭は拾えない", not any(a[0] == "pick" for a in s.actions()))
+s = board(FLAT)
+L = s.add(Obj("leader", 2, 4))
+st2 = s.add(Obj("part", 2, 3, "stake"))  # 真下が地面でない杭（当主の上）はふつうの部品
+check("R-29 真下が地面でない杭は固定ではない", not s.fixed_cell(st2))
 
 # ---- 谷と一生の模型 ----
 from rules_sim import Valley, Grave, parse_parts
@@ -300,6 +384,15 @@ for g in range(10):
     v.die()
     v.succession()
 check("H-06 毎代取り戻して持ち続けた道具は 3 代（作った代＋2代）で消える", n == 3, n)
+
+# B-20（M1）：試し場の地形
+from rules_sim import trial_map
+c, gw, n = P["trial.cliffColumn"], P["trial.gapWidth"], P["trial.size"]
+m = trial_map("cliff")
+check(f"B-20 崖：いちばん下の段は {c} 列目まで地面、その東は地面なし", m[-1] == "#" * (c + 1) + "." * (n - c - 1) and all(r == "." * n for r in m[:-1]), m[-1])
+m = trial_map("gap")
+check(f"B-20 割れ目：{c} 列目より東の {gw} 列だけ地面なし、その東はまた地面", m[-1] == "#" * (c + 1) + "." * gw + "#" * (n - c - 1 - gw) and n - c - 1 - gw >= 1, m[-1])
+check("B-20 平ら：いちばん下の段は全部地面", trial_map("flat")[-1] == "#" * n)
 
 print(f"\n{ok} OK / {ng} NG")
 raise SystemExit(1 if ng else 0)

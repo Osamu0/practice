@@ -9,7 +9,7 @@ import os
 import re
 import sys
 
-from rules_sim import P, Cfg, build, solve, fmt_act, pv, WET_MATERIAL, Valley, parse_parts
+from rules_sim import P, Cfg, State, Obj, build, solve, fmt_act, pv, WET_MATERIAL, Valley, parse_parts, trial_map
 
 QUICK = len(sys.argv) > 1 and sys.argv[1] == "quick"
 DEPTH = 8 if QUICK else 10
@@ -185,6 +185,16 @@ TOOLS["板4"] = [(i, 0, "plank", None) for i in range(4)]
 TOOLS["板3＋西端に石"] = [(i, 1, "plank", None) for i in range(3)] + [(0, 0, "stoneWeight", None)]
 TOOLS["板＋ばね(上)"] = [(0, 0, "spring", "up"), (0, 1, "plank", None)]
 TOOLS["石＋ばね(東)"] = [(0, 0, "stoneWeight", None), (1, 0, "spring", "east")]
+# 杭（M2 の決め(b)、2026-11-19）：杭を真下が地面のマスに置くと、その1マスが固定。杭を含む組は動かない
+STAKE_TOOLS = {
+    "杭": [(0, 0, "stake", None)],
+    "杭＋板(東)": [(0, 0, "stake", None), (1, 0, "plank", None)],
+    "杭＋板2(東)": [(0, 0, "stake", None), (1, 0, "plank", None), (2, 0, "plank", None)],
+    "杭＋板3(東)": [(0, 0, "stake", None)] + [(i, 0, "plank", None) for i in (1, 2, 3)],
+    "杭の上に板（柱）": [(0, 1, "stake", None), (0, 0, "plank", None)],
+}
+BASE_TOOLS = len(TOOLS) - 1  # 杭なしの 21 種（1.2 の目安の数え方はこれまでと同じ）
+TOOLS.update(STAKE_TOOLS)
 
 
 def matrix(cfg, label, tools=TOOLS, main=False):
@@ -224,7 +234,7 @@ say("\n  解き方の例:")
 for (tn, cn), (n, path) in res1.items():
     if n is not None and tn in ("ironSpring(up)", "spring(up)", "板4", "板3＋西端に石", "stoneWeight", "石＋ばね(東)"):
         say(f"   {tn} / {cn}: " + " → ".join(fmt_act(a) for a in path))
-LIMIT = (len(TOOLS) - 1) // 2  # 07 の目安：道具1つで解ける種類は半分（21 種なら 10 種）まで（谷と一生 1.2）
+LIMIT = (len(TOOLS) - 1) // 2  # 07 の目安：道具1つで解ける種類は半分まで（谷と一生 1.2。杭の 5 種を足して 26 種なら 13 種）
 say(f"  1.2 の目安：道具1つで解ける種類は {LIMIT} 種まで")
 for cn in CH:
     k = sum(res1[(tn, cn)][0] is not None for tn in TOOLS if tn != "（素手）")
@@ -233,6 +243,39 @@ for cn in CH:
         say(f"  注：{cn} は {len(TOOLS) - 1} 種のうち {k} 種の道具で解ける（踏み台。{tag}）")
         if cn not in STEP_ONLY:
             problem("最強の一択(課題の作り)", f"{cn}：1.2 の決まりの形なのに、{k} 種の道具1つで解ける（目安 {LIMIT} 種まで）")
+
+
+# 杭の片持ち（M2）：崖の縁に杭＋板の片持ちが「渡る」の一択にならないか
+say("\n[杭（M2 の決め(b)）] 杭の道具で解ける仮の課題、と前の決め（組の全部が固定）との違い")
+cross = [cn for cn in CH if CH[cn]["kind"] == "cross"]
+old_cfg = Cfg(stake_rule="old", stake_pick=False)
+for tn, t in STAKE_TOOLS.items():
+    now = [cn.split(" ")[0] for cn in CH if res1[(tn, cn)][0] is not None]
+    old = [cn.split(" ")[0] for cn in CH if solve(build(CH[cn], old_cfg, tools=[t]), depth=DEPTH)[0] is not None]
+    say(f"  {tn:16s}：今の決め {now if now else 'なし'}／前の決め {old if old else 'なし'}")
+for cn in cross:
+    ok = [tn for tn in TOOLS if tn != "（素手）" and res1[(tn, cn)][0] is not None]
+    st = [tn for tn in ok if tn in STAKE_TOOLS]
+    best = min((res1[(tn, cn)][0], tn) for tn in ok) if ok else None
+    say(f"  {cn}：解ける道具 {len(ok)} 種（うち杭 {len(st)} 種）。いちばん短い {best}")
+    if ok and set(ok) <= set(STAKE_TOOLS):
+        problem("最強の一択(杭)", f"{cn}：杭の道具でしか解けない")
+nst = {tn: sum(res1[(tn, cn)][0] is not None for cn in cross) for tn in TOOLS if tn != "（素手）"}
+top = max(nst.values())
+say(f"  「渡る」{len(cross)} つのうち解ける数がいちばん多い道具：{[tn for tn, k in nst.items() if k == top]}（{top} つ）")
+if all(nst[tn] == top for tn in STAKE_TOOLS if nst[tn] == top) and all(tn in STAKE_TOOLS for tn, k in nst.items() if k == top):
+    problem("最強の一択(杭)", f"「渡る」をいちばん多く解く道具が杭の道具だけ（{top} つ）")
+# 杭の片持ち橋は、当主が乗っても、重りを落としても動かない（張り出しの板は壊れうる）
+s0 = State([".......", ".......", ".......", ".......", ".......", ".......", "##....#"], Cfg())
+k0 = s0.add(Obj("part", 1, 5, "stake"))
+ps = [s0.add(Obj("part", x, 5, "plank")) for x in (2, 3, 4)]
+s0.links |= {(k0, ps[0]), (ps[0], ps[1]), (ps[1], ps[2])}
+s0.add(Obj("leader", 4, 4))
+s0.kind = "none"
+t0 = s0.do(("wait",))
+say(f"  崖の縁の杭＋板3（張り出し3）の東の端に当主：組は{'動かない' if all(t0.objs[i].x == x for i, x in zip(ps, (2, 3, 4))) else '動いた'}（ずれる式なら M東 ＞ R東）。"
+    f"重りなしで張り出しをいくらでも長くできる＝「重りで押さえる」の代わりになる")
+
 
 
 if not QUICK:
@@ -323,6 +366,76 @@ for label, key in (("一代目 start.parts", "start.parts"), ("二代目から h
         say(f"   {cn}：" + ("解けない" if best is None else f"{best[0]} で {best[1]}手"))
     if key == "heir.startParts" and not any(True for _ in cand):
         problem("詰み", "heir.startParts で組める道具がない")
+
+say("\n" + "=" * 70)
+say("3c. 墓（M13：地の印）が N 個ある場所で、段差が素手で解けるようにならないか")
+say("=" * 70)
+for cn in ("仮1 段差を越える（渡る）", "仮6 高さ3の段差（谷と一生 1.2 の形）"):
+    ch = CH[cn]
+    lx, ly = next((x, y) for y, r in enumerate(ch["objs"]) for x, c in enumerate(r) if c == "L")
+    floor = [x for x in range(P["board.size"]) if not ch["map"][ly][x] == "#" and ch["map"][ly + 1][x] == "#" and x != lx]
+    for nmax in (1, 2, 3, len(floor)):
+        now_ok, old_ok, n_sets = 0, 0, 0
+        for k in range(1, nmax + 1):
+            for cells in itertools.combinations(floor, k):
+                gr = [(x, ly) for x in cells]
+                n_sets += 1
+                if solve(build(ch, Cfg(), graves=gr), depth=DEPTH)[0] is not None:
+                    now_ok += 1
+                if solve(build(ch, Cfg(grave_solid=True), graves=gr), depth=DEPTH)[0] is not None:
+                    old_ok += 1
+        say(f"  {cn}：墓 1〜{nmax} 個の置き方 {n_sets} 通り → 素手で解ける 今の決め {now_ok} 通り／前の決め（墓は固定物）{old_ok} 通り")
+        if now_ok:
+            problem("詰みの逆(墓)", f"{cn}：墓が{nmax}個までの置き方 {now_ok} 通りで素手で解ける")
+# 墓が積み重なる（前の決めで、墓の上で死ぬ）と2段の踏み台になった：今の決めでは印は重ならない（マスを取らない）
+say("  前の決めでは、墓の上に立って死ぬと墓が2段に積めた（段差2を素手で越えられた）。今の決めでは墓はマスを取らないので、何個あっても盤面は同じ")
+
+say("\n" + "=" * 70)
+say("3d. 最初の5分の順（デザインの柱）：start.parts で「予行で板が落ちる → 重りで押さえて渡る」が起きるか")
+say("=" * 70)
+
+
+def trial_run(kind, x0, stone=False, turns=None):
+    """試し場：板3の左を x0 に置き、東の端に人形（当主と同じ値）。stone=True なら西の端の板の上に試しの重り（石の重り）"""
+    turns = turns or P["trial.maxTurns"]
+    st = State(trial_map(kind), Cfg())
+    st.kind = "none"
+    y = P["trial.size"] - 2
+    ids = [st.add(Obj("part", x0 + i, y, "plank")) for i in range(3)]
+    st.links |= {(ids[0], ids[1]), (ids[1], ids[2])}
+    if stone:
+        st.add(Obj("part", x0, y - 1, "stoneWeight"))
+    st.add(Obj("leader", x0 + 2, y - 1))  # 人形（当主と同じ値。写しでは当主の物で代える）
+    for n in range(1, turns + 1):
+        st = st.do(("wait",))
+        if st.dead or any(i not in st.objs for i in ids) or any(st.objs[i].y != y for i in ids):
+            return n, "板が落ちた" if any(i not in st.objs or st.objs[i].y != y for i in ids) else st.dead
+    return None, "止まったまま"
+
+
+c = P["trial.cliffColumn"]
+for kind in ("cliff", "gap"):
+    x0 = c - 1  # 2 枚が地面、1 枚が張り出す（R-02 の形）
+    a = trial_run(kind, x0, stone=False)
+    b = trial_run(kind, x0, stone=True)
+    say(f"  試し場「{ {'cliff': '崖', 'gap': '割れ目'}[kind] }」板3 を {x0}〜{x0 + 2} 列、東の端に人形：{a[1]}（{a[0]}手目）"
+        f" → 西の端に試しの重り：{b[1] if b[0] else '動かない（押さえられた）'}")
+    if a[0] is None or b[0] is not None:
+        why = "板が落ちずに東・西へずれ続ける（ずれた先の向こう岸で支えができる）" if a[0] is None else "重りを載せても止まらない"
+        problem("最初の5分(試し場)", f"試し場「{ {'cliff': '崖', 'gap': '割れ目'}[kind] }」（trial.gapWidth={P['trial.gapWidth']}）で、人形を乗せた板3 が{why}")
+ch2 = CH["仮2 割れ目を渡る（渡る）"]
+need_stone_tools = {"板3＋西端に石": TOOLS["板3＋西端に石"]}
+plank_only = {k: TOOLS[k] for k in ("plank", "板2", "板3")}
+po = {k: res1[(k, "仮2 割れ目を渡る（渡る）")][0] for k in plank_only}
+ws = {k: solve(build(ch2, cfg1, tools=[t]), depth=DEPTH)[0] for k, t in need_stone_tools.items()}
+pair = solve(build(ch2, cfg1, tools=[TOOLS["板3"], TOOLS["stoneWeight"]]), depth=DEPTH + 2, cap=400000)
+say(f"  本番 仮2（割れ目 幅2）で start.parts（{P['start.parts']}）：板だけの道具 {po}、板3＋西端に石 {ws}、板3と石を別に持つ {pair[0]}手")
+n, path = solve(build(ch2, cfg1, tools=[TOOLS["板3"]]), depth=DEPTH)
+if n is not None:
+    say(f"   板3 だけの解き方：" + " → ".join(fmt_act(a) for a in path))
+    say("   → 板3 は張り出すと毎手 東・西へずれ続け（13.4 ずれ続ける板）、当主はそれに乗って運ばれて渡る。重りは要らない")
+    problem("最初の5分(規則・課題の作り)", "仮2 と start.parts では、板3 だけで渡れて「重りで押さえて渡る」が要らない（ずれた板が向こう岸に乗り、当主を運ぶ）。"
+            "幅2の割れ目は、張り出し1マスの片持ち（重りで押さえられる長さ）では届かない")
 
 say("\n" + "=" * 70)
 say("4. 先祖の仕掛けと、解いた課題の繰り返し（無限稼ぎ・実質の上乗せ）")
@@ -541,6 +654,50 @@ if os.path.exists(md):
         problem("表", f"md と csv の食い違い・抜けが {bad} 件")
 else:
     say("  パラメータ表.md がまだない")
+
+say("\n  パラメータの名前.md（game-spec-writer）の名前と、値の写し")
+nm = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "パラメータの名前.md")
+if os.path.exists(nm):
+    ntxt = open(nm, encoding="utf-8").read()
+    names, copies = set(), {}
+    for line in ntxt.splitlines():
+        cells = [c.strip() for c in line.strip().strip("|").split("|")]
+        if len(cells) >= 2 and re.match(r"^`?[a-z][A-Za-z0-9]*(\.[A-Za-z0-9<>]+)+`?$", cells[0]):
+            k = cells[0].strip("`")
+            names.add(k)
+            if cells[1]:
+                copies[k] = cells[1]
+    names_bad = 0
+
+    def norm(v):
+        v = str(v).strip()
+        if "未決" in v:
+            return "未決"
+        if v.startswith("（空欄") or v == "":
+            return ""
+        m2 = re.match(r"^(-?\d+)", v)
+        return m2.group(1) if m2 else v
+    for k, cell in copies.items():
+        if k not in P:
+            continue
+        if norm(cell) != norm(P[k]):
+            say(f"  写しの食い違い：{k} 名前の一覧「{cell}」 csv「{P[k]}」")
+            names_bad += 1
+    pending = ("challenge.vs.protectTurns", "challenge.cargo.", "enemy.crawler.")  # 名前の一覧に足される途中（仕様レビュー 直したほうがいい 15）
+    wait = []
+    for k in P:
+        if k.startswith("part.") or k in names:
+            continue
+        if k.startswith(pending):
+            wait.append(k)
+            continue
+        say(f"  名前の一覧にない：{k}")
+        names_bad += 1
+    if wait:
+        say(f"  注：名前の一覧に足される途中（game-spec-writer）：{wait}")
+    say(f"  値の写し {len(copies)} 件を見た。食い違い・抜け：{names_bad} 件")
+    if names_bad:
+        problem("表", f"パラメータの名前.md と csv の食い違い・抜けが {names_bad} 件")
 
 # ------------------------------------------------------------------
 say("\n" + "=" * 70)
