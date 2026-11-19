@@ -67,12 +67,13 @@ class Obj:
 class Cfg:
     """1つの盤面の条件（掟・癖・規則の読み方の切り替え）"""
 
-    def __init__(self, laws=(), traits=(), fall_cells=None, stake_rule="b", grave_solid=False):
+    def __init__(self, laws=(), traits=(), fall_cells=None, stake_rule="b", grave_solid=False, stake_pick=True):
         self.laws = set(laws)
         self.traits = set(traits)
         self.fall_cells = fall_cells if fall_cells is not None else P["rule.fall.cellsPerTurn"]
         self.stake_rule = stake_rule  # "b"＝今の決め（固定は杭の1マスだけ）。"old"＝前の決め（杭につながった組の全部が固定）
         self.grave_solid = grave_solid  # True＝前の決め（墓は盤面の固定物）。False＝今の決め（地の印）
+        self.stake_pick = stake_pick  # True＝打った杭も拾える（挑む.md 3章の案）。False＝拾えない
 
     def push_w(self):
         return P["leader.pushWeight"] + (P["trait.strong.pushWeightAdd"] if "strong" in self.traits else 0)
@@ -649,9 +650,12 @@ class State:
         return self.free(L.x + d, L.y, self.occ())
 
     def pickable(self, g):
-        """拾える組：部品1つだけの組か、自分が置いた道具。先祖の仕掛けと固定の組は拾えない"""
-        if not all(self.objs[i].kind == "part" for i in g) or self.immovable(g):
-            return False  # 杭で留まった組も拾えない（前の決めのまま。仕様の確かめ待ち）
+        """拾える組：部品1つだけの組か、自分が置いた道具。先祖の仕掛けは拾えない。
+        打った杭（とその組）は拾える（挑む.md 3章「杭は打ったあとも拾える：案」）。Cfg(stake_pick=False) で拾えない読み方"""
+        if not all(self.objs[i].kind == "part" for i in g):
+            return False
+        if self.immovable(g) and not self.cfg.stake_pick:
+            return False  # stake_pick=False：打った杭（とその組）は拾えない読み方
         if any(self.objs[i].anc for i in g):
             return False
         return len(g) == 1 or all(self.objs[i].byLeader for i in g)
@@ -777,16 +781,17 @@ class State:
 
 def trial_map(kind="flat"):
     """試し場の地形（作業台と設計図.md 5章、M1）。いちばん下の段が地面。
-    cliff：西から trial.cliffColumn 列目より東に地面がない（崖）。
-    gap：trial.cliffColumn 列目から trial.gapWidth 列ぶん地面がない（割れ目）。その東はまた地面"""
+    列は西から 0 で数える（trial.startColumn と同じ）。
+    cliff：西から trial.cliffColumn 列目までが地面、それより東の列は地面がない（崖。下の外は谷底）。
+    gap：trial.cliffColumn 列目より東の trial.gapWidth 列だけ地面がない（割れ目）。その東はまた地面"""
     n = P["trial.size"]
     c, w = P["trial.cliffColumn"], P["trial.gapWidth"]
     row = []
     for x in range(n):
         if kind == "cliff":
-            row.append("#" if x < c else ".")
+            row.append("#" if x <= c else ".")
         elif kind == "gap":
-            row.append("." if c <= x < c + w else "#")
+            row.append("." if c < x <= c + w else "#")
         else:
             row.append("#")
     return ["." * n] * (n - 1) + ["".join(row)]
