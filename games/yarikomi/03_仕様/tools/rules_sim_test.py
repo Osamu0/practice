@@ -33,15 +33,25 @@ def link_all(s, ids):
 
 FLOOR = [".......", ".......", ".......", ".......", "##.....", "##.....", "##....."]
 
-# R-02：地面の東の端から板3枚を張り出し（支えの列1列）、東端に当主 → 一緒に東へ1マスずれ、その手では落ちない
-s = board(FLOOR)
-L = s.add(Obj("leader", 3, 2))
-ids = [s.add(Obj("part", x, 3, "plank")) for x in (1, 2, 3)]
+# R-02：地面の東の端から板3枚を張り出す。2枚は地面の上（支えの列 x=0,1）、1枚（x=2）は張り出し
+#   当主なし：M東 = load(2)×(2−1) = 板1 = 1、R東 = load(0)×(1−0) = 板1 = 1 → 等しいのでずれない
+#   東の端の板に当主：M東 = (板1＋当主3)×1 = 4 ＞ R東 = 1 → ずれる
+R02 = [".......", ".......", ".......", ".......", "##....#", "##....#", "##....#"]
+w_pl, w_ld = P["part.plank.weight"], P["leader.weight"]
+check("R-02（値）当主なしは M東 ≤ R東、当主ありは M東 ＞ R東", w_pl * 1 <= w_pl * 1 and (w_pl + w_ld) * 1 > w_pl * 1)
+s = board(R02)
+L = s.add(Obj("leader", 6, 3))  # 板の上にいない
+ids = [s.add(Obj("part", x, 3, "plank")) for x in (0, 1, 2)]
 link_all(s, ids)
 t = s.do(("wait",))
-check("R-02 板と当主が一緒に東へ1マス", [t.objs[i].x for i in ids] == [2, 3, 4] and t.objs[L].x == 4 and t.objs[L].y == 2, [(t.objs[i].x, t.objs[i].y) for i in ids])
-t2 = t.do(("wait",))
-check("R-02 次の手で落ちる（ここでは谷底まで→当主は死ぬ）", t2.dead is not None, t2.dead)
+check("R-02 当主が乗っていないと板はずれない", [t.objs[i].x for i in ids] == [0, 1, 2] and all(t.objs[i].y == 3 for i in ids), [(t.objs[i].x, t.objs[i].y) for i in ids])
+s = board(R02)
+L = s.add(Obj("leader", 2, 2))  # 東の端の板の上
+ids = [s.add(Obj("part", x, 3, "plank")) for x in (0, 1, 2)]
+link_all(s, ids)
+t = s.do(("wait",))
+check("R-02 東の端に当主が乗ると、板と当主が一緒に東へ1マスずれる", [t.objs[i].x for i in ids] == [1, 2, 3] and (t.objs[L].x, t.objs[L].y) == (3, 2), [(t.objs[i].x, t.objs[i].y) for i in ids] + [(t.objs[L].x, t.objs[L].y)])
+check("R-02 ずれた手では落ちない（板も当主も y はそのまま）", all(t.objs[i].y == 3 for i in ids) and t.dead is None, t.dead)
 
 # R-04：西に地面の上の板を足し、重りで押さえるとずれない
 s = board(FLOOR)
@@ -138,8 +148,130 @@ s.kind = "cross"
 s.goal = (4, 1)
 L = s.add(Obj("leader", 1, 2))
 sp = s.add(Obj("part", 2, 5, "spring", "up"))
-t = s.do(("move", 1))
+t = s.do(("enter", 1))
 t = t.do(("wait",))
 check("ばね跳び：当主が打ち上げられる", t.objs[L].y == 4 - (P["part.spring.springPower"] - P["leader.weight"]), (t.objs[L].x, t.objs[L].y))
 
+FLAT = [".......", ".......", ".......", ".......", ".......", ".......", "#######"]
+
+# R-21：真下が空きのマスへ入ると、その手の 2-5 で落ちる。支えのある組へ登ったときは落ちない
+s = board([".......", ".......", ".......", ".......", "###.###", "#######", "#######"])
+L = s.add(Obj("leader", 2, 3))
+check("R-21 真下が空きのマスへは「入る」の候補が出る", ("enter", 1) in s.actions())
+t = s.do(("enter", 1))
+check("R-21 入った手の 2-5 で落ちる（1マス下で止まる）", t.dead is None and (t.objs[L].x, t.objs[L].y) == (3, 4), (t.objs[L].x, t.objs[L].y))
+s = board(FLAT)
+L = s.add(Obj("leader", 2, 5))
+pb = s.add(Obj("part", 3, 5, "pebble"))
+t = s.do(("climb", 1))
+check("R-21 支えのある組の上へ登った手では落ちない", t.dead is None and (t.objs[L].x, t.objs[L].y) == (3, 4) and (t.objs[pb].x, t.objs[pb].y) == (3, 5), (t.objs[L].x, t.objs[L].y))
+
+# C-10：押せる重さの組は押せる。重い組には「押す」の候補が出ない
+s = board(FLAT)
+L = s.add(Obj("leader", 2, 5))
+s.add(Obj("part", 3, 5, "ironWeight"))
+check(f"C-10 鉄の重り({P['part.ironWeight.weight']}) ＞ 押せる重さ({P['leader.pushWeight']}) には押すが出ない", ("push", 1) not in s.actions())
+
+# C-20：支えのある押せる組の隣 → 「押す」と「登る」が別の候補。選んだほうだけが起きる
+s = board(FLAT)
+L = s.add(Obj("leader", 2, 5))
+pb = s.add(Obj("part", 3, 5, "pebble"))
+acts = s.actions()
+check("C-20 同じ向きに「押す」と「登る」の2つの候補が出る", ("push", 1) in acts and ("climb", 1) in acts, acts)
+tp = s.do(("push", 1))
+check("C-20 押すを選ぶと、組が1マス動き、当主は組のあったマスへ（上には乗らない）", (tp.objs[pb].x, tp.objs[pb].y) == (4, 5) and (tp.objs[L].x, tp.objs[L].y) == (3, 5))
+tc = s.do(("climb", 1))
+check("C-20 登るを選ぶと、当主は組の上へ、組は動かない", (tc.objs[pb].x, tc.objs[pb].y) == (3, 5) and (tc.objs[L].x, tc.objs[L].y) == (3, 4))
+
+# C-21：平らな地面の上の板1枚に登る → 手の終わりにも板の上。真下が空きの板（支えのない組）には登れない
+s = board(FLAT)
+L = s.add(Obj("leader", 2, 5))
+pl = s.add(Obj("part", 3, 5, "plank"))
+t = s.do(("climb", 1))
+check("C-21 地面の上の板に登り、手の終わりにも板の真上のマスにいる", (t.objs[L].x, t.objs[L].y) == (3, 4) and (t.objs[pl].x, t.objs[pl].y) == (3, 5) and t.dead is None)
+s = board([".......", ".......", ".......", ".......", ".......", ".......", "###.###"])
+L = s.add(Obj("leader", 2, 5))
+s.add(Obj("part", 3, 5, "plank"))  # 真下 (3,6) が空き＝支えのない組
+acts = s.actions()
+check("C-21 支えのない板には「登る」の候補が出ない（押すは出てよい）", ("climb", 1) not in acts and ("push", 1) in acts, acts)
+
+# C-11 の残り：固定物（墓）に登れる。頭の上がふさがっていると、段が高すぎると、登るは出ない
+s = board(FLAT)
+L = s.add(Obj("leader", 2, 5))
+s.add(Obj("grave", 3, 5))
+check("C-11 墓（固定物）にも登れる", ("climb", 1) in s.actions() and ("push", 1) not in s.actions())
+s = board([".......", ".......", ".......", ".......", "..#....", ".......", "#######"])
+L = s.add(Obj("leader", 2, 5))
+s.add(Obj("part", 3, 5, "pebble"))
+check("C-11 頭の上がふさがっていると登るが出ない", ("climb", 1) not in s.actions())
+s = board(FLAT)
+L = s.add(Obj("leader", 2, 5))
+s.add(Obj("part", 3, 5, "pebble"))
+s.add(Obj("part", 3, 4, "pebble"))
+check(f"C-11 2段に積んだ物（{P['leader.climbHeight']}段より高い）には登るが出ない", ("climb", 1) not in s.actions())
+s = board([".......", ".......", ".......", ".......", "...#...", "...#...", "#######"])
+L = s.add(Obj("leader", 2, 5))
+check("C-11 地面の段差（高さ2）には登るが出ない", ("climb", 1) not in s.actions())
+s = board([".......", ".......", ".......", ".......", ".......", "...##..", "#######"])
+L = s.add(Obj("leader", 2, 5))
+check("C-11 地面の段差（高さ1）には登るが出る", ("climb", 1) in s.actions())
+
+# 先祖の仕掛けは挑む中は拾えない（挑む.md 3章）
+s = board(FLAT)
+L = s.add(Obj("leader", 2, 5))
+s.add(Obj("part", 3, 5, "plank", anc=True))
+check("先祖の仕掛けには「拾う」の候補が出ない", not any(a[0] == "pick" for a in s.actions()))
+
+# ---- 谷と一生の模型 ----
+from rules_sim import Valley, Grave, parse_parts
+
+TABLE = ["plank", "pebble", "stoneWeight", "spring", "rope"]
+
+# V-08：一代目の棚は start.parts
+v = Valley(seed=7)
+check("V-08 一代目の棚は start.parts と同じで、どれも傷み0、道具0", sorted(p for p, _ in v.shelf) == sorted(parse_parts(P["start.parts"])) and all(w == 0 for _, w in v.shelf) and v.tools == [])
+
+# H-20：代替わりのあとの棚は、親の持ち物に関係なく heir.startParts
+v = Valley(seed=7)
+v.shelf = [("ironWeight", 0)] * P["leader.carryParts"]
+v.tools = [{(0, 0): ("plank", 0), (1, 0): ("plank", 0)}]
+v.die()
+v.succession()
+first = sorted(v.shelf)
+v.shelf = []
+v.die()
+v.succession()
+check("H-20 代替わりの棚は heir.startParts（傷み0・道具0）で、毎代同じ", first == sorted((p, 0) for p in parse_parts(P["heir.startParts"])) and sorted(v.shelf) == first and v.tools == [])
+
+# V-04：拾うのはその代で初めて解けたときだけ
+v = Valley(seed=7)
+v.shelf = []
+g1 = v.solve("A", TABLE)
+before = list(v.shelf)
+g2 = v.solve("A", TABLE)
+check(f"V-04 初めて解くと {P['pickup.drawCount']} 個拾う", len(g1) == P["pickup.drawCount"])
+check("V-04 同じ代に2回目は0個で、棚は前と同じ", g2 == [] and v.shelf == before)
+v2 = Valley(seed=7)
+v2.shelf = []
+check("V-04 同じシード・同じ記録なら、拾う部品は同じ", v2.solve("A", TABLE) == g1)
+v.succession()
+check(f"V-04 代替わりのあとは、同じ場所でまた {P['pickup.drawCount']} 個拾える", len(v.solve("A", TABLE)) == P["pickup.drawCount"])
+
+# H-21：前の代の墓 A は wearPerGen だけ傷む（掟の足しなし）。その代替わりで建った墓 B は傷まない
+wd, wg = P["relic.wearOnDeath"], P["fixture.wearPerGen"]
+v = Valley(seed=7)
+v.shelf = [("plank", 0), ("pebble", 1)]  # 死ぬと 0+wd、1+wd
+v.tools = [{(0, 0): ("plank", 0), (1, 0): ("plank", 1), (2, 0): ("plank", 0)}]  # 真ん中が先に消える橋
+A = v.die()
+v.succession()  # A はこの代替わりで建った墓 → 足さない
+check("H-21 死んだ直後の代替わりでは、その墓の遺品は傷まない", sorted(A.parts) == [("pebble", min(2, 1 + wd)), ("plank", min(2, wd))] and sorted(A.tools[0].values()) == [("plank", wd), ("plank", wd), ("plank", min(2, 1 + wd))])
+v.shelf = [("spring", 0)]
+B = v.die()
+v.succession(new_laws={"longRain"})  # 長雨でも遺品には掟の足しはない
+pl = [w for p, w in A.parts if p == "plank"]
+check(f"H-21 前の代の墓 A の遺品は {wg} だけ傷む（長雨の足しはない）", sorted(pl) == [wd + wg, wd + wg, wd + wg] and ("pebble", 2) not in A.parts and all(w <= 2 for _, w in A.parts), A.parts)
+check("H-21 壊れかけをこえた部品は消え、残った橋は2つの部品に分かれる", A.tools == [] and len(A.parts) == 3, (A.tools, A.parts))
+check("H-21 この代に建った墓 B の遺品は、その代替わりでは変わらない", B.parts == [("spring", wd)], B.parts)
+
 print(f"\n{ok} OK / {ng} NG")
+raise SystemExit(1 if ng else 0)

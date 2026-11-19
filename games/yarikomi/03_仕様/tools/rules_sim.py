@@ -2,13 +2,16 @@
 
 本番のコード（src/core/）ではない。値を決めるために、規則の一部を Python で写したもの。
 入っている規則：重さ（ずれる 2-4）、落ちる（2-5、当たる、谷底、落ちて死ぬ、下敷き）、弾む（縮む・打ち出す 2-2、投げ当て）、
-当主の手（進む・登る・押す、置く、拾う、待つ）、敵（仮の歩く敵）、掟の大風（続きの動き）、長雨（重さの足し）。
+当主の手（挑む.md 3.1 の「進む」の3候補＝入る・登る・押す、置く、拾う、待つ）、敵（仮の歩く敵）、掟の大風（続きの動き）、長雨（重さの足し）。
+谷と一生の小さな模型（Valley）：代の始めの棚（start.parts／heir.startParts）、拾うのはその代で初めて解けたときだけ、
+死んだときの遺品（relic.wearOnDeath）、代替わりの傷み（仕掛け＝wearPerGen＋掟の足し、遺品＝wearPerGen だけ・その代替わりで建った墓は除く）。
 入っていない規則：燃える（2-1）、引っぱる（2-3、縄・滑車・当主が引く）、水。→ これらの最強の一択・詰みは確かめていない。
 
 値は ../パラメータ表.csv から読む（数を直に書かない）。
 """
 import csv
 import os
+import random
 from collections import deque
 
 HERE = os.path.dirname(os.path.abspath(__file__))
@@ -39,14 +42,15 @@ def pv(part, key, default=None):
 
 
 class Obj:
-    __slots__ = ("kind", "part", "x", "y", "wear", "facing", "padd", "dist", "edir", "byLeader")
+    __slots__ = ("kind", "part", "x", "y", "wear", "facing", "padd", "dist", "edir", "byLeader", "anc")
 
-    def __init__(self, kind, x, y, part=None, facing=None, padd=0, wear=0, edir=0, byLeader=False):
+    def __init__(self, kind, x, y, part=None, facing=None, padd=0, wear=0, edir=0, byLeader=False, anc=False):
         self.kind, self.part, self.x, self.y = kind, part, x, y
         self.wear, self.facing, self.padd, self.dist, self.edir, self.byLeader = wear, facing, padd, 0, edir, byLeader
+        self.anc = anc  # 先祖が据えた仕掛け（挑む中は拾えない：挑む.md 3章）
 
     def copy(self):
-        o = Obj(self.kind, self.x, self.y, self.part, self.facing, self.padd, self.wear, self.edir, self.byLeader)
+        o = Obj(self.kind, self.x, self.y, self.part, self.facing, self.padd, self.wear, self.edir, self.byLeader, self.anc)
         o.dist = self.dist
         return o
 
@@ -54,10 +58,9 @@ class Obj:
 class Cfg:
     """1つの盤面の条件（掟・癖・規則の読み方の切り替え）"""
 
-    def __init__(self, laws=(), traits=(), climb_objects=False, fall_cells=None):
+    def __init__(self, laws=(), traits=(), fall_cells=None):
         self.laws = set(laws)
         self.traits = set(traits)
-        self.climb_objects = climb_objects  # 登れるのは地面だけ（仕様のまま）か、支えのある物にも登れるか
         self.fall_cells = fall_cells if fall_cells is not None else P["rule.fall.cellsPerTurn"]
 
     def push_w(self):
@@ -464,15 +467,80 @@ class State:
                 return i
         return None
 
+    # --- 段1「進む」の3候補（挑む.md 3.1）。どれも手の始めの盤面で決める ---
+    def _climb_solid(self, x, y, occ, sup, gid):
+        """登る足場：地面、固定物、支えのある組のマス（当主は除く）"""
+        if not (0 <= x < W and 0 <= y < H):
+            return False
+        if self.ground(x, y):
+            return True
+        j = occ.get((x, y))
+        if j is None or self.objs[j].kind == "leader":
+            return False
+        return gid[j] in sup  # sup には固定の組も入っている
+
+    def climb_dest(self, d):
+        """登るの行き先 (x', y-k)。候補に出ないなら None"""
+        L = self.objs[self.leader()]
+        tx = L.x + d
+        if not (0 <= tx < W):
+            return None
+        occ = self.occ()
+        sup, gid = self.supported_set(self.groups())
+        if not self._climb_solid(tx, L.y, occ, sup, gid):
+            return None
+        for k in range(1, P["leader.climbHeight"] + 1):
+            ty = L.y - k
+            if ty < 0:
+                return None  # 盤の上の外
+            if not self.free(L.x, ty, occ):
+                return None  # 頭の上がふさがっている
+            if self.free(tx, ty, occ):
+                return (tx, ty)  # いちばん小さい k
+            if not self._climb_solid(tx, ty, occ, sup, gid):
+                return None  # 途中のマスが足場でない（支えのない組など）
+        return None  # climbHeight 段より上にしか空きがない
+
+    def push_ok(self, d):
+        L = self.objs[self.leader()]
+        tx = L.x + d
+        if not (0 <= tx < W):
+            return False
+        occ = self.occ()
+        j = occ.get((tx, L.y))
+        if j is None:
+            return False
+        g = next(x for x in self.groups() if j in x)
+        if self.fixed(g) or any(self.objs[i].kind == "leader" for i in g):
+            return False
+        if self.gweight(g) > self.cfg.push_w():
+            return False
+        return all(self.free(self.objs[i].x + d, self.objs[i].y, occ, g) for i in g)
+
+    def enter_ok(self, d):
+        L = self.objs[self.leader()]
+        return self.free(L.x + d, L.y, self.occ())
+
+    def pickable(self, g):
+        """拾える組：部品1つだけの組か、自分が置いた道具。先祖の仕掛けと固定の組は拾えない"""
+        if not all(self.objs[i].kind == "part" for i in g) or self.fixed(g):
+            return False
+        if any(self.objs[i].anc for i in g):
+            return False
+        return len(g) == 1 or all(self.objs[i].byLeader for i in g)
+
     def actions(self):
         acts = [("wait",)]
         li = self.leader()
         L = self.objs[li]
         occ = self.occ()
         for d in (-1, 1):
-            acts.append(("move", d))
-            if self.cfg.climb_objects:
+            if self.enter_ok(d):
+                acts.append(("enter", d))
+            if self.climb_dest(d) is not None:
                 acts.append(("climb", d))
+            if self.push_ok(d):
+                acts.append(("push", d))
         # 置く
         for ti, tool in enumerate(sorted(set(self.inv))):
             seen = set()
@@ -484,10 +552,9 @@ class State:
                     seen.add((ox, oy))
                     if all(self.free(ox + tx, oy + ty, occ) for (tx, ty, *_r2) in tool):
                         acts.append(("place", tool, ox, oy))
-        # 拾う（隣の、部品だけの組で、固定でないもの）
-        gs = self.groups()
-        for g in gs:
-            if not all(self.objs[i].kind == "part" for i in g) or self.fixed(g):
+        # 拾う（隣の、拾える組）
+        for g in self.groups():
+            if not self.pickable(g):
                 continue
             if any(abs(self.objs[i].x - L.x) + abs(self.objs[i].y - L.y) == 1 for i in g):
                 acts.append(("pick", tuple(g)))
@@ -497,35 +564,23 @@ class State:
         s = self.copy()
         li = s.leader()
         L = s.objs[li]
-        occ = s.occ()
-        if act[0] in ("move", "climb"):
-            d = act[1]
-            tx, ty = L.x + d, L.y
-            if not (0 <= tx < W):
+        if act[0] == "enter":
+            if not s.enter_ok(act[1]):
                 return None
-            j = occ.get((tx, ty))
-            target_solid = s.ground(tx, ty)
-            if act[0] == "climb":
-                # 物の上に登る（仕様の読み方の違い。cfg.climb_objects のときだけ）
-                if not s.cfg.climb_objects or j is None or s.objs[j].kind not in ("part", "grave", "cargo"):
-                    return None
-                target_solid = True
-            if target_solid:
-                ok = False
-                for k in range(1, P["leader.climbHeight"] + 1):
-                    if not s.free(L.x, L.y - k, occ):
-                        break
-                    if s.free(tx, ty - k, occ):
-                        L.x, L.y = tx, ty - k
-                        ok = True
-                        break
-                if not ok:
-                    return None
-            elif j is not None:
-                if s._push(L, j, d) is None:
-                    return None
-            else:
-                L.x = tx
+            L.x += act[1]
+        elif act[0] == "climb":
+            dest = s.climb_dest(act[1])
+            if dest is None:
+                return None
+            L.x, L.y = dest
+        elif act[0] == "push":
+            d = act[1]
+            if not s.push_ok(d):
+                return None
+            j = s.occ()[(L.x + d, L.y)]
+            g = next(x for x in s.groups() if j in x)
+            s.move_group(g, d, 0)
+            L.x += d
         elif act[0] == "place":
             _, tool, ox, oy = act
             ids = []
@@ -553,6 +608,8 @@ class State:
             for i in g:
                 s.remove(i)
             s.inv = tuple(sorted(s.inv + (tool,)))
+        elif act[0] != "wait":
+            raise ValueError(act)
         s.step_rules()
         return s
 
@@ -562,20 +619,6 @@ class State:
         if o.part == "stake":
             return side != "down"
         return True
-
-    def _push(self, L, j, d):
-        gs = self.groups()
-        g = next(x for x in gs if j in x)
-        if self.fixed(g) or any(self.objs[i].kind in ("leader",) for i in g):
-            return None
-        if self.gweight(g) > self.cfg.push_w():
-            return None
-        occ = self.occ()
-        if not all(self.free(self.objs[i].x + d, self.objs[i].y, occ, g) for i in g):
-            return None
-        self.move_group(g, d, 0)
-        L.x += d
-        return self
 
     def step_rules(self):
         self.moved = set()
@@ -630,7 +673,7 @@ def build(ch, cfg, tools=(), extra=()):
             elif c == "T":
                 s.add(Obj("grave", x, y))
     for (x, y, part, facing, wear) in extra:  # 先祖の仕掛け（据えた物）
-        s.add(Obj("part", x, y, part, facing, 0, wear))
+        s.add(Obj("part", x, y, part, facing, 0, wear, anc=True))
     # 先祖の仕掛けはつなぎ点でつなぐ
     pos = {(o.x, o.y): i for i, o in s.objs.items() if o.kind == "part"}
     for (x, y), i in pos.items():
@@ -676,10 +719,176 @@ def solve(start, depth=10, cap=300000):
 def fmt_act(a):
     if a[0] == "place":
         return f"置く{[t[2] + ('' if t[3] is None else '(' + t[3] + ')') for t in a[1]]}@({a[2]},{a[3]})"
-    if a[0] == "move":
-        return "進む東" if a[1] == 1 else "進む西"
-    if a[0] == "climb":
-        return "登る東" if a[1] == 1 else "登る西"
+    if a[0] in ("enter", "climb", "push"):
+        name = {"enter": "入る", "climb": "登る", "push": "押す"}[a[0]]
+        return ("→" if a[1] == 1 else "←") + name
     if a[0] == "pick":
         return "拾う"
     return "待つ"
+
+
+# ======================================================================
+# 谷と一生の小さな模型（継承の一周.md 5章・6.3、谷と一生の流れ.md 1.1・3章・4章）
+# 盤面の規則は持たない。部品の数・傷み・代だけを数える。
+# ======================================================================
+WEAR_MAX = 2  # 壊れかけ（傷みの段の上限。これをこえたら消える）
+
+
+def parse_parts(spec):
+    """'plank:3,stoneWeight:1' → ['plank', 'plank', 'plank', 'stoneWeight']"""
+    out = []
+    for item in str(spec).split(","):
+        item = item.strip()
+        if not item:
+            continue
+        pid, n = item.split(":")
+        out += [pid.strip()] * int(n)
+    return out
+
+
+def split_tool(cells):
+    """cells: {(x, y): (part, wear)}。消えた部品を除いたあと、つながりで分ける（2.1 と同じ。つなぎ点は隣どうしで近似）。
+    2つ以上つながった塊は道具、1つだけは部品として返す"""
+    left = dict(cells)
+    tools, parts = [], []
+    while left:
+        start = min(left, key=lambda p: (p[1], p[0]))
+        comp, q = {}, [start]
+        while q:
+            p = q.pop()
+            if p not in left:
+                continue
+            comp[p] = left.pop(p)
+            x, y = p
+            q += [(x + 1, y), (x - 1, y), (x, y + 1), (x, y - 1)]
+        if len(comp) >= 2:
+            tools.append(comp)
+        else:
+            parts.append(next(iter(comp.values())))
+    return tools, parts
+
+
+class Grave:
+    def __init__(self, gen, tools, parts):
+        self.gen = gen  # 建った代（その代の当主が死んで建った）
+        self.tools = tools  # [{(x, y): (part, wear)}]
+        self.parts = parts  # [(part, wear)]
+
+    def count(self):
+        return sum(len(t) for t in self.tools) + len(self.parts)
+
+
+class Valley:
+    """relic_decay：墓の遺品も代替わりで傷むか。relic_skip_new：その代替わりで建った墓の遺品には足さないか（今の仕様＝True）"""
+
+    def __init__(self, seed=1, relic_decay=True, relic_skip_new=True, first_pick_only=True, death_cap=True):
+        self.seed = seed
+        self.gen = 1
+        self.laws = set()
+        self.year = P["valley.startYear"]
+        self.shelf = [(p, 0) for p in parse_parts(P["start.parts"])]
+        self.tools = []
+        self.graves = []
+        self.fixtures = []  # [{(x, y): (part, wear)}] 谷に据えた仕掛け
+        self.picked = set()  # この代に拾った場所（この代の記録から決まる、の写し）
+        self.relic_decay, self.relic_skip_new, self.first_pick_only = relic_decay, relic_skip_new, first_pick_only
+        # death_cap：遺品になるときの傷みを壊れかけ（2）で止める（今の仕様）。False なら、2 をこえる部品は墓に入らず消える（案）
+        self.death_cap = death_cap
+
+    # 結果：拾う（谷と一生の流れ.md 3章）
+    def solve(self, place, table):
+        self.year += P["challenge.yearsCost"]
+        if self.first_pick_only and place in self.picked:
+            return []
+        self.picked.add(place)
+        rng = random.Random(f"{self.seed}/代{self.gen}/場所{place}/拾う")
+        got = [table[rng.randrange(len(table))] for _ in range(min(P["pickup.drawCount"], max(1, len(table))))] if table else []
+        self.shelf += [(p, 0) for p in got]
+        self.shelf = self.shelf[:P["leader.carryParts"]]  # あふれは置いていく（どれを置くかの選びは見ない）
+        return got
+
+    def place_fixture(self, cells):
+        """棚の部品から据える仕掛けを作る（cells: {(x, y): part}）。棚に無ければ作らない"""
+        need = list(cells.values())
+        names = [p for p, _ in self.shelf]
+        for p in need:
+            if p not in names:
+                return False
+            names.remove(p)
+        fx = {}
+        for pos, p in cells.items():
+            k = next(i for i, (q, _) in enumerate(self.shelf) if q == p)
+            fx[pos] = self.shelf.pop(k)
+        self.fixtures.append(fx)
+        return True
+
+    # 取り戻す（継承の一周.md 5章：道具→部品の順、入る分だけ）
+    def retrieve(self, grave):
+        while grave.tools and len(self.tools) < P["leader.carryTools"]:
+            self.tools.append(grave.tools.pop(0))
+        while grave.parts and len(self.shelf) < P["leader.carryParts"]:
+            self.shelf.append(grave.parts.pop(0))
+
+    def die(self):
+        w = P["relic.wearOnDeath"]
+        if self.death_cap:
+            tools = [{pos: (p, min(WEAR_MAX, wr + w)) for pos, (p, wr) in t.items()} for t in self.tools]
+            parts = [(p, min(WEAR_MAX, wr + w)) for p, wr in self.shelf]
+        else:
+            tools, parts = [], []
+            for t in self.tools:
+                tt, pp = split_tool(self._wear_cells(t, lambda p: w))
+                tools += tt
+                parts += pp
+            parts += [(p, wr + w) for p, wr in self.shelf if wr + w <= WEAR_MAX]
+        g = Grave(self.gen, tools, parts)
+        self.graves.append(g)
+        self.tools, self.shelf = [], []
+        return g
+
+    def _wear_cells(self, cells, add):
+        out = {}
+        for pos, (p, wr) in cells.items():
+            a = add(p)
+            if wr + a <= WEAR_MAX:
+                out[pos] = (p, wr + a)
+        return out
+
+    def succession(self, new_laws=()):
+        """継承の一周.md 6.3 の 1〜5"""
+        self.year += P["succession.yearsBetween"]  # 1
+        self.laws = set(new_laws)  # 2（引き方は見ない）
+        # 3 作業台：見ない
+        self.shelf = [(p, 0) for p in parse_parts(P["heir.startParts"])]  # 4
+        self.tools = []
+        # 5 谷の仕掛け：wearPerGen ＋ 掟の足し ＋ 災いの足し
+        def fx_add(p):
+            a = P["fixture.wearPerGen"] + P["calamity.fixtureWearAdd"]
+            if "longRain" in self.laws and p in WET_MATERIAL:
+                a += P["law.longRain.fixtureWearAdd"]
+            return a
+        nf = []
+        for fx in self.fixtures:
+            fx = self._wear_cells(fx, fx_add)
+            t, ps = split_tool(fx)
+            nf += t + [{(0, 0): q} for q in ps]  # 1つだけ残った部品も、その場の仕掛けとして残す
+        self.fixtures = nf
+        # 5 墓の遺品：wearPerGen だけ。この代替わりで建った墓（この代の当主の墓）は除く
+        if self.relic_decay:
+            for g in self.graves:
+                if self.relic_skip_new and g.gen == self.gen:
+                    continue
+                add = P["fixture.wearPerGen"]
+                tools, parts = [], []
+                for t in g.tools:
+                    tt, pp = split_tool(self._wear_cells(t, lambda p: add))
+                    tools += tt
+                    parts += pp
+                parts += [(p, wr + add) for p, wr in g.parts if wr + add <= WEAR_MAX]
+                g.tools, g.parts = tools, parts
+        self.gen += 1
+        self.picked = set()
+
+    def stock(self):
+        """谷に眠る部品（墓の遺品＋据えた仕掛け）"""
+        return sum(g.count() for g in self.graves) + sum(len(f) for f in self.fixtures)

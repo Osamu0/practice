@@ -1,6 +1,6 @@
 """数値の破綻（詰み・最強の一択・無限稼ぎ／実質の上乗せ）を確かめる（game-spec-balance、2026-11-18）。
 
-使い方：  python3 03_仕様/tools/balance_check.py            （全部。数分かかる）
+使い方：  python3 03_仕様/tools/balance_check.py            （全部。数分かかる。問題が1件でもあれば終わりの値は 1）
           python3 03_仕様/tools/balance_check.py quick      （盤面の探しを浅くする）
 値は ../パラメータ表.csv から読む。課題の盤面はすべて【仮】（課題の中身は 07 で作る。ここでは数値を試すためだけの形）。
 """
@@ -9,7 +9,7 @@ import os
 import re
 import sys
 
-from rules_sim import P, Cfg, build, solve, fmt_act, pv, WET_MATERIAL
+from rules_sim import P, Cfg, build, solve, fmt_act, pv, WET_MATERIAL, Valley, parse_parts
 
 QUICK = len(sys.argv) > 1 and sys.argv[1] == "quick"
 DEPTH = 8 if QUICK else 10
@@ -159,7 +159,17 @@ CH = {
         "#######",
         "#######"], objs=[
         ".......", ".L.....", ".......", ".......", ".......", ".......", "......."]),
+    "仮6 高さ3の段差（谷と一生 1.2 の形）": dict(kind="cross", goal=(6, 1), map=[
+        ".......",
+        ".......",
+        ".....##",
+        ".....##",
+        ".....##",
+        "#######",
+        "#######"], objs=[
+        ".......", ".......", ".......", ".......", "L......", ".......", "......."]),
 }
+STEP_ONLY = {"仮1 段差を越える（渡る）"}  # 谷と一生 1.2 の「段差だけで止める課題（高さ3未満）」に当たる仮の課題
 
 TOOLS = {"（素手）": None}
 for p in ["plank", "ironBar", "stoneWeight", "ironWeight", "pebble", "sandbag"]:
@@ -175,7 +185,7 @@ TOOLS["板＋ばね(上)"] = [(0, 0, "spring", "up"), (0, 1, "plank", None)]
 TOOLS["石＋ばね(東)"] = [(0, 0, "stoneWeight", None), (1, 0, "spring", "east")]
 
 
-def matrix(cfg, label, tools=TOOLS):
+def matrix(cfg, label, tools=TOOLS, main=False):
     say(f"\n[{label}]")
     names = list(CH)
     say("  道具".ljust(22) + " | " + " | ".join(n.split(" ")[0] for n in names))
@@ -195,7 +205,7 @@ def matrix(cfg, label, tools=TOOLS):
         ok = [tn for tn in tools if res[(tn, cn)][0] is not None]
         say(f"  {cn}：解ける道具 {len(ok)} 種")
         if not ok:
-            problem("道具1つでは解けない(仮の課題)", f"{label}：{cn} は、どの道具1つでも {DEPTH} 手以内に解けない（2つで解けるかは下で見る）")
+            say(f"  注：{cn} は、どの道具1つでも {DEPTH} 手以内に解けない（2つで解けるかは下で見る。詰みかどうかは「道具2つ」で決める）")
     if allsolve:
         for tn in allsolve:
             if tn != "（素手）":
@@ -206,26 +216,31 @@ def matrix(cfg, label, tools=TOOLS):
     return res, nsol
 
 
-cfg0 = Cfg()
-res0, nsol0 = matrix(cfg0, "掟なし・癖なし・登れるのは地面だけ（仕様のまま）")
-cfg1 = Cfg(climb_objects=True)
-res1, nsol1 = matrix(cfg1, "物の上にも登れる（仕様の読み方の違いを試す）")
-say("\n  解き方の例（物の上にも登れる）:")
+cfg1 = Cfg()
+res1, nsol1 = matrix(cfg1, "掟なし・癖なし（挑む.md 3.1：地面・固定物・支えのある組に登れる）", main=True)
+say("\n  解き方の例:")
 for (tn, cn), (n, path) in res1.items():
     if n is not None and tn in ("ironSpring(up)", "spring(up)", "板4", "板3＋西端に石", "stoneWeight", "石＋ばね(東)"):
         say(f"   {tn} / {cn}: " + " → ".join(fmt_act(a) for a in path))
+for cn in CH:
+    k = sum(res1[(tn, cn)][0] is not None for tn in TOOLS if tn != "（素手）")
+    if k * 2 > len(TOOLS) - 1:
+        tag = "谷と一生 1.2 の決まりで作らない形" if cn in STEP_ONLY else "要注意"
+        say(f"  注：{cn} は {len(TOOLS) - 1} 種のうち {k} 種の道具で解ける（踏み台。{tag}）")
+        if cn not in STEP_ONLY:
+            problem("最強の一択(課題の作り)", f"{cn}：1.2 の決まりの形なのに、{k} 種の道具1つで解ける")
 
 
 if not QUICK:
     small = {k: TOOLS[k] for k in ["（素手）", "spring(up)", "ironSpring(up)", "leafSpring(up)", "stoneWeight", "板4", "板3＋西端に石", "石＋ばね(東)"]}
-    matrix(Cfg(laws={"longRain"}, climb_objects=True), "掟：長雨（物の上にも登れる）", small)
-    matrix(Cfg(laws={"strongWind"}, climb_objects=True), "掟：大風（物の上にも登れる）", small)
-    matrix(Cfg(traits={"hasty"}, climb_objects=True), "癖：せっかち（物の上にも登れる。ばねに焼き込み）", small)
-    matrix(Cfg(traits={"strong"}, climb_objects=True), "癖：怪力（物の上にも登れる）", small)
-    matrix(Cfg(fall_cells=1, climb_objects=True), "rule.fall.cellsPerTurn=1 にしたとき（物の上にも登れる）", small)
+    matrix(Cfg(laws={"longRain"}), "掟：長雨", small)
+    matrix(Cfg(laws={"strongWind"}), "掟：大風", small)
+    matrix(Cfg(traits={"hasty"}), "癖：せっかち（ばねに焼き込み）", small)
+    matrix(Cfg(traits={"strong"}), "癖：怪力", small)
+    matrix(Cfg(fall_cells=1), "rule.fall.cellsPerTurn=1 にしたとき", small)
 
 # 道具2つ（1つでは解けない課題に、2つなら解けるか）
-say("\n[道具2つ・物の上にも登れる] 1つで解けなかった課題だけ")
+say("\n[道具2つ] 1つで解けなかった課題だけ")
 pair_tools = ["spring(up)", "ironSpring(up)", "leafSpring(up)", "spring(east)", "stoneWeight", "pebble", "板2", "板4"]
 for cn in CH:
     if any(res1[(tn, cn)][0] is not None for tn in TOOLS):
@@ -242,21 +257,74 @@ for cn in CH:
     if not found:
         problem("詰み(仮の課題)", f"{cn}：道具2つでも {DEPTH + 2} 手以内に解けない（縄・火が要る形の可能性。縄・火はこの写しに入っていない）")
 
+TOOLS_X = {"板3＋東端に石（階段）": [(i, 1, "plank", None) for i in range(3)] + [(2, 0, "stoneWeight", None)]}
+for tn, t in TOOLS_X.items():
+    n, path = solve(build(CH["仮6 高さ3の段差（谷と一生 1.2 の形）"], cfg1, tools=[t]), depth=DEPTH)
+    say(f"  （1.2 の確かめ）{tn} 1つで仮6 → " + ("解けない" if n is None else f"{n}手 " + " → ".join(fmt_act(a) for a in path)))
+
 say("\n[rule.fall.cellsPerTurn の確かめ] 当主が宙で歩けるか（割れ目の上を、落ちきる前に渡れるか）")
 for fc in (1, 2, 3, P["rule.fall.cellsPerTurn"]):
-    st = build(CH["仮2 割れ目を渡る（渡る）"], Cfg(fall_cells=fc, climb_objects=True), tools=[TOOLS["pebble"]])
+    st = build(CH["仮2 割れ目を渡る（渡る）"], Cfg(fall_cells=fc), tools=[TOOLS["pebble"]])
     n, path = solve(st, depth=DEPTH)
     say(f"  cellsPerTurn={fc}：小石1つで仮2 → " + ("解けない" if n is None else f"{n}手 " + " → ".join(fmt_act(a) for a in path)))
-    if n is not None and fc < P["leader.fallDeathHeight"] + 4:
-        problem("最強の一択(値)", f"rule.fall.cellsPerTurn={fc} だと、踏み台に乗って割れ目の上を宙で歩いて渡れる")
+    if n is not None:
+        if fc == P["rule.fall.cellsPerTurn"]:
+            problem("最強の一択(値)", f"今の rule.fall.cellsPerTurn={fc} で、踏み台に乗って割れ目の上を宙で歩いて渡れる")
+        else:
+            say(f"  注：cellsPerTurn={fc} に下げると、宙で歩いて渡れる（今の値 {P['rule.fall.cellsPerTurn']} では起きない。下げるなら挑む.md に「支えのない当主は待つだけ」を先に）")
 
 # ------------------------------------------------------------------
 say("\n" + "=" * 70)
+say("3b. 代の始めの棚だけで、どの仮の課題が解けるか（墓が素手で届かない場所でも詰まないか）")
+say("=" * 70)
+
+
+def tools_from(parts):
+    """棚の部品だけで組める道具（この写しで試す形だけ）"""
+    have = {p: parts.count(p) for p in set(parts)}
+    out = {}
+    for tn, t in TOOLS.items():
+        if t is None:
+            continue
+        need = {}
+        for c in t:
+            need[c[2]] = need.get(c[2], 0) + 1
+        if all(have.get(p, 0) >= n for p, n in need.items()):
+            out[tn] = (t, need)
+    return out
+
+
+for label, key in (("一代目 start.parts", "start.parts"), ("二代目から heir.startParts", "heir.startParts")):
+    parts = parse_parts(P[key])
+    cand = tools_from(parts)
+    say(f"\n  [{label}] {P[key]} → 組める道具 {len(cand)} 種：{list(cand)}")
+    for cn in CH:
+        best = None
+        for tn, (t, need) in cand.items():
+            r = res1.get((tn, cn))
+            if r and r[0] is not None and (best is None or r[0] < best[1]):
+                best = (tn, r[0])
+        if best is None:  # 2つ持つ（部品が足りる組だけ）
+            names = list(cand)
+            for i, a in enumerate(names):
+                for bb in names[i:]:
+                    na, nb = cand[a][1], cand[bb][1]
+                    tot = {p: na.get(p, 0) + nb.get(p, 0) for p in set(na) | set(nb)}
+                    if any(parts.count(p) < n for p, n in tot.items()):
+                        continue
+                    st = build(CH[cn], cfg1, tools=[cand[a][0], cand[bb][0]])
+                    n, path = solve(st, depth=DEPTH + 2, cap=400000)
+                    if n is not None and (best is None or n < best[1]):
+                        best = (f"{a}+{bb}", n)
+        say(f"   {cn}：" + ("解けない" if best is None else f"{best[0]} で {best[1]}手"))
+    if key == "heir.startParts" and not any(True for _ in cand):
+        problem("詰み", "heir.startParts で組める道具がない")
+
+say("\n" + "=" * 70)
 say("4. 先祖の仕掛けと、解いた課題の繰り返し（無限稼ぎ・実質の上乗せ）")
 say("=" * 70)
-# 一代目が仮2に橋（板4）を据えた。二代目は素手で来る
+# 一代目が仮2に橋（板4）を据えた。二代目は素手で来る（先祖の仕掛けは挑む中は拾えない）
 bridge = [(x, 4, "plank", None, 0) for x in range(1, 5)]
-say("  （橋に乗るには物の上に登る必要があるので、ここは「物の上にも登れる」読み方で試す）")
 wear_per_gen = P["fixture.wearPerGen"]
 for gen_after in range(0, 4):
     w = gen_after * wear_per_gen
@@ -265,7 +333,6 @@ for gen_after in range(0, 4):
     n, path = solve(st, depth=DEPTH)
     left = "残る" if parts else "消えた"
     say(f"  据えてから{gen_after}代あと：傷み{min(w, 3)}・橋は{left} → 素手で {'解ける ' + str(n) + '手' if n is not None else '解けない'}")
-# 長雨の代が続いたとき
 w = 0
 seq = []
 for g in range(1, 4):
@@ -273,13 +340,17 @@ for g in range(1, 4):
     seq.append(w)
 say(f"  長雨の代が続くと、木の仕掛けの傷み：{seq}（2をこえたら消える）")
 
-say("\n  解いた課題をもう一度解けるとき、1代で拾える部品（据えた橋があれば素手で何度でも解ける）")
-draw = P["pickup.drawCount"]
-cap = P["leader.carryParts"]
-for repeats in (1, 3, 10, 100):
-    got = draw * repeats
-    say(f"   同じ場所を{repeats}回：拾う {got} 個（棚に持てるのは {cap} 個まで） 年は {repeats * P['challenge.yearsCost']} 年進む")
-problem("無限稼ぎ(仕様の穴)", "解けた場所をもう一度解けるか、2回目も拾えるかが仕様にない。据えた仕掛けがあると素手で何度でも解け、年月しか払わない（寿命が未決なので、年月はただ）")
+say("\n  同じ場所を1代に何度も解いたとき拾える部品（谷と一生 3章：その代で初めて解けたときだけ）")
+TABLE = ["plank", "pebble", "stoneWeight", "spring", "rope"]
+for rule, first in (("今の仕様（初めてだけ）", True), ("決まりがない場合（前の仕様）", False)):
+    v = Valley(seed=3, first_pick_only=first)
+    v.shelf = []
+    got = []
+    for k in range(10):
+        got += v.solve("仮2", TABLE)
+    say(f"   {rule}：同じ場所を10回 → 拾う {len(got)} 個、引けた種類 {sorted(set(got))}、年は {10 * P['challenge.yearsCost']} 年進む")
+    if first and len(got) > P["pickup.drawCount"]:
+        problem("無限稼ぎ", f"1代に同じ場所で {len(got)} 個拾えた")
 
 # ------------------------------------------------------------------
 say("\n" + "=" * 70)
@@ -287,50 +358,84 @@ say("5. 代をまたいで手元に来る部品の数（遺品・仕掛け・拾
 say("=" * 70)
 
 
-def chronicle(gens, solves_per_life, relic_decay, start_parts, heir_parts, repeat_farm=False):
-    """部品の数だけを数える粗い模型。部品の強さの差は見ない。
-    relic_decay：墓の遺品も代替わりで傷むか（仕様は傷まない）"""
-    graves = []  # 各墓の遺品：傷みのリスト
-    fixtures = []  # 谷の仕掛けの部品の傷み
+def chronicle(gens, solves_per_life, relic_decay, relic_skip_new=True, farm=False, heir_override=None, death_cap=True):
+    """部品の数だけを数える粗い模型（強さの差は見ない）。一生で solves_per_life の場所を解き、
+    1つおきに部品3つの仕掛けを据える。代の始めに、新しい墓から順に棚の上限まで取り戻す（墓にはいつも届くとする）。
+    farm：同じ場所を5回ずつ解く。戻り値：[(代, 代の始めの手元, 谷に眠る部品, 取り戻した部品の傷み)]"""
+    v = Valley(seed=11, relic_decay=relic_decay, relic_skip_new=relic_skip_new, death_cap=death_cap)
     out = []
     for g in range(1, gens + 1):
-        shelf = list([0] * (start_parts if g == 1 else heir_parts))
-        # 墓から取り戻す（いちばん新しい墓から、棚の上限まで）
-        for gr in reversed(graves):
-            while gr and len(shelf) < cap:
-                shelf.append(gr.pop())
-        avail_start = len(shelf)
-        stock_in_valley = sum(len(x) for x in graves) + len(fixtures)
-        # 一生：課題を解いて拾う。半分の課題で道具を据える（部品3つ）
-        for k in range(solves_per_life * (5 if repeat_farm else 1)):
-            shelf += [0] * draw
-            if k % 2 == 0 and len(shelf) >= 3:
-                for _ in range(3):
-                    fixtures.append(shelf.pop())
-            shelf = shelf[:cap]
-        # 死：全部が遺品に
-        graves.append([min(2, w + P["relic.wearOnDeath"]) for w in shelf])
-        # 代替わり：仕掛けが傷む
-        fixtures = [w + wear_per_gen for w in fixtures]
-        fixtures = [w for w in fixtures if w <= 2]
-        if relic_decay:
-            graves = [[w + wear_per_gen for w in gr if w + wear_per_gen <= 2] for gr in graves]
-        out.append((g, avail_start, stock_in_valley))
+        if heir_override is not None and g > 1:
+            v.shelf = [(p, 0) for p in heir_override]
+        n0 = len(v.shelf)
+        for gr in reversed(v.graves):
+            v.retrieve(gr)
+        got_w = [w for _, w in v.shelf[n0:]]
+        hand = len(v.shelf) + sum(len(t) for t in v.tools)
+        stock = v.stock()
+        for k in range(solves_per_life):
+            # 1つおきに、棚の部品3つで道具を組んで挑み、解けたら据える（道具は盤面にあるので、拾うの前に棚から出ている）
+            if k % 2 == 0 and len(v.shelf) >= 3:
+                v.fixtures.append({(i, 0): v.shelf.pop() for i in range(3)})
+            for _ in range(5 if farm else 1):
+                v.solve(f"場所{k}", TABLE)
+        v.die()
+        v.succession()
+        out.append((g, hand, stock, got_w))
     return out
 
 
-sp = sum(int(x.split(":")[1]) for x in str(P["start.parts"]).split(","))
-hp = sum(int(x.split(":")[1]) for x in str(P["heir.startParts"]).split(","))
-for label, decay in (("仕様のまま（墓の遺品は傷まない）", False), ("案：墓の遺品も代替わりで傷む", True)):
-    say(f"\n  [{label}] 一生で5つ解く。代の始めに手元に持てる部品 / 谷に眠る部品")
-    r = chronicle(10, 5, decay, sp, hp)
-    say("   " + "  ".join(f"{g}代:{a}/{s}" for g, a, s in r))
-r = chronicle(10, 5, False, sp, 0)
-say(f"\n  [子に最初の部品なし（今の仕様）] 代の始めの手元：" + " ".join(f"{g}代:{a}" for g, a, s in r))
-say("   → 墓から取り戻すまで素手。墓が素手で行けない場所なら、二代目は何も組めない")
-problem("詰み(仕様の穴)", "一代目・二代目以降の当主が最初に持つ部品の値がない（継承の一周.md 5章：部品は全部墓に入る）。墓が素手で届かない場所だと、二代目は何も組めず、課題も解けない")
-say("   上の数字から：手元に来るのは棚の上限（leader.carryParts）でいつも頭打ち。遺品・仕掛けが積もっても、1代が持てる力は上がらない")
-say("   ただし、墓の遺品は傷まないので、谷に眠る部品は代ごとに増え続ける（取り戻しの手間だけ）")
+heir_n = len(parse_parts(P["heir.startParts"]))
+cap = P["leader.carryParts"]
+cases = (
+    ("A 墓の遺品は傷まない（前の仕様）", dict(relic_decay=False)),
+    ("B 遺品も傷む・死んだ直後の代替わりから足す", dict(relic_decay=True, relic_skip_new=False)),
+    ("C 遺品も傷む・次の代替わりから足す（今の仕様の案）", dict(relic_decay=True, relic_skip_new=True)),
+    ("D C＋死んだとき壊れかけ(2)をこえる部品は消える（案）", dict(relic_decay=True, relic_skip_new=True, death_cap=False)),
+)
+summary = {}
+for label, kw in cases:
+    r = chronicle(30, 5, **kw)
+    summary[label] = r
+    say(f"\n  [{label}] 一生で5つ解く。代:代の始めの手元/谷に眠る部品")
+    say("   " + "  ".join(f"{g}代:{a}/{s}" for g, a, s, _ in r[:10]))
+    tail = [s for _, _, s, _ in r[10:]]
+    say(f"   11〜30代の谷に眠る部品：最小 {min(tail)}・最大 {max(tail)}。手元の最大 {max(a for _, a, _, _ in r)}（棚の上限 {cap}＋道具）")
+    ws = [w for _, _, _, gw in r[1:] for w in gw]
+    if ws:
+        say(f"   二代目から取り戻した部品の傷み：0={ws.count(0)} 1={ws.count(1)} 2={ws.count(2)}（取り戻した数 {len(ws)}）")
+    if kw.get("relic_decay") and max(tail) > max(s for _, _, s, _ in r[:10]) + 2:
+        problem("実質の上乗せ", f"{label}：谷に眠る部品が増え続ける")
+    if not kw.get("relic_decay"):
+        say("   → 谷に眠る部品が代ごとに増え続ける（遺品が傷まない場合。今の仕様ではない）")
+r = chronicle(30, 5, relic_decay=True, relic_skip_new=True, farm=True)
+say(f"\n  [C で、同じ場所を5回ずつ解く] 谷に眠る部品：" + " ".join(f"{g}代:{s}" for g, a, s, _ in r[:10]))
+r0 = chronicle(10, 5, relic_decay=True, relic_skip_new=True, heir_override=[])
+say(f"\n  [子に最初の部品なし（前の仕様）・墓にはいつも届くとき] 代の始めの手元：" + " ".join(f"{g}代:{a}" for g, a, s, _ in r0))
+say(f"   今の仕様は heir.startParts（{heir_n} 個）＋取り戻した遺品。墓が届かない場所でも {heir_n} 個で組める（3b）")
+say("   手元に来るのは棚の上限（leader.carryParts）でいつも頭打ち。遺品・仕掛けが積もっても、1代が持てる力は上がらない")
+
+# 1つの道具を、どの代も墓から取り戻して持ち続けたら、何代もつか（直さない）
+say("\n  先祖の道具（板3）を、どの代も親の墓から取り戻して持ち歩き、直さずに使い続けると、何代まで残るか")
+lineage = {}
+for label, kw in (("B 直後から足す", dict(relic_skip_new=False)), ("C 次の代替わりから（今の仕様の案）", dict(relic_skip_new=True)),
+                  ("C＋死んだとき 2 をこえる部品は消える（案）", dict(relic_skip_new=True, death_cap=False))):
+    v = Valley(seed=5, **kw)
+    v.tools = [{(i, 0): ("plank", 0) for i in range(3)}]
+    trace = []
+    for g in range(1, 21):
+        if g > 1:
+            for gr in reversed(v.graves):
+                v.retrieve(gr)
+        if not v.tools:
+            break
+        trace.append(max(w for t in v.tools for _, w in t.values()))
+        v.die()
+        v.succession()
+    lineage[label] = len(trace)
+    say(f"   {label}：{len(trace)} 代が使えた（各代の始めの傷み {trace}）" + ("（20代で打ち切り＝消えない）" if len(trace) >= 20 else ""))
+    if len(trace) >= 20 and kw.get("death_cap", True):
+        problem("実質の上乗せ", f"{label}：毎代取り戻すと、遺品の道具が壊れかけのまま消えない（relic.wearOnDeath が 2 で止まり、新しい墓は傷まないため）。焼き込んだ癖も代をこえて残る")
 
 # 焼き込みが重ならないか
 say("\n  癖の焼き込みが重なるか：")
@@ -438,3 +543,4 @@ say("=" * 70)
 for tag, msg in problems:
     say(f"  [{tag}] {msg}")
 say(f"  計 {len(problems)} 件")
+sys.exit(1 if problems else 0)
