@@ -92,6 +92,8 @@ bench.size.min,3,マス（一辺）,—,固定
 trial.size,7,マス（一辺）,—,固定
 trial.startColumn,1,列,○,仮
 trial.maxTurns,20,手,○,仮
+trial.cliffColumn,3,列,○,仮
+trial.gapWidth,2,マス,○,仮
 playback.stepMs,300,ms,○,固定（アート）
 playback.fastStepMs,100,ms,○,固定（アート）
 playback.gapMs,120,ms,○,固定（アート）
@@ -107,6 +109,7 @@ calamity.stagePerGen,1,段,○,仮
 calamity.endStage,未決,段,—,オーナーの未決
 calamity.fixtureWearAdd,0,段,○,仮（縦切りは0）
 unlock.stages,2,段,○,仮
+proto.lifeChallenges,3,課題,○,仮（04のプロトだけ）
 notebook.pages,6,ページ,○,仮
 notebook.writesPerLife,,枚,○,上限なし
 relic.wearOnDeath,1,段,○,仮

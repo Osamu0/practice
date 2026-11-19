@@ -5,7 +5,16 @@
 当主の手（挑む.md 3.1 の「進む」の3候補＝入る・登る・押す、置く、拾う、待つ）、敵（仮の歩く敵）、掟の大風（続きの動き）、長雨（重さの足し）。
 谷と一生の小さな模型（Valley）：代の始めの棚（start.parts／heir.startParts）、拾うのはその代で初めて解けたときだけ、
 死んだときの遺品（relic.wearOnDeath。2 をこえる部品は墓に入らず消える）、代替わりの傷み（仕掛け＝wearPerGen＋掟の足し、遺品＝wearPerGen だけ・その代替わりで建った墓は除く）。
-入っていない規則：燃える（2-1）、引っぱる（2-3、縄・滑車・当主が引く）、水。→ これらの最強の一択・詰みは確かめていない。
+杭（M2 の決め(b)、2026-11-19）：固定は「真下が地面の杭」の1マスだけ。杭を含む組は固定物ではなく、杭のマスを支えの列として
+ずれる計算を受ける。杭のマスは動かないので、ずれる・押す・打ち出すの行き先はふさがっているとみなす（＝その組は動かない）。
+杭のマスは当たっても壊れない（固定物）が、組のほかの部品は当たる・投げ当てで壊れる。Cfg(stake_rule="old") で前の決め（組の全部が固定）。
+墓（M13 の決め(a)）：盤面の物ではなく地の印（マスを取らない、支えない、登れない）。State.marks に持つだけ。Cfg(grave_solid=True) で前の決め（固定物）。
+落ちる（M7・M8）：支えのない組は全部いっしょに1マスずつ落ちる。積み重なった組は1つの落ちる動きとして一緒に落ち、
+同じ小段で一緒に止まった物どうしの「当たる」は起きない。止めた物が2つ以上なら、条件を満たすもの全部が壊れる。
+当たる重さ＝止まった組＋その上に積み重なって一緒に止まった組の重さ。2-5 の始めに支えがあった組は、この手の 2-5 では落ちない
+（止めた物 X が消えて支えがなくなった組も、この手では動かない）。
+試し場の地形（M1）：trial_map("flat"|"cliff"|"gap")。trial.cliffColumn、trial.gapWidth を使う。
+入っていない規則：燃える（2-1）、引っぱる（2-3、縄・滑車・当主が引く）、水。→ これらの最強の一択・詰みは確かめていない（M14：04 Q3 の前に足す）。
 
 値は ../パラメータ表.csv から読む（数を直に書かない）。
 """
@@ -58,10 +67,12 @@ class Obj:
 class Cfg:
     """1つの盤面の条件（掟・癖・規則の読み方の切り替え）"""
 
-    def __init__(self, laws=(), traits=(), fall_cells=None):
+    def __init__(self, laws=(), traits=(), fall_cells=None, stake_rule="b", grave_solid=False):
         self.laws = set(laws)
         self.traits = set(traits)
         self.fall_cells = fall_cells if fall_cells is not None else P["rule.fall.cellsPerTurn"]
+        self.stake_rule = stake_rule  # "b"＝今の決め（固定は杭の1マスだけ）。"old"＝前の決め（杭につながった組の全部が固定）
+        self.grave_solid = grave_solid  # True＝前の決め（墓は盤面の固定物）。False＝今の決め（地の印）
 
     def push_w(self):
         return P["leader.pushWeight"] + (P["trait.strong.pushWeightAdd"] if "strong" in self.traits else 0)
@@ -83,6 +94,7 @@ class State:
         self.goal = None
         self.kind = None
         self.moved = set()
+        self.marks = set()  # 墓の印のマス（地の印。マスを取らず、支えない）
 
     def copy(self):
         s = State.__new__(State)
@@ -92,6 +104,7 @@ class State:
         s.comp = dict(self.comp)
         s.nid, s.inv, s.dead, s.goal, s.kind = self.nid, self.inv, self.dead, self.goal, self.kind
         s.moved = set()
+        s.marks = self.marks
         return s
 
     def add(self, o):
@@ -99,6 +112,13 @@ class State:
         self.nid += 1
         self.objs[i] = o
         return i
+
+    def add_grave(self, x, y):
+        """墓：今の決め(a)は地の印（盤面の物にしない）。grave_solid=True なら前の決め（固定物）"""
+        if self.cfg.grave_solid:
+            return self.add(Obj("grave", x, y))
+        self.marks = self.marks | {(x, y)}
+        return None
 
     # --- 盤面 ---
     def ground(self, x, y):
@@ -167,14 +187,26 @@ class State:
     def gweight(self, g):
         return sum(self.weight(i) for i in g)
 
+    def fixed_cell(self, i):
+        """固定物のマス：真下が地面の杭（と、前の決めの墓）。動かない、当たっても壊れない"""
+        o = self.objs[i]
+        if o.kind == "grave":
+            return True
+        return o.part == "stake" and self.ground(o.x, o.y + 1)
+
+    def anchored(self, g):
+        """杭で地面に留まった組（杭のマスが動かないので、組は動けない）"""
+        return any(self.fixed_cell(i) for i in g)
+
     def fixed(self, g):
-        for i in g:
-            o = self.objs[i]
-            if o.kind == "grave":
-                return True
-            if o.part == "stake" and self.ground(o.x, o.y + 1):
-                return True
-        return False
+        """固定の組（固定物）。今の決め(b)では、固定物のマスだけでできた組（杭1つ、前の決めの墓）だけ。
+        前の決め（stake_rule="old"）では、真下が地面の杭につながった組の全部"""
+        if self.cfg.stake_rule == "old":
+            return self.anchored(g)
+        return all(self.fixed_cell(i) for i in g)
+
+    def immovable(self, g):
+        return self.fixed(g) or self.anchored(g)
 
     def supported_set(self, gs):
         occ = self.occ()
@@ -244,6 +276,8 @@ class State:
             g = next(x for x in gs if gi in x)
             if any(i in self.moved for i in g):
                 continue
+            if self.immovable(g):
+                continue  # 杭のマスは動かない（行き先がふさがっているとみなす）
             d = max(0, self.power(s) - self.gweight(g))
             dx, dy = DIRS[so.facing]
             moved = 0
@@ -269,7 +303,7 @@ class State:
                         else:
                             bgs = self.groups()
                             bg = next(x for x in bgs if block in x)
-                            if not self.fixed(bg) and self.gweight(g) >= self.hardness(block):
+                            if not self.fixed(bg) and not self.fixed_cell(block) and self.gweight(g) >= self.hardness(block):
                                 self.break_obj(block, "投げ当て")
                     break
                 self.move_group(g, dx, dy)
@@ -303,6 +337,7 @@ class State:
                 continue
             if len(g) < 2 or self.fixed(g):
                 continue
+            # 杭を含む組（決め(b)）も、ここで計算する。杭のマスは支えの列になる（真下が地面）
             k = gid[g[0]]
             if k not in sup:
                 continue
@@ -340,24 +375,98 @@ class State:
             mv = set(g)
             for j in stack:
                 mv |= set(next(x for x in gs if j in x))
+            if any(self.fixed_cell(i) for i in mv):
+                continue  # 杭のマスは動かないので、行き先にふさがりがあるとみなす（ずれない）
             if all(self.free(self.objs[i].x + dx, self.objs[i].y, occ, mv) for i in mv):
                 self.move_group(list(mv), dx, 0)
                 self.moved |= mv
                 occ = self.occ()
 
-    # --- 2-5 落ちる ---
+    # --- 2-5 落ちる（M7・M8 の決め） ---
     def step_fall(self):
-        done = set()
-        while True:
-            gs = self.groups()
-            cand = [g for g in self.order(gs) if not any(i in self.moved or i in done for i in g) and not self.fixed(g)]
-            if not cand:
+        """支えのない組を、全部いっしょに1マスずつ落とす。
+        - 落ちる組：2-5 の始めに支えがなく、固定でも杭で留まってもおらず、この手でまだ動いていない組（E）。
+          2-5 の始めに支えがあった組は、途中で支え（止めた物 X）が消えても、この手では落ちない（M8）
+        - 1マスごとに支えを見直す。積み重なった組は、下の組と一緒に1マス動く（1つの落ちる動き、M7）
+        - 同じ1マスの動きで一緒に止まった物どうしでは「当たる」は起きない。止めた物が落ちていなかった物なら当たる"""
+        gs0 = self.groups()
+        sup0, _ = self.supported_set(gs0)
+        active = [set(g) for k, g in enumerate(gs0)
+                  if k not in sup0 and not self.immovable(g) and not any(i in self.moved for i in g)]
+        fell = {}  # 物 → この手で落ちたマス
+        landed_all = []  # 止まった塊（大風で流すため）
+        prev_moved = set()  # 1つ前の1マスで動いた物
+        for _ in range(self.cfg.fall_cells):
+            if not active:
                 break
-            g = cand[0]
-            done |= set(g)
-            self.fall_group(g)
+            occ = self.occ()
+            # 下が「落ちていない物」か地面でふさがれた組は、ここで止まる（落ちる組の上にいる組も、つられて止まる）
+            moving = [g for g in active]
+            changed = True
+            while changed:
+                changed = False
+                mids = set().union(*moving) if moving else set()
+                for g in list(moving):
+                    blocked = False
+                    for i in g:
+                        o = self.objs[i]
+                        ny = o.y + 1
+                        if ny >= H:
+                            continue
+                        if self.ground(o.x, ny):
+                            blocked = True
+                            break
+                        j = occ.get((o.x, ny))
+                        if j is not None and j not in mids:
+                            blocked = True
+                            break
+                    if blocked:
+                        moving.remove(g)
+                        changed = True
+            stopped = [g for g in active if g not in moving]
+            # 動く組を1マス下へ
+            moved_now = set()
+            for g in moving:
+                self.move_group(list(g), 0, 1)
+                for i in g:
+                    fell[i] = fell.get(i, 0) + 1
+                    self.objs[i].dist += 1
+                moved_now |= g
+            # 谷底
+            for g in list(moving):
+                if any(self.objs[i].y >= H for i in g):
+                    for i in g:
+                        if self.objs[i].kind == "leader":
+                            self.dead = "谷底へ落ちる"
+                        self.remove(i)
+                    moving.remove(g)
             if self.dead:
                 return
+            # 動いたあとに支えができた組も止まる
+            gs = self.groups()
+            sup, gid = self.supported_set(gs)
+            now_landed = []
+            still = []
+            for g in moving:
+                k = gid[next(iter(g))]
+                (now_landed if k in sup else still).append(g)
+            # この1マスで止まった組の「当たる」「縮む」「落ちて死ぬ」
+            self._land(now_landed, moved_now, landed_all)
+            if self.dead:
+                return
+            # 動けずに止まった組（1マスも落ちていなければ何も起きない）
+            self._land([g for g in stopped if any(fell.get(i, 0) for i in g)], prev_moved, landed_all)
+            if self.dead:
+                return
+            for g in stopped:
+                self.moved |= {i for i in g if i in self.objs}
+            active = [g for g in still if all(i in self.objs for i in g)]
+            prev_moved = moved_now
+        for g in active:
+            self.moved |= {i for i in g if i in self.objs}
+        # 大風：止まった塊ごと東へ
+        for cl in landed_all:
+            self.drift([i for i in cl if i in self.objs])
         gs = self.groups()
         sup, gid = self.supported_set(gs)
         for k, g in enumerate(gs):
@@ -365,78 +474,96 @@ class State:
                 for i in g:
                     self.objs[i].dist = 0
 
-    def fall_group(self, g):
-        fell = 0
-        blockers = []
-        for _ in range(self.cfg.fall_cells):
-            gs = self.groups()
-            sup, gid = self.supported_set(gs)
-            if gid[g[0]] in sup:
-                break
-            occ = self.occ()
-            blockers = []
-            exit_ = False
-            for i in g:
-                o = self.objs[i]
-                ny = o.y + 1
-                if ny >= H:
-                    exit_ = True
-                    continue
-                if self.ground(o.x, ny):
-                    blockers.append(None)
-                j = occ.get((o.x, ny))
-                if j is not None and j not in g:
-                    blockers.append(j)
-            if blockers:
-                break
-            self.move_group(g, 0, 1)
-            fell += 1
-            if exit_ or any(self.objs[i].y >= H for i in g):
-                for i in list(g):
-                    if self.objs[i].kind == "leader":
-                        self.dead = "谷底へ落ちる"
-                    self.remove(i)
-                return
-        if fell == 0:
+    def _land(self, groups, moved_now, landed_all):
+        """止まった組 groups（同じ1マスの動きで止まった）。moved_now：その1マスで一緒に動いた物"""
+        if not groups:
             return
-        for i in g:
-            self.objs[i].dist += fell
-            self.moved.add(i)
-        gd = max(self.objs[i].dist for i in g)
-        # 止まった：真下の物を見る
-        occ = self.occ()
-        below = []
-        for i in g:
-            o = self.objs[i]
-            j = occ.get((o.x, o.y + 1))
-            if j is not None and j not in g and j not in below:
-                below.append(j)
-        compressed = False
-        for j in sorted(below):
-            bo = self.objs[j]
-            if bo.kind == "part" and pv(bo.part, "springPower") is not None and bo.facing == "up":
-                gi = min(i for i in g if self.objs[i].x == bo.x)
-                self.comp[j] = (gi, (bo.x, bo.y), (self.objs[gi].x, self.objs[gi].y))
-                compressed = True
-                break
-        if compressed:
+        gset = [set(g) for g in groups]
+        # 同じ1マスで一緒に止まり、上下に重なった組を1つの塊にする
+        pos = {}
+        for k, g in enumerate(gset):
             for i in g:
-                self.objs[i].dist = 0
-        else:
-            if gd >= P["rule.impact.minFall"]:
-                gs = self.groups()
+                pos[(self.objs[i].x, self.objs[i].y)] = k
+        par = list(range(len(gset)))
+
+        def f(a):
+            while par[a] != a:
+                a = par[a]
+            return a
+        for (x, y), k in pos.items():
+            k2 = pos.get((x, y + 1))
+            if k2 is not None and k2 != k:
+                par[f(k)] = f(k2)
+        clusters = {}
+        for k in range(len(gset)):
+            clusters.setdefault(f(k), []).append(k)
+
+        def above_weight(k, cl):
+            """組 k ＋ その上に（塊の中で）積み重なった組の重さ"""
+            seen, q = {k}, [k]
+            while q:
+                a = q.pop()
+                for i in gset[a]:
+                    o = self.objs[i]
+                    k2 = pos.get((o.x, o.y - 1))
+                    if k2 is not None and k2 in cl and k2 not in seen:
+                        seen.add(k2)
+                        q.append(k2)
+            return sum(self.gweight(list(gset[a])) for a in seen)
+
+        for root, cl in clusters.items():
+            cell_ids = set().union(*(gset[k] for k in cl))
+            landed_all.append(cell_ids)
+            self.moved |= cell_ids
+            occ = self.occ()
+            sup_before, _ = self.supported_set(self.groups())
+            broke = False
+            for k in cl:
+                g = gset[k]
+                gd = max(self.objs[i].dist for i in g)
+                below = []
+                for i in g:
+                    o = self.objs[i]
+                    j = occ.get((o.x, o.y + 1))
+                    if j is not None and j not in cell_ids and j not in below:
+                        below.append(j)
+                # 縮む（上向きのばねの押す面で止まった）
+                comp = False
                 for j in sorted(below):
-                    if j not in self.objs:
-                        continue
-                    bg = next(x for x in gs if j in x)
-                    if self.fixed(bg):
-                        continue
-                    if self.gweight(g) >= self.hardness(j):
-                        self.break_obj(j, "下敷き")
-            if any(self.objs[i].kind == "leader" for i in g if i in self.objs) and gd >= self.cfg.fall_death():
-                self.dead = "落ちて死ぬ"
-        if not self.dead:
-            self.drift([i for i in g if i in self.objs])
+                    bo = self.objs[j]
+                    if bo.kind == "part" and pv(bo.part, "springPower") is not None and bo.facing == "up":
+                        gi = min(i for i in g if self.objs[i].x == bo.x)
+                        self.comp[j] = (gi, (bo.x, bo.y), (self.objs[gi].x, self.objs[gi].y))
+                        comp = True
+                        break
+                if comp:
+                    for i in g:
+                        self.objs[i].dist = 0
+                    continue
+                if gd >= P["rule.impact.minFall"]:
+                    w = above_weight(k, set(cl))
+                    gs = self.groups()
+                    for j in sorted(below):
+                        if j not in self.objs or j in moved_now:
+                            continue  # 一緒に落ちてきた物（同じ動き）には当たらない
+                        bg = next(x for x in gs if j in x)
+                        if self.fixed(bg) or self.fixed_cell(j):
+                            continue
+                        if w >= self.hardness(j):
+                            self.break_obj(j, "下敷き")  # 止めた物が2つ以上なら、条件を満たすもの全部（M8）
+                            broke = True
+                            if self.dead:
+                                return
+                if any(self.objs[i].kind == "leader" for i in g) and gd >= self.cfg.fall_death():
+                    self.dead = "落ちて死ぬ"
+                    return
+            if broke:
+                # X が消えて支えがなくなった組は、この手では動かない（M8）
+                gs = self.groups()
+                sup, _ = self.supported_set(gs)
+                for k2, g2 in enumerate(gs):
+                    if k2 not in sup:
+                        self.moved |= set(g2)
 
     # --- 段3 敵（仮：歩いて、崖の手前で向きを変える） ---
     def step_enemy(self):
@@ -511,8 +638,8 @@ class State:
         if j is None:
             return False
         g = next(x for x in self.groups() if j in x)
-        if self.fixed(g) or any(self.objs[i].kind == "leader" for i in g):
-            return False
+        if self.immovable(g) or any(self.objs[i].kind == "leader" for i in g):
+            return False  # 杭で留まった組も押せない（杭のマスは動かない）
         if self.gweight(g) > self.cfg.push_w():
             return False
         return all(self.free(self.objs[i].x + d, self.objs[i].y, occ, g) for i in g)
@@ -523,8 +650,8 @@ class State:
 
     def pickable(self, g):
         """拾える組：部品1つだけの組か、自分が置いた道具。先祖の仕掛けと固定の組は拾えない"""
-        if not all(self.objs[i].kind == "part" for i in g) or self.fixed(g):
-            return False
+        if not all(self.objs[i].kind == "part" for i in g) or self.immovable(g):
+            return False  # 杭で留まった組も拾えない（前の決めのまま。仕様の確かめ待ち）
         if any(self.objs[i].anc for i in g):
             return False
         return len(g) == 1 or all(self.objs[i].byLeader for i in g)
@@ -648,6 +775,23 @@ class State:
         return (objs, lk, ck, self.inv)
 
 
+def trial_map(kind="flat"):
+    """試し場の地形（作業台と設計図.md 5章、M1）。いちばん下の段が地面。
+    cliff：西から trial.cliffColumn 列目より東に地面がない（崖）。
+    gap：trial.cliffColumn 列目から trial.gapWidth 列ぶん地面がない（割れ目）。その東はまた地面"""
+    n = P["trial.size"]
+    c, w = P["trial.cliffColumn"], P["trial.gapWidth"]
+    row = []
+    for x in range(n):
+        if kind == "cliff":
+            row.append("#" if x < c else ".")
+        elif kind == "gap":
+            row.append("." if c <= x < c + w else "#")
+        else:
+            row.append("#")
+    return ["." * n] * (n - 1) + ["".join(row)]
+
+
 def make_tool(spec, cfg=None):
     """spec: [(dx, dy, part, facing)]。せっかちの当主が組むと、ばねに強さの足しを焼き込む"""
     padd = P["trait.hasty.springPowerAdd"] if cfg and "hasty" in cfg.traits else 0
@@ -658,7 +802,8 @@ def make_tool(spec, cfg=None):
     return tuple(sorted(out))
 
 
-def build(ch, cfg, tools=(), extra=()):
+def build(ch, cfg, tools=(), extra=(), graves=()):
+    """graves：墓の印のマス [(x, y)]（課題の objs の 'T' と同じ）"""
     s = State(ch["map"], cfg)
     s.kind = ch["kind"]
     s.goal = ch.get("goal")
@@ -671,7 +816,9 @@ def build(ch, cfg, tools=(), extra=()):
             elif c == "C":
                 s.add(Obj("cargo", x, y))
             elif c == "T":
-                s.add(Obj("grave", x, y))
+                s.add_grave(x, y)
+    for (x, y) in graves:
+        s.add_grave(x, y)
     for (x, y, part, facing, wear) in extra:  # 先祖の仕掛け（据えた物）
         s.add(Obj("part", x, y, part, facing, 0, wear, anc=True))
     # 先祖の仕掛けはつなぎ点でつなぐ
