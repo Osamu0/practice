@@ -668,6 +668,18 @@ if os.path.exists(nm):
             if cells[1]:
                 copies[k] = cells[1]
     names_bad = 0
+    pcols = ["weight", "flammability", "burnTurns", "hardness", "springPower", "ropeLength"]
+    for line in ntxt.splitlines():  # 部品の表の写し（燃えやすさの 0 など、素材で決まった値）
+        cells = [c.strip() for c in line.strip().strip("|").split("|")]
+        if len(cells) == 7 and cells[0] in PARTS:
+            for key, cell in zip(pcols, cells[1:]):
+                k = f"part.{cells[0]}.{key}"
+                if re.match(r"^-?\d+$", cell) and str(P.get(k)) != cell:
+                    say(f"  写しの食い違い：{k} 名前の一覧「{cell}」 csv「{P.get(k)}」")
+                    names_bad += 1
+                if cell == "—" and k in P:
+                    say(f"  名前の一覧では無い値（—）なのに csv にある：{k}")
+                    names_bad += 1
 
     def norm(v):
         v = str(v).strip()
