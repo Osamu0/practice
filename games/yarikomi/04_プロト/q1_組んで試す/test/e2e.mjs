@@ -34,9 +34,7 @@ async function newPage(opts) {
 }
 const sleep = ms => new Promise(r => setTimeout(r, ms));
 
-// ===================== iPhone 相当（390×844、タッチ） =====================
-{
-  const { ctx, page, errors, external } = await newPage({ viewport: { width: 390, height: 844 }, deviceScaleFactor: 3, isMobile: true, hasTouch: true, userAgent: devices['iPhone 13'].userAgent });
+async function mkHelpers(ctx, page) {
   const cdp = await ctx.newCDPSession(page);
   const touch = (type, pts) => cdp.send('Input.dispatchTouchEvent', { type, touchPoints: pts.map(([x, y]) => ({ x, y })) });
   async function drag([x0, y0], [x1, y1], { hold } = {}) {
@@ -67,6 +65,13 @@ const sleep = ms => new Promise(r => setTimeout(r, ms));
   }
   const st = () => page.evaluate(() => ({ screen: window.__q1.app.screen, bench: [...window.__q1.app.bench].map(([k, v]) => [k, v.part, v.facing ?? null]), sum: window.__q1.summary() }));
   const waitIdle = async () => { await page.waitForFunction(() => !window.__q1.app.busy && !(window.__q1.app.trial?.running)); await sleep(50); };
+  return { cdp, touch, drag, tap, tapAt, center, lift, benchCell, dragPart, boardCell, st, waitIdle };
+}
+
+// ===================== iPhone 相当（390×844、タッチ） =====================
+{
+  const { ctx, page, errors, external } = await newPage({ viewport: { width: 390, height: 844 }, deviceScaleFactor: 3, isMobile: true, hasTouch: true, userAgent: devices['iPhone 13'].userAgent });
+  const { cdp, touch, drag, tap, tapAt, center, lift, benchCell, dragPart, boardCell, st, waitIdle } = await mkHelpers(ctx, page);
 
   await page.screenshot({ path: SHOT + '01_タイトル.png' });
   // 画面：ボタンの大きさと置き場所
@@ -112,6 +117,8 @@ const sleep = ms => new Promise(r => setTimeout(r, ms));
   await tap('[data-a="tStep"]'); await waitIdle();
   const band15 = await page.textContent('#band');
   check('1手目：人形を乗せた道具が東へずれた（帯に結果が残る）', band15.includes('1手目') && band15.includes('ずれた'), band15);
+  const l2 = await page.$eval('#band', b => [...b.children].map(d => ({ t: d.textContent, over: d.scrollWidth > d.clientWidth + 1 })));
+  check('説明の帯は2行で、倒す・戻すの比べが切れない', l2.length === 2 && /倒す.*戻す/.test(l2[1].t) && l2.every(d => !d.over), JSON.stringify(l2));
   await tap('[data-a="tStep"]'); await waitIdle();
   await tap('[data-a="tStep"]'); await waitIdle();
   const band2 = await page.textContent('#band');
@@ -165,6 +172,7 @@ const sleep = ms => new Promise(r => setTimeout(r, ms));
   await tap('[data-a="tRun"]'); await waitIdle();
   const band3 = await page.textContent('#band');
   check('石で押さえると、人形を乗せても止まったまま', band3.includes('止まった'), band3);
+  check('つり合いのときは余裕（倒す＝戻す・つり合い）を出す', band3.includes('＝') && band3.includes('つり合い'), band3);
   await page.screenshot({ path: SHOT + '10_試す_止まる.png' });
 
   // 挑む → 解く（盤面のマスのタップでも選ぶ）
@@ -192,10 +200,12 @@ const sleep = ms => new Promise(r => setTimeout(r, ms));
   const sum = (await st()).sum;
   console.log('記録の要約', JSON.stringify(sum));
   check('記録：解けた・時間がある', sum.solved && sum.solveMs > 0, `${sum.solveMs}ms（自動の操作なので人の時間ではない）`);
-  check('記録：置いた 4・置けなかった 1・予行を開いた 2・挑んだ 2・死んだ 1', sum.placements === 4 && sum.dropMiss === 1 && sum.trialsEntered === 2 && sum.challengeStarts === 2 && sum.deaths === 1, JSON.stringify({ p: sum.placements, d: sum.dropMiss, t: sum.trialsEntered, c: sum.challengeStarts, x: sum.deaths }));
+  check('記録：置いた 4・置けなかった 1・置き間違い 0（枠どおりに置いた）・予行を開いた 2・挑んだ 2・死んだ 1', sum.placements === 4 && sum.dropMiss === 1 && sum.mistakes === 0 && sum.trialsEntered === 2 && sum.challengeStarts === 2 && sum.deaths === 1, JSON.stringify({ p: sum.placements, d: sum.dropMiss, m: sum.mistakes, t: sum.trialsEntered, c: sum.challengeStarts, x: sum.deaths }));
   check('記録：予行の送る 3・続けて 1', sum.trialSteps === 3 && sum.trialRuns === 1);
   await tap('[data-a="showLog"]');
   await page.screenshot({ path: SHOT + '13_記録.png' });
+  const close = await page.locator('#sheet .head [data-m="close"]').boundingBox();
+  check('記録の画面の「閉じる」が画面の中にある', close && close.y >= 0 && close.y + close.height <= 844, close ? `y=${close.y.toFixed(0)}` : 'なし');
   await tap('[data-m="copy"]');
   const exported = JSON.parse(await page.inputValue('#logtext'));
   check('記録を文字で書き出せる（JSON）', exported.sessions.length >= 1 && exported.sessions.at(-1).summary.solved === true);
@@ -204,6 +214,89 @@ const sleep = ms => new Promise(r => setTimeout(r, ms));
   check('読み込み直しても記録が端末に残る', kept >= 1, `${kept} 件`);
   check('ページのエラーがない', errors.length === 0, errors.join(' / '));
   check('外への通信がない', external.length === 0, external.join(' '));
+  await ctx.close();
+}
+
+// ===================== 390×844：外れた・引き返す、課題の形、ばね、置き間違い、まっさら =====================
+{
+  const { ctx, page, errors } = await newPage({ viewport: { width: 390, height: 844 }, deviceScaleFactor: 3, isMobile: true, hasTouch: true, userAgent: devices['iPhone 13'].userAgent });
+  const { tap, tapAt, dragPart, benchCell, boardCell, st, waitIdle } = await mkHelpers(ctx, page);
+  await tap('[data-a="start"]');
+  await tap('[data-a="toBench"]');
+  // 部品を選ぶと働きの一言
+  await tap('.tile[data-part="spring"]');
+  check('棚の部品を選ぶと、何をする部品かが帯の2行目に出る', (await page.textContent('#band .l2')).includes('縮み'), await page.textContent('#band'));
+  await tapAt(...await benchCell(0, 3));
+  // 置いてすぐ動かす → 置き間違い 1
+  await dragPart('pebble', 3, 0);
+  await dragPart('pebble', 3, 0); // 2つめは同じマスへ → 置けない
+  const from = await benchCell(3, 0);
+  // 置いた小石を、すぐ別のマスへ動かす（置き間違いに数える）
+  const { drag } = await mkHelpers(ctx, page);
+  const to = await benchCell(2, 0);
+  await drag(from, [to[0], to[1] + 56]);
+  let s = await st();
+  check('置いてすぐ動かすと置き間違い 1、部品のあるマスへは置けなかった 1（間違いには数えない）', s.sum.mistakes === 1 && s.sum.mistakeMove === 1 && s.sum.dropMiss === 1, JSON.stringify({ m: s.sum.mistakes, mv: s.sum.mistakeMove, d: s.sum.dropMiss }));
+  // まっさら
+  await tap('[data-a="menu"]');
+  await tap('[data-m="clear-bench"]');
+  check('メニューから作業台をまっさらにできる', (await st()).bench.length === 0);
+  await tap('[data-a="undo"]');
+  check('まっさらは「ひとつ戻す」で戻せる', (await st()).bench.length === 2);
+  // ばね：重りを落とすと縮んで打ち出す
+  await tap('[data-a="toTrial"]');
+  await tap('[data-a="tTerrain"][data-k="flat"]');
+  const sp = await page.evaluate(() => [...window.__q1.app.trial.cur.objs.values()].find(o => o.part === 'spring'));
+  check('ばねのある道具で試すと、重りを落とせば試せることが帯に出る', (await page.textContent('#band')).includes('重り落とし'), await page.textContent('#band'));
+  await tap('[data-a="tWeight"]');
+  await tapAt(...await boardCell(sp.x, 0));
+  let seen = '';
+  for (let i = 0; i < 6 && !seen.includes('打ち出した'); i++) { await tap('[data-a="tStep"]'); await waitIdle(); seen += await page.textContent('#band'); }
+  check('試し場で、落とした重りでばねが縮み、打ち出すのが見られる', seen.includes('縮んだ') && seen.includes('打ち出した'), seen.slice(0, 120));
+  await page.screenshot({ path: SHOT + '15_試す_ばね.png' });
+  // 課題の形
+  await tap('[data-a="tReset"]');
+  await tap('[data-a="tTerrain"][data-k="challenge"]');
+  const terr = await page.evaluate(() => window.__q1.app.trial.base.terrain.join('/'));
+  check('試し場に「課題の形」（課題の地形だけ）がある', terr === '......./......./......./#....../#....../###..../###....', terr);
+  await page.screenshot({ path: SHOT + '16_試す_課題の形.png' });
+  // 外れた：板4 を置くと、当主は無事なまま道具だけ谷底へ
+  await tap('[data-a="toBench2"]');
+  await tap('[data-a="menu"]'); await tap('[data-m="clear-bench"]');
+  await tap('.tile[data-part="plank"]');
+  for (let x = 0; x < 4; x++) await tapAt(...await benchCell(x, 3));
+  await tap('[data-a="build"]');
+  await tap('[data-a="challenge"]');
+  check('挑む：手の札の並びに「引き返す」が見えている', await page.locator('#hand [data-a="retreat"]').isVisible());
+  await tap('[data-a="card"][data-k="place"]'); await page.screenshot({ path: SHOT + '17_挑む_置く候補.png' });
+  const placings = await page.locator('#stage .placing').count();
+  check('置くの候補は、選んだ1つだけが描かれる（重ならない）', placings === 4 && (await page.locator('#stage .cand').count()) === 0, `placing=${placings}`);
+  await tap('[data-a="confirm"]'); await waitIdle();
+  let lost = null;
+  for (let i = 0; i < 5 && !lost; i++) { await tap('[data-a="wait"]'); await tap('[data-a="confirm"]'); await waitIdle(); lost = await page.evaluate(() => window.__q1.app.ch.lost ?? null); }
+  const bandL = await page.textContent('#band');
+  check('道具だけが谷底へ落ちると「外れた」が出る', !!lost && bandL.includes('外れた'), bandL);
+  const rb = await page.locator('#hand [data-a="retreat"]').boundingBox();
+  check('外れたとき「引き返して組み直す」が手の札の場所に出る（メニューの外）', !!rb && (await page.textContent('#hand')).includes('引き返して組み直す'), rb ? `y=${rb.y.toFixed(0)} ${rb.width.toFixed(0)}×${rb.height.toFixed(0)}` : 'なし');
+  await page.screenshot({ path: SHOT + '18_挑む_外れた.png' });
+  await tap('#hand [data-a="retreat"]');
+  s = await st();
+  check('引き返すと工房に戻り、道具がばらされて作業台に戻る', s.screen === 'bench' && s.bench.length === 4, JSON.stringify(s.bench));
+  check('記録：外れた 1・引き返した 1', s.sum.losts === 1 && s.sum.retreats === 1);
+  // つまみ：置くマスを「指の下」に
+  await tap('[data-a="menu"]'); await tap('[data-m="knobs"]');
+  await tap('[data-m="knob"][data-k="DRAG_TARGET"]');
+  const kt = await page.textContent('[data-m="knob"][data-k="DRAG_TARGET"]');
+  check('つまみで、ドラッグの置くマスを「指の上／指の下」で切り替えられる', kt === '指の下', kt);
+  await page.screenshot({ path: SHOT + '19_つまみ.png' });
+  await tap('#sheet .head [data-m="close"]');
+  await tap('[data-a="menu"]'); await tap('[data-m="clear-bench"]');
+  const t2 = await page.locator('.tile[data-part="ironWeight"]').boundingBox();
+  const c2 = await benchCell(1, 1);
+  await drag([t2.x + 20, t2.y + 20], c2);
+  check('「指の下」なら、指を離したマスに置かれる', JSON.stringify((await st()).bench) === '[[5,"ironWeight",null]]', JSON.stringify((await st()).bench));
+  await page.evaluate(() => localStorage.removeItem('q1.knobs'));
+  check('エラーなし', errors.length === 0, errors.join(' / '));
   await ctx.close();
 }
 
@@ -223,6 +316,15 @@ const sleep = ms => new Promise(r => setTimeout(r, ms));
   const tb = await page.$$eval('#thumb button, #hand button', els => els.map(e => ({ t: e.textContent.trim(), sw: e.scrollWidth, cw: e.clientWidth, w: e.getBoundingClientRect().width })));
   check('360×640：ボタンの字がはみ出さない', tb.every(b => b.sw <= b.cw + 1), tb.map(b => `${b.t}:${b.w.toFixed(0)}`).join(' '));
   await page.screenshot({ path: SHOT + '14_360x640_組む.png' });
+  await page.tap('.tile[data-part="plank"]');
+  for (let x = 0; x < 3; x++) { const b = await page.locator('#stage .bench').boundingBox(); await page.touchscreen.tap(b.x + (x + .5) * 72, b.y + 3.5 * 72); }
+  await page.tap('[data-a="toTrial"]');
+  await page.tap('[data-a="tDoll"]');
+  { const b = await page.locator('#stage .board').first().boundingBox(); await page.touchscreen.tap(b.x + 3.5 * 48, b.y + 2.5 * 48); }
+  await sleep(100);
+  const l2 = await page.$eval('#band', b => [...b.children].map(d => ({ t: d.textContent, over: d.scrollWidth > d.clientWidth + 1 })));
+  check('360×640：説明の帯の倒す・戻すが切れない', l2.length === 2 && /倒す.*戻す/.test(l2[1].t) && l2.every(d => !d.over), JSON.stringify(l2));
+  await page.screenshot({ path: SHOT + '20_360x640_試す_帯2行.png' });
   check('360×640：エラーなし', errors.length === 0, errors.join(' / '));
   await ctx.close();
 }

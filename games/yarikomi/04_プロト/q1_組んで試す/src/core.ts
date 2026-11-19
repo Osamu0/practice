@@ -618,6 +618,71 @@ export class State {
     return !this.goalMustStop || !this.moved.has(li);
   }
 
+  /** 支えのある組（2つ以上）の、ずれる式の力（2-4 と同じ計算。動かさない）。説明の帯で「つり合いの余裕」を出すため */
+  balances(): { ids: number[]; dir: number; m: number; r: number }[] {
+    const gs = this.groups();
+    const [sup, gid] = this.supportedSet(gs);
+    const occ = this.occ();
+    const out: { ids: number[]; dir: number; m: number; r: number }[] = [];
+    for (const g of this.order(gs)) {
+      if (g.length < 2 || !sup.has(gid.get(g[0])!)) continue;
+      const gset = new Set(g);
+      const cols: number[] = [];
+      for (const i of g) {
+        const o = this.objs.get(i)!;
+        const j = occ.get(o.x + ',' + (o.y + 1));
+        if (o.y + 1 < this.H && (this.ground(o.x, o.y + 1) || (j !== undefined && !gset.has(j) && sup.has(gid.get(j)!)))) cols.push(o.x);
+      }
+      if (!cols.length) continue;
+      const xW = Math.min(...cols), xE = Math.max(...cols);
+      const load = new Map<number, number>();
+      const stack: number[] = [];
+      for (const x of new Set(g.map(i => this.objs.get(i)!.x))) {
+        const top = Math.min(...g.filter(i => this.objs.get(i)!.x === x).map(i => this.objs.get(i)!.y));
+        let l = g.filter(i => this.objs.get(i)!.x === x).reduce((a, i) => a + this.weight(i), 0);
+        for (let y = top - 1; y >= 0 && occ.get(x + ',' + y) !== undefined && !gset.has(occ.get(x + ',' + y)!); y--) { l += this.weight(occ.get(x + ',' + y)!); stack.push(occ.get(x + ',' + y)!); }
+        load.set(x, l);
+      }
+      let mE = 0, rE = 0, mW = 0, rW = 0;
+      for (const [x, l] of load) {
+        if (x > xE) mE += l * (x - xE);
+        if (x < xE) rE += l * (xE - x);
+        if (x < xW) mW += l * (xW - x);
+        if (x > xW) rW += l * (x - xW);
+      }
+      if (mE === 0 && mW === 0) continue;
+      const east = mE >= mW;
+      out.push({ ids: [...g, ...stack], dir: east ? 1 : -1, m: east ? mE : mW, r: east ? rE : rW });
+    }
+    return out;
+  }
+
+  /** まだ解けるか（depth 手まで、cap 盤面まで探す）。'yes' 解ける手がある／'no' 探しきって無い／'unknown' 探しきれない */
+  canStillSolve(depth = 8, cap = 3000): 'yes' | 'no' | 'unknown' {
+    if (this.dead) return 'no';
+    const k0 = (s: State) => { const k = s.key(); const li = s.leader(); return JSON.stringify([k.objs, k.links, k.comp, s.inv.map(t => JSON.stringify(t)), li !== null && s.moved.has(li)]); };
+    let frontier: State[] = [this];
+    const seen = new Set([k0(this)]);
+    for (let d = 0; d < depth; d++) {
+      const next: State[] = [];
+      for (const s of frontier) {
+        for (const a of s.actions()) {
+          const t = s.do(a);
+          if (!t || t.dead) continue;
+          if (t.solved()) return 'yes';
+          const k = k0(t);
+          if (seen.has(k)) continue;
+          seen.add(k);
+          if (seen.size > cap) return 'unknown';
+          next.push(t);
+        }
+      }
+      if (!next.length) return 'no';
+      frontier = next;
+    }
+    return 'unknown';
+  }
+
   /** 照合用の写し（rules_sim.py の key() に近い形） */
   key() {
     const objs = [...this.objs.values()].filter(o => !o.doll)
@@ -631,6 +696,7 @@ export class State {
 
 // ===== 地形 =====
 export function trialMap(kind: 'flat' | 'cliff' | 'gap', cliffColumn: number): string[] {
+  // 「課題の型」は main.ts で課題の地形を使う
   const n = P['trial.size'];
   const c = cliffColumn, w = P['trial.gapWidth'];
   let row = '';

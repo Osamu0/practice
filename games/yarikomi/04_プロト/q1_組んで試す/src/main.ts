@@ -1,6 +1,6 @@
 // Q1 のプロトの画面（捨てる前提）。見る → 工房（組む ⇄ 試す）→ 挑む。
 import { KNOBS, PARTS, PART_ORDER, P, type PartId } from './params.ts';
-import { State, trialMap, benchToTool, type Act, type Dir, type Tool, type Obj } from './core.ts';
+import { State, trialMap, benchToTool, type Act, type Dir, type Tool, type Obj, type Ev } from './core.ts';
 import { partSVG, leaderSVG, goalSVG, toolSVG } from './art.ts';
 import { CHALLENGE } from './challenge.ts';
 import { startSession, session, log, now, summarize, fmtMs, loadAll, clearAll, save } from './log.ts';
@@ -8,7 +8,7 @@ import { startSession, session, log, now, summarize, fmtMs, loadAll, clearAll, s
 // ---------- つまみを端末に覚える ----------
 const KNOB_KEY = 'q1.knobs';
 try { Object.assign(KNOBS, JSON.parse(localStorage.getItem(KNOB_KEY) ?? '{}')); } catch { /* なし */ }
-const saveKnobs = () => { try { localStorage.setItem(KNOB_KEY, JSON.stringify({ DRAG_TARGET: KNOBS.DRAG_TARGET, DRAG_LIFT_PX: KNOBS.DRAG_LIFT_PX, GOAL_MUST_STOP: KNOBS.GOAL_MUST_STOP, EXPLAIN_SLIDE_WITH_DOTS: KNOBS.EXPLAIN_SLIDE_WITH_DOTS, TRIAL_CLIFF_COLUMN: KNOBS.TRIAL_CLIFF_COLUMN, STEP_MS: KNOBS.STEP_MS })); } catch { /* なし */ } };
+const saveKnobs = () => { try { localStorage.setItem(KNOB_KEY, JSON.stringify({ DRAG_TARGET: KNOBS.DRAG_TARGET, DRAG_LIFT_PX: KNOBS.DRAG_LIFT_PX, GOAL_MUST_STOP: KNOBS.GOAL_MUST_STOP, EXPLAIN_SLIDE_WITH_DOTS: KNOBS.EXPLAIN_SLIDE_WITH_DOTS, TRIAL_CLIFF_COLUMN: KNOBS.TRIAL_CLIFF_COLUMN, STEP_MS: KNOBS.STEP_MS, TRIAL_SHOW_CHALLENGE_TERRAIN: KNOBS.TRIAL_SHOW_CHALLENGE_TERRAIN })); } catch { /* なし */ } };
 
 const $ = (id: string) => document.getElementById(id)!;
 const sleep = (ms: number) => new Promise(r => setTimeout(r, ms));
@@ -19,8 +19,9 @@ type Screen = 'title' | 'look' | 'bench' | 'trial' | 'ch';
 interface BenchPart { part: PartId; facing?: Dir; placedAt: number }
 type Bench = Map<number, BenchPart>;
 
-interface Trial { msg?: string; kind: 'flat' | 'cliff' | 'gap'; ox: number; base: State; cur: State; turn: number; adds: { type: 'doll' | 'weight'; x: number }[]; armed: 'doll' | 'weight' | null; running: boolean; stop: boolean }
-interface Ch { msg?: { html: string; danger: boolean }; s: State; card: 'move' | 'place' | 'pick' | null; cands: Act[]; idx: number; act: Act | null; turn: number; tool: Tool | null; over: 'dead' | 'solved' | null }
+type TKind = 'flat' | 'cliff' | 'gap' | 'challenge';
+interface Trial { msg?: string; msgL2?: string; kind: TKind; ox: number; base: State; cur: State; turn: number; adds: { type: 'doll' | 'weight'; x: number }[]; armed: 'doll' | 'weight' | null; running: boolean; stop: boolean }
+interface Ch { msg?: { html: string; danger: boolean; l2: string }; lost?: string; s: State; card: 'move' | 'place' | 'pick' | null; cands: Act[]; idx: number; act: Act | null; turn: number; tool: Tool | null; over: 'dead' | 'solved' | null }
 
 const app = {
   screen: 'title' as Screen,
@@ -136,15 +137,32 @@ async function playStep(v: BoardView, next: State) {
 
 // ---------- 説明の帯 ----------
 function dotsTxt(n: number) {
-  const k = Math.min(n, 9);
+  if (n <= 0) return 'なし';
+  const k = Math.min(n, 12);
   let s = '';
   for (let i = 0; i < k; i++) s += (i && i % 3 === 0 ? ' ' : '') + '●';
-  return `<span class="dots">${s}${n > 9 ? '+' : ''}</span>`;
+  return `<span class="dots">${s}${n > 12 ? '+' : ''}</span>`;
 }
-function band(html: string, danger = false) {
+/** 説明の帯（2行まで）。l2 は2行目（力の比べ・部品の働きなど） */
+function band(html: string, danger = false, l2 = '') {
   const b = $('band');
   b.className = danger ? 'danger' : '';
-  b.innerHTML = (danger ? '<span class="tri">▲</span>' : '') + html;
+  b.innerHTML = `<div>${danger ? '<span class="tri">▲</span>' : ''}${html}</div>${l2 ? `<div class="l2">${l2}</div>` : ''}`;
+}
+/** 力の比べ（2行目）。ずれたならその力、ずれないなら当主・人形の乗った組（なければ張り出した組）の余裕 */
+function balanceLine(s: State, slid?: Ev): string {
+  if (!KNOBS.EXPLAIN_SLIDE_WITH_DOTS) return '';
+  const dir = (d: number) => (d > 0 ? '東' : '西');
+  if (slid) return `${dir(slid.dir!)}へ倒す ${dotsTxt(slid.m!)} ＞ 戻す ${dotsTxt(slid.r!)}　→ずれる`;
+  const bs = s.balances();
+  if (!bs.length) return '';
+  const riders = [...s.objs].filter(([, o]) => o.kind === 'leader').map(([i]) => i);
+  const b = bs.find(b => b.ids.some(i => riders.includes(i))) ?? bs.reduce((a, c) => (c.m > a.m ? c : a));
+  if (b.m === b.r) return `${dir(b.dir)}へ倒す ${dotsTxt(b.m)} ＝ 戻す ${dotsTxt(b.r)}　つり合い（あと少しでずれる）`;
+  if (b.m < b.r) return `${dir(b.dir)}へ倒す ${dotsTxt(b.m)} ＜ 戻す ${dotsTxt(b.r)}　余裕 ${dotsTxt(b.r - b.m)}`;
+  // この手で落ちて止まった組は、この手ではずれない（規則の計算 5.1 決まり2）。次の手でずれる
+  if (b.ids.some(i => s.moved.has(i))) return `${dir(b.dir)}へ倒す ${dotsTxt(b.m)} ＞ 戻す ${dotsTxt(b.r)}　次の手でずれる`;
+  return `${dir(b.dir)}へ倒す ${dotsTxt(b.m)} ＞ 戻す ${dotsTxt(b.r)}　ふさがれてずれない`;
 }
 const nameOf = (s: State, ids: number[]) => {
   const ps = ids.map(i => s.objs.get(i) ?? view?.meta.get(i)).filter(Boolean) as Obj[];
@@ -153,16 +171,15 @@ const nameOf = (s: State, ids: number[]) => {
   if (ps.length > 1) return '道具';
   return ps[0] ? PARTS[ps[0].part!].name : '物';
 };
-function describe(s: State, prev: State, future: boolean): { txt: string; danger: boolean } {
+function describe(s: State, prev: State, future: boolean): { txt: string; danger: boolean; l2: string } {
   const w = (a: string, b: string) => (future ? b : a);
   const dead = s.events.find(e => e.type === 'death');
-  if (dead) return { txt: `この手で当主が${dead.why === '谷底へ落ちる' ? '谷底へ落ちる' : dead.why}`, danger: true };
   const slid = s.events.find(e => e.type === 'slid');
+  if (dead) return { txt: `${future ? 'この手で' : ''}当主が${dead.why}`, danger: true, l2: slid ? balanceLine(s, slid) : '' };
   const abyss = s.events.find(e => e.type === 'abyss');
   const parts: string[] = [];
   if (slid) {
     parts.push(`${nameOf(prev, slid.ids)}が${slid.dir! > 0 ? '東' : '西'}へ${w('ずれた', 'ずれる')}`);
-    if (KNOBS.EXPLAIN_SLIDE_WITH_DOTS) parts.push(`倒す${dotsTxt(slid.m!)}＞戻す${slid.r ? dotsTxt(slid.r) : 'なし'}`);
   }
   if (abyss) parts.push(`${nameOf(prev, abyss.ids)}が谷底へ${w('落ちた', '落ちる')}`);
   const doll = s.events.find(e => e.type === 'doll');
@@ -172,7 +189,7 @@ function describe(s: State, prev: State, future: boolean): { txt: string; danger
   if (s.events.some(e => e.type === 'compressed')) parts.push(`ばねが${w('縮んだ', '縮む')}`);
   if (s.events.some(e => e.type === 'launched')) parts.push(`ばねが${w('打ち出した', '打ち出す')}`);
   if (!parts.length && s.events.some(e => e.type === 'fell')) parts.push(w('落ちて止まった', '落ちて止まる'));
-  return { txt: parts.join('　') || w('何も動かない', '何も動かない'), danger: false };
+  return { txt: parts.join('　') || w('何も動かない', '何も動かない'), danger: false, l2: balanceLine(s, slid) };
 }
 
 // ---------- 上の帯 ----------
@@ -278,8 +295,8 @@ function renderBench() {
   v.overlay(benchHTML(v));
   if (app.sel !== null && app.bench.has(app.sel)) {
     const b = app.bench.get(app.sel)!, d = PARTS[b.part];
-    band(`${d.name}（${d.family}・${d.material}）重さ${dotsTxt(d.weight)}${d.springPower ? '　もう一度タップで向き' : ''}`);
-  } else if (app.armed) band(`${PARTS[app.armed].name}を置くマスをタップ`);
+    band(`${d.name}（${d.family}・${d.material}）重さ${dotsTxt(d.weight)}${d.springPower ? '　もう一度タップで向き' : ''}`, false, d.does);
+  } else if (app.armed) band(`${PARTS[app.armed].name}を置くマスをタップ`, false, PARTS[app.armed].does);
   else band('棚の部品を作業台へ（ドラッグかタップ）');
   hand(`<div class="shelf">${PART_ORDER.map(p => {
     const left = shelfLeft(p);
@@ -291,11 +308,20 @@ function renderBench() {
 
 // 工房：試す
 function benchTool(): Tool { return benchToTool(benchCells()); }
-function trialBase(kind: Trial['kind'], ox: number, adds: Trial['adds']): State {
-  const s = new State(trialMap(kind, KNOBS.TRIAL_CLIFF_COLUMN));
+function trialTerrain(kind: TKind) { return kind === 'challenge' ? CHALLENGE.map : trialMap(kind, KNOBS.TRIAL_CLIFF_COLUMN); }
+/** 道具を ox の列で、上からおろして止まる高さ（入らなければ null） */
+function restY(s: State, tool: Tool, ox: number): number | null {
+  const occ = s.occ();
+  const fits = (oy: number) => tool.every(([dx, dy]) => s.free(ox + dx, oy + dy, occ));
+  if (!fits(0)) return null;
+  let oy = 0;
+  while (fits(oy + 1)) oy++;
+  return oy;
+}
+function trialBase(kind: TKind, ox: number, adds: Trial['adds']): State {
+  const s = new State(trialTerrain(kind));
   const tool = benchTool();
-  const h = Math.max(...tool.map(c => c[1])) + 1;
-  s.placeTool(tool, ox, s.H - 2 - (h - 1), false);
+  s.placeTool(tool, ox, restY(s, tool, ox) ?? 0, false);
   for (const a of adds) addTrialThing(s, a.type, a.x);
   return s;
 }
@@ -314,10 +340,13 @@ function addTrialThing(s: State, type: 'doll' | 'weight', x: number): boolean {
   return true;
 }
 function startTrial() {
-  const kind = app.trial?.kind ?? KNOBS.TRIAL_START_TERRAIN;
+  let kind: TKind = app.trial?.kind ?? KNOBS.TRIAL_START_TERRAIN;
+  if (kind === 'challenge' && !KNOBS.TRIAL_SHOW_CHALLENGE_TERRAIN) kind = 'cliff';
   const tool = benchTool();
   const w = Math.max(...tool.map(c => c[0])) + 1;
-  const ox = Math.min(P['trial.startColumn'], 7 - w);
+  let ox = Math.min(P['trial.startColumn'], 7 - w);
+  const probe = new State(trialTerrain(kind));
+  while (ox > 0 && restY(probe, tool, ox) === null) ox--;
   const base = trialBase(kind, ox, []);
   app.trial = { kind, ox, base, cur: base.copy(), turn: 0, adds: [], armed: null, running: false, stop: false };
   viewFor = '';
@@ -337,15 +366,19 @@ function renderTrial() {
   v.draw(t.cur);
   const pv = trialPreview(t, v);
   v.overlay(pv.h);
-  if (t.armed) band(`${t.armed === 'doll' ? '人形' : '試しの重り'}を置く列をタップ`);
+  const hasSpring = [...t.cur.objs.values()].some(o => o.kind === 'part' && PARTS[o.part!].springPower);
+  if (t.armed === 'doll') band('人形を置く列をタップ（その列のいちばん上に立つ）', false, '人形は当主と同じ重さ');
+  else if (t.armed === 'weight') band('重りを落とす列をタップ（上から落ちる）', false, hasSpring ? 'ばねの真上の列に落とすと、ばねが縮んで次の手で打ち出す' : '石の重りと同じ重さ');
   else if (!t.running) {
     const d = describe(pv.n, t.cur, true);
-    band(t.msg ?? (t.turn === 0 && !t.adds.length ? '人形や重りを置き「送る」で1手ずつ' : `次：${d.txt}`));
+    if (t.msg) band(t.msg, false, t.msgL2 ?? '');
+    else if (t.turn === 0 && !t.adds.length) band('人形を乗せる・重りを落として「送る」で1手ずつ', false, hasSpring ? 'ばねは上から物が落ちると縮む。「重り落とし」で試せる' : d.l2);
+    else band(`次：${d.txt}`, d.danger, d.l2);
   }
   const t0 = t.turn === 0;
-  hand(`<div class="row"><button data-a="tDoll" class="${t.armed === 'doll' ? 'sel' : ''}">人形</button><button data-a="tWeight" class="${t.armed === 'weight' ? 'sel' : ''}">試しの重り</button>
+  hand(`<div class="row"><button data-a="tDoll" class="${t.armed === 'doll' ? 'sel' : ''}">人形</button><button data-a="tWeight" class="${t.armed === 'weight' ? 'sel' : ''}">重り落とし</button>
       <button data-a="tLeft" ${t0 ? '' : 'disabled'} aria-label="道具を西へ">◀ 道具</button><button data-a="tRight" ${t0 ? '' : 'disabled'} aria-label="道具を東へ">道具 ▶</button></div>
-    <div class="chips">${(['flat', 'cliff', 'gap'] as const).map(k => `<button data-a="tTerrain" data-k="${k}" class="${t.kind === k ? 'sel' : ''}" ${t0 ? '' : 'disabled'}>${{ flat: '平ら', cliff: '崖', gap: '割れ目' }[k]}</button>`).join('')}</div>`);
+    <div class="chips">${(['flat', 'cliff', 'gap', 'challenge'] as const).filter(k => k !== 'challenge' || KNOBS.TRIAL_SHOW_CHALLENGE_TERRAIN).map(k => `<button data-a="tTerrain" data-k="${k}" class="${t.kind === k ? 'sel' : ''}" ${t0 ? '' : 'disabled'}>${{ flat: '平ら', cliff: '崖', gap: '割れ目', challenge: '課題の形' }[k]}</button>`).join('')}</div>`);
   thumb(`<button data-a="toBench2">組む</button><button data-a="tReset" ${t0 && !t.adds.length ? 'disabled' : ''}>最初へ</button><button class="main" data-a="tStep">送る</button><button data-a="tRun">続けて</button>`);
 }
 
@@ -379,8 +412,11 @@ function renderCh() {
   if (!c.over && !app.busy) {
     const n = c.s.do(act);
     if (n) {
+      const placing = c.act?.t === 'place' ? c.act : null;
+      if (placing) for (const [dx, dy, part, f] of c.s.inv[placing.tool]) ov += `<div class="placing" style="transform:translate(${(placing.ox + dx) * v.cell}px,${(placing.oy + dy) * v.cell}px)">${partSVG(part, v.cell, f ?? undefined)}</div>`;
       for (const [i, o] of n.objs) {
         const p = c.s.objs.get(i);
+        if (placing && !p) { ov += `<div class="landing" style="transform:translate(${o.x * v.cell}px,${o.y * v.cell}px)">${v.svgFor(o, o.wear, o.facing)}</div>`; continue; }
         if (!p || p.x !== o.x || p.y !== o.y) {
           if (o.kind === 'leader') ov += `<div class="ring" style="left:${o.x * v.cell + 4}px;top:${o.y * v.cell + 4}px;width:${v.cell - 8}px;height:${v.cell - 8}px"></div>`;
           ov += `<div class="ghost" style="transform:translate(${o.x * v.cell}px,${o.y * v.cell}px)">${v.svgFor(o, o.wear, o.facing)}</div>`;
@@ -389,11 +425,14 @@ function renderCh() {
       const li = c.s.leader()!;
       if (n.dead) { danger = true; const L = c.s.objs.get(li)!; const e = n.snaps[n.snaps.length - 1].objs.get(li); ov += v.box(e?.x ?? L.x, Math.min(e?.y ?? L.y, 6), 'dangerc'); }
       for (const e of n.events.filter(e => e.type === 'worn' || e.type === 'broken')) for (const i of e.ids) { const o = c.s.objs.get(i); if (o) ov += v.box(o.x, o.y, 'dangerc'); }
-      if (c.card) for (const a of c.cands) for (const [x, y] of actTargets(c.s, a)) ov += v.box(x, y, 'cand', a === c.act ? 'border-style:solid' : 'border-style:dotted;opacity:.7');
+      // 置く・拾うの候補は、選んでいる1つだけを描く（重なって読めないため。ほかは「前・次」で送る）
+      if (c.card === 'move') for (const a of c.cands) for (const [x, y] of actTargets(c.s, a)) ov += v.box(x, y, 'cand', a === c.act ? 'border-style:solid' : 'border-style:dotted;opacity:.7');
+      if (c.card === 'pick' && c.act) for (const [x, y] of actTargets(c.s, c.act)) ov += v.box(x, y, 'cand');
       const d = describe(n, c.s, true);
       const solved = n.solved();
-      if (!c.act && c.msg) band(c.msg.html, c.msg.danger);
-      else band(c.act ? `${actName(c.act)}：${solved ? 'この手で解ける' : d.txt}` : `待つなら：${d.txt}`, d.danger);
+      if (c.lost && !c.act) band(`外れた：${c.lost}`, true, '「引き返して組み直す」で工房へ（何も失わない）');
+      else if (!c.act && c.msg) band(c.msg.html, c.msg.danger, c.msg.l2);
+      else band(c.act ? `${actName(c.act)}：${solved ? 'この手で解ける' : d.txt}` : `待つなら：${d.txt}`, d.danger, d.l2);
     }
   }
   v.overlay(ov);
@@ -415,7 +454,9 @@ function renderCh() {
   const L = c.s.leader();
   const acts = c.s.actions();
   const has = (t: string) => acts.some(a => (t === 'move' ? ['enter', 'climb', 'push'].includes(a.t) : a.t === t));
-  let row2 = '<div class="hint">手を選ぶ（盤面の候補のマスをタップしてもよい）</div>';
+  let row2 = c.lost
+    ? `<div class="row"><button class="sel" data-a="retreat">引き返して組み直す</button></div>`
+    : `<div class="row" style="align-items:center"><div class="hint" style="flex:1 1 auto">手を選ぶ（盤面のマスでもよい）</div><button data-a="retreat" style="flex:0 0 auto">引き返す</button></div>`;
   if (c.card === 'move') row2 = `<div class="row">${c.cands.map((a, k) => `<button data-a="cand" data-k="${k}" class="${a === c.act ? 'sel' : ''}">${actName(a)}</button>`).join('')}</div>`;
   else if (c.card === 'place' || c.card === 'pick') row2 = `<div class="row"><button data-a="candPrev">◀ 前</button><button class="sel" style="flex:0 0 64px">${c.idx + 1}/${c.cands.length}</button><button data-a="candNext">次 ▶</button></div>`;
   hand(`<div class="row">${(['move', 'place', 'pick'] as const).map(k => `<button data-a="card" data-k="${k}" class="${c.card === k ? 'sel' : ''}" ${L !== null && has(k === 'move' ? 'move' : k) ? '' : 'disabled'}>${{ move: '進む', place: '置く', pick: '拾う' }[k]}</button>`).join('')}<button data-a="wait" class="${c.act?.t === 'wait' ? 'sel' : ''}">待つ</button></div>${row2}`);
@@ -481,7 +522,8 @@ async function trialStep(t: Trial, v: BoardView) {
   t.running = true;
   const d = describe(n, prev, false);
   t.msg = `${t.turn}手目：${d.txt}`;
-  band(t.msg);
+  t.msgL2 = d.l2;
+  band(t.msg, false, t.msgL2);
   await playStep(v, n);
   t.running = false;
   return n.events.length > 0;
@@ -558,16 +600,31 @@ const handlers: Record<string, (el: HTMLElement) => void | Promise<void>> = {
     log('ch-confirm', { turn: c.turn, act: c.act.t, d: (c.act as any).d, dead: n.dead, solved: n.solved() });
     const d = describe(n, c.s, false);
     c.s = n; c.act = null; c.card = null; c.cands = [];
-    c.msg = { html: `${c.turn}手目：${n.dead ? '当主が' + n.dead : d.txt}`, danger: !!n.dead };
-    band(c.msg.html, c.msg.danger);
+    c.msg = { html: `${c.turn}手目：${n.dead ? '当主が' + n.dead : d.txt}`, danger: !!n.dead, l2: d.l2 };
+    band(c.msg.html, c.msg.danger, c.msg.l2);
     thumb(`<button disabled>選び直す</button><button class="main" disabled>確定</button><button class="menu" disabled>≡</button>`);
     view!.overlay(goalHTML(view!));
     await playStep(view!, n);
     if (n.dead) { c.over = 'dead'; log('ch-death', { why: n.dead, turn: c.turn }); }
     else if (n.solved()) { c.over = 'solved'; log('solved', { turn: c.turn }); save(); }
+    else if (!c.lost) {
+      // 外れた：道具の部品が谷底へ落ちた、または待つしかできない。そのうえで、この先 8 手で解ける手が見つからないとき
+      const fellAway = n.events.some(e => e.type === 'abyss');
+      const stuck = n.actions().every(a => a.t === 'wait');
+      if (fellAway || stuck) {
+        const r = n.canStillSolve();
+        if (r !== 'yes') { c.lost = fellAway ? '道具が谷底へ落ちた。もう解けない' : 'もう動けない'; log('ch-lost', { why: c.lost, turn: c.turn, search: r }); }
+      }
+    }
     render();
   },
   backLook() { const c = app.ch!; app.tool = c.tool; app.ch = null; go('look'); },
+  retreat() {
+    const c = app.ch!;
+    log('ch-retreat', { turn: c.turn, lost: !!c.lost });
+    app.tool = c.tool; app.ch = null;
+    handlers.toBench(document.body); // 道具をばらして作業台へ（組み直す）
+  },
   again() { handlers.start(document.body); },
   showLog() { openLog(); },
 };
@@ -587,13 +644,20 @@ function shiftTrial(dx: number) {
 }
 
 // ---------- メニュー・記録・つまみ ----------
-function sheet(html: string) { const s = $('sheet'); s.innerHTML = `<div class="panel">${html}</div>`; s.hidden = false; }
+function sheet(html: string) {
+  const s = $('sheet');
+  // 見出しと「閉じる」は上に固定（長い記録でも画面の中にある）
+  const h = html.replace(/<h2>(.*?)<\/h2>/, '<div class="head"><h2>$1</h2><button data-m="close">閉じる</button></div>');
+  s.innerHTML = `<div class="panel">${h}</div>`;
+  s.hidden = false;
+}
 function closeSheet() { $('sheet').hidden = true; }
 function openMenu() {
   const scr = app.screen;
   sheet(`<h2>メニュー</h2>
     ${scr === 'bench' || scr === 'trial' ? '<button data-m="look">課題を見る</button>' : ''}
-    ${scr === 'ch' && app.ch && !app.ch.over ? '<button data-m="retreat">引き返す（見るへ戻る）</button>' : ''}
+    ${scr === 'bench' && app.bench.size ? '<button data-m="clear-bench">作業台をまっさらにする（ひとつ戻すで戻せる）</button>' : ''}
+    ${scr === 'ch' && app.ch && !app.ch.over ? '<button data-m="retreat">引き返して組み直す</button>' : ''}
     <button data-m="log">記録（かかった時間・置き間違い・予行の回数）</button>
     <button data-m="knobs">つまみ（プレイテスト用）</button>
     <button data-m="restart">はじめから（新しい記録）</button>
@@ -610,12 +674,12 @@ function openLog() {
       ${row('解けたか', sm.solved ? 'はい' : 'まだ')}${row('はじめてから解けるまで', fmtMs(sm.solveMs))}${row('今の記録の長さ', fmtMs(sm.totalMs))}
       ${row('　見る', fmtMs(scr.look ?? 0))}${row('　組む', fmtMs(scr.bench ?? 0))}${row('　試す', fmtMs(scr.trial ?? 0))}${row('　挑む', fmtMs(scr.ch ?? 0))}
       ${row('置いた回数', sm.placements)}${row('置き間違い（合計）', sm.mistakes)}
-      ${row('　置いてすぐ「ひとつ戻す」', sm.mistakeUndo)}${row('　置いてすぐ動かした', sm.mistakeMove)}${row('　置いてすぐ棚に戻した', sm.mistakeRemove)}${row('　置けなかった（部品があるマス・棚が空）', sm.dropMiss)}
-      ${row('ドラッグで、指の下と違うマスに置いた', sm.liftShifted)}
+      ${row('　置いてすぐ「ひとつ戻す」', sm.mistakeUndo)}${row('　置いてすぐ動かした', sm.mistakeMove)}${row('　置いてすぐ棚に戻した', sm.mistakeRemove)}
+      ${row('置けなかった（部品のあるマス・外で離した）', sm.dropMiss)}${row('作業台をまっさらにした', sm.clears)}
       ${row('予行：試し場を開いた', sm.trialsEntered)}${row('予行：送る（1手）', sm.trialSteps)}${row('予行：続けて動かす', sm.trialRuns)}${row('予行：最初に戻す', sm.trialResets)}
-      ${row('組み上げた', sm.builds)}${row('挑んだ', sm.challengeStarts)}${row('確定した手', sm.confirms)}${row('当主が死んだ', sm.deaths)}${row('引き返した', sm.retreats)}
+      ${row('組み上げた', sm.builds)}${row('挑んだ', sm.challengeStarts)}${row('確定した手', sm.confirms)}${row('当主が死んだ', sm.deaths)}${row('外れた（もう解けない）', sm.losts)}${row('引き返した', sm.retreats)}
     </table>` : '<p>まだ記録がない（タイトルの「はじめる」から）</p>'}
-    <p class="small">置き間違い＝置いてから ${KNOBS.MISTAKE_WINDOW_MS / 1000} 秒以内に戻す・動かす・棚に戻した回数と、置けなかった回数（目安）。この端末の記録：${all.length} 件</p>
+    <p class="small">置き間違い＝置いてから ${KNOBS.MISTAKE_WINDOW_MS / 1000} 秒以内に「ひとつ戻す」・動かす・棚に戻した回数（目安）。置く先は、ドラッグなら枠が出たマス（今の決まり：${KNOBS.DRAG_TARGET === 'ghost' ? '指の上' : '指の下'}）、タップなら指の下。枠どおりに置けたものは数えない。この端末の記録：${all.length} 件</p>
     <div class="row"><button data-m="copy">書き出す（文字）</button><button data-m="dl">ファイルに保存</button></div>
     <textarea id="logtext" readonly></textarea>
     <div class="row"><button data-m="clear">この端末の記録を消す</button><button data-m="close" class="main">閉じる</button></div>`);
@@ -625,7 +689,8 @@ function exportText() {
   return JSON.stringify({ app: 'yarikomi-q1-proto', exportedAt: new Date().toISOString(), sessions: all.map(s => ({ ...s, summary: summarize(s) })) }, null, 1);
 }
 const KNOB_UI: [keyof typeof KNOBS, string, (string | number | boolean)[]][] = [
-  ['DRAG_TARGET', 'ドラッグで置く先（ghost＝浮かせた部品の下／finger＝指の下）', ['ghost', 'finger']],
+  ['DRAG_TARGET', 'ドラッグで置くマス', ['ghost', 'finger']],
+  ['TRIAL_SHOW_CHALLENGE_TERRAIN', '試し場に「課題の形」を出す', [true, false]],
   ['DRAG_LIFT_PX', '指の上に浮かせる（px）', [0, 40, 56, 72]],
   ['GOAL_MUST_STOP', '印の上で止まるまで求める', [true, false]],
   ['EXPLAIN_SLIDE_WITH_DOTS', 'ずれたときに力の丸を出す', [true, false]],
@@ -633,7 +698,7 @@ const KNOB_UI: [keyof typeof KNOBS, string, (string | number | boolean)[]][] = [
   ['STEP_MS', '1段の再生（ms）', [100, 200, 300, 500]],
 ];
 function openKnobs() {
-  const show = (v: unknown) => v === true ? 'する' : v === false ? 'しない' : String(v);
+  const show = (v: unknown) => v === true ? 'する' : v === false ? 'しない' : v === 'ghost' ? '指の上' : v === 'finger' ? '指の下' : String(v);
   sheet(`<h2>つまみ</h2><p class="small">タップで値が変わる。変えると記録に残る。値は src/params.ts の KNOBS</p>
     ${KNOB_UI.map(([k, label]) => `<label>${label}<button data-m="knob" data-k="${k}" style="min-width:96px">${show(KNOBS[k])}</button></label>`).join('')}
     <button data-m="close" class="main">閉じる</button>`);
@@ -658,7 +723,8 @@ function sheetTap(target: HTMLElement) {
   else if (m === 'knobs') openKnobs();
   else if (m === 'knob') setKnob(b.dataset.k as keyof typeof KNOBS);
   else if (m === 'look') { closeSheet(); go('look'); }
-  else if (m === 'retreat') { closeSheet(); const c = app.ch!; log('ch-retreat', { turn: c.turn }); app.tool = c.tool; app.ch = null; go('look'); }
+  else if (m === 'clear-bench') { closeSheet(); pushHist('clear', -1); log('bench-clear', { n: app.bench.size }); app.bench = new Map(); app.sel = null; app.armed = null; render(); }
+  else if (m === 'retreat') { closeSheet(); handlers.retreat(document.body); }
   else if (m === 'restart') { closeSheet(); save(); handlers.start(document.body); }
   else if (m === 'copy') { save(); const ta = $('logtext') as HTMLTextAreaElement; ta.value = exportText(); ta.select(); navigator.clipboard?.writeText(ta.value).catch(() => { }); }
   else if (m === 'dl') {
@@ -719,14 +785,15 @@ document.addEventListener('pointermove', e => {
     ghost.style.width = sz + 'px';
   }
   const sz = view ? view.cell : 64;
-  ghost.style.transform = `translate(${e.clientX - sz / 2}px,${e.clientY - KNOBS.DRAG_LIFT_PX - sz / 2}px)`;
+  const lift = KNOBS.DRAG_TARGET === 'ghost' ? KNOBS.DRAG_LIFT_PX : 0;
+  ghost.style.transform = `translate(${e.clientX - sz / 2}px,${e.clientY - lift - sz / 2}px)`;
   const { cell } = dropTarget(e.clientX, e.clientY);
   if (view) {
     let h = benchHTML(view);
     if (cell !== null) {
       const bad = app.bench.has(cell) && cell !== drag.from;
       h += view.box(cell % N(), Math.floor(cell / N()), 'target' + (bad ? ' bad' : ''));
-      band(bad ? 'そこには置けない（部品がある）' : `${PARTS[drag.part].name}をここに置く`);
+      band(bad ? 'そこには置けない（部品がある）' : `${PARTS[drag.part].name}を枠のマスに置く`, false, PARTS[drag.part].does);
     } else band(drag.src === 'bench' && overShelf(e.clientX, e.clientY) ? '離すと棚に戻す' : '作業台のマスの上で離す');
     view.overlay(h);
   }

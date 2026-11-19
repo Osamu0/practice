@@ -20,11 +20,13 @@ body {
 #top .mini { margin-left: auto; display: flex; align-items: center; gap: 6px; }
 /* 盤面の場所（基準 52〜388） */
 #stage { height: 336px; flex: none; margin-top: 8px; position: relative; display: flex; justify-content: center; align-items: center; }
-#band { height: 44px; flex: none; margin-top: 4px; display: flex; align-items: center; padding: 0 12px; font-size: 15px;
-  background: var(--asa); border-top: 1px solid var(--kei); border-bottom: 1px solid var(--kei); white-space: nowrap; overflow: hidden; }
+#band { height: 44px; flex: none; margin-top: 4px; display: flex; flex-direction: column; justify-content: center; padding: 0 10px; font-size: 14px; line-height: 1.3;
+  background: var(--asa); border-top: 1px solid var(--kei); border-bottom: 1px solid var(--kei); overflow: hidden; }
+#band > div { white-space: nowrap; overflow: hidden; text-overflow: clip; }
+#band .l2 { font-size: 13px; color: var(--usu); }
 #band.danger { background: repeating-linear-gradient(45deg, var(--shu) 0 2px, transparent 2px 6px) left/12px 100% no-repeat, var(--asa); padding-left: 20px; }
-#band .tri { color: var(--shu); margin-right: 6px; }
-#band .dots { letter-spacing: -1px; font-size: 12px; }
+#band .tri { color: var(--shu); margin-right: 4px; }
+#band .dots { letter-spacing: -1px; font-size: 11px; color: var(--white); }
 #hand { height: 120px; flex: none; margin-top: 4px; padding: 4px 8px; display: flex; flex-direction: column; gap: 6px; justify-content: center; }
 #thumb { height: 64px; flex: none; margin-top: 8px; padding: 0 6px; display: flex; gap: 4px; align-items: stretch; }
 
@@ -44,6 +46,7 @@ button.sel { background: var(--kei); outline: 3px solid var(--white); outline-of
 #thumb button.menu { flex: 0 0 48px; font-size: 22px; }
 .row { display: flex; gap: 6px; }
 .row > * { flex: 1 1 0; }
+#hand button { white-space: nowrap; font-size: 15px; padding: 0 2px; }
 
 /* 盤面 */
 .board { position: relative; background: var(--ai); }
@@ -93,6 +96,8 @@ button.sel { background: var(--kei); outline: 3px solid var(--white); outline-of
 #sheet .panel { max-width: 430px; width: 100%; margin: 0 auto; background: var(--asa); border-top: 2px solid var(--white); padding: 12px 10px calc(env(safe-area-inset-bottom) + 12px);
   max-height: 88dvh; overflow: auto; touch-action: pan-y; display: flex; flex-direction: column; gap: 8px; }
 #sheet h2 { font-size: 20px; margin: 0; font-weight: normal; }
+#sheet .head { position: sticky; top: -12px; z-index: 2; background: var(--asa); display: flex; justify-content: space-between; align-items: center; padding: 4px 0; border-bottom: 1px solid var(--kei); }
+#sheet .head button { min-width: 96px; }
 #sheet p { margin: 0; font-size: 15px; }
 #sheet .small { font-size: 13px; color: var(--usu); }
 #sheet table { border-collapse: collapse; font-size: 14px; width: 100%; }
@@ -108,3 +113,5 @@ button.sel { background: var(--kei); outline: 3px solid var(--white); outline-of
   background: rgba(14,26,40,.78); text-align: center; z-index: 5; }
 .overlay h2 { margin: 0; font-size: 24px; font-weight: normal; }
 .overlay p { margin: 0; font-size: 15px; }
+.board .placing { position: absolute; left: 0; top: 0; opacity: .75; outline: 3px solid var(--yamabuki); outline-offset: -3px; pointer-events: none; }
+.board .landing { position: absolute; left: 0; top: 0; opacity: .4; outline: 2px dashed var(--white); outline-offset: -3px; pointer-events: none; }

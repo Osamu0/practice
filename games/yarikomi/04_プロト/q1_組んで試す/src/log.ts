@@ -54,10 +54,10 @@ export interface Summary {
   solved: boolean; solveMs: number | null; totalMs: number;
   msByScreen: Record<string, number>;
   placements: number; mistakes: number; mistakeUndo: number; mistakeMove: number; mistakeRemove: number; dropMiss: number;
-  /** 置いたマスが、指の下のマスと違った回数（浮かせた部品の下で決めたとき） */
+  /** ドラッグで、指の下とは違うマス（＝浮かせた部品の下の枠）に置いた回数。決まりどおりなので間違いではない（参考） */
   liftShifted: number;
   trialsEntered: number; trialSteps: number; trialRuns: number; trialResets: number;
-  builds: number; challengeStarts: number; confirms: number; deaths: number; retreats: number;
+  builds: number; challengeStarts: number; confirms: number; deaths: number; retreats: number; losts: number; clears: number;
 }
 
 export function summarize(s: Session): Summary {
@@ -77,10 +77,10 @@ export function summarize(s: Session): Summary {
   const dropMiss = c('drop-miss');
   return {
     solved: s.solvedAt !== undefined, solveMs: s.solvedAt ?? null, totalMs: ev.length ? ev[ev.length - 1].t : 0, msByScreen,
-    placements: c('place'), mistakes: mistakeUndo + mistakeMove + mistakeRemove + dropMiss, mistakeUndo, mistakeMove, mistakeRemove, dropMiss,
+    placements: c('place'), mistakes: mistakeUndo + mistakeMove + mistakeRemove, mistakeUndo, mistakeMove, mistakeRemove, dropMiss,
     liftShifted: c('place', e => e.via === 'drag' && e.fingerCell !== e.cell),
     trialsEntered: c('screen', e => e.to === 'trial'), trialSteps: c('trial-step'), trialRuns: c('trial-run'), trialResets: c('trial-reset'),
-    builds: c('build'), challengeStarts: c('ch-start'), confirms: c('ch-confirm'), deaths: c('ch-death'), retreats: c('ch-retreat'),
+    builds: c('build'), challengeStarts: c('ch-start'), confirms: c('ch-confirm'), deaths: c('ch-death'), retreats: c('ch-retreat'), losts: c('ch-lost'), clears: c('bench-clear'),
   };
 }
 

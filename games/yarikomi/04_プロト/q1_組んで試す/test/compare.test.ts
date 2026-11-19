@@ -86,3 +86,18 @@ test('A の「解く」は解け、「運ばれる手順」は印で止まらな
     else assert.ok(!any, c.name);
   }
 });
+
+test('まだ解けるか（外れたの判定）と、つり合いの余裕', () => {
+  const map = ['.......', '.......', '.......', '#......', '#......', '###....', '###....'];
+  const mk = (tool: Tool) => { const s = new State(map); s.add({ kind: 'leader', x: 0, y: 2 }); s.goal = [3, 3]; s.goalMustStop = true; s.inv = [tool]; return s; };
+  assert.equal(mk([[0, 0, 'stoneWeight', null], [0, 1, 'plank', null], [1, 1, 'plank', null], [2, 1, 'plank', null]]).canStillSolve(), 'yes');
+  assert.equal(mk([[0, 0, 'plank', null], [1, 0, 'plank', null], [2, 0, 'plank', null]]).canStillSolve(), 'no');
+  // 板3（西の端に石）が崖に置かれ、東の端に当主：倒す 4 ＝ 戻す 4
+  const s = new State(map);
+  const ids = [1, 2, 3].map(x => s.add({ kind: 'part', part: 'plank', x, y: 4 }));
+  s.links.add(ids[0] + ',' + ids[1]); s.links.add(ids[1] + ',' + ids[2]);
+  const st = s.add({ kind: 'part', part: 'stoneWeight', x: 1, y: 3 }); s.links.add(ids[0] + ',' + st);
+  s.add({ kind: 'leader', x: 3, y: 3 });
+  const b = s.balances()[0];
+  assert.deepEqual([b.dir, b.m, b.r], [1, 4, 4]);
+});
