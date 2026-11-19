@@ -9,7 +9,7 @@ import os
 import re
 import sys
 
-from rules_sim import P, Cfg, State, Obj, build, solve, fmt_act, pv, WET_MATERIAL, Valley, parse_parts, trial_map
+from rules_sim import P, Cfg, State, Obj, build, solve, fmt_act, pv, WET_MATERIAL, Valley, parse_parts, trial_map, OLD_TRAITS
 
 QUICK = len(sys.argv) > 1 and sys.argv[1] == "quick"
 DEPTH = 8 if QUICK else 10
@@ -710,6 +710,221 @@ if os.path.exists(nm):
     say(f"  値の写し {len(copies)} 件を見た。食い違い・抜け：{names_bad} 件")
     if names_bad:
         problem("表", f"パラメータの名前.md と csv の食い違い・抜けが {names_bad} 件")
+
+# ------------------------------------------------------------------
+say("\n" + "=" * 70)
+say("9. 一生と年月（寿命・老い・隠居。継承の一周.md 1章、谷と一生の流れ.md 2.1。縦切りから）")
+say("=" * 70)
+Y, R, B = P["challenge.yearsCost"], P["challenge.retreatYearsCost"], P["trait.meticulous.buildYears"]
+SPAN, OLDA, A1, A = P["life.span"], P["life.oldAge"], P["life.firstGenStartAge"], P["life.startAge"]
+MINR = P["retire.minChallenges"]
+
+
+def life_count(start_age, builds_per=0, build_years=0, cost=Y):
+    """1課題ごとに builds_per 回組み上げてから挑んで解く、を寿命まで続けたときに終えられる課題の数と、各課題のあとの年齢"""
+    age, n, ages = start_age, 0, []
+    while True:
+        for _ in range(builds_per):
+            age += build_years
+            if age >= SPAN:
+                return n, ages, "組み上げで寿命"
+        age += cost
+        n += 1
+        ages.append(age)
+        if age >= SPAN:
+            return n, ages, "解けて寿命"
+
+
+say(f"  式：一生で終えられる課題 ＝ ceil((life.span − 継いだときの年齢) ÷ challenge.yearsCost)（組み上げに年のかかる癖がないとき）")
+n1, ages1, _ = life_count(A1)
+n2, ages2, _ = life_count(A)
+say(f"  一代目：{A1}歳から → {n1} 課題（各課題のあとの年齢 {ages1}）。目安 3〜4")
+say(f"  二代目から：{A}歳から → {n2} 課題（{ages2}）。目安 5〜8。老いの段は {OLDA}歳＝{next(i + 1 for i, a in enumerate(ages2) if a >= OLDA)} つ目の課題のあとから")
+say(f"  隠居できるのは二代目から {MINR} 課題のあと（{A + MINR * Y}歳）。手渡す道具 {P['retire.handoverTools']} 個")
+if not 3 <= n1 <= 4:
+    problem("一生の長さ", f"一代目の課題の数 {n1} が目安 3〜4 の外")
+if not 5 <= n2 <= 8:
+    problem("一生の長さ", f"二代目からの課題の数 {n2} が目安 5〜8 の外")
+n_old = sum(1 for a in ages2[:-1] if a >= OLDA)
+say(f"  二代目が老いの段に入ってから挑める課題：{n_old} つ")
+if n_old < 1:
+    problem("一生の長さ", "二代目が老いの段で挑める課題がない（老いの癖が遊びに出ない）")
+
+say("\n  [H-43] 几帳面（trait.meticulous.buildYears=%d）の二代目：1課題あたりの組み上げの回数ごとの、終えられる課題の数" % B)
+for bp in (0, 1, 2, 3, 4):
+    m, ages, how = life_count(A, bp, B)
+    base, _, _ = life_count(A, bp, 0)
+    mark = ""
+    if bp == 1:
+        ok1 = m <= base - 1
+        ok2 = m >= max(3, MINR)
+        mark = " ← H-43 の確かめ（1課題に1回）：" + ("短所が効く" if ok1 else "短所が効かない") + "・" + ("重すぎない" if ok2 else "重すぎる")
+        if not ok1:
+            problem("最強の一択(几帳面)", f"組み上げ1回/課題で、几帳面 {m} 課題・ふつう {base} 課題（1つ以上少なくない）")
+        if not ok2:
+            problem("詰み(几帳面)", f"組み上げ1回/課題で、几帳面は {m} 課題しか終えられない（3 以上・retire.minChallenges {MINR} 以上が要る）")
+    say(f"   組み上げ {bp} 回/課題：几帳面 {m} 課題（{how}、課題のあとの年齢 {ages}）／ふつう {base} 課題{mark}")
+for by in (1, 2, 3):
+    say(f"   （値の幅）buildYears={by}：1回/課題で 几帳面 {life_count(A, 1, by)[0]}・2回/課題で {life_count(A, 2, by)[0]}・3回/課題で {life_count(A, 3, by)[0]}（ふつう {n2}）")
+
+# 縦切り（三代×場所5）の通しの時間の見積もり
+say("\n  [縦切りの通しの時間の見積もり]（計画.md M3：45〜60分）。分は仮定（04 Q1 の実測で直す）")
+T = dict(per=(2, 3, 4), over=0.75, first5=2.0, start=1.0, leave=1.5, heir=1.0, succ=0.5, old=0.25, retire=0.5)
+say(f"   仮定：1課題（組む・試す・挑むの再生）{T['per']}分、課題ごとの地図・見る・結果 {T['over']}分、最初の5分の上乗せ {T['first5']}分、"
+    f"始める {T['start']}分、遺す {T['leave']}分、継ぐ {T['heir']}分、代替わり {T['succ']}分、老いの知らせ {T['old']}分、隠居の確かめと手渡す {T['retire']}分")
+
+
+def slice_minutes(lives, per):
+    """lives：[(挑んだ課題の数, 老いの知らせが出たか, 終わり方)]。三代目は '途中' なら遺す以降を数えない"""
+    t = T["start"] + T["first5"]
+    for k, (n, old, how) in enumerate(lives):
+        t += n * (per + T["over"]) + (T["old"] if old else 0)
+        if how == "途中":
+            continue
+        t += T["leave"] + (T["retire"] if how == "隠居" else 0)
+        if k < len(lives) - 1:
+            t += T["heir"] + T["succ"]
+    return t
+
+
+def oldseen(start, n):
+    return any(start + Y * i >= OLDA for i in range(1, n + 1)) and start + Y * n >= OLDA
+
+
+scen = [
+    ("寿命まで三代（一代目 %d・二代目 %d・三代目 %d）" % (n1, n2, n2), [(n1, False, "寿命"), (n2, True, "寿命"), (n2, True, "寿命")]),
+    ("三代目は祖父母の墓が効くところまで（三代目 3 課題で止める）", [(n1, False, "寿命"), (n2, True, "寿命"), (3, oldseen(A, 3), "途中")]),
+    ("二代目・三代目とも早めの隠居（%d 課題）" % MINR, [(n1, False, "寿命"), (MINR, oldseen(A, MINR), "隠居"), (MINR, oldseen(A, MINR), "隠居")]),
+    ("二代目は老いてから隠居（%d 課題）・三代目は寿命" % (MINR + 2), [(n1, False, "寿命"), (MINR + 2, True, "隠居"), (n2, True, "寿命")]),
+    ("一代目が2つ目で死ぬ（死んだ課題も数える）・あとは寿命", [(2, False, "死"), (n2, True, "寿命"), (n2, True, "寿命")]),
+]
+for label, lives in scen:
+    mins = [slice_minutes(lives, p) for p in T["per"]]
+    flag = "" if 45 <= mins[1] <= 60 else ("（45分より短い）" if mins[1] < 45 else "（60分をこえる）")
+    say(f"   {label}：{mins[0]:.0f}〜{mins[2]:.0f}分（1課題3分で {mins[1]:.0f}分）{flag}")
+std = slice_minutes(scen[0][1], 3)
+if not 40 <= std <= 65:
+    problem("縦切りの長さ", f"寿命まで三代・1課題3分で {std:.0f}分（45〜60分から大きく外れる）")
+
+# 隠居ばかり／死ばかり：谷に残る部品と墓の数
+say("\n  [隠居ばかり／死ばかり] 一生で寿命までの課題を解く。1つおきに部品3つの仕掛けを据え、最後に棚の部品3つで道具を1つ組んで持つ。")
+say("   代の始めに、新しい墓から順に棚の上限まで取り戻す（墓にはいつも届くとする）。一代目は隠居できない")
+TABLE9 = ["plank", "pebble", "stoneWeight", "spring", "rope"]
+
+
+def chronicle2(gens, policy):
+    v = Valley(seed=11)
+    out = []
+    for g in range(1, gens + 1):
+        for gr in reversed(v.graves):
+            v.retrieve(gr)
+        hand_tools = sum(len(t) for t in v.tools)
+        hand = len(v.shelf) + hand_tools
+        k = 0
+        while v.ended is None:
+            if policy(g) == "隠居" and v.can_retire():
+                break
+            if k % 2 == 0 and len(v.shelf) >= 3:
+                v.fixtures.append({(i, 0): v.shelf.pop() for i in range(3)})
+            v.solve(f"場所{k % 5}", TABLE9)
+            k += 1
+        if len(v.shelf) >= 3 and len(v.tools) < P["leader.carryTools"]:
+            v.tools.append({(i, 0): v.shelf.pop() for i in range(3)})
+        if v.ended == "寿命":
+            v.die("寿命")
+        else:
+            v.retire(pick=[len(v.tools) - 1] if v.tools else [])
+        out.append(dict(gen=g, hand=hand, hand_tools=hand_tools, solved=k, graves=len(v.graves),
+                        grave_parts=sum(gr.count() for gr in v.graves), fixtures=sum(len(f) for f in v.fixtures)))
+        v.succession()
+    return out
+
+
+pols = {"死・寿命ばかり": lambda g: "寿命", "隠居ばかり（二代目から、隠居できたらすぐ）": lambda g: "隠居" if g >= 2 else "寿命"}
+for label, pol in pols.items():
+    for gens in (3, 30):
+        r = chronicle2(gens, pol)
+        last = r[-1]
+        tail = r[min(10, gens - 1):]
+        say(f"   {label}・{gens}代：墓 {last['graves']}、墓の遺品 {last['grave_parts']} 個、据えた仕掛け {last['fixtures']} 個（谷に残る部品 {last['grave_parts'] + last['fixtures']}）、"
+            f"代の始めの手元（棚＋道具の部品）{[x['hand'] for x in r[:6]]}、解いた課題 {[x['solved'] for x in r[:6]]}")
+        if gens == 30:
+            st = [x["grave_parts"] + x["fixtures"] for x in tail]
+            say(f"     11〜30代の谷に残る部品：最小 {min(st)}・最大 {max(st)}。手元の最大 {max(x['hand'] for x in r)}")
+            if max(st) > max(x["grave_parts"] + x["fixtures"] for x in r[:10]) + 2:
+                problem("実質の上乗せ", f"{label}：谷に残る部品が増え続ける")
+say(f"   引き直しの手（課題を解かずに、引き返し {MINR} 回で隠居して、掟と子の候補を引き直す）：年は {MINR * R} 年（{A}→{A + MINR * R}歳）、"
+    f"拾う 0 個、手渡せるのは持っている道具 {P['retire.handoverTools']} 個（傷み＋{P['relic.wearOnDeath']}）。手の時間は 1 回 1 手＋確かめで、遺す・継ぐを入れて約 {MINR * 0.5 + T['leave'] + T['retire'] + T['heir'] + T['succ']:.1f} 分")
+say("   → 隠居では墓が建たないので、墓の数は一代目の1つで止まる（柱1「谷に歴史が積もる」が薄くなる。13章の未決のとおり、縦切りのプレイテストで割合を見る）")
+
+# 腰が重い（老いの癖の案）：仮の課題が解けなくならないか
+cs = Cfg(traits={"stiff"})
+say("\n  [老いの癖「腰が重い」（重さ＋%d → %d、登れる段−%d → %d 段）] 仮の課題×道具1つで、解ける道具の数" % (
+    P["oldTrait.stiff.weightAdd"], cs.leader_w(), P["oldTrait.stiff.climbSub"], cs.climb_h()))
+stiff_tools = TOOLS if not QUICK else {k: TOOLS[k] for k in ["（素手）", "spring(up)", "ironSpring(up)", "stoneWeight", "板2", "板3", "板4", "板3＋西端に石"]}
+
+
+def stiff_matrix(cfg):
+    out = {}
+    for cn in CH:
+        out[cn] = [tn for tn, t in stiff_tools.items() if solve(build(CH[cn], cfg, tools=[] if t is None else [t]), depth=DEPTH)[0] is not None]
+    return out
+
+
+stiff_res = stiff_matrix(cs)
+for cn in CH:
+    ok_young = [tn for tn in stiff_tools if res1[(tn, cn)][0] is not None]
+    lost = [tn for tn in ok_young if tn not in stiff_res[cn]]
+    gain = [tn for tn in stiff_res[cn] if tn not in ok_young]
+    say(f"   {cn}：若い {len(ok_young)} 種 → 老い {len(stiff_res[cn])} 種（解けなくなる {lost[:6]}{'…' if len(lost) > 6 else ''}、解けるようになる {gain}）")
+heir_cand = tools_from(parse_parts(P["heir.startParts"]))
+for cn in CH:
+    if stiff_res[cn]:
+        continue
+    found = None
+    names = list(heir_cand)
+    for i, a in enumerate(names):
+        for bb in names[i:]:
+            n, _p = solve(build(CH[cn], cs, tools=[heir_cand[a][0], heir_cand[bb][0]]), depth=DEPTH + 2, cap=400000)
+            if n is not None and (found is None or n < found[2]):
+                found = (a, bb, n)
+    say(f"   {cn}：老いた当主は道具1つでは解けない → heir.startParts の2つ：{found if found else '解けない'}")
+    if not found:
+        if QUICK:
+            say(f"   注：quick は浅いので（{DEPTH + 2} 手まで）、仮4（11 手）などは解けないと出る。詰みかは全部で回して決める")
+        else:
+            problem("詰み(老い)", f"{cn}：腰が重い当主は、道具1つでも heir.startParts の2つでも解けない")
+# 重さ＋1 だけで、長所と短所が同じ値から出るか（板の張り出し。R-04 の形）
+FLOOR9 = [".......", ".......", ".......", ".......", "##.....", "##.....", "##....."]
+
+
+def plank_case(cfg, leader_x, east_load):
+    st = State(FLOOR9, cfg)
+    st.kind = "none"
+    st.add(Obj("leader", leader_x, 2))
+    ids = [st.add(Obj("part", x, 3, "plank")) for x in (0, 1, 2)]
+    st.links |= {(ids[0], ids[1]), (ids[1], ids[2])}
+    for k, p in enumerate(east_load):
+        st.add(Obj("part", 0 if leader_x == 2 else 2, 2 - k, p))
+    return "動かない" if st.do(("wait",)).objs[ids[0]].x == 0 else "ずれる"
+
+
+for label, cfg in (("若い", Cfg()), ("腰が重い", cs)):
+    con = plank_case(cfg, 2, ["stoneWeight"])
+    pro = plank_case(cfg, 0, ["stoneWeight", "pebble"])
+    say(f"   {label}：張り出しの端に当主・西の端に石 → {con}／西の端に当主・張り出しの端に石＋小石 → {pro}")
+say("   → 重さ＋1 だけで、短所（石1つで押さえきれない、ばねで上がる高さが1減る）と長所（自分の体が重りになる）が同じ値から出る")
+# 登れる段を引くと（climbSub=1：登れる段 0）
+keep = P["oldTrait.stiff.climbSub"]
+P["oldTrait.stiff.climbSub"] = P["leader.climbHeight"]
+c0 = Cfg(traits={"stiff"})
+k0 = {cn: sum(solve(build(CH[cn], c0, tools=[] if t is None else [t]), depth=DEPTH)[0] is not None for t in stiff_tools.values()) for cn in CH}
+pair0 = {cn: solve(build(CH[cn], c0, tools=[TOOLS["板3"], TOOLS["spring(up)"]]), depth=DEPTH + 2, cap=400000)[0] for cn in CH}
+P["oldTrait.stiff.climbSub"] = keep
+say(f"   （比べ）climbSub={P['leader.climbHeight']}（登れる段 0）なら：道具1つで解ける種類 {list(k0.values())}、heir.startParts の 板3＋ばね(上) で {list(pair0.values())}")
+say("   → 登れる段 0 は、物にも1段の地面にも乗れず、仮の課題 6 つが全部解けなくなる（詰み）。climbSub は 0 にした（13.3 #15）")
+if P["oldTrait.stiff.climbSub"] >= P["leader.climbHeight"]:
+    problem("詰み(老い)", f"oldTrait.stiff.climbSub={P['oldTrait.stiff.climbSub']} で登れる段が 0（物にも段にも乗れない）")
 
 # ------------------------------------------------------------------
 say("\n" + "=" * 70)

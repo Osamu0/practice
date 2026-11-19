@@ -3,7 +3,7 @@
 本番のコード（src/core/）ではない。値を決めるために、規則の一部を Python で写したもの。
 入っている規則：重さ（ずれる 2-4）、落ちる（2-5、当たる、谷底、落ちて死ぬ、下敷き）、弾む（縮む・打ち出す 2-2、投げ当て）、
 当主の手（挑む.md 3.1 の「進む」の3候補＝入る・登る・押す、置く、拾う、待つ）、敵（仮の歩く敵）、掟の大風（続きの動き）、長雨（重さの足し）。
-谷と一生の小さな模型（Valley）：代の始めの棚（start.parts／heir.startParts）、拾うのはその代で初めて解けたときだけ、
+谷と一生の小さな模型（Valley）：年齢・寿命・老いの癖・隠居と手渡す（2026-11-19）、代の始めの棚（start.parts／heir.startParts）、拾うのはその代で初めて解けたときだけ、
 死んだときの遺品（relic.wearOnDeath。2 をこえる部品は墓に入らず消える）、代替わりの傷み（仕掛け＝wearPerGen＋掟の足し、遺品＝wearPerGen だけ・その代替わりで建った墓は除く）。
 杭（M2 の決め(b)、2026-11-19）：固定は「真下が地面の杭」の1マスだけ。杭を含む組は固定物ではなく、杭のマスを支えの列として
 ずれる計算を受ける。杭のマスは動かないので、ずれる・押す・打ち出すの行き先はふさがっているとみなす（＝その組は動かない）。
@@ -81,6 +81,13 @@ class Cfg:
     def fall_death(self):
         return P["leader.fallDeathHeight"] + (P["trait.clumsy.fallHeightAdd"] if "clumsy" in self.traits else 0)
 
+    # 老いの癖「腰が重い」（継承の一周.md 7.1 の案。口C）：traits に "stiff" を入れる
+    def leader_w(self):
+        return P["leader.weight"] + (P["oldTrait.stiff.weightAdd"] if "stiff" in self.traits else 0)
+
+    def climb_h(self):
+        return max(0, P["leader.climbHeight"] - (P["oldTrait.stiff.climbSub"] if "stiff" in self.traits else 0))
+
 
 class State:
     def __init__(self, terrain, cfg):
@@ -139,7 +146,7 @@ class State:
     def weight(self, i):
         o = self.objs[i]
         if o.kind == "leader":
-            w = P["leader.weight"]
+            w = self.cfg.leader_w()
         elif o.kind == "enemy":
             w = P["enemy.crawler.weight"]
         elif o.kind == "cargo":
@@ -617,7 +624,7 @@ class State:
         sup, gid = self.supported_set(self.groups())
         if not self._climb_solid(tx, L.y, occ, sup, gid):
             return None
-        for k in range(1, P["leader.climbHeight"] + 1):
+        for k in range(1, self.cfg.climb_h() + 1):
             ty = L.y - k
             if ty < 0:
                 return None  # 盤の上の外
@@ -930,10 +937,23 @@ class Grave:
         return sum(len(t) for t in self.tools) + len(self.parts)
 
 
-class Valley:
-    """relic_decay：墓の遺品も代替わりで傷むか。relic_skip_new：その代替わりで建った墓の遺品には足さないか（今の仕様＝True）"""
+# 老いの癖の表（継承の一周.md 7.1 の例を写した案。中身は game-design-systems が決める）。ports は効きの口
+OLD_TRAITS = {
+    "stiff": dict(name="腰が重い", pro="当主の重さ＋oldTrait.stiff.weightAdd", con="登れる段−oldTrait.stiff.climbSub", ports={"C"}),
+    "settled": dict(name="手がこなれる", pro="老いてから組んだ道具に癖の短所の口Aを焼き込まない", con="長所の口Aも焼き込まない", ports={"A"}),
+}
+OLD_TRAIT_POOL = ["stiff", "settled"]
 
-    def __init__(self, seed=1, relic_decay=True, relic_skip_new=True, first_pick_only=True, death_cap=False):
+
+class Valley:
+    """relic_decay：墓の遺品も代替わりで傷むか。relic_skip_new：その代替わりで建った墓の遺品には足さないか（今の仕様＝True）
+
+    年齢・寿命・老い・隠居（継承の一周.md 1.1〜1.4、2.3、谷と一生の流れ.md 2.1。2026-11-19）：
+    年齢＝継いだときの年齢＋（今の谷暦−継いだときの谷暦）。年齢の確かめは、解けた（solve）・引き返した（retreat）・
+    組み上げた（build）のあとだけ。寿命が先、老いは二代目から（一代目は肖像だけ＝old は立つが癖は付かない）。
+    self.ended：None／"寿命"（確かめで届いた。墓は die("寿命") で建てる）。隠居は retire()、死は die()"""
+
+    def __init__(self, seed=1, relic_decay=True, relic_skip_new=True, first_pick_only=True, death_cap=False, traits=()):
         self.seed = seed
         self.gen = 1
         self.laws = set()
@@ -947,10 +967,80 @@ class Valley:
         # death_cap：True＝遺品になるときの傷みを壊れかけ（2）で止める（前の仕様。毎代取り戻すと消えない：パラメータ表 13.3 #10）。
         # False（既定＝今の仕様）＝2 をこえる部品は墓に入らず消える
         self.death_cap = death_cap
+        # 一生（1.1）
+        self.start_year = self.year
+        self.start_age = P["life.firstGenStartAge"]
+        self.traits = set()  # 一代目は癖なし（traits は二代目から succession で渡す）
+        self.old = False
+        self.old_traits = []
+        self.done = 0  # この代に終えた課題（解けた・引き返した）
+        self.ended = None
+        self.handed = []  # 隠居で手渡す道具（代替わりの 4. で持ち物に入る）
+        self.log = []  # [(代, 終わり方, 年齢, 終えた課題)]
+
+    # --- 年齢（1.1）と確かめ（1.2・1.3） ---
+    def age(self):
+        return self.start_age + (self.year - self.start_year)
+
+    def all_traits(self):
+        return set(self.traits) | set(self.old_traits)
+
+    def _check(self):
+        """年が進んだあとの確かめ。寿命が先。戻り値：'寿命'／'老い'／None"""
+        a = self.age()
+        if a >= P["life.span"]:
+            self.ended = "寿命"
+            return "寿命"
+        if a >= P["life.oldAge"] and not self.old:
+            self.old = True
+            if self.gen >= 2:  # 一代目は老いの癖を引かない（肖像だけ）
+                rng = random.Random(f"{self.seed}/代{self.gen}/老い")
+                self.old_traits.append(OLD_TRAIT_POOL[rng.randrange(len(OLD_TRAIT_POOL))])
+            return "老い"
+        return None
+
+    def retreat(self):
+        self.year += P["challenge.retreatYearsCost"]
+        self.done += 1
+        return self._check()
+
+    def build(self):
+        """工房で組み上げる（作業台と設計図.md 6章の 4.）。几帳面なら年が進む。戻り値は確かめの結果"""
+        if "meticulous" in self.traits:
+            self.year += P["trait.meticulous.buildYears"]
+            return self._check()
+        return None
+
+    def can_retire(self):
+        return self.gen >= 2 and self.ended is None and self.done >= P["retire.minChallenges"]
+
+    def retire(self, pick=None):
+        """隠居（1.4・2.3）。pick：手渡す道具の番号（持ち物の順）。retire.handoverTools 個まで。
+        手渡すとき部品に relic.wearOnDeath を足し、2 をこえた部品は消える。墓は建たない。手渡さない道具と棚の部品はなくなる"""
+        assert self.can_retire()
+        pick = list(range(len(self.tools))) if pick is None else list(pick)
+        pick = pick[:P["retire.handoverTools"]]
+        w = P["relic.wearOnDeath"]
+        handed = []
+        for i in pick:
+            tt, _pp = split_tool(self._wear_cells(self.tools[i], lambda p: w))
+            handed += tt  # 1つだけ残った部品は道具でないので、手渡しの欄では「部品が全部消える道具」に近い扱い（案：残らない）
+        self.handed = handed[:P["leader.carryTools"]]
+        self.ended = "隠居"
+        self.log.append((self.gen, "隠居", self.age(), self.done))
+        self.tools, self.shelf = [], []
+        return self.handed
 
     # 結果：拾う（谷と一生の流れ.md 3章）
     def solve(self, place, table):
+        """解けた：年が進み、拾う（その代で初めてのときだけ）。年齢の確かめは結果を選び終えたあと（self.last_check に入れる）"""
         self.year += P["challenge.yearsCost"]
+        self.done += 1
+        got = self._pick(place, table)
+        self.last_check = self._check()
+        return got
+
+    def _pick(self, place, table):
         if self.first_pick_only and place in self.picked:
             return []
         self.picked.add(place)
@@ -982,7 +1072,10 @@ class Valley:
         while grave.parts and len(self.shelf) < P["leader.carryParts"]:
             self.shelf.append(grave.parts.pop(0))
 
-    def die(self):
+    def die(self, how="死"):
+        """死・寿命（墓が建つ）。how：'死'／'寿命'"""
+        self.log.append((self.gen, how, self.age(), self.done))
+        self.ended = how
         w = P["relic.wearOnDeath"]
         if self.death_cap:
             tools = [{pos: (p, min(WEAR_MAX, wr + w)) for pos, (p, wr) in t.items()} for t in self.tools]
@@ -1007,17 +1100,22 @@ class Valley:
                 out[pos] = (p, wr + a)
         return out
 
-    def succession(self, new_laws=()):
-        """継承の一周.md 6.3 の 1〜5"""
+    def succession(self, new_laws=(), traits=()):
+        """継承の一周.md 6.3 の 1〜5。traits：新しい当主の癖（継いだときの癖。老いの癖は継がない）"""
+        ended_laws = set(self.laws)  # 5 の掟の足しは、終わった代の掟で（M12）
         self.year += P["succession.yearsBetween"]  # 1
         self.laws = set(new_laws)  # 2（引き方は見ない）
         # 3 作業台：見ない
         self.shelf = [(p, 0) for p in parse_parts(P["heir.startParts"])]  # 4
-        self.tools = []
-        # 5 谷の仕掛け：wearPerGen ＋ 掟の足し ＋ 災いの足し
+        self.tools = list(self.handed)  # 隠居で手渡された道具（傷みは手渡しで足した段のまま。5 では足さない）
+        self.handed = []
+        self.start_year, self.start_age = self.year, P["life.startAge"]
+        self.traits = set(traits)
+        self.old, self.old_traits, self.done, self.ended = False, [], 0, None
+        # 5 谷の仕掛け：wearPerGen ＋ 掟の足し（終わった代の掟）＋ 災いの足し
         def fx_add(p):
             a = P["fixture.wearPerGen"] + P["calamity.fixtureWearAdd"]
-            if "longRain" in self.laws and p in WET_MATERIAL:
+            if "longRain" in ended_laws and p in WET_MATERIAL:
                 a += P["law.longRain.fixtureWearAdd"]
             return a
         nf = []

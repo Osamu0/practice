@@ -394,5 +394,133 @@ m = trial_map("gap")
 check(f"B-20 割れ目：{c} 列目より東の {gw} 列だけ地面なし、その東はまた地面", m[-1] == "#" * (c + 1) + "." * gw + "#" * (n - c - 1 - gw) and n - c - 1 - gw >= 1, m[-1])
 check("B-20 平ら：いちばん下の段は全部地面", trial_map("flat")[-1] == "#" * n)
 
+# ---- 年齢・寿命・老い・隠居（継承の一周.md 1.1〜1.4、2.3、谷と一生の流れ.md 2.1。2026-11-19） ----
+import itertools
+from rules_sim import OLD_TRAITS, OLD_TRAIT_POOL
+Y, R, B = P["challenge.yearsCost"], P["challenge.retreatYearsCost"], P["trait.meticulous.buildYears"]
+SPAN, OLD, A1, A = P["life.span"], P["life.oldAge"], P["life.firstGenStartAge"], P["life.startAge"]
+
+# H-42（データのテスト）：値の並びと、老いの癖の表
+check("H-42 life.firstGenStartAge < life.span", A1 < SPAN, (A1, SPAN))
+check("H-42 life.startAge < life.oldAge < life.span", A < OLD < SPAN, (A, OLD, SPAN))
+check("H-42 retire.handoverTools ≦ leader.carryTools", P["retire.handoverTools"] <= P["leader.carryTools"])
+check("H-42 retire.minChallenges ≧ 1", P["retire.minChallenges"] >= 1)
+check("H-42 老いの癖の表の全部の行に長所と短所があり、効きの口は A・B・C だけ",
+      all(t["pro"] and t["con"] and t["ports"] and t["ports"] <= {"A", "B", "C"} for t in OLD_TRAITS.values()) and set(OLD_TRAIT_POOL) <= set(OLD_TRAITS))
+check("（数値）年が進む値はどれも 1 以上（一生が必ず終わる）", Y >= 1 and R >= 1 and P["succession.yearsBetween"] >= 0)
+check("（数値）腰が重いの climbSub は 0〜leader.climbHeight", 0 <= P["oldTrait.stiff.climbSub"] <= P["leader.climbHeight"])
+
+# H-28・V-16：一代目は firstGenStartAge・谷暦 startYear。代替わりで谷暦だけ進み、新しい当主は startAge
+v = Valley(seed=7)
+check("H-28 一代目の年齢は life.firstGenStartAge、谷暦は valley.startYear", v.age() == A1 and v.year == P["valley.startYear"])
+v.solve("A", TABLE)
+check("V-16 解くと谷暦と年齢が challenge.yearsCost 進む", v.age() == A1 + Y and v.year == P["valley.startYear"] + Y)
+v.build()
+check("V-16 几帳面でない当主は、組み上げても年が進まない", v.age() == A1 + Y)
+y0 = v.year
+v.die()
+v.succession()
+check("H-28・V-16 代替わりで谷暦は succession.yearsBetween 進み、新しい当主の年齢は life.startAge", v.year == y0 + P["succession.yearsBetween"] and v.age() == A)
+v.retreat()
+check("V-16 引き返すと年齢が challenge.retreatYearsCost 進む。年齢＝継いだときの年齢＋（谷暦−継いだときの谷暦）", v.age() == A + R == v.start_age + v.year - v.start_year)
+
+# H-30：寿命は「以上」。解けた課題の確かめで届く
+v = Valley(seed=7)
+n = 0
+while v.ended is None:
+    v.solve(f"場所{n}", TABLE)
+    n += 1
+check(f"H-30 一代目は課題を {n} つ解いた確かめで寿命（年齢 {v.age()} ≧ {SPAN}）", v.ended == "寿命" and v.age() >= SPAN and v.age() - Y < SPAN)
+check("H-34 一代目は老いの段に入っても老いの癖が付かない（肖像だけ）", v.old_traits == [])
+
+# H-34・H-35：二代目は oldAge で老いの癖が1つ。同じシードなら同じ。寿命と同時なら寿命だけ
+def heir(seed=7, traits=()):
+    v = Valley(seed=seed)
+    v.die()
+    v.succession(traits=traits)
+    return v
+v = heir()
+hist = []
+while v.ended is None:
+    hist.append(v.solve(f"場所{len(hist)}", TABLE) is not None and v.last_check)
+olds = [i for i, c in enumerate(hist) if c == "老い"]
+check(f"H-34 二代目は年齢 {OLD} 以上で老いの段に入り、老いの癖が1つ付く（{len(olds) and olds[0] + 1} つ目の課題のあと）", len(olds) == 1 and len(v.old_traits) == 1 and v.age() >= SPAN)
+check("H-34 同じシードなら同じ老いの癖", heir().old_traits == [] and (lambda w: [w.solve(f"場所{i}", TABLE) for i in range(len(hist))] and w.old_traits)(heir()) == v.old_traits)
+w = heir()
+w.year += SPAN - A - 1  # 寿命の1年前。ここから 1 回の年の進みで oldAge と span を両方こえる（oldAge は前の確かめで入らなかったとみなす）
+w.old = False
+w.solve("X", TABLE)
+check("H-35 1つの年の進みで oldAge と span を両方こえたら寿命だけ（老いの癖は付かない）", w.ended == "寿命" and w.old_traits == [])
+check("H-37 老いの癖は子に継がない（子の癖は親が継いだときの癖から）", (lambda u: (u.die(), u.succession(traits=u.traits), u.old_traits == [] and u.traits == set())[-1])(v))
+
+# H-33：几帳面は組み上げで年が進み、そこで寿命に届きうる
+v = heir(traits={"meticulous"})
+v.year += SPAN - A - B
+r = v.build()
+check(f"H-33 年齢＋{B}≧寿命の几帳面が組み上げると寿命", r == "寿命" and v.ended == "寿命")
+
+# H-38：隠居は二代目から、この代に retire.minChallenges 課題（解けた・引き返した）を終えたら
+v = Valley(seed=7)
+for i in range(2):
+    v.solve(f"場所{i}", TABLE)
+check("H-38 一代目は隠居できない", not v.can_retire())
+v = heir()
+ok_seq = []
+for i in range(P["retire.minChallenges"]):
+    ok_seq.append(v.can_retire())
+    (v.retreat if i % 2 else (lambda: v.solve(f"場所{i}", TABLE)))()
+check(f"H-38 二代目は {P['retire.minChallenges']} 課題（解けた・引き返したを数える）を終えるまで隠居できず、終えたらできる", not any(ok_seq) and v.can_retire())
+
+# H-39・H-41：手渡すのは retire.handoverTools 個まで、傷みは relic.wearOnDeath 増える。墓は建たない。棚はなくなる
+wd = P["relic.wearOnDeath"]
+v.tools = [{(i, 0): ("plank", 0) for i in range(3)}, {(i, 0): ("plank", 1) for i in range(2)}]
+v.shelf = [("ironWeight", 0)] * 3
+ng0 = len(v.graves)
+h = v.retire(pick=[0, 1])
+check(f"H-39 手渡せるのは {P['retire.handoverTools']} 個まで、傷みは {wd} 増える", len(h) == min(2, P["retire.handoverTools"]) and all(wr == wd for t in h[:1] for _, wr in t.values()))
+v.succession()
+check("H-39 手渡した道具は新しい当主の持ち物にあり、代替わりの 5. では傷みを足さない", v.tools == h and all(wr == wd for t in v.tools for _, wr in t.values()))
+check("H-41 隠居では墓が建たず、棚の部品はなくなる（新しい当主の棚は heir.startParts だけ）", len(v.graves) == ng0 and sorted(p for p, _ in v.shelf) == sorted(parse_parts(P["heir.startParts"])))
+
+# H-40：傷み0で組んだ道具を、直さずに、毎代「手渡す」か「取り戻す→持ったまま死ぬ」で送り続ける → 3代目の終わりで消える（どう混ぜても）
+def carry_line(ways):
+    """ways：各代の終わり方（'隠居'／'死'）。戻り値：道具を持てた代の数、4代目に残るか"""
+    v = Valley(seed=7)
+    v.tools = [{(i, 0): ("ironBar", 0) for i in range(3)}]  # 棚の部品（start.parts・heir.startParts）と見分けるため鉄の棒で
+    held = 0
+    for g, how in enumerate(ways, start=1):
+        if g > 1:
+            for gr in reversed(v.graves):
+                v.retrieve(gr)
+        if not any(p == "ironBar" for t in v.tools for p, _ in t.values()):
+            break
+        held += 1
+        if how == "隠居" and g >= 2:
+            for _ in range(P["retire.minChallenges"]):
+                v.retreat()
+            v.retire(pick=[0])
+        else:
+            v.die()
+        v.succession()
+    for gr in reversed(v.graves):
+        v.retrieve(gr)
+    left = any(p == "ironBar" for t in v.tools for p, _ in t.values()) or any(
+        p == "ironBar" for gr in v.graves for p, _ in gr.parts + [c for t in gr.tools for c in t.values()])
+    return held, left
+res = {ways: carry_line(("死",) + ways) for ways in itertools.product(("隠居", "死"), repeat=3)}
+check("H-40 手渡しと取り戻しをどう混ぜても、作った代＋2代（3代）で消え、4代目の持ち物にも墓にもない",
+      all(h == 3 and not left for h, left in res.values()), res)
+
+# H-25（M12）：仕掛けの傷みの掟の足しは、終わった代の掟で
+v = Valley(seed=7)
+v.fixtures = [{(0, 0): ("plank", 0)}]
+v.die()
+v.succession(new_laws={"longRain"})  # 一代目（掟なし）が終わり、長雨を引いた
+w1 = v.fixtures[0][(0, 0)][1]
+v.die()
+v.succession(new_laws={"strongWind"})  # 長雨の代が終わり、大風を引いた
+w2 = v.fixtures[0][(0, 0)][1] if v.fixtures else None
+check("H-25 長雨を引いた代替わりは fixture.wearPerGen だけ、長雨の代が終わった代替わりは＋law.longRain.fixtureWearAdd", w1 == P["fixture.wearPerGen"] and (w2 == w1 + P["fixture.wearPerGen"] + P["law.longRain.fixtureWearAdd"] or (w2 is None and w1 + P["fixture.wearPerGen"] + P["law.longRain.fixtureWearAdd"] > 2)), (w1, w2))
+
 print(f"\n{ok} OK / {ng} NG")
 raise SystemExit(1 if ng else 0)
