@@ -1,0 +1,21 @@
+{
+  "name": "yarikomi-proto-q1",
+  "version": "0.0.1",
+  "description": "Q1 組んで試す（捨てる前提のプロトタイプ）",
+  "type": "module",
+  "private": true,
+  "license": "UNLICENSED",
+  "scripts": {
+    "dev": "vite --host",
+    "build": "vite build",
+    "preview": "vite preview --host",
+    "typecheck": "tsc -p .",
+    "cases": "python3 tools/make_cases.py",
+    "test": "node --test test/compare.test.ts",
+    "e2e": "node test/e2e.mjs"
+  },
+  "devDependencies": {
+    "typescript": "7.0.2",
+    "vite": "8.3.8"
+  }
+}

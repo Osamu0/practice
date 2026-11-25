@@ -1,0 +1,1 @@
+{ "name": "技術確認（開けて守れ！）", "short_name": "技術確認", "start_url": "./", "scope": "./", "display": "standalone", "orientation": "portrait", "background_color": "#1d2b1f", "theme_color": "#1d2b1f", "icons": [{ "src": "icon-180.png", "sizes": "180x180", "type": "image/png" }] }

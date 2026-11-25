@@ -1,0 +1,19 @@
+{
+  "name": "yarikomi-tech-check",
+  "version": "1.0.0",
+  "description": "技術選定の最小の動作確認（捨てる前提）",
+  "scripts": {
+    "typecheck": "tsc -p .",
+    "test": "node --test test/core.test.ts",
+    "build": "vite build",
+    "dev": "vite",
+    "e2e": "node test/e2e.mjs"
+  },
+  "license": "UNLICENSED",
+  "devDependencies": {
+    "typescript": "7.0.2",
+    "vite": "8.3.8"
+  },
+  "type": "module",
+  "private": true
+}
