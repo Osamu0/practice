@@ -67,6 +67,7 @@ function openShop(): void {
 }
 
 function hud(): void {
+  if (!world) return; // はじめての保存は、戦場を作る前に書く
   $('hud').textContent = `ウェーブ ${data.wave}　塔 ${fmt(world.towerHp)}　コイン ${fmt(world.coins)}　名声 ${fmt(data.fame)}${lastSaveOk ? '' : '　保存できません'}`;
 }
 
@@ -114,13 +115,13 @@ for (const t of ['touchstart', 'touchmove', 'gesturestart', 'dblclick', 'context
 addEventListener('touchend', () => audio.unlock(), { passive: true }); // iOS は touchend の中でも音を起こせる
 
 // ---- 裏に回ったら一時停止（保存はしない。戻るのはウェーブの始まりから）
-function pause(): void {
+function pause(cover = true): void {
   paused = true; activeId = null; world.ringOn = false;
   audio.suspendForBackground();
-  $('cover').textContent = 'タップで再開'; $('cover').classList.remove('off');
+  if (cover) { $('cover').textContent = 'タップで再開'; $('cover').classList.remove('off'); }
 }
 document.addEventListener('visibilitychange', () => { if (document.visibilityState === 'hidden') pause(); });
-addEventListener('pagehide', pause);
+addEventListener('pagehide', () => pause());
 $('cover').addEventListener('pointerdown', () => {
   audio.unlock(); // 再開のタップで、音も起こしなおす
   paused = false; $('cover').classList.add('off');
@@ -137,8 +138,8 @@ $('next').addEventListener('click', () => { $('shop').classList.remove('on'); st
 
 // ---- 書き出し・読み込み
 const msg = (s: string) => { $('msg').textContent = s; };
-$('menu').addEventListener('click', () => { pause(); ($('txt') as HTMLTextAreaElement).value = localStorage.getItem(SAVE_KEY) ?? exportText(data); $('save').classList.add('on'); });
-$('close').addEventListener('click', () => $('save').classList.remove('on'));
+$('menu').addEventListener('click', () => { pause(false); /* 覆いを出すと記録の板が押せない（E2E で見つけた） */ ($('txt') as HTMLTextAreaElement).value = localStorage.getItem(SAVE_KEY) ?? exportText(data); $('save').classList.add('on'); });
+$('close').addEventListener('click', () => { $('save').classList.remove('on'); pause(); });
 $('copy').addEventListener('click', async () => {
   try { await navigator.clipboard.writeText(($('txt') as HTMLTextAreaElement).value); msg('コピーしました'); } catch { ($('txt') as HTMLTextAreaElement).select(); msg('選んだ文字を長押しでコピーしてください'); }
 });

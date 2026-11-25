@@ -13,6 +13,7 @@ export interface Renderer {
 
 export class Canvas2DRenderer implements Renderer {
   readonly name = 'canvas2d';
+  hudInCanvas = false; // 負荷の確かめのときだけ true（ゲームの画面は DOM の HUD）
   private g: CanvasRenderingContext2D;
   private atlas!: Atlas;
   private bg!: HTMLCanvasElement;
@@ -70,6 +71,6 @@ export class Canvas2DRenderer implements Renderer {
     const f = w.float; for (let i = 0; i < f.n; i++) this.text(fmt(f.b[i]), f.x[i], f.y[i]);
     if (w.ringOn) this.spr('ring', w.ringX, w.ringY);
     // 上の端の数字（塔の耐久・コイン）
-    this.text(fmt(w.towerHp), 60, 18); this.text(fmt(w.coins), 300, 18);
+    if (this.hudInCanvas) { this.text(fmt(w.towerHp), 60, 18); this.text(fmt(w.coins), 300, 18); }
   }
 }

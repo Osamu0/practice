@@ -218,12 +218,23 @@ export class World {
       b.vx[j] = dx / d * 240; b.vy[j] = dy / d * 240; b.a[j] = 1; b.b[j] = 1.5;
     }
 
-    // 弾：動いて、近くの升目の魔物に当たる
+    // 負荷試験：弾の数を目標に保つ（英雄から順に撃ち足す）
+    if (this.stress && h.n > 0) {
+      let k = 0;
+      while (b.n < wantB && k < wantB) {
+        const hi = k++ % h.n, t = this.nearestEnemy(h.x[hi], h.y[hi], 400); if (t < 0) break;
+        const j = b.add(h.x[hi], h.y[hi]); if (j < 0) break;
+        const dx = e.x[t] - h.x[hi], dy = e.y[t] - h.y[hi], d = Math.hypot(dx, dy) || 1;
+        b.vx[j] = dx / d * 240; b.vy[j] = dy / d * 240; b.a[j] = 1; b.b[j] = 1.5;
+      }
+    }
+
+    // 弾：動いて、近くの升目の魔物に当たる（負荷試験では貫いて残る）
     for (let i = b.n - 1; i >= 0; i--) {
       b.x[i] += b.vx[i] * dt; b.y[i] += b.vy[i] * dt; b.b[i] -= dt;
       if (b.b[i] <= 0 || b.x[i] < 0 || b.x[i] > W || b.y[i] < 0 || b.y[i] > H) { b.remove(i); continue; }
       const t = this.nearestEnemy(b.x[i], b.y[i], 10);
-      if (t >= 0) { this.damage(t, b.a[i]); b.remove(i); }
+      if (t >= 0) { this.damage(t, b.a[i]); if (!this.stress) b.remove(i); }
     }
 
     // 倒れた魔物

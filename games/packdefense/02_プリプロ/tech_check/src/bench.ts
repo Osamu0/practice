@@ -17,7 +17,7 @@ let r: Renderer;
 if (kind === 'pixi') {
   const { PixiRenderer } = await import('./renderPixi.ts');
   const pr = new PixiRenderer(canvas); await pr.init(innerWidth, innerHeight, dpr); r = pr;
-} else { r = new Canvas2DRenderer(canvas); r.resize(innerWidth, innerHeight, dpr); }
+} else { const c2 = new Canvas2DRenderer(canvas); c2.hudInCanvas = true; c2.resize(innerWidth, innerHeight, dpr); r = c2; }
 
 function glInfo(): string {
   const c = document.createElement('canvas'); const gl = c.getContext('webgl2') || c.getContext('webgl');
@@ -55,5 +55,10 @@ function done() {
     stepAvg: avg(step), drawAvg: avg(draw), flushAvg: avg(fl), totalAvg: avg(total), totalP95: pct(total, 0.95),
     gapAvg: avg(g), gapP95: pct(g, 0.95), over17: g.filter(x => x > 17.5).length / g.length, gl: glInfo(),
   };
+  // 実機で読めるように、結果を画面に出す（04 で、オーナーの iPhone で見る）
+  const b = (window as any).__bench, d = document.createElement('pre');
+  d.style.cssText = 'position:fixed;left:8px;right:8px;top:40%;margin:0;padding:10px;background:rgba(0,0,0,.85);color:#fff;font:14px/1.5 monospace;white-space:pre-wrap;';
+  d.textContent = `${b.renderer} 画素比${b.dpr} 物${b.objects}\n合計 平均 ${b.totalAvg.toFixed(1)}ms / 95% ${b.totalP95.toFixed(1)}ms\n間隔 平均 ${b.gapAvg.toFixed(1)}ms / 95% ${b.gapP95.toFixed(1)}ms\n17.5ms超 ${(b.over17 * 100).toFixed(0)}%\n${b.gl}`;
+  document.body.appendChild(d);
 }
 requestAnimationFrame(frame);
