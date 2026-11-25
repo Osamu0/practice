@@ -22,6 +22,9 @@ const avg = a => a.reduce((x, y) => x + y, 0) / a.length;
 const f1 = res.map(r => r.first[0]);
 console.log(`引数：${rest.join(' ') || '（なし）'}、シード ${nS}、${hrs}時間`);
 for (const r of res) console.log(`シード${r.s}：最初 第${r.first[0][0]}(${r.first[0][1]}分) 2回め 第${r.first[1]?.[0]} 3回め 第${r.first[2]?.[0]} 5回め 第${r.first[4]?.[0]} | ${r.marks.join(' ')} | 記録 第${r.rec} 止まり最長${r.stuck} | ${r.share} | 魔物${r.mon} 弾${r.proj} 最長${r.wmax}秒`);
-console.log(`最初のラン：第${Math.min(...f1.map(x => x[0]))}〜${Math.max(...f1.map(x => x[0]))}（平均 ${avg(f1.map(x => x[0])).toFixed(1)}）、${Math.min(...f1.map(x => x[1]))}〜${Math.max(...f1.map(x => x[1]))}分（平均 ${avg(f1.map(x => x[1])).toFixed(1)}）`);
+console.log(`最初のラン：生き延びたのは 第${Math.min(...f1.map(x => x[0]))}〜${Math.max(...f1.map(x => x[0]))}（平均 ${avg(f1.map(x => x[0])).toFixed(1)}）、${Math.min(...f1.map(x => x[1]))}〜${Math.max(...f1.map(x => x[1]))}分（平均 ${avg(f1.map(x => x[1])).toFixed(1)}）`);
+// 塔が壊れたウェーブ ＝ 生き延びた数 ＋ 1。目標（はじめの流れ・デザインの柱）は「第5〜8」
+const br = f1.map(x => x[0] + 1), hist = {}; for (const b of br) hist[b] = (hist[b] || 0) + 1;
+console.log(`最初に塔が壊れたウェーブ：第${Math.min(...br)}〜${Math.max(...br)}（平均 ${avg(br).toFixed(1)}、第8 までに壊れた ${br.filter(b => b <= 8).length}／${br.length}）、内わけ ${Object.entries(hist).map(([k, v]) => `第${k}:${v}`).join(' ')}`);
 console.log(`記録：第${Math.min(...res.map(r => r.rec))}〜${Math.max(...res.map(r => r.rec))}（平均 ${avg(res.map(r => r.rec)).toFixed(1)}）、記録が伸びないランの最長 ${Math.max(...res.map(r => r.stuck))} 回`);
 console.log(`画面の魔物の最多 ${Math.max(...res.map(r => r.mon))}、弾の最多 ${Math.max(...res.map(r => r.proj))}、いちばん長いウェーブ ${Math.max(...res.map(r => r.wmax))}秒`);

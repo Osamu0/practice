@@ -4,7 +4,9 @@
 // 値はすべて 03_仕様/パラメータ表.csv から読む（この中に数値の既定は持たない。表とずれないため）。
 //
 // 使い方：node balance_sim.mjs [時間=2] [シード=1] [--skill good|normal|weak|none] [--strategy cheap|tap|hero|tower|spell]
-//                              [--runs] [--waves] [--set 名前=値 ...] [--drill]
+//                              [--pack best|novice|saveIron] [--drill] [--headStart] [--tapNoMarket] [--noshop] [--quit k]
+//                              [--runs] [--waves] [--set 名前=値 ...]
+//   --headStart  早出（あれば。MVP の必須ではない）を強化に足す。既定は早出なし
 //   --runs  ランごとの行を出す   --waves  ウェーブごとの行を出す（最初のランだけ）
 //   --set   表の値を上書き（例 --set monster.hp.growthRate=1.3）
 // 確かめた環境：Node 22（2026-11-25）。乱数はシードつき。
@@ -15,6 +17,9 @@
 //   当てる率 hit：輪を動く魔物に重ねきれない・指を離す・見落とす、をまとめた割合（腕ごと 0.85／0.7／0.55）
 // - 呪文は案S2（置き場2枠）。火は3体以上まとまったら・氷は塔の近くに3体以上・回復は塔が55%未満
 // - ショップ：傷んでいたら修理、上限までいちばん高い買えるパック（経済の素朴な買い手）。--drill で余りを訓練に
+// - 生き延びたコイン ＝ wave.clear.coinRatio × このウェーブで倒した魔物のコインの合計（第2版）
+// - パックの1枚めは pack.<type>.firstCard、2枚め以降は spellShare。開いていないレア度は開いている1つ下の段へ
+// - 重なる相手：同じ英雄がいれば開けた場所にいちばん近い同じ英雄、いなければ hero.power がいちばん小さい英雄（同じなら塔から遠い）
 // - 強化画面：自動化を先に、あとは戦い方（--strategy）の項目だけ、安い順に買えるだけ
 
 import fs from 'node:fs';
@@ -80,9 +85,9 @@ const HEROES = {
 };
 const SPELLS = { fire1: { rarity: 0 }, heal1: { rarity: 0 }, ice1: { rarity: 1 } };
 const PACKS = {
-  novice: { price: num('pack.novice.price'), w: list('pack.novice.rarityWeights'), spell: num('pack.novice.spellShare'),
+  novice: { price: num('pack.novice.price'), w: list('pack.novice.rarityWeights'), spell: num('pack.novice.spellShare'), first: T.get('pack.novice.firstCard'),
     heroes: ['sword1', 'archer1', 'shield1', 'archer2', 'sword2'], spells: ['fire1', 'heal1', 'ice1'] },
-  iron: { price: num('pack.iron.price'), w: list('pack.iron.rarityWeights'), spell: num('pack.iron.spellShare'),
+  iron: { price: num('pack.iron.price'), w: list('pack.iron.rarityWeights'), spell: num('pack.iron.spellShare'), first: T.get('pack.iron.firstCard'),
     heroes: ['sword1', 'shield1', 'spear1', 'sword2'], spells: ['heal1', 'ice1'] },
 };
 const IRON_RECORD = 8; // 鉄壁は記録 第8で並ぶ（縦切りは packType の強化がないので、記録だけで並べる）
@@ -148,11 +153,14 @@ function runOnce() {
     const P = PACKS[type]; const cards = [];
     const nCards = num('pack.<type>.cards');
     for (let c = 0; c < nCards; c++) {
-      let isSpell = c > 0 && rand() < P.spell;
+      // 1枚めは pack.<type>.firstCard（hero／spell）、2枚め以降の1枚ずつが pack.<type>.spellShare の割合で呪文
+      let isSpell = c === 0 ? P.first === 'spell' : rand() < P.spell;
       if (first && wShop === num('intro.firstSpellWave') - 1 && c === 1) isSpell = true; // はじめのランの第4ウェーブに呪文を必ず1枚
       let r = pick([0, 1, 2], P.w.slice(0, 3));
       if (first && wShop < num('unlock.rare.fromWave') - 1) { r = 0; isSpell = false; } // はじめのパックはコモンの英雄だけ
-      if (r === 2 && !epicOpen) r = 1;
+      // 開いていないレア度は、開いている1つ下の段に落とす（引き直さない）
+      const open = rr => rr === 0 || (rr === 1 ? !(first && wShop < num('unlock.rare.fromWave') - 1) : rr === 2 ? epicOpen : false);
+      while (!open(r)) r--;
       const ids = isSpell ? P.spells : P.heroes; const tbl = isSpell ? SPELLS : HEROES;
       let cand = [];
       for (let rr = r; rr >= 0 && !cand.length; rr--) cand = ids.filter(id => tbl[id].rarity === rr);
@@ -183,7 +191,8 @@ function runOnce() {
     } else if (same.length) {
       same.sort((a, b) => Math.hypot(a.x - x, a.y - y) - Math.hypot(b.x - x, b.y - y))[0].power += card.power * num('hero.stack.dmgMul');
     } else {
-      heroes.slice().sort((a, b) => a.power - b.power)[0].power += card.power * num('hero.stack.dmgMul');
+      // 同じ英雄がいない（戦場がいっぱい）：力（hero.power）がいちばん小さい英雄に重なる。同じなら塔からいちばん遠い英雄
+      heroes.slice().sort((a, b) => a.power - b.power || Math.hypot(b.x, b.y) - Math.hypot(a.x, a.y))[0].power += card.power * num('hero.stack.dmgMul');
     }
   };
 
@@ -226,9 +235,10 @@ function runOnce() {
     const finger = { x: 0, y: -60, tgt: null, react: 0, cd: 0 };
     const auto = { x: 0, y: 0, cd: 0 };
     let spellCd = 0;
+    let killCoin = 0; // このウェーブで倒した魔物のコインの合計（生き延びたコインの元）
     const killed = (mo) => {
       mo.dead = true;
-      const c = num('wave.coin.base') * m * num(`monster.${mo.type}.coin`) / B; coins += c; // 湧きを全部倒すと wave.coin.base × 相場
+      const c = num('wave.coin.base') * m * num(`monster.${mo.type}.coin`) / B; coins += c; killCoin += c; // 湧きを全部倒すと wave.coin.base × 相場
       if (w >= startW) runFame += famePerWave(w) * num('fame.killShare') * num(`monster.${mo.type}.cost`) / (mo.type === 'swarm' ? num('monster.swarm.groupSize') : 1) / B * (w > record ? num('fame.beyondRecordMul') : 1);
     };
     const hit = (mo, d, src) => { if (mo.dead) return; const real = Math.min(mo.hp, d); mo.hp -= d; dmgBy[src] += real; if (mo.hp <= 1e-9) killed(mo); };
@@ -377,7 +387,7 @@ function runOnce() {
     const waveRow = { w, wt, tower: Math.max(0, tower) / towerMax, heroes: heroes.length, leak: leakDmg, maxMon, coins: 0, fame: 0 };
     if (tower <= 0) { waveLog.push(waveRow); break; }
     // 生き延びた
-    coins += num('wave.clear.coinRatio') * num('wave.coin.base') * m;
+    coins += num('wave.clear.coinRatio') * killCoin; // wave.clear.coin ＝ coinRatio × このウェーブで倒した魔物のコインの合計
     if (!skipped) runFame += famePerWave(w) * (w > record ? num('fame.beyondRecordMul') : 1);
     tower = Math.min(towerMax, tower + towerMax * num('tower.regen.waveEnd'));
     if (!skipped) time += num('wave.clear.fxTime') + (first ? 15 : 8); // ショップ（はじめのランは見て選ぶ。あとは「前と同じものを買う」）
