@@ -1,0 +1,20 @@
+{
+  "name": "packdefense-proto-q123",
+  "version": "0.1.0",
+  "description": "プロトの問い1〜3を1つの戦場で切り替えて遊ぶ（捨てる前提）",
+  "private": true,
+  "type": "module",
+  "license": "UNLICENSED",
+  "scripts": {
+    "dev": "vite --host",
+    "build": "vite build",
+    "preview": "vite preview --host",
+    "typecheck": "tsc -p .",
+    "test": "node --test test/core.test.ts",
+    "e2e": "node test/e2e.mjs"
+  },
+  "devDependencies": {
+    "typescript": "7.0.2",
+    "vite": "8.3.8"
+  }
+}
