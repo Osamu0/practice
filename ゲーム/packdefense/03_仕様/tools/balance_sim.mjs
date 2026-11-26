@@ -131,6 +131,7 @@ const DT = 1 / 30;
 const rushAtk = wt => wt <= num('wave.duration.max') ? 1 : num('monster.rush.atkMul') * Math.pow(2, Math.floor((wt - num('wave.duration.max')) / num('monster.rush.doubleEvery')));
 
 let record = 0, fame = 0, totalTime = 0, runNo = 0, metSpell = false, epicOpen = false;
+let forcedSpellDone = false; // はじめの流れの「必ず出る呪文」を渡したか（保存する値）
 const global = { over: 0, waves: 0, maxMonsters: 0, maxProj: 0, maxWaveTime: 0, maxNum: 0, maxWaveTimeAt: 0 };
 const note = v => { if (v > global.maxNum) global.maxNum = v; return v; };
 
@@ -155,7 +156,9 @@ function runOnce() {
     for (let c = 0; c < nCards; c++) {
       // 1枚めは pack.<type>.firstCard（hero／spell）、2枚め以降の1枚ずつが pack.<type>.spellShare の割合で呪文
       let isSpell = c === 0 ? P.first === 'spell' : rand() < P.spell;
-      if (first && wShop === num('intro.firstSpellWave') - 1 && c === 1) isSpell = true; // はじめのランの第4ウェーブに呪文を必ず1枚
+      // 必ず出る呪文：はじめのランの第（intro.firstSpellWave − 1）ウェーブのあとのショップで最初に買ったパックの2枚め。
+      // そこで買わなければ次に買うパックで（このランで渡せなければ次のランにも続ける）。一度渡したら二度と働かない
+      if (c === 1 && !forcedSpellDone && (!first || wShop >= num('intro.firstSpellWave') - 1)) { isSpell = true; forcedSpellDone = true; }
       let r = pick([0, 1, 2], P.w.slice(0, 3));
       if (first && wShop < num('unlock.rare.fromWave') - 1) { r = 0; isSpell = false; } // はじめのパックはコモンの英雄だけ
       // 開いていないレア度は、開いている1つ下の段に落とす（引き直さない）
