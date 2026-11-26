@@ -4,7 +4,8 @@ import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 import { parseCsv, buildParams } from '../src/core/params.ts';
 import { Game } from '../src/core/game.ts';
-import { defaultKnobs } from '../src/core/proto.ts';
+import { defaultKnobs, PRESSURE, applyOverrides } from '../src/core/proto.ts';
+import type { FieldPack, Monster } from '../src/core/game.ts';
 import { exportText } from '../src/core/log.ts';
 
 const csv = readFileSync(new URL('../../../03_仕様/パラメータ表.csv', import.meta.url), 'utf8');
@@ -62,7 +63,7 @@ test('指なしだと第1ウェーブで塔が削られる。自動化を入れ�
 });
 
 test('Q2：S1 は開けるとすぐ効き、S2 は置き場に入る', () => {
-  for (const mode of ['S1', 'S2'] as const) {
+  for (const mode of ['S1a', 'S2'] as const) {
     const k = defaultKnobs(p); k.mode = 'q2'; k.spellMode = mode; const g = new Game(p, k, 844, 'q2');
     g.newRun();
     assert.equal(g.wave, 2);
@@ -70,7 +71,7 @@ test('Q2：S1 は開けるとすぐ効き、S2 は置き場に入る', () => {
     bot(g, 60 * 80);
     const s = g.logs[0] ?? g.stat;
     assert.ok(s.packsOpened >= 1, 'opened ' + s.packsOpened);
-    if (mode === 'S1') assert.ok(s.spellCasts >= 1); else assert.ok(g.slots.length + s.spellCasts >= 1);
+    if (mode === 'S1a') assert.ok(s.spellCasts >= 1); else assert.ok(g.slots.length + s.spellCasts >= 1);
     console.log(' ', mode, 'opened', s.packsOpened, 'delays', s.openDelays.map(x => x.toFixed(1)).join(','), 'slots', g.slots.length, 'casts', s.spellCasts);
   }
 });
@@ -91,4 +92,57 @@ test('Q3：ランが終わり、名声で強化でき、次のランに出られ
   g.newRun(); assert.equal(g.scene, 'fight'); assert.equal(g.wave, 1);
   const txt = exportText(['test'], g.logs, g.runLogs, 'メモ');
   assert.match(txt, /傷の割合/); assert.match(txt, /Q3 のラン/);
+});
+
+// ---- 2回目に足したつまみ ----
+function setup(o: Record<string, unknown>): Game {
+  const k = { ...defaultKnobs(p), mode: 'q2' as const, ...o }; const g = new Game(p, k, 844, 'r2'); g.newRun();
+  g.drops = []; g.packs = []; g.monsters = []; g.schedule = [{ time: 999, type: 'slime', dir: 'n', done: false, lat: 0 } as never];
+  return g;
+}
+const putPack = (g: Game, x: number, y: number): FieldPack => { const pk = { def: { type: 'novice', cards: [{ kind: 'hero', id: 'sword', rarity: 0 }], rarity: 0, boughtWave: 1 }, x, y, tele: 0, hits: 0, need: 99, landT: 0, shake: 0 } as FieldPack; g.packs.push(pk); return pk; };
+const putMon = (g: Game, x: number, y: number): Monster => { const m = { id: 900 + g.monsters.length, type: 'slime', dir: 'n', x, y, hp: 1e9, maxHp: 1e9, size: 15, speed: 0, atk: 0, atkInterval: 1, atkCd: 0, slowUntil: 0, slowMul: 1, flash: 0, attacking: false, dead: false } as Monster; g.monsters.push(m); return m; };
+
+test('輪とパックの決め A／B／C', () => {
+  for (const rule of ['A', 'B', 'C'] as const) {
+    // 魔物を狙った輪のそばにパックがある（両方が輪の中）
+    const g = setup({ packRule: rule }); const pk = putPack(g, 200, 300); putMon(g, 210, 300);
+    g.pointerDown(205, 356); for (let i = 0; i < 30; i++) g.step(); g.pointerUp();
+    const near = pk.hits;
+    // 魔物がいないところでパックを押さえ始める
+    const g2 = setup({ packRule: rule }); const pk2 = putPack(g2, 200, 300);
+    g2.pointerDown(200, 356); for (let i = 0; i < 30; i++) g2.step(); g2.pointerUp();
+    // 何もない所で押さえ始めて、パックへ指を動かす
+    const g3 = setup({ packRule: rule }); const pk3 = putPack(g3, 200, 300);
+    g3.pointerDown(60, 600); g3.step(); g3.pointerMove(200, 356); for (let i = 0; i < 30; i++) g3.step(); g3.pointerUp();
+    console.log(`  ${rule}: 魔物のそば ${near}回 / パックを押さえ始め ${pk2.hits}回 / なぞって入る ${pk3.hits}回`);
+    if (rule === 'A') { assert.ok(near > 0); assert.ok(pk2.hits > 0); assert.ok(pk3.hits > 0); }
+    if (rule === 'B') { assert.equal(near, 0); assert.ok(pk2.hits > 0); assert.ok(pk3.hits > 0); }
+    if (rule === 'C') { assert.ok(near > 0); assert.ok(pk2.hits > 0); assert.equal(pk3.hits, 0); }
+  }
+});
+
+test('S1b は呪文の輪にいちばん多く魔物が入る所で起きる', () => {
+  const g = setup({ spellMode: 'S1b' });
+  putMon(g, 100, 300); for (let i = 0; i < 4; i++) putMon(g, 300 + i * 5, 600);
+  assert.deepEqual(g.crowdPoint(60), { x: 300, y: 600 });
+  const g2 = setup({ spellMode: 'S1b' }); assert.equal(g2.crowdPoint(60), null);
+});
+
+test('降る時刻を湧きの山に合わせる', () => {
+  const k = { ...defaultKnobs(p), mode: 'q2' as const, dropSync: true }; const g = new Game(p, k, 844, 'sync'); g.newRun();
+  const peaks = new Set(g.schedule.map(e => e.time));
+  assert.ok(g.drops.length === 2 && g.drops.every(d => peaks.has(d.time) && d.time > 0), JSON.stringify(g.drops.map(d => d.time)));
+});
+
+test('上書きは CSV を変えず、記録の行に出る', () => {
+  const k = { ...defaultKnobs(p), ...PRESSURE[1].v, hitsMul: 2, startCoin: 15, priceMul: 0.7, swarmFrom: 2 };
+  const q = applyOverrides(p, k);
+  assert.equal(q.budgetBase, 28); assert.equal(q.monster.slime.hp, 90); assert.equal(q.monster.swarm.fromWave, 2); assert.equal(q.coinStart, 15);
+  assert.equal(p.budgetBase, 16); assert.equal(p.monster.slime.hp, 60);
+  const g = new Game(p, { ...k, mode: 'q3' }, 844, 'ov'); g.newRun();
+  assert.equal(g.coins, 15);
+  const t = g.knobText();
+  for (const w of ['wave.budget.base=28', 'spawn.packet.base=3', 'monster.slime.hp=90', 'spawn.pullForward=切', 'coin.start=15', 'pack.price×0.7', 'pack.hitsToOpen×2', 'monster.swarm.fromWave=2']) assert.ok(t.includes(w), w + ' / ' + t);
+  assert.ok(new Game(p, defaultKnobs(p), 844, 'x').knobText().includes('上書きなし'));
 });

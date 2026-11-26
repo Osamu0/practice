@@ -2,7 +2,7 @@
 // プロトなので物はふつうのオブジェクトの配列（数は多くて百ほど）。湧いたときだけ new し、毎歩は new しない。
 import { type RngState, seedFrom, nextFloat, nextInt } from './rng.ts';
 import { type Params, market, budget, spawnDuration, hpGrowth, famePerWave } from './params.ts';
-import { type Knobs, type Role, type SpellId, type PackType, POOL, autoLevels, Q2_START, Q3_START_UPGRADES, Q3_RUN_TARGET, SPAWN_LATERAL, KNOCKBACK } from './proto.ts';
+import { type Knobs, type Role, type SpellId, type PackType, POOL, autoLevels, applyOverrides, overrideList, Q2_START, Q3_START_UPGRADES, Q3_RUN_TARGET, SPAWN_LATERAL, KNOCKBACK } from './proto.ts';
 
 export const STEP = 1 / 60;
 export const W = 390;
@@ -48,7 +48,8 @@ export const newMeta = (): Meta => ({ fame: 0, record: 0, runs: 0, up: { tapDmg:
 const DIRS: Dir[] = ['n', 'e', 's', 'w'];
 
 export class Game {
-  readonly p: Params;
+  p: Params;            // CSV ＋ つまみの上書き（ランの始めに作り直す）
+  readonly base: Params; // CSV のまま
   k: Knobs;
   meta: Meta;
   H: number;
@@ -81,6 +82,7 @@ export class Game {
   // 指
   fingerOn = false; fx0 = 0; fy0 = 0; ringX = 0; ringY = 0; tapCd = 0; pressHit = false;
   drag: { slot: number; fx: number; fy: number } | null = null;
+  lockPack: FieldPack | null = null;
   // 自動化
   autoX = W / 2; autoY = 422; autoCd = 0; autoTarget = -1; autoFlash = 0;
   // 記録
@@ -90,7 +92,7 @@ export class Game {
   lastWaveSummary = '';
 
   constructor(p: Params, k: Knobs, H: number, seedBase: string, meta?: Meta) {
-    this.p = p; this.k = k; this.H = H; this.seedBase = seedBase; this.meta = meta ?? newMeta();
+    this.base = p; this.p = applyOverrides(p, k); this.k = k; this.H = H; this.seedBase = seedBase; this.meta = meta ?? newMeta();
     this.rng = seedFrom(seedBase);
     this.stat = newStat(0, k.mode, 1, seedBase, '');
     this.layout();
@@ -127,6 +129,7 @@ export class Game {
   /** つまみの遊び方で、新しいランを始める */
   newRun(): void {
     this.runIndex++;
+    this.p = applyOverrides(this.base, this.k);
     this.seed = this.k.sameSeed ? 'fixed' : `${this.seedBase}/r${this.runIndex}`;
     this.rng = seedFrom(this.seed);
     this.layout();
@@ -175,9 +178,13 @@ export class Game {
     this.buildSchedule(r);
     // パックの降る時刻：持ち越しは 0、買ったぶんは前の半分が 0、残りが湧きの長さ × 2つめ
     const bought = this.queued.length - this.carried, firstHalf = Math.ceil(bought / 2), dur = spawnDuration(p, n);
+    // 湧きの山に合わせる（つまみ）：組の湧く時刻のうち、ウェーブの中ほどに散らした時刻に降らせる（魔物と同時に来る）
+    const peaks = [...new Set(this.schedule.map(e => e.time))];
+    const k = this.queued.length;
     this.queued.forEach((def, i) => {
       const j = i - this.carried;
-      this.drops.push({ def, time: j < firstHalf ? 0 : dur * (p.dropTimes[1] ?? 0.4) });
+      if (this.k.dropSync && peaks.length) this.drops.push({ def, time: peaks[Math.min(peaks.length - 1, Math.floor((i + 1) * peaks.length / (k + 1)))] });
+      else this.drops.push({ def, time: j < firstHalf ? 0 : dur * (p.dropTimes[1] ?? 0.4) });
     });
     this.queued = []; this.carried = 0;
     this.events.push('wave');
@@ -185,7 +192,9 @@ export class Game {
 
   knobText(): string {
     const k = this.k;
-    return `ずらし${k.ringOffset} 塔${k.towerY.toFixed(2)} 呪文${k.spellMode} 落ち方${k.dropBias} 開封×${k.hitsMul} 自動=${this.autoLevel().name}` +
+    const ov = overrideList(this.base, k);
+    return `ずらし${k.ringOffset} 塔${k.towerY.toFixed(2)} 呪文${k.spellMode} 輪とパック${k.packRule} 自動=${this.autoLevel().name}` +
+      (ov.length ? ` 上書き[${ov.join(' ')}]` : ' 上書きなし') +
       ` 前倒し=${k.pullForward ? '入' : '切'}${k.mode === 'q1' ? ` 方向=${k.introDirs ? 'はじめの順' : '四方'}` : ''}${k.mode === 'q2' ? ` 呪文まぜ=${k.forceSpell ? '入' : '切'}` : ''}`;
   }
 
@@ -263,6 +272,9 @@ export class Game {
     }
     this.fingerOn = true; this.pressHit = false; this.stat.presses++;
     this.fx0 = fx; this.fy0 = fy; const r = this.ringFromFinger(fx, fy); this.ringX = r.x; this.ringY = r.y;
+    // 決め C：押さえ始めに輪の中にあったパック（いちばん近い1つ）だけを、この押さえで狙う
+    this.lockPack = null; let bd = this.p.ringHit;
+    for (const pk of this.packs) { if (pk.tele > 0) continue; const d = Math.hypot(pk.x - r.x, pk.y - r.y); if (d <= bd) { bd = d; this.lockPack = pk; } }
   }
   pointerMove(fx: number, fy: number): void {
     if (this.drag) { this.drag.fx = fx; this.drag.fy = fy; return; }
@@ -296,6 +308,7 @@ export class Game {
   // ---------- 1歩 ----------
   step(): void {
     this.t++; this.sceneT++;
+    if (this.events.length > 256) this.events.length = 0; // 読む人がいないとき（Node）にふくらまない
     const dt = STEP;
     this.updateFx(dt);
     if (this.scene === 'cleared') {
@@ -383,8 +396,11 @@ export class Game {
         if (Math.hypot(m.x - this.ringX, m.y - this.ringY) <= p.ringHit) { this.hurt(m, dmg, 'finger', this.ringX, this.ringY); n++; }
       }
       let pkHit = 0;
+      const rule = this.k.packRule;
       for (const pk of this.packs) {
         if (pk.tele > 0) continue;
+        if (rule === 'B' && n > 0) continue;              // B：輪の中に魔物がいれば、パックには当たらない
+        if (rule === 'C' && pk !== this.lockPack) continue; // C：押さえ始めのパックだけ
         if (Math.hypot(pk.x - this.ringX, pk.y - this.ringY) <= p.ringHit) { pk.hits++; pk.shake = 0.1; pkHit++; this.stat.hitsPack++; }
       }
       if (n > 0) { this.stat.hitsMonster += n; this.pressHit = true; this.popNumber(this.ringX, this.ringY - 12, dmg * n); this.events.push('hit'); }
@@ -568,7 +584,10 @@ export class Game {
     for (const c of pk.def.cards) {
       if (c.kind !== 'spell') continue;
       const sp = { id: c.id as SpellId, power: this.spellPower(c.id as SpellId, pk.def.boughtWave) };
-      if (this.k.spellMode === 'S1') this.pending.push({ ...sp, x: pk.x, y: pk.y, t: p.spellPreview, auto: false });
+      if (this.k.spellMode !== 'S2') {
+        const at = this.k.spellMode === 'S1b' ? this.crowdPoint(sp.id === 'fire1' ? p.fire1.radius : p.ice1.radius) ?? pk : pk;
+        this.pending.push({ ...sp, x: at.x, y: at.y, t: p.spellPreview, auto: false });
+      }
       else {
         if (this.slots.length >= p.slotCount) {
           const old = this.slots.shift()!; this.stat.spellOverflow++;
@@ -577,6 +596,18 @@ export class Game {
         this.slots.push(sp); this.events.push('slot');
       }
     }
+  }
+
+  /** S1b：呪文の輪にいちばん多く魔物が入る所（魔物の位置を中心の候補にする）。いなければ null */
+  crowdPoint(radius: number): { x: number; y: number } | null {
+    let best: Monster | null = null, bn = 0;
+    for (const c of this.monsters) {
+      if (c.dead || !this.visible(c)) continue;
+      let n = 0; for (const m of this.monsters) if (!m.dead && Math.hypot(m.x - c.x, m.y - c.y) <= radius) n++;
+      const closer = best && Math.hypot(c.x - this.towerX, c.y - this.towerY) < Math.hypot(best.x - this.towerX, best.y - this.towerY);
+      if (n > bn || (n === bn && closer)) { bn = n; best = c; }
+    }
+    return best ? { x: best.x, y: best.y } : null;
   }
 
   spellPower(id: SpellId, boughtWave: number): number { return id === 'fire1' ? this.p.fire1.power * market(this.p, boughtWave) : 0; }

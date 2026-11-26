@@ -2,12 +2,12 @@
 import csvText from '../../../03_仕様/パラメータ表.csv?raw';
 import { parseCsv, buildParams, market } from './core/params.ts';
 import { Game, W, STEP, newMeta, type Meta, type WaveStat, type Monster, type Hero, type FieldPack } from './core/game.ts';
-import { defaultKnobs, autoLevels, KNOB_CHOICES, NAME, POOL, Q2_START, Q3_RUN_TARGET, type Knobs, type Mode, type PackType } from './core/proto.ts';
+import { defaultKnobs, autoLevels, KNOB_CHOICES, NAME, POOL, Q2_START, Q3_RUN_TARGET, PRESSURE, RULE_NAME, SPELL_NAME, type Knobs, type Mode, type PackType } from './core/proto.ts';
 import { exportText, waveLine, type RunLog } from './core/log.ts';
 import { fmt } from './core/num.ts';
 import * as audio from './audio.ts';
 
-const VERSION = 'q123-0.1';
+const VERSION = 'q123-0.2';
 const { p, missing } = buildParams(parseCsv(csvText));
 
 // ---------- 保存（つまみ・名声・記録。端末の中だけ） ----------
@@ -15,7 +15,9 @@ const KEY = 'pd.proto.q123';
 interface Saved { knobs: Knobs; meta: Meta; logs: WaveStat[]; runLogs: RunLog[]; note: string }
 function load(): Saved {
   const d: Saved = { knobs: defaultKnobs(p), meta: newMeta(), logs: [], runLogs: [], note: '' };
-  try { const s = JSON.parse(localStorage.getItem(KEY) ?? 'null'); if (s) return { ...d, ...s, knobs: { ...d.knobs, ...s.knobs }, meta: { ...d.meta, ...s.meta, up: { ...d.meta.up, ...s.meta?.up } } }; } catch { /* 読めなければ最初から */ }
+  try { const s = JSON.parse(localStorage.getItem(KEY) ?? 'null');
+    if (s?.knobs) { if (s.knobs.spellMode === 'S1') s.knobs.spellMode = 'S1a'; if (![1, 2, 3].includes(s.knobs.hitsMul)) s.knobs.hitsMul = 1; } // 1回目の保存から
+    if (s) return { ...d, ...s, knobs: { ...d.knobs, ...s.knobs }, meta: { ...d.meta, ...s.meta, up: { ...d.meta.up, ...s.meta?.up } } }; } catch { /* 読めなければ最初から */ }
   return d;
 }
 const saved = load();
@@ -110,17 +112,29 @@ const onoff = (key: string, v: boolean) => seg(key, [['1', '入'], ['0', '切']]
 function knobsBody(): string {
   const k = g.k;
   return row('遊び方', seg('mode', [['q1', 'Q1 第1W'], ['q2', 'Q2 第2〜4W'], ['q3', 'Q3 ラン']], k.mode), '変えたら「この設定で始める」')
+    + '<div class="lab" style="margin-top:14px;color:#2F6FD6">Q1 序盤の圧（CSV を上書き。次のランから）</div>'
+    + row('プリセット', `<div class="seg">${PRESSURE.map((pr, i) => `<button data-act="preset" data-v="${i}" class="${(Object.keys(pr.v) as (keyof typeof pr.v)[]).every(key => k[key] === pr.v[key]) ? 'on' : ''}">${pr.name}</button>`).join('')}</div>`,
+      'やや強い＝遅い自動の指が第1ウェーブで少し傷を受ける目安（README）。下の4つをまとめて変える')
+    + row('湧きの量 wave.budget.base', seg('budgetBase', KNOB_CHOICES.budgetBase.map(v => [String(v), v ? String(v) : `CSV(${p.budgetBase})`]), String(k.budgetBase)), 'すべてのウェーブの頭が変わる（第n は 頭＋3×(n−1)）')
+    + row('同時に湧く組 spawn.packet.base', seg('packetBase', KNOB_CHOICES.packetBase.map(v => [String(v), v ? String(v) : `CSV(${p.packetBase})`]), String(k.packetBase)))
+    + row('slime の耐久', seg('slimeHpMul', KNOB_CHOICES.slimeHpMul.map(v => [String(v), '×' + v]), String(k.slimeHpMul)), `CSV ${p.monster.slime.hp}`)
+    + row('前倒し（spawn.pullForward）', onoff('pullForward', k.pullForward), '魔物が0のとき次の組がすぐ来る')
     + '<div class="lab" style="margin-top:14px;color:#2F6FD6">Q1 指と画面</div>'
     + row('輪のずらし（tap.ring.offset）', seg('ringOffset', KNOB_CHOICES.ringOffset.map(v => [String(v), String(v)]), String(k.ringOffset)), 'すぐ効く')
     + row('塔の高さ（field.tower.yRatio）', seg('towerY', KNOB_CHOICES.towerY.map(v => [String(v), Math.round(v * 100) + '%']), String(k.towerY)), '次のランから')
     + row('指で打てない帯を見せる', onoff('showBand', k.showBand), '南の下の端の、輪が届かない帯を赤く塗る')
     + row('第1ウェーブの方向', seg('introDirs', [['1', 'はじめの順（東→東西→四方）'], ['0', '四方']], k.introDirs ? '1' : '0'))
-    + row('前倒し（spawn.pullForward）', onoff('pullForward', k.pullForward), '魔物が0のとき次の組がすぐ来る')
     + '<div class="lab" style="margin-top:14px;color:#2F6FD6">Q2 パックと呪文</div>'
-    + row('呪文の形', seg('spellMode', [['S1', 'S1 開けた瞬間'], ['S2', 'S2 置き場2枚']], k.spellMode), '次のランから')
+    + row('輪がパックに当たる決め', seg('packRule', (['A', 'B', 'C'] as const).map(v => [v, RULE_NAME[v]]), k.packRule), 'A 輪の中の魔物とパックの両方／B 輪の中に魔物がいない時だけパック／C 押さえ始めに輪の中にあったパックだけ。すぐ効く')
+    + row('開けるのに要る回数', seg('hitsMul', KNOB_CHOICES.hitsMul.map(v => [String(v), '×' + v]), String(k.hitsMul)), `CSV：コモン${p.hitsToOpen[0]}・レア${p.hitsToOpen[1]}・エピック${p.hitsToOpen[2]}回。次に降るパックから`)
+    + row('降る時刻を湧きの山に合わせる', onoff('dropSync', k.dropSync), '切＝CSV（半分は始まり、残りは湧きの4割の時）。入＝組の湧く時刻に散らす。次のウェーブから')
+    + row('呪文の形', seg('spellMode', (['S1a', 'S1b', 'S2'] as const).map(v => [v, SPELL_NAME[v]]), k.spellMode), 'S1b＝呪文の輪にいちばん多く魔物が入る所で起きる。次のランから')
+    + row('群れの出始め monster.swarm.fromWave', seg('swarmFrom', KNOB_CHOICES.swarmFrom.map(v => [String(v), v ? '第' + v : `CSV(第${p.monster.swarm.fromWave})`]), String(k.swarmFrom)), '次のランから')
     + row('落ち方：英雄の少ない方向の優先（pack.drop.dirBias）', seg('dropBias', KNOB_CHOICES.dropBias.map(v => [String(v), String(v)]), String(k.dropBias)))
-    + row('開けるのに要る回数', seg('hitsMul', KNOB_CHOICES.hitsMul.map(v => [String(v), '×' + v]), String(k.hitsMul)), `CSV：コモン${p.hitsToOpen[0]}・レア${p.hitsToOpen[1]}・エピック${p.hitsToOpen[2]}回`)
     + row('Q2 で呪文を必ずまぜる', onoff('forceSpell', k.forceSpell), '各ショップの最初のパックの2枚めを呪文に')
+    + '<div class="lab" style="margin-top:14px;color:#2F6FD6">ショップ（次のランから）</div>'
+    + row('最初のコイン coin.start', seg('startCoin', KNOB_CHOICES.startCoin.map(v => [String(v), v ? String(v) : `CSV(${p.coinStart})`]), String(k.startCoin)))
+    + row('パックの値段の倍率', seg('priceMul', KNOB_CHOICES.priceMul.map(v => [String(v), '×' + v]), String(k.priceMul)), `CSV 見習い${p.pack.novice.price}・鉄壁${p.pack.iron.price}（×相場）`)
     + '<div class="lab" style="margin-top:14px;color:#2F6FD6">Q3 自動化</div>'
     + row('タップ攻撃の自動化', seg('auto', autoLevels(p).map((a, i) => [String(i), a.name]), String(k.auto)),
       autoLevels(p).map(a => `${a.name}：${a.ratio ? `威力×${a.ratio}・${a.interval}秒ごと` : '切'}`).join('／') + '。強＝指と同じ（比べるためだけ）。すぐ効く')
@@ -254,6 +268,7 @@ function doAct(act: string, v = ''): void {
       save(); const st = sb.scrollTop; const back = sf.querySelector('[data-act]:not([data-act=start])')?.getAttribute('data-act') ?? 'title';
       openKnobs(back); sb.scrollTop = st; break;
     }
+    case 'preset': { Object.assign(g.k, PRESSURE[Number(v)].v); save(); const st = sb.scrollTop; openKnobs(sf.querySelector('[data-act]:not([data-act=start])')?.getAttribute('data-act') ?? 'title'); sb.scrollTop = st; break; }
     case 'resetMeta': g.meta = newMeta(); g.k.auto = 0; g.runLogs = []; save(); openKnobs(sf.querySelector('[data-act]:not([data-act=start])')?.getAttribute('data-act') ?? 'title'); break;
     case 'resume': closePanel(); setPaused(false); break;
     case 'restart': closePanel(); g.newRun(); setPaused(false); break;
@@ -445,6 +460,7 @@ function draw(): void {
   }
   // 指の輪と隠れたパックの印
   if (g.fingerOn) {
+    if (g.k.packRule === 'C' && g.lockPack && g.packs.includes(g.lockPack)) { ctx.strokeStyle = '#FFE14D'; ctx.lineWidth = 3; ctx.beginPath(); ctx.arc(g.lockPack.x, g.lockPack.y, 26, 0, Math.PI * 2); ctx.stroke(); }
     ring(g.ringX, g.ringY, p.ringVis);
     ctx.fillStyle = 'rgba(255,255,255,.25)'; ctx.beginPath(); ctx.arc(g.fx0, g.fy0, 10, 0, Math.PI * 2); ctx.fill();
     for (const pk of g.hiddenMarks()) {

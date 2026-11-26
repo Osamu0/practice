@@ -110,6 +110,22 @@ for (const S of SIZES) {
   summary[S.tag] = { q1: q1.log };
   if (S.tag !== '390x664') await shot('03_q1_end');
 
+  // --- 2回目：序盤の圧のプリセット（画面のつまみで）→ 第1ウェーブ
+  await clickAct('knobs'); await clickAct('preset', '1');
+  const kv = await G(() => { const k = window.__pd.g.k; return [k.budgetBase, k.packetBase, k.slimeHpMul, k.pullForward].join(); });
+  check(`[${S.tag}] プリセット「やや強い」が4つのつまみを変える`, kv === '28,3,1.5,false', kv);
+  if (S.tag === '390x844') await shot('14_knobs_pressure');
+  await page.locator('#sf [data-act="start"]').click(); await sleep(300);
+  const hpNow = await G(() => [window.__pd.g.p.budgetBase, window.__pd.g.p.monster.slime.hp].join());
+  check(`[${S.tag}] 上書きが戦場に効く（budget 28、slime 90）`, hpNow === '28,90', hpNow);
+  await playUntil(() => window.__pd.g.waveT > 60 * 12 && window.__pd.g.fingerOn, 8000);
+  if (S.tag === '390x844') { await botTick(); await page.evaluate(() => window.__pd.setSpeed(0)); await sleep(120); await shot('15_q1_pressure_mid'); await page.evaluate(() => window.__pd.setSpeed(3)); }
+  await playUntil(() => window.__pd.g.scene === 'q1end', 40000);
+  const q1p = await G(() => { const g = window.__pd.g; return g.logs[g.logs.length - 1]; });
+  check(`[${S.tag}] Q1 やや強い：第1ウェーブを遊べる、記録に上書きが出る`, q1p?.knobs.includes('wave.budget.base=28'), `${q1p?.result} ${q1p?.time.toFixed(1)}秒 塔${q1p?.towerHpEnd}（速い自動の指）`);
+  summary[S.tag].q1pressure = q1p;
+  await setKnobs({ budgetBase: 0, packetBase: 0, slimeHpMul: 1, pullForward: true });
+
   // --- Q2：S2（置き場）→ 引いて使う
   await setKnobs({ mode: 'q2', spellMode: 'S2', forceSpell: true }); await start();
   await playUntil(() => window.__pd.g.slots.length > 0 || window.__pd.g.scene !== 'fight', 25000);
@@ -130,11 +146,19 @@ for (const S of SIZES) {
   }
   await playUntil(() => window.__pd.g.scene !== 'fight' && window.__pd.g.scene !== 'cleared', 30000);
   // S1
-  await setKnobs({ mode: 'q2', spellMode: 'S1' }); await start();
+  await setKnobs({ mode: 'q2', spellMode: 'S1a' }); await start();
   await playUntil(() => window.__pd.g.stat.spellCasts > 0 || window.__pd.g.scene !== 'fight', 25000);
   const s1 = await G(() => ({ casts: window.__pd.g.stat.spellCasts, slots: window.__pd.g.slots.length, opened: window.__pd.g.stat.packsOpened }));
-  check(`[${S.tag}] Q2 S1：開けた瞬間に呪文が起き、置き場は無い`, s1.casts > 0 && s1.slots === 0, JSON.stringify(s1));
+  check(`[${S.tag}] Q2 S1a：開けた瞬間に呪文が起き、置き場は無い`, s1.casts > 0 && s1.slots === 0, JSON.stringify(s1));
   if (S.tag === '390x844') { await page.evaluate(() => window.__pd.setSpeed(0)); await shot('06_q2_S1'); await page.evaluate(() => window.__pd.setSpeed(3)); }
+  // S1b ＋ B ＋ ×2 ＋ 山に合わせる ＋ 群れ第2（2回目の組み合わせ）
+  await setKnobs({ mode: 'q2', spellMode: 'S1b', packRule: 'B', hitsMul: 2, dropSync: true, swarmFrom: 2 }); await start();
+  const dt = await G(() => window.__pd.g.drops.map(d => d.time));
+  check(`[${S.tag}] 山に合わせる：パックが湧きの時刻に降る（0秒に降らない）`, dt.length > 0 && dt.every(t => t > 0), dt.map(t => t.toFixed(1)).join(','));
+  await playUntil(() => window.__pd.g.stat.spellCasts > 0 || window.__pd.g.scene !== 'fight', 40000);
+  const s1b = await G(() => ({ casts: window.__pd.g.stat.spellCasts, whiff: window.__pd.g.stat.spellWhiff, need: window.__pd.g.logs.concat([window.__pd.g.stat]).flatMap(x => x.openDelays) }));
+  check(`[${S.tag}] Q2 S1b：開けると魔物の多い所で呪文が起きる`, s1b.casts > 0, JSON.stringify(s1b));
+  if (S.tag === '390x844') { await page.evaluate(() => window.__pd.setSpeed(0)); await shot('16_q2_S1b'); await page.evaluate(() => window.__pd.setSpeed(3)); }
   // Q2 を最後まで（第2〜4）。ショップは見習いを買えるだけ買う
   const q2t0 = Date.now();
   while (Date.now() - q2t0 < 90000) {
@@ -151,6 +175,12 @@ for (const S of SIZES) {
   check(`[${S.tag}] Q2：第2〜4ウェーブを通して遊べる（ショップを2回通る）`, q2.scene === 'q2end', q2.waves.map(s => `W${s.wave}:${s.result} 開けた${s.packsOpened} 開けるまで[${s.openDelays.map(x => x.toFixed(1))}] 呪文${s.spellCasts}`).join(' / '));
   summary[S.tag].q2 = q2.waves;
   if (S.tag === '390x844') await shot('08_q2_end');
+
+  // ショップの上書き（最初のコイン 25、値段 ×0.5）
+  await setKnobs({ mode: 'q3', startCoin: 25, priceMul: 0.5, spellMode: 'S2', packRule: 'A', hitsMul: 1, dropSync: false, swarmFrom: 0 }); await start();
+  const shopv = await G(() => ({ c: window.__pd.g.coins, price: window.__pd.g.packPrice('novice') }));
+  check(`[${S.tag}] ショップの上書き：最初のコイン 25、見習い 5`, shopv.c === 25 && shopv.price === 5, JSON.stringify(shopv));
+  await setKnobs({ startCoin: 0, priceMul: 1 });
 
   // --- Q3：自動化の3段（指を離したまま 20秒）
   const autoRes = {};
@@ -196,7 +226,7 @@ for (const S of SIZES) {
   await page.evaluate(() => window.__pd.setSpeed(1));
   await page.click('#pause'); await sleep(250); await clickAct('export');
   const txt = await page.locator('#out').inputValue();
-  check(`[${S.tag}] 記録が書き出せる（ウェーブの行・置き間違い・傷の割合・開けるまで）`, /W1 /.test(txt) && /置き間違い/.test(txt) && /傷の割合/.test(txt) && /開けるまで/.test(txt), `${txt.split('\n').length}行 ${txt.length}文字`);
+  check(`[${S.tag}] 記録が書き出せる（ウェーブの行・置き間違い・傷の割合・開けるまで・CSV と違う値）`, /W1 /.test(txt) && /置き間違い/.test(txt) && /傷の割合/.test(txt) && /開けるまで/.test(txt) && /上書き\[/.test(txt) && /上書きなし/.test(txt), `${txt.split('\n').length}行 ${txt.length}文字`);
   writeFileSync(`test-results/export_${S.tag}.txt`, txt);
   if (S.tag !== '390x664') await shot('12_export');
   await page.locator('#sf [data-act="pause"]').click(); await sleep(250); await clickAct('knobsP');

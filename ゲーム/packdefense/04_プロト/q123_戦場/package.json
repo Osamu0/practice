@@ -11,7 +11,8 @@
     "preview": "vite preview --host",
     "typecheck": "tsc -p .",
     "test": "node --test test/core.test.ts",
-    "e2e": "node test/e2e.mjs"
+    "e2e": "node test/e2e.mjs",
+    "calib": "node test/calib.ts"
   },
   "devDependencies": {
     "typescript": "7.0.2",
