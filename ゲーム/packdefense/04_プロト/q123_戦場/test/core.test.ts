@@ -4,7 +4,7 @@ import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 import { parseCsv, buildParams } from '../src/core/params.ts';
 import { Game } from '../src/core/game.ts';
-import { defaultKnobs, PRESSURE, applyOverrides } from '../src/core/proto.ts';
+import { csvKnobs as defaultKnobs, defaultKnobs as ownerKnobs, PRESSURE, applyOverrides } from '../src/core/proto.ts';
 import type { FieldPack, Monster } from '../src/core/game.ts';
 import { exportText } from '../src/core/log.ts';
 
@@ -145,4 +145,10 @@ test('上書きは CSV を変えず、記録の行に出る', () => {
   const t = g.knobText();
   for (const w of ['wave.budget.base=28', 'spawn.packet.base=3', 'monster.slime.hp=90', 'spawn.pullForward=切', 'coin.start=15', 'pack.price×0.7', 'pack.hitsToOpen×2', 'monster.swarm.fromWave=2']) assert.ok(t.includes(w), w + ' / ' + t);
   assert.ok(new Game(p, defaultKnobs(p), 844, 'x').knobText().includes('上書きなし'));
+});
+
+test('既定（オーナーが初めて開いたとき）', () => {
+  const k = ownerKnobs(p);
+  assert.deepEqual([k.budgetBase, k.packetBase, k.slimeHpMul, k.pullForward, k.packRule, k.hitsMul, k.dropSync, k.spellMode, k.swarmFrom, k.startCoin, k.priceMul],
+    [28, 3, 1.5, false, 'B', 2, true, 'S1b', 2, 15, 0.7]);
 });

@@ -140,6 +140,7 @@ function knobsBody(): string {
       autoLevels(p).map(a => `${a.name}：${a.ratio ? `威力×${a.ratio}・${a.interval}秒ごと` : '切'}`).join('／') + '。強＝指と同じ（比べるためだけ）。すぐ効く')
     + '<div class="lab" style="margin-top:14px;color:#2F6FD6">そのほか</div>'
     + row('音', onoff('sound', k.sound)) + row('シード', seg('sameSeed', [['0', '毎回かえる'], ['1', '毎回同じ']], k.sameSeed ? '1' : '0'))
+    + row('既定に戻す', `<button class="sec" data-act="resetKnobs">つまみを既定に戻す</button>`, '既定＝やや強い・B・×2・山に合わせる・S1b・群れ第2・最初15・値段×0.7（遊び方・音はそのまま）')
     + row('名声と強化（Q3）', `<button class="sec" data-act="resetMeta">名声・記録・強化を最初に戻す</button>`, `いま：名声${fmt(g.meta.fame)} 記録 第${g.meta.record} 強化 指${g.meta.up.tapDmg}・英雄${g.meta.up.heroDmg}・塔${g.meta.up.towerHp}`)
     + (missing.length ? `<div class="sub" style="color:#c00">CSV に無い名前：${missing.join('、')}</div>` : `<div class="sub">値は 03_仕様/パラメータ表.csv から読んだ（${VERSION}）</div>`);
 }
@@ -269,6 +270,7 @@ function doAct(act: string, v = ''): void {
       openKnobs(back); sb.scrollTop = st; break;
     }
     case 'preset': { Object.assign(g.k, PRESSURE[Number(v)].v); save(); const st = sb.scrollTop; openKnobs(sf.querySelector('[data-act]:not([data-act=start])')?.getAttribute('data-act') ?? 'title'); sb.scrollTop = st; break; }
+    case 'resetKnobs': { const keep = { mode: g.k.mode, sound: g.k.sound }; Object.assign(g.k, defaultKnobs(p), keep); save(); const st = sb.scrollTop; openKnobs(sf.querySelector('[data-act]:not([data-act=start])')?.getAttribute('data-act') ?? 'title'); sb.scrollTop = st; break; }
     case 'resetMeta': g.meta = newMeta(); g.k.auto = 0; g.runLogs = []; save(); openKnobs(sf.querySelector('[data-act]:not([data-act=start])')?.getAttribute('data-act') ?? 'title'); break;
     case 'resume': closePanel(); setPaused(false); break;
     case 'restart': closePanel(); g.newRun(); setPaused(false); break;

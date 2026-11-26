@@ -86,7 +86,13 @@ export function overrideList(base: Params, k: Knobs): string[] {
   return o;
 }
 
+/** オーナーが初めて開いたときの既定（q123 2回目、プロデューサーの指定）。CSV のままの組は csvKnobs */
 export function defaultKnobs(p: Params): Knobs {
+  return { ...csvKnobs(p), ...PRESSURE[1].v, packRule: 'B', hitsMul: 2, dropSync: true, spellMode: 'S1b', swarmFrom: 2, startCoin: 15, priceMul: 0.7 };
+}
+
+/** すべて CSV のまま（1回目の既定） */
+export function csvKnobs(p: Params): Knobs {
   return {
     mode: 'q1', ringOffset: p.ringOffsetDefault, towerY: p.towerYRatio, showBand: true, introDirs: true,
     spellMode: p.spellModeDefault === 'S1' ? 'S1a' : 'S2', dropBias: p.dropDirBias, hitsMul: 1, forceSpell: true, auto: 0, sound: true, sameSeed: false, pullForward: p.pullForward,

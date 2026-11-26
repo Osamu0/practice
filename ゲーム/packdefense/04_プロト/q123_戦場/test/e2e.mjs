@@ -66,6 +66,8 @@ for (const S of SIZES) {
   const playUntil = async (cond, maxMs, opts) => { const t0 = Date.now(); while (Date.now() - t0 < maxMs) { if (await G(cond)) break; await botTick(opts); await sleep(40); } await release(); };
 
   // --- 起動
+  const dk = await G(() => { const k = window.__pd.g.k; return [k.budgetBase, k.packetBase, k.slimeHpMul, k.pullForward, k.packRule, k.hitsMul, k.dropSync, k.spellMode, k.swarmFrom, k.startCoin, k.priceMul].join(); });
+  check(`[${S.tag}] 初めて開いたときの既定（やや強い・B・×2・山・S1b・群れ第2・15・×0.7）`, dk === '28,3,1.5,false,B,2,true,S1b,2,15,0.7', dk);
   check(`[${S.tag}] 起動して「タップで始める」が出る`, await page.locator('#cover.on [data-act="start"]').isVisible());
   check(`[${S.tag}] CSV の名前がすべて読めた`, (await G(() => window.__pd.missing.length)) === 0);
   const noScroll = await G(() => document.documentElement.scrollWidth <= window.innerWidth && document.documentElement.scrollHeight <= window.innerHeight);
@@ -111,6 +113,7 @@ for (const S of SIZES) {
   if (S.tag !== '390x664') await shot('03_q1_end');
 
   // --- 2回目：序盤の圧のプリセット（画面のつまみで）→ 第1ウェーブ
+  await setKnobs({ budgetBase: 0, packetBase: 0, slimeHpMul: 1, pullForward: true });
   await clickAct('knobs'); await clickAct('preset', '1');
   const kv = await G(() => { const k = window.__pd.g.k; return [k.budgetBase, k.packetBase, k.slimeHpMul, k.pullForward].join(); });
   check(`[${S.tag}] プリセット「やや強い」が4つのつまみを変える`, kv === '28,3,1.5,false', kv);
@@ -127,7 +130,7 @@ for (const S of SIZES) {
   await setKnobs({ budgetBase: 0, packetBase: 0, slimeHpMul: 1, pullForward: true });
 
   // --- Q2：S2（置き場）→ 引いて使う
-  await setKnobs({ mode: 'q2', spellMode: 'S2', forceSpell: true }); await start();
+  await setKnobs({ mode: 'q2', spellMode: 'S2', forceSpell: true, packRule: 'A', hitsMul: 1, dropSync: false, swarmFrom: 0 }); await start();
   await playUntil(() => window.__pd.g.slots.length > 0 || window.__pd.g.scene !== 'fight', 25000);
   const sl = await G(() => ({ n: window.__pd.g.slots.length, rects: window.__pd.g.slotRects, opened: window.__pd.g.stat.packsOpened }));
   check(`[${S.tag}] Q2 S2：開けた呪文が置き場に入る`, sl.n > 0, `置き場${sl.n} 開けた${sl.opened}`);
@@ -226,7 +229,7 @@ for (const S of SIZES) {
   await page.evaluate(() => window.__pd.setSpeed(1));
   await page.click('#pause'); await sleep(250); await clickAct('export');
   const txt = await page.locator('#out').inputValue();
-  check(`[${S.tag}] 記録が書き出せる（ウェーブの行・置き間違い・傷の割合・開けるまで・CSV と違う値）`, /W1 /.test(txt) && /置き間違い/.test(txt) && /傷の割合/.test(txt) && /開けるまで/.test(txt) && /上書き\[/.test(txt) && /上書きなし/.test(txt), `${txt.split('\n').length}行 ${txt.length}文字`);
+  check(`[${S.tag}] 記録が書き出せる（ウェーブの行・置き間違い・傷の割合・開けるまで・CSV と違う値）`, /W1 /.test(txt) && /置き間違い/.test(txt) && /傷の割合/.test(txt) && /開けるまで/.test(txt) && /上書き\[/.test(txt), `${txt.split('\n').length}行 ${txt.length}文字`);
   writeFileSync(`test-results/export_${S.tag}.txt`, txt);
   if (S.tag !== '390x664') await shot('12_export');
   await page.locator('#sf [data-act="pause"]').click(); await sleep(250); await clickAct('knobsP');
