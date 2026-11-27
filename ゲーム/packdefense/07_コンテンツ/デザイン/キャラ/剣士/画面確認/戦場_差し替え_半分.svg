@@ -1,0 +1,136 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="195" height="422" viewBox="0 0 390 844">
+  <!-- スタイル見本：戦場（iPhone 縦、論理ピクセル 390x844）。推す案「台座のミニチュア」。game-preprod-art 2026-11-25 -->
+  <defs>
+    <pattern id="tile" width="64" height="64" patternUnits="userSpaceOnUse">
+      <rect width="64" height="64" fill="#A9CB8C"/>
+      <rect width="32" height="32" fill="#A2C585"/>
+      <rect x="32" y="32" width="32" height="32" fill="#A2C585"/>
+    </pattern>
+    <linearGradient id="beam" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#FFFFFF" stop-opacity="0"/>
+      <stop offset="0.6" stop-color="#CFE4FF" stop-opacity="0.5"/>
+      <stop offset="1" stop-color="#FFFFFF" stop-opacity="0.85"/>
+    </linearGradient>
+    <radialGradient id="landglow">
+      <stop offset="0" stop-color="#4FA3FF" stop-opacity="0.65"/>
+      <stop offset="1" stop-color="#4FA3FF" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <g id="all" font-family="-apple-system, 'Hiragino Sans', 'Hiragino Kaku Gothic ProN', sans-serif">
+    <!-- 地面 -->
+    <rect width="390" height="844" fill="url(#tile)"/>
+    <rect x="173" y="0" width="44" height="844" fill="#DCCBA4"/>
+    <rect x="0" y="408" width="390" height="44" fill="#DCCBA4"/>
+    <ellipse cx="195" cy="446" rx="62" ry="26" fill="#8DB06F"/>
+
+    <!-- 四隅の森と岩 -->
+    <g stroke="#3E5E3A" stroke-width="2" fill="#5E8A55">
+      <circle cx="22" cy="126" r="16"/><circle cx="46" cy="118" r="14"/><circle cx="34" cy="144" r="15"/>
+      <circle cx="368" cy="124" r="16"/><circle cx="344" cy="132" r="14"/><circle cx="364" cy="150" r="15"/>
+      <circle cx="20" cy="800" r="16"/><circle cx="44" cy="814" r="14"/><circle cx="24" cy="830" r="15"/>
+      <circle cx="368" cy="800" r="16"/><circle cx="346" cy="816" r="14"/><circle cx="370" cy="830" r="15"/>
+    </g>
+    <g fill="#74A068">
+      <circle cx="17" cy="121" r="5"/><circle cx="363" cy="119" r="5"/><circle cx="15" cy="795" r="5"/><circle cx="363" cy="795" r="5"/>
+    </g>
+    <path d="M4 400 L14 390 L28 394 L30 404 L6 406 Z" fill="#9A9488" stroke="#4A4640" stroke-width="2" stroke-linejoin="round"/>
+    <path d="M362 472 L372 462 L386 466 L388 478 L364 480 Z" fill="#9A9488" stroke="#4A4640" stroke-width="2" stroke-linejoin="round"/>
+
+    <!-- 魔物2：ゴブリン（上から。ギザギザの影、前かがみ、とがった耳、こん棒） -->
+    <path d="M181 262 L186 258 L190 263 L195 258 L200 263 L205 258 L209 262 L205 266 L195 267 L185 266 Z" fill="#2A1E2E" fill-opacity="0.35"/>
+    <path d="M207 252 L219 236" stroke="#2A1E2E" stroke-width="7" stroke-linecap="round"/>
+    <path d="M207 252 L219 236" stroke="#8A6A4A" stroke-width="4" stroke-linecap="round"/>
+    <path d="M185 262 L183 246 Q195 236 207 246 L205 262 Z" fill="#5E5A66" stroke="#2A1E2E" stroke-width="2.5" stroke-linejoin="round"/>
+    <path d="M187 236 L175 229 L188 243 Z" fill="#7A5A8C" stroke="#2A1E2E" stroke-width="2.5" stroke-linejoin="round"/>
+    <path d="M203 236 L215 229 L202 243 Z" fill="#7A5A8C" stroke="#2A1E2E" stroke-width="2.5" stroke-linejoin="round"/>
+    <circle cx="195" cy="238" r="9" fill="#7A5A8C" stroke="#2A1E2E" stroke-width="2.5"/>
+    <circle cx="191" cy="238" r="2.2" fill="#FFE14D"/>
+    <circle cx="199" cy="238" r="2.2" fill="#FFE14D"/>
+    <path d="M190 244 L192 242 L194 244 L196 242 L198 244 L200 242" stroke="#F2EFE8" stroke-width="1.3" fill="none"/>
+
+    <!-- パック（レア：青い枠、点2つ）。光の柱で降って地面に刺さったところ -->
+    <rect x="90" y="104" width="30" height="240" fill="url(#beam)"/>
+    <ellipse cx="105" cy="344" rx="30" ry="10" fill="url(#landglow)"/>
+    <rect x="90.5" y="304.5" width="29" height="41" rx="4" fill="#1B2233"/>
+    <rect x="92" y="306" width="26" height="38" rx="3" fill="#23356B" stroke="#4FA3FF" stroke-width="3"/>
+    <path d="M92 310 L95 307 L98 310 L101 307 L104 310 L107 307 L110 310 L113 307 L116 310 L118 308" stroke="#4FA3FF" stroke-width="2" fill="none"/>
+    <path d="M105 318 L107.5 323.5 L113 324 L108.8 327.8 L110 333 L105 330.2 L100 333 L101.2 327.8 L97 324 L102.5 323.5 Z" fill="#FFFFFF"/>
+    <circle cx="101" cy="339" r="2" fill="#FFFFFF"/>
+    <circle cx="109" cy="339" r="2" fill="#FFFFFF"/>
+    <g stroke="#FFFFFF" stroke-width="2" stroke-linecap="round">
+      <path d="M82 312 L78 308"/><path d="M128 312 L132 308"/><path d="M84 336 L79 338"/><path d="M126 336 L131 338"/>
+    </g>
+
+    <!-- 塔（四角の積み石、太い線、右に影） -->
+    <ellipse cx="204" cy="452" rx="34" ry="9" fill="#000000" fill-opacity="0.18"/>
+    <rect x="171" y="382" width="48" height="70" fill="#C9C4B8"/>
+    <rect x="205" y="382" width="14" height="70" fill="#A8A397"/>
+    <g stroke="#8E897F" stroke-width="1.5">
+      <path d="M171 400 H219"/><path d="M171 418 H219"/><path d="M171 436 H219"/>
+      <path d="M185 382 V400"/><path d="M203 400 V418"/><path d="M181 418 V436"/><path d="M211 436 V452"/>
+    </g>
+    <rect x="171" y="382" width="48" height="70" fill="none" stroke="#3A3530" stroke-width="3"/>
+    <rect x="191" y="396" width="8" height="12" rx="4" fill="#3A3530"/>
+    <path d="M187 452 L187 436 Q195 426 203 436 L203 452 Z" fill="#5A4632" stroke="#3A3530" stroke-width="2"/>
+    <rect x="167" y="366" width="56" height="18" fill="#C9C4B8" stroke="#3A3530" stroke-width="3"/>
+    <rect x="167" y="356" width="12" height="12" fill="#C9C4B8" stroke="#3A3530" stroke-width="3"/>
+    <rect x="189" y="356" width="12" height="12" fill="#C9C4B8" stroke="#3A3530" stroke-width="3"/>
+    <rect x="211" y="356" width="12" height="12" fill="#C9C4B8" stroke="#3A3530" stroke-width="3"/>
+    <path d="M195 356 V326" stroke="#3A3530" stroke-width="2"/>
+    <path d="M196 327 L216 332 L196 338 Z" fill="#2F6FD6" stroke="#1B2F5E" stroke-width="1.5" stroke-linejoin="round"/>
+
+    <!-- 魔物1：スライム（右から。しずくの形、暗い赤、黄の目） -->
+    <ellipse cx="302" cy="453" rx="16" ry="5" fill="#2A1E2E" fill-opacity="0.35"/>
+    <path d="M284 452 C282 436 292 424 300 424 C310 424 318 436 316 452 Q308 448 300 452 Q292 448 284 452 Z" fill="#A8323E" stroke="#2A1E2E" stroke-width="2.5" stroke-linejoin="round"/>
+    <ellipse cx="293" cy="433" rx="3.5" ry="2.2" fill="#E07A85"/>
+    <circle cx="295" cy="440" r="2.6" fill="#FFE14D"/>
+    <circle cx="305" cy="440" r="2.6" fill="#FFE14D"/>
+    <path d="M291 435 L297 437 M309 435 L303 437" stroke="#2A1E2E" stroke-width="1.8" stroke-linecap="round"/>
+
+    <!-- 英雄：剣士 sword1（07 の設定画の版。台座の中心 250,480 は見本と同じ） -->
+    <g transform="translate(250 480)"><ellipse cx="0" cy="0" rx="15" ry="6" fill="#FFFFFF" stroke="#2F6FD6" stroke-width="2.5"/><path d="M-3 -9 L-7 -2.5" stroke="#1B2233" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" fill="none"/><path d="M-3 -9 L-7 -2.5" stroke="#2B3A5C" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/><path d="M3 -9 L7 -2.5" stroke="#1B2233" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" fill="none"/><path d="M3 -9 L7 -2.5" stroke="#2B3A5C" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/><ellipse cx="-7.6" cy="-2" rx="3.2" ry="2.1" fill="#6A4A34" stroke="#1B2233" stroke-width="1.6"/><ellipse cx="7.6" cy="-2" rx="3.2" ry="2.1" fill="#6A4A34" stroke="#1B2233" stroke-width="1.6"/><path d="M-5.5 -17 L-10.5 -12.5 L-6.5 -9.5" stroke="#1B2233" stroke-width="5.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/><path d="M-5.5 -17 L-10.5 -12.5 L-6.5 -9.5" stroke="#2F6FD6" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none"/><clipPath id="sw0_1"><path d="M-7 -6 L-6.5 -19 L6.5 -19 L7 -6 Z" fill="#000" stroke="none" stroke-width="0" stroke-linejoin="round"/></clipPath><path d="M-7 -6 L-6.5 -19 L6.5 -19 L7 -6 Z" fill="#2459B0" stroke="none" stroke-width="0" stroke-linejoin="round"/><g clip-path="url(#sw0_1)" fill="#2F6FD6"><rect x="-9" y="-21" width="11" height="16"/></g><path d="M-7 -6 L-6.5 -19 L6.5 -19 L7 -6 Z" fill="none" stroke="#1B2233" stroke-width="2" stroke-linejoin="round"/><path d="M-6.8 -9.5 H6.8" stroke="#6A4A34" stroke-width="2"/><path d="M5 -17 L8 -12.5" stroke="#1B2233" stroke-width="5.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/><path d="M5 -17 L8 -12.5" stroke="#2F6FD6" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none"/><path d="M7 -10.767949192431123 L9.5 -15.098076211353316" stroke="#1B2233" stroke-width="4.5" stroke-linecap="round"/><path d="M10 -15.964101615137755 L21.000000000000004 -35.0166604983954" stroke="#1B2233" stroke-width="5.5" stroke-linecap="round"/><path d="M10 -15.964101615137755 L21.000000000000004 -35.0166604983954" stroke="#AEB6C8" stroke-width="3" stroke-linecap="round"/><path d="M9.480384757729336 -16.264101615137754 L20.48038475772934 -35.3166604983954" stroke="#E6E9EF" stroke-width="1.4" stroke-linecap="round"/><path d="M6.035898384862246 -17.098076211353316 L12.964101615137753 -13.098076211353316" stroke="#1B2233" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/><path d="M6.035898384862246 -17.098076211353316 L12.964101615137753 -13.098076211353316" stroke="#E8B730" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/><circle cx="8" cy="-12.5" r="1.9" fill="#F3D2B3" stroke="#1B2233" stroke-width="1.5"/><clipPath id="sw1_1"><circle cx="0" cy="-25" r="7.5" fill="#000" stroke="none" stroke-width="0"/></clipPath><circle cx="0" cy="-25" r="7.5" fill="#E2B996" stroke="none" stroke-width="0"/><g clip-path="url(#sw1_1)" fill="#F3D2B3"><circle cx="-2" cy="-27" r="7.5"/></g><circle cx="0" cy="-25" r="7.5" fill="none" stroke="#1B2233" stroke-width="2"/><ellipse cx="6.9" cy="-22.8" rx="1.5" ry="2.1" fill="#5A3A26" stroke="#1B2233" stroke-width="1.2"/><circle cx="-2.6" cy="-23.2" r="1.25" fill="#1B2233"/><circle cx="2.6" cy="-23.2" r="1.25" fill="#1B2233"/><path d="M-1.2 -20.4 Q0 -19.5 1.2 -20.4" stroke="#1B2233" stroke-width="0.9" fill="none" stroke-linecap="round"/><g transform="rotate(-8 0 -28)"><clipPath id="sw2_1"><path d="M-10.5 -28 A10.5 11 0 0 1 10.5 -28 Z" fill="#000" stroke="none" stroke-width="0" stroke-linejoin="round"/></clipPath><path d="M-10.5 -28 A10.5 11 0 0 1 10.5 -28 Z" fill="#AEB6C8" stroke="none" stroke-width="0" stroke-linejoin="round"/><g clip-path="url(#sw2_1)" fill="#E6E9EF"><circle cx="-3" cy="-34" r="10"/></g><path d="M-10.5 -28 A10.5 11 0 0 1 10.5 -28 Z" fill="none" stroke="#1B2233" stroke-width="2" stroke-linejoin="round"/><path d="M0.5 -38.2 Q1.5 -33 1.5 -28.5" stroke="#1B2233" stroke-width="1.3" fill="none" stroke-linecap="round"/><clipPath id="sw3_1"><path d="M-12.6 -28 Q0 -30.6 12.6 -28 L12.6 -24.2 Q0 -26.8 -12.6 -24.2 Z" fill="#000" stroke="none" stroke-width="0" stroke-linejoin="round"/></clipPath><path d="M-12.6 -28 Q0 -30.6 12.6 -28 L12.6 -24.2 Q0 -26.8 -12.6 -24.2 Z" fill="#AEB6C8" stroke="none" stroke-width="0" stroke-linejoin="round"/><g clip-path="url(#sw3_1)" fill="#E6E9EF"><rect x="-13" y="-31" width="17" height="3.4"/></g><path d="M-12.6 -28 Q0 -30.6 12.6 -28 L12.6 -24.2 Q0 -26.8 -12.6 -24.2 Z" fill="none" stroke="#1B2233" stroke-width="2" stroke-linejoin="round"/></g></g>
+
+    <!-- 落ちたコイン、ダメージの数 -->
+    <circle cx="330" cy="460" r="5" fill="#FFD24A" stroke="#8A6A10" stroke-width="1.5"/>
+    <text x="318" y="420" font-size="15" font-weight="700" fill="#FFFFFF" stroke="#1B2233" stroke-width="3" paint-order="stroke">12</text>
+
+    <!-- 攻撃の輪（指の 56px 上）と指の位置 -->
+    <ellipse cx="300" cy="496" rx="20" ry="24" fill="#1B2233" fill-opacity="0.18"/>
+    <path d="M300 470 V478" stroke="#FFFFFF" stroke-width="2" stroke-dasharray="3 3"/>
+    <circle cx="300" cy="440" r="28" fill="#FFFFFF" fill-opacity="0.12" stroke="#1B2233" stroke-opacity="0.55" stroke-width="4.5"/>
+    <circle cx="300" cy="440" r="28" fill="none" stroke="#FFFFFF" stroke-width="2.5"/>
+
+    <!-- 危険の印：画面の外の左から魔物（形＝三角と！、色＝危険のだいだい） -->
+    <path d="M6 430 L24 417 L24 443 Z" fill="#FF5A1F" stroke="#1B2233" stroke-width="2" stroke-linejoin="round"/>
+    <text x="17.5" y="436" font-size="13" font-weight="800" fill="#FFFFFF" text-anchor="middle">!</text>
+
+    <!-- HUD（読むもの：上の端） -->
+    <rect x="8" y="52" width="374" height="52" rx="14" fill="#1F2A44" fill-opacity="0.9" stroke="#0E1526" stroke-width="1"/>
+    <rect x="18" y="66" width="10" height="16" fill="#C9C4B8" stroke="#F2EFE8" stroke-width="1"/>
+    <rect x="34" y="71" width="100" height="10" rx="5" fill="#0E1526"/>
+    <rect x="35" y="72" width="70" height="8" rx="4" fill="#5FD38A"/>
+    <text x="140" y="82" font-size="15" font-weight="700" fill="#FFFFFF">720</text>
+    <text x="180" y="72" font-size="12" fill="#C9D3E6">ウェーブ</text>
+    <text x="180" y="95" font-size="20" font-weight="700" fill="#FFFFFF">12</text>
+    <circle cx="242" cy="79" r="8" fill="#FFD24A" stroke="#8A6A10" stroke-width="1.5"/>
+    <text x="255" y="85" font-size="17" font-weight="700" fill="#FFFFFF">1.2万</text>
+    <rect x="330" y="56" width="44" height="44" rx="10" fill="#2E3D60"/>
+    <rect x="344" y="68" width="5" height="20" rx="1.5" fill="#FFFFFF"/>
+    <rect x="355" y="68" width="5" height="20" rx="1.5" fill="#FFFFFF"/>
+
+    <!-- 呪文の置き場（押すもの：中ほどから下、下の端より上） -->
+    <rect x="119" y="692" width="68" height="90" rx="9" fill="#1F2A44" fill-opacity="0.8" stroke="#0E1526" stroke-width="1.5"/>
+    <rect x="123" y="696" width="60" height="82" rx="6" fill="#3A2418" stroke="#FFC23A" stroke-width="3"/>
+    <path d="M141 740 Q132 748 128 756 Q140 752 146 744 Z" fill="#FF7A2A" stroke="#1B2233" stroke-width="1.5" stroke-linejoin="round"/>
+    <circle cx="153" cy="728" r="13" fill="#FF7A2A" stroke="#1B2233" stroke-width="2"/>
+    <circle cx="150" cy="725" r="6" fill="#FFE14D"/>
+    <text x="153" y="766" font-size="12" font-weight="700" fill="#FFFFFF" text-anchor="middle">火の玉</text>
+    <g fill="#FFC23A"><circle cx="141" cy="773" r="1.8"/><circle cx="149" cy="773" r="1.8"/><circle cx="157" cy="773" r="1.8"/><circle cx="165" cy="773" r="1.8"/></g>
+    <rect x="203" y="692" width="68" height="90" rx="9" fill="#1F2A44" fill-opacity="0.45" stroke="#C9D3E6" stroke-width="2" stroke-dasharray="5 4"/>
+    <text x="237" y="742" font-size="12" fill="#C9D3E6" text-anchor="middle">空き</text>
+
+    <!-- 下の端：ホームバー（ここには何も置かない） -->
+    <rect x="128" y="831" width="134" height="5" rx="2.5" fill="#111111" fill-opacity="0.55"/>
+  </g>
+</svg>
