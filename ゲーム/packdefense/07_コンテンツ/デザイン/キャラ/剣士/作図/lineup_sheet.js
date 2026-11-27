@@ -7,7 +7,7 @@ let n = 0; const u = (svg) => { n++; return svg.replace(/id="(sw\d+)"/g, `id="$1
 const hero = (pose, opt) => s1.ped() + s1.draw(pose, opt);
 const T = (x, y, t, sz = 12, w = 400, c = '#333', a = 'middle') => `<text x="${x}" y="${y}" font-size="${sz}" font-weight="${w}" fill="${c}" text-anchor="${a}">${t}</text>`;
 const heroes = [
-  ['剣士 待つ', () => hero('idle0')], ['剣士 当て', () => hero('hit')], ['剣士 立つ最後(P2)', () => hero('spawnEnd')], ['剣士 重なり(P3)', () => hero('stack')], ['P3 別案 52', () => hero('stackHigh')],
+  ['剣士 待つ', () => hero('idle0')], ['剣士 当て(左)', () => hero('hit')], ['剣士 立つ最後(P2)', () => hero('spawnEnd')], ['剣士 重なり(P3)', () => hero('stack')], ['剣士 当て(右)', () => hero('hitR')],
   ['いまの見本', H.old], ['sword2 仮', H.sword2], ['盾の騎士 仮', H.knight], ['槍兵 仮', H.spear], ['弓使い 仮', H.archer], ['魔法使い 仮', H.mage], ['僧侶 仮', H.priest], ['斥候 仮', H.scout],
 ];
 const mons = [['スライム', M.slime], ['ゴブリン', M.goblin], ['コウモリ', M.bat], ['オオカミ', M.wolf], ['骸骨の兵士', M.skeleton], ['オーク', M.orc], ['群れ', M.swarm], ['大物', M.boss]];
@@ -23,7 +23,7 @@ let s = '';
 let y = 0;
 s += T(24, 38, '剣士 sword1 並べ図（段階4）', 24, 700, K, 'start');
 s += T(24, 62, 'game-art-concept 2026-11-27。剣士は 監修_段階2 の直しを入れた A どんぶり兜 × A-1。ほかの英雄・魔物・物は、アートディレクション 3.2・3.3・5.2 の影の形と大きさから描いた比べ用の仮（本番の姿ではない）。', 13, 400, '#444', 'start');
-s += T(24, 80, '同じ比率で並べた。足もと（台座の中心・魔物の影の中心）を同じ線にそろえた。点線は台座の下の端からの高さ 44 / 48 / 52 / 58。', 13, 400, '#444', 'start');
+s += T(24, 80, '同じ比率で並べた。足もと（台座の中心・魔物の影の中心）を同じ線にそろえた。点線は台座の下の端からの高さ 44 / 51 / 58（剣士の重なりの剣の先＝51、槍兵の仮の槍の先＝58）。', 13, 400, '#444', 'start');
 
 // 1. 顔ぶれ 2倍
 y = 100;
@@ -31,7 +31,7 @@ const sc = 2, step = 58;
 s += `<rect x="16" y="${y}" width="${W - 32}" height="300" rx="8" fill="#A9CB8C"/>`;
 s += T(28, y + 22, '1. 顔ぶれ（2倍）英雄', 15, 700, K, 'start');
 let base = y + 250;
-[44, 48, 52, 58].forEach((h, k) => { const yy = base + 6 * sc - h * sc; s += `<path d="M28 ${yy} H${W - 28}" stroke="${h === 58 ? '#B5653A' : h === 48 ? '#D9413A' : '#2F6FD6'}" stroke-dasharray="5 4" stroke-width="1"/>` + T(W - 40 - k * 70, yy - 3, `高さ${h}`, 11, 700, '#333', 'end'); });
+[44, 51, 58].forEach((h, k) => { const yy = base + 6 * sc - h * sc; s += `<path d="M28 ${yy} H${W - 28}" stroke="${h === 58 ? '#B5653A' : h === 51 ? '#D9413A' : '#2F6FD6'}" stroke-dasharray="5 4" stroke-width="1"/>` + T(W - 40 - k * 70, yy - 3, `高さ${h}`, 11, 700, '#333', 'end'); });
 heroes.forEach(([lab, f], i) => { const cx = 70 + i * step * sc / 1.0 * 0.92; s += `<g transform="translate(${cx} ${base}) scale(${sc})">${u(f())}</g>` + T(cx, base + 36, lab, 11, 700, K); });
 y += 316;
 s += `<rect x="16" y="${y}" width="${W - 32}" height="330" rx="8" fill="#A9CB8C"/>`;
@@ -104,8 +104,8 @@ const scene = () => {
   let o = `<rect width="320" height="210" fill="url(#tile)"/><rect x="138" y="0" width="44" height="210" fill="#DCCBA4"/><rect x="0" y="108" width="320" height="44" fill="#DCCBA4"/>`;
   o += `<g transform="translate(160 150)">${O.tower()}</g>`;
   o += `<g transform="translate(108 168)">${u(hero('idle0'))}</g>`;              // 塔の左
-  o += `<g transform="translate(214 168)">${u(hero('windup'))}</g>`;             // 塔の右（構え）
-  o += `<g transform="translate(250 104)">${u(hero('stack'))}</g><g transform="translate(278 112)">${u(hero('idle1'))}</g><g transform="translate(250 50)">${O.arrow()}</g>`; // 重なり
+  o += `<g transform="translate(214 168)">${u(hero('windupR'))}</g>`;             // 塔の右（構え・右）
+  o += `<g transform="translate(250 104)">${u(hero('stack'))}</g><g transform="translate(278 112)">${u(hero('idle1'))}</g><g transform="translate(250 57)">${O.arrow()}</g>`; // 重なり
   o += `<g transform="translate(60 132)">${u(M.slime())}</g><g transform="translate(60 118)">${O.ring()}</g><g transform="translate(72 92)">${O.dmg('12')}</g>`;
   o += `<g transform="translate(30 182)">${u(M.goblin())}</g><g transform="translate(292 186)">${u(M.skeleton())}</g><g transform="translate(220 52)">${u(M.bat())}</g>`;
   o += `<rect x="45" y="0" width="30" height="60" fill="url(#beam)"/><g transform="translate(60 64)">${O.pack()}</g>`;

@@ -25,15 +25,15 @@ const fire = (x, y, r) => `<circle cx="${x}" cy="${y}" r="${r}" fill="#FF9A3A" f
 const star = (x, y) => `<path d="M${x - 5} ${y} L${x + 5} ${y} M${x} ${y - 5} L${x} ${y + 5} M${x - 3.5} ${y - 3.5} L${x + 3.5} ${y + 3.5} M${x - 3.5} ${y + 3.5} L${x + 3.5} ${y - 3.5}" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round"/>`;
 crowd += `    <!-- 混雑：燃える地面（地面の上・キャラの下） -->\n` + fire(300, 450, 30) + fire(120, 300, 22);
 const mons = [
-  [M.slime, 318, 452], [M.slime, 352, 470], [M.swarm, 300, 500], [M.goblin, 196, 300], [M.goblin, 222, 270], [M.wolf, 90, 440], [M.wolf, 60, 420],
+  [M.slime, 318, 452], [M.slime, 352, 470], [M.swarm, 326, 512], [M.goblin, 196, 300], [M.goblin, 222, 270], [M.wolf, 90, 440], [M.wolf, 60, 420],
   [M.skeleton, 175, 560], [M.skeleton, 212, 590], [M.orc, 196, 660], [M.slime, 120, 300], [M.swarm, 80, 330], [M.goblin, 330, 300],
 ];
-const heroes = [[250, 480, 'hit'], [140, 480, 'idle0'], [235, 382, 'windup'], [150, 380, 'idle1'], [262, 520, 'stack'], [128, 520, 'recover']];
+const heroes = [[250, 480, 'hitR'], [140, 480, 'idle0'], [235, 382, 'windup'], [150, 380, 'idle1'], [284, 562, 'stack'], [128, 520, 'recover']];
 const items = [...mons.map(([f, x, y]) => [y, `<g transform="translate(${x} ${y})">${u(f())}</g>`]), ...heroes.map(([x, y, p]) => [y, hero(x, y, p)])];
 items.sort((p, q) => p[0] - q[0]);
 crowd += items.map(i => '    ' + i[1]).join('\n') + '\n';
 crowd += `    <g transform="translate(236 170)">${M.bat()}</g><g transform="translate(270 200)">${M.bat()}</g><g transform="translate(150 210)">${M.bat()}</g>\n`;
-crowd += `    <g transform="translate(262 466)">${O.arrow()}</g>` + star(224, 478) + star(208, 396) + star(118, 512);
+crowd += `    <g transform="translate(284 ${562 - 47})">${O.arrow()}</g>` + star(208, 396) + star(118, 512);
 crowd += [[300, 425, '1.8万'], [330, 448, '2.4万'], [100, 410, '9,800'], [200, 548, '3.1万'], [214, 286, '12万']].map(([x, y, t], i) => `<g transform="translate(${x} ${y})">${O.dmg(t, i === 4 ? 17 : 13)}</g>`).join('');
 crowd += `<g transform="translate(320 440)">${O.ring()}</g>`;
 const crowdSvg = base.replace('    <!-- 落ちたコイン', `    <!-- ここから 画面確認の混雑（仮の魔物・英雄・効果。作図/lineup.js） -->\n${crowd}\n    <!-- 落ちたコイン`);

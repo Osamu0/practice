@@ -45,6 +45,7 @@ const O = {
   pack: () => `<ellipse cx="0" cy="0" rx="30" ry="10" fill="#4FA3FF" fill-opacity="0.35"/><rect x="-13" y="-38" width="26" height="38" rx="3" fill="#20345E" stroke="#4FA3FF" stroke-width="2.5"/><path d="M-13 -33 L-9 -36 L-5 -33 L-1 -36 L3 -33 L7 -36 L13 -33" stroke="#4FA3FF" stroke-width="1.5" fill="none"/><path d="M0 -27 L2.4 -21 L8 -21 L3.6 -17.4 L5.4 -12 L0 -15 L-5.4 -12 L-3.6 -17.4 L-8 -21 L-2.4 -21 Z" fill="#FFFFFF"/><circle cx="-3" cy="-6" r="1.6" fill="#4FA3FF"/><circle cx="3" cy="-6" r="1.6" fill="#4FA3FF"/>`,
   ring: () => `<circle cx="0" cy="0" r="28" fill="#FFFFFF" fill-opacity="0.12" stroke="#1B2233" stroke-opacity="0.55" stroke-width="4.5"/><circle cx="0" cy="0" r="28" fill="none" stroke="#FFFFFF" stroke-width="2.5"/>`,
   dmg: (n = '12', size = 13) => `<text x="0" y="0" font-size="${size}" font-weight="700" fill="#FFFFFF" stroke="#1B2233" stroke-width="3" paint-order="stroke" text-anchor="middle" font-family="sans-serif">${n}</text>`,
+  // 重なりの矢印：#5FD38A、縁 #1B2233 1.4、10×11。置く場所は x＝台座の中心、矢印の下の端が y＝台座の中心−42（兜の上3px）→ translate(x, y−47)
   arrow: () => `<path d="M0 -6 L5 0 L2 0 L2 5 L-2 5 L-2 0 L-5 0 Z" fill="#5FD38A" stroke="#1B2233" stroke-width="1.4" stroke-linejoin="round"/>`,
 };
 module.exports = { H, M, O, s1 };

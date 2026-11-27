@@ -1,5 +1,5 @@
 // 剣士 sword1（決定の方向：A どんぶり兜 × A-1 王国の青）。監修_段階2.md の直しを入れた版。
-// 原点＝台座の中心（配置の座標）。y は上がマイナス。単位＝論理px（ゲームの表示の大きさ）。
+// 原点＝台座の中心（配置の座標）。y は上がマイナス。左右はすべて画面から見た向き（本人の左右とは逆。剣を持つのは画面の右の手＝本人の左手）。単位＝論理px（ゲームの表示の大きさ）。
 // 図形は円・楕円・角丸の四角・直線・2次曲線・円弧だけ（Canvas の arc / ellipse / quadraticCurveTo / roundRect で描ける）。
 const K = '#1B2233'; // 味方の縁
 // パレット（監修_段階2.md「パレットに足す色」のとおり）
@@ -42,13 +42,14 @@ function helmet(angle = -8, big = false) {
   if (big) for (const x of [-9.5, -4.8, 0, 4.8, 9.5]) { const y = -25.6 - 1.25 * (1 - (x / 12.6) ** 2) + 0.6; h += `<circle cx="${x}" cy="${y}" r="0.55" fill="${K}"/>`; }
   return h + '</g>';
 }
-// 顔と髪（指摘3：髪の房は右だけ1つ）
+// 顔と髪（髪の房は画面の右だけ1つ）
 const face = (dy = 0) => `<circle cx="-2.6" cy="${-23.2 + dy}" r="1.25" fill="${K}"/><circle cx="2.6" cy="${-23.2 + dy}" r="1.25" fill="${K}"/><path d="M-1.2 ${-20.4 + dy} Q0 ${-19.5 + dy} 1.2 ${-20.4 + dy}" stroke="${K}" stroke-width="0.9" fill="none" stroke-linecap="round"/>`;
 const head = () => two((f, s, w) => `<circle cx="0" cy="-25" r="7.5" fill="${f}" stroke="${s}" stroke-width="${w}"/>`, P.skin, P.skinS, `<circle cx="-2" cy="-27" r="7.5"/>`);
 const hair = () => `<ellipse cx="6.9" cy="-22.8" rx="1.5" ry="2.1" fill="${P.hair}" stroke="${K}" stroke-width="1.2"/>`;
 
 /* ポーズ（コマ）。
-   pose: idle0 / idle1 / windup / hit / recover / spawnEnd(P2) / stack(P3) / stackHigh(P3 の別案)
+   pose: idle0 / idle1 / windup・hit（狙いが画面の左）/ windupR・hitR（狙いが画面の右）/ recover / spawnEnd(P2) / stack(P3)
+   当ての向き：狙いの x（コマの始まり）が台座の中心より右なら windupR→hitR、それ以外は windup→hit。体・兜・腕は反転しない
    opt: { belt: 'brown'|'gold', big: 大きな絵の注記つき }  */
 function parts(pose = 'idle0', opt = {}) {
   const belt = opt.belt === 'gold' ? P.gold : P.belt;
@@ -58,12 +59,12 @@ function parts(pose = 'idle0', opt = {}) {
   // 足と靴（がに股：残すもの）。足の付け根だけ胴といっしょに下がる
   L.push(['足・靴', stroke2(`M-3 ${-9 + by} L-7 -2.5`, P.pants, 3.5) + stroke2(`M3 ${-9 + by} L7 -2.5`, P.pants, 3.5) +
     `<ellipse cx="-7.6" cy="-2" rx="3.2" ry="2.1" fill="${P.boot}" stroke="${K}" stroke-width="1.6"/><ellipse cx="7.6" cy="-2" rx="3.2" ry="2.1" fill="${P.boot}" stroke="${K}" stroke-width="1.6"/>`, 0]);
-  // 左腕（腰に手：残すもの。立つの最後のコマでは兜を押し上げる）
+  // 画面の左の腕（腰に手：残すもの。立つの最後のコマでは兜を押し上げる）
   let la;
   if (pose === 'spawnEnd') la = stroke2('M-5.5 -17 L-11.5 -23 L-9.5 -29', P.jacket, 3) + fist(-9.5, -29.5);
   else if (pose === 'hit') la = stroke2('M-5.5 -17 L-9.5 -13.5', P.jacket, 3);
   else la = stroke2('M-5.5 -17 L-10.5 -12.5 L-6.5 -9.5', P.jacket, 3);
-  L.push(['左腕', la, by]);
+  L.push(['画面の左の腕（腰に手）', la, by]);
   let b = two((f, s, w) => `<path d="M-7 -6 L-6.5 -19 L6.5 -19 L7 -6 Z" fill="${f}" stroke="${s}" stroke-width="${w}" stroke-linejoin="round"/>`, P.jacket, P.jacketS, `<rect x="-9" y="-21" width="11" height="16"/>`);
   b += `<path d="M-6.8 -9.5 H6.8" stroke="${belt}" stroke-width="2"/>`;
   if (opt.big) { // 大きな絵だけ：当て布・腰の道具袋（ノミの柄）
@@ -74,14 +75,15 @@ function parts(pose = 'idle0', opt = {}) {
   const S = {
     idle0: [[5, -17], [8, -12.5], 60], idle1: [[5, -17], [8, -12.5], 60], recover: [[5, -17], [8.5, -12.5], 50],
     windup: [[5, -17], [10, -15], 25], hit: [[5, -17], [-3, -12], 172], spawnEnd: [[5, -17], [8, -12.5], 60],
-    stack: [[5, -17], [8.5, -18], 67],        // P3：剣の先 高さ48 まで（監修の仮置き）
-    stackHigh: [[5, -17], [9, -21], 74],     // P3 の別案：剣の先 高さ52（槍の先 58 より低い）
+    windupR: [[5, -17], [9, -21], 100],      // 構え（右）：剣を頭の右上へ振りかぶる
+    hitR: [[5, -17], [12, -13], -20],        // 当て（右）：右下へ振り下ろす。白い星は剣の先
+    stack: [[5, -17], [11, -20], 74],        // P3：剣の先 高さ約51（槍の先 58 より7低い）。監修_段階7
   }[pose];
   const [sh, hd, deg] = S;
   const arm = stroke2(`M${sh[0]} ${sh[1]} L${hd[0]} ${hd[1]}`, P.jacket, 3);
   let sw = swordAt(hd[0], hd[1], deg);
-  if (pose === 'hit') { const r = deg * Math.PI / 180; const tx = hd[0] + Math.cos(r) * 26, ty = hd[1] - Math.sin(r) * 26; sw += `<path d="M${tx - 3.5} ${ty} L${tx + 3.5} ${ty} M${tx} ${ty - 3.5} L${tx} ${ty + 3.5} M${tx - 2.4} ${ty - 2.4} L${tx + 2.4} ${ty + 2.4} M${tx - 2.4} ${ty + 2.4} L${tx + 2.4} ${ty - 2.4}" stroke="#FFFFFF" stroke-width="1.4" stroke-linecap="round"/>`; }
-  L.push(['右腕・剣', pose === 'hit' ? sw + fist(hd[0], hd[1]) + arm : arm + sw + fist(hd[0], hd[1]), by]);
+  if (pose === 'hit' || pose === 'hitR') { const r = deg * Math.PI / 180; const tx = hd[0] + Math.cos(r) * 26, ty = hd[1] - Math.sin(r) * 26; sw += `<path d="M${tx - 3.5} ${ty} L${tx + 3.5} ${ty} M${tx} ${ty - 3.5} L${tx} ${ty + 3.5} M${tx - 2.4} ${ty - 2.4} L${tx + 2.4} ${ty + 2.4} M${tx - 2.4} ${ty + 2.4} L${tx + 2.4} ${ty - 2.4}" stroke="#FFFFFF" stroke-width="1.4" stroke-linecap="round"/>`; }
+  L.push(['画面の右の腕・剣', pose === 'hit' ? sw + fist(hd[0], hd[1]) + arm : arm + sw + fist(hd[0], hd[1]), by]);
   L.push(['頭・髪・顔', head() + hair() + face(), by]);
   L.push(['兜', helmet(pose === 'spawnEnd' ? -14 : -8, opt.big), by + hy]);
   return L;
@@ -89,7 +91,7 @@ function parts(pose = 'idle0', opt = {}) {
 function draw(pose = 'idle0', opt = {}) {
   return parts(pose, opt).map(([n, svg, dy]) => dy ? `<g transform="translate(0 ${dy})">${svg}</g>` : svg).join('');
 }
-// 横（右向き）。設定画用
+// 横（画面の右を向く）。設定画用。参考で、正面が正本
 function side(opt = {}) {
   let o = '';
   o += stroke2('M-1 -9 L-4 -2.5', P.pantsS, 3.5) + `<ellipse cx="-3.4" cy="-2" rx="3.2" ry="2.1" fill="${P.boot}" stroke="${K}" stroke-width="1.6"/>`;
