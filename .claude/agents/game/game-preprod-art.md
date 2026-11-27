@@ -1,7 +1,7 @@
 ---
 name: game-preprod-art
 description: ゲーム開発・プリプロダクション部門のアートディレクション担当。見た目の方向（スタイル、色、形の言葉、画面の読みやすさ）、音の方向、UIの方向をスタイルガイドにまとめる。
-tools: Read, Grep, Glob, Write, Edit
+tools: Read, Grep, Glob, Write, Edit, Bash
 ---
 
 # プリプロダクション：アートディレクション

@@ -1,0 +1,296 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="700" viewBox="0 0 1000 700">
+<!-- スタイル見本：重厚・大きな絵（図鑑・開封のカード、タイトル）の質感の決め。game-preprod-art 2026-11-27。
+     この環境の SVG で描けるところまで。英雄は戦場の部品（案D）を拡大し、大きな絵だけに入れる描き込み（傷、刻印、布のしわ、2色の光のふち、紙の粒）を重ねた。
+     本番の大きな絵は外部（絵描きか画像生成の道具）に頼む前提。この見本は「方向と色と光の決め」を伝えるためのもの。 -->
+<style>
+text{font-family:-apple-system,'Hiragino Sans','Hiragino Kaku Gothic ProN','Noto Sans CJK JP',sans-serif}
+.serif{font-family:'Hiragino Mincho ProN','Yu Mincho','Noto Serif CJK JP',serif}
+.nf{fill:none}
+.lh{stroke:#1C1E24;stroke-width:.55;stroke-linejoin:round;stroke-linecap:round}
+.lm{stroke:#140E16;stroke-width:.7;stroke-linejoin:round;stroke-linecap:round}
+.lt{stroke:#2B2722;stroke-width:1.4;stroke-linejoin:round}
+.thin{stroke-width:.4}
+.s-ul{stroke:#1C1E24;fill:none}.s-ml{stroke:#140E16;fill:none}.s-tl{stroke:#2B2722;fill:none}
+.s-grip{stroke:#4A3624;fill:none}.s-brass{stroke:#B8923A;fill:none}.s-wood{stroke:#5C4630;fill:none}
+.hd{stroke:#5A6069;stroke-width:.35;fill:none;stroke-linecap:round}
+.hd2{stroke:#6B4F36;stroke-width:.4;fill:none}
+.hglint{stroke:#EEF0F2;stroke-width:.6;fill:none;stroke-linecap:round}
+.hsteel{fill:#C9CDD2}.hsteelM{fill:#8E949C}.hsteelS{fill:#5A6069}
+.hcloth{fill:#3F5C8C}.hclothS{fill:#2A3F63}
+.hleather{fill:#6B4F36}.hleatherS{fill:#4A3624}.hbrass{fill:#B8923A}
+.hskin{fill:#D9B596}.hskinS{fill:#B08C70}.hbrim{fill:#7A5E4A;fill-opacity:.55}
+.eyeH{fill:#1C1E24}.hhair{fill:#4A3624}.htrou{fill:#3A3530}.hrivet{fill:#5A6069}
+.hsh{fill:#141210;fill-opacity:.45}
+.ring1{fill:#2E4A7A;fill-opacity:.35;stroke:#2E4A7A;stroke-width:.8}
+.ring2{fill:#E8DFC4;fill-opacity:.28;stroke:#E8DFC4;stroke-width:.8}
+.ring3{stroke:#E8DFC4;stroke-width:.6;fill:none}
+.msh{fill:#140E16;fill-opacity:.45}
+.mrag{fill:#4E4652}.mragS{fill:#3A3340}.mskin{fill:#5A4A5E}.mskinS{fill:#433646}
+.eye{fill:#FFD84A}.mteeth{stroke:#D8CFB8;stroke-width:.6;fill:none}.mstud{fill:#8E949C}
+.wolf{fill:#4E4A52}.wolfS{fill:#38343C}
+.tsh{fill:#141210;fill-opacity:.35}
+.st{fill:#8E8678}.stS{fill:#6A6358}.stD{fill:#6A6358}.stone2{fill:#7E7668}
+.mort{stroke:#4E483F;stroke-width:.8;fill:none}
+.slit{fill:#FFC870}.door{fill:#3A2C1E}.iron{stroke:#2B2722;stroke-width:.8;fill:none}.moss{fill:#3F4A30}
+.flag{fill:#2E4A7A}.flagT{fill:none;stroke:#B8923A;stroke-width:.8;stroke-linejoin:round}
+.rim{display:none}
+.warm{stroke:#FFE2B0;fill:none;stroke-linecap:round}
+.cool{stroke:#9FB8E8;fill:none;stroke-linecap:round}
+.scr{stroke:#3A3E44;stroke-width:.22;fill:none;stroke-linecap:round}
+.note{fill:#2A2622}.noteS{fill:#5A544C}
+</style>
+<defs>
+  <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="0" stop-color="#2C3346"/>
+    <stop offset="0.55" stop-color="#6A6670"/>
+    <stop offset="1" stop-color="#C9A87A"/>
+  </linearGradient>
+  <radialGradient id="sun" cx="0.18" cy="0.62" r="0.55">
+    <stop offset="0" stop-color="#FFE2B0" stop-opacity="0.85"/>
+    <stop offset="0.35" stop-color="#E8B878" stop-opacity="0.35"/>
+    <stop offset="1" stop-color="#E8B878" stop-opacity="0"/>
+  </radialGradient>
+  <radialGradient id="vign" cx="0.5" cy="0.5" r="0.75">
+    <stop offset="0.55" stop-color="#000000" stop-opacity="0"/>
+    <stop offset="1" stop-color="#0E0C0A" stop-opacity="0.6"/>
+  </radialGradient>
+  <linearGradient id="ray" x1="0" y1="0" x2="1" y2="1">
+    <stop offset="0" stop-color="#FFE2B0" stop-opacity="0.35"/>
+    <stop offset="1" stop-color="#FFE2B0" stop-opacity="0"/>
+  </linearGradient>
+  <linearGradient id="ground" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="0" stop-color="#5A5E44"/>
+    <stop offset="1" stop-color="#2E3024"/>
+  </linearGradient>
+  <linearGradient id="kvsky" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="0" stop-color="#262C3E"/>
+    <stop offset="0.6" stop-color="#7A6A64"/>
+    <stop offset="1" stop-color="#D2A46C"/>
+  </linearGradient>
+  <linearGradient id="beam" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="0" stop-color="#FFFFFF" stop-opacity="0"/>
+    <stop offset="0.7" stop-color="#CFE4FF" stop-opacity="0.45"/>
+    <stop offset="1" stop-color="#FFFFFF" stop-opacity="0.85"/>
+  </linearGradient>
+  <filter id="grain" x="0" y="0" width="100%" height="100%">
+    <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" seed="3"/>
+    <feColorMatrix type="matrix" values="0 0 0 0 0.10  0 0 0 0 0.08  0 0 0 0 0.06  0.6 0 0 0 -0.25"/>
+  </filter>
+  <filter id="rough" x="-5%" y="-5%" width="110%" height="110%">
+    <feTurbulence type="fractalNoise" baseFrequency="0.035" numOctaves="2" seed="7" result="n"/>
+    <feDisplacementMap in="SourceGraphic" in2="n" scale="7"/>
+  </filter>
+  <clipPath id="artWin"><rect x="38" y="78" width="332" height="388" rx="4"/></clipPath>
+  <clipPath id="kvWin"><rect x="408" y="64" width="568" height="320" rx="6"/></clipPath>
+
+  <g id="heroBase">
+    <ellipse class="hsh" cx="1.5" cy="0.5" rx="10" ry="3"/>
+    <ellipse class="ring1" cx="0" cy="0" rx="16" ry="6"/>
+    <ellipse class="ring2" cx="0" cy="0" rx="12.5" ry="4.4"/>
+    <path class="ring3" d="M0 -6 V-4.4 M0 4.4 V6 M-16 0 H-12.5 M12.5 0 H16"/>
+  </g>
+  <g id="trouArt">
+    <path class="htrou lh" d="M-8 -14 L-8.5 -6 L-2.5 -6 L-1.5 -14 Z"/>
+    <path class="htrou lh" d="M1.5 -14 L2.5 -6 L8.5 -6 L8 -14 Z"/>
+  </g>
+  <g id="bootArt">
+    <path class="hleatherS lh" d="M-9 -7 H-2 V0 H-11.5 Q-11.5 -3 -9 -4 Z"/>
+    <path class="hleatherS lh" d="M2 -7 H9 V-4 Q11.5 -3 11.5 0 H2 Z"/>
+    <path class="hd2" d="M-9 -5.5 H-2 M2 -5.5 H9"/>
+  </g>
+  <g id="upperArt">
+    <path class="hcloth" d="M-9 -15 L9 -15 L11 -7 L4 -8 L0 -6.5 L-4 -8 L-11 -7 Z"/>
+    <path class="hclothS" d="M0.5 -15 L9 -15 L11 -7 L4 -8 L0.5 -6.7 Z"/>
+    <path class="lh nf" d="M-9 -15 L9 -15 L11 -7 L4 -8 L0 -6.5 L-4 -8 L-11 -7 Z"/>
+    <path class="hsteel" d="M-10 -29 L10 -29 L9 -15 L-9 -15 Z"/>
+    <path class="hsteelM" d="M1 -29 L10 -29 L9 -15 L0.5 -15 Z"/>
+    <path class="hsteelS" d="M-9.2 -18 L9.2 -18 L9 -15 L-9 -15 Z"/>
+    <path class="hglint" d="M-6.5 -27 L-4 -20.5"/>
+    <path class="hd" d="M0.5 -28 V-18"/>
+    <path class="lh nf" d="M-10 -29 L10 -29 L9 -15 L-9 -15 Z"/>
+    <rect class="hleather lh" x="-9.5" y="-17" width="19" height="3"/>
+    <rect class="hbrass lh thin" x="-1.8" y="-17.5" width="3.6" height="4"/>
+    <path class="hsteel lh" d="M-16 -24 Q-17 -31 -9 -31 L-6.5 -27 Q-10 -23 -16 -24 Z"/>
+    <path class="hsteelM lh" d="M16 -24 Q17 -31 9 -31 L6.5 -27 Q10 -23 16 -24 Z"/>
+    <path class="hd" d="M-15 -26.5 Q-12 -28.5 -8.5 -28.5 M15 -26.5 Q12 -28.5 8.5 -28.5"/>
+    <path class="hsteelS lh" d="M-14 -24 L-19 -18 L-12 -14 L-9.5 -16 L-14 -18 L-11.5 -22 Z"/>
+    <circle class="hleatherS lh" cx="-10.5" cy="-15.5" r="2.6"/>
+    <path class="hsteelM lh" d="M9 -26 L14.5 -24 L14.5 -18 L9.5 -18.5 Z"/>
+    <path class="hsteel" d="M15.06 -18.7 L27.06 -39.48 L27.5 -43.85 L23.94 -41.28 L11.94 -20.5 Z"/>
+    <path class="hsteelM" d="M13.5 -19.6 L25.5 -40.38 L27.5 -43.85 L27.06 -39.48 L15.06 -18.7 Z"/>
+    <path class="hglint" d="M13.2 -21.2 L23.6 -39.2"/>
+    <path class="lh nf" d="M15.06 -18.7 L27.06 -39.48 L27.5 -43.85 L23.94 -41.28 L11.94 -20.5 Z"/>
+    <path class="s-ul" stroke-width="3.2" stroke-linecap="round" d="M13.5 -19.6 L10.5 -14.4"/>
+    <path class="s-grip" stroke-width="2.4" stroke-linecap="round" d="M13.5 -19.6 L10.5 -14.4"/>
+    <path class="s-ul" stroke-width="3.4" stroke-linecap="round" d="M18.26 -16.85 L8.74 -22.35"/>
+    <path class="s-brass" stroke-width="2.4" stroke-linecap="round" d="M18.26 -16.85 L8.74 -22.35"/>
+    <circle class="hbrass lh thin" cx="10.2" cy="-13.9" r="1.9"/>
+    <circle class="hsteelS lh" cx="12" cy="-17" r="2.8"/>
+  </g>
+  <g id="headArt">
+    <circle class="hskin" cx="0" cy="-35" r="7"/>
+    <path class="hskinS" d="M2 -41.7 A7 7 0 0 1 2 -28.3 A9 9 0 0 0 2 -41.7 Z"/>
+    <path class="hbrim" d="M-6.6 -38.6 H6.6 L6 -36.4 H-6 Z"/>
+    <circle class="lh nf" cx="0" cy="-35" r="7"/>
+    <rect class="eyeH" x="-3.6" y="-35" width="1.6" height="2.3"/>
+    <rect class="eyeH" x="2" y="-35" width="1.6" height="2.3"/>
+    <path class="hd" d="M-1.4 -30.8 H1.6"/>
+    <path class="hhair lh thin" d="M5.5 -37.5 Q9.5 -35 7.2 -30.8 Q6.8 -34 5 -34.2 Z"/>
+    <g transform="rotate(-8 0 -38)">
+      <path class="hsteel" d="M-10.5 -38.5 Q-11 -51 0 -51.5 Q11 -51 10.5 -38.5 Z"/>
+      <path class="hsteelM" d="M1 -51.45 Q11 -51 10.5 -38.5 L1 -38.5 Z"/>
+      <path class="hglint" d="M-7 -48 Q-7.5 -45 -7 -41.5"/>
+      <path class="hd" d="M0 -51.5 V-39.5 M5.5 -47.5 Q7 -46 6.5 -44"/>
+      <path class="lh nf" d="M-10.5 -38.5 Q-11 -51 0 -51.5 Q11 -51 10.5 -38.5 Z"/>
+      <path class="hsteelM" d="M-12 -39.5 L12 -39.5 L10.5 -36.5 L-10.5 -36.5 Z"/>
+      <path class="hsteel" d="M-12 -39.5 L0 -39.5 L0 -36.5 L-10.5 -36.5 Z"/>
+      <path class="lh nf" d="M-12 -39.5 L12 -39.5 L10.5 -36.5 L-10.5 -36.5 Z"/>
+      <g class="hrivet"><circle cx="-6.5" cy="-41" r="0.8"/><circle cx="0" cy="-41.2" r="0.8"/><circle cx="6.5" cy="-41" r="0.8"/></g>
+    </g>
+  </g>
+  <g id="hero">
+    <use href="#heroBase"/>
+    <path class="hclothS lh" d="M-10 -28 L-14 -5 Q-6 -2 0 -3 Q7 -2 13 -5 L10 -28 Z"/>
+    <use href="#trouArt"/>
+    <use href="#bootArt"/>
+    <use href="#upperArt"/>
+    <use href="#headArt"/>
+  </g>
+  <!-- 大きな絵だけの描き込み（英雄の座標のまま重ねる） -->
+  <g id="heroDetail">
+    <path class="scr" d="M-11 -24 L-12.5 -7 M-7 -22 L-8.5 -4.5 M8 -22 L9.5 -6 M11.5 -20 L12 -6"/>
+    <path class="hd" d="M-6.6 -25.2 h4 v2.6 q0 2.2 -2 3.2 q-2 -1 -2 -3.2 z" style="stroke:#B8923A;stroke-width:.35"/>
+    <path class="scr" d="M-8.5 -27.5 l1.5 1 M5 -26 l2 1.4 M-3 -21 l1.2 .6 M6 -20 l1.4 -.4"/>
+    <path d="M-9.3 -15.5 H9.3" stroke="#B8923A" stroke-width=".25" stroke-dasharray=".7 .5"/>
+    <path class="scr" d="M-8.5 -3 l1 .6 M4 -2.5 l1.4 .4 M-6 -6.5 h2"/>
+    <path class="scr" d="M17 -24 l1.5 -2.6 M21 -31 l.8 -1.4"/>
+    <g transform="rotate(-8 0 -38)">
+      <path class="scr" d="M-6 -46 l2.5 1.2 M-3 -49 l1.6 2 M4 -43 l2 -1 M-9 -41.5 l1.5 -.6"/>
+      <path class="warm" stroke-width=".5" d="M-10.3 -39.5 Q-10.8 -50.6 -1 -51.3"/>
+      <path class="cool" stroke-width=".45" d="M10.3 -40 Q10.6 -49 5 -50.6"/>
+    </g>
+    <path class="warm" stroke-width=".5" d="M-15.6 -24.6 Q-16.5 -30.4 -9.4 -30.6 M-9.6 -28.6 L-9.1 -16 M11.6 -20.9 L23.6 -41.4"/>
+    <path class="cool" stroke-width=".45" d="M15.7 -24.6 Q16.6 -30 10 -30.6 M12.7 -27 L12.6 -6 M26.8 -40 L15.5 -19.4"/>
+    <path class="warm" stroke-width=".4" d="M-6.8 -36.5 Q-6.6 -39 -4.8 -40.8"/>
+  </g>
+</defs>
+
+<rect width="1000" height="700" fill="#EDEAE3"/>
+<text x="24" y="28" font-size="16" font-weight="700" fill="#1C1E24">重厚・大きな絵の質感（図鑑・開封のカード、タイトル）　案Dの色と光で、描き込みを足す</text>
+<text x="24" y="48" font-size="11.5" fill="#555049">SVG で描けるところまでの見本。戦場の部品を拡大し、傷・刻印・しわ・2色の光のふち・紙の粒を重ねた。本番は外部に頼む（文言は 9.3）</text>
+
+<!-- ===== 図鑑・開封のカード（縦 5:7） ===== -->
+<rect x="24" y="64" width="360" height="504" rx="12" fill="#1C1A18"/>
+<rect x="30" y="70" width="348" height="492" rx="9" fill="none" stroke="#8C7238" stroke-width="2"/>
+<rect x="36" y="76" width="336" height="392" rx="5" fill="none" stroke="#4FA3FF" stroke-width="2"/>
+<g clip-path="url(#artWin)">
+  <rect x="38" y="78" width="332" height="388" fill="url(#sky)"/>
+  <rect x="38" y="78" width="332" height="388" fill="url(#sun)"/>
+  <g filter="url(#rough)">
+    <path d="M30 330 L80 290 L120 305 L170 262 L220 300 L260 280 L320 310 L380 285 L380 470 L30 470 Z" fill="#4E5060" fill-opacity="0.75"/>
+    <path d="M290 300 V262 H298 V252 H304 V262 H316 V240 H322 V230 H328 V240 H334 V275 H346 V300 Z" fill="#3E4150" fill-opacity="0.9"/>
+    <path d="M30 372 Q120 336 210 356 T380 346 L380 470 L30 470 Z" fill="#454A3A"/>
+  </g>
+  <path d="M38 78 L150 78 L300 466 L200 466 Z" fill="url(#ray)" opacity="0.5"/>
+  <path d="M38 140 L90 78 L260 466 L170 466 Z" fill="url(#ray)" opacity="0.35"/>
+  <path d="M30 410 Q200 388 380 404 L380 470 L30 470 Z" fill="url(#ground)"/>
+  <ellipse cx="214" cy="434" rx="120" ry="14" fill="#141210" fill-opacity="0.4"/>
+  <g transform="translate(196 430) scale(5.8)">
+    <use href="#hero"/>
+    <use href="#heroDetail"/>
+  </g>
+  <g fill="#FFE2B0" fill-opacity="0.7">
+    <circle cx="80" cy="200" r="1.2"/><circle cx="110" cy="240" r="0.9"/><circle cx="66" cy="300" r="1.1"/><circle cx="130" cy="180" r="0.8"/><circle cx="300" cy="160" r="0.9"/>
+  </g>
+  <rect x="38" y="78" width="332" height="388" fill="url(#vign)"/>
+  <rect x="38" y="78" width="332" height="388" filter="url(#grain)"/>
+</g>
+<rect x="36" y="474" width="336" height="80" rx="5" fill="#26221E" stroke="#8C7238" stroke-width="1.5"/>
+<text class="serif" x="52" y="504" font-size="22" font-weight="700" fill="#F2EDE0">剣士</text>
+<text x="112" y="503" font-size="12" fill="#C9C2B0">（名前は仮。オーナー未決）</text>
+<g fill="#4FA3FF"><circle cx="346" cy="497" r="4"/><circle cx="332" cy="497" r="4"/></g>
+<text x="52" y="530" font-size="12" fill="#C9C2B0">レア度の色はカードの内側の細い枠と点だけ（ここではレア：青・点2）</text>
+<text x="52" y="546" font-size="12" fill="#C9C2B0">鉄の枠と真鍮のふちは、すべてのカードで同じ</text>
+
+<!-- ===== タイトル（キービジュアルの構図の見本） ===== -->
+<g clip-path="url(#kvWin)">
+  <rect x="408" y="64" width="568" height="320" fill="url(#kvsky)"/>
+  <ellipse cx="470" cy="300" rx="260" ry="140" fill="#FFD9A0" fill-opacity="0.22"/>
+  <g filter="url(#rough)">
+    <path d="M400 290 L470 250 L540 270 L610 230 L700 262 L780 238 L860 266 L980 240 L980 390 L400 390 Z" fill="#4A4C58" fill-opacity="0.8"/>
+    <path d="M400 340 Q560 300 692 318 T980 330 L980 390 L400 390 Z" fill="#3E4232"/>
+  </g>
+  <rect x="680" y="64" width="24" height="236" fill="url(#beam)"/>
+  <g transform="translate(692 354) scale(1.75)"><use href="#tower"/></g>
+  <g transform="translate(606 372) scale(1.6)"><use href="#hero"/></g>
+  <g transform="translate(786 376) scale(1.6)"><use href="#hero"/></g>
+  <g transform="translate(456 366) scale(1.5)"><use href="#goblin"/></g>
+  <g transform="translate(932 370) scale(-1.5 1.5)"><use href="#wolf"/></g>
+  <g fill="#FFD84A"><circle cx="520" cy="300" r="1.6"/><circle cx="526" cy="300" r="1.6"/><circle cx="880" cy="296" r="1.6"/><circle cx="886" cy="296" r="1.6"/><circle cx="900" cy="312" r="1.4"/><circle cx="905" cy="312" r="1.4"/></g>
+  <text class="serif" x="430" y="124" font-size="44" font-weight="800" fill="#F2EDE0" stroke="#2A2218" stroke-width="5" paint-order="stroke">開けて守れ！</text>
+  <text class="serif" x="434" y="150" font-size="16" fill="#E8D9B8" stroke="#2A2218" stroke-width="3" paint-order="stroke">タワーディフェンス（ロゴの字は仮）</text>
+  <rect x="408" y="64" width="568" height="320" filter="url(#grain)"/>
+</g>
+<rect x="408" y="64" width="568" height="320" rx="6" fill="none" stroke="#8C7238" stroke-width="2"/>
+
+<!-- 塔・魔物（タイトル用。案Dの部品を大きな絵の線の太さで） -->
+<defs>
+  <g id="tower">
+    <ellipse class="tsh" cx="8" cy="1" rx="40" ry="9"/>
+    <rect class="st" x="-30" y="-74" width="60" height="74"/>
+    <g class="stone2"><rect x="-26" y="-60" width="10" height="9"/><rect x="-6" y="-48" width="12" height="9"/><rect x="-24" y="-36" width="9" height="9"/><rect x="-2" y="-72" width="9" height="9"/></g>
+    <rect class="stS" x="12" y="-74" width="18" height="74"/>
+    <rect class="stD" x="-30" y="-13" width="60" height="13"/>
+    <path class="mort" d="M-30 -62 H30 M-30 -50 H30 M-30 -38 H30 M-30 -26 H30 M-30 -13 H30 M-18 -74 V-62 M4 -74 V-62 M22 -74 V-62 M-8 -62 V-50 M14 -62 V-50 M-22 -50 V-38 M2 -50 V-38 M20 -50 V-38 M-12 -38 V-26 M10 -38 V-26 M-20 -26 V-13 M16 -26 V-13 M-14 -13 V0 M18 -13 V0"/>
+    <rect class="lt nf" x="-30" y="-74" width="60" height="74"/>
+    <rect class="slit" x="-3" y="-64" width="6" height="15" rx="3"/>
+    <path class="door lt" d="M-9 0 V-17 Q0 -28 9 -17 V0 Z"/>
+    <path class="iron" d="M-9 -12 H9 M-9 -5 H9 M0 -25 V0"/>
+    <path class="moss" d="M-30 0 Q-26 -6 -20 -3 Q-16 -7 -12 -2 L-12 0 Z M14 0 Q18 -5 23 -2 Q27 -6 30 -1 L30 0 Z"/>
+    <rect class="st lt" x="-34" y="-91" width="68" height="17"/>
+    <path class="mort" d="M-34 -82 H34"/>
+    <path class="st lt" d="M-34 -91 V-102 H-23 V-91 Z M-15 -91 V-102 H-4 V-91 Z M4 -91 V-102 H15 V-91 Z M23 -91 V-102 H34 V-91 Z"/>
+    <path class="s-tl" stroke-width="1.4" d="M0 -91 V-134"/>
+    <path class="flag" d="M1 -133 L25 -127 L19 -123.5 L25 -120 L1 -118 Z"/>
+    <path class="flagT" d="M1 -133 L25 -127 L19 -123.5 L25 -120 L1 -118 Z"/>
+    <path class="warm" stroke-width="1" d="M-30 0 V-74 M-34 -74 V-91"/>
+  </g>
+  <g id="goblin">
+    <path class="msh" d="M-13 0 L-9 -3 L-5 1 L-1 -3 L3 1 L7 -3 L11 1 L13 0 L9 3.5 L0 4.5 L-9 3.5 Z"/>
+    <path class="s-ml" stroke-width="5" stroke-linecap="round" d="M8 -10 L17 -30"/>
+    <path class="s-wood" stroke-width="3.6" stroke-linecap="round" d="M8 -10 L17 -30"/>
+    <path class="s-ml" stroke-width="3.2" stroke-linecap="round" d="M-5 -6 L-6 0 M4 -6 L5 0"/>
+    <path class="mrag lm" d="M-10 -2 L-11 -15 Q-2 -25 9 -16 L10 -2 L6 -5 L3 -1 L-1 -5 L-4 -1 L-7 -5 Z"/>
+    <path class="mskin lm" d="M-8 -24 L-21 -29 L-10 -18 Z"/>
+    <path class="mskin lm" d="M5 -24 L18 -29 L7 -18 Z"/>
+    <circle class="mskin lm" cx="-1.5" cy="-21" r="8"/>
+    <circle class="eye" cx="-4.5" cy="-20.5" r="1.9"/>
+    <circle class="eye" cx="1.5" cy="-20.5" r="1.9"/>
+    <path class="mteeth" d="M-5 -16.5 L-4 -15 L-3 -16.5 L-2 -15 L-1 -16.5 L0 -15 L1 -16.5"/>
+  </g>
+  <g id="wolf">
+    <path class="msh" d="M-18 0 L-13 -2.5 L-8 1 L-3 -2.5 L2 1 L7 -2.5 L12 1 L17 -1 L21 1 L15 3.5 L0 4.5 L-14 3.5 Z"/>
+    <path class="s-ml" stroke-width="3.4" stroke-linecap="round" d="M-10 -8 L-11 0 M-4 -8 L-4.5 0 M6 -8 L6.5 0 M11 -8 L12.5 0"/>
+    <path class="wolfS lm" d="M-13 -13 L-25 -20 L-21 -14 L-24 -12 L-14 -9 Z"/>
+    <path class="wolf lm" d="M-15 -11 Q-14 -18 -4 -18 L8 -19 Q14 -19 15 -13 L13 -7 L-13 -7 Z"/>
+    <path class="wolfS lm" d="M15 -19 L17.5 -26 L19.5 -19.5 Z"/>
+    <path class="wolf lm" d="M9 -17 L12.5 -25.5 L16 -19 L19 -19.5 L27 -14.5 L25 -11.5 L15 -10 Z"/>
+    <circle class="eye" cx="19" cy="-16" r="1.5"/>
+  </g>
+</defs>
+
+<!-- ===== 質感の決め（文字） ===== -->
+<g font-size="10.5">
+  <text class="note" x="408" y="412" font-size="14" font-weight="700">大きな絵の質感の決め（戦場の絵との違い）</text>
+  <text class="note" x="408" y="434">・形と色と頭身は戦場と同じ（3頭身、大きすぎる兜、剣は画面の右上、腰に手）。同じ人に見えることが第一</text>
+  <text class="note" x="408" y="454">・縁取りは細く（拡大しても 2〜4px 相当）、強弱をつけてよい。面は 3段＋やわらかい移り（ぼかし）を許す</text>
+  <text class="note" x="408" y="474">・光は2つ：左上の暖かい主光 #FFE2B0 と、右うしろの冷たい返しの光 #9FB8E8（金属のふちだけ）</text>
+  <text class="note" x="408" y="494">・描き込み：鎧の小傷、胸の王国の紋の刻印、ベルトの縫い目、マントのしわと裾の擦れ、ブーツの泥</text>
+  <text class="note" x="408" y="514">・背景：夕方前の空、遠くの山と城の影、手前は暗い草地。人物より彩度とコントラストを下げる</text>
+  <text class="note" x="408" y="534">・紙の粒（細かいノイズ 5〜10%）と、四隅を少し暗く。写真のような質感、強い光沢、血は入れない</text>
+  <text class="note" x="408" y="554">・カードの枠は全員共通の鉄と真鍮。レア度は内側の細い枠の色と点の数（形で読む決まりは戦場と同じ）</text>
+  <text class="noteS" x="408" y="584">気になる点：この見本の英雄は戦場の部品を拡大したもので、形は単純なまま。オーナーが求める「凝った」大きな絵の</text>
+  <text class="noteS" x="408" y="602">密度（布や金属の描き込み、手描きの線）は、この環境では出せない。本番は外部に頼む前提で、ここは色・光・構図の決め</text>
+  <text class="noteS" x="408" y="632">タイトルは構図の見本：中央に塔、手前に英雄、左右の暗がりに魔物の目、空からパックの光の柱。ロゴは仮の字</text>
+</g>
+</svg>
