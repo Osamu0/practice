@@ -1,4 +1,6 @@
 import os, sys
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from top_performance import ROLE, COMMON_MAKER, COMMON_REVIEWER
 OUT = sys.argv[1]
 R = "Read, Grep, Glob"
 RB = "Read, Grep, Glob, Bash"
@@ -935,14 +937,25 @@ def render(a):
     L += ["## 仕事", ""]
     L += [f"- {x}" for x in a["work"]]
     L.append("")
+    L += ["## この職種のトップがすること", ""]
+    for x in ROLE[a["name"]]:
+        if a["name"] == "game-beta-firsttime" and x.startswith("「直し方」"):
+            x += "（下の共通の「直し方まで出す」「目的から見る」は、この役ではしない。作り手の目的を知らない目で見ることが、この役の価値）"
+        L.append(f"- {x}")
+    L.append("")
+    L += (COMMON_MAKER if a["kind"] == "make" else COMMON_REVIEWER).split("\n")
     if a["kind"] == "make":
         L += ["## 終えたら", "",
               "- 自分で一度見直す。動くものは実際に動かして確かめる（確かめられなかったら、そう書く）",
-              "- プロデューサーに返す：書いた・変えたファイルのパス、決めたこと、決めずに残したこと（未決）、気になっているところ",
+              "- プロデューサーに返す：この仕事の目的（1行）、書いた・変えたファイルのパス、自分で決めたことと理由、決めずに残したこと（未決）、気になっているところ（悪い知らせは先頭に）、頼まれていないが要る提案（あれば、分けて）",
               "- 自分の役割の範囲をこえる変更（仕様、デザイン、ほかの担当のファイル）は、勝手にせず返す",
               "- `開発チーム.md` で自分に足された観点があれば、それも守る"]
     else:
         L += ["## 返し方", ""]
+        if a["name"] == "game-beta-firsttime":
+            L.append("- 先頭に、いちばん困った・やめたくなった所を3つまで挙げる")
+        else:
+            L.append("- 先頭に、いちばん効く直しを3つまで挙げる（全体を読まなくても、次の作業が決められるように）")
         if "Write" not in a["tools"]:
             L.append("- ファイルは書き換えない")
         if "ret" in a:
@@ -952,6 +965,7 @@ def render(a):
                   "- 重さを付ける：**必ず直す**（作れない、矛盾、壊れる、柱からずれる）／**直したほうがいい**（もっとよくなる）"]
         L += ["- 事実と推測を分ける。確かめていないことは「確かめていない」と書く",
               "- 自分の役割の範囲に絞る。問題がなければ「なし」と返す",
+              "- 直すと壊れる良いところは「残す」として挙げる",
               "- `開発チーム.md` で自分に足された観点があれば、それも見る"]
     return "\n".join(L) + "\n"
 
