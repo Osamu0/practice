@@ -9,7 +9,7 @@
 ## スキルとエージェント
 
 - スキル：`小説/.claude/skills/` の次の5つ
-  - `spicy_novel_planning_jp`：企画〜プロット。物語と設定を往復して作る
+  - `spicy_novel_planning_jp`：企画〜プロット。「どんなものにしたいか」から物語と設定を一緒に膨らませる
   - `spicy_novel_writing_jp`：文体
   - `spicy_novel_writing_team_jp`：執筆チームで本文を書く手順
   - `spicy_novel_vocab_jp`：語彙の言い換え
