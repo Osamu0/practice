@@ -8,9 +8,10 @@
 
 ## スキルとエージェント
 
-- スキル：`小説/.claude/skills/` の次の5つ
+- スキル：`小説/.claude/skills/` の次の6つ
   - `spicy_novel_planning_jp`：企画〜プロット。「どんなものにしたいか」から物語と設定を一緒に膨らませる
-  - `spicy_novel_writing_jp`：文体
+  - `spicy_novel_guideline_jp`：執筆ガイドライン。作者とリレーで本文を書く。単体で完結していて、ほかの文体スキルやエージェントは使わない
+  - `spicy_novel_writing_jp`：執筆チームで書く作品の文体
   - `spicy_novel_writing_team_jp`：執筆チームで本文を書く手順
   - `spicy_novel_vocab_jp`：語彙の言い換え
   - `spicy_novel_jp`：配布されている原本。書き換えない。喘ぎ声の `references/aegigoe_skills.md` はここを読む。企画〜プロットには使わず、`spicy_novel_planning_jp` を使う
